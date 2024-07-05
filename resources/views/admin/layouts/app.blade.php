@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/html/main/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Jul 2023 01:54:29 GMT -->
-
 <head>
     <!--  Title -->
     <title>{{ env('APP_NAME') }}</title>
@@ -29,11 +27,11 @@
 <body>
     <!-- Preloader -->
     <div class="preloader">
-        <img src="{{ asset('preloader.png') }}" style="width:150px" alt="loader" class="lds-ripple" />
+        <img src="#" style="width:150px" alt="loader" class="lds-ripple" />
     </div>
     <!-- Preloader -->
     <div class="preloader">
-        <img src="{{ asset('preloader.png') }}" style="width:150px" alt="loader" class="lds-ripple" />
+        <img src="#" style="width:150px" alt="loader" class="lds-ripple" />
     </div>
     <!--  Body Wrapper -->
     <div class="page-wrapper" id="main-wrapper" data-theme="blue_theme" data-layout="vertical" data-sidebartype="full"
@@ -65,7 +63,7 @@
             <ul class="mb-0">
                 <li class="pb-7">
                     <div class="d-flex align-items-center">
-                        <img src="../../dist/images/products/product-1.jpg" width="95" height="75"
+                        <img src="#" width="95" height="75"
                             class="rounded-1 me-9 flex-shrink-0" alt="" />
                         <div>
                             <h6 class="mb-1">Supreme toys cooker</h6>
@@ -88,7 +86,7 @@
                 </li>
                 <li class="pb-7">
                     <div class="d-flex align-items-center">
-                        <img src="../../dist/images/products/product-2.jpg" width="95" height="75"
+                        <img src="#" width="95" height="75"
                             class="rounded-1 me-9 flex-shrink-0" alt="" />
                         <div>
                             <h6 class="mb-1">Supreme toys cooker</h6>
@@ -111,7 +109,7 @@
                 </li>
                 <li class="pb-7">
                     <div class="d-flex align-items-center">
-                        <img src="../../dist/images/products/product-3.jpg" width="95" height="75"
+                        <img src="#" width="95" height="75"
                             class="rounded-1 me-9 flex-shrink-0" alt="" />
                         <div>
                             <h6 class="mb-1">Supreme toys cooker</h6>
@@ -439,10 +437,8 @@
     <script src="{{ asset('admin_assets/dist/js/custom.js') }}"></script>
     <!--  current page js files -->
     <script src="{{ asset('admin_assets/dist/libs/owl.carousel/dist/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('admin_assets/dist/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
     <script src="{{ asset('admin_assets/dist/js/dashboard.js') }}"></script>
 </body>
 
-<!-- Mirrored from demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/html/main/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Jul 2023 01:55:21 GMT -->
 
 </html>
