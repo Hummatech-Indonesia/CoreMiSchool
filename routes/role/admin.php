@@ -10,3 +10,7 @@ Route::get('/admin', function () {
 Route::get('rfid-registration', function(){
     return view('admin.pages.absensi.registrasi-rfid');
 });
+
+Route::get('list-school', function(){
+    return view('admin.pages.list-school.index');
+});
