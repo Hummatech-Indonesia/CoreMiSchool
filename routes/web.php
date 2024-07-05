@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,9 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
 
 require_once __DIR__ . '/role/admin.php';
 require_once __DIR__ . '/role/school.php';
 require_once __DIR__ . '/role/staff.php';
 require_once __DIR__ . '/role/teacher.php';
 require_once __DIR__ . '/role/student.php';
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
