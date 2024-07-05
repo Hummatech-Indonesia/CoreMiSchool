@@ -13,23 +13,17 @@ class ReligionSeeder extends Seeder
      */
     public function run(): void
     {
-        Religion::factory()->create([
-            'name' => 'Islam'
-        ]);
-        Religion::factory()->create([
-            'name' => 'Kristen Protestan'
-        ]);
-        Religion::factory()->create([
-            'name' => 'Katolik'
-        ]);
-        Religion::factory()->create([
-            'name' => 'Hindu'
-        ]);
-        Religion::factory()->create([
-            'name' => 'Budha'
-        ]);
-        Religion::factory()->create([
-            'name' => 'Konghucu'
-        ]);
+        $religions = [
+            'Islam',
+            'Kristen Protestan',
+            'Katolik',
+            'Hindu',
+            'Budha',
+            'Konghucu'
+        ];
+        
+        foreach ($religions as $religion) {
+            Religion::factory()->create(['name' => $religion]);
+        }
     }
 }
