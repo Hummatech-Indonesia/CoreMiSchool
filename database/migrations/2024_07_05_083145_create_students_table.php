@@ -1,6 +1,5 @@
 <?php
 
-use App\Enums\RoleEnum;
 use App\Traits\Migrations\HasForeign;
 use App\Traits\Migrations\HasGender;
 use Illuminate\Database\Migrations\Migration;
@@ -16,18 +15,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('employees', function (Blueprint $table) {
+        Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('nip');
+            $this->addForeignId($table, 'user_id');
+            $table->char('nisn', 10);
+            $this->addGender($table);
             $table->date('birth_date');
             $table->date('birth_place');
-            $this->addGender($table);
-            $table->bigInteger('nik');
-            $table->string('phone_number');
-            $table->longText('address');
-            $table->enum('status', [RoleEnum::ADMIN->value, RoleEnum::TEACHER->value, RoleEnum::STAFF->value]);
-            $this->addForeignId($table, 'user_id');
-            $this->addForeignId($table, 'religion_id');
+            $table->string('number_kk');
+            $table->string('number_akta');
+            $table->integer('order_child');
+            $table->integer('count_siblings');
             $this->addForeignId($table, 'school_id');
             $table->timestamps();
         });
@@ -38,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('employees');
+        Schema::dropIfExists('students');
     }
 };
