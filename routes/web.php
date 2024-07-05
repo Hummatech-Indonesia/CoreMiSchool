@@ -18,8 +18,8 @@ Route::get('/', function () {
 });
 
 
-require_once __DIR__ . '/route/admin.php';
-require_once __DIR__ . '/route/school.php';
-require_once __DIR__ . '/route/staff.php';
-require_once __DIR__ . '/route/teacher.php';
-require_once __DIR__ . '/route/student.php';
+require_once __DIR__ . '/role/admin.php';
+require_once __DIR__ . '/role/school.php';
+require_once __DIR__ . '/role/staff.php';
+require_once __DIR__ . '/role/teacher.php';
+require_once __DIR__ . '/role/student.php';
