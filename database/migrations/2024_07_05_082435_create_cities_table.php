@@ -1,9 +1,10 @@
 <?php
 
+use App\Enums\CityTypeEnum;
 use App\Traits\Migrations\HasForeign;
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -16,6 +17,7 @@ return new class extends Migration
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->enum('type', [CityTypeEnum::KABUPATEN->value, CityTypeEnum::KOTA->value]);
             $this->addForeignId($table, 'province_id');
             $table->timestamps();
         });
