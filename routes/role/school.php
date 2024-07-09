@@ -42,3 +42,7 @@ Route::get('school/attendance', function(){
 })->name('attendance.index');
 
 
+//alumni
+Route::get('school/alumni', function(){
+    return view('school.pages.alumni.index');
+})->name('alumni.index');
