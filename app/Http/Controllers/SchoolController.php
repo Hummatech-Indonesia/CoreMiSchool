@@ -2,18 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Interfaces\SchoolInterface;
 use App\Models\School;
 use App\Http\Requests\StoreSchoolRequest;
 use App\Http\Requests\UpdateSchoolRequest;
+use App\Services\SchoolService;
 
 class SchoolController extends Controller
 {
+    private SchoolInterface $school;
+    private SchoolService $service;
+
+    public function __construct(SchoolInterface $school, SchoolService $service)
+    {
+        $this->school = $school;
+        $this->service = $service;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $data = $this->school->get();
+        return view('', compact('data'));
     }
 
     /**
@@ -29,7 +41,9 @@ class SchoolController extends Controller
      */
     public function store(StoreSchoolRequest $request)
     {
-        //
+        $data = $this->service->store($request);
+        $this->school->store($data);
+        return redirect();
     }
 
     /**
@@ -53,7 +67,9 @@ class SchoolController extends Controller
      */
     public function update(UpdateSchoolRequest $request, School $school)
     {
-        //
+        $data = $this->service->update($school, $request);
+        $this->school->update($school->id, $data);
+        return redirect();
     }
 
     /**
@@ -61,6 +77,7 @@ class SchoolController extends Controller
      */
     public function destroy(School $school)
     {
-        //
+        $this->school->delete($school->id);
+        return redirect();
     }
 }

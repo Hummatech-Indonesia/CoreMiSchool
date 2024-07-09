@@ -2,18 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Interfaces\ClassroomInterface;
 use App\Models\Classroom;
 use App\Http\Requests\StoreClassroomRequest;
 use App\Http\Requests\UpdateClassroomRequest;
 
 class ClassroomController extends Controller
 {
+    private ClassroomInterface $classroom;
+
+    public function __construct(ClassroomInterface $classroom)
+    {
+        $this->classroom = $classroom;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $data = $this->classroom->get();
+        return view('', compact('data'));
     }
 
     /**
