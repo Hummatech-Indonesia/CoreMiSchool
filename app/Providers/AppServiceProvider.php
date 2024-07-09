@@ -11,6 +11,7 @@ use App\Contracts\Interfaces\SchoolInterface;
 use App\Contracts\Interfaces\StudentInterface;
 use App\Contracts\Interfaces\SubDistrictInterface;
 use App\Contracts\Interfaces\UserInterface;
+use App\Contracts\Interfaces\VillageInterface;
 use App\Contracts\Repositories\CityRepository;
 use App\Contracts\Repositories\MapleRepository;
 use App\Contracts\Repositories\ProvinceRepository;
@@ -19,6 +20,7 @@ use App\Contracts\Repositories\SchoolRepository;
 use App\Contracts\Repositories\StudentRepository;
 use App\Contracts\Repositories\SubDistrictRepository;
 use App\Contracts\Repositories\UserRepository;
+use App\Contracts\Repositories\VillageRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -33,6 +35,7 @@ class AppServiceProvider extends ServiceProvider
         SchoolInterface::class => SchoolRepository::class,
         EmployeeInterface::class => EmployeeInterface::class,
         MapleInterface::class => MapleRepository::class,
+        VillageInterface::class => VillageRepository::class,
     ];
 
     /**
