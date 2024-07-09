@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Contracts\Interfaces\CityInterface;
 use App\Contracts\Interfaces\ProvinceInterface;
 use App\Contracts\Interfaces\ReligionInterface;
 use App\Contracts\Interfaces\StudentInterface;
 use App\Contracts\Interfaces\UserInterface;
+use App\Contracts\Repositories\CityRepository;
 use App\Contracts\Repositories\ProvinceRepository;
 use App\Contracts\Repositories\ReligionRepository;
 use App\Contracts\Repositories\StudentRepository;
@@ -19,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
         StudentInterface::class => StudentRepository::class,
         ReligionInterface::class => ReligionRepository::class,
         ProvinceInterface::class => ProvinceRepository::class,
+        CityInterface::class => CityRepository::class,
     ];
 
     /**
