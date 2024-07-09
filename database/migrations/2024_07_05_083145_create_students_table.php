@@ -19,13 +19,15 @@ return new class extends Migration
             $table->id();
             $this->addForeignId($table, 'user_id');
             $table->char('nisn', 10);
+            $this->addForeignId($table, 'religion_id');
             $this->addGender($table);
             $table->date('birth_date');
             $table->date('birth_place');
+            $table->char('nik', 16);
             $table->string('number_kk');
             $table->string('number_akta');
             $table->integer('order_child');
-            $table->integer('count_siblings');
+            $table->integer('count_siblings')->nullable(0);
             $this->addForeignId($table, 'school_id');
             $table->timestamps();
         });
