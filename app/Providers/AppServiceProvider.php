@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Contracts\Interfaces\AttendanceInterface;
 use App\Contracts\Interfaces\CityInterface;
 use App\Contracts\Interfaces\ClassroomInterface;
 use App\Contracts\Interfaces\ClassroomStudentInterface;
@@ -18,6 +19,7 @@ use App\Contracts\Interfaces\SubDistrictInterface;
 use App\Contracts\Interfaces\TeacherMapleInterface;
 use App\Contracts\Interfaces\UserInterface;
 use App\Contracts\Interfaces\VillageInterface;
+use App\Contracts\Repositories\AttendanceRepository;
 use App\Contracts\Repositories\CityRepository;
 use App\Contracts\Repositories\ClassroomRepository;
 use App\Contracts\Repositories\ClassroomStudentRepository;
@@ -54,6 +56,7 @@ class AppServiceProvider extends ServiceProvider
         ClassroomStudentInterface::class => ClassroomStudentRepository::class,
         LessonHourInterface::class => LessonHourRepository::class,
         LessonScheduleInterface::class => LessonScheduleRepository::class,
+        AttendanceInterface::class => AttendanceRepository::class,
     ];
 
     /**

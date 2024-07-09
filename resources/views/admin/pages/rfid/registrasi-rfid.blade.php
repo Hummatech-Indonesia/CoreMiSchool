@@ -47,7 +47,6 @@
         </li>
     </ul>
 </div>
-</div>
 
 <div class="ps-4 pe-4">
     <div class="tab-content">
