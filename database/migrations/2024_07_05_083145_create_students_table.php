@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('number_kk');
             $table->string('number_akta');
             $table->integer('order_child');
-            $table->integer('count_siblings');
+            $table->integer('count_siblings')->nullable(0);
             $this->addForeignId($table, 'school_id');
             $table->timestamps();
         });

@@ -16,11 +16,10 @@ return new class extends Migration
     {
         Schema::create('schools', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('slug');
             $table->char('npsn', 8);
             $table->char('phone_number', 15);
             $table->text('image');
+            $this->addForeignId($table, 'user_id');
             $this->addForeignId($table, 'province_id');
             $this->addForeignId($table, 'city_id');
             $this->addForeignId($table, 'subdistrict_id');
