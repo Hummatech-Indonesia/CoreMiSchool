@@ -55,40 +55,35 @@
                             <div class="card">
                                 <div class="card-title p-3 rounded-2">
                                     <div class="position-relative p-3 rounded-2" style="background-color: #F0F0F0">
-                                        <div class="dropdown dropstart position-relative">
-                                            <a href="#" class="text-muted" id="dropdownMenuButton"
-                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                    class="icon icon-tabler icons-tabler-outline icon-tabler-dots-vertical position-absolute"
-                                                    style="top: 10px; right: 10px;">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-                                                    <path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-                                                    <path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-                                                </svg>
-                                            </a>
-                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"
-                                                style="top: 0px; right: 0; margin: 0%">
-                                                <li>
-                                                    <a href="#" class="dropdown-item d-flex align-items-center gap-3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="category-selector btn-group ms-auto">
+                                                <a class="nav-link category-dropdown label-group p-0" data-bs-toggle="dropdown" href="#" role="button"
+                                                    aria-haspopup="true" aria-expanded="true">
+                                                    <div class="category">
+                                                        <div class="category-business"></div>
+                                                        <div class="category-social"></div>
+                                                        <span class="more-options text-dark">
+                                                            <i class="ti ti-dots-vertical fs-5"></i>
+                                                        </span>
+                                                    </div>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right category-menu" data-popper-placement="bottom-end">
+                                                    <a class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
+                                                        Edit
+                                                    </a>
+                                                    <a class="note-business badge-group-item text-danger badge-business dropdown-item position-relative category-business d-flex align-items-center">
                                                         Hapus
                                                     </a>
-                                                </li>
-                                            </ul>
+                                                </div>
+                                            </div>
                                         </div>
-
-
-
-                                        <div class="d-flex justify-content-center align-items-center"
-                                            style="height: 100px;">
+                                        <div class="d-flex justify-content-center align-items-center mb-3" style="height: 130px;">
                                             <img class="card-img-top img-responsive" style="max-height: 100%; width: auto"
-                                                src="{{ asset('admin_assets/dist/images/profile/smkn1kepanjen.png') }}"
-                                                alt="Card image cap">
+                                                src="{{ asset('admin_assets/dist/images/profile/smkn1kepanjen.png') }}" alt="Card image cap">
                                         </div>
                                     </div>
                                 </div>
+
 
                                 <div class="card-body pt-0">
                                     <h3 class="fs-6">
@@ -144,24 +139,35 @@
                             <div class="card">
                                 <div class="card-title p-3 rounded-2">
                                     <div class="position-relative p-3 rounded-2" style="background-color: #F0F0F0">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="icon icon-tabler icons-tabler-outline icon-tabler-dots-vertical position-absolute"
-                                            style="top: 10px; right: 10px;">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-                                            <path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-                                            <path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-                                        </svg>
-                                        <div class="d-flex justify-content-center align-items-center"
-                                            style="height: 100px;">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="category-selector btn-group ms-auto">
+                                                <a class="nav-link category-dropdown label-group p-0" data-bs-toggle="dropdown" href="#" role="button"
+                                                    aria-haspopup="true" aria-expanded="true">
+                                                    <div class="category">
+                                                        <div class="category-business"></div>
+                                                        <div class="category-social"></div>
+                                                        <span class="more-options text-dark">
+                                                            <i class="ti ti-dots-vertical fs-5"></i>
+                                                        </span>
+                                                    </div>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right category-menu" data-popper-placement="bottom-end">
+                                                    <a class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
+                                                        Edit
+                                                    </a>
+                                                    <a class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
+                                                        Hapus
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center mb-3" style="height: 130px;">
                                             <img class="card-img-top img-responsive" style="max-height: 100%; width: auto"
-                                                src="{{ asset('admin_assets/dist/images/profile/smkn1kepanjen.png') }}"
-                                                alt="Card image cap">
+                                                src="{{ asset('admin_assets/dist/images/profile/smkn1kepanjen.png') }}" alt="Card image cap">
                                         </div>
                                     </div>
                                 </div>
+
 
                                 <div class="card-body pt-0">
                                     <h3 class="fs-6">
@@ -217,24 +223,35 @@
                             <div class="card">
                                 <div class="card-title p-3 rounded-2">
                                     <div class="position-relative p-3 rounded-2" style="background-color: #F0F0F0">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="icon icon-tabler icons-tabler-outline icon-tabler-dots-vertical position-absolute"
-                                            style="top: 10px; right: 10px;">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-                                            <path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-                                            <path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-                                        </svg>
-                                        <div class="d-flex justify-content-center align-items-center"
-                                            style="height: 100px;">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="category-selector btn-group ms-auto">
+                                                <a class="nav-link category-dropdown label-group p-0" data-bs-toggle="dropdown" href="#" role="button"
+                                                    aria-haspopup="true" aria-expanded="true">
+                                                    <div class="category">
+                                                        <div class="category-business"></div>
+                                                        <div class="category-social"></div>
+                                                        <span class="more-options text-dark">
+                                                            <i class="ti ti-dots-vertical fs-5"></i>
+                                                        </span>
+                                                    </div>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right category-menu" data-popper-placement="bottom-end">
+                                                    <a class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
+                                                        Edit
+                                                    </a>
+                                                    <a class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
+                                                        Hapus
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center mb-3" style="height: 130px;">
                                             <img class="card-img-top img-responsive" style="max-height: 100%; width: auto"
-                                                src="{{ asset('admin_assets/dist/images/profile/smkn1kepanjen.png') }}"
-                                                alt="Card image cap">
+                                                src="{{ asset('admin_assets/dist/images/profile/smkn1kepanjen.png') }}" alt="Card image cap">
                                         </div>
                                     </div>
                                 </div>
+
 
                                 <div class="card-body pt-0">
                                     <h3 class="fs-6">
