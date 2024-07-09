@@ -5,7 +5,7 @@ namespace App\Traits\Model;
 use App\Models\City;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-trait HasSchool {
+trait BelongsToCity {
     /**
      * Get the user that owns the HasUser
      *

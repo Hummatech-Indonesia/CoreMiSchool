@@ -2,17 +2,19 @@
 
 namespace App\Traits\Model;
 
-use App\Models\Religion;
+use App\Models\School;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-trait HasReligion {
+trait BelongsToSchool {
+
     /**
-     * Get the user that owns the HasUser
+     * Get the school that owns the BelongsToSchool
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function religion(): BelongsTo
+    public function school(): BelongsTo
     {
-        return $this->belongsTo(Religion::class);
+        return $this->belongsTo(School::class);
     }
+
 }
