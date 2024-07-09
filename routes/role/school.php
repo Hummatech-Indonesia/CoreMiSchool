@@ -35,7 +35,6 @@ Route::get('school/student-class', function(){
 });
 
 
-
 // absen
 Route::get('school/attendance', function(){
     return view('school.pages.attendace.index');
@@ -46,3 +45,8 @@ Route::get('school/attendance', function(){
 Route::get('school/alumni', function(){
     return view('school.pages.alumni.index');
 })->name('alumni.index');
+
+//Extracurricular
+Route::get('school/extracurricular', function(){
+    return view('school.pages.extracurricular.index');
+})->name('extraa.index');
