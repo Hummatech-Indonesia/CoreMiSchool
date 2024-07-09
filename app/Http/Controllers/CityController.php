@@ -2,18 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Interfaces\CityInterface;
 use App\Models\City;
 use App\Http\Requests\StoreCityRequest;
 use App\Http\Requests\UpdateCityRequest;
 
 class CityController extends Controller
 {
+    private CityInterface $city;
+
+    public function __construct(CityInterface $city)
+    {
+        $this->city = $city;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $data = $this->city->get();
+        return view('', compact('data'));
     }
 
     /**
