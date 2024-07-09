@@ -5,12 +5,14 @@ namespace App\Providers;
 use App\Contracts\Interfaces\CityInterface;
 use App\Contracts\Interfaces\ProvinceInterface;
 use App\Contracts\Interfaces\ReligionInterface;
+use App\Contracts\Interfaces\SchoolInterface;
 use App\Contracts\Interfaces\StudentInterface;
 use App\Contracts\Interfaces\SubDistrictInterface;
 use App\Contracts\Interfaces\UserInterface;
 use App\Contracts\Repositories\CityRepository;
 use App\Contracts\Repositories\ProvinceRepository;
 use App\Contracts\Repositories\ReligionRepository;
+use App\Contracts\Repositories\SchoolRepository;
 use App\Contracts\Repositories\StudentRepository;
 use App\Contracts\Repositories\SubDistrictRepository;
 use App\Contracts\Repositories\UserRepository;
@@ -25,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
         ProvinceInterface::class => ProvinceRepository::class,
         CityInterface::class => CityRepository::class,
         SubDistrictInterface::class => SubDistrictRepository::class,
+        SchoolInterface::class => SchoolRepository::class,
     ];
 
     /**
