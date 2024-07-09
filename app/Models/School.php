@@ -10,6 +10,7 @@ use App\Traits\Model\HasManyMaple;
 use App\Traits\Model\HasManyStudent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class School extends Model
 {
@@ -30,4 +31,14 @@ class School extends Model
         'website_school',
         'description'
     ];
+
+    /**
+     * Get the user that owns the School
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }
