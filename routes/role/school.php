@@ -22,3 +22,9 @@ Route::get('detail-teacher', function(){
 Route::get('create-subjects', function(){
     return view('school.pages.teacher.create-subjetcs');
 })->name('create-subjects');
+
+
+//siswa
+Route::get('school/student', function(){
+    return view('school.pages.student.index');
+});
