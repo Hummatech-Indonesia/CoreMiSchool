@@ -18,12 +18,12 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('nip');
+            $table->char('nip', 18);
             $table->date('birth_date');
             $table->date('birth_place');
             $this->addGender($table);
-            $table->bigInteger('nik');
-            $table->string('phone_number');
+            $table->char('nik', 16);
+            $table->char('phone_number', 15);
             $table->longText('address');
             $table->enum('status', [RoleEnum::ADMIN->value, RoleEnum::TEACHER->value, RoleEnum::STAFF->value]);
             $this->addForeignId($table, 'user_id');
