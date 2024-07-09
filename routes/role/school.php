@@ -7,19 +7,21 @@ Route::get('school', function(){
     return view('school.pages.dashboard');
 })->name('school.index');
 
-Route::get('employe', function(){
+// pegawai
+Route::get('school/employe', function(){
     return view('school.pages.employe.index');
 })->name('employe.index');
 
-Route::get('teacher', function(){
+// guru
+Route::get('school/teacher', function(){
     return view('school.pages.teacher.index');
 })->name('teacher.index');
 
-Route::get('detail-teacher', function(){
+Route::get('school/detail-teacher', function(){
     return view('school.pages.teacher.detail-teacher');
 })->name('detail-teacher.index');
 
-Route::get('create-subjects', function(){
+Route::get('school/create-subjects', function(){
     return view('school.pages.teacher.create-subjetcs');
 })->name('create-subjects');
 
