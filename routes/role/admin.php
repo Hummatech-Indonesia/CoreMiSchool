@@ -14,3 +14,7 @@ Route::get('rfid-registration', function(){
 Route::get('list-school', function(){
     return view('admin.pages.list-school.index');
 });
+
+Route::get('faq', function () {
+    return view('admin.pages.faq.faq');
+});

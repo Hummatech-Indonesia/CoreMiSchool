@@ -55,16 +55,32 @@
                             <div class="card">
                                 <div class="card-title p-3 rounded-2">
                                     <div class="position-relative p-3 rounded-2" style="background-color: #F0F0F0">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="icon icon-tabler icons-tabler-outline icon-tabler-dots-vertical position-absolute"
-                                            style="top: 10px; right: 10px;">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-                                            <path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-                                            <path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-                                        </svg>
+                                        <div class="dropdown dropstart position-relative">
+                                            <a href="#" class="text-muted" id="dropdownMenuButton"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="icon icon-tabler icons-tabler-outline icon-tabler-dots-vertical position-absolute"
+                                                    style="top: 10px; right: 10px;">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                    <path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+                                                    <path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+                                                    <path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+                                                </svg>
+                                            </a>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+                                                style="top: 0px; right: 0; margin: 0%">
+                                                <li>
+                                                    <a href="#" class="dropdown-item d-flex align-items-center gap-3">
+                                                        Hapus
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+
+
                                         <div class="d-flex justify-content-center align-items-center"
                                             style="height: 100px;">
                                             <img class="card-img-top img-responsive" style="max-height: 100%; width: auto"
@@ -98,6 +114,25 @@
                         </div>
                     @endforeach
                 </div>
+                <nav aria-label="..." class="mb-3">
+                    <ul class="pagination justify-content-center mb-0 mt-4">
+                        <li class="page-item disabled">
+                            <a href="#" class="page-link" tabindex="-1" aria-disabled="true">Previous</a>
+                        </li>
+                        <li class="page-item active" aria-current="page">
+                            <a href="#" class="page-link">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a href="#" class="page-link">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a href="#" class="page-link">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a href="#" class="page-link">Next</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
 
@@ -152,6 +187,25 @@
                         </div>
                     @endforeach
                 </div>
+                <nav aria-label="..." class="mb-3">
+                    <ul class="pagination justify-content-center mb-0 mt-4">
+                        <li class="page-item disabled">
+                            <a href="#" class="page-link" tabindex="-1" aria-disabled="true">Previous</a>
+                        </li>
+                        <li class="page-item active" aria-current="page">
+                            <a href="#" class="page-link">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a href="#" class="page-link">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a href="#" class="page-link">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a href="#" class="page-link">Next</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
 
@@ -206,6 +260,25 @@
                         </div>
                     @endforeach
                 </div>
+                <nav aria-label="..." class="mb-3">
+                    <ul class="pagination justify-content-center mb-0 mt-4">
+                        <li class="page-item disabled">
+                            <a href="#" class="page-link" tabindex="-1" aria-disabled="true">Previous</a>
+                        </li>
+                        <li class="page-item active" aria-current="page">
+                            <a href="#" class="page-link">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a href="#" class="page-link">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a href="#" class="page-link">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a href="#" class="page-link">Next</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>
