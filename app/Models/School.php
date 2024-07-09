@@ -5,15 +5,21 @@ namespace App\Models;
 use App\Traits\Model\BelongsToCity;
 use App\Traits\Model\BelongsToProvince;
 use App\Traits\Model\BelongsToUser;
+use App\Traits\Model\HasManyClassroom;
 use App\Traits\Model\HasManyEmplopyee;
 use App\Traits\Model\HasManyMaple;
+use App\Traits\Model\HasManySchoolYear;
 use App\Traits\Model\HasManyStudent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class School extends Model
 {
-    use HasFactory, BelongsToCity, BelongsToUser, BelongsToProvince, HasManyStudent, HasManyEmplopyee, HasManyMaple;
+    use HasFactory, BelongsToCity,
+    BelongsToUser, BelongsToProvince,
+    HasManyStudent, HasManyEmplopyee,
+    HasManyMaple, HasManySchoolYear,
+    HasManyClassroom;
 
     protected $fillable = [
         'npsn',
