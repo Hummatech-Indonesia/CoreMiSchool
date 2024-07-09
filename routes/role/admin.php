@@ -11,9 +11,14 @@ Route::get('rfid-registration', function(){
     return view('admin.pages.rfid.registrasi-rfid');
 });
 
+//datar sekolah
 Route::get('list-school', function(){
     return view('admin.pages.list-school.index');
 });
+Route::get('admin/add-school', function(){
+    return view('admin.pages.list-school.add-school');
+});
+
 
 Route::get('faq', function () {
     return view('admin.pages.faq.faq');
