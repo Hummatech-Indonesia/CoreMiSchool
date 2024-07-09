@@ -20,6 +20,7 @@ return new class extends Migration
             $this->addForeignId($table, 'classroom_student_id');
             $table->integer('point');
             $table->enum('status', [AttendanceEnum::PRESENT->value, AttendanceEnum::PERMIT->value, AttendanceEnum::SICK->value, AttendanceEnum::ALPHA->value]);
+            $table->text('proof');
             $table->timestamps();
         });
     }

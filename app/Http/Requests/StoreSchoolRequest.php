@@ -31,9 +31,9 @@ class StoreSchoolRequest extends FormRequest
             'nip' => 'required',
             'website_school' => 'nullable',
             'description' => 'nullable',
-            'province' => 'required',
-            'city' => 'required',
-            'sub_district' => 'required',
+            'province_id' => 'required',
+            'city_id' => 'required',
+            'sub_district_id' => 'required',
         ];
     }
 
