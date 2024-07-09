@@ -2,17 +2,17 @@
 
 namespace App\Traits\Model;
 
-use App\Models\User;
+use App\Models\City;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-trait HasUser {
+trait HasSchool {
     /**
      * Get the user that owns the HasUser
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user(): BelongsTo
+    public function city(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(City::class);
     }
 }

@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use App\Traits\Model\HasReligion;
+use App\Traits\Model\HasSchool;
 use App\Traits\Model\HasUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Employee extends Model
 {
-    use HasFactory, HasUser;
+    use HasFactory, HasUser, HasSchool, HasReligion;
 
     protected $fillable = [
         'nip',

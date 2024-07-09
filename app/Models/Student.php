@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\Model\HasSchool;
 use App\Traits\Model\HasUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-    use HasFactory, HasUser;
+    use HasFactory, HasUser, HasSchool;
 
     protected $fillable = [
         'user_id',

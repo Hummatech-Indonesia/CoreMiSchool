@@ -2,17 +2,17 @@
 
 namespace App\Traits\Model;
 
-use App\Models\User;
+use App\Models\Province;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-trait HasUser {
+trait HasProvince {
     /**
      * Get the user that owns the HasUser
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user(): BelongsTo
+    public function province(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Province::class);
     }
 }
