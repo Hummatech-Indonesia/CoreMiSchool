@@ -45,7 +45,7 @@
                                 </span>
                             </div>
                         </div>
-                        <button type="button" class="btn waves-effect waves-light btn-primary w-100">Masuk Kelas</button>
+                        <a href="/school/student-class" type="button" class="btn waves-effect waves-light btn-primary w-100">Masuk Kelas</a>
                     </div>
                 </div>
             </div>
