@@ -36,9 +36,13 @@ Route::get('school/student-class', function(){
 
 
 // absen
-Route::get('school/attendance', function(){
-    return view('school.pages.attendace.index');
-})->name('attendance.index');
+Route::get('school/clock-settings', function(){
+    return view('school.pages.attendace.clock-settings');
+})->name('clock-settings.index');
+
+Route::get('school/presence', function(){
+    return view('school.pages.attendace.presence');
+})->name('presence.index');
 
 
 //alumni
