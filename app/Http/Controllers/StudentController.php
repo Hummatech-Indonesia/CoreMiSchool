@@ -2,18 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Interfaces\StudentInterface;
 use App\Models\Student;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
+use App\Services\StudentService;
 
 class StudentController extends Controller
 {
+    private StudentInterface $student;
+    private StudentService $service;
+
+    public function __construct(StudentInterface $student, StudentService $service) {
+        $this->student = $student;
+        $this->service = $service;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $students = $this->student->get();
+
+        return view('', compact('students'));
     }
 
     /**
@@ -29,7 +41,10 @@ class StudentController extends Controller
      */
     public function store(StoreStudentRequest $request)
     {
-        //
+        $data = $this->service->store($request);
+        $this->student->store($data);
+
+        return redirect()->back()->with('success', 'Siswa berhasil ditambahkan');
     }
 
     /**
@@ -37,7 +52,7 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        //
+        return view('', compact('student'));
     }
 
     /**
@@ -53,7 +68,10 @@ class StudentController extends Controller
      */
     public function update(UpdateStudentRequest $request, Student $student)
     {
-        //
+        $data = $this->service->update($student, $request);
+        $this->student->update($student->id, $data);
+
+        return redirect()->back()->with('success', 'Siswa berhasil diperbarui');
     }
 
     /**
@@ -61,6 +79,7 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+        $this->student->delete($student->id);
+        return redirect()->back()->with('success', 'Siswa berhasil dihapus');
     }
 }
