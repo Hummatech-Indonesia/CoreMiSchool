@@ -4,18 +4,17 @@ namespace App\Services;
 
 use App\Contracts\Interfaces\UserInterface;
 use App\Enums\RoleEnum;
-use App\Enums\UploadDiskEnum;
-use App\Http\Requests\StoreSchoolRequest;
+use App\Http\Requests\StoreEmployeeRequest;
 use App\Traits\UploadTrait;
 use App\Http\Requests\StoreStudentRequest;
-use App\Http\Requests\UpdateSchoolRequest;
+use App\Http\Requests\UpdateEmployeeRequest;
 use App\Http\Requests\UpdateStudentRequest;
-use App\Models\School;
+use App\Models\Employee;
 use App\Models\Student;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class SchoolService
+class EmployeeService
 {
     use UploadTrait;
 
@@ -31,47 +30,35 @@ class SchoolService
         return $this->upload($disk, $file);
     }
 
-    public function store(StoreSchoolRequest $request): array|bool
+    public function store(StoreEmployeeRequest $request): array|bool
     {
         $data = $request->validated();
         $dataUser = [
             'name' => $data['name'],
             'slug' => Str::slug($data['slug']),
             'email' => $data['email'],
-            'password' => Hash::make($data['npsn']),
+            'password' => Hash::make($data['nisn']),
         ];
         $user = $this->user->store($dataUser);
-        $user->assignRole(RoleEnum::SCHOOL->value);
 
-        $image = $this->upload(UploadDiskEnum::LOGO->value, $request->image);
-        $data['image'] = $image;
         $data['user_id'] = $user->id;
+        $data['school_id'] = auth()->user()->school->id;
         return $data;
     }
 
-    public function update(School $school, UpdateSchoolRequest $request): array|bool
+    public function update(Employee $employee, UpdateEmployeeRequest $request): array|bool
     {
         $data = $request->validated();
         $dataUser = [
             'name' => $data['name'],
             'slug' => Str::slug($data['slug']),
             'email' => $data['email'],
-            'password' => Hash::make($data['npsn']),
+            'password' => Hash::make($data['nisn']),
         ];
-        $user = $this->user->update($school->user_id ,$dataUser);
-        $user->assignRole(RoleEnum::SCHOOL->value);
 
-        $old_image = $school->image;
-        $image = "";
+        $this->user->update($request->user_id, $dataUser);
 
-        if ($request->hasFile('image')) {
-            if (file_exists(public_path($old_image))) {
-                unlink(public_path($old_image));
-            }
-            $image = $this->upload(UploadDiskEnum::LOGO->value, $request->image);
-        }
-
-        $data['image'] = $image ?: $old_image;
+        $data['school_id'] = auth()->user()->school->id;
         return $data;
     }
 

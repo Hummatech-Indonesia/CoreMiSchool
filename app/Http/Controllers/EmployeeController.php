@@ -2,18 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Interfaces\EmployeeInterface;
 use App\Models\Employee;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
+use App\Services\EmployeeService;
 
 class EmployeeController extends Controller
 {
+    private EmployeeInterface $employee;
+    private EmployeeService $service;
+
+    public function __construct(EmployeeInterface $employee, EmployeeService $service)
+    {
+        $this->employee = $employee;
+        $this->service = $service;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $data = $this->employee->get();
+        return view('', compact('data'));
     }
 
     /**
@@ -29,7 +41,9 @@ class EmployeeController extends Controller
      */
     public function store(StoreEmployeeRequest $request)
     {
-        //
+        $data = $this->service->store($request);
+        $this->employee->store($data);
+        return redirect();
     }
 
     /**
@@ -53,7 +67,9 @@ class EmployeeController extends Controller
      */
     public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
-        //
+        $data = $this->service->update($employee, $request);
+        $this->employee->update($employee->id, $data);
+        return redirect();
     }
 
     /**
@@ -61,6 +77,7 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        //
+        $this->employee->delete($employee->id);
+        return redirect();
     }
 }
