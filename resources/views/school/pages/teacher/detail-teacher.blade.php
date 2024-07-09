@@ -1,4 +1,4 @@
-@extends('teacher.layouts.app')
+@extends('school.layouts.app')
 
 @section('content')
 <div class="row">
@@ -24,7 +24,7 @@
             <a href="{{ route('create-subjects') }}" class="btn btn-success px-4">
                 Tambah Data Pelajaran
             </a>
-            <button type="button" class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#modal-create">
+            <button type="button" class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#modal-create-subjectTeacher">
                 Tambah Pelajaran Guru
             </button>
         </div>
@@ -109,6 +109,39 @@
                         Hapus
                     </button>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-create-subjectTeacher" tabindex="-1" aria-labelledby="tambahPelajaran" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tambahPelajaran">Tambah Pelajaran Guru</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="">
+                    <div class="mb-3">
+                        <label for="">Pilih Pelajaran</label>
+                        <select class="form-select form-select mb-3">
+                            <option value="">Pendidikan Kewarganegaraan</option>
+                            <option value="">Ilmu Pengetahuan Alam</option>
+                            <option value="">Matematika</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="">Tahun Ajaran</label>
+                        <select class="form-select form-select mb-3">
+                            <option value="">2023/2024</option>
+                            <option value="">2024/2025</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
             </div>
         </div>
     </div>
