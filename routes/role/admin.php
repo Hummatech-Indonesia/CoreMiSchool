@@ -8,7 +8,7 @@ Route::get('/admin', function () {
 });
 
 Route::get('rfid-registration', function(){
-    return view('admin.pages.absensi.registrasi-rfid');
+    return view('admin.pages.rfid.registrasi-rfid');
 });
 
 Route::get('list-school', function(){

@@ -1,4 +1,4 @@
-@extends('teacher.layouts.app')
+@extends('school.layouts.app')
 
 @section('style')
 <style>
@@ -29,8 +29,11 @@
     </div>
     <div class="col-lg-6 mb-3">
         <div class="d-flex gap-2 justify-content-end">
-            <a href="" class="btn btn-success px-4" data-bs-toggle="modal" data-bs-target="#modal-create">
+            <button class="btn btn-success px-4" data-bs-toggle="modal" data-bs-target="#modal-create">
                 Tambah Pelajaran
+            </button>
+            <a href="{{ route('detail-teacher.index') }}" class="btn btn-primary px-4">
+                Kembali
             </a>
         </div>
     </div>
