@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Interfaces\ReligionInterface;
 use App\Contracts\Interfaces\StudentInterface;
 use App\Models\Student;
 use App\Http\Requests\StoreStudentRequest;
@@ -12,10 +13,12 @@ class StudentController extends Controller
 {
     private StudentInterface $student;
     private StudentService $service;
+    private ReligionInterface $religion;
 
-    public function __construct(StudentInterface $student, StudentService $service) {
+    public function __construct(StudentInterface $student, StudentService $service, ReligionInterface $religion) {
         $this->student = $student;
         $this->service = $service;
+        $this->religion = $religion;
     }
 
     /**
@@ -24,8 +27,9 @@ class StudentController extends Controller
     public function index()
     {
         $students = $this->student->get();
+        $religions = $this->religion->get();
 
-        return view('', compact('students'));
+        return view('', compact('students', 'religions'));
     }
 
     /**
