@@ -69,7 +69,6 @@
     </div>
 </div>
 
-
 <div class="table-responsive rounded-2">
     <table class="table border text-nowrap customize-table mb-0 align-middle text-center">
         <thead>
