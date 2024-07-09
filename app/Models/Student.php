@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Model\BelongsToReligion;
 use App\Traits\Model\BelongsToSchool;
 use App\Traits\Model\BelongsToUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,11 +10,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-    use HasFactory, BelongsToUser, BelongsToSchool;
+    use HasFactory, BelongsToUser, BelongsToSchool, BelongsToReligion;
 
     protected $fillable = [
         'user_id',
         'nisn',
+        'religion_id',
         'gender',
         'birth_date',
         'birth_place',
