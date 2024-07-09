@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Contracts\Interfaces\CityInterface;
+use App\Contracts\Interfaces\EmployeeInterface;
 use App\Contracts\Interfaces\ProvinceInterface;
 use App\Contracts\Interfaces\ReligionInterface;
 use App\Contracts\Interfaces\SchoolInterface;
@@ -28,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
         CityInterface::class => CityRepository::class,
         SubDistrictInterface::class => SubDistrictRepository::class,
         SchoolInterface::class => SchoolRepository::class,
+        EmployeeInterface::class => EmployeeInterface::class,
     ];
 
     /**
