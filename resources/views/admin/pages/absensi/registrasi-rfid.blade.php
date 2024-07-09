@@ -22,35 +22,37 @@
     </div>
 </div>
 
-<div class="card">
-    <div class="p-3">
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs gap-2" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" data-bs-toggle="tab" href="#all" role="tab">
-                    <span>Semua</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#digunakan" role="tab">
-                    <span>Digunakan</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#belum-digunakan" role="tab">
-                    <span>Belum Digunakan</span>
-                </a>
-            </li>
-        </ul>
+<div class="">
+    <span class="mb-1 badge font-medium bg-light-success text-success me-2">Digunakan: 20</span>
+    <span class="mb-1 badge font-medium bg-light-danger text-danger">Belum Digunakan: 20</span>
+</div>
 
-    </div>
+<div class="mt-4 d-flex justify-content-between">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs gap-2" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="tab" href="#all" role="tab">
+                <span>Semua</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#digunakan" role="tab">
+                <span>Digunakan</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#belum-digunakan" role="tab">
+                <span>Belum Digunakan</span>
+            </a>
+        </li>
+    </ul>
 </div>
 </div>
 
 <div class="ps-4 pe-4">
     <div class="tab-content">
 
-        <div class="row">
+        <div class="row mt-5 mb-4">
             <div class="col-lg-6 mb-3">
                 <form class="d-flex gap-2">
                     <div class="position-relative">
@@ -84,6 +86,7 @@
                 </div>
             </div>
         </div>
+
 
         <div class="tab-pane active" id="all" role="tabpanel">
             <div class="mt-2">
