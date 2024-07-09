@@ -14,15 +14,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('schools', function (Blueprint $table) {
+        Schema::create('maples', function (Blueprint $table) {
             $table->id();
+            $this->addForeignId($table, 'school_id');
             $table->string('name');
-            $table->char('npsn', 8);
-            $table->char('phone_number', 15);
-            $table->text('image');
-            $this->addForeignId($table, 'province_id');
-            $this->addForeignId($table, 'city_id');
-            $this->addForeignId($table, 'subdistrict_id');
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('schools');
+        Schema::dropIfExists('maples');
     }
 };
