@@ -6,11 +6,13 @@ use App\Contracts\Interfaces\CityInterface;
 use App\Contracts\Interfaces\ProvinceInterface;
 use App\Contracts\Interfaces\ReligionInterface;
 use App\Contracts\Interfaces\StudentInterface;
+use App\Contracts\Interfaces\SubDistrictInterface;
 use App\Contracts\Interfaces\UserInterface;
 use App\Contracts\Repositories\CityRepository;
 use App\Contracts\Repositories\ProvinceRepository;
 use App\Contracts\Repositories\ReligionRepository;
 use App\Contracts\Repositories\StudentRepository;
+use App\Contracts\Repositories\SubDistrictRepository;
 use App\Contracts\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -22,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
         ReligionInterface::class => ReligionRepository::class,
         ProvinceInterface::class => ProvinceRepository::class,
         CityInterface::class => CityRepository::class,
+        SubDistrictInterface::class => SubDistrictRepository::class,
     ];
 
     /**
