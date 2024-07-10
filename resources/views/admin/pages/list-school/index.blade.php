@@ -60,7 +60,7 @@
         <div class="tab-pane active show" id="all" role="tabpanel">
             <div class="p-3">
                 <div class="row">
-                    @foreach (range(1, 5) as $item)
+                    @forelse ($schools as $school)
                         <div class="col-lg-4">
                             <div class="card">
                                 <div class="card-title p-3 rounded-2">
@@ -123,7 +123,8 @@
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    @empty
+                    @endforelse
                 </div>
                 <nav aria-label="..." class="mb-3">
                     <ul class="pagination justify-content-center mb-0 mt-4">
