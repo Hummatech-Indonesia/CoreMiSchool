@@ -6,14 +6,17 @@ use App\Contracts\Interfaces\ModelHasRfidInterface;
 use App\Models\ModelHasRfid;
 use App\Http\Requests\StoreModelHasRfidRequest;
 use App\Http\Requests\UpdateModelHasRfidRequest;
+use App\Services\ModelHasRfidService;
 
 class ModelHasRfidController extends Controller
 {
     private ModelHasRfidInterface $modelHasRfid;
+    private ModelHasRfidService $service;
 
-    public function __construct(ModelHasRfidInterface $modelHasRfid)
+    public function __construct(ModelHasRfidInterface $modelHasRfid, ModelHasRfidService $service)
     {
         $this->modelHasRfid = $modelHasRfid;
+        $this->service = $service;
     }
 
     /**
@@ -37,7 +40,13 @@ class ModelHasRfidController extends Controller
      */
     public function store(StoreModelHasRfidRequest $request)
     {
-        
+        $data = $this->service->check($request);
+        if ($data != null) {
+            $this->modelHasRfid->store($data);
+            return redirect()->back()->with('success', 'Berhasil memakai kartu rfid');
+        } else {
+            return redirect()->back()->with('error', 'Kartu rfid belum terdaftar');
+        }
     }
 
     /**
