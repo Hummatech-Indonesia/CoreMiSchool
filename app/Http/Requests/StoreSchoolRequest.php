@@ -34,6 +34,8 @@ class StoreSchoolRequest extends FormRequest
             'province_id' => 'required',
             'city_id' => 'required',
             'sub_district_id' => 'required',
+            'type' => 'required',
+            'level' => 'required'
         ];
     }
 
@@ -57,7 +59,9 @@ class StoreSchoolRequest extends FormRequest
             'nip.required' => 'NIP wajib diisi.',
             'province.required' => 'Profinsi wajib di isi',
             'city.required' => 'Kabupaten atau kota wajib di isi',
-            'sub_district.required' => 'Kecamatan wajib di isi'
+            'sub_district.required' => 'Kecamatan wajib di isi',
+            'type.required' => 'Tipe sekolah wajib di isi',
+            'level.required' => 'Jenjang wajib di isi'
         ];
     }
 }

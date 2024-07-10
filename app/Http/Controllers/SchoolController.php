@@ -24,8 +24,8 @@ class SchoolController extends Controller
      */
     public function index()
     {
-        $data = $this->school->get();
-        return view('', compact('data'));
+        $schools = $this->school->get();
+        return view('admin.pages.list-school.index', compact('schools'));
     }
 
     /**
