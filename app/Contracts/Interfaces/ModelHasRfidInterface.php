@@ -8,9 +8,8 @@ use App\Contracts\Interfaces\Eloquent\PaginateInterface;
 use App\Contracts\Interfaces\Eloquent\ShowInterface;
 use App\Contracts\Interfaces\Eloquent\StoreInterface;
 use App\Contracts\Interfaces\Eloquent\UpdateInterface;
-use App\Contracts\Interfaces\Eloquent\WhereInterface;
 
-interface RfidInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface, WhereInterface
+interface ModelHasRfidInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface
 {
     //
 }

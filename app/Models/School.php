@@ -36,7 +36,8 @@ class School extends Model
         'head_school',
         'nip',
         'website_school',
-        'description'
+        'description',
+        'active'
     ];
 
     /**

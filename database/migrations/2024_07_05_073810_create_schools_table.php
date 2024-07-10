@@ -29,6 +29,7 @@ return new class extends Migration
             $table->char('nip', 18);
             $table->string('website_school')->nullable();
             $table->text('description')->nullable();
+            $table->boolean('active')->default(1);
             $table->timestamps();
         });
     }
