@@ -32,7 +32,7 @@ class StudentService
         $data = $request->validated();
         $dataUser = [
             'name' => $data['name'],
-            'slug' => Str::slug($data['slug']),
+            'slug' => Str::slug($data['name']),
             'email' => $data['email'],
             'password' => Hash::make($data['nisn']),
         ];
@@ -40,6 +40,7 @@ class StudentService
 
         $data['user_id'] = $user->id;
         $data['school_id'] = auth()->user()->school->id;
+        
         $user->assignRole(RoleEnum::STUDENT->value);
         return $data;
     }
@@ -49,7 +50,7 @@ class StudentService
         $data = $request->validated();
         $dataUser = [
             'name' => $data['name'],
-            'slug' => Str::slug($data['slug']),
+            'slug' => Str::slug($data['name']),
             'email' => $data['email'],
             'password' => Hash::make($data['nisn']),
         ];
