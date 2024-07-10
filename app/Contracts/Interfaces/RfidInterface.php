@@ -12,5 +12,6 @@ use App\Contracts\Interfaces\Eloquent\WhereInterface;
 
 interface RfidInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface, WhereInterface
 {
-    //
+    public function used(): mixed;
+    public function notUsed(): mixed;
 }
