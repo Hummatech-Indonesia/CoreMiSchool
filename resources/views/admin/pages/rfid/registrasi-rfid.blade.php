@@ -94,41 +94,36 @@
                         <thead>
                             <tr>
                                 <th>Nama</th>
-                                <th>Asal Sekolah</th>
                                 <th>Nomor RFID</th>
                                 <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Arya Rizki</td>
-                                <td>SMKN 1 Kepanjen</td>
-                                <td>1235678</td>
-                                <td>
-                                    <span class="mb-1 badge px-5 font-medium bg-light-success text-success">Aktif</span>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-sm btn-danger">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24">
-                                            <path fill="#ffffff" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z" /></svg>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Arya Rizki</td>
-                                <td>SMKN 1 Kepanjen</td>
-                                <td>1235678</td>
-                                <td>
-                                    <span class="mb-1 badge px-4 font-medium bg-light-danger text-danger">Belum Digunakan</span>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-sm btn-danger">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24">
-                                            <path fill="#ffffff" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z" /></svg>
-                                    </button>
-                                </td>
-                            </tr>
+                            @forelse ($rfids as $rfid)
+                                @php
+                                    if ($rfid->status == 'used') {
+                                        $hasRfid = App\Models\ModelHasRfid::where('rfid', $rfid->rfid)->first();
+                                    }
+                                @endphp
+                                <tr>
+                                    <td>{{ $hasRfid ? $hasRfid->model->user->name : '-' }}</td>
+                                    <td>{{ $rfid->rfid }}</td>
+                                    <td>
+                                        <span class="mb-1 badge px-4 font-medium bg-light-{{ $rfid->status->color() }} text-{{ $rfid->status->color() }}">{{ $rfid->status->label() }}</span>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-danger">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24">
+                                                <path fill="#ffffff" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z" /></svg>
+                                        </button>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="4">Belum ada RFID</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
@@ -247,29 +242,30 @@
 
 <div class="modal fade" id="modal-create" tabindex="-1" aria-labelledby="tambahRfid" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="tambahRfid">Tambah RFID</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="mb-3">
-                    <span class="text-dark fw-semibold me-2">RFID :</span>
+        <form action="{{ route('rfid-admin.store') }}" method="post">
+            @csrf
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tambahRfid">Tambah RFID</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="mb-3">
-                    Anda juga bisa melakukan tab ke rfid reader untuk menginputkan rfid
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <span class="text-dark fw-semibold me-2">RFID :</span>
+                    </div>
+                    <div class="mb-3">
+                        Anda juga bisa melakukan tab ke rfid reader untuk menginputkan rfid
+                    </div>
+                    <div>
+                        <input type="text" name="rfid" class="form-control">
+                    </div>
                 </div>
-                <div>
-                    <input type="text" class="form-control">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-rounded btn-light-danger text-danger" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-rounded btn-light-success text-success">Tambah</button>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-rounded btn-light-danger text-danger" data-bs-dismiss="modal">Tutup</button>
-                <button type="submit" class="btn btn-rounded btn-light-success text-success">Tambah</button>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
-
-
 @endsection

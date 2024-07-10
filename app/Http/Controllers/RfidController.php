@@ -21,7 +21,7 @@ class RfidController extends Controller
     public function index()
     {
         $rfids = $this->rfid->get();
-        return view('', compact('rfids'));
+        return view('admin.pages.rfid.registrasi-rfid', compact('rfids'));
     }
 
     /**

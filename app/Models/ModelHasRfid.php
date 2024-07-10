@@ -10,7 +10,7 @@ class ModelHasRfid extends Model
 {
     use HasFactory, MorphToRfid;
 
-    protected $guarded = ['id'];
+    protected $guarded = ['id']; 
 
     protected $fillable = [
         'rfid',
