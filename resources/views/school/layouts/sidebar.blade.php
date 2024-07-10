@@ -214,6 +214,14 @@
                         </li>
                     </ul>
                 </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('rfid.index') }}" aria-expanded="false">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g fill="none" stroke="#5A6A85" stroke-width="2"><path d="M2 12c0-3.771 0-5.657 1.172-6.828C4.343 4 6.229 4 10 4h4c3.771 0 5.657 0 6.828 1.172C22 6.343 22 8.229 22 12c0 3.771 0 5.657-1.172 6.828C19.657 20 17.771 20 14 20h-4c-3.771 0-5.657 0-6.828-1.172C2 17.657 2 15.771 2 12Z"/><path stroke-linecap="round" d="M10 16H6m8 0h-1.5M2 10h20"/></g></svg>
+                        </span>
+                        <span class="hide-menu">RFID</span>
+                    </a>
+                </li>
             </ul>
             {{-- <div class="unlimited-access hide-menu bg-light-primary position-relative my-7 rounded">
                 <div class="d-flex">

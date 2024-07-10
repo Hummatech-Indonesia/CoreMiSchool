@@ -70,3 +70,8 @@ Route::get('school/school-year', function(){
 Route::get('school/class-level', function(){
     return view('school.pages.class-level.index');
 })->name('class-level.index');
+
+// rfid
+Route::get('school/rfid', function(){
+    return view('school.pages.rfid.index');
+})->name('rfid.index');
