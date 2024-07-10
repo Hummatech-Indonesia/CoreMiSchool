@@ -69,31 +69,46 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <h6>Nama Sekolah</h6>
-                                            <input type="text" name="name" class="form-control mb-3">
+                                            <input type="text" name="name" class="form-control mb-3" value="{{ old('name') }}">
+                                            @error('name')
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <h6>NPSN</h6>
-                                            <input type="number" name="npsn" class="form-control mb-3">
+                                            <input type="number" name="npsn" class="form-control mb-3" value="{{ old('npsn') }}">
+                                            @error('npsn')
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <h6>Email</h6>
-                                            <input type="email" name="email" class="form-control mb-3">
+                                            <input type="email" name="email" class="form-control mb-3" value="{{ old('email') }}">
+                                            @error('email')
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <h6>Nomor Telepon</h6>
-                                            <input type="number" name="phone_number" class="form-control mb-3">
+                                            <input type="number" name="phone_number" class="form-control mb-3" value="{{ old('phone_number') }}">
+                                            @error('phone_number')
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <h6>Logo</h6>
-                                            <input class="form-control" name="image" type="file" id="formFile">
+                                            <input class="form-control" name="image" type="file" id="formFile" value="{{ old('image') }}">
+                                            @error('image')
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -118,6 +133,9 @@
                                                     <option disabled>Data tidak ditemukan</option>
                                                 @endforelse
                                             </select>
+                                            @error('province_id')
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -131,6 +149,9 @@
                                                     <option disabled>Data tidak ditemukan</option>
                                                 @endforelse
                                             </select>
+                                            @error('city_id')
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -144,18 +165,27 @@
                                                     <option disabled>Data tidak ditemukan</option>
                                                 @endforelse
                                             </select>
+                                            @error('sub_district_id')
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <h6>Kode Pos</h6>
-                                            <input type="number" name="pas_code" class="form-control mb-3">
+                                            <input type="number" name="pas_code" value="{{ old('pas_code') }}" class="form-control mb-3">
+                                            @error('pas_code')
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <h6>Alamat</h6>
-                                            <textarea name="address" class="form-control mb-4" rows="3"></textarea>
+                                            <textarea name="address" class="form-control mb-4" rows="3">{{ old('address') }}</textarea>
+                                            @error('address')
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -196,6 +226,9 @@
                                                 </label>
                                             </div>
                                         </div>
+                                        @error('level')
+                                            <strong class="text-danger">{{ $message }}</strong>
+                                        @enderror
                                     </div>
 
 
@@ -216,13 +249,19 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <h6>Kepala Sekolah</h6>
-                                            <input type="text" name="head_school" class="form-control mb-3">
+                                            <input type="text" name="head_school" value="{{ old('head_school') }}" class="form-control mb-3">
+                                            @error('head_school')
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <h6>Web (Optional)</h6>
-                                            <input type="number" name="website_school" class="form-control mb-3">
+                                            <h6>Web (Opsional)</h6>
+                                            <input type="number" name="website_school" value="{{ old('website_school') }}" class="form-control mb-3">
+                                            @error('website_school')
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -232,18 +271,27 @@
                                                 <option value="negeri" selected>Negeri</option>
                                                 <option value="swasta" selected>Swasta</option>
                                             </select>
+                                            @error('type')
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <h6>NIP Kepala Sekolah (opsional)</h6>
-                                            <input type="number" name="nip" class="form-control mb-3">
+                                            <h6>NIP Kepala Sekolah</h6>
+                                            <input type="number" name="nip" value="{{ old('nip') }}" class="form-control mb-3">
+                                            @error('nip')
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <h6>Deskripsi (opsional)</h6>
-                                            <textarea name="description" class="form-control mb-4" rows="3"></textarea>
+                                            <h6>Deskripsi (Opsional)</h6>
+                                            <textarea name="description" class="form-control mb-4" rows="3">{{ old('description') }}</textarea>
+                                            @error('description')
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -272,6 +320,9 @@
                                                     for="customControlValidation4">C</label>
                                             </div>
                                         </div>
+                                        @error('accreditation')
+                                            <strong class="text-danger">{{ $message }}</strong>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-end mt-3 mx-4">

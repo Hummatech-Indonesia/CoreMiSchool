@@ -94,7 +94,7 @@
                                         <div class="d-flex justify-content-center align-items-center mb-3"
                                             style="height: 130px;">
                                             <img class="card-img-top img-responsive" style="max-height: 100%; width: auto"
-                                                src="{{ asset('admin_assets/dist/images/profile/smkn1kepanjen.png') }}"
+                                                src="{{ asset('storage/'.$school->image) }}"
                                                 alt="Card image cap">
                                         </div>
                                     </div>
@@ -103,22 +103,22 @@
 
                                 <div class="card-body pt-0">
                                     <h3 class="fs-6">
-                                        SMK NEGERI 1 KEPANJEN
+                                        {{ $school->user->name }}
                                     </h3>
-                                    <p class="mb-0 mt-2 text-muted">Lasmono S.Pd.Mm</p>
+                                    <p class="mb-0 mt-2 text-muted">{{ $school->head_school }}</p>
                                     <h6 class="pt-3">Alamat :</h6>
-                                    <p class="mb-0 mt-2 text-muted">Jl, Ngadiluwih, Kedungpedaringan, Kec. Kepanjen,
-                                        Kabupaten Malang, Jawa Timur 65163, Indonesia</p>
+                                    <p class="mb-0 mt-2 text-muted">{{ $school->address }}</p>
                                     <div class="d-flex pt-3">
-                                        <span class="mb-1 badge bg-primary w-25">Swasta</span>
-                                        <span class="mb-1 badge bg-success ms-3 w-25">Aktif</span>
+                                        <span class="mb-1 badge bg-primary w-25 text-capitalize">{{ $school->type }}</span>
+                                        <span class="mb-1 badge bg-success ms-3 w-25">{{ $school->active == 1 ? 'Aktif' : 'Tidak aktif' }}</span>
                                     </div>
                                     <div class="d-flex pt-3">
-                                        <button type="button"
-                                            class="btn waves-effect waves-light btn-rounded btn-light-danger text-danger w-50">Jadikan
-                                            Nonaktif</button>
-                                        <button type="button"
-                                            class="btn waves-effect waves-light btn-rounded btn-light-info text-info w-50 ms-3">Detail</button>
+                                        @if ($school->active == 1)
+                                            <button type="button" data-id="{{ $school->id }}" class="btn waves-effect waves-light btn-rounded btn-light-danger text-danger w-50">Non-aktifkan</button>
+                                        @else
+                                            <button type="button" data-id="{{ $school->id }}" class="btn waves-effect waves-light btn-rounded btn-light-danger text-danger w-50">Aktifkan</button>
+                                        @endif
+                                        <button type="button" class="btn waves-effect waves-light btn-rounded btn-light-info text-info w-50 ms-3">Detail</button>
                                     </div>
                                 </div>
                             </div>

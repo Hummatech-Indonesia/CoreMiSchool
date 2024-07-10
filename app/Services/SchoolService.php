@@ -36,7 +36,7 @@ class SchoolService
         $data = $request->validated();
         $dataUser = [
             'name' => $data['name'],
-            'slug' => Str::slug($data['slug']),
+            'slug' => Str::slug($data['name']),
             'email' => $data['email'],
             'password' => Hash::make($data['npsn']),
         ];
@@ -54,7 +54,7 @@ class SchoolService
         $data = $request->validated();
         $dataUser = [
             'name' => $data['name'],
-            'slug' => Str::slug($data['slug']),
+            'slug' => Str::slug($data['name']),
             'email' => $data['email'],
             'password' => Hash::make($data['npsn']),
         ];
