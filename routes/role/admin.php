@@ -14,9 +14,8 @@ Route::get('admin/rfid-registration', function(){
 
 //datar sekolah
 Route::get('admin/list-school', [SchoolController::class, 'index'])->name('school-admin.index');
-Route::get('admin/add-school', function(){
-    return view('admin.pages.list-school.add-school');
-});
+Route::get('admin/add-school', [SchoolController::class, 'create'])->name('school-admin.create');
+Route::post('admin/add-school', [SchoolController::class, 'store'])->name('school-admin.store');
 
 
 Route::get('faq', function () {
