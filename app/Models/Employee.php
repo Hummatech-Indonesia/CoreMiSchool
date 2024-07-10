@@ -7,12 +7,15 @@ use App\Traits\Models\BelongsToSchool;
 use App\Traits\Models\BelongsToUser;
 use App\Traits\Models\HasManyClassroom;
 use App\Traits\Models\HasManyTeacherMaple;
+use App\Traits\Models\MorphManyRfid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Employee extends Model
 {
-    use HasFactory, BelongsToUser, BelongsToSchool, BelongsToReligion, HasManyClassroom, HasManyTeacherMaple;
+    use HasFactory, BelongsToUser,
+    BelongsToSchool, BelongsToReligion,
+    HasManyClassroom, HasManyTeacherMaple, MorphManyRfid;
 
     protected $fillable = [
         'nip',

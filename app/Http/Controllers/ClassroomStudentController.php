@@ -6,6 +6,7 @@ use App\Contracts\Interfaces\ClassroomStudentInterface;
 use App\Models\ClassroomStudent;
 use App\Http\Requests\StoreClassroomStudentRequest;
 use App\Http\Requests\UpdateClassroomStudentRequest;
+use App\Models\Classroom;
 
 class ClassroomStudentController extends Controller
 {
@@ -19,10 +20,10 @@ class ClassroomStudentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($classroom)
     {
         $classroomStudents = $this->classroomStudent->get();
-        return view('', compact('classroomStudents'));
+        return view('', compact('classroomStudents', 'classroom'));
     }
 
     /**
@@ -36,9 +37,16 @@ class ClassroomStudentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreClassroomStudentRequest $request)
+    public function store(StoreClassroomStudentRequest $request, Classroom $classroom)
     {
-        //
+        $data = $request->validate();
+        foreach ($data['student_id'] as $item => $student) {
+            $this->classroomStudent->store([
+                'student_id' => $item,
+                'classroom_id' => $classroom->id,
+            ]);
+        }
+        return redirect()->back()->with('success', 'Berhasil menambahkan siswa');
     }
 
     /**
@@ -70,6 +78,10 @@ class ClassroomStudentController extends Controller
      */
     public function destroy(ClassroomStudent $classroomStudent)
     {
-        //
+        foreach ($classroomStudent as $item => $classroomStudent) {
+            $this->classroomStudent->delete($item->id);
+        }
+
+        return redirect()->back()->with('success', 'Berhasil menghapus siswa');
     }
 }

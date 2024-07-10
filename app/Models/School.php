@@ -11,6 +11,7 @@ use App\Traits\Models\HasManyLessonHour;
 use App\Traits\Models\HasManyMaple;
 use App\Traits\Models\HasManySchoolYear;
 use App\Traits\Models\HasManyStudent;
+use App\Traits\Models\MorphManyRfid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,7 +21,7 @@ class School extends Model
     BelongsToUser, BelongsToProvince,
     HasManyStudent, HasManyEmployee,
     HasManyMaple, HasManySchoolYear,
-    HasManyLessonHour;
+    HasManyLessonHour, MorphManyRfid;
 
     protected $fillable = [
         'npsn',

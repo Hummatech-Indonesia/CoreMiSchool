@@ -22,7 +22,8 @@ class StoreClassroomStudentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            
+            'studen_id' => 'array|required',
+            'studen_id.*' => 'required'
         ];
     }
 }
