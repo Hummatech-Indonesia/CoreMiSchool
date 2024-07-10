@@ -65,3 +65,8 @@ Route::get('school/class', function(){
 Route::get('school/school-year', function(){
     return view('school.pages.school-year.index');
 })->name('school-year.index');
+
+// tingkatan kelas
+Route::get('school/class-level', function(){
+    return view('school.pages.class-level.index');
+})->name('class-level.index');
