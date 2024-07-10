@@ -11,7 +11,7 @@ class UpdateMapleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,19 @@ class UpdateMapleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required',
+        ];
+    }
+
+    /**
+     * Pesan kesalahan yang berlaku untuk permintaan ini.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Nama mapel wajib diisi.',
         ];
     }
 }

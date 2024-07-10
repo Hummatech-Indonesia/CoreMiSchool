@@ -2,18 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Interfaces\MapleInterface;
 use App\Models\Maple;
 use App\Http\Requests\StoreMapleRequest;
 use App\Http\Requests\UpdateMapleRequest;
+use App\Services\MapleService;
 
 class MapleController extends Controller
 {
+    private MapleInterface $maple;
+    private MapleService $service;
+
+    public function __construct(MapleInterface $maple, MapleService $service)
+    {
+        $this->maple = $maple;
+        $this->service = $service;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $maples = $this->maple->get();
+        return view('', compact('maples'));
     }
 
     /**
@@ -29,7 +41,9 @@ class MapleController extends Controller
      */
     public function store(StoreMapleRequest $request)
     {
-        //
+        $data = $this->service->store($request);
+        $this->maple->store($data);
+        return redirect()->back()->with('success', 'Berhasil menambahkan mapel pelajaram');
     }
 
     /**
@@ -53,7 +67,9 @@ class MapleController extends Controller
      */
     public function update(UpdateMapleRequest $request, Maple $maple)
     {
-        //
+        $data = $this->service->update($maple, $request);
+        $this->maple->update($maple->id, $data);
+        return redirect()->back()->with('success', 'Berhasil memperbarui mapel pelajaram');
     }
 
     /**
@@ -61,6 +77,7 @@ class MapleController extends Controller
      */
     public function destroy(Maple $maple)
     {
-        //
+        $this->maple->delete($maple->id);
+        return redirect()->back()->with('success', 'Berhasil menghapus mapel pelajaran');
     }
 }
