@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Traits\Model\BelongsToReligion;
-use App\Traits\Model\BelongsToSchool;
-use App\Traits\Model\BelongsToUser;
+use App\Traits\Models\BelongsToReligion;
+use App\Traits\Models\BelongsToSchool;
+use App\Traits\Models\BelongsToUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

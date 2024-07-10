@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits\Model;
+namespace App\Traits\Models;
 
 use App\Models\Province;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

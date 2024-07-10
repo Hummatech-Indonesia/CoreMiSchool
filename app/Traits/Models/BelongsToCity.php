@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits\Model;
+namespace App\Traits\Models;
 
 use App\Models\City;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

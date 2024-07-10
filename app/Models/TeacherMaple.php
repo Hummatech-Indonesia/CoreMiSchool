@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use App\Traits\Model\BelongsToMaple;
-use App\Traits\Model\BelongsToSchoolYear;
-use App\Traits\Model\BelongsToUser;
-use App\Traits\Model\HasManyLessonSchedule;
+use App\Traits\Models\BelongsToMaple;
+use App\Traits\Models\BelongsToSchoolYear;
+use App\Traits\Models\BelongsToUser;
+use App\Traits\Models\HasManyLessonSchedule;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
