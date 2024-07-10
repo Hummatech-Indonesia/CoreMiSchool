@@ -11,7 +11,7 @@ class StoreSchoolYearRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,19 @@ class StoreSchoolYearRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'school_year' => 'required',
+        ];
+    }
+
+    /**
+     * Get the validation messages that apply to the request.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'school_year.required' => 'Tahun ajaran wajib diisi.',
         ];
     }
 }
