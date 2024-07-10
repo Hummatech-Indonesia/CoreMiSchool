@@ -25,7 +25,7 @@ class SchoolYearController extends Controller
     public function index()
     {
         $schoolYears = $this->schoolYear->get();
-        return view('', compact('schoolYears'));
+        return view('school.pages.school-year.index', compact('schoolYears'));
     }
 
     /**

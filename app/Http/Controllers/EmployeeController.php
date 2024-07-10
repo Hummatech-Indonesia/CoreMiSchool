@@ -22,7 +22,16 @@ class EmployeeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index_staff()
+    {
+        $data = $this->employee->get();
+        return view('', compact('data'));
+    }
+
+        /**
+     * Display a listing of the resource.
+     */
+    public function index_tacher()
     {
         $data = $this->employee->get();
         return view('', compact('data'));
