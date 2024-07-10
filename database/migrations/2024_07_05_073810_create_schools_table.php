@@ -25,7 +25,6 @@ return new class extends Migration
             $this->addForeignId($table, 'province_id');
             $this->addForeignId($table, 'city_id');
             $this->addForeignId($table, 'sub_district_id');
-            $this->addForeignId($table, 'village_id');
             $table->char('pas_code', 10);
             $table->text('address');
             $table->string('head_school');
