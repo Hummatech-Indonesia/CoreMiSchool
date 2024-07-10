@@ -208,8 +208,8 @@
                                         <button type="button"
                                             class="btn waves-effect waves-light btn-rounded btn-light-danger text-danger w-50">Jadikan
                                             Nonaktif</button>
-                                        <button type="button"
-                                            class="btn waves-effect waves-light btn-rounded btn-light-info text-info w-50 ms-3">Detail</button>
+                                        <a href="/admin/detail-school" type="button"
+                                            class="btn waves-effect waves-light btn-rounded btn-light-info text-info w-50 ms-3">Detail</a>
                                     </div>
                                 </div>
                             </div>
