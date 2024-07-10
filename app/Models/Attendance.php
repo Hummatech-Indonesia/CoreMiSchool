@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Traits\Model\BelongsToClassroomStudent;
+use App\Traits\Models\BelongsToClassroomStudent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

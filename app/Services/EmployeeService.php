@@ -41,6 +41,14 @@ class EmployeeService
         ];
         $user = $this->user->store($dataUser);
 
+        if ($data['status'] == RoleEnum::ADMIN->value) {
+            $user->assignRole(RoleEnum::ADMIN->value);
+        } else if ($data['status'] == RoleEnum::TEACHER->value) {
+            $user->assignRole(RoleEnum::TEACHER->value);
+        } else if ($data['status'] == RoleEnum::STAFF->value) {
+            $user->assignRole(RoleEnum::STAFF->value);
+        }
+
         $data['user_id'] = $user->id;
         $data['school_id'] = auth()->user()->school->id;
         return $data;
@@ -55,7 +63,6 @@ class EmployeeService
             'email' => $data['email'],
             'password' => Hash::make($data['nisn']),
         ];
-
         $this->user->update($request->user_id, $dataUser);
 
         $data['school_id'] = auth()->user()->school->id;

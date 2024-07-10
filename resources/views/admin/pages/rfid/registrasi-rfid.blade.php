@@ -252,33 +252,21 @@
                 <h5 class="modal-title" id="tambahRfid">Tambah RFID</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <span class="text-dark fw-semibold me-2">Nama :</span>
-                        Arya Rizki
-                    </div>
-                    <div class="mb-3">
-                        <span class="text-dark fw-semibold me-2">Email :</span>
-                        arya@gmail.com
-                    </div>
-                    <div class="mb-3">
-                        <span class="text-dark fw-semibold me-2">Staf di :</span>
-                        SMKN 1 Kepanjen
-                    </div>
-                    <div class="mb-3">
-                        <span class="text-dark fw-semibold me-2">RFID :</span>
-                    </div>
-                    <div class="mb-3">
-                        Anda juga bisa melakukan tab ke rfid reader untuk menginputkan rfid
-                    </div>
-                    <div>
-                        <input type="text" class="form-control">
-                    </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <span class="text-dark fw-semibold me-2">RFID :</span>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-rounded btn-light-danger text-danger" data-bs-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-rounded btn-light-success text-success">Tambah</button>
+                <div class="mb-3">
+                    Anda juga bisa melakukan tab ke rfid reader untuk menginputkan rfid
                 </div>
+                <div>
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-rounded btn-light-danger text-danger" data-bs-dismiss="modal">Tutup</button>
+                <button type="submit" class="btn btn-rounded btn-light-success text-success">Tambah</button>
+            </div>
         </div>
     </div>
 </div>

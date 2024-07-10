@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Traits\Model\BelongsToSchool;
-use App\Traits\Model\HasManyLessonSchedule;
+use App\Traits\Models\BelongsToSchool;
+use App\Traits\Models\HasManyLessonSchedule;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

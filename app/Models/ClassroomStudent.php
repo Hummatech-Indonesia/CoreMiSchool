@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Traits\Model\BelongsToClassroom;
-use App\Traits\Model\BelongsToStudent;
-use App\Traits\Model\HasManyAttendance;
+use App\Traits\Models\BelongsToClassroom;
+use App\Traits\Models\BelongsToStudent;
+use App\Traits\Models\HasManyAttendance;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
