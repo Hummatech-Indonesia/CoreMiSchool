@@ -2,26 +2,14 @@
 
 namespace App\Models;
 
-use App\Traits\Model\BelongsToCity;
-use App\Traits\Model\BelongsToProvince;
-use App\Traits\Model\BelongsToUser;
-use App\Traits\Model\HasManyClassroom;
-use App\Traits\Model\HasManyEmplopyee;
-use App\Traits\Model\HasManyLessonHour;
-use App\Traits\Model\HasManyMaple;
-use App\Traits\Model\HasManySchoolYear;
-use App\Traits\Model\HasManyStudent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class School extends Model
 {
-    use HasFactory, BelongsToCity,
-    BelongsToUser, BelongsToProvince,
-    HasManyStudent, HasManyEmplopyee,
-    HasManyMaple, HasManySchoolYear,
-    HasManyClassroom, HasManyLessonHour;
+    use HasFactory;
 
     protected $fillable = [
         'npsn',
@@ -39,13 +27,48 @@ class School extends Model
         'description'
     ];
 
-    /**
-     * Get the user that owns the School
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function city(): BelongsTo
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    public function province(): BelongsTo
+    {
+        return $this->belongsTo(Province::class);
+    }
+
+    public function students(): HasMany
+    {
+        return $this->hasMany(Student::class);
+    }
+
+    public function employees(): HasMany
+    {
+        return $this->hasMany(Employee::class);
+    }
+
+    public function maples(): HasMany
+    {
+        return $this->hasMany(Maple::class);
+    }
+
+    public function schoolYears(): HasMany
+    {
+        return $this->hasMany(SchoolYear::class);
+    }
+
+    public function classrooms(): HasMany
+    {
+        return $this->hasMany(Classroom::class);
+    }
+
+    public function lessonHours(): HasMany
+    {
+        return $this->hasMany(LessonHour::class);
     }
 }
