@@ -54,3 +54,10 @@ Route::get('school/alumni', function(){
 Route::get('school/extracurricular', function(){
     return view('school.pages.extracurricular.index');
 })->name('extraa.index');
+
+
+//kelas
+Route::get('school/class', function(){
+    return view('school.pages.class.index');
+})->name('class.index');
+
