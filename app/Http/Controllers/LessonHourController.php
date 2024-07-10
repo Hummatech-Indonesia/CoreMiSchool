@@ -2,18 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Interfaces\LessonHourInterface;
 use App\Models\LessonHour;
 use App\Http\Requests\StoreLessonHourRequest;
 use App\Http\Requests\UpdateLessonHourRequest;
+use App\Services\LessonHourService;
 
 class LessonHourController extends Controller
 {
+    private LessonHourInterface $lessonHour;
+    private LessonHourService $service;
+
+    public function __construct(LessonHourInterface $lessonHour, LessonHourService $service)
+    {
+        $this->lessonHour = $lessonHour;
+        $this->service = $service;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $lessonHours = $this->lessonHour->get();
+        return view('', compact('lessonHours'));
     }
 
     /**
@@ -29,7 +41,9 @@ class LessonHourController extends Controller
      */
     public function store(StoreLessonHourRequest $request)
     {
-        //
+        $data = $this->service->store($request);
+        $this->lessonHour->store($data);
+        return redirect()->back()->with('success', 'Berhasil menambahkan jam pelajaran');
     }
 
     /**
@@ -53,7 +67,9 @@ class LessonHourController extends Controller
      */
     public function update(UpdateLessonHourRequest $request, LessonHour $lessonHour)
     {
-        //
+        $data = $this->service->update($lessonHour, $request);
+        $this->lessonHour->update($lessonHour->id ,$data);
+        return redirect()->back()->with('success', 'Berhasil memperbarui jam pelajaran');
     }
 
     /**
@@ -61,6 +77,7 @@ class LessonHourController extends Controller
      */
     public function destroy(LessonHour $lessonHour)
     {
-        //
+        $this->lessonHour->delete($lessonHour->id);
+        return redirect()->back()->with('success', 'Berhasil menghapus jam pelajaran');
     }
 }

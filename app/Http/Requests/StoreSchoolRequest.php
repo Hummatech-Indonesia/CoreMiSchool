@@ -31,11 +31,12 @@ class StoreSchoolRequest extends FormRequest
             'nip' => 'required',
             'website_school' => 'nullable',
             'description' => 'nullable',
-            'province_id' => 'required',
-            'city_id' => 'required',
+            'province_id' => 'required|exists:provinces,id',
+            'city_id' => 'required|exists:cities,id',
             'sub_district_id' => 'required',
             'type' => 'required',
-            'level' => 'required'
+            'level' => 'required',
+            'accreditation' => 'required',
         ];
     }
 
@@ -48,7 +49,7 @@ class StoreSchoolRequest extends FormRequest
     {
         return [
             'npsn.required' => 'NPSN wajib diisi.',
-            'npsn.min' => 'NPSN harus terdiri dari minimal 8 karakter.',
+            'npsn.min' => 'NPSN harus terdiri dari minimal :min karakter.',
             'phone_number.required' => 'Nomor telepon wajib diisi.',
             'phone_number.min' => 'Nomor telepon harus terdiri dari minimal 15 karakter.',
             'image.required' => 'Gambar wajib diunggah.',

@@ -30,8 +30,8 @@
                     <h2><b>Pendaftaran Sekolah</b></h2>
                     <h6>Registrasi</h6>
                     <div class="wizard-content">
-                        <form action="#" class="tab-wizard wizard-circle wizard clearfix" role="application"
-                            id="steps-uid-0">
+                        <form action="{{ route('school-admin.store') }}" class="tab-wizard wizard-circle wizard clearfix" role="application" id="steps-uid-0" method="POST" enctype="multipart/form-data">
+                            @csrf
                             <div class="steps clearfix">
                                 <ul role="tablist">
                                     <li role="tab" class="first current" aria-disabled="false" aria-selected="true">
@@ -69,31 +69,31 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <h6>Nama Sekolah</h6>
-                                            <input type="text" class="form-control mb-3">
+                                            <input type="text" name="name" class="form-control mb-3">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <h6>NPSN</h6>
-                                            <input type="number" class="form-control mb-3">
+                                            <input type="number" name="npsn" class="form-control mb-3">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <h6>Email</h6>
-                                            <input type="email" class="form-control mb-3">
+                                            <input type="email" name="email" class="form-control mb-3">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <h6>Nomor Telepon</h6>
-                                            <input type="number" class="form-control mb-3">
+                                            <input type="number" name="phone_number" class="form-control mb-3">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <h6>Logo</h6>
-                                            <input class="form-control" type="file" id="formFile">
+                                            <input class="form-control" name="image" type="file" id="formFile">
                                         </div>
                                     </div>
                                 </div>
@@ -110,63 +110,52 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <h6>Provinsi</h6>
-                                            <select class="form-select mr-sm-2 mb-4" id="inlineFormCustomSelect">
-                                                <option selected>Choose...</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                            <select class="form-select mr-sm-2 mb-4" id="inlineFormCustomSelect" name="province_id">
+                                                <option selected>Pilih provinsi</option>
+                                                @forelse ($provinces as $province)
+                                                    <option value="{{ $province->id }}">{{ $province->name }}</option>
+                                                @empty
+                                                    <option disabled>Data tidak ditemukan</option>
+                                                @endforelse
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <h6>Kabupaten</h6>
-                                            <select class="form-select mr-sm-2 mb-4" id="inlineFormCustomSelect">
-                                                <option selected>Choose...</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                            <h6>Kota/Kabupaten</h6>
+                                            <select class="form-select mr-sm-2 mb-4" id="inlineFormCustomSelect" name="city_id">
+                                                <option selected>Pilih kota/kabupaten</option>
+                                                @forelse ($cities as $city)
+                                                    <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                                @empty
+                                                    <option disabled>Data tidak ditemukan</option>
+                                                @endforelse
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <h6>Kecamatan</h6>
-                                            <select class="form-select mr-sm-2 mb-4" id="inlineFormCustomSelect">
-                                                <option selected>Choose...</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                            <select class="form-select mr-sm-2 mb-4" id="inlineFormCustomSelect" name="sub_district_id">
+                                                <option selected>Pilih kecamatan</option>
+                                                @forelse ($subdistricts as $subdistrict)
+                                                    <option value="{{ $subdistrict->id }}">{{ $subdistrict->name }}</option>
+                                                @empty
+                                                    <option disabled>Data tidak ditemukan</option>
+                                                @endforelse
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <h6>Desa</h6>
-                                            <select class="form-select mr-sm-2 mb-4" id="inlineFormCustomSelect">
-                                                <option selected>Choose...</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <h6>Kode Pos</h6>
-                                            <select class="form-select mr-sm-2 mb-4" id="inlineFormCustomSelect">
-                                                <option selected>Choose...</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
+                                            <input type="number" name="pas_code" class="form-control mb-3">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <h6>Alamat</h6>
-                                            <textarea class="form-control mb-4" rows="3"></textarea>
-
+                                            <textarea name="address" class="form-control mb-4" rows="3"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -174,7 +163,7 @@
                                         <div class="form-check form-check-inline">
                                             <div class="custom-control custom-radio">
                                                 <input type="radio" class="custom-control-input"
-                                                    id="customControlValidation2" name="radio-stacked">
+                                                    id="customControlValidation2" name="level" value="sd/mi">
                                                 <label class="custom-control-label" for="customControlValidation2">
                                                     <img src="{{ asset('admin_assets/dist/images/backgrounds/sd.png') }}"
                                                         alt="SD/MI" style="width: 300px; height: auto;"
@@ -186,7 +175,7 @@
                                         <div class="form-check form-check-inline">
                                             <div class="custom-control custom-radio">
                                                 <input type="radio" class="custom-control-input"
-                                                    id="customControlValidation3" name="radio-stacked">
+                                                    id="customControlValidation3" name="level" value="smp/mts">
                                                 <label class="custom-control-label" for="customControlValidation3">
                                                     <img src="{{ asset('admin_assets/dist/images/backgrounds/smp.png') }}"
                                                         alt="SMP/MTS" style="width: 300px; height: auto;"
@@ -198,7 +187,7 @@
                                         <div class="form-check form-check-inline">
                                             <div class="custom-control custom-radio">
                                                 <input type="radio" class="custom-control-input"
-                                                    id="customControlValidation4" name="radio-stacked" disabled>
+                                                    id="customControlValidation4" name="level" value="sma/smk/ma">
                                                 <label class="custom-control-label" for="customControlValidation4">
                                                     <img src="{{ asset('admin_assets/dist/images/backgrounds/sma.png') }}"
                                                         alt="SMA/SMK/MA" style="width: 300px; height: auto;"
@@ -227,31 +216,34 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <h6>Kepala Sekolah</h6>
-                                            <input type="text" class="form-control mb-3">
+                                            <input type="text" name="head_school" class="form-control mb-3">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <h6>Web (Optional)</h6>
-                                            <input type="number" class="form-control mb-3">
+                                            <input type="number" name="website_school" class="form-control mb-3">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <h6>Status</h6>
-                                            <input type="email" class="form-control mb-3">
+                                            <h6>Jenis Sekolah</h6>
+                                            <select class="form-select mr-sm-2 mb-4" id="inlineFormCustomSelect" name="type">
+                                                <option value="negeri" selected>Negeri</option>
+                                                <option value="swasta" selected>Swasta</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <h6>NIP Kepala Sekolah (opsional)</h6>
-                                            <input type="number" class="form-control mb-3">
+                                            <input type="number" name="nip" class="form-control mb-3">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <h6>Deskripsi (opsional)</h6>
-                                            <textarea class="form-control mb-4" rows="3"></textarea>
+                                            <textarea name="description" class="form-control mb-4" rows="3"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -259,7 +251,7 @@
                                         <div class="form-check form-check-inline">
                                             <div class="custom-control custom-radio">
                                                 <input type="radio" class="custom-control-input"
-                                                    id="customControlValidation2" name="radio-stacked">
+                                                    id="customControlValidation2" name="accreditation" value="Akreditasi A">
                                                 <label class="custom-control-label"
                                                     for="customControlValidation2">A</label>
                                             </div>
@@ -267,7 +259,7 @@
                                         <div class="form-check form-check-inline">
                                             <div class="custom-control custom-radio">
                                                 <input type="radio" class="custom-control-input"
-                                                    id="customControlValidation3" name="radio-stacked">
+                                                    id="customControlValidation3" name="accreditation" value="Akreditasi B">
                                                 <label class="custom-control-label"
                                                     for="customControlValidation3">B</label>
                                             </div>
@@ -275,7 +267,7 @@
                                         <div class="form-check form-check-inline">
                                             <div class="custom-control custom-radio">
                                                 <input type="radio" class="custom-control-input"
-                                                    id="customControlValidation4" name="radio-stacked" disabled>
+                                                    id="customControlValidation4" name="accreditation" value="Akreditasi C">
                                                 <label class="custom-control-label"
                                                     for="customControlValidation4">C</label>
                                             </div>
@@ -285,41 +277,8 @@
                                 <div class="d-flex justify-content-end mt-3 mx-4">
                                     <button type="button"
                                         class="btn mb-1 waves-effect waves-light btn-outline-primary prev-step">Kembali</button>
-                                    <button type="button"
-                                        class="btn mb-1 waves-effect waves-light btn-rounded btn-primary ms-3 next-step">Berikutnya</button>
-                                </div>
-                            </section>
-
-                            <!-- Step 4 -->
-                            {{-- <h6>Payment</h6> --}}
-                            <section class="payment-method">
-
-                                <div class="row mx-3 pt-4">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <h6>Password</h6>
-                                            <input type="password" class="form-control mb-3">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <h6>Konfirmasi Password</h6>
-                                            <input type="password" class="form-control mb-3">
-                                        </div>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                            <label class="custom-control-label" for="customCheck1">Tampilkan Password</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="d-flex justify-content-end mt-3 mx-4">
-                                    <button type="button"
-                                        class="btn mb-1 waves-effect waves-light btn-outline-primary prev-step">Kembali</button>
-                                    <button type="button"
-                                        class="btn mb-1 waves-effect waves-light btn-rounded btn-primary ms-3 next-step">Berikutnya</button>
+                                    <button type="submit"
+                                        class="btn mb-1 waves-effect waves-light btn-rounded btn-primary ms-3 next-step">Simpan</button>
                                 </div>
                             </section>
                         </form>

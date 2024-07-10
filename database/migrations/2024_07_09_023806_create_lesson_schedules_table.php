@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\DayEnum;
 use App\Traits\Migrations\HasForeign;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -20,7 +21,7 @@ return new class extends Migration
             $this->addForeignIdTo($table, 'lesson_hour_end', 'lesson_hours');
             $this->addForeignId($table, 'teacher_maple_id');
             $this->addForeignId($table, 'school_year_id');
-            $table->date('day');
+            $table->enum('day', [DayEnum::MONDAY->value, DayEnum::TUESDAY->value, DayEnum::WEDNESDAY->value, DayEnum::THRUSDAY->value, DayEnum::FRIDAY->value, DayEnum::SATURDAY->value, DayEnum::SUNDAY->value]);
             $table->timestamps();
         });
     }

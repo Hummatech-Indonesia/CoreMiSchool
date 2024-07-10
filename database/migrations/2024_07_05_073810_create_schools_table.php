@@ -34,6 +34,7 @@ return new class extends Migration
             $table->boolean('active')->default(1);
             $table->enum('type', [SchoolEnum::NEGERI->value, SchoolEnum::SWASTA->value]);
             $table->enum('level', [SchoolEnum::SDMI->value, SchoolEnum::SMPMTS->value, SchoolEnum::SMASMKMA->value]);
+            $table->string('accreditation');    
             $table->timestamps();
         });
     }

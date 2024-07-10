@@ -2,18 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Interfaces\TeacherMapleInterface;
 use App\Models\TeacherMaple;
 use App\Http\Requests\StoreTeacherMapleRequest;
 use App\Http\Requests\UpdateTeacherMapleRequest;
 
 class TeacherMapleController extends Controller
 {
+    private TeacherMapleInterface $teacherMaple;
+
+    public function __construct(TeacherMapleInterface $teacherMaple)
+    {
+        $this->teacherMaple = $teacherMaple;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $teacherMaples = $this->teacherMaple->get();
+        return view('', compact('teacherMaples'));
     }
 
     /**
@@ -29,7 +38,9 @@ class TeacherMapleController extends Controller
      */
     public function store(StoreTeacherMapleRequest $request)
     {
-        //
+        $data = $request->validated();
+        $this->teacherMaple->store($data);
+        return redirect()->back()->with('success', 'Berhasil menambahahkan guru mapel');
     }
 
     /**
@@ -53,7 +64,9 @@ class TeacherMapleController extends Controller
      */
     public function update(UpdateTeacherMapleRequest $request, TeacherMaple $teacherMaple)
     {
-        //
+        $data = $request->validated();
+        $this->teacherMaple->update($teacherMaple->id, $data);
+        return redirect()->back()->with('success', 'Berhasil memperbaiki guru mapel');
     }
 
     /**
@@ -61,6 +74,7 @@ class TeacherMapleController extends Controller
      */
     public function destroy(TeacherMaple $teacherMaple)
     {
-        //
+        $this->teacherMaple->delete($teacherMaple->id);
+        return redirect()->back()->with('success', 'Berhasil menghapus guru mapel');
     }
 }
