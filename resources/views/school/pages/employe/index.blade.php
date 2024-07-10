@@ -91,7 +91,34 @@
                 </td>
                 <td>arya@gmail.com</td>
                 <td>
-                    
+                    <div class="category-selector btn-group">
+                        <a class="nav-link category-dropdown label-group p-0" data-bs-toggle="dropdown"
+                            href="#" role="button" aria-haspopup="true" aria-expanded="true">
+                            <div class="category">
+                                <div class="category-business"></div>
+                                <div class="category-social"></div>
+                                <span class="more-options text-dark">
+                                    <i class="ti ti-dots-vertical fs-5"></i>
+                                </span>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right category-menu"
+                            style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate3d(0px, 23.2px, 0px);"
+                            data-popper-placement="bottom-end">
+                            <a
+                                class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3">
+                                <i class="fs-4 ti ti-eye"></i>Detail
+                            </a>
+                            <a
+                                class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3">
+                                <i class="fs-4 ti ti-edit"></i>Edit
+                            </a>
+                            <a
+                                class="note-business badge-group-item badge-business dropdown-item text-danger position-relative category-business d-flex align-items-center gap-3">
+                                <i class="fs-4 ti ti-trash"></i>Hapus
+                            </a>
+                        </div>
+                    </div>
                 </td>
             </tr>
             <tr>
@@ -104,7 +131,34 @@
                 </td>
                 <td>arya@gmail.com</td>
                 <td>
-                    
+                    <div class="category-selector btn-group">
+                        <a class="nav-link category-dropdown label-group p-0" data-bs-toggle="dropdown"
+                            href="#" role="button" aria-haspopup="true" aria-expanded="true">
+                            <div class="category">
+                                <div class="category-business"></div>
+                                <div class="category-social"></div>
+                                <span class="more-options text-dark">
+                                    <i class="ti ti-dots-vertical fs-5"></i>
+                                </span>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right category-menu"
+                            style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate3d(0px, 23.2px, 0px);"
+                            data-popper-placement="bottom-end">
+                            <a
+                                class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3">
+                                <i class="fs-4 ti ti-eye"></i>Detail
+                            </a>
+                            <a
+                                class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3">
+                                <i class="fs-4 ti ti-edit"></i>Edit
+                            </a>
+                            <a
+                                class="note-business badge-group-item badge-business dropdown-item text-danger position-relative category-business d-flex align-items-center gap-3">
+                                <i class="fs-4 ti ti-trash"></i>Hapus
+                            </a>
+                        </div>
+                    </div>
                 </td>
             </tr>
             <tr>
@@ -117,7 +171,34 @@
                 </td>
                 <td>arya@gmail.com</td>
                 <td>
-                    
+                    <div class="category-selector btn-group">
+                        <a class="nav-link category-dropdown label-group p-0" data-bs-toggle="dropdown"
+                            href="#" role="button" aria-haspopup="true" aria-expanded="true">
+                            <div class="category">
+                                <div class="category-business"></div>
+                                <div class="category-social"></div>
+                                <span class="more-options text-dark">
+                                    <i class="ti ti-dots-vertical fs-5"></i>
+                                </span>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right category-menu"
+                            style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate3d(0px, 23.2px, 0px);"
+                            data-popper-placement="bottom-end">
+                            <a
+                                class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3">
+                                <i class="fs-4 ti ti-eye"></i>Detail
+                            </a>
+                            <a
+                                class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3">
+                                <i class="fs-4 ti ti-edit"></i>Edit
+                            </a>
+                            <a
+                                class="note-business badge-group-item badge-business dropdown-item text-danger position-relative category-business d-flex align-items-center gap-3">
+                                <i class="fs-4 ti ti-trash"></i>Hapus
+                            </a>
+                        </div>
+                    </div>
                 </td>
             </tr>
             <tr>
@@ -130,7 +211,34 @@
                 </td>
                 <td>arya@gmail.com</td>
                 <td>
-                    
+                    <div class="category-selector btn-group">
+                        <a class="nav-link category-dropdown label-group p-0" data-bs-toggle="dropdown"
+                            href="#" role="button" aria-haspopup="true" aria-expanded="true">
+                            <div class="category">
+                                <div class="category-business"></div>
+                                <div class="category-social"></div>
+                                <span class="more-options text-dark">
+                                    <i class="ti ti-dots-vertical fs-5"></i>
+                                </span>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right category-menu"
+                            style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate3d(0px, 23.2px, 0px);"
+                            data-popper-placement="bottom-end">
+                            <a
+                                class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3">
+                                <i class="fs-4 ti ti-eye"></i>Detail
+                            </a>
+                            <a
+                                class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3">
+                                <i class="fs-4 ti ti-edit"></i>Edit
+                            </a>
+                            <a
+                                class="note-business badge-group-item badge-business dropdown-item text-danger position-relative category-business d-flex align-items-center gap-3">
+                                <i class="fs-4 ti ti-trash"></i>Hapus
+                            </a>
+                        </div>
+                    </div>
                 </td>
             </tr>
         </tbody>
