@@ -110,7 +110,8 @@
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-sm btn-danger">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24"><path fill="#ffffff" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z"/></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24">
+                                            <path fill="#ffffff" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z" /></svg>
                                     </button>
                                 </td>
                             </tr>
@@ -123,7 +124,8 @@
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-sm btn-danger">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24"><path fill="#ffffff" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z"/></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24">
+                                            <path fill="#ffffff" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z" /></svg>
                                     </button>
                                 </td>
                             </tr>
@@ -155,7 +157,8 @@
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-sm btn-danger">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24"><path fill="#ffffff" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z"/></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24">
+                                            <path fill="#ffffff" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z" /></svg>
                                     </button>
                                 </td>
                             </tr>
@@ -168,7 +171,8 @@
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-sm btn-danger">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24"><path fill="#ffffff" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z"/></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24">
+                                            <path fill="#ffffff" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z" /></svg>
                                     </button>
                                 </td>
                             </tr>
@@ -200,7 +204,8 @@
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-sm btn-danger">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24"><path fill="#ffffff" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z"/></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24">
+                                            <path fill="#ffffff" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z" /></svg>
                                     </button>
                                 </td>
                             </tr>
@@ -213,7 +218,8 @@
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-sm btn-danger">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24"><path fill="#ffffff" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z"/></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24">
+                                            <path fill="#ffffff" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z" /></svg>
                                     </button>
                                 </td>
                             </tr>
@@ -226,7 +232,8 @@
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-sm btn-danger">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24"><path fill="#ffffff" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z"/></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24">
+                                            <path fill="#ffffff" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z" /></svg>
                                     </button>
                                 </td>
                             </tr>
@@ -238,4 +245,43 @@
     </div>
 </div>
 
-    @endsection
+<div class="modal fade" id="modal-create" tabindex="-1" aria-labelledby="tambahRfid" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tambahRfid">Tambah RFID</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <span class="text-dark fw-semibold me-2">Nama :</span>
+                        Arya Rizki
+                    </div>
+                    <div class="mb-3">
+                        <span class="text-dark fw-semibold me-2">Email :</span>
+                        arya@gmail.com
+                    </div>
+                    <div class="mb-3">
+                        <span class="text-dark fw-semibold me-2">Staf di :</span>
+                        SMKN 1 Kepanjen
+                    </div>
+                    <div class="mb-3">
+                        <span class="text-dark fw-semibold me-2">RFID :</span>
+                    </div>
+                    <div class="mb-3">
+                        Anda juga bisa melakukan tab ke rfid reader untuk menginputkan rfid
+                    </div>
+                    <div>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-rounded btn-light-danger text-danger" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-rounded btn-light-success text-success">Tambah</button>
+                </div>
+        </div>
+    </div>
+</div>
+
+
+@endsection
