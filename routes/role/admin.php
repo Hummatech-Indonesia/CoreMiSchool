@@ -7,12 +7,13 @@ Route::get('/admin', function () {
     return view('admin.pages.dashboard');
 });
 
-Route::get('rfid-registration', function(){
+// rfid
+Route::get('admin/rfid-registration', function(){
     return view('admin.pages.rfid.registrasi-rfid');
 });
 
 //datar sekolah
-Route::get('list-school', function(){
+Route::get('admin/list-school', function(){
     return view('admin.pages.list-school.index');
 });
 Route::get('admin/add-school', function(){
