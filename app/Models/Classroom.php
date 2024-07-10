@@ -2,19 +2,19 @@
 
 namespace App\Models;
 
-use App\Traits\Models\BelongsToSchool;
-use App\Traits\Models\BelongsToUser;
+use App\Traits\Models\BelongsToEmployee;
+use App\Traits\Models\BelongsToSchoolYear;
 use App\Traits\Models\HasManyClassroomStudent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Classroom extends Model
 {
-    use HasFactory, BelongsToUser, BelongsToSchool, HasManyClassroomStudent;
+    use HasFactory, BelongsToEmployee, BelongsToSchoolYear, HasManyClassroomStudent;
 
     protected $fillable = [
         'name',
-        'user_id',
-        'school_id',
+        'employee_id',
+        'school_year_id',
     ];
 }
