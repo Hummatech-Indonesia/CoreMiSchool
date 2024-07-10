@@ -13,8 +13,6 @@ use App\Traits\Models\HasManySchoolYear;
 use App\Traits\Models\HasManyStudent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class School extends Model
 {
@@ -22,7 +20,7 @@ class School extends Model
     BelongsToUser, BelongsToProvince,
     HasManyStudent, HasManyEmployee,
     HasManyMaple, HasManySchoolYear,
-    HasManyClassroom, HasManyLessonHour;
+    HasManyLessonHour;
 
     protected $fillable = [
         'npsn',

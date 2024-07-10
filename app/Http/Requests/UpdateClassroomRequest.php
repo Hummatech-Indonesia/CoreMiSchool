@@ -11,7 +11,7 @@ class UpdateClassroomRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,23 @@ class UpdateClassroomRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required',
+            'employee_id' => 'required',
+            'school_year_id' => 'required'
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Mohon untuk masukan namanya.',
+            'employee_id.required' => 'Mohon untuk masukan wali kelasnya.',
+            'school_year_id.required' => 'Mohon untuk masukan tahun ajarannya.',
         ];
     }
 }
