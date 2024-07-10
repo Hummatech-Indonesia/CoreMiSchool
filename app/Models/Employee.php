@@ -6,12 +6,13 @@ use App\Traits\Models\BelongsToReligion;
 use App\Traits\Models\BelongsToSchool;
 use App\Traits\Models\BelongsToUser;
 use App\Traits\Models\HasManyClassroom;
+use App\Traits\Models\HasManyTeacherMaple;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Employee extends Model
 {
-    use HasFactory, BelongsToUser, BelongsToSchool, BelongsToReligion, HasManyClassroom;
+    use HasFactory, BelongsToUser, BelongsToSchool, BelongsToReligion, HasManyClassroom, HasManyTeacherMaple;
 
     protected $fillable = [
         'nip',

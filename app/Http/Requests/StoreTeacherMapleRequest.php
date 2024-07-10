@@ -11,7 +11,7 @@ class StoreTeacherMapleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,23 @@ class StoreTeacherMapleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'maple_id' => 'required',
+            'employee_id' => 'required',
+            'school_year_id' => 'required'
+        ];
+    }
+
+    /**
+     * Pesan kesalahan yang berlaku untuk permintaan ini.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'maple_id.required' => 'ID mapel wajib diisi.',
+            'employee_id.required' => 'ID karyawan wajib diisi.',
+            'school_year_id.required' => 'ID tahun ajaran wajib diisi.',
         ];
     }
 }
