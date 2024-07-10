@@ -87,16 +87,16 @@
                                     style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate3d(0px, 23.2px, 0px);"
                                     data-popper-placement="bottom-end">
                                     <a
-                                        class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
-                                        Detail
+                                        class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3">
+                                        <i class="fs-4 ti ti-eye"></i>Detail
                                     </a>
                                     <a
-                                        class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
-                                        Edit
+                                        class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3">
+                                        <i class="fs-4 ti ti-edit"></i>Edit
                                     </a>
                                     <a
-                                        class="note-business badge-group-item badge-business dropdown-item text-danger position-relative category-business d-flex align-items-center">
-                                        Hapus
+                                        class="note-business badge-group-item badge-business dropdown-item text-danger position-relative category-business d-flex align-items-center gap-3">
+                                        <i class="fs-4 ti ti-trash"></i>Hapus
                                     </a>
                                 </div>
                             </div>
