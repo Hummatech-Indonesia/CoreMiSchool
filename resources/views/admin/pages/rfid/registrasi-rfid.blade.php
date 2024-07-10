@@ -102,7 +102,7 @@
                         <tbody>
                             @forelse ($rfids as $rfid)
                                 @php
-                                    if ($rfid->status == 'used') {
+                                    if ($rfid->status->value == 'used') {
                                         $hasRfid = App\Models\ModelHasRfid::where('rfid', $rfid->rfid)->first();
                                     }
                                 @endphp
