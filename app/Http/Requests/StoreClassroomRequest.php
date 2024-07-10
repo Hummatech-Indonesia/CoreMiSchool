@@ -23,6 +23,8 @@ class StoreClassroomRequest extends FormRequest
     {
         return [
             'name' => 'required',
+            'employee_id' => 'required',
+            'school_year_id' => 'required'
         ];
     }
 
@@ -35,6 +37,8 @@ class StoreClassroomRequest extends FormRequest
     {
         return [
             'name.required' => 'Mohon untuk masukan namanya.',
+            'employee_id.required' => 'Mohon untuk masukan wali kelasnya.',
+            'school_year_id.required' => 'Mohon untuk masukan tahun ajarannya.',
         ];
     }
 }

@@ -21,8 +21,8 @@ class ClassroomController extends Controller
      */
     public function index()
     {
-        $data = $this->classroom->get();
-        return view('', compact('data'));
+        $classrooms = $this->classroom->get();
+        return view('', compact('classrooms'));
     }
 
     /**
@@ -38,7 +38,9 @@ class ClassroomController extends Controller
      */
     public function store(StoreClassroomRequest $request)
     {
-        //
+        $data = $request->validated();
+        $this->classroom->store($data);
+        return redirect()->back()->with('success', 'Berhasil menambahkan kelas');
     }
 
     /**
@@ -62,7 +64,9 @@ class ClassroomController extends Controller
      */
     public function update(UpdateClassroomRequest $request, Classroom $classroom)
     {
-        //
+        $data = $request->validated();
+        $this->classroom->update($classroom->id, $data);
+        return redirect()->back()->with('success', 'Berhasil memperbarui kelas');
     }
 
     /**
@@ -70,6 +74,7 @@ class ClassroomController extends Controller
      */
     public function destroy(Classroom $classroom)
     {
-        //
+        $this->classroom->delete($classroom->id);
+        return redirect()->back()->with('success', 'Berhasil menghapus kelas');
     }
 }

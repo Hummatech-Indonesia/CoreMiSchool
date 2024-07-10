@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits\Model;
+namespace App\Traits\Models;
 
 use App\Models\Maple;
 use Illuminate\Database\Eloquent\Relations\HasMany;
