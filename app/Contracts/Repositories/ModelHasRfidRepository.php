@@ -2,24 +2,19 @@
 
 namespace App\Contracts\Repositories;
 
-use App\Contracts\Interfaces\RfidInterface;
-use App\Models\Rfid;
+use App\Contracts\Interfaces\ModelHasRfidInterface;
+use App\Models\ModelHasRfid;
 
-class RfidRepository extends BaseRepository implements RfidInterface
+class ModelHasRfidRepository extends BaseRepository implements ModelHasRfidInterface
 {
-    public function __construct(Rfid $rfid)
+    public function __construct(ModelHasRfid $modelHasRfid)
     {
-        $this->model = $rfid;
+        $this->model = $modelHasRfid;
     }
 
     public function get(): mixed
     {
         return $this->model->query()->get();
-    }
-
-    public function where(mixed $data): mixed
-    {
-        return $this->model->query()->where('rfid', $data)->first();
     }
 
     public function store(array $data): mixed

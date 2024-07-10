@@ -1,5 +1,7 @@
 <?php
 
+use App\Enums\SchoolEnum;
+use App\Models\School;
 use App\Traits\Migrations\HasForeign;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -29,6 +31,9 @@ return new class extends Migration
             $table->char('nip', 18);
             $table->string('website_school')->nullable();
             $table->text('description')->nullable();
+            $table->boolean('active')->default(1);
+            $table->enum('type', [SchoolEnum::NEGERI->value, SchoolEnum::SWASTA->value]);
+            $table->enum('level', [SchoolEnum::SDMI->value, SchoolEnum::SMPMTS->value, SchoolEnum::SMASMKMA->value]);
             $table->timestamps();
         });
     }
