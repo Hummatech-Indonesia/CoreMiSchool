@@ -54,3 +54,8 @@ Route::get('school/alumni', function(){
 Route::get('school/extracurricular', function(){
     return view('school.pages.extracurricular.index');
 })->name('extraa.index');
+
+// tahun ajaran
+Route::get('school/school-year', function(){
+    return view('school.pages.school-year.index');
+})->name('school-year.index');
