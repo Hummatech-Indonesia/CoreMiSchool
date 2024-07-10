@@ -21,3 +21,9 @@ Route::post('admin/add-school', [SchoolController::class, 'store'])->name('schoo
 Route::get('faq', function () {
     return view('admin.pages.faq.faq');
 });
+
+
+//berita
+Route::get('admin/news', function(){
+    return view('admin.pages.news.index');
+});
