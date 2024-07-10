@@ -188,7 +188,7 @@
                                                 <input type="radio" class="custom-control-input"
                                                     id="customControlValidation3" name="radio-stacked">
                                                 <label class="custom-control-label" for="customControlValidation3">
-                                                    <img src="{{ asset('admin_assets/dist/images/backgrounds/sd.png') }}"
+                                                    <img src="{{ asset('admin_assets/dist/images/backgrounds/smp.png') }}"
                                                         alt="SMP/MTS" style="width: 300px; height: auto;"
                                                         class="mb-3">
                                                     <h6>SMP/MTS</h6>
@@ -200,7 +200,7 @@
                                                 <input type="radio" class="custom-control-input"
                                                     id="customControlValidation4" name="radio-stacked" disabled>
                                                 <label class="custom-control-label" for="customControlValidation4">
-                                                    <img src="{{ asset('admin_assets/dist/images/backgrounds/sd.png') }}"
+                                                    <img src="{{ asset('admin_assets/dist/images/backgrounds/sma.png') }}"
                                                         alt="SMA/SMK/MA" style="width: 300px; height: auto;"
                                                         class="mb-3">
                                                     <h6>SMA/SMK/MA</h6>
