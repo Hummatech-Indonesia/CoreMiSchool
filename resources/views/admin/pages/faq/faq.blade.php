@@ -41,10 +41,41 @@
             </div>
         </div>
         <div class="col-12 col-md-auto mb-3">
-            <button type="button" class="btn mb-1 waves-effect waves-light btn-rounded btn-primary">Tambah FAQ</button>
+            <button type="button" class="btn mb-1 btn-light-primary text-primary btn-lg px-4 fs-4 font-medium"
+                data-bs-toggle="modal" data-bs-target="#modal-import">
+                Tambah FAQ
+            </button>
         </div>
     </div>
 
+    <!-- modal tambah -->
+    <div class="modal fade" id="modal-import" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="importPegawai">Tambah FAQ</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label for="" class="mb-2">Pertanyaan</label>
+                            <textarea class="form-control" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="mb-2 pt-3">Jawaban</label>
+                            <textarea class="form-control" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-rounded btn-light-danger text-danger"
+                        data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-rounded btn-light-success text-success">Tambah</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div id="note-full-container" class="note-has-grid row">
         @foreach (range(1, 6) as $item)
@@ -80,13 +111,15 @@
                                 <div class="dropdown-menu dropdown-menu-right category-menu"
                                     style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate3d(0px, 23.2px, 0px);"
                                     data-popper-placement="bottom-end">
-                                    <a
-                                        class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
+                                    <a type="button"
+                                        class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center"
+                                        data-bs-toggle="modal" data-bs-target="#modal-edit">
                                         Edit
                                     </a>
-                                    <a
-                                        class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
-                                        Detail
+                                    <a type="button"
+                                        class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center"
+                                        data-bs-toggle="modal" data-bs-target="#modal-detail">
+                                        detail
                                     </a>
                                 </div>
                             </div>
@@ -116,4 +149,62 @@
             </li>
         </ul>
     </nav>
+
+    <!-- modal edit -->
+    <div class="modal fade" id="modal-edit" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="importPegawai">Edit FAQ</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label for="" class="mb-2">Pertanyaan</label>
+                            <textarea class="form-control" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="mb-2 pt-3">Jawaban</label>
+                            <textarea class="form-control" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-rounded btn-light-danger text-danger"
+                        data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-rounded btn-light-success text-success">Tambah</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal detail -->
+    <div class="modal fade" id="modal-detail" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="importPegawai">Detail FAQ</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label for="" class="mb-2">Pertanyaan</label>
+                            <textarea class="form-control" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="mb-2 pt-3">Jawaban</label>
+                            <textarea class="form-control" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-rounded btn-light-danger text-danger"
+                        data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-rounded btn-light-success text-success">Tambah</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
