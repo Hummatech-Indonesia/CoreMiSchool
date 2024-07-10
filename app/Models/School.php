@@ -29,7 +29,7 @@ class School extends Model
         'user_id',
         'province_id',
         'city_id',
-        'subdistrict_id',
+        'sub_district_id',
         'pas_code',
         'address',
         'head_school',
@@ -38,6 +38,7 @@ class School extends Model
         'description',
         'active',
         'type',
-        'level'
+        'level',
+        'accreditation',
     ];
 }

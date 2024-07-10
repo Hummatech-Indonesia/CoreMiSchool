@@ -57,10 +57,10 @@ class SchoolController extends Controller
      */
     public function store(StoreSchoolRequest $request)
     {
-        dd($request->all());
         $data = $this->service->store($request);
+        // dd($data);
         $this->school->store($data);
-        return redirect();
+        return to_route('school-admin.index')->with('success', 'Berhasil menambahkan sekolah');
     }
 
     /**
@@ -86,7 +86,7 @@ class SchoolController extends Controller
     {
         $data = $this->service->update($school, $request);
         $this->school->update($school->id, $data);
-        return redirect();
+        return to_route('school-admin.index')->with('success', 'Berhasil memperbarui sekolah');
     }
 
     /**
@@ -95,6 +95,6 @@ class SchoolController extends Controller
     public function destroy(School $school)
     {
         $this->school->delete($school->id);
-        return redirect();
+        return to_route('school-admin.index')->with('success', 'Berhasil menghapus sekolah');
     }
 }
