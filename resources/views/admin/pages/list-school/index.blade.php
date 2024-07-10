@@ -23,25 +23,35 @@
                 </li>
             </ul>
         </div>
-        <div class="col-12 col-md-6 col-lg-2 mb-3">
-            <form action="" class="position-relative">
-                <input type="text" class="form-control product-search ps-5" id="input-search" placeholder="Cari tim...">
-                <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
-            </form>
+    </div>
+
+
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex flex-wrap">
+            <div class="col-12 col-md-6 col-lg-4 mb-3 me-2">
+                <form action="" class="position-relative">
+                    <input type="text" class="form-control product-search ps-5" id="input-search"
+                        placeholder="Cari tim...">
+                    <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
+                </form>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 mb-3 me-2">
+                <select id="status-school" class="form-select">
+                    <option value="">SMKN 1 Kepanjen</option>
+                    <option value="">SMKN 6 Malang</option>
+                    <option value="">SMKN 8 Malang</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3 mb-3 me-2">
+                <select id="status-activity" class="form-select">
+                    <option value="">Semua</option>
+                    <option value="">Aktif</option>
+                    <option value="">NonAktif</option>
+                </select>
+            </div>
         </div>
-        <div class="col-12 col-md-6 col-lg-2 mb-3">
-            <select id="status-school" class="form-select">
-                <option value="">SMKN 1 Kepanjen</option>
-                <option value="">SMKN 6 Malang</option>
-                <option value="">SMKN 8 Malang</option>
-            </select>
-        </div>
-        <div class="col-12 col-md-6 col-lg-2 mb-3">
-            <select id="status-activity" class="form-select">
-                <option value="">Semua</option>
-                <option value="">Aktif</option>
-                <option value="">NonAktif</option>
-            </select>
+        <div class="col-12 col-md-auto mb-3">
+            <a href="/admin/add-school" type="button" class="btn mb-1 waves-effect waves-light btn-rounded btn-primary">Tambah</a>
         </div>
     </div>
 
@@ -57,7 +67,8 @@
                                     <div class="position-relative p-3 rounded-2" style="background-color: #F0F0F0">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="category-selector btn-group ms-auto">
-                                                <a class="nav-link category-dropdown label-group p-0" data-bs-toggle="dropdown" href="#" role="button"
+                                                <a class="nav-link category-dropdown label-group p-0"
+                                                    data-bs-toggle="dropdown" href="#" role="button"
                                                     aria-haspopup="true" aria-expanded="true">
                                                     <div class="category">
                                                         <div class="category-business"></div>
@@ -67,19 +78,24 @@
                                                         </span>
                                                     </div>
                                                 </a>
-                                                <div class="dropdown-menu dropdown-menu-right category-menu" data-popper-placement="bottom-end">
-                                                    <a class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
+                                                <div class="dropdown-menu dropdown-menu-right category-menu"
+                                                    data-popper-placement="bottom-end">
+                                                    <a
+                                                        class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
                                                         Edit
                                                     </a>
-                                                    <a class="note-business badge-group-item text-danger badge-business dropdown-item position-relative category-business d-flex align-items-center">
+                                                    <a
+                                                        class="note-business badge-group-item text-danger badge-business dropdown-item position-relative category-business d-flex align-items-center">
                                                         Hapus
                                                     </a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="d-flex justify-content-center align-items-center mb-3" style="height: 130px;">
+                                        <div class="d-flex justify-content-center align-items-center mb-3"
+                                            style="height: 130px;">
                                             <img class="card-img-top img-responsive" style="max-height: 100%; width: auto"
-                                                src="{{ asset('admin_assets/dist/images/profile/smkn1kepanjen.png') }}" alt="Card image cap">
+                                                src="{{ asset('admin_assets/dist/images/profile/smkn1kepanjen.png') }}"
+                                                alt="Card image cap">
                                         </div>
                                     </div>
                                 </div>
@@ -141,7 +157,8 @@
                                     <div class="position-relative p-3 rounded-2" style="background-color: #F0F0F0">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="category-selector btn-group ms-auto">
-                                                <a class="nav-link category-dropdown label-group p-0" data-bs-toggle="dropdown" href="#" role="button"
+                                                <a class="nav-link category-dropdown label-group p-0"
+                                                    data-bs-toggle="dropdown" href="#" role="button"
                                                     aria-haspopup="true" aria-expanded="true">
                                                     <div class="category">
                                                         <div class="category-business"></div>
@@ -151,19 +168,24 @@
                                                         </span>
                                                     </div>
                                                 </a>
-                                                <div class="dropdown-menu dropdown-menu-right category-menu" data-popper-placement="bottom-end">
-                                                    <a class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
+                                                <div class="dropdown-menu dropdown-menu-right category-menu"
+                                                    data-popper-placement="bottom-end">
+                                                    <a
+                                                        class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
                                                         Edit
                                                     </a>
-                                                    <a class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
+                                                    <a
+                                                        class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
                                                         Hapus
                                                     </a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="d-flex justify-content-center align-items-center mb-3" style="height: 130px;">
+                                        <div class="d-flex justify-content-center align-items-center mb-3"
+                                            style="height: 130px;">
                                             <img class="card-img-top img-responsive" style="max-height: 100%; width: auto"
-                                                src="{{ asset('admin_assets/dist/images/profile/smkn1kepanjen.png') }}" alt="Card image cap">
+                                                src="{{ asset('admin_assets/dist/images/profile/smkn1kepanjen.png') }}"
+                                                alt="Card image cap">
                                         </div>
                                     </div>
                                 </div>
@@ -225,7 +247,8 @@
                                     <div class="position-relative p-3 rounded-2" style="background-color: #F0F0F0">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="category-selector btn-group ms-auto">
-                                                <a class="nav-link category-dropdown label-group p-0" data-bs-toggle="dropdown" href="#" role="button"
+                                                <a class="nav-link category-dropdown label-group p-0"
+                                                    data-bs-toggle="dropdown" href="#" role="button"
                                                     aria-haspopup="true" aria-expanded="true">
                                                     <div class="category">
                                                         <div class="category-business"></div>
@@ -235,19 +258,24 @@
                                                         </span>
                                                     </div>
                                                 </a>
-                                                <div class="dropdown-menu dropdown-menu-right category-menu" data-popper-placement="bottom-end">
-                                                    <a class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
+                                                <div class="dropdown-menu dropdown-menu-right category-menu"
+                                                    data-popper-placement="bottom-end">
+                                                    <a
+                                                        class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
                                                         Edit
                                                     </a>
-                                                    <a class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
+                                                    <a
+                                                        class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
                                                         Hapus
                                                     </a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="d-flex justify-content-center align-items-center mb-3" style="height: 130px;">
+                                        <div class="d-flex justify-content-center align-items-center mb-3"
+                                            style="height: 130px;">
                                             <img class="card-img-top img-responsive" style="max-height: 100%; width: auto"
-                                                src="{{ asset('admin_assets/dist/images/profile/smkn1kepanjen.png') }}" alt="Card image cap">
+                                                src="{{ asset('admin_assets/dist/images/profile/smkn1kepanjen.png') }}"
+                                                alt="Card image cap">
                                         </div>
                                     </div>
                                 </div>
