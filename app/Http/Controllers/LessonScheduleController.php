@@ -2,18 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Interfaces\LessonScheduleInterface;
 use App\Models\LessonSchedule;
 use App\Http\Requests\StoreLessonScheduleRequest;
 use App\Http\Requests\UpdateLessonScheduleRequest;
 
 class LessonScheduleController extends Controller
 {
+    private LessonScheduleInterface $lessonSchedule;
+
+    public function __construct(LessonScheduleInterface $lessonSchedule)
+    {
+        $this->lessonSchedule = $lessonSchedule;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $lessonSchedules = $this->lessonSchedule->get();
+        return view('', compact('lessonSchedules'));
     }
 
     /**
@@ -29,7 +38,9 @@ class LessonScheduleController extends Controller
      */
     public function store(StoreLessonScheduleRequest $request)
     {
-        //
+        $data = $request->validated();
+        $this->lessonSchedule->store($data);
+        return redirect()->back()->with('success', 'Berhasil menambahkan jadwal pelajaran');
     }
 
     /**
@@ -53,7 +64,9 @@ class LessonScheduleController extends Controller
      */
     public function update(UpdateLessonScheduleRequest $request, LessonSchedule $lessonSchedule)
     {
-        //
+        $data = $request->validated();
+        $this->lessonSchedule->update($lessonSchedule->id, $data);
+        return redirect()->back()->with('success', 'Berhasil memperbaiki jadwal pelajaran');
     }
 
     /**
@@ -61,6 +74,7 @@ class LessonScheduleController extends Controller
      */
     public function destroy(LessonSchedule $lessonSchedule)
     {
-        //
+        $this->lessonSchedule->delete($lessonSchedule->id);
+        return redirect()->back()->with('success', 'Berhasil menghapus jadwal pelajaran');
     }
 }

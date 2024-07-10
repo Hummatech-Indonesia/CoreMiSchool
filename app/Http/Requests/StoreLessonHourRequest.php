@@ -11,7 +11,7 @@ class StoreLessonHourRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,23 @@ class StoreLessonHourRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required',
+            'start' => 'required',
+            'end' => 'required'
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Mohon untuk masukan nama jam pelajaran.',
+            'start.required' => 'Mohon untuk masukan waktu mulai jam pelajaran.',
+            'end.required' => 'Mohon untuk masukan waktu selesai jam pelajaran.',
         ];
     }
 }
