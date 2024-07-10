@@ -2,14 +2,14 @@
 
 namespace App\Contracts\Repositories;
 
-use App\Contracts\Interfaces\EmployeeInterface;
-use App\Models\Employee;
+use App\Contracts\Interfaces\LevelClassInterface;
+use App\Models\LevelClass;
 
-class EmployeeRepository extends BaseRepository implements EmployeeInterface
+class LevelClassRepository extends BaseRepository implements LevelClassInterface
 {
-    public function __construct(Employee $employee)
+    public function __construct(LevelClass $levelClass)
     {
-        $this->model = $employee;
+        $this->model = $levelClass;
     }
 
     public function get(): mixed
@@ -35,10 +35,5 @@ class EmployeeRepository extends BaseRepository implements EmployeeInterface
     public function delete(mixed $id): mixed
     {
         return $this->model->query()->findOrFail($id)->delete();
-    }
-
-    public function paginate() : mixed
-    {
-        return $this->model->query()->latest()->paginate(10);
     }
 }

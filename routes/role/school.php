@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SchoolYearController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -62,9 +63,10 @@ Route::get('school/class', function(){
 })->name('class.index');
 
 // tahun ajaran
-Route::get('school/school-year', function(){
-    return view('school.pages.school-year.index');
-})->name('school-year.index');
+Route::get('school/school-year', [SchoolYearController::class, 'index'])->name('school-year.index');
+Route::post('school/add-school-year', [SchoolYearController::class, 'store'])->name('school-year.store');
+Route::put('school/update-school-year', [SchoolYearController::class, 'update'])->name('school-year.update');
+Route::delete('school/delete-school-year', [SchoolYearController::class, 'destroy'])->name('school-year.delete');
 
 // tingkatan kelas
 Route::get('school/class-level', function(){

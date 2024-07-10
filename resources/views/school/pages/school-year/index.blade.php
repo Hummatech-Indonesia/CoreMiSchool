@@ -31,15 +31,18 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>2023/2024</td>
-                <td>
-                    <div class="gap-3">
-                        <button class="btn btn-light-primary text-primary mb-2 me-2" data-bs-toggle="modal" data-bs-target="#modal-update">Edit</button>
-                        <button class="btn btn-light-danger text-danger mb-2">Hapus</button>
-                    </div>
-                </td>
-            </tr>
+            @forelse ($schoolYears as $schoolYear)
+                <tr>
+                    <td>{{ $schoolYear->name }}</td>
+                    <td>
+                        <div class="gap-3">
+                            <button class="btn btn-light-primary text-primary mb-2 me-2" data-bs-toggle="modal" data-bs-target="#modal-update">Edit</button>
+                            <button class="btn btn-light-danger text-danger mb-2" data-id="{{ $schoolYear->id }}">Hapus</button>
+                        </div>
+                    </td>
+                </tr>
+            @empty
+            @endforelse
         </tbody>
     </table>
 </div>
