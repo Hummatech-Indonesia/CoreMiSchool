@@ -33,9 +33,7 @@ Route::get('school/create-subjects', function(){
 Route::get('school/student', function(){
     return view('school.pages.student.index');
 });
-Route::get('school/student-class', function(){
-    return view('school.pages.student.student-class');
-});
+
 
 
 // absen

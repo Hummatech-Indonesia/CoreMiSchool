@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\RfidInterface;
+use App\Enums\RfidStatusEnum;
 use App\Models\Rfid;
 use App\Http\Requests\StoreRfidRequest;
 use App\Http\Requests\UpdateRfidRequest;
@@ -21,7 +22,9 @@ class RfidController extends Controller
     public function index()
     {
         $rfids = $this->rfid->get();
-        return view('admin.pages.rfid.registrasi-rfid', compact('rfids'));
+        $usedRfids = $this->rfid->used();
+        $notUsedRfids = $this->rfid->notUsed();
+        return view('admin.pages.rfid.registrasi-rfid', compact('rfids', 'usedRfids', 'notUsedRfids'));
     }
 
     /**

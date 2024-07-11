@@ -33,7 +33,7 @@
         <tbody>
             @forelse ($schoolYears as $schoolYear)
                 <tr>
-                    <td>{{ $schoolYear->name }}</td>
+                    <td>{{ $schoolYear->school_year }}</td>
                     <td>
                         <div class="gap-3">
                             <button class="btn btn-light-primary text-primary mb-2 me-2" data-bs-toggle="modal" data-bs-target="#modal-update">Edit</button>
@@ -42,6 +42,9 @@
                     </td>
                 </tr>
             @empty
+                <tr>
+                    <td colspan="2">Tahun ajaran belum ditambahkan</td>
+                </tr>
             @endforelse
         </tbody>
     </table>
@@ -54,17 +57,21 @@
                 <h5 class="modal-title" id="tambahTahunAjaran">Tambah Tahun Ajaran</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <form action="" enctype="multipart/form-data">
+            <form action="{{ route('school-year.store') }}" enctype="multipart/form-data" method="POST">
+                @csrf
+                <div class="modal-body">
                     <div class="mb-3">
                         <label for="">Tahun Ajaran</label>
-                        <input type="text" class="form-control">
+                        <input type="text" name="school_year" class="form-control">
+                        @error('school_year')
+                            <strong class="text-danger">{{ $message }}</strong>
+                        @enderror
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
