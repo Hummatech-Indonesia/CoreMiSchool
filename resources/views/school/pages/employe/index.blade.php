@@ -393,19 +393,13 @@
                                         <div class="form-check form-check-inline">
                                             <div class="custom-control custom-radio">
                                                 <input type="radio" class="custom-control-input" id="customControlValidation2" name="accreditation" value="Akreditasi A">
-                                                <label class="custom-control-label" for="customControlValidation2">A</label>
+                                                <label class="custom-control-label" for="customControlValidation2">WNI</label>
                                             </div>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <div class="custom-control custom-radio">
                                                 <input type="radio" class="custom-control-input" id="customControlValidation3" name="accreditation" value="Akreditasi B">
-                                                <label class="custom-control-label" for="customControlValidation3">B</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" class="custom-control-input" id="customControlValidation4" name="accreditation" value="Akreditasi C">
-                                                <label class="custom-control-label" for="customControlValidation4">C</label>
+                                                <label class="custom-control-label" for="customControlValidation3">WNA</label>
                                             </div>
                                         </div>
                                         @error('accreditation')
