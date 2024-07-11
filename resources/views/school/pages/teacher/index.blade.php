@@ -301,14 +301,15 @@
             <div class="modal-body">
                 <div class="">
                     <div class="wizard-content">
-                        <form action="" class="tab-wizard wizard-circle wizard clearfix" role="application" id="form-edit" method="POST" enctype="multipart/form-data">
+                        <form action="" class="tab-wizard wizard-circle wizard clearfix" role="application" id="steps-uid-0" method="POST" enctype="multipart/form-data">
+                            @method('put')
                             @csrf
                             <!-- Step 1 -->
                             <section>
                                 <div class="row mx-3 pt-4">
                                     <div class="col-md-12">
-                                        <label for="">Foto Pegawai</label>
-                                        <input type="file" name="" id="" class="form-control mb-3">
+                                        <label for="">Foto Pegawai ( opsional )</label>
+                                        <input type="file" name="image" id="" class="form-control mb-3">
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -331,11 +332,12 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Agama</label>
-                                            <select name="agama" id="" class="form-select">
-                                                <option value="">Islam</option>
-                                                <option value="">Hindu</option>
+                                            <select name="religion_id" id="" class="form-select">
+                                                @foreach ($religions as $religion)
+                                                    <option value="{{ $religion->id }}">{{ $religion->name }}</option>
+                                                @endforeach
                                             </select>
-                                            @error('agama')
+                                            @error('religion_id')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
                                         </div>
@@ -343,8 +345,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Tanggal Lahir</label>
-                                            <input type="date" name="tanggal_lahir" class="form-control mb-3" value="{{ old('tanggal_lahir') }}">
-                                            @error('tanggal_lahir')
+                                            <input type="date" name="birth_date" class="form-control mb-3" value="{{ old('birth_date') }}">
+                                            @error('birth_date')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
                                         </div>
@@ -352,8 +354,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Tempat Lahir</label>
-                                            <input type="text" class="form-control" name="tempat_lahir" value="{{ old('tempat_lahir') }}">
-                                            @error('tempat_lahir')
+                                            <input type="text" class="form-control" name="birth_place" value="{{ old('birth_place') }}">
+                                            @error('birth_place')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
                                         </div>
@@ -362,11 +364,11 @@
                                         <label for="">Jenis Kelamin</label>
                                         <div class="form-check d-flex align-items-center mt-2">
                                             <div class="custom-control custom-radio me-4">
-                                                <input type="radio" class="custom-control-input" id="customControlValidationA" name="accreditation" value="Akreditasi A">
+                                                <input type="radio" class="custom-control-input" id="customControlValidationA" name="gender" value="male">
                                                 <label class="custom-control-label" for="customControlValidationA">Laki-laki</label>
                                             </div>
                                             <div class="custom-control custom-radio me-4">
-                                                <input type="radio" class="custom-control-input" id="customControlValidationB" name="accreditation" value="Akreditasi B">
+                                                <input type="radio" class="custom-control-input" id="customControlValidationB" name="gender" value="famale">
                                                 <label class="custom-control-label" for="customControlValidationB">Perempuan</label>
                                             </div>
 
@@ -381,13 +383,12 @@
 
                             <!-- Step 2 -->
                             <section>
-
                                 <div class="row mx-3 pt-4">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">NIK</label>
-                                            <input type="text" class="form-control mb-3">
-                                            @error('province_id')
+                                            <input type="text" name="nik" class="form-control mb-3" value="{{ old('nik') }}">
+                                            @error('nik')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
                                         </div>
@@ -395,13 +396,16 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">No Telp</label>
-                                            <input type="text" class="form-control mb-3">
+                                            <input type="text" name="phone_number" class="form-control mb-3" value="{{ old('phone_number') }}">
+                                            @error('phone_number')
+                                            <strong class="text-danger">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Email</label>
-                                            <input type="text" class="form-control mb-3">
+                                            <input type="text" name="email" class="form-control mb-3" value="{{ old('email') }}">
                                             @error('email')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -410,9 +414,9 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Status</label>
-                                            <select name="" id="" class="form-select mb-3">
-                                                <option value="">Aktif</option>
-                                                <option value="">NonAktif</option>
+                                            <select name="active" id="" class="form-select mb-3">
+                                                <option value="1">Aktif</option>
+                                                <option value="0">NonAktif</option>
                                             </select>
                                         </div>
                                     </div>
@@ -432,7 +436,6 @@
                                     <button type="submit" class="btn mb-1 waves-effect waves-light btn-rounded btn-primary ms-3 next-step">Simpan</button>
                                 </div>
                             </section>
-
                         </form>
                     </div>
                 </div>
