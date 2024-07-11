@@ -23,6 +23,7 @@ class StoreStudentRequest extends FormRequest
     {
         return [
             'nisn' => 'required|numeric',
+            'image' => 'nullable|mimes:png,jpeg,jpg',
             'religion_id' => 'required|exists:religions,id',
             'birth_date' => 'required|date',
             'birth_place' => 'required',
@@ -38,6 +39,7 @@ class StoreStudentRequest extends FormRequest
         return [
             'nisn.required' => 'NISN tidak boleh kosong',
             'nisn.numeric' => 'NISN harus berupa angka',
+            'image.mimes' => 'Foto harus berekstensi png, jpg dan jpeg',
             'religion_id.required' => 'Agama tidak boleh kosong',
             'religion_id.exists' => 'Agama tidak ditemukan',
             'birth_date.required' => 'Tanggal lahir tidak boleh kosong',

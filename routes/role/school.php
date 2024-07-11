@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\SchoolYearController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\Teacher\TeacherController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,9 +31,8 @@ Route::get('school/create-subjects', function(){
 
 
 //siswa
-Route::get('school/student', function(){
-    return view('school.pages.student.index');
-});
+Route::get('school/student', [StudentController::class, 'index'])->name('school-student.index');
+Route::post('school/student', [StudentController::class, 'store'])->name('school-student.store');
 
 
 

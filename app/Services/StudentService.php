@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Contracts\Interfaces\UserInterface;
 use App\Enums\RoleEnum;
+use App\Enums\UploadDiskEnum;
 use App\Traits\UploadTrait;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
@@ -30,6 +31,10 @@ class StudentService
     public function store(StoreStudentRequest $request): array|bool
     {
         $data = $request->validated();
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $data['image'] = $request->file('image')->store(UploadDiskEnum::STUDENT->value, 'public');
+        }
+
         $dataUser = [
             'name' => $data['name'],
             'slug' => Str::slug($data['name']),
@@ -48,6 +53,13 @@ class StudentService
     public function update(Student $student, UpdateStudentRequest $request): array|bool
     {
         $data = $request->validated();
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $this->remove($student->image);
+            $data['image'] = $request->file('image')->store(UploadDiskEnum::STUDENT->value, 'public');
+        } else {
+            $data['image'] = $student->image;
+        }
+
         $dataUser = [
             'name' => $data['name'],
             'slug' => Str::slug($data['name']),
