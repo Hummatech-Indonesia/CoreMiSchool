@@ -27,6 +27,19 @@ trait HasForeign
      * @param string $foreignTable
      * @return void
      */
+    public function addForeignIdNull(Blueprint $table, string $column): void
+    {
+        $table->foreignId($column)->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+    }
+
+        /**
+     * Adds a foreign key constraint with cascade on delete and update.
+     *
+     * @param Blueprint $table
+     * @param string $column
+     * @param string $foreignTable
+     * @return void
+     */
     public function addForeignIdTo(Blueprint $table, string $column, string $table2): void
     {
         $table->foreignId($column)->constrained($table2)->cascadeOnDelete()->cascadeOnUpdate();
