@@ -29,6 +29,9 @@
                     </select>
                 </div>
             </form>
+            <button type="button" class="btn mb-1 btn-primary btn-lg px-4 fs-4 font-medium" data-bs-toggle="modal" data-bs-target="#modal-edit">
+                edit Guru
+            </button>
             <button type="button" class="btn mb-1 btn-primary btn-lg px-4 fs-4 font-medium" data-bs-toggle="modal" data-bs-target="#modal-create">
                 Tambah Guru
             </button>
@@ -291,29 +294,28 @@
 <x-delete-modal-component/>
 
 <!-- modal edit -->
-<div class="modal fade" id="modal-edit" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+<div class="modal fade" id="modal-edit" tabindex="-1" aria-labelledby="editPegawaiLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="importPegawai">Edit Guru</h5>
+                <h5 class="modal-title" id="editPegawaiLabel">Edit Pegawai</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
                 <div class="">
                     <div class="wizard-content">
-                        <form action="" class="tab-wizard wizard-circle wizard clearfix" role="application" id="steps-uid-0" method="POST" enctype="multipart/form-data">
-                            @method('put')
+                        <form id="editForm" class="tab-wizard wizard-circle wizard clearfix" role="application" method="POST" enctype="multipart/form-data">
                             @csrf
                             <!-- Step 1 -->
                             <section>
                                 <div class="row mx-3 pt-4">
                                     <div class="col-md-12">
-                                        <label for="">Foto Pegawai ( opsional )</label>
-                                        <input type="file" name="image" id="" class="form-control mb-3">
+                                        <label for="fotoPegawai">Foto Pegawai</label>
+                                        <input type="file" name="fotoPegawai" id="fotoPegawai" class="form-control mb-3">
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">Nama</label>
+                                            <label for="name">Nama</label>
                                             <input type="text" name="name" class="form-control mb-3" value="{{ old('name') }}">
                                             @error('name')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -322,7 +324,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">NIP</label>
+                                            <label for="nip">NIP</label>
                                             <input type="number" name="nip" class="form-control mb-3" value="{{ old('nip') }}">
                                             @error('nip')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -331,22 +333,21 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">Agama</label>
-                                            <select name="religion_id" id="" class="form-select">
-                                                @foreach ($religions as $religion)
-                                                    <option value="{{ $religion->id }}">{{ $religion->name }}</option>
-                                                @endforeach
+                                            <label for="agama">Agama</label>
+                                            <select name="agama" id="agama" class="form-select">
+                                                <option value="Islam">Islam</option>
+                                                <option value="Hindu">Hindu</option>
                                             </select>
-                                            @error('religion_id')
+                                            @error('agama')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">Tanggal Lahir</label>
-                                            <input type="date" name="birth_date" class="form-control mb-3" value="{{ old('birth_date') }}">
-                                            @error('birth_date')
+                                            <label for="tanggal_lahir">Tanggal Lahir</label>
+                                            <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="form-control mb-3" value="{{ old('tanggal_lahir') }}">
+                                            @error('tanggal_lahir')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
                                         </div>
@@ -354,8 +355,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Tempat Lahir</label>
-                                            <input type="text" class="form-control" name="birth_place" value="{{ old('birth_place') }}">
-                                            @error('birth_place')
+                                            <input type="text" class="form-control" name="tempat_lahir" value="{{ old('tempat_lahir') }}">
+                                            @error('tempat_lahir')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
                                         </div>
@@ -364,31 +365,33 @@
                                         <label for="">Jenis Kelamin</label>
                                         <div class="form-check d-flex align-items-center mt-2">
                                             <div class="custom-control custom-radio me-4">
-                                                <input type="radio" class="custom-control-input" id="customControlValidationA" name="gender" value="male">
+                                                <input type="radio" class="custom-control-input" id="customControlValidationA" name="accreditation" value="Akreditasi A">
                                                 <label class="custom-control-label" for="customControlValidationA">Laki-laki</label>
                                             </div>
                                             <div class="custom-control custom-radio me-4">
-                                                <input type="radio" class="custom-control-input" id="customControlValidationB" name="gender" value="famale">
+                                                <input type="radio" class="custom-control-input" id="customControlValidationB" name="accreditation" value="Akreditasi B">
                                                 <label class="custom-control-label" for="customControlValidationB">Perempuan</label>
                                             </div>
-
+    
                                         </div>
                                     </div>
-
+    
                                 </div>
                                 <div class="d-flex justify-content-end mt-3 mx-4">
                                     <button type="button" class="btn btn-primary next-step">Berikutnya</button>
                                 </div>
                             </section>
-
+    
                             <!-- Step 2 -->
+                            {{-- <h6>Billing & Address</h6> --}}
                             <section>
+    
                                 <div class="row mx-3 pt-4">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">NIK</label>
-                                            <input type="text" name="nik" class="form-control mb-3" value="{{ old('nik') }}">
-                                            @error('nik')
+                                            <input type="text" class="form-control mb-3">
+                                            @error('province_id')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
                                         </div>
@@ -396,16 +399,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">No Telp</label>
-                                            <input type="text" name="phone_number" class="form-control mb-3" value="{{ old('phone_number') }}">
-                                            @error('phone_number')
-                                            <strong class="text-danger">{{ $message }}</strong>
-                                            @enderror
+                                            <input type="text" class="form-control mb-3">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Email</label>
-                                            <input type="text" name="email" class="form-control mb-3" value="{{ old('email') }}">
+                                            <input type="text" class="form-control mb-3">
                                             @error('email')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -414,9 +414,9 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Status</label>
-                                            <select name="active" id="" class="form-select mb-3">
-                                                <option value="1">Aktif</option>
-                                                <option value="0">NonAktif</option>
+                                            <select name="" id="" class="form-select mb-3">
+                                                <option value="">Aktif</option>
+                                                <option value="">NonAktif</option>
                                             </select>
                                         </div>
                                     </div>
@@ -430,16 +430,21 @@
                                         </div>
                                     </div>
                                 </div>
-
+    
                                 <div class="d-flex justify-content-end mt-3 mx-4">
                                     <button type="button" class="btn mb-1 waves-effect waves-light btn-outline-primary prev-step">Kembali</button>
                                     <button type="submit" class="btn mb-1 waves-effect waves-light btn-rounded btn-primary ms-3 next-step">Simpan</button>
                                 </div>
                             </section>
+    
                         </form>
                     </div>
                 </div>
 
+            </div>
+            <div class="modal-footer">
+                {{-- <button type="button" class="btn btn-rounded btn-light-danger text-danger" data-bs-dismiss="modal">Tutup</button>
+                <button type="submit" class="btn btn-rounded btn-light-success text-success">Tambah</button> --}}
             </div>
         </div>
     </div>
@@ -510,6 +515,37 @@
             }
         });
     });
-
 </script>
+
+<script>
+    $(document).ready(function() {
+        var currentEditSection = 0;
+        var editSections = $("#editForm > section");
+        var editSteps = $("#editSteps li");
+
+        editSections.hide();
+        editSections.eq(currentEditSection).show();
+
+        $(".next-edit-step").click(function() {
+            if (currentEditSection < editSections.length - 1) {
+                editSections.eq(currentEditSection).hide();
+                editSteps.eq(currentEditSection).removeClass("current").addClass("done");
+                currentEditSection++;
+                editSections.eq(currentEditSection).show();
+                editSteps.eq(currentEditSection).removeClass("disabled").addClass("current");
+            }
+        });
+
+        $(".prev-edit-step").click(function() {
+            if (currentEditSection > 0) {
+                editSections.eq(currentEditSection).hide();
+                editSteps.eq(currentEditSection).removeClass("current").addClass("disabled");
+                currentEditSection--;
+                editSections.eq(currentEditSection).show();
+                editSteps.eq(currentEditSection).removeClass("done").addClass("current");
+            }
+        });
+    });
+</script>
+
 @endsection
