@@ -22,6 +22,7 @@ class Student extends Model
         'gender',
         'birth_date',
         'birth_place',
+        'address',
         'number_kk',
         'number_akta',
         'order_child',
