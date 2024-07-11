@@ -112,8 +112,7 @@
                             10 mei 2022
                         </td>
                         <td>
-                            <button type="button" class="btn mb-1 btn-primary btn-sm fs-2 font-medium"
-                                data-bs-toggle="modal" data-bs-target="#modal-edit">
+                            <a href="/admin/news-detail" type="button" class="btn mb-1 btn-primary btn-sm fs-2 font-medium">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                     <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                         stroke-width="1.5">
@@ -121,7 +120,7 @@
                                         <path d="M12 17a3 3 0 1 1 0-6a3 3 0 0 1 0 6" />
                                     </g>
                                 </svg>
-                            </button>
+                            </a>
 
                             <button type="button" class="btn mb-1 btn-warning btn-sm fs-2 font-medium"
                                 data-bs-toggle="modal" data-bs-target="#modal-edit">
