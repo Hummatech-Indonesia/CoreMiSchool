@@ -304,28 +304,29 @@
     </div>
 </div>
 
-<div class="modal fade" id="modal-update" tabindex="-1" aria-labelledby="editPegawai" aria-hidden="true">
+<!-- modal edit -->
+<div class="modal fade" id="modal-update" tabindex="-1" aria-labelledby="editPegawaiLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editPegawai">Edit Pegawai</h5>
+                <h5 class="modal-title" id="editPegawaiLabel">Edit Pegawai</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
                 <div class="">
                     <div class="wizard-content">
-                        <form class="tab-wizard wizard-circle wizard clearfix" role="application" id="steps-uid-0" method="POST" enctype="multipart/form-data">
+                        <form id="editForm" class="tab-wizard wizard-circle wizard clearfix" role="application" method="POST" enctype="multipart/form-data">
                             @csrf
                             <!-- Step 1 -->
                             <section>
                                 <div class="row mx-3 pt-4">
                                     <div class="col-md-12">
-                                        <label for="">Foto Pegawai</label>
-                                        <input type="file" name="" id="" class="form-control mb-3">
+                                        <label for="fotoPegawai">Foto Pegawai</label>
+                                        <input type="file" name="fotoPegawai" id="fotoPegawai" class="form-control mb-3">
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">Nama</label>
+                                            <label for="name">Nama</label>
                                             <input type="text" name="name" class="form-control mb-3" value="{{ old('name') }}">
                                             @error('name')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -334,7 +335,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">NIP</label>
+                                            <label for="nip">NIP</label>
                                             <input type="number" name="nip" class="form-control mb-3" value="{{ old('nip') }}">
                                             @error('nip')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -343,10 +344,10 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">Agama</label>
-                                            <select name="agama" id="" class="form-select">
-                                                <option value="">Islam</option>
-                                                <option value="">Hindu</option>
+                                            <label for="agama">Agama</label>
+                                            <select name="agama" id="agama" class="form-select">
+                                                <option value="Islam">Islam</option>
+                                                <option value="Hindu">Hindu</option>
                                             </select>
                                             @error('agama')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -355,8 +356,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">Tanggal Lahir</label>
-                                            <input type="date" name="tanggal_lahir" class="form-control mb-3" value="{{ old('tanggal_lahir') }}">
+                                            <label for="tanggal_lahir">Tanggal Lahir</label>
+                                            <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="form-control mb-3" value="{{ old('tanggal_lahir') }}">
                                             @error('tanggal_lahir')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -500,4 +501,36 @@
     });
 
 </script>
+
+<script>
+    $(document).ready(function() {
+        var currentEditSection = 0;
+        var editSections = $("#editForm > section");
+        var editSteps = $("#editSteps li");
+
+        editSections.hide();
+        editSections.eq(currentEditSection).show();
+
+        $(".next-edit-step").click(function() {
+            if (currentEditSection < editSections.length - 1) {
+                editSections.eq(currentEditSection).hide();
+                editSteps.eq(currentEditSection).removeClass("current").addClass("done");
+                currentEditSection++;
+                editSections.eq(currentEditSection).show();
+                editSteps.eq(currentEditSection).removeClass("disabled").addClass("current");
+            }
+        });
+
+        $(".prev-edit-step").click(function() {
+            if (currentEditSection > 0) {
+                editSections.eq(currentEditSection).hide();
+                editSteps.eq(currentEditSection).removeClass("current").addClass("disabled");
+                currentEditSection--;
+                editSections.eq(currentEditSection).show();
+                editSteps.eq(currentEditSection).removeClass("done").addClass("current");
+            }
+        });
+    });
+</script>
+
 @endsection
