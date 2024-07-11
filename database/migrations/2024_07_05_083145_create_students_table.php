@@ -23,7 +23,7 @@ return new class extends Migration
             $this->addForeignId($table, 'religion_id');
             $this->addGender($table);
             $table->date('birth_date');
-            $table->date('birth_place');
+            $table->string('birth_place');
             $table->longText('address');
             $table->char('nik', 16);
             $table->string('number_kk');

@@ -12,7 +12,7 @@
                                     <img class="card-img-top img-responsive me-3" style="max-height:80px; width: auto;"
                                         src="{{ asset('admin_assets/dist/images/profile/smkn1kepanjen.png') }}"
                                         alt="Card image cap">
-                                    <div class="d-flex justify-content-between w-100 ms-3">
+                                    <div class="d-flex flex-column flex-sm-row justify-content-between w-100 ms-3">
                                         <div>
                                             <h3 class="mb-1">SMK NEGERI 1 KEPANJEN</h3>
                                             <span class="badge font-medium bg-light-primary text-primary">Negeri</span>
@@ -25,8 +25,8 @@
                                 </div>
                                 <hr>
 
-                                <div class="d-flex justify-content-between">
-                                    <div class="col-md-5">
+                                <div class="d-flex flex-column flex-md-row justify-content-between">
+                                    <div class="col-md-5 mb-3 mb-md-0">
                                         <div class="d-flex justify-content-between">
                                             <h6>Kepala Sekolah :</h6>
                                             <p>Lasmono S.Pd.Mm</p>
@@ -66,7 +66,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
 
                             </div>
@@ -75,6 +74,7 @@
                 </div>
             </div>
         </div>
+
 
         <div class="row">
             <div class="col-md-6 col-lg-3">
@@ -173,24 +173,21 @@
                         <h4 class="card-title text-white mb-0">Statistik RFID</h4>
                     </div>
                     <div class="card-body collapse show">
-                        <div class="rfid-container d-flex justify-content-between mx-5">
-                            <div class="rfid-item">
-                                <div
-                                    class="bg-light-primary text-primary d-inline-block px-4 py-4 fs-8 rounded mb-3 fixed-size-div">
+                        <div class="rfid-container d-flex flex-wrap justify-content-center justify-content-md-between mx-md-5">
+                            <div class="rfid-item mb-3 text-center">
+                                <div class="bg-light-primary text-primary d-inline-block px-4 py-4 fs-8 rounded fixed-size-div">
                                     <b>100</b>
                                 </div>
                                 <h5>Jumlah RFID</h5>
                             </div>
-                            <div class="rfid-item">
-                                <div
-                                    class="bg-light-success text-success d-inline-block px-4 py-4 fs-8 rounded mb-3 fixed-size-div">
+                            <div class="rfid-item mb-3 text-center">
+                                <div class="bg-light-success text-success d-inline-block px-4 py-4 fs-8 rounded fixed-size-div">
                                     <b>50</b>
                                 </div>
                                 <h5>RFID Aktif</h5>
                             </div>
-                            <div class="rfid-item">
-                                <div
-                                    class="bg-light-danger text-danger d-inline-block px-4 py-4 fs-8 rounded mb-3 fixed-size-div">
+                            <div class="rfid-item mb-3 text-center">
+                                <div class="bg-light-danger text-danger d-inline-block px-4 py-4 fs-8 rounded fixed-size-div">
                                     <b>100</b>
                                 </div>
                                 <h5>RFID Tidak Aktif</h5>
@@ -200,14 +197,14 @@
                 </div>
             </div>
 
+
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-header bg-primary d-flex align-items-center">
                         <h4 class="card-title text-white mb-0">Statistik RFID</h4>
                     </div>
-                    <div class="card-body collapse show">
-                        <div id="chart-rfid"></div>
-
+                    <div class="card-body collapse show d-flex justify-content-center">
+                        <div id="chart-rfid" style="width: 100%; height: 300px;"></div>
                     </div>
                 </div>
             </div>
@@ -220,44 +217,36 @@
         integrity="sha512-wqcdhB5VcHuNzKcjnxN9wI5tB3nNorVX7Zz9NtKBxmofNskRC29uaQDnv71I/zhCDLZsNrg75oG8cJHuBvKWGw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script>
-        var options = {
-            series: [44, 55, 41],
-            chart: {
-                type: 'donut',
-                width: 400,
-                height: 400
-            },
-            legend: {
-                position: 'left',
-                fontSize: '14px', // Ukuran font keterangan
-                fontFamily: 'Arial, sans-serif', // Font family keterangan
-                fontWeight: 400, // Ketebalan font keterangan
-                markers: {
-                    width: 12, // Lebar marker
-                    height: 12, // Tinggi marker
-                    strokeWidth: 0, // Ketebalan border marker
-                    radius: 6, // Radius marker
-                },
-                itemMargin: {
-                    horizontal: 8, // Jarak horizontal antara item
-                    vertical: 4, // Jarak vertikal antara item
-                }
-            },
-            responsive: [{
-                breakpoint: 480,
-                options: {
-                    chart: {
-                        width: 100
-                    },
-                    legend: {
-                        position: 'bottom'
+        <script>
+            var options = {
+                series: [44, 55, 41],
+                chart: {
+                    type: 'donut',
+                    width: '100%',
+                    height: '100%',
+                    toolbar: {
+                        show: false
                     }
-                }
-            }]
-        };
+                },
+                legend: {
+                    position: 'right',
+                    offsetY: 0,
+                    offsetX: -50
+                },
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            width: '100%'
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }]
+            };
 
-        var chart = new ApexCharts(document.querySelector("#chart-rfid"), options);
-        chart.render();
-    </script>
+            var chart = new ApexCharts(document.querySelector("#chart-rfid"), options);
+            chart.render();
+        </script>
 @endsection

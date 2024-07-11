@@ -37,6 +37,8 @@ Route::get('school/create-subjects', function(){
 //siswa
 Route::get('school/student', [StudentController::class, 'index'])->name('school-student.index');
 Route::post('school/student', [StudentController::class, 'store'])->name('school-student.store');
+Route::put('school/student/{student}', [StudentController::class, 'update'])->name('school-student.update');
+Route::delete('school/student/{student}', [StudentController::class, 'destroy'])->name('school-student.destroy');
 
 
 
@@ -66,6 +68,11 @@ Route::get('school/class', [ClassroomController::class, 'index'])->name('class.i
 Route::post('school/add-class', [ClassroomController::class, 'store'])->name('class.store');
 Route::put('school/update-class/{classroom}', [ClassroomController::class, 'update'])->name('class.update');
 Route::delete('school/delete-class/{classroom}', [ClassroomController::class, 'destroy'])->name('class.delete');
+
+// detail kelas
+Route::get('school/detail-class', function(){
+    return view('school.pages.class.detail-class');
+})->name('detail-class.index');
 
 // tahun ajaran
 Route::get('school/school-year', [SchoolYearController::class, 'index'])->name('school-year.index');

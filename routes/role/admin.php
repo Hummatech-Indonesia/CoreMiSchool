@@ -30,3 +30,6 @@ Route::get('faq', function () {
 Route::get('admin/news', function(){
     return view('admin.pages.news.index');
 });
+Route::get('admin/news-detail', function(){
+    return view('admin.pages.news.detail-news');
+});

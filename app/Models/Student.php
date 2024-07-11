@@ -18,6 +18,7 @@ class Student extends Model
         'user_id',
         'image',
         'nisn',
+        'nik',
         'religion_id',
         'gender',
         'birth_date',
