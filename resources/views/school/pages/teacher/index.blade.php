@@ -29,9 +29,6 @@
                     </select>
                 </div>
             </form>
-            <button type="button" class="btn mb-1 btn-primary btn-lg px-4 fs-4 font-medium" data-bs-toggle="modal" data-bs-target="#modal-edit">
-                edit Guru
-            </button>
             <button type="button" class="btn mb-1 btn-primary btn-lg px-4 fs-4 font-medium" data-bs-toggle="modal" data-bs-target="#modal-create">
                 Tambah Guru
             </button>
