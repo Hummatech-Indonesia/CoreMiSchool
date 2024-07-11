@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use App\Traits\UploadTrait;
 use App\Models\Employee;
 use App\Enums\RoleEnum;
+use App\Enums\UploadDiskEnum;
 use App\Models\Student;
 
 class StaffService
@@ -40,6 +41,11 @@ class StaffService
         $user = $this->user->store($dataUser);
         $user->assignRole(RoleEnum::STAFF->value);
 
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $data['image'] = $request->file('image')->store(UploadDiskEnum::STAFF->value, 'public');
+        }
+
+        $data['status'] = RoleEnum::TEACHER->value;
         $data['user_id'] = $user->id;
         $data['school_id'] = auth()->user()->school->id;
         return $data;
@@ -55,6 +61,13 @@ class StaffService
             'password' => Hash::make($data['nisn']),
         ];
         $this->user->update($request->user_id, $dataUser);
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $this->remove($employee->image);
+            $data['image'] = $request->file('image')->store(UploadDiskEnum::STAFF->value, 'public');
+        } else {
+            $data['image'] = $employee->image;
+        }
 
         $data['school_id'] = auth()->user()->school->id;
         return $data;

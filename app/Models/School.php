@@ -8,6 +8,7 @@ use App\Traits\Models\BelongsToUser;
 use App\Traits\Models\HasManyClassroom;
 use App\Traits\Models\HasManyEmployee;
 use App\Traits\Models\HasManyLessonHour;
+use App\Traits\Models\HasManyLevelClass;
 use App\Traits\Models\HasManyMaple;
 use App\Traits\Models\HasManySchoolYear;
 use App\Traits\Models\HasManyStudent;
@@ -21,7 +22,8 @@ class School extends Model
     BelongsToUser, BelongsToProvince,
     HasManyStudent, HasManyEmployee,
     HasManyMaple, HasManySchoolYear,
-    HasManyLessonHour, MorphManyRfid;
+    HasManyLessonHour, HasManyLevelClass,
+    MorphManyRfid;
 
     protected $fillable = [
         'npsn',

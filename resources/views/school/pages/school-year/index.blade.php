@@ -36,7 +36,7 @@
                     <td>{{ $schoolYear->school_year }}</td>
                     <td>
                         <div class="gap-3">
-                            <button class="btn btn-light-primary text-primary mb-2 me-2" data-bs-toggle="modal" data-bs-target="#modal-update">Edit</button>
+                            <button class="btn btn-edit btn-light-primary text-primary mb-2 me-2" data-id="{{ $schoolYear->id }}" data-year="{{ $schoolYear->school_year }}">Edit</button>
                             <button class="btn btn-light-danger text-danger mb-2" data-id="{{ $schoolYear->id }}">Hapus</button>
                         </div>
                     </td>
@@ -83,19 +83,33 @@
                 <h5 class="modal-title" id="tambahTahunAjaran">Tambah Tahun Ajaran</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <form action="" enctype="multipart/form-data">
+            <form id="form-update" method="POST" enctype="multipart/form-data">
+                @method('put')
+                @csrf
+                <div class="modal-body">
                     <div class="mb-3">
                         <label for="">Tahun Ajaran</label>
-                        <input type="text" class="form-control">
+                        <input type="text" id="year-update" name="school_year" class="form-control">
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-rounded btn-primary">Update</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+@endsection
 
+@section('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $('.btn-edit').on('click', function() {
+            var id = $(this).data('id');
+            var year = $(this).data('year');
+            $('#form-update').attr('action', '/school/update-school-year/' + id);
+            $('#year-update').val(year);
+            $('#modal-update').modal('show');
+        });
+    </script>
 @endsection

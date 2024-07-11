@@ -26,15 +26,15 @@ class StoreEmployeeRequest extends FormRequest
             'email' => 'required',
             'image' => 'nullable',
             'nip' => 'required|min:18',
-            'birth_date' => 'nullable|date',
-            'birth_place' => 'nullable|date',
+            'birth_date' => 'required|date',
+            'birth_place' => 'required|date',
             'gender' => 'required',
             'nik' => 'required|min:16',
-            'phone_number' => 'nullable|min:15',
-            'address' => 'nullable',
+            'phone_number' => 'required|min:15',
+            'address' => 'required',
             'active' => 'nullable',
             'status' => 'nullable',
-            'religion_id' => 'nullable',
+            'religion_id' => 'required',
         ];
     }
 
@@ -54,6 +54,7 @@ class StoreEmployeeRequest extends FormRequest
             'phone_number.required' => 'Nomor telepon wajib diisi dan harus minimal 15 karakter.',
             'address.required' => 'Alamat wajib diisi.',
             'status.required' => 'Status wajib diisi.',
+            'religion_id.required' => 'Agama wajib diisi'
         ];
     }
 }
