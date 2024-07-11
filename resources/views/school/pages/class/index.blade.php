@@ -29,55 +29,58 @@
                     <h5 class="modal-title" id="importPegawai">Tambah Kelas</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <div class="form-group">
-                            <label for="" class="mb-2">Nama Kelas</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="mb-2 pt-3">Pengajar</label>
-                            <select id="pengajar" class="form-select">
-                                <option value="">Pilih Pengajar</option>
-                                <option value="1">Pengajar 1</option>
-                                <option value="2">Pengajar 2</option>
-                                <option value="3">Pengajar 3</option>
-                            </select>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-floating ">
-                                    <div class="form-group">
-                                        <label for="" class="mb-2 pt-3">Tingkatan Kelas</label>
-                                        <select id="tingkatan-kelas" class="form-select">
-                                            <option value="1">Pengajar 1</option>
-                                            <option value="2">Pengajar 2</option>
-                                            <option value="3">Pengajar 3</option>
-                                        </select>
+                <form action="{{ route('class.store') }}" method="POST" enctype="multipart/form-data">
+                    @method('post')
+                    @csrf
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <div class="form-group">
+                                <label for="" class="mb-2">Nama Kelas</label>
+                                <input type="text" class="form-control" name="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="mb-2 pt-3">Pengajar</label>
+                                <select id="pengajar" class="form-select" name="employee_id">
+                                    <option value="">Pilih Pengajar</option>
+                                    @foreach ($employees as $employee)
+                                        <option value="{{ $employee->id }}">{{ $employee->user->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-floating ">
+                                        <div class="form-group">
+                                            <label for="" class="mb-2 pt-3">Tingkatan Kelas</label>
+                                            <select id="tingkatan-kelas" class="form-select" name="level_class_id">
+                                                @foreach ($levelClasses as $levelClass)
+                                                    <option value="{{ $levelClass->id }}">{{ $levelClass->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating ">
+                                        <div class="form-group">
+                                            <label for="" class="mb-2 pt-3">Tahun Ajaran</label>
+                                            <select id="tahun-ajaran" class="form-select" name="school_year_id">
+                                                @foreach ($schoolYears as $schoolYear)
+                                                    <option value="{{ $schoolYear->id }}">{{ $schoolYear->school_year }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-floating ">
-                                    <div class="form-group">
-                                        <label for="" class="mb-2 pt-3">Tahun Ajaran</label>
-                                        <select id="tahun-ajaran" class="form-select">
-                                            <option value="1">2023/2024</option>
-                                            <option value="2">2024/2025</option>
-                                            <option value="3">2025/2026</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
-
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-rounded btn-light-danger text-danger"
-                        data-bs-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-rounded btn-light-success text-success">Tambah</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-rounded btn-light-danger text-danger"
+                            data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-rounded btn-light-success text-success">Tambah</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

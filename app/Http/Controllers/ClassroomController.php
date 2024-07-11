@@ -3,24 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\ClassroomInterface;
+use App\Contracts\Interfaces\EmployeeInterface;
 use App\Contracts\Interfaces\LevelClassInterface;
 use App\Contracts\Interfaces\SchoolYearInterface;
+use App\Enums\RoleEnum;
 use App\Models\Classroom;
 use App\Http\Requests\StoreClassroomRequest;
 use App\Http\Requests\UpdateClassroomRequest;
-use App\Models\LevelClass;
 
 class ClassroomController extends Controller
 {
     private ClassroomInterface $classroom;
     private LevelClassInterface $levelClass;
     private SchoolYearInterface $schoolYear;
+    private EmployeeInterface $employee;
 
-    public function __construct(ClassroomInterface $classroom, LevelClassInterface $levelClass, SchoolYearInterface $schoolYear)
+    public function __construct(ClassroomInterface $classroom, LevelClassInterface $levelClass, SchoolYearInterface $schoolYear, EmployeeInterface $employee)
     {
         $this->classroom = $classroom;
         $this->levelClass = $levelClass;
         $this->schoolYear = $schoolYear;
+        $this->employee = $employee;
     }
 
     /**
@@ -31,7 +34,8 @@ class ClassroomController extends Controller
         $levelClasses = $this->levelClass->get();
         $schoolYears = $this->schoolYear->get();
         $classrooms = $this->classroom->get();
-        return view('school.pages.class.index', compact('classrooms', 'levelClasses', 'schoolYears'));
+        $employees = $this->employee->where(RoleEnum::TEACHER->value);
+        return view('school.pages.class.index', compact('classrooms', 'levelClasses', 'schoolYears', 'employees'));
     }
 
     /**
