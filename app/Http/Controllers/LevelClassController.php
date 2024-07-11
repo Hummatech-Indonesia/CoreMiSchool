@@ -30,7 +30,7 @@ class LevelClassController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     */ 
+     */
     public function create()
     {
         //
@@ -77,7 +77,7 @@ class LevelClassController extends Controller
      */
     public function destroy(LevelClass $levelClass)
     {
-        $data = $this->service->delete($levelClass->id);
+        $this->levelClass->delete($levelClass->id);
         return redirect()->back()->with('success', 'Berhasil menghapus tingkatan kelas');
     }
 }

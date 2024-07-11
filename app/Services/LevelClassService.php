@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Http\Requests\StoreLevelClassRequest;
 use App\Http\Requests\UpdateLevelClassRequest;
 use App\Models\LevelClass;
-use App\Models\Student;
 
 class LevelClassService
 {
@@ -21,10 +20,5 @@ class LevelClassService
         $data = $request->validated();
         $data['school_id'] = auth()->user()->school->id;
         return $data;
-    }
-
-    public function delete(Student $student)
-    {
-        //
     }
 }

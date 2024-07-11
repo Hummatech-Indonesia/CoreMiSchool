@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('name');
             $this->addForeignId($table, 'employee_id');
             $this->addForeignId($table, 'school_year_id');
+            $this->addForeignId($table, 'level_class_id');
             $table->timestamps();
         });
     }

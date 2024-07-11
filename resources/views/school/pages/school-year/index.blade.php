@@ -37,7 +37,7 @@
                     <td>
                         <div class="gap-3">
                             <button class="btn btn-edit btn-light-primary text-primary mb-2 me-2" data-id="{{ $schoolYear->id }}" data-year="{{ $schoolYear->school_year }}">Edit</button>
-                            <button class="btn btn-light-danger text-danger mb-2" data-id="{{ $schoolYear->id }}">Hapus</button>
+                            <button class="btn btn-delete btn-light-danger text-danger mb-2" data-id="{{ $schoolYear->id }}">Hapus</button>
                         </div>
                     </td>
                 </tr>
@@ -49,6 +49,8 @@
         </tbody>
     </table>
 </div>
+
+<x-delete-modal-component/>
 
 <div class="modal fade" id="modal-create" tabindex="-1" aria-labelledby="tambahTahunAjaran" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -110,6 +112,12 @@
             $('#form-update').attr('action', '/school/update-school-year/' + id);
             $('#year-update').val(year);
             $('#modal-update').modal('show');
+        });
+
+        $('.btn-delete').on('click', function() {
+            var id = $(this).data('id');
+            $('#form-delete').attr('action', '/school/delete-school-year/' + id);
+            $('#modal-delete').modal('show');
         });
     </script>
 @endsection
