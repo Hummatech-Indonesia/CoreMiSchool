@@ -11,6 +11,7 @@ Route::get('/admin', function () {
 
 Route::get('admin/rfid', [RfidController::class, 'index'])->name('rfid-admin.index');
 Route::post('admin/rfid', [RfidController::class, 'store'])->name('rfid-admin.store');
+Route::delete('admin/rfid/{rfid}', [RfidController::class, 'destroy'])->name('rfid-admin.delete');
 
 //datar sekolah
 Route::get('admin/list-school', [SchoolController::class, 'index'])->name('school-admin.index');

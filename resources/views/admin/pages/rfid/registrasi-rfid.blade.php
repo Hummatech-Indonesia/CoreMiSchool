@@ -48,7 +48,7 @@
     </ul>
 </div>
 
-<div class="ps-4 pe-4">
+<div class="ps-4 pe-4 mb-5">
     <div class="tab-content">
 
         <div class="row mt-5 mb-4">
@@ -108,10 +108,12 @@
                                         <span class="mb-1 badge px-4 font-medium bg-light-{{ $rfid->status->color() }} text-{{ $rfid->status->color() }}">{{ $rfid->status->label() }}</span>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-sm btn-danger">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24">
-                                                <path fill="#ffffff" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z" /></svg>
-                                        </button>
+                                        @if ($rfid->status->value == 'notused')
+                                            <button type="button" class="btn btn-sm btn-danger btn-delete" data-id="{{ $rfid->id }}">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24">
+                                                    <path fill="#ffffff" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z" /></svg>
+                                            </button>
+                                        @endif
                                     </td>
                                 </tr>
                             @empty
@@ -133,7 +135,6 @@
                                 <th>Nama</th>
                                 <th>Nomor RFID</th>
                                 <th>Status</th>
-                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -148,12 +149,6 @@
                                     <td>{{ $rfid->rfid }}</td>
                                     <td>
                                         <span class="mb-1 badge px-4 font-medium bg-light-{{ $rfid->status->color() }} text-{{ $rfid->status->color() }}">{{ $rfid->status->label() }}</span>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-sm btn-danger">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24">
-                                                <path fill="#ffffff" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z" /></svg>
-                                        </button>
                                     </td>
                                 </tr>
                             @empty
@@ -187,7 +182,7 @@
                                         <span class="mb-1 badge px-4 font-medium bg-light-{{ $rfid->status->color() }} text-{{ $rfid->status->color() }}">{{ $rfid->status->label() }}</span>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-sm btn-danger">
+                                        <button type="button" class="btn btn-sm btn-danger btn-delete" data-id="{{ $rfid->id }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24">
                                                 <path fill="#ffffff" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z" /></svg>
                                         </button>
@@ -234,4 +229,18 @@
         </form>
     </div>
 </div>
+@include('components.delete-modal-component')
+@endsection
+@section('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+         $('.btn-delete').click(function() {
+            var id = $(this).data('id');
+            console.log(id);
+            $('#form-delete').attr('action', '/admin/rfid/' + id);
+            $('#modal-delete').modal('show');
+        });
+    </script>
 @endsection
