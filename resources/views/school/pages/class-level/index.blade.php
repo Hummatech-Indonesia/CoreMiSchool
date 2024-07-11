@@ -39,7 +39,7 @@
                         <button type="button" data-id="{{ $levelClass->id }}" data-name="{{ $levelClass->name }}" class="btn btn-edit mb-1 btn-primary px-4 me-2">
                             Edit
                         </button>
-                        <button type="button" class="btn mb-1 btn-light-danger text-danger px-4">
+                        <button type="button" data-id="{{ $levelClass->id }}" class="btn btn-delete mb-1 btn-light-danger text-danger px-4">
                             Hapus
                         </button>
                     </div>
@@ -104,6 +104,8 @@
     </div>
 </div>
 
+<x-delete-modal-component/>
+
 @endsection
 
 @section('script')
@@ -115,6 +117,12 @@
             $('#form-update').attr('action', '/school/update-class-level/' + id);
             $('#name-update').val(name);
             $('#modal-update').modal('show');
+        });
+
+        $('.btn-delete').on('click', function() {
+            var id = $(this).data('id');
+            $('#form-delete').attr('action', '/school/delete-class-level/' + id);
+            $('#modal-delete').modal('show');
         });
     </script>
 @endsection
