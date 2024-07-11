@@ -69,15 +69,9 @@
                             <label for="" class="mb-2 pt-3">Thumbnail</label>
                             <input class="form-control" type="file" id="formFile">
                         </div>
-                        <div class="col-lg-12 mb-4" style="height: auto;">
-                            <label class="form-label" for="content">Isi Berita</label>
-                            <textarea id="content" name="description" placeholder="{{ old('content') }}" value="{{ old('content') }}"
-                                class="form  @error('content') is-invalid @enderror">{{ old('content') }}</textarea>
-                            @error('content')
-                                <span class="invalid-feedback" role="alert" style="color: red;">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                        <div class="form-group">
+                            <label for="" class="mb-2 pt-3">Isi Berita</label>
+                            <textarea class="form-control" rows="3"></textarea>
                         </div>
                     </div>
                 </div>
@@ -121,8 +115,8 @@
                             <button type="button" class="btn mb-1 btn-primary btn-sm fs-2 font-medium"
                                 data-bs-toggle="modal" data-bs-target="#modal-edit">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                                    <g fill="none" stroke="currentColor" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-width="1.5">
+                                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="1.5">
                                         <path d="M3 13c3.6-8 14.4-8 18 0" />
                                         <path d="M12 17a3 3 0 1 1 0-6a3 3 0 0 1 0 6" />
                                     </g>
@@ -140,6 +134,7 @@
                                     </g>
                                 </svg>
                             </button>
+
 
                             <button type="button" class="btn mb-1 btn-danger btn-sm fs-2 font-medium"
                                 data-bs-toggle="modal" data-bs-target="#modal-edit">
@@ -174,6 +169,39 @@
                 </li>
             </ul>
         </nav>
+    </div>
+
+    <!-- modal edit -->
+    <div class="modal fade" id="modal-edit" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="importPegawai">Edit Berita</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label for="" class="mb-2">Judul</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="mb-2 pt-3">Thumbnail</label>
+                            <input class="form-control" type="file" id="formFile">
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="mb-2 pt-3">Isi Berita</label>
+                            <textarea class="form-control" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-rounded btn-light-danger text-danger"
+                        data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-rounded btn-light-success text-success">Tambah</button>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 
