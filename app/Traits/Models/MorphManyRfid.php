@@ -8,7 +8,6 @@ trait MorphManyRfid {
 
     public function modelHasRfid()
     {
-        return $this->morphMany(ModelHasRfid::class, 'model');
+        return $this->morphOne(ModelHasRfid::class, 'model');
     }
-
 }

@@ -69,6 +69,11 @@ Route::post('school/add-class', [ClassroomController::class, 'store'])->name('cl
 Route::put('school/update-class/{classroom}', [ClassroomController::class, 'update'])->name('class.update');
 Route::delete('school/delete-class/{classroom}', [ClassroomController::class, 'destroy'])->name('class.delete');
 
+// detail kelas
+Route::get('school/detail-class', function(){
+    return view('school.pages.class.detail-class');
+})->name('detail-class.index');
+
 // tahun ajaran
 Route::get('school/school-year', [SchoolYearController::class, 'index'])->name('school-year.index');
 Route::post('school/add-school-year', [SchoolYearController::class, 'store'])->name('school-year.store');

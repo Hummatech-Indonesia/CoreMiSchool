@@ -21,10 +21,10 @@ return new class extends Migration
             $table->text('image')->nullable();
             $table->char('nip', 18);
             $table->date('birth_date');
-            $table->date('birth_place');
+            $table->string('birth_place');
             $this->addGender($table);
             $table->char('nik', 16);
-            $table->char('phone_number', 15);
+            $table->char('phone_number', 13);
             $table->longText('address');
             $table->enum('status', [RoleEnum::ADMIN->value, RoleEnum::TEACHER->value, RoleEnum::STAFF->value]);
             $table->boolean('active')->default(true);

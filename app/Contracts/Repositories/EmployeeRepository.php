@@ -44,4 +44,11 @@ class EmployeeRepository extends BaseRepository implements EmployeeInterface
             ->latest()
             ->paginate(10);
     }
+
+    public function where(mixed $data): mixed
+    {
+        return $this->model->query()
+            ->whereRelation('user.roles', 'name', $data)
+            ->get();
+    }
 }

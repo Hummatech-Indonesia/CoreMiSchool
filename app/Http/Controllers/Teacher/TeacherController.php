@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Teacher;
 
 use App\Http\Controllers\Controller;
 use App\Contracts\Interfaces\EmployeeInterface;
+use App\Contracts\Interfaces\ReligionInterface;
 use App\Enums\RoleEnum;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
@@ -14,11 +15,13 @@ class TeacherController extends Controller
 {
     private EmployeeInterface $employee;
     private TeacherService $service;
+    private ReligionInterface $religion;
 
-    public function __construct(EmployeeInterface $employee, TeacherService $service)
+    public function __construct(EmployeeInterface $employee, TeacherService $service, ReligionInterface $religion)
     {
         $this->employee = $employee;
         $this->service = $service;
+        $this->religion = $religion;
     }
 
     /**
@@ -27,7 +30,8 @@ class TeacherController extends Controller
     public function index()
     {
         $teachers = $this->employee->paginate(RoleEnum::TEACHER->value);
-        return view('school.pages.teacher.index', compact('teachers'));
+        $religions = $this->religion->get();
+        return view('school.pages.teacher.index', compact('teachers', 'religions'));
     }
 
     /**
