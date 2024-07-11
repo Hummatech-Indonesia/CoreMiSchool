@@ -22,6 +22,7 @@ class StoreEmployeeRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'image' => 'nullable',
             'nip' => 'required|min:8',
             'birth_date' => 'required|date',
             'birth_place' => 'required|date',
@@ -30,6 +31,7 @@ class StoreEmployeeRequest extends FormRequest
             'phone_number' => 'required|min:15',
             'address' => 'required',
             'status' => 'required',
+            'active' => 'nullable',
             'religion_id' => 'required',
         ];
     }

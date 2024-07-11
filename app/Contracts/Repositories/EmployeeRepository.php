@@ -37,8 +37,11 @@ class EmployeeRepository extends BaseRepository implements EmployeeInterface
         return $this->model->query()->findOrFail($id)->delete();
     }
 
-    public function paginate() : mixed
+    public function paginate($query) : mixed
     {
-        return $this->model->query()->latest()->paginate(10);
+        return $this->model->query()
+            ->whereRelation('user.roles', 'name', $query)
+            ->latest()
+            ->paginate(10);
     }
 }
