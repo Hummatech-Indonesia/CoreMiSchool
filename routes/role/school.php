@@ -31,7 +31,8 @@ Route::get('school/create-subjects', function(){
 
 
 //siswa
-Route::get('school/student', [StudentController::class, 'index']);
+Route::get('school/student', [StudentController::class, 'index'])->name('school-student.index');
+Route::post('school/student', [StudentController::class, 'store'])->name('school-student.store');
 
 
 

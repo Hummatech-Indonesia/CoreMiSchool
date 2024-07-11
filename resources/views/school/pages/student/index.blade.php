@@ -21,35 +21,52 @@
                     <h5 class="modal-title" id="importPegawai">Tambah Siswa</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <div class="form-group">
-                            <label for="" class="mb-2">Foto Siswa</label>
-                            <input class="form-control mb-3" type="file" id="formFile">
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="mb-2">Nama</label>
-                            <input type="text" class="form-control mb-3">
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="mb-2">NISN</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="mb-2 pt-3">Pengajar</label>
-                            <select id="pengajar" class="form-select">
-                                <option value="">Jenis Kelamin</option>
-                                <option value="1">Laki-Laki</option>
-                                <option value="2">Perempuan</option>
-                            </select>
+                <form action="{{ route('school-student.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <div class="form-group">
+                                <label for="" class="mb-2">Foto Siswa</label>
+                                <input class="form-control mb-3" name="image" type="file" id="formFile">
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="mb-2">Nama</label>
+                                <input type="text" name="name" class="form-control mb-3">
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="mb-2">Email</label>
+                                <input type="text" name="email" class="form-control mb-3">
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="mb-2">NISN</label>
+                                <input type="text" name="nisn" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="mb-2 pt-3">Agama</label>
+                                <select id="religion" name="religion_id" class="form-select">
+                                    <option selected>Pilih...</option>
+                                    @forelse ($religions as $religion)
+                                        <option value="{{ $religion->id }}">{{ $religion->name }}</option>
+                                    @empty
+                                        <option disabled>Tidak ditemukan</option>
+                                    @endforelse
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="mb-2 pt-3">Jenis kelamin</label>
+                                <select id="gender" name="gender" class="form-select">
+                                    <option selected>Pilih...</option>
+                                    <option value="male">Laki-Laki</option>
+                                    <option value="famale">Perempuan</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    {{-- <button type="button" class="btn btn-rounded btn-light-danger text-danger"
-                        data-bs-dismiss="modal">Tutup</button> --}}
-                    <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-rounded btn-light-danger text-danger" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -66,21 +83,14 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (range(1, 5) as $item)
+                @forelse ($students as $student)
                     <tr>
                         <td>
-                            <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}"
-                                class="rounded-circle me-2 user-profile" style="object-fit: cover" width="30"
-                                height="30" alt="" />
-                            Arya Rizki
+                            <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}" class="rounded-circle me-2 user-profile" style="object-fit: cover" width="30" height="30" alt="" />
+                            {{ $student->user->name }}
                         </td>
-
-                        <td>
-                            1234567890
-                        </td>
-                        <td>
-                            Laki Laki
-                        </td>
+                        <td>{{ $student->nisn }}</td>
+                        <td>{{ $student->gender->value == 'famale' ? 'Perempuan' : 'Laki-laki' }}</td>
                         <td>
                             <div class="category-selector btn-group">
                                 <a class="nav-link category-dropdown label-group p-0" data-bs-toggle="dropdown"
@@ -110,7 +120,11 @@
                             </div>
                         </td>
                     </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="4">Siswa belum ditambahkan</td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
