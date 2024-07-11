@@ -22,17 +22,19 @@ class UpdateEmployeeRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'name' => 'required',
+            'email' => 'required',
             'image' => 'nullable',
-            'nip' => 'required|min:8',
+            'nip' => 'required|min:18',
             'birth_date' => 'required|date',
             'birth_place' => 'required|date',
             'gender' => 'required',
             'nik' => 'required|min:16',
             'phone_number' => 'required|min:15',
             'address' => 'required',
-            'status' => 'required',
             'active' => 'nullable',
-            'religion_id' => 'required'
+            'status' => 'nullable',
+            'religion_id' => 'required',
         ];
     }
 
@@ -52,6 +54,7 @@ class UpdateEmployeeRequest extends FormRequest
             'phone_number.required' => 'Nomor telepon wajib diisi dan harus minimal 15 karakter.',
             'address.required' => 'Alamat wajib diisi.',
             'status.required' => 'Status wajib diisi.',
+            'religion_id.required' => 'Agama wajib diisi'
         ];
     }
 }

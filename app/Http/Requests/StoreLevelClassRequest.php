@@ -11,7 +11,7 @@ class StoreLevelClassRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,19 @@ class StoreLevelClassRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required',
+        ];
+    }
+
+    /**
+     * Get the validation messages that apply to the request.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Tingkatan kelas wajib diisi.',
         ];
     }
 }

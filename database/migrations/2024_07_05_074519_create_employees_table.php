@@ -20,12 +20,12 @@ return new class extends Migration
             $table->id();
             $table->text('image')->nullable();
             $table->char('nip', 18);
-            $table->date('birth_date')->nullable();
-            $table->date('birth_place')->nullable();
+            $table->date('birth_date');
+            $table->date('birth_place');
             $this->addGender($table);
             $table->char('nik', 16);
-            $table->char('phone_number', 15)->nullable();
-            $table->longText('address')->nullable();
+            $table->char('phone_number', 15);
+            $table->longText('address');
             $table->enum('status', [RoleEnum::ADMIN->value, RoleEnum::TEACHER->value, RoleEnum::STAFF->value]);
             $table->boolean('active')->default(true);
             $this->addForeignId($table, 'user_id');
