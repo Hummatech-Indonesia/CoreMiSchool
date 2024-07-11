@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\LevelClassController;
 use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\Teacher\StaffController;
 use App\Http\Controllers\Teacher\TeacherController;
 use Illuminate\Support\Facades\Route;
 
@@ -11,15 +13,16 @@ Route::get('school', function(){
 })->name('school.index');
 
 // pegawai
-Route::get('school/employe', function(){
-    return view('school.pages.employe.index');
-})->name('employe.index');
+Route::get('school/employe', [StaffController::class, 'index'])->name('employe.index');
+Route::post('school/add-employee', [StaffController::class, 'store'])->name('employe.store');
+Route::put('school/update-employee/{employee}', [StaffController::class, 'update'])->name('employe.update');
+Route::delete('school/delete-employee/{employee}', [StaffController::class, 'destroy'])->name('employe.delete');
 
 // guru
 Route::get('school/teacher', [TeacherController::class, 'index'])->name('teacher.index');
 Route::post('school/add-teacher', [TeacherController::class, 'store'])->name('teacher.store');
-Route::put('school/update-teacher', [TeacherController::class, 'update'])->name('teacher.update');
-Route::delete('school/delete-teacher', [TeacherController::class, 'destroy'])->name('teacher.delete');
+Route::put('school/update-teacher/{employee}', [TeacherController::class, 'update'])->name('teacher.update');
+Route::delete('school/delete-teacher/{employee}', [TeacherController::class, 'destroy'])->name('teacher.delete');
 
 Route::get('school/detail-teacher', function(){
     return view('school.pages.teacher.detail-teacher');
@@ -65,13 +68,14 @@ Route::get('school/class', function(){
 // tahun ajaran
 Route::get('school/school-year', [SchoolYearController::class, 'index'])->name('school-year.index');
 Route::post('school/add-school-year', [SchoolYearController::class, 'store'])->name('school-year.store');
-Route::put('school/update-school-year', [SchoolYearController::class, 'update'])->name('school-year.update');
-Route::delete('school/delete-school-year', [SchoolYearController::class, 'destroy'])->name('school-year.delete');
+Route::put('school/update-school-year/{schoolYear}', [SchoolYearController::class, 'update'])->name('school-year.update');
+Route::delete('school/delete-school-year/{schoolYear}', [SchoolYearController::class, 'destroy'])->name('school-year.delete');
 
 // tingkatan kelas
-Route::get('school/class-level', function(){
-    return view('school.pages.class-level.index');
-})->name('class-level.index');
+Route::get('school/class-level', [LevelClassController::class, 'index'])->name('class-level.index');
+Route::post('school/add-class-level', [LevelClassController::class, 'store'])->name('class-level.store');
+Route::put('school/update-class-level/{levelClass}', [LevelClassController::class, 'update'])->name('class-level.update');
+Route::delete('school/delete-class-level/{levelClass}', [LevelClassController::class, 'destroy'])->name('class-level.delete');
 
 // rfid
 Route::get('school/rfid', function(){
