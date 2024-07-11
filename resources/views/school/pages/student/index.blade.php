@@ -15,7 +15,7 @@
 
     <!-- tambah modal -->
     <div class="modal fade" id="modal-import" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="importPegawai">Tambah Siswa</h5>
@@ -24,46 +24,130 @@
                 <form action="{{ route('school-student.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
-                        <div class="mb-3">
-                            <div class="form-group">
-                                <label for="" class="mb-2">Foto Siswa</label>
-                                <input class="form-control mb-3" name="image" type="file" id="formFile">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <div class="form-group">
+                                        <label for="" class="mb-2">Foto Siswa</label>
+                                        <input class="form-control mb-3" name="image" type="file" id="formFile">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="" class="mb-2">Nama</label>
-                                <input type="text" name="name" class="form-control mb-3">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <div class="form-group">
+                                        <label for="" class="mb-2">Nama</label>
+                                        <input type="text" name="name" class="form-control mb-3">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="" class="mb-2">Email</label>
-                                <input type="text" name="email" class="form-control mb-3">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <div class="form-group">
+                                        <label for="" class="mb-2">Email</label>
+                                        <input type="text" name="email" class="form-control mb-3">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="" class="mb-2">NISN</label>
-                                <input type="text" name="nisn" class="form-control">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <div class="form-group">
+                                        <label for="" class="mb-2">NISN</label>
+                                        <input type="text" name="nisn" class="form-control">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="" class="mb-2 pt-3">Agama</label>
-                                <select id="religion" name="religion_id" class="form-select">
-                                    <option selected>Pilih...</option>
-                                    @forelse ($religions as $religion)
-                                        <option value="{{ $religion->id }}">{{ $religion->name }}</option>
-                                    @empty
-                                        <option disabled>Tidak ditemukan</option>
-                                    @endforelse
-                                </select>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <div class="form-group">
+                                        <label for="" class="mb-2 ">Agama</label>
+                                        <select id="religion" name="religion_id" class="form-select">
+                                            <option selected>Pilih...</option>
+                                            @forelse ($religions as $religion)
+                                                <option value="{{ $religion->id }}">{{ $religion->name }}</option>
+                                            @empty
+                                                <option disabled>Tidak ditemukan</option>
+                                            @endforelse
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="" class="mb-2 pt-3">Jenis kelamin</label>
-                                <select id="gender" name="gender" class="form-select">
-                                    <option selected>Pilih...</option>
-                                    <option value="male">Laki-Laki</option>
-                                    <option value="famale">Perempuan</option>
-                                </select>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <div class="form-group">
+                                        <label for="" class="mb-2">Jenis kelamin</label>
+                                        <select id="gender" name="gender" class="form-select">
+                                            <option selected>Pilih...</option>
+                                            <option value="male">Laki-Laki</option>
+                                            <option value="famale">Perempuan</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <div class="form-group">
+                                        <label for="" class="mb-2">Tempat Lahir</label>
+                                        <input type="text" name="nisn" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <div class="form-group">
+                                        <label for="" class="mb-2">Tanggal Lahir</label>
+                                        <input type="date" name="nisn" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <div class="form-group">
+                                        <label for="" class="mb-2">NIK</label>
+                                        <input type="number" name="nisn" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <div class="form-group">
+                                        <label for="" class="mb-2">Nomor KK</label>
+                                        <input type="number" name="nisn" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-floating mb-3">
+                                    <div class="form-group">
+                                        <label for="" class="mb-2">Nomor Akta</label>
+                                        <input type="number" name="nisn" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-floating mb-3">
+                                    <div class="form-group">
+                                        <label for="" class="mb-2">Anak Ke -</label>
+                                        <input type="number" name="nisn" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-floating mb-3">
+                                    <div class="form-group">
+                                        <label for="" class="mb-2">Jumlah Saudara</label>
+                                        <input type="number" name="nisn" class="form-control">
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
+
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-rounded btn-light-danger text-danger" data-bs-dismiss="modal">Tutup</button>
+                        <button type="button" class="btn btn-rounded btn-light-danger text-danger"
+                            data-bs-dismiss="modal">Tutup</button>
                         <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
                     </div>
                 </form>
@@ -86,7 +170,9 @@
                 @forelse ($students as $student)
                     <tr>
                         <td>
-                            <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}" class="rounded-circle me-2 user-profile" style="object-fit: cover" width="30" height="30" alt="" />
+                            <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}"
+                                class="rounded-circle me-2 user-profile" style="object-fit: cover" width="30"
+                                height="30" alt="" />
                             {{ $student->user->name }}
                         </td>
                         <td>{{ $student->nisn }}</td>
@@ -157,26 +243,121 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="mb-3">
-                        <div class="form-group">
-                            <label for="" class="mb-2">Foto Siswa</label>
-                            <input class="form-control mb-3" type="file" id="formFile">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <div class="form-group">
+                                    <label for="" class="mb-2">Foto Siswa</label>
+                                    <input class="form-control mb-3" name="image" type="file" id="formFile">
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="" class="mb-2">Nama</label>
-                            <input type="text" class="form-control mb-3">
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <div class="form-group">
+                                    <label for="" class="mb-2">Nama</label>
+                                    <input type="text" name="name" class="form-control mb-3">
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="" class="mb-2">NISN</label>
-                            <input type="text" class="form-control">
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <div class="form-group">
+                                    <label for="" class="mb-2">Email</label>
+                                    <input type="text" name="email" class="form-control mb-3">
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="" class="mb-2 pt-3">Pengajar</label>
-                            <select id="pengajar" class="form-select">
-                                <option value="">Jenis Kelamin</option>
-                                <option value="1">Laki-Laki</option>
-                                <option value="2">Perempuan</option>
-                            </select>
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <div class="form-group">
+                                    <label for="" class="mb-2">NISN</label>
+                                    <input type="text" name="nisn" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <div class="form-group">
+                                    <label for="" class="mb-2 ">Agama</label>
+                                    <select id="religion" name="religion_id" class="form-select">
+                                        <option selected>Pilih...</option>
+                                        @forelse ($religions as $religion)
+                                            <option value="{{ $religion->id }}">{{ $religion->name }}</option>
+                                        @empty
+                                            <option disabled>Tidak ditemukan</option>
+                                        @endforelse
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <div class="form-group">
+                                    <label for="" class="mb-2">Jenis kelamin</label>
+                                    <select id="gender" name="gender" class="form-select">
+                                        <option selected>Pilih...</option>
+                                        <option value="male">Laki-Laki</option>
+                                        <option value="famale">Perempuan</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <div class="form-group">
+                                    <label for="" class="mb-2">Tempat Lahir</label>
+                                    <input type="text" name="nisn" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <div class="form-group">
+                                    <label for="" class="mb-2">Tanggal Lahir</label>
+                                    <input type="date" name="nisn" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <div class="form-group">
+                                    <label for="" class="mb-2">NIK</label>
+                                    <input type="number" name="nisn" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <div class="form-group">
+                                    <label for="" class="mb-2">Nomor KK</label>
+                                    <input type="number" name="nisn" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-floating mb-3">
+                                <div class="form-group">
+                                    <label for="" class="mb-2">Nomor Akta</label>
+                                    <input type="number" name="nisn" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-floating mb-3">
+                                <div class="form-group">
+                                    <label for="" class="mb-2">Anak Ke -</label>
+                                    <input type="number" name="nisn" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-floating mb-3">
+                                <div class="form-group">
+                                    <label for="" class="mb-2">Jumlah Saudara</label>
+                                    <input type="number" name="nisn" class="form-control">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -188,4 +369,6 @@
             </div>
         </div>
     </div>
+
+    @include('components.delete-modal-component')
 @endsection
