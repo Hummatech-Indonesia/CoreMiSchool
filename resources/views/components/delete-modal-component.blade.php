@@ -15,10 +15,10 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-light-danger text-danger font-medium waves-effect" data-bs-dismiss="modal">
+                <button type="button" class="btn btn-light-danger text-danger font-medium" data-bs-dismiss="modal">
                     Batal
                 </button>
-                <button type="submit" class="btn btn-light-danger text-secondery font-medium waves-effect" data-bs-dismiss="modal">
+                <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">
                     Hapus
                 </button>
             </div>
