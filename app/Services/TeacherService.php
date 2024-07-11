@@ -34,16 +34,18 @@ class TeacherService
         $data = $request->validated();
         $dataUser = [
             'name' => $data['name'],
-            'slug' => Str::slug($data['slug']),
+            'slug' => Str::slug($data['name']),
             'email' => $data['email'],
-            'password' => Hash::make($data['nisn']),
+            'password' => Hash::make($data['nip']),
         ];
         $user = $this->user->store($dataUser);
         $user->assignRole(RoleEnum::TEACHER->value);
 
-        $image = $this->upload(UploadDiskEnum::AVATAR->value, $request->image);
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $data['image'] = $request->file('image')->store(UploadDiskEnum::TEACHER->value, 'public');
+        }
 
-        $data['image'] = $image;
+        $data['status'] = RoleEnum::TEACHER->value;
         $data['user_id'] = $user->id;
         $data['school_id'] = auth()->user()->school->id;
         return $data;
@@ -60,17 +62,13 @@ class TeacherService
         ];
         $this->user->update($request->user_id, $dataUser);
 
-        $old_image = $employee->image;
-        $image = "";
-
-        if ($request->hasFile('image')) {
-            if (file_exists(public_path($old_image))) {
-                unlink(public_path($old_image));
-            }
-            $image = $this->upload(UploadDiskEnum::AVATAR->value, $request->image);
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $this->remove($employee->image);
+            $data['image'] = $request->file('image')->store(UploadDiskEnum::TEACHER->value, 'public');
+        } else {
+            $data['image'] = $employee->image;
         }
 
-        $data['image'] = $image ?: $old_image;
         $data['school_id'] = auth()->user()->school->id;
         return $data;
     }

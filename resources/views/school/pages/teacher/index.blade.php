@@ -57,10 +57,14 @@
                                 <input type="text" class="form-control" name="name">
                             </div>
                             <div class="form-group">
+                                <label for="" class="mb-2 pt-3">Email</label>
+                                <input type="text" class="form-control" name="email">
+                            </div>
+                            <div class="form-group">
                                 <label for="" class="mb-2 pt-3">Status</label>
                                 <select id="pengajar" class="form-select" name="active">
-                                    <option value="true">Aktif</option>
-                                    <option value="false">Nonaktif</option>
+                                    <option value="1">Aktif</option>
+                                    <option value="0">Nonaktif</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -68,12 +72,16 @@
                                 <input type="text" class="form-control" name="nip">
                             </div>
                             <div class="form-group">
+                                <label for="" class="mb-2 pt-3">NIK</label>
+                                <input type="text" class="form-control" name="nik">
+                            </div>
+                            <div class="form-group">
                                 <label for="" class="mb-2 pt-3">RFID</label>
                                 <input type="text" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="" class="mb-2 pt-3">Jenis Kelamin</label>
-                                <select id="pengajar" class="form-select" name="genre">
+                                <select id="pengajar" class="form-select" name="gender">
                                     <option value="famale">Perempuan</option>
                                     <option value="male">Laki-Laki</option>
                                 </select>
@@ -125,7 +133,6 @@
         </div>
     </div>
 
-
     <div class="table-responsive rounded-2">
         <table class="table border text-nowrap customize-table mb-0 align-middle text-center">
             <thead>
@@ -153,7 +160,13 @@
                         <td>{{ $teacher->nip }}</td>
                         <td>1234567</td>
                         <td>
-                            <span class="mb-1 badge px-4 font-medium bg-light-primary text-primary">{{ $teacher->classroom->count() }} Pelajaran</span>
+                            <span class="mb-1 badge px-4 font-medium bg-light-primary text-primary">
+                                @if ($teacher->teacherMaples->count() > 0)
+                                    {{ $teacher->teacherMaples->count() }}
+                                @else
+                                    0
+                                @endif
+                                Pelajaran</span>
                         </td>
                         <td>
                             <div class="category-selector btn-group">
@@ -174,11 +187,12 @@
                                         class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3">
                                         <i class="fs-4 ti ti-eye"></i>Detail
                                     </a>
-                                    <a href="#"
-                                        class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3"
-                                        data-bs-toggle="modal" data-bs-target="#modal-edit">
+                                    <button href="#" type="button"
+                                        class="btn-edit note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3"
+                                        data-id="{{ $teacher->id }}" data-name="{{ $teacher->user->name }}" data-email="{{ $teacher->user->email }}"
+                                        data-gender="{{ $teacher->gender }}" data-status="{{ $teacher->active }}" data-nip="{{ $teacher->nip }}" data-nik="{{ $teacher->nik }}">
                                         <i class="fs-4 ti ti-edit"></i>Edit
-                                    </a>
+                                    </button>
                                     <a
                                         class="note-business badge-group-item badge-business dropdown-item text-danger position-relative category-business d-flex align-items-center gap-3">
                                         <i class="fs-4 ti ti-trash"></i>Hapus
@@ -201,46 +215,81 @@
                     <h5 class="modal-title" id="importPegawai">Edit Guru</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <div class="form-group">
-                            <label for="" class="mb-2">Foto Guru</label>
-                            <input class="form-control" type="file" id="formFile">
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="mb-2 pt-3">Nama</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="mb-2 pt-3">Status</label>
-                            <select id="pengajar" class="form-select">
-                                <option value="2">Aktif</option>
-                                <option value="3">Nonaktif</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="mb-2 pt-3">NIP</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="mb-2 pt-3">RFID</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="mb-2 pt-3">Jenis Kelamin</label>
-                            <select id="pengajar" class="form-select">
-                                <option value="2">Perempuan</option>
-                                <option value="3">Laki-Laki</option>
-                            </select>
+                <form id="form-edit" method="POST" enctype="multipart/form-data">
+                    @method('post')
+                    @csrf
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <div class="form-group">
+                                <label for="" class="mb-2">Foto Guru</label>
+                                <input class="form-control" name="image" type="file" id="formFile">
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="mb-2 pt-3">Nama</label>
+                                <input type="text" id="name-edit" class="form-control" name="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="mb-2 pt-3">Email</label>
+                                <input type="text" id="email-edit" class="form-control" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="mb-2 pt-3">Status</label>
+                                <select id="pengajar" class="form-select" name="active">
+                                    <option value="1">Aktif</option>
+                                    <option value="0">Nonaktif</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="mb-2 pt-3">NIP</label>
+                                <input type="text" id="nip-edit" class="form-control" name="nip">
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="mb-2 pt-3">NIK</label>
+                                <input type="text" id="nik-edit" class="form-control" name="nik">
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="mb-2 pt-3">RFID</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="mb-2 pt-3">Jenis Kelamin</label>
+                                <select id="pengajar" class="form-select" name="gender">
+                                    <option value="famale">Perempuan</option>
+                                    <option value="male">Laki-Laki</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-rounded btn-light-danger text-danger"
-                        data-bs-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-rounded btn-primary">Simpan</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-rounded btn-light-danger text-danger"
+                            data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-rounded btn-primary">Simpan</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $('.btn-edit').on('click', function() {
+            var id = $(this).data('id');
+            var name = $(this).data('name');
+            var email = $(this).data('email');
+            var gender = $(this).data('gender');
+            var status = $(this).data('status');
+            var nip = $(this).data('nip');
+            var nik = $(this).data('nik');
+            $('#form-edit').attr('action', '/faq-list/' + id);
+            $('#name-edit').val(name);
+            $('#email-edit').val(email);
+            $('#gender-edit').val(gender);
+            $('#status-edit').val(status);
+            $('#nip-edit').val(nip);
+            $('#nik-edit').val(nik);
+            $('#modal-edit').modal('show');
+        });
+    </script>
 @endsection
