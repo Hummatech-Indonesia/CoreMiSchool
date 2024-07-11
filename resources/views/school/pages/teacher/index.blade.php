@@ -79,7 +79,10 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Agama</label>
-                                            <input type="agama" name="agama" class="form-control mb-3" value="{{ old('agama') }}">
+                                            <select name="agama" id="" class="form-select">
+                                                <option value="">Islam</option>
+                                                <option value="">Hindu</option>
+                                            </select>
                                             @error('agama')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -329,7 +332,10 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Agama</label>
-                                            <input type="agama" name="agama" class="form-control mb-3" value="{{ old('agama') }}">
+                                            <select name="agama" id="" class="form-select">
+                                                <option value="">Islam</option>
+                                                <option value="">Hindu</option>
+                                            </select>
                                             @error('agama')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror

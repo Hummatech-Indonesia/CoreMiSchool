@@ -300,7 +300,10 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Agama</label>
-                                            <input type="agama" name="agama" class="form-control mb-3" value="{{ old('agama') }}">
+                                            <select name="agama" id="" class="form-select">
+                                                <option value="">Islam</option>
+                                                <option value="">Hindu</option>
+                                            </select>
                                             @error('agama')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -425,27 +428,6 @@
                     <div class="wizard-content">
                         <form class="tab-wizard wizard-circle wizard clearfix" role="application" id="steps-uid-0" method="POST" enctype="multipart/form-data">
                             @csrf
-                            {{-- <div class="steps clearfix">
-                                <ul role="tablist">
-                                    <li role="tab" class="first current" aria-disabled="false" aria-selected="true">
-                                        <a id="steps-uid-0-t-0" href="#steps-uid-0-h-0" aria-controls="steps-uid-0-p-0">
-                                            <span class="current-info audible">current step: </span>
-                                            <span class="step">1</span>
-                                        </a>
-                                    </li>
-                                    <li role="tab" class="disabled" aria-disabled="true">
-                                        <a id="steps-uid-0-t-1" href="#steps-uid-0-h-1" aria-controls="steps-uid-0-p-1">
-                                            <span class="step">2</span>
-                                        </a>
-                                    </li>
-                                    <li role="tab" class="disabled" aria-disabled="true">
-                                        <a id="steps-uid-0-t-2" href="#steps-uid-0-h-2" aria-controls="steps-uid-0-p-2">
-                                            <span class="step">3</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div> --}}
-    
                             <!-- Step 1 -->
                             <section>
                                 <div class="row mx-3 pt-4">
@@ -474,7 +456,10 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Agama</label>
-                                            <input type="agama" name="agama" class="form-control mb-3" value="{{ old('agama') }}">
+                                            <select name="agama" id="" class="form-select">
+                                                <option value="">Islam</option>
+                                                <option value="">Hindu</option>
+                                            </select>
                                             @error('agama')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
