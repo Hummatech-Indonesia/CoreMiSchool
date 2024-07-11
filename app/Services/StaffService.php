@@ -34,9 +34,9 @@ class StaffService
         $data = $request->validated();
         $dataUser = [
             'name' => $data['name'],
-            'slug' => Str::slug($data['slug']),
+            'slug' => Str::slug($data['name']),
             'email' => $data['email'],
-            'password' => Hash::make($data['nisn']),
+            'password' => Hash::make($data['nip']),
         ];
         $user = $this->user->store($dataUser);
         $user->assignRole(RoleEnum::STAFF->value);
@@ -45,7 +45,7 @@ class StaffService
             $data['image'] = $request->file('image')->store(UploadDiskEnum::STAFF->value, 'public');
         }
 
-        $data['status'] = RoleEnum::TEACHER->value;
+        $data['status'] = RoleEnum::STAFF->value;
         $data['user_id'] = $user->id;
         $data['school_id'] = auth()->user()->school->id;
         return $data;

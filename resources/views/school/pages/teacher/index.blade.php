@@ -248,7 +248,7 @@
                     <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}" class="rounded-circle me-2 user-profile" style="object-fit: cover" width="30" height="30" alt="" />
                     {{ $teacher->user->name }}
                 </td>
-                <td>{{ $teacher->gender }}</td>
+                <td>{{ $teacher->gender == 'male' ? 'Laki Laki' : 'Perempuan' }}</td>
                 <td>{{ $teacher->active == 1 ? 'Aktif' : 'Tidak aktif' }}</td>
                 <td>{{ $teacher->nip }}</td>
                 <td>{{ $teacher->modelHasRfid ? $teacher->modelHasRfid->rfid : '-' }}</td>
