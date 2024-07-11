@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UserSeeder::class,
             RegionalSeeder::class,
-            ReligionSeeder::class
+            ReligionSeeder::class,
+            SchoolSeeder::class,
         ]);
     }
 }

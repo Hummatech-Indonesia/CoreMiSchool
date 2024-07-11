@@ -43,45 +43,49 @@
                     <h5 class="modal-title" id="importPegawai">Tambah Guru</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <div class="form-group">
-                            <label for="" class="mb-2">Foto Guru</label>
-                            <input class="form-control" type="file" id="formFile">
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="mb-2 pt-3">Nama</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="mb-2 pt-3">Status</label>
-                            <select id="pengajar" class="form-select">
-                                <option value="2">Aktif</option>
-                                <option value="3">Nonaktif</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="mb-2 pt-3">NIP</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="mb-2 pt-3">RFID</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="mb-2 pt-3">Jenis Kelamin</label>
-                            <select id="pengajar" class="form-select">
-                                <option value="2">Perempuan</option>
-                                <option value="3">Laki-Laki</option>
-                            </select>
+                <form action="{{ route('teacher.store') }}" method="POST" enctype="multipart/form-data">
+                    @method('post')
+                    @csrf
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <div class="form-group">
+                                <label for="" class="mb-2">Foto Guru</label>
+                                <input class="form-control" name="image" type="file" id="formFile">
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="mb-2 pt-3">Nama</label>
+                                <input type="text" class="form-control" name="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="mb-2 pt-3">Status</label>
+                                <select id="pengajar" class="form-select" name="active">
+                                    <option value="true">Aktif</option>
+                                    <option value="false">Nonaktif</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="mb-2 pt-3">NIP</label>
+                                <input type="text" class="form-control" name="nip">
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="mb-2 pt-3">RFID</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="mb-2 pt-3">Jenis Kelamin</label>
+                                <select id="pengajar" class="form-select" name="genre">
+                                    <option value="famale">Perempuan</option>
+                                    <option value="male">Laki-Laki</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-rounded btn-light-danger text-danger"
-                        data-bs-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-rounded btn-light-danger text-danger"
+                            data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -127,6 +131,7 @@
             <thead>
                 <tr>
                     <th>Guru</th>
+                    <th>Kelamin</th>
                     <th>Status</th>
                     <th>NIP</th>
                     <th>RFID</th>
@@ -135,19 +140,20 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (range(1, 5) as $item)
+                @forelse ($teachers as $teacher)
                     <tr>
                         <td>
                             <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}"
                                 class="rounded-circle me-2 user-profile" style="object-fit: cover" width="30"
                                 height="30" alt="" />
-                            Olivia Rhye
+                            {{ $teacher->user->name }}
                         </td>
+                        <td>{{ $teacher->gender }}</td>
                         <td>Aktif</td>
-                        <td>1234567</td>
+                        <td>{{ $teacher->nip }}</td>
                         <td>1234567</td>
                         <td>
-                            <span class="mb-1 badge px-4 font-medium bg-light-primary text-primary">6 Pelajaran</span>
+                            <span class="mb-1 badge px-4 font-medium bg-light-primary text-primary">{{ $teacher->classroom->count() }} Pelajaran</span>
                         </td>
                         <td>
                             <div class="category-selector btn-group">
@@ -181,7 +187,8 @@
                             </div>
                         </td>
                     </tr>
-                @endforeach
+                @empty
+                @endforelse
             </tbody>
         </table>
     </div>

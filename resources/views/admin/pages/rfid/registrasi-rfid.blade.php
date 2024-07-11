@@ -75,7 +75,7 @@
                     <span class="">Tambah RFID: </span>
                     @csrf
                     <input type="text" name="rfid" class="form-control w-auto">
-                    <button type="submit" class="btn btn-rounded btn-light-success text-success">Tambah</button>
+                    <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
                 </form>
             </div>
         </div>

@@ -18,6 +18,7 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
+            $table->text('image')->nullable();
             $table->char('nip', 18);
             $table->date('birth_date');
             $table->date('birth_place');
@@ -26,6 +27,7 @@ return new class extends Migration
             $table->char('phone_number', 15);
             $table->longText('address');
             $table->enum('status', [RoleEnum::ADMIN->value, RoleEnum::TEACHER->value, RoleEnum::STAFF->value]);
+            $table->boolean('active')->default(true);
             $this->addForeignId($table, 'user_id');
             $this->addForeignId($table, 'religion_id');
             $this->addForeignId($table, 'school_id');

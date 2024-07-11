@@ -24,6 +24,7 @@ use App\Contracts\Repositories\AttendanceRepository;
 use App\Contracts\Repositories\CityRepository;
 use App\Contracts\Repositories\ClassroomRepository;
 use App\Contracts\Repositories\ClassroomStudentRepository;
+use App\Contracts\Repositories\EmployeeRepository;
 use App\Contracts\Repositories\LessonHourRepository;
 use App\Contracts\Repositories\LessonScheduleRepository;
 use App\Contracts\Repositories\MapleRepository;
@@ -49,7 +50,7 @@ class AppServiceProvider extends ServiceProvider
         CityInterface::class => CityRepository::class,
         SubDistrictInterface::class => SubDistrictRepository::class,
         SchoolInterface::class => SchoolRepository::class,
-        EmployeeInterface::class => EmployeeInterface::class,
+        EmployeeInterface::class => EmployeeRepository::class,
         MapleInterface::class => MapleRepository::class,
         VillageInterface::class => VillageRepository::class,
         SchoolYearInterface::class => SchoolYearRepository::class,
