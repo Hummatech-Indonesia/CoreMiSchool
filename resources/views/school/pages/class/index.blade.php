@@ -1,6 +1,6 @@
 @extends('school.layouts.app')
 @section('content')
-    <div class="d-flex flex-wrap justify-content-between align-items-center">
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
         <div class="d-flex flex-wrap">
             <div class="col-12 col-md-6 col-lg-6 mb-3 me-3">
                 <form action="" class="position-relative">
@@ -13,6 +13,71 @@
                     <option value="">Terbaru</option>
                     <option value="">Terlama</option>
                 </select>
+            </div>
+        </div>
+        <button type="button" class="btn mb-1 btn-primary px-4 fs-4 font-medium" data-bs-toggle="modal"
+            data-bs-target="#modal-import">
+            Tambah Kelas
+        </button>
+    </div>
+
+    <!-- modal tambah -->
+    <div class="modal fade" id="modal-import" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="importPegawai">Tambah Kelas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label for="" class="mb-2">Nama Kelas</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="mb-2 pt-3">Pengajar</label>
+                            <select id="pengajar" class="form-select">
+                                <option value="">Pilih Pengajar</option>
+                                <option value="1">Pengajar 1</option>
+                                <option value="2">Pengajar 2</option>
+                                <option value="3">Pengajar 3</option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-floating ">
+                                    <div class="form-group">
+                                        <label for="" class="mb-2 pt-3">Tingkatan Kelas</label>
+                                        <select id="tingkatan-kelas" class="form-select">
+                                            <option value="1">Pengajar 1</option>
+                                            <option value="2">Pengajar 2</option>
+                                            <option value="3">Pengajar 3</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating ">
+                                    <div class="form-group">
+                                        <label for="" class="mb-2 pt-3">Tahun Ajaran</label>
+                                        <select id="tahun-ajaran" class="form-select">
+                                            <option value="1">2023/2024</option>
+                                            <option value="2">2024/2025</option>
+                                            <option value="3">2025/2026</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-rounded btn-light-danger text-danger"
+                        data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-rounded btn-light-success text-success">Tambah</button>
+                </div>
             </div>
         </div>
     </div>
@@ -45,7 +110,8 @@
                                 </span>
                             </div>
                         </div>
-                        <a href="javascript:void(0)" type="button" class="btn waves-effect waves-light btn-primary w-100">Masuk Kelas</a>
+                        <a href="javascript:void(0)" type="button"
+                            class="btn waves-effect waves-light btn-primary w-100">Masuk Kelas</a>
                     </div>
                 </div>
             </div>
