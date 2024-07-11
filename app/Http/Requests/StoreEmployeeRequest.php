@@ -22,17 +22,19 @@ class StoreEmployeeRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'name' => 'required',
+            'email' => 'required',
             'image' => 'nullable',
-            'nip' => 'required|min:8',
-            'birth_date' => 'required|date',
-            'birth_place' => 'required|date',
+            'nip' => 'required|min:18',
+            'birth_date' => 'nullable|date',
+            'birth_place' => 'nullable|date',
             'gender' => 'required',
             'nik' => 'required|min:16',
-            'phone_number' => 'required|min:15',
-            'address' => 'required',
-            'status' => 'required',
+            'phone_number' => 'nullable|min:15',
+            'address' => 'nullable',
             'active' => 'nullable',
-            'religion_id' => 'required',
+            'status' => 'nullable',
+            'religion_id' => 'nullable',
         ];
     }
 

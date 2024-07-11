@@ -24,6 +24,7 @@ return new class extends Migration
             $this->addGender($table);
             $table->date('birth_date');
             $table->date('birth_place');
+            $table->longText('address');
             $table->char('nik', 16);
             $table->string('number_kk');
             $table->string('number_akta');
