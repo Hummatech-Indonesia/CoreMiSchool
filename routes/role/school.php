@@ -37,6 +37,8 @@ Route::get('school/create-subjects', function(){
 //siswa
 Route::get('school/student', [StudentController::class, 'index'])->name('school-student.index');
 Route::post('school/student', [StudentController::class, 'store'])->name('school-student.store');
+Route::put('school/student/{student}', [StudentController::class, 'update'])->name('school-student.update');
+Route::delete('school/student/{student}', [StudentController::class, 'destroy'])->name('school-student.destroy');
 
 
 

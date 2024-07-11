@@ -28,10 +28,10 @@ class UpdateStudentRequest extends FormRequest
             'birth_date' => 'required|date',
             'birth_place' => 'required',
             'address' => 'required',
-            'number_kk' => 'required|numeric',
-            'number_akta' => 'required|numeric',
-            'order_child' => 'required|numeric',
-            'count_siblings' => 'nullable|numeric',
+            'number_kk' => 'required|numeric|min:0',
+            'number_akta' => 'required|numeric|min:0',
+            'order_child' => 'required|numeric|min:1',
+            'count_siblings' => 'nullable|numeric|min:0',
         ];
     }
 

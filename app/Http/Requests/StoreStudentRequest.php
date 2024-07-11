@@ -22,24 +22,33 @@ class StoreStudentRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'name' => 'required',
+            'email' => 'required|email',
             'nisn' => 'required|numeric',
             'image' => 'nullable|mimes:png,jpeg,jpg',
             'religion_id' => 'required|exists:religions,id',
             'birth_date' => 'required|date',
             'birth_place' => 'required',
             'address' => 'required',
-            'number_kk' => 'required|numeric',
-            'number_akta' => 'required|numeric',
-            'order_child' => 'required|numeric',
-            'count_siblings' => 'nullable|numeric',
+            'nik' => 'required|min:1|numeric|max_digits:16',
+            'number_kk' => 'required|numeric|min:0',
+            'number_akta' => 'required|numeric|min:0',
+            'order_child' => 'required|numeric|min:1',
+            'count_siblings' => 'nullable|numeric|min:0',
         ];
     }
 
     public function messages(): array
     {
         return [
-            'nisn.required' => 'NISN tidak boleh kosong',
+            'name.required' => 'Nama tidak boleh kosong',
+            'email.required' => 'Email tidak boleh kosong',
+            'email.email' => 'Email tidak valid',
             'nisn.numeric' => 'NISN harus berupa angka',
+            'nik.required' => 'NIK tidak boleh kosong',
+            'nik.min' => 'NIK tidak valid',
+            'nik.max' => 'NIK maksimal :max karakter',
+            'nik.numeric' => 'NIK harus berupa angka',
             'image.mimes' => 'Foto harus berekstensi png, jpg dan jpeg',
             'religion_id.required' => 'Agama tidak boleh kosong',
             'religion_id.exists' => 'Agama tidak ditemukan',
