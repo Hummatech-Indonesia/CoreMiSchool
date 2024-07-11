@@ -29,7 +29,7 @@ class StudentController extends Controller
         $students = $this->student->get();
         $religions = $this->religion->get();
 
-        return view('', compact('students', 'religions'));
+        return view('school.pages.student.index', compact('students', 'religions'));
     }
 
     /**

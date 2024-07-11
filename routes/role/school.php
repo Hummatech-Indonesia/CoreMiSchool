@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\SchoolYearController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -28,9 +29,7 @@ Route::get('school/create-subjects', function(){
 
 
 //siswa
-Route::get('school/student', function(){
-    return view('school.pages.student.index');
-});
+Route::get('school/student', [StudentController::class, 'index']);
 
 
 
