@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\LevelClassController;
 use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\StudentController;
@@ -61,9 +62,10 @@ Route::get('school/extracurricular', function(){
 
 
 //kelas
-Route::get('school/class', function(){
-    return view('school.pages.class.index');
-})->name('class.index');
+Route::get('school/class', [ClassroomController::class, 'index'])->name('class.index');
+Route::post('school/add-class', [ClassroomController::class, 'store'])->name('class.store');
+Route::put('school/update-class/{classroom}', [ClassroomController::class, 'update'])->name('class.update');
+Route::delete('school/delete-class/{classroom}', [ClassroomController::class, 'destroy'])->name('class.delete');
 
 // tahun ajaran
 Route::get('school/school-year', [SchoolYearController::class, 'index'])->name('school-year.index');
