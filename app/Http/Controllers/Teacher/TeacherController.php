@@ -1,19 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Teacher;
 
+use App\Http\Controllers\Controller;
 use App\Contracts\Interfaces\EmployeeInterface;
-use App\Models\Employee;
+use App\Enums\RoleEnum;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
-use App\Services\EmployeeService;
+use App\Models\Employee;
+use App\Services\TeacherService;
 
-class EmployeeController extends Controller
+class TeacherController extends Controller
 {
     private EmployeeInterface $employee;
-    private EmployeeService $service;
+    private TeacherService $service;
 
-    public function __construct(EmployeeInterface $employee, EmployeeService $service)
+    public function __construct(EmployeeInterface $employee, TeacherService $service)
     {
         $this->employee = $employee;
         $this->service = $service;
@@ -24,8 +26,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $data = $this->employee->get();
-        return view('', compact('data'));
+        $teachers = $this->employee->paginate(RoleEnum::TEACHER->value);
+        return view('school.pages.teacher.index', compact('teachers'));
     }
 
     /**
@@ -43,13 +45,13 @@ class EmployeeController extends Controller
     {
         $data = $this->service->store($request);
         $this->employee->store($data);
-        return redirect();
+        return redirect()->back()->with('success', 'Berhasil menambahkan data guru');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Employee $employee)
+    public function show(string $id)
     {
         //
     }
@@ -57,7 +59,7 @@ class EmployeeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Employee $employee)
+    public function edit(string $id)
     {
         //
     }
@@ -69,7 +71,7 @@ class EmployeeController extends Controller
     {
         $data = $this->service->update($employee, $request);
         $this->employee->update($employee->id, $data);
-        return redirect();
+        return redirect()->back()->with('success', 'Berhasil memperbaiki guru');
     }
 
     /**

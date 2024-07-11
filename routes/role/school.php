@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\Teacher\TeacherController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -15,9 +16,10 @@ Route::get('school/employe', function(){
 })->name('employe.index');
 
 // guru
-Route::get('school/teacher', function(){
-    return view('school.pages.teacher.index');
-})->name('teacher.index');
+Route::get('school/teacher', [TeacherController::class, 'index'])->name('teacher.index');
+Route::post('school/add-teacher', [TeacherController::class, 'store'])->name('teacher.store');
+Route::put('school/update-teacher', [TeacherController::class, 'update'])->name('teacher.update');
+Route::delete('school/delete-teacher', [TeacherController::class, 'destroy'])->name('teacher.delete');
 
 Route::get('school/detail-teacher', function(){
     return view('school.pages.teacher.detail-teacher');

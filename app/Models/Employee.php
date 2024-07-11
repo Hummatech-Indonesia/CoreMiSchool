@@ -18,6 +18,7 @@ class Employee extends Model
     HasManyClassroom, HasManyTeacherMaple, MorphManyRfid;
 
     protected $fillable = [
+        'image',
         'nip',
         'birth_date',
         'birth_place',
@@ -26,8 +27,9 @@ class Employee extends Model
         'phone_number',
         'address',
         'status',
+        'active',
         'user_id',
         'religion_id',
-        'school_id',
+        'school_id'
     ];
 }
