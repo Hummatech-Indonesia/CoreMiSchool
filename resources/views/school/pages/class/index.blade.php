@@ -142,7 +142,7 @@
                                 </span>
                             </div>
                         </div>
-                        <a href="javascript:void(0)" type="button"
+                        <a href="{{ route('detail-class.index') }}" type="button"
                             class="btn waves-effect waves-light btn-primary w-100">Masuk Kelas</a>
                     </div>
                 </div>
