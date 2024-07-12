@@ -93,6 +93,11 @@ Route::post('school/add-class-level', [LevelClassController::class, 'store'])->n
 Route::put('school/update-class-level/{levelClass}', [LevelClassController::class, 'update'])->name('class-level.update');
 Route::delete('school/delete-class-level/{levelClass}', [LevelClassController::class, 'destroy'])->name('class-level.delete');
 
+// setting informasi
+Route::get('school/settings/information', function(){
+    return view('school.pages.settings.information');
+})->name('settings-information.index');
+
 // rfid
 Route::get('school/rfid', function(){
     return view('school.pages.rfid.index');

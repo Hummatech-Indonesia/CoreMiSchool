@@ -5,6 +5,9 @@
     #keagamaan {
         display: none;
     }
+    #editKeagamaan {
+        display: none;
+    }
 </style>
 @endsection
 
@@ -40,12 +43,13 @@
 </div>
 
 <div class="row">
+    @foreach (range(1,5) as $item)        
     <div class="col-lg-3">
         <div class="card card-body bg-transparent border-2 shadow-none">
             <div class="text-center">
                 <h5>Pendidikan Kewarganegaraan</h5>
                 <div class="mt-4">
-                    <button type="button" class="btn mb-1 btn-primary px-4 me-2">
+                    <button type="button" class="btn mb-1 btn-primary px-4 me-2" data-bs-toggle="modal" data-bs-target="#modal-update">
                         Edit
                     </button>
                     <button type="button" class="btn mb-1 btn-light-danger text-danger px-4">
@@ -55,81 +59,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3">
-        <div class="card card-body bg-transparent border-2 shadow-none">
-            <div class="text-center">
-                <h5>Pendidikan Kewarganegaraan</h5>
-                <div class="mt-4">
-                    <button type="button" class="btn mb-1 btn-primary px-4 me-2">
-                        Edit
-                    </button>
-                    <button type="button" class="btn mb-1 btn-light-danger text-danger px-4">
-                        Hapus
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3">
-        <div class="card card-body bg-transparent border-2 shadow-none">
-            <div class="text-center">
-                <h5>Pendidikan Kewarganegaraan</h5>
-                <div class="mt-4">
-                    <button type="button" class="btn mb-1 btn-primary px-4 me-2">
-                        Edit
-                    </button>
-                    <button type="button" class="btn mb-1 btn-light-danger text-danger px-4">
-                        Hapus
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3">
-        <div class="card card-body bg-transparent border-2 shadow-none">
-            <div class="text-center">
-                <h5>Pendidikan Kewarganegaraan</h5>
-                <div class="mt-4">
-                    <button type="button" class="btn mb-1 btn-primary px-4 me-2">
-                        Edit
-                    </button>
-                    <button type="button" class="btn mb-1 btn-light-danger text-danger px-4">
-                        Hapus
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3">
-        <div class="card card-body bg-transparent border-2 shadow-none">
-            <div class="text-center">
-                <h5>Pendidikan Kewarganegaraan</h5>
-                <div class="mt-4">
-                    <button type="button" class="btn mb-1 btn-primary px-4 me-2">
-                        Edit
-                    </button>
-                    <button type="button" class="btn mb-1 btn-light-danger text-danger px-4">
-                        Hapus
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3">
-        <div class="card card-body bg-transparent border-2 shadow-none">
-            <div class="text-center">
-                <h5>Pendidikan Kewarganegaraan</h5>
-                <div class="mt-4">
-                    <button type="button" class="btn mb-1 btn-primary px-4 me-2">
-                        Edit
-                    </button>
-                    <button type="button" class="btn mb-1 btn-light-danger text-danger px-4">
-                        Hapus
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+    @endforeach
 </div>
 
 <div class="modal fade" id="modal-create" tabindex="-1" aria-labelledby="tambahPelajaran" aria-hidden="true">
@@ -167,6 +97,41 @@
     </div>
 </div>
 
+<div class="modal fade" id="modal-update" tabindex="-1" aria-labelledby="tambahPelajaran" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tambahPelajaran">Tambah Pelajaran</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="">
+                    <div class="mb-3">
+                        <label for="">Nama</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="">Kagamaan</label>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="editflexSwitchCheckDefault">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <select id="editKeagamaan" class="form-select form-select mb-3">
+                            <option value="islam">Islam</option>
+                            <option value="kristen">Kristen</option>
+                            <option value="Hindu">Hindu</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @section('script')
@@ -177,6 +142,18 @@
             keagamaanSelect.style.display = 'block';
         } else {
             keagamaanSelect.style.display = 'none';
+        }
+    });
+
+</script>
+
+<script>
+    document.getElementById('editflexSwitchCheckDefault').addEventListener('change', function() {
+        var editKeagamaanSelect = document.getElementById('editKeagamaan');
+        if (this.checked) {
+            editKeagamaanSelect.style.display = 'block';
+        } else {
+            editKeagamaanSelect.style.display = 'none';
         }
     });
 

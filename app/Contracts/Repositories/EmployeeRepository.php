@@ -3,6 +3,7 @@
 namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\EmployeeInterface;
+use App\Enums\RoleEnum;
 use App\Models\Employee;
 
 class EmployeeRepository extends BaseRepository implements EmployeeInterface
@@ -54,6 +55,6 @@ class EmployeeRepository extends BaseRepository implements EmployeeInterface
 
     public function getTeacherBySchool(mixed $id): mixed
     {
-        return $this->model->query()->whereRelation('user.roles', 'name', 'teacher')->where('school_id', $id)->get();
+        return $this->model->query()->whereRelation('user.roles', 'name', RoleEnum::TEACHER->value)->where('school_id', $id)->get();
     }
 }
