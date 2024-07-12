@@ -29,8 +29,10 @@ Route::get('school/detail-teacher', function(){
     return view('school.pages.teacher.detail-teacher');
 })->name('detail-teacher.index');
 
+
+//mata pelajaran
 Route::get('school/create-subjects', function(){
-    return view('school.pages.teacher.create-subjetcs');
+    return view('school.pages.subjects.create-subjects');
 })->name('create-subjects');
 
 
