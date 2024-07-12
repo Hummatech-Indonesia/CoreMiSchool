@@ -22,9 +22,11 @@ class SchoolRepository extends BaseRepository implements SchoolInterface
         return $this->model->query()->create($data);
     }
 
-    public function show(mixed $id): mixed
+    public function showWithSlug(string $slug): mixed
     {
-        return $this->model->query()->findOrFail($id);
+        return $this->model->whereHas('user', function ($query) use ($slug) {
+            $query->where('slug', $slug);
+        })->firstOrFail();
     }
     
     public function update(mixed $id, array $data): mixed

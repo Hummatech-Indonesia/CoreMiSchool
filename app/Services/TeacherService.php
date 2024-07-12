@@ -36,7 +36,7 @@ class TeacherService
             'name' => $data['name'],
             'slug' => Str::slug($data['name']),
             'email' => $data['email'],
-            'password' => Hash::make($data['nip']),
+            'password' => Hash::make($data['nik']),
         ];
         $user = $this->user->store($dataUser);
         $user->assignRole(RoleEnum::TEACHER->value);
@@ -56,11 +56,11 @@ class TeacherService
         $data = $request->validated();
         $dataUser = [
             'name' => $data['name'],
-            'slug' => Str::slug($data['slug']),
+            'slug' => Str::slug($data['name']),
             'email' => $data['email'],
-            'password' => Hash::make($data['nisn']),
+            'password' => Hash::make($data['nik']),
         ];
-        $this->user->update($request->user_id, $dataUser);
+        $this->user->update($employee->user_id, $dataUser);
 
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $this->remove($employee->image);
@@ -69,6 +69,8 @@ class TeacherService
             $data['image'] = $employee->image;
         }
 
+        $data['status'] = RoleEnum::TEACHER->value;
+        $data['user_id'] = $employee->user_id;
         $data['school_id'] = auth()->user()->school->id;
         return $data;
     }

@@ -118,10 +118,8 @@
                                                 <input type="radio" class="custom-control-input" id="customControlValidationB" name="gender" value="famale">
                                                 <label class="custom-control-label" for="customControlValidationB">Perempuan</label>
                                             </div>
-
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class="d-flex justify-content-end mt-3 mx-4">
                                     <button type="button" class="btn btn-primary next-step">Berikutnya</button>
@@ -183,6 +181,7 @@
                                     <button type="submit" class="btn mb-1 waves-effect waves-light btn-rounded btn-primary ms-3 next-step">Simpan</button>
                                 </div>
                             </section>
+
                         </form>
                     </div>
                 </div>
@@ -248,7 +247,7 @@
                     <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}" class="rounded-circle me-2 user-profile" style="object-fit: cover" width="30" height="30" alt="" />
                     {{ $teacher->user->name }}
                 </td>
-                <td>{{ $teacher->gender }}</td>
+                <td>{{ $teacher->gender == 'male' ? 'Laki Laki' : 'Perempuan' }}</td>
                 <td>{{ $teacher->active == 1 ? 'Aktif' : 'Tidak aktif' }}</td>
                 <td>{{ $teacher->nip }}</td>
                 <td>{{ $teacher->modelHasRfid ? $teacher->modelHasRfid->rfid : '-' }}</td>
@@ -272,7 +271,11 @@
                             <a href="{{ route('detail-teacher.index') }}" class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3">
                                 <i class="fs-4 ti ti-eye"></i>Detail
                             </a>
-                            <button type="button" class="btn-edit note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3" data-id="{{ $teacher->id }}" data-name="{{ $teacher->user->name }}" data-email="{{ $teacher->user->email }}" data-gender="{{ $teacher->gender }}" data-status="{{ $teacher->active }}" data-nip="{{ $teacher->nip }}" data-nik="{{ $teacher->nik }}">
+                            <button type="button" class="btn-edit note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3"
+                            data-id="{{ $teacher->id }}" data-name="{{ $teacher->user->name }}" data-email="{{ $teacher->user->email }}"
+                            data-gender="{{ $teacher->gender }}" data-status="{{ $teacher->active }}" data-nip="{{ $teacher->nip }}"
+                            data-nik="{{ $teacher->nik }}" data-birth_date="{{ $teacher->birth_date }}" data-birth_place="{{ $teacher->birth_place }}"
+                            data-phone="{{ $teacher->phone_number }}" data-address="{{ $teacher->address }}" data-religion="{{ $teacher->religion_id }}">
                                 <i class="fs-4 ti ti-edit"></i>Edit
                             </button>
                             <button type="button" class="btn-delete note-business badge-group-item badge-business dropdown-item text-danger position-relative category-business d-flex align-items-center gap-3" data-id="{{ $teacher->id }}">
@@ -291,17 +294,17 @@
 <x-delete-modal-component/>
 
 <!-- modal edit -->
-<div class="modal fade" id="modal-edit" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+<div class="modal fade" id="modal-edit" tabindex="-1" aria-labelledby="editPegawaiLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="importPegawai">Edit Guru</h5>
+                <h5 class="modal-title" id="editPegawaiLabel">Edit Guru</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
                 <div class="">
                     <div class="wizard-content">
-                        <form action="" class="tab-wizard wizard-circle wizard clearfix" role="application" id="steps-uid-0" method="POST" enctype="multipart/form-data">
+                        <form id="form-edit" class="tab-wizard wizard-circle wizard clearfix" role="application" method="POST" enctype="multipart/form-data">
                             @method('put')
                             @csrf
                             <!-- Step 1 -->
@@ -314,7 +317,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Nama</label>
-                                            <input type="text" name="name" class="form-control mb-3" value="{{ old('name') }}">
+                                            <input type="text" name="name" id="name-edit" class="form-control mb-3" value="{{ old('name') }}">
                                             @error('name')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -323,7 +326,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">NIP</label>
-                                            <input type="number" name="nip" class="form-control mb-3" value="{{ old('nip') }}">
+                                            <input type="number" name="nip" id="nip-edit" class="form-control mb-3" value="{{ old('nip') }}">
                                             @error('nip')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -332,7 +335,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Agama</label>
-                                            <select name="religion_id" id="" class="form-select">
+                                            <select name="religion_id" id="religion-edit" class="form-select">
                                                 @foreach ($religions as $religion)
                                                     <option value="{{ $religion->id }}">{{ $religion->name }}</option>
                                                 @endforeach
@@ -345,7 +348,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Tanggal Lahir</label>
-                                            <input type="date" name="birth_date" class="form-control mb-3" value="{{ old('birth_date') }}">
+                                            <input type="date" name="birth_date" id="birth_date-edit" class="form-control mb-3" value="{{ old('birth_date') }}">
                                             @error('birth_date')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -354,7 +357,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Tempat Lahir</label>
-                                            <input type="text" class="form-control" name="birth_place" value="{{ old('birth_place') }}">
+                                            <input type="text" class="form-control" id="birth_place-edit" name="birth_place" value="{{ old('birth_place') }}">
                                             @error('birth_place')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -364,17 +367,15 @@
                                         <label for="">Jenis Kelamin</label>
                                         <div class="form-check d-flex align-items-center mt-2">
                                             <div class="custom-control custom-radio me-4">
-                                                <input type="radio" class="custom-control-input" id="customControlValidationA" name="gender" value="male">
+                                                <input type="radio" class="custom-control-input" id="maleEdit" name="gender" value="male">
                                                 <label class="custom-control-label" for="customControlValidationA">Laki-laki</label>
                                             </div>
                                             <div class="custom-control custom-radio me-4">
-                                                <input type="radio" class="custom-control-input" id="customControlValidationB" name="gender" value="famale">
+                                                <input type="radio" class="custom-control-input" id="famaleEdit" name="gender" value="famale">
                                                 <label class="custom-control-label" for="customControlValidationB">Perempuan</label>
                                             </div>
-
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class="d-flex justify-content-end mt-3 mx-4">
                                     <button type="button" class="btn btn-primary next-step">Berikutnya</button>
@@ -387,7 +388,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">NIK</label>
-                                            <input type="text" name="nik" class="form-control mb-3" value="{{ old('nik') }}">
+                                            <input type="text" name="nik" id="nik-edit" class="form-control mb-3" value="{{ old('nik') }}">
                                             @error('nik')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -396,7 +397,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">No Telp</label>
-                                            <input type="text" name="phone_number" class="form-control mb-3" value="{{ old('phone_number') }}">
+                                            <input type="text" name="phone_number" id="phone-edit" class="form-control mb-3" value="{{ old('phone_number') }}">
                                             @error('phone_number')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -405,7 +406,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Email</label>
-                                            <input type="text" name="email" class="form-control mb-3" value="{{ old('email') }}">
+                                            <input type="text" name="email" id="email-edit" class="form-control mb-3" value="{{ old('email') }}">
                                             @error('email')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -414,7 +415,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Status</label>
-                                            <select name="active" id="" class="form-select mb-3">
+                                            <select name="active" id="status-edit" class="form-select mb-3">
                                                 <option value="1">Aktif</option>
                                                 <option value="0">NonAktif</option>
                                             </select>
@@ -423,14 +424,13 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <h6>Alamat</h6>
-                                            <textarea name="address" class="form-control mb-3" rows="3">{{ old('address') }}</textarea>
+                                            <textarea name="address" id="address-edit" class="form-control mb-3" rows="3">{{ old('address') }}</textarea>
                                             @error('address')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="d-flex justify-content-end mt-3 mx-4">
                                     <button type="button" class="btn mb-1 waves-effect waves-light btn-outline-primary prev-step">Kembali</button>
                                     <button type="submit" class="btn mb-1 waves-effect waves-light btn-rounded btn-primary ms-3 next-step">Simpan</button>
@@ -440,6 +440,10 @@
                     </div>
                 </div>
 
+            </div>
+            <div class="modal-footer">
+                {{-- <button type="button" class="btn btn-rounded btn-light-danger text-danger" data-bs-dismiss="modal">Tutup</button>
+                <button type="submit" class="btn btn-rounded btn-light-success text-success">Tambah</button> --}}
             </div>
         </div>
     </div>
@@ -457,13 +461,23 @@
         var status = $(this).data('status');
         var nip = $(this).data('nip');
         var nik = $(this).data('nik');
-        $('#form-edit').attr('action', '/faq-list/' + id);
+        var birth_date =  $(this).data('birth_date');
+        var birth_place = $(this).data('birth_place');
+        var phone = $(this).data('phone');
+        var address = $(this).data('address');
+        var religion = $(this).data('religion');
+        $('#form-edit').attr('action', '{{ route('teacher.update', "") }}/' + id);
         $('#name-edit').val(name);
         $('#email-edit').val(email);
-        $('#gender-edit').val(gender);
-        $('#status-edit').val(status);
         $('#nip-edit').val(nip);
         $('#nik-edit').val(nik);
+        $('#birth_date-edit').val(birth_date);
+        $('#birth_place-edit').val(birth_place);
+        $('#phone-edit').val(phone);
+        $('#address-edit').val(address);
+        gender == 'male' ? $('#maleEdit').prop('checked', true) : $('#famaleEdit').prop('checked', true);
+        $('#religion-edit').val(religion).trigger('change');
+        $('#status-edit').val(status).trigger('change');
         $('#modal-edit').modal('show');
     });
 
@@ -510,6 +524,37 @@
             }
         });
     });
-
 </script>
+
+<script>
+    $(document).ready(function() {
+        var currentEditSection = 0;
+        var editSections = $("#form-edit > section");
+        var editSteps = $("#editSteps li");
+
+        editSections.hide();
+        editSections.eq(currentEditSection).show();
+
+        $(".next-edit-step").click(function() {
+            if (currentEditSection < editSections.length - 1) {
+                editSections.eq(currentEditSection).hide();
+                editSteps.eq(currentEditSection).removeClass("current").addClass("done");
+                currentEditSection++;
+                editSections.eq(currentEditSection).show();
+                editSteps.eq(currentEditSection).removeClass("disabled").addClass("current");
+            }
+        });
+
+        $(".prev-edit-step").click(function() {
+            if (currentEditSection > 0) {
+                editSections.eq(currentEditSection).hide();
+                editSteps.eq(currentEditSection).removeClass("current").addClass("disabled");
+                currentEditSection--;
+                editSections.eq(currentEditSection).show();
+                editSteps.eq(currentEditSection).removeClass("done").addClass("current");
+            }
+        });
+    });
+</script>
+
 @endsection
