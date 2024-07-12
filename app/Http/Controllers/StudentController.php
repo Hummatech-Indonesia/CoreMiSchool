@@ -83,6 +83,7 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
+        $this->service->delete($student);
         $this->student->delete($student->id);
         return redirect()->back()->with('success', 'Siswa berhasil dihapus');
     }

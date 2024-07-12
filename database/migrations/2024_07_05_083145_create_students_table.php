@@ -18,7 +18,7 @@ return new class extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $this->addForeignId($table, 'user_id');
-            $table->longText('image');
+            $table->longText('image')->nullable();
             $table->char('nisn', 10);
             $this->addForeignId($table, 'religion_id');
             $this->addGender($table);

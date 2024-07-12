@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Contracts\Interfaces\StudentInterface;
 use App\Contracts\Interfaces\UserInterface;
 use App\Enums\RoleEnum;
 use App\Enums\UploadDiskEnum;
@@ -17,9 +18,11 @@ class StudentService
     use UploadTrait;
 
     private UserInterface $user;
+    private StudentInterface $student;
 
-    public function __construct(UserInterface $user) {
+    public function __construct(UserInterface $user, StudentInterface $student) {
         $this->user = $user;
+        $this->student = $student;
     }
 
     public function validateAndUpload(string $disk, object $file, string $old_file = null): string
@@ -72,6 +75,9 @@ class StudentService
 
     public function delete(Student $student)
     {
-        //
+        if ($student->image != null) {
+            $this->remove($student->image);
+        }
+        $student->user->delete();
     }
 }

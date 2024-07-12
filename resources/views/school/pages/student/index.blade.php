@@ -395,7 +395,7 @@
                                                 class="text-danger">*</span></label>
                                         <select id="gender-edit" name="gender" class="form-select">
                                             <option value="male">Laki-Laki</option>
-                                            <option value="female">Perempuan</option>
+                                            <option value="famale">Perempuan</option>
                                         </select>
                                         @error('gender')
                                             <strong class="text-danger">{{ $message }}</strong>
