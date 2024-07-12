@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             SchoolSeeder::class,
             LessonHourSeeder::class,
             SchoolYearSeeder::class,
+            LevelClassSeeder::class
         ]);
     }
 }
