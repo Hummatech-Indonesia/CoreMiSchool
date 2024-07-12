@@ -35,13 +35,6 @@
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                 </form>
             </div>
-            <div class="col-12 col-md-6 col-lg-4 mb-3 me-2">
-                <select id="status-school" class="form-select">
-                    <option value="">SMKN 1 Kepanjen</option>
-                    <option value="">SMKN 6 Malang</option>
-                    <option value="">SMKN 8 Malang</option>
-                </select>
-            </div>
             <div class="col-12 col-md-6 col-lg-3 mb-3 me-2">
                 <select id="status-activity" class="form-select">
                     <option value="">Semua</option>
@@ -51,8 +44,7 @@
             </div>
         </div>
         <div class="col-12 col-md-auto mb-3">
-            <a href="/admin/add-school" type="button"
-                class="btn mb-1 waves-effect waves-light btn-rounded btn-primary">Tambah</a>
+            <a href="{{ route('school-admin.create') }}" type="button" class="btn mb-1 waves-effect waves-light btn-rounded btn-primary">Tambah</a>
         </div>
     </div>
 
@@ -122,13 +114,15 @@
                                             <button type="button" data-id="{{ $school->id }}"
                                                 class="btn waves-effect waves-light btn-rounded btn-light-danger text-danger w-50">Aktifkan</button>
                                         @endif
-                                        <button type="button"
-                                            class="btn waves-effect waves-light btn-rounded btn-light-info text-info w-50 ms-3">Detail</button>
+                                        <a href="{{ route('school-admin.show', $school->user->slug) }}" type="button" class="btn waves-effect waves-light btn-rounded btn-light-info text-info w-50 ms-3">Detail</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     @empty
+                        <div class="text-center">
+                            Belum ada sekolah
+                        </div>
                     @endforelse
                 </div>
                 <nav aria-label="..." class="mb-3">
@@ -155,17 +149,15 @@
 
         <div class="tab-pane" id="active" role="tabpanel">
             <div class="p-3">
-                <div class="row">
-                    @foreach (range(1, 5) as $item)
+            <div class="row">
+                    @forelse ($activeSchools as $activeSchool)
                         <div class="col-lg-4">
                             <div class="card">
                                 <div class="card-title p-3 rounded-2">
                                     <div class="position-relative p-3 rounded-2" style="background-color: #F0F0F0">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="category-selector btn-group ms-auto">
-                                                <a class="nav-link category-dropdown label-group p-0"
-                                                    data-bs-toggle="dropdown" href="#" role="button"
-                                                    aria-haspopup="true" aria-expanded="true">
+                                                <a class="nav-link category-dropdown label-group p-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
                                                     <div class="category">
                                                         <div class="category-business"></div>
                                                         <div class="category-social"></div>
@@ -191,7 +183,7 @@
                                         <div class="d-flex justify-content-center align-items-center mb-3"
                                             style="height: 130px;">
                                             <img class="card-img-top img-responsive" style="max-height: 100%; width: auto"
-                                                src="{{ asset('admin_assets/dist/images/profile/smkn1kepanjen.png') }}"
+                                                src="{{ asset('storage/'. $activeSchool->image) }}"
                                                 alt="Card image cap">
                                         </div>
                                     </div>
@@ -199,28 +191,24 @@
 
 
                                 <div class="card-body pt-0">
-                                    <h3 class="fs-6">
-                                        SMK NEGERI 1 KEPANJEN
-                                    </h3>
-                                    <p class="mb-0 mt-2 text-muted">Lasmono S.Pd.Mm</p>
+                                    <h3 class="fs-6">{{ $activeSchool->user->name }}</h3>
+                                    <p class="mb-0 mt-2 text-muted">{{ $activeSchool->head_school }}</p>
                                     <h6 class="pt-3">Alamat :</h6>
-                                    <p class="mb-0 mt-2 text-muted">Jl, Ngadiluwih, Kedungpedaringan, Kec. Kepanjen,
-                                        Kabupaten Malang, Jawa Timur 65163, Indonesia</p>
+                                    <p class="mb-0 mt-2 text-muted">{{ $activeSchool->address }}</p>
                                     <div class="d-flex pt-3">
-                                        <span class="mb-1 badge bg-primary w-25">Negeri</span>
+                                        <span class="mb-1 badge bg-primary w-25 text-capitalize">{{ $activeSchool->type }}</span>
                                         <span class="mb-1 badge bg-success ms-3 w-25">Aktif</span>
                                     </div>
                                     <div class="d-flex pt-3">
-                                        <button type="button"
-                                            class="btn waves-effect waves-light btn-rounded btn-light-danger text-danger w-50">Jadikan
-                                            Nonaktif</button>
-                                        <a href="/admin/detail-school" type="button"
-                                            class="btn waves-effect waves-light btn-rounded btn-light-info text-info w-50 ms-3">Detail</a>
+                                        <button type="button" data-id="{{ $school->id }}" class="btn waves-effect waves-light btn-rounded btn-light-danger text-danger w-50">Non-aktifkan</button>
+                                        <a href="{{ route('school-admin.show', $school->user->slug) }}" type="button" class="btn waves-effect waves-light btn-rounded btn-light-info text-info w-50 ms-3">Detail</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    @empty
+                    <div class="text-center">Belum ada sekolah yang aktif</div>
+                    @endforelse
                 </div>
                 <nav aria-label="..." class="mb-3">
                     <ul class="pagination justify-content-center mb-0 mt-4">
@@ -247,16 +235,14 @@
         <div class="tab-pane" id="nonactive" role="tabpanel">
             <div class="p-3">
                 <div class="row">
-                    @foreach (range(1, 5) as $item)
+                    @forelse ($nonActiveSchools as $nonActiveSchool)
                         <div class="col-lg-4">
                             <div class="card">
                                 <div class="card-title p-3 rounded-2">
                                     <div class="position-relative p-3 rounded-2" style="background-color: #F0F0F0">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="category-selector btn-group ms-auto">
-                                                <a class="nav-link category-dropdown label-group p-0"
-                                                    data-bs-toggle="dropdown" href="#" role="button"
-                                                    aria-haspopup="true" aria-expanded="true">
+                                                <a class="nav-link category-dropdown label-group p-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
                                                     <div class="category">
                                                         <div class="category-business"></div>
                                                         <div class="category-social"></div>
@@ -282,7 +268,7 @@
                                         <div class="d-flex justify-content-center align-items-center mb-3"
                                             style="height: 130px;">
                                             <img class="card-img-top img-responsive" style="max-height: 100%; width: auto"
-                                                src="{{ asset('admin_assets/dist/images/profile/smkn1kepanjen.png') }}"
+                                                src="{{ asset('storage/'. $nonActiveSchool->image) }}"
                                                 alt="Card image cap">
                                         </div>
                                     </div>
@@ -290,28 +276,24 @@
 
 
                                 <div class="card-body pt-0">
-                                    <h3 class="fs-6">
-                                        SMK NEGERI 1 KEPANJEN
-                                    </h3>
-                                    <p class="mb-0 mt-2 text-muted">Lasmono S.Pd.Mm</p>
+                                    <h3 class="fs-6">{{ $nonActiveSchool->user->name }}</h3>
+                                    <p class="mb-0 mt-2 text-muted">{{ $nonActiveSchool->head_school }}</p>
                                     <h6 class="pt-3">Alamat :</h6>
-                                    <p class="mb-0 mt-2 text-muted">Jl, Ngadiluwih, Kedungpedaringan, Kec. Kepanjen,
-                                        Kabupaten Malang, Jawa Timur 65163, Indonesia</p>
+                                    <p class="mb-0 mt-2 text-muted">{{ $nonActiveSchool->address }}</p>
                                     <div class="d-flex pt-3">
-                                        <span class="mb-1 badge bg-primary w-25">Negeri</span>
+                                        <span class="mb-1 badge bg-primary w-25">{{ $nonActiveSchool->type }}</span>
                                         <span class="mb-1 badge bg-danger ms-3 w-25">Nonaktif</span>
                                     </div>
                                     <div class="d-flex pt-3">
-                                        <button type="button"
-                                            class="btn waves-effect waves-light btn-rounded btn-light-danger text-danger w-50">Jadikan
-                                            Aktif</button>
-                                        <button type="button"
-                                            class="btn waves-effect waves-light btn-rounded btn-light-info text-info w-50 ms-3">Detail</button>
+                                        <button type="button" data-id="{{ $school->id }}" class="btn waves-effect waves-light btn-rounded btn-light-danger text-danger w-50">Aktifkan</button>
+                                        <a href="{{ route('school-admin.show', $school->user->slug) }}" type="button" class="btn waves-effect waves-light btn-rounded btn-light-info text-info w-50 ms-3">Detail</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    @empty
+                    <div class="text-center">Belum ada sekolah yang tidak aktif</div>
+                    @endforelse
                 </div>
                 <nav aria-label="..." class="mb-3">
                     <ul class="pagination justify-content-center mb-0 mt-4">
@@ -335,4 +317,22 @@
             </div>
         </div>
     </div>
+<x-delete-modal-component />
 @endsection
+
+@section('script')
+    <script>
+        // $('#religion-edit').select2({
+        //     dropdownParent: $('#modal-edit')
+        // });
+        //  $('#gender-edit').select2({
+        //     dropdownParent: $('#modal-edit')
+        // });
+
+        $('.btn-delete').click(function() {
+            var id = $(this).data('id');
+            $('#form-delete').attr('action', '/school/' + id);
+            $('#modal-delete').modal('show');
+        });
+    </script>
+@endsection    

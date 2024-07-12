@@ -18,6 +18,7 @@ return new class extends Migration
             $table->id();
             $table->string('school_year');
             $this->addForeignId($table, 'school_id');
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }

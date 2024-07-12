@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\CityInterface;
+use App\Contracts\Interfaces\EmployeeInterface;
 use App\Contracts\Interfaces\ProvinceInterface;
 use App\Contracts\Interfaces\SchoolInterface;
 use App\Contracts\Interfaces\SubDistrictInterface;
@@ -20,8 +21,9 @@ class SchoolController extends Controller
     private CityInterface $city;
     private SubDistrictInterface $subdistrict;
     private VillageInterface $village;
+    private EmployeeInterface $employee;
 
-    public function __construct(SchoolInterface $school, SchoolService $service, ProvinceInterface $province, CityInterface $city, SubDistrictInterface $subdistrict, VillageInterface $village)
+    public function __construct(SchoolInterface $school, SchoolService $service, ProvinceInterface $province, CityInterface $city, SubDistrictInterface $subdistrict, VillageInterface $village, EmployeeInterface $employee)
     {
         $this->school = $school;
         $this->service = $service;
@@ -29,6 +31,7 @@ class SchoolController extends Controller
         $this->city = $city;
         $this->subdistrict = $subdistrict;
         $this->village = $village;
+        $this->employee = $employee;
     }
 
     /**
@@ -37,7 +40,9 @@ class SchoolController extends Controller
     public function index()
     {
         $schools = $this->school->get();
-        return view('admin.pages.list-school.index', compact('schools'));
+        $activeSchools = $this->school->where('1');
+        $nonActiveSchools = $this->school->where('0');
+        return view('admin.pages.list-school.index', compact('schools', 'activeSchools', 'nonActiveSchools'));
     }
 
     /**
@@ -69,7 +74,8 @@ class SchoolController extends Controller
     public function show($slug)
     {
         $school = $this->school->showWithSlug($slug);
-        return view('admin.pages.list-school.detail', compact('school'));
+        $teachers = $this->employee->getTeacherBySchool($school->id);
+        return view('admin.pages.list-school.detail', compact('school', 'teachers'));
     }
 
     /**
