@@ -36,4 +36,9 @@ class LevelClassRepository extends BaseRepository implements LevelClassInterface
     {
         return $this->model->query()->findOrFail($id)->delete();
     }
+
+    public function where(mixed $data): mixed
+    {
+        return $this->model->query()->where('school_id', $data)->get();
+    }
 }
