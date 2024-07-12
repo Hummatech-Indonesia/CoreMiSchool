@@ -59,6 +59,9 @@ Route::get('school/clock-settings', function(){
 Route::get('school/presence', function(){
     return view('school.pages.attendace.presence');
 })->name('presence.index');
+Route::get('school/presence-student', function(){
+    return view('school.pages.attendace.student');
+})->name('presence-student.index');
 
 
 //alumni
