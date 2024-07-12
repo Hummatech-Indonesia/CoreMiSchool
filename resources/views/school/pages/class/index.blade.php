@@ -1,4 +1,50 @@
 @extends('school.layouts.app')
+
+@section('style')
+<style>
+    .select2-container--default .select2-selection--single {
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 6px;
+        height: 38px;
+    }
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        color: #555;
+        line-height: 28px;
+    }
+    .select2-container--default .select2-selection--single .select2-selection__arrow {
+        height: 36px;
+        right: 10px;
+    }
+    .select2-container--default .select2-selection--multiple {
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 6px;
+    }
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        background-color: #e4e4e4;
+        border: 1px solid #aaa;
+        border-radius: 4px;
+        padding: 3px 10px;
+        margin: 3px 0;
+        color: #333;
+    }
+    .select2-container--default .select2-results__option--highlighted[aria-selected] {
+        background-color: #007bff;
+        color: white;
+    }
+    .select2-container--default .select2-results__option[aria-selected="true"] {
+        background-color: #007bff;
+        color: white;
+    }
+    .select2-container {
+        width: 100% !important;
+    }
+</style>
+@endsection
+
 @section('content')
     <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
         <div class="d-flex flex-wrap">
