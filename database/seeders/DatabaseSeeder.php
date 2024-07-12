@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
             ReligionSeeder::class,
             SchoolSeeder::class,
             LessonHourSeeder::class,
+            SchoolYearSeeder::class,
+            LevelClassSeeder::class
         ]);
     }
 }
