@@ -14,7 +14,7 @@ class UpdateEmployeeRequest extends FormRequest
         return true;
     }
 
-    /**
+     /**
      * Get the validation rules that apply to the request.
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
@@ -27,10 +27,10 @@ class UpdateEmployeeRequest extends FormRequest
             'image' => 'nullable',
             'nip' => 'required|min:18',
             'birth_date' => 'required|date',
-            'birth_place' => 'required|date',
+            'birth_place' => 'required',
             'gender' => 'required',
             'nik' => 'required|min:16',
-            'phone_number' => 'required|min:15',
+            'phone_number' => 'required|min:13',
             'address' => 'required',
             'active' => 'nullable',
             'status' => 'nullable',

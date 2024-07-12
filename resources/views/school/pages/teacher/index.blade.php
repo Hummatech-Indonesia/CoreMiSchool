@@ -118,10 +118,8 @@
                                                 <input type="radio" class="custom-control-input" id="customControlValidationB" name="gender" value="famale">
                                                 <label class="custom-control-label" for="customControlValidationB">Perempuan</label>
                                             </div>
-
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class="d-flex justify-content-end mt-3 mx-4">
                                     <button type="button" class="btn btn-primary next-step">Berikutnya</button>
@@ -183,6 +181,7 @@
                                     <button type="submit" class="btn mb-1 waves-effect waves-light btn-rounded btn-primary ms-3 next-step">Simpan</button>
                                 </div>
                             </section>
+
                         </form>
                     </div>
                 </div>
@@ -272,7 +271,11 @@
                             <a href="{{ route('detail-teacher.index') }}" class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3">
                                 <i class="fs-4 ti ti-eye"></i>Detail
                             </a>
-                            <button type="button" class="btn-edit note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3" data-id="{{ $teacher->id }}" data-name="{{ $teacher->user->name }}" data-email="{{ $teacher->user->email }}" data-gender="{{ $teacher->gender }}" data-status="{{ $teacher->active }}" data-nip="{{ $teacher->nip }}" data-nik="{{ $teacher->nik }}">
+                            <button type="button" class="btn-edit note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3"
+                            data-id="{{ $teacher->id }}" data-name="{{ $teacher->user->name }}" data-email="{{ $teacher->user->email }}"
+                            data-gender="{{ $teacher->gender }}" data-status="{{ $teacher->active }}" data-nip="{{ $teacher->nip }}"
+                            data-nik="{{ $teacher->nik }}" data-birth_date="{{ $teacher->birth_date }}" data-birth_place="{{ $teacher->birth_place }}"
+                            data-phone="{{ $teacher->phone_number }}" data-address="{{ $teacher->address }}" data-religion="{{ $teacher->religion_id }}">
                                 <i class="fs-4 ti ti-edit"></i>Edit
                             </button>
                             <button type="button" class="btn-delete note-business badge-group-item badge-business dropdown-item text-danger position-relative category-business d-flex align-items-center gap-3" data-id="{{ $teacher->id }}">
@@ -295,25 +298,26 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editPegawaiLabel">Edit Pegawai</h5>
+                <h5 class="modal-title" id="editPegawaiLabel">Edit Guru</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
                 <div class="">
                     <div class="wizard-content">
-                        <form id="editForm" class="tab-wizard wizard-circle wizard clearfix" role="application" method="POST" enctype="multipart/form-data">
+                        <form id="form-edit" class="tab-wizard wizard-circle wizard clearfix" role="application" method="POST" enctype="multipart/form-data">
+                            @method('put')
                             @csrf
                             <!-- Step 1 -->
                             <section>
                                 <div class="row mx-3 pt-4">
                                     <div class="col-md-12">
-                                        <label for="fotoPegawai">Foto Pegawai</label>
-                                        <input type="file" name="fotoPegawai" id="fotoPegawai" class="form-control mb-3">
+                                        <label for="">Foto Pegawai ( opsional )</label>
+                                        <input type="file" name="image" id="" class="form-control mb-3">
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="name">Nama</label>
-                                            <input type="text" name="name" class="form-control mb-3" value="{{ old('name') }}">
+                                            <label for="">Nama</label>
+                                            <input type="text" name="name" id="name-edit" class="form-control mb-3" value="{{ old('name') }}">
                                             @error('name')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -321,8 +325,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="nip">NIP</label>
-                                            <input type="number" name="nip" class="form-control mb-3" value="{{ old('nip') }}">
+                                            <label for="">NIP</label>
+                                            <input type="number" name="nip" id="nip-edit" class="form-control mb-3" value="{{ old('nip') }}">
                                             @error('nip')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -330,21 +334,22 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="agama">Agama</label>
-                                            <select name="agama" id="agama" class="form-select">
-                                                <option value="Islam">Islam</option>
-                                                <option value="Hindu">Hindu</option>
+                                            <label for="">Agama</label>
+                                            <select name="religion_id" id="religion-edit" class="form-select">
+                                                @foreach ($religions as $religion)
+                                                    <option value="{{ $religion->id }}">{{ $religion->name }}</option>
+                                                @endforeach
                                             </select>
-                                            @error('agama')
+                                            @error('religion_id')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="tanggal_lahir">Tanggal Lahir</label>
-                                            <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="form-control mb-3" value="{{ old('tanggal_lahir') }}">
-                                            @error('tanggal_lahir')
+                                            <label for="">Tanggal Lahir</label>
+                                            <input type="date" name="birth_date" id="birth_date-edit" class="form-control mb-3" value="{{ old('birth_date') }}">
+                                            @error('birth_date')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
                                         </div>
@@ -352,8 +357,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Tempat Lahir</label>
-                                            <input type="text" class="form-control" name="tempat_lahir" value="{{ old('tempat_lahir') }}">
-                                            @error('tempat_lahir')
+                                            <input type="text" class="form-control" id="birth_place-edit" name="birth_place" value="{{ old('birth_place') }}">
+                                            @error('birth_place')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
                                         </div>
@@ -362,33 +367,29 @@
                                         <label for="">Jenis Kelamin</label>
                                         <div class="form-check d-flex align-items-center mt-2">
                                             <div class="custom-control custom-radio me-4">
-                                                <input type="radio" class="custom-control-input" id="customControlValidationA" name="accreditation" value="Akreditasi A">
+                                                <input type="radio" class="custom-control-input" id="maleEdit" name="gender" value="male">
                                                 <label class="custom-control-label" for="customControlValidationA">Laki-laki</label>
                                             </div>
                                             <div class="custom-control custom-radio me-4">
-                                                <input type="radio" class="custom-control-input" id="customControlValidationB" name="accreditation" value="Akreditasi B">
+                                                <input type="radio" class="custom-control-input" id="famaleEdit" name="gender" value="famale">
                                                 <label class="custom-control-label" for="customControlValidationB">Perempuan</label>
                                             </div>
-    
                                         </div>
                                     </div>
-    
                                 </div>
                                 <div class="d-flex justify-content-end mt-3 mx-4">
                                     <button type="button" class="btn btn-primary next-step">Berikutnya</button>
                                 </div>
                             </section>
-    
+
                             <!-- Step 2 -->
-                            {{-- <h6>Billing & Address</h6> --}}
                             <section>
-    
                                 <div class="row mx-3 pt-4">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">NIK</label>
-                                            <input type="text" class="form-control mb-3">
-                                            @error('province_id')
+                                            <input type="text" name="nik" id="nik-edit" class="form-control mb-3" value="{{ old('nik') }}">
+                                            @error('nik')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
                                         </div>
@@ -396,13 +397,16 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">No Telp</label>
-                                            <input type="text" class="form-control mb-3">
+                                            <input type="text" name="phone_number" id="phone-edit" class="form-control mb-3" value="{{ old('phone_number') }}">
+                                            @error('phone_number')
+                                            <strong class="text-danger">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Email</label>
-                                            <input type="text" class="form-control mb-3">
+                                            <input type="text" name="email" id="email-edit" class="form-control mb-3" value="{{ old('email') }}">
                                             @error('email')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -411,29 +415,27 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Status</label>
-                                            <select name="" id="" class="form-select mb-3">
-                                                <option value="">Aktif</option>
-                                                <option value="">NonAktif</option>
+                                            <select name="active" id="status-edit" class="form-select mb-3">
+                                                <option value="1">Aktif</option>
+                                                <option value="0">NonAktif</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <h6>Alamat</h6>
-                                            <textarea name="address" class="form-control mb-3" rows="3">{{ old('address') }}</textarea>
+                                            <textarea name="address" id="address-edit" class="form-control mb-3" rows="3">{{ old('address') }}</textarea>
                                             @error('address')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
                                         </div>
                                     </div>
                                 </div>
-    
                                 <div class="d-flex justify-content-end mt-3 mx-4">
                                     <button type="button" class="btn mb-1 waves-effect waves-light btn-outline-primary prev-step">Kembali</button>
                                     <button type="submit" class="btn mb-1 waves-effect waves-light btn-rounded btn-primary ms-3 next-step">Simpan</button>
                                 </div>
                             </section>
-    
                         </form>
                     </div>
                 </div>
@@ -459,13 +461,23 @@
         var status = $(this).data('status');
         var nip = $(this).data('nip');
         var nik = $(this).data('nik');
-        $('#form-edit').attr('action', '/faq-list/' + id);
+        var birth_date =  $(this).data('birth_date');
+        var birth_place = $(this).data('birth_place');
+        var phone = $(this).data('phone');
+        var address = $(this).data('address');
+        var religion = $(this).data('religion');
+        $('#form-edit').attr('action', '{{ route('teacher.update', "") }}/' + id);
         $('#name-edit').val(name);
         $('#email-edit').val(email);
-        $('#gender-edit').val(gender);
-        $('#status-edit').val(status);
         $('#nip-edit').val(nip);
         $('#nik-edit').val(nik);
+        $('#birth_date-edit').val(birth_date);
+        $('#birth_place-edit').val(birth_place);
+        $('#phone-edit').val(phone);
+        $('#address-edit').val(address);
+        gender == 'male' ? $('#maleEdit').prop('checked', true) : $('#famaleEdit').prop('checked', true);
+        $('#religion-edit').val(religion).trigger('change');
+        $('#status-edit').val(status).trigger('change');
         $('#modal-edit').modal('show');
     });
 
@@ -517,7 +529,7 @@
 <script>
     $(document).ready(function() {
         var currentEditSection = 0;
-        var editSections = $("#editForm > section");
+        var editSections = $("#form-edit > section");
         var editSteps = $("#editSteps li");
 
         editSections.hide();
