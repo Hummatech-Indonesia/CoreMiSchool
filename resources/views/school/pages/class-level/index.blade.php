@@ -62,8 +62,8 @@
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="">Nama Tingkatan Kelas</label>
-                        <input type="text" name="name" class="form-control" value="{{ old('name') }}">
+                        <label for="">Tingkatan Kelas</label>
+                        <input type="text" name="name" class="form-control" placeholder="Masukkan tingkatan kelas" value="{{ old('name') }}">
                         @error('name')
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror
