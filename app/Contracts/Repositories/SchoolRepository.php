@@ -43,4 +43,9 @@ class SchoolRepository extends BaseRepository implements SchoolInterface
     {
         return $this->model->query()->latest()->paginate(10);
     }
+
+    public function where(mixed $data): mixed
+    {
+        return $this->model->query()->where('active', $data)->get();    
+    }
 }

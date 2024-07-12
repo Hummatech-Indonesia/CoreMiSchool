@@ -12,4 +12,5 @@ use App\Contracts\Interfaces\Eloquent\WhereInterface;
 interface EmployeeInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, WhereInterface
 {
     public function paginate($query): mixed;
+    public function getTeacherBySchool(mixed $id): mixed;
 }
