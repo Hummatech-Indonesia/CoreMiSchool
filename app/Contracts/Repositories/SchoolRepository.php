@@ -46,6 +46,11 @@ class SchoolRepository extends BaseRepository implements SchoolInterface
 
     public function where(mixed $data): mixed
     {
-        return $this->model->query()->where('active', $data)->get();    
+        return $this->model->query()->where('active', $data)->get();
+    }
+
+    public function whereUserId(mixed $id): mixed
+    {
+        return $this->model->query()->where('user_id', $id)->firstOrFail();
     }
 }

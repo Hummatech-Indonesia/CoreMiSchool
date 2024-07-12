@@ -9,7 +9,7 @@
                 </form>
             </div>
         </div>
-        <button type="button" class="btn mb-1 btn-light-primary text-primary btn-lg px-4 fs-4 font-medium"
+        <button type="button" class="btn mb-1 btn-primary"
             data-bs-toggle="modal" data-bs-target="#modal-import">
             Tambah Ekstrakulikuler
         </button>

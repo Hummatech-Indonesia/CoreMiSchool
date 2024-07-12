@@ -38,12 +38,17 @@ Route::put('school/update-subjects/{maple}', [MapleController::class, 'update'])
 Route::delete('school/delete-subjects/{maple}', [MapleController::class, 'destroy'])->name('subjects.delete');
 
 
+//semeter
+Route::get('school/semesters', function(){
+    return view('school.pages.semesters.index');
+})->name('semesters.index');
+
+
 //siswa
 Route::get('school/student', [StudentController::class, 'index'])->name('school-student.index');
 Route::post('school/student', [StudentController::class, 'store'])->name('school-student.store');
 Route::put('school/student/{student}', [StudentController::class, 'update'])->name('school-student.update');
 Route::delete('school/student/{student}', [StudentController::class, 'destroy'])->name('school-student.destroy');
-
 
 
 // absen
@@ -89,6 +94,11 @@ Route::get('school/class-level', [LevelClassController::class, 'index'])->name('
 Route::post('school/add-class-level', [LevelClassController::class, 'store'])->name('class-level.store');
 Route::put('school/update-class-level/{levelClass}', [LevelClassController::class, 'update'])->name('class-level.update');
 Route::delete('school/delete-class-level/{levelClass}', [LevelClassController::class, 'destroy'])->name('class-level.delete');
+
+// setting informasi
+Route::get('school/settings/information', function(){
+    return view('school.pages.settings.information');
+})->name('settings-information.index');
 
 // rfid
 Route::get('school/rfid', function(){

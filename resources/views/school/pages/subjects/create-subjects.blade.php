@@ -5,6 +5,9 @@
     #keagamaan {
         display: none;
     }
+    #editKeagamaan {
+        display: none;
+    }
 </style>
 @endsection
 
@@ -137,7 +140,6 @@
 </div>
 
 <x-delete-modal-component/>
-
 @endsection
 
 @section('script')
@@ -181,5 +183,17 @@
             keagamaanSelect.style.display = 'none';
         }
     });
+</script>
+
+<script>
+    document.getElementById('editflexSwitchCheckDefault').addEventListener('change', function() {
+        var editKeagamaanSelect = document.getElementById('editKeagamaan');
+        if (this.checked) {
+            editKeagamaanSelect.style.display = 'block';
+        } else {
+            editKeagamaanSelect.style.display = 'none';
+        }
+    });
+
 </script>
 @endsection
