@@ -51,7 +51,8 @@
             </div>
         </div>
         <div class="col-12 col-md-auto mb-3">
-            <a href="/admin/add-school" type="button" class="btn mb-1 waves-effect waves-light btn-rounded btn-primary">Tambah</a>
+            <a href="/admin/add-school" type="button"
+                class="btn mb-1 waves-effect waves-light btn-rounded btn-primary">Tambah</a>
         </div>
     </div>
 
@@ -81,11 +82,12 @@
                                                 <div class="dropdown-menu dropdown-menu-right category-menu"
                                                     data-popper-placement="bottom-end">
                                                     <a
-                                                        class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
-                                                        Edit
-                                                    </a>
-                                                    <a
                                                         class="note-business badge-group-item text-danger badge-business dropdown-item position-relative category-business d-flex align-items-center">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="me-1"
+                                                            width="20" height="20" viewBox="0 0 256 256">
+                                                            <path fill="currentColor"
+                                                                d="M216 48h-36V36a28 28 0 0 0-28-28h-48a28 28 0 0 0-28 28v12H40a12 12 0 0 0 0 24h4v136a20 20 0 0 0 20 20h128a20 20 0 0 0 20-20V72h4a12 12 0 0 0 0-24M100 36a4 4 0 0 1 4-4h48a4 4 0 0 1 4 4v12h-56Zm88 168H68V72h120Zm-72-100v64a12 12 0 0 1-24 0v-64a12 12 0 0 1 24 0m48 0v64a12 12 0 0 1-24 0v-64a12 12 0 0 1 24 0" />
+                                                        </svg>
                                                         Hapus
                                                     </a>
                                                 </div>
@@ -94,8 +96,7 @@
                                         <div class="d-flex justify-content-center align-items-center mb-3"
                                             style="height: 130px;">
                                             <img class="card-img-top img-responsive" style="max-height: 100%; width: auto"
-                                                src="{{ asset('storage/'.$school->image) }}"
-                                                alt="Card image cap">
+                                                src="{{ asset('storage/' . $school->image) }}" alt="Card image cap">
                                         </div>
                                     </div>
                                 </div>
@@ -110,15 +111,19 @@
                                     <p class="mb-0 mt-2 text-muted">{{ $school->address }}</p>
                                     <div class="d-flex pt-3">
                                         <span class="mb-1 badge bg-primary w-25 text-capitalize">{{ $school->type }}</span>
-                                        <span class="mb-1 badge bg-success ms-3 w-25">{{ $school->active == 1 ? 'Aktif' : 'Tidak aktif' }}</span>
+                                        <span
+                                            class="mb-1 badge bg-success ms-3 w-25">{{ $school->active == 1 ? 'Aktif' : 'Tidak aktif' }}</span>
                                     </div>
                                     <div class="d-flex pt-3">
                                         @if ($school->active == 1)
-                                            <button type="button" data-id="{{ $school->id }}" class="btn waves-effect waves-light btn-rounded btn-light-danger text-danger w-50">Non-aktifkan</button>
+                                            <button type="button" data-id="{{ $school->id }}"
+                                                class="btn waves-effect waves-light btn-rounded btn-light-danger text-danger w-50">Non-aktifkan</button>
                                         @else
-                                            <button type="button" data-id="{{ $school->id }}" class="btn waves-effect waves-light btn-rounded btn-light-danger text-danger w-50">Aktifkan</button>
+                                            <button type="button" data-id="{{ $school->id }}"
+                                                class="btn waves-effect waves-light btn-rounded btn-light-danger text-danger w-50">Aktifkan</button>
                                         @endif
-                                        <button type="button" class="btn waves-effect waves-light btn-rounded btn-light-info text-info w-50 ms-3">Detail</button>
+                                        <button type="button"
+                                            class="btn waves-effect waves-light btn-rounded btn-light-info text-info w-50 ms-3">Detail</button>
                                     </div>
                                 </div>
                             </div>
@@ -172,11 +177,12 @@
                                                 <div class="dropdown-menu dropdown-menu-right category-menu"
                                                     data-popper-placement="bottom-end">
                                                     <a
-                                                        class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
-                                                        Edit
-                                                    </a>
-                                                    <a
-                                                        class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
+                                                        class="note-business badge-group-item text-danger badge-business dropdown-item position-relative category-business d-flex align-items-center">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="me-1"
+                                                            width="20" height="20" viewBox="0 0 256 256">
+                                                            <path fill="currentColor"
+                                                                d="M216 48h-36V36a28 28 0 0 0-28-28h-48a28 28 0 0 0-28 28v12H40a12 12 0 0 0 0 24h4v136a20 20 0 0 0 20 20h128a20 20 0 0 0 20-20V72h4a12 12 0 0 0 0-24M100 36a4 4 0 0 1 4-4h48a4 4 0 0 1 4 4v12h-56Zm88 168H68V72h120Zm-72-100v64a12 12 0 0 1-24 0v-64a12 12 0 0 1 24 0m48 0v64a12 12 0 0 1-24 0v-64a12 12 0 0 1 24 0" />
+                                                        </svg>
                                                         Hapus
                                                     </a>
                                                 </div>
@@ -262,11 +268,12 @@
                                                 <div class="dropdown-menu dropdown-menu-right category-menu"
                                                     data-popper-placement="bottom-end">
                                                     <a
-                                                        class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
-                                                        Edit
-                                                    </a>
-                                                    <a
-                                                        class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
+                                                        class="note-business badge-group-item text-danger badge-business dropdown-item position-relative category-business d-flex align-items-center">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="me-1"
+                                                            width="20" height="20" viewBox="0 0 256 256">
+                                                            <path fill="currentColor"
+                                                                d="M216 48h-36V36a28 28 0 0 0-28-28h-48a28 28 0 0 0-28 28v12H40a12 12 0 0 0 0 24h4v136a20 20 0 0 0 20 20h128a20 20 0 0 0 20-20V72h4a12 12 0 0 0 0-24M100 36a4 4 0 0 1 4-4h48a4 4 0 0 1 4 4v12h-56Zm88 168H68V72h120Zm-72-100v64a12 12 0 0 1-24 0v-64a12 12 0 0 1 24 0m48 0v64a12 12 0 0 1-24 0v-64a12 12 0 0 1 24 0" />
+                                                        </svg>
                                                         Hapus
                                                     </a>
                                                 </div>
