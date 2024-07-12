@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Contracts\Interfaces\ClassroomInterface;
 use App\Contracts\Interfaces\EmployeeInterface;
 use App\Contracts\Interfaces\LevelClassInterface;
+use App\Contracts\Interfaces\SchoolInterface;
 use App\Contracts\Interfaces\SchoolYearInterface;
 use App\Enums\RoleEnum;
 use App\Models\Classroom;
@@ -17,13 +18,15 @@ class ClassroomController extends Controller
     private LevelClassInterface $levelClass;
     private SchoolYearInterface $schoolYear;
     private EmployeeInterface $employee;
+    private SchoolInterface $school;
 
-    public function __construct(ClassroomInterface $classroom, LevelClassInterface $levelClass, SchoolYearInterface $schoolYear, EmployeeInterface $employee)
+    public function __construct(ClassroomInterface $classroom, LevelClassInterface $levelClass, SchoolYearInterface $schoolYear, EmployeeInterface $employee, SchoolInterface $school)
     {
         $this->classroom = $classroom;
         $this->levelClass = $levelClass;
         $this->schoolYear = $schoolYear;
         $this->employee = $employee;
+        $this->school = $school;
     }
 
     /**
@@ -31,11 +34,12 @@ class ClassroomController extends Controller
      */
     public function index()
     {
-        $levelClasses = $this->levelClass->get();
-        $schoolYears = $this->schoolYear->get();
-        $classrooms = $this->classroom->get();
-        $employees = $this->employee->where(RoleEnum::TEACHER->value);
-        return view('school.pages.class.index', compact('classrooms', 'levelClasses', 'schoolYears', 'employees'));
+        $school = $this->school->whereUserId(auth()->user()->id);
+        $levelClasses = $this->levelClass->where($school->id);
+        $schoolYears = $this->schoolYear->where($school->id);
+        $classrooms = $this->classroom->whereInSchoolYears($schoolYears);
+        $teachers = $this->employee->getTeacherBySchool($school->id);
+        return view('school.pages.class.index', compact('classrooms', 'levelClasses', 'schoolYears', 'teachers'));
     }
 
     /**
