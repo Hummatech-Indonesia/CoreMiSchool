@@ -18,6 +18,7 @@ return new class extends Migration
             $table->id();
             $this->addForeignId($table, 'school_id');
             $table->string('name');
+            $this->addForeignIdNull($table, 'religion_id');
             $table->timestamps();
         });
     }

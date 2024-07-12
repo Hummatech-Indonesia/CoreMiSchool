@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\MapleInterface;
+use App\Contracts\Interfaces\ReligionInterface;
 use App\Models\Maple;
 use App\Http\Requests\StoreMapleRequest;
 use App\Http\Requests\UpdateMapleRequest;
@@ -11,11 +12,13 @@ use App\Services\MapleService;
 class MapleController extends Controller
 {
     private MapleInterface $maple;
+    private ReligionInterface $religion;
     private MapleService $service;
 
-    public function __construct(MapleInterface $maple, MapleService $service)
+    public function __construct(MapleInterface $maple, MapleService $service, ReligionInterface $religion)
     {
         $this->maple = $maple;
+        $this->religion = $religion;
         $this->service = $service;
     }
 
@@ -25,7 +28,8 @@ class MapleController extends Controller
     public function index()
     {
         $maples = $this->maple->get();
-        return view('', compact('maples'));
+        $religions = $this->religion->get();
+        return view('school.pages.subjects.create-subjects', compact('maples', 'religions'));
     }
 
     /**

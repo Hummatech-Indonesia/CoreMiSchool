@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\LevelClassController;
+use App\Http\Controllers\MapleController;
 use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\Teacher\StaffController;
@@ -31,9 +32,10 @@ Route::get('school/detail-teacher', function(){
 
 
 //mata pelajaran
-Route::get('school/create-subjects', function(){
-    return view('school.pages.subjects.create-subjects');
-})->name('create-subjects');
+Route::get('school/create-subjects', [MapleController::class, 'index'])->name('create-subjects');
+Route::post('school/add-subjects', [MapleController::class, 'store'])->name('subjects.store');
+Route::put('school/update-subjects/{maple}', [MapleController::class, 'update'])->name('subjects.update');
+Route::delete('school/delete-subjects/{maple}', [MapleController::class, 'destroy'])->name('subjects.delete');
 
 
 //siswa

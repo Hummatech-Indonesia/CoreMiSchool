@@ -23,6 +23,7 @@ class UpdateMapleRequest extends FormRequest
     {
         return [
             'name' => 'required',
+            'religion_id' => 'nullable',
         ];
     }
 
