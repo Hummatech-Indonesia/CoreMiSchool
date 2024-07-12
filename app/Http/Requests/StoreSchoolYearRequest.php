@@ -23,6 +23,7 @@ class StoreSchoolYearRequest extends FormRequest
     {
         return [
             'school_year' => 'required',
+            'active' => 'nullable',
         ];
     }
 

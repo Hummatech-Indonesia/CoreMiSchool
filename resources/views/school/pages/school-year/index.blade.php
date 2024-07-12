@@ -36,7 +36,7 @@
                     <td>{{ $schoolYear->school_year }}</td>
                     <td>
                         <div class="gap-3">
-                            <button class="btn btn-edit btn-light-primary text-primary mb-2 me-2" data-id="{{ $schoolYear->id }}" data-year="{{ $schoolYear->school_year }}">Edit</button>
+                            <button class="btn btn-edit btn-light-primary text-primary mb-2 me-2" data-id="{{ $schoolYear->id }}" data-year="{{ $schoolYear->school_year }}" data-status="{{ $schoolYear->active }}">Edit</button>
                             <button class="btn btn-delete btn-light-danger text-danger mb-2" data-id="{{ $schoolYear->id }}">Hapus</button>
                         </div>
                     </td>
@@ -69,6 +69,16 @@
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror
                     </div>
+                    <div class="mb-3">
+                        <label for="">Status</label>
+                        <select name="active" class="form-control">
+                            <option value="1">Aktif</option>
+                            <option value="0">Tidak Aktif</option>
+                        </select>
+                        @error('active')
+                            <strong class="text-danger">{{ $message }}</strong>
+                        @enderror
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
@@ -93,6 +103,16 @@
                         <label for="">Tahun Ajaran</label>
                         <input type="text" id="year-update" name="school_year" class="form-control">
                     </div>
+                    <div class="mb-3">
+                        <label for="">Status</label>
+                        <select name="active" class="form-control" id="active-update">
+                            <option value="1">Aktif</option>
+                            <option value="0">Tidak Aktif</option>
+                        </select>
+                        @error('active')
+                            <strong class="text-danger">{{ $message }}</strong>
+                        @enderror
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-rounded btn-primary">Update</button>
@@ -109,8 +129,10 @@
         $('.btn-edit').on('click', function() {
             var id = $(this).data('id');
             var year = $(this).data('year');
+            var status = $(this).data('status');
             $('#form-update').attr('action', '/school/update-school-year/' + id);
             $('#year-update').val(year);
+            $('#active-update').val(status).trigger('change');
             $('#modal-update').modal('show');
         });
 

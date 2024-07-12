@@ -8,8 +8,9 @@ use App\Contracts\Interfaces\Eloquent\PaginateInterface;
 use App\Contracts\Interfaces\Eloquent\ShowWithSlugInterface;
 use App\Contracts\Interfaces\Eloquent\StoreInterface;
 use App\Contracts\Interfaces\Eloquent\UpdateInterface;
+use App\Contracts\Interfaces\Eloquent\WhereInterface;
 
-interface SchoolInterface extends GetInterface, StoreInterface, UpdateInterface, ShowWithSlugInterface, DeleteInterface, PaginateInterface
+interface SchoolInterface extends GetInterface, StoreInterface, UpdateInterface, ShowWithSlugInterface, DeleteInterface, PaginateInterface, WhereInterface
 {
     //
 }
