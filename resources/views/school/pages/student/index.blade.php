@@ -7,7 +7,7 @@
                 <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
             </form>
         </div>
-        <button type="button" class="btn mb-1 btn-sm waves-effect waves-light btn-rounded btn-primary"
+        <button type="button" class="btn mb-1 btn-primary"
             data-bs-toggle="modal" data-bs-target="#modal-import">
             Tambah Siswa
         </button>
