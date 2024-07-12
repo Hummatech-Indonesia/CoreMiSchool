@@ -41,4 +41,9 @@ class SchoolYearRepository extends BaseRepository implements SchoolYearInterface
     {
         return $this->model->query()->latest()->paginate(10);
     }
+    
+    public function where(mixed $data): mixed
+    {
+        return $this->model->query()->where('school_id', $data)->get();
+    }
 }
