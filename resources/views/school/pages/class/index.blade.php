@@ -39,11 +39,11 @@
                                 <input type="text" class="form-control" name="name">
                             </div>
                             <div class="form-group">
-                                <label for="" class="mb-2 pt-3">Pengajar</label>
-                                <select id="pengajar" class="form-select" name="employee_id">
-                                    <option value="">Pilih Pengajar</option>
-                                    @foreach ($employees as $employee)
-                                        <option value="{{ $employee->id }}">{{ $employee->user->name }}</option>
+                                <label for="" class="mb-2 pt-3">Wali Kelas</label>
+                                <select id="walikelas" class="form-select" name="employee_id">
+                                    <option>Pilih...</option>
+                                    @foreach ($teachers as $teacher)
+                                        <option value="{{ $teacher->id }}">{{ $teacher->user->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -86,12 +86,11 @@
     </div>
 
     <div class="row">
-        @foreach (range(1, 4) as $item)
+        @forelse ($classrooms as $classroom)
             <div class="col-lg-3">
                 <div class="card">
                     <div class="position-relative">
-                        <img class="card-img-top img-responsive"
-                            src="{{ asset('admin_assets/dist/images/backgrounds/student.png') }}" alt="Card image cap">
+                        <img class="card-img-top img-responsive"src="{{ asset('admin_assets/dist/images/backgrounds/student.png') }}" alt="Card image cap">
                         <div class="d-flex justify-content-end position-absolute top-0 pt-2 end-0 me-2">
                             <div class="category-selector btn-group">
                                 <a class="nav-link category-dropdown label-group p-0" data-bs-toggle="dropdown"
@@ -112,8 +111,7 @@
                                         Edit
                                     </a>
 
-                                    <a
-                                        class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
+                                    <a class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
                                         Hapus
                                     </a>
                                 </div>
@@ -124,11 +122,11 @@
 
                     <div class="card-body">
                         <div class="d-flex no-block align-items-center">
-                            <h3 class="fs-4">XII RPL 2</h3>
-                            <span class="ms-auto fs-4">2023/2024</span>
+                            <h3 class="fs-4">{{ $classroom->name }}</h3>
+                            <span class="ms-auto fs-4">{{ $classroom->schoolYear->school_year }}</span>
                         </div>
                         <div class="d-flex mb-4">
-                            <span class="fs-4">Rahayu Soviya</span>
+                            <span class="fs-4">{{ $classroom->employee->user->name }}</span>
                             <div class="ms-auto">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -141,7 +139,7 @@
                                     <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
                                 </svg>
                                 <span class="ms-2 fs-4">
-                                    31 Siswa
+                                    {{ $classroom->classroomStudents->count() }} Siswa
                                 </span>
                             </div>
                         </div>
@@ -150,7 +148,9 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+        @empty
+            <div class="text-center">Kelas belum ditambahkan</div>
+        @endforelse
     </div>
 
     <!-- modal edit -->
