@@ -71,11 +71,15 @@
                                                         </span>
                                                     </div>
                                                 </a>
-                                                <div class="dropdown-menu dropdown-menu-right category-menu"data-popper-placement="bottom-end">
-                                                    <a class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
-                                                        Edit
-                                                    </a>
-                                                    <a class="note-business badge-group-item text-danger badge-business dropdown-item position-relative category-business d-flex align-items-center">
+                                                <div class="dropdown-menu dropdown-menu-right category-menu"
+                                                    data-popper-placement="bottom-end">
+                                                    <a
+                                                        class="note-business badge-group-item text-danger badge-business dropdown-item position-relative category-business d-flex align-items-center">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="me-1"
+                                                            width="20" height="20" viewBox="0 0 256 256">
+                                                            <path fill="currentColor"
+                                                                d="M216 48h-36V36a28 28 0 0 0-28-28h-48a28 28 0 0 0-28 28v12H40a12 12 0 0 0 0 24h4v136a20 20 0 0 0 20 20h128a20 20 0 0 0 20-20V72h4a12 12 0 0 0 0-24M100 36a4 4 0 0 1 4-4h48a4 4 0 0 1 4 4v12h-56Zm88 168H68V72h120Zm-72-100v64a12 12 0 0 1-24 0v-64a12 12 0 0 1 24 0m48 0v64a12 12 0 0 1-24 0v-64a12 12 0 0 1 24 0" />
+                                                        </svg>
                                                         Hapus
                                                     </a>
                                                 </div>
@@ -84,8 +88,7 @@
                                         <div class="d-flex justify-content-center align-items-center mb-3"
                                             style="height: 130px;">
                                             <img class="card-img-top img-responsive" style="max-height: 100%; width: auto"
-                                                src="{{ asset('storage/'.$school->image) }}"
-                                                alt="Card image cap">
+                                                src="{{ asset('storage/' . $school->image) }}" alt="Card image cap">
                                         </div>
                                     </div>
                                 </div>
@@ -100,13 +103,16 @@
                                     <p class="mb-0 mt-2 text-muted">{{ $school->address }}</p>
                                     <div class="d-flex pt-3">
                                         <span class="mb-1 badge bg-primary w-25 text-capitalize">{{ $school->type }}</span>
-                                        <span class="mb-1 badge bg-success ms-3 w-25">{{ $school->active == 1 ? 'Aktif' : 'Tidak aktif' }}</span>
+                                        <span
+                                            class="mb-1 badge bg-success ms-3 w-25">{{ $school->active == 1 ? 'Aktif' : 'Tidak aktif' }}</span>
                                     </div>
                                     <div class="d-flex pt-3">
                                         @if ($school->active == 1)
-                                            <button type="button" data-id="{{ $school->id }}" class="btn waves-effect waves-light btn-rounded btn-light-danger text-danger w-50">Non-aktifkan</button>
+                                            <button type="button" data-id="{{ $school->id }}"
+                                                class="btn waves-effect waves-light btn-rounded btn-light-danger text-danger w-50">Non-aktifkan</button>
                                         @else
-                                            <button type="button" data-id="{{ $school->id }}" class="btn waves-effect waves-light btn-rounded btn-light-danger text-danger w-50">Aktifkan</button>
+                                            <button type="button" data-id="{{ $school->id }}"
+                                                class="btn waves-effect waves-light btn-rounded btn-light-danger text-danger w-50">Aktifkan</button>
                                         @endif
                                         <a href="{{ route('school-admin.show', $school->user->slug) }}" type="button" class="btn waves-effect waves-light btn-rounded btn-light-info text-info w-50 ms-3">Detail</a>
                                     </div>
@@ -162,10 +168,13 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right category-menu"
                                                     data-popper-placement="bottom-end">
-                                                    <a class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
-                                                        Edit
-                                                    </a>
-                                                    <a class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
+                                                    <a
+                                                        class="note-business badge-group-item text-danger badge-business dropdown-item position-relative category-business d-flex align-items-center">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="me-1"
+                                                            width="20" height="20" viewBox="0 0 256 256">
+                                                            <path fill="currentColor"
+                                                                d="M216 48h-36V36a28 28 0 0 0-28-28h-48a28 28 0 0 0-28 28v12H40a12 12 0 0 0 0 24h4v136a20 20 0 0 0 20 20h128a20 20 0 0 0 20-20V72h4a12 12 0 0 0 0-24M100 36a4 4 0 0 1 4-4h48a4 4 0 0 1 4 4v12h-56Zm88 168H68V72h120Zm-72-100v64a12 12 0 0 1-24 0v-64a12 12 0 0 1 24 0m48 0v64a12 12 0 0 1-24 0v-64a12 12 0 0 1 24 0" />
+                                                        </svg>
                                                         Hapus
                                                     </a>
                                                 </div>
@@ -242,11 +251,15 @@
                                                         </span>
                                                     </div>
                                                 </a>
-                                                <div class="dropdown-menu dropdown-menu-right category-menu" data-popper-placement="bottom-end">
-                                                    <a class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
-                                                        Edit
-                                                    </a>
-                                                    <a class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
+                                                <div class="dropdown-menu dropdown-menu-right category-menu"
+                                                    data-popper-placement="bottom-end">
+                                                    <a
+                                                        class="note-business badge-group-item text-danger badge-business dropdown-item position-relative category-business d-flex align-items-center">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="me-1"
+                                                            width="20" height="20" viewBox="0 0 256 256">
+                                                            <path fill="currentColor"
+                                                                d="M216 48h-36V36a28 28 0 0 0-28-28h-48a28 28 0 0 0-28 28v12H40a12 12 0 0 0 0 24h4v136a20 20 0 0 0 20 20h128a20 20 0 0 0 20-20V72h4a12 12 0 0 0 0-24M100 36a4 4 0 0 1 4-4h48a4 4 0 0 1 4 4v12h-56Zm88 168H68V72h120Zm-72-100v64a12 12 0 0 1-24 0v-64a12 12 0 0 1 24 0m48 0v64a12 12 0 0 1-24 0v-64a12 12 0 0 1 24 0" />
+                                                        </svg>
                                                         Hapus
                                                     </a>
                                                 </div>
@@ -316,43 +329,9 @@
         //     dropdownParent: $('#modal-edit')
         // });
 
-        $('.btn-edit').click(function() {
-            var id = $(this).data('id');
-            var name = $(this).data('name');
-            var email = $(this).data('email');
-            var nisn = $(this).data('nisn');
-            var religion_id = $(this).data('religion_id');
-            var gender = $(this).data('gender');
-            var birth_place = $(this).data('birth_place');
-            var birth_date = $(this).data('birth_date');
-            var nik = $(this).data('nik');
-            var number_kk = $(this).data('number_kk');
-            var number_akta = $(this).data('number_akta');
-            var order_child = $(this).data('order_child');
-            var count_siblings = $(this).data('count_siblings');
-            var address = $(this).data('address');
-
-            $('#name-edit').val(name);
-            $('#email-edit').val(email);
-            $('#nisn-edit').val(nisn);
-            $('#birth_place-edit').val(birth_place);
-            $('#birth_date-edit').val(birth_date);
-            $('#nik-edit').val(nik);
-            $('#number_kk-edit').val(number_kk);
-            $('#number_akta-edit').val(number_akta);
-            $('#order_child-edit').val(order_child);
-            $('#count_siblings-edit').val(count_siblings);
-            $('#address-edit').val(address);
-            $('#religion-edit').val(religion_id).trigger('change');
-            $('#gender-edit').val(gender).trigger('change');
-
-            $('#form-update').attr('action', '/school/student/' + id);
-            $('#modal-edit').modal('show');
-        });
-
         $('.btn-delete').click(function() {
             var id = $(this).data('id');
-            $('#form-delete').attr('action', '/school/student/' + id);
+            $('#form-delete').attr('action', '/school/' + id);
             $('#modal-delete').modal('show');
         });
     </script>
