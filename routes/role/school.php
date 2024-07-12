@@ -101,7 +101,7 @@ Route::get('school/information', function(){
 })->name('settings-information.index');
 
 // update informasi
-Route::get('schpol/update-information', function(){
+Route::get('school/update-information', function(){
     return view('school.pages.settings.update-information');
 })->name('update-information.index');
 
