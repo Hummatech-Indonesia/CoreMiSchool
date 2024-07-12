@@ -16,13 +16,13 @@
             </div>
         </div>
         <button type="button" class="btn mb-1 btn-primary px-4 fs-4 font-medium" data-bs-toggle="modal"
-            data-bs-target="#modal-import">
+            data-bs-target="#modal-add">
             Tambah Kelas
         </button>
     </div>
 
     <!-- modal tambah -->
-    <div class="modal fade" id="modal-import" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
+    <div class="modal fade" id="modal-add" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -43,7 +43,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="" class="mb-2 pt-3">Wali Kelas</label>
-                                <select id="walikelas" class="form-select" name="employee_id">
+                                <select id="employee_add" class="form-select" name="employee_id">
                                     <option>Pilih...</option>
                                     @foreach ($teachers as $teacher)
                                         <option value="{{ $teacher->id }}">{{ $teacher->user->name }}</option>
@@ -73,7 +73,7 @@
                                     <div class="form-floating ">
                                         <div class="form-group">
                                             <label for="" class="mb-2 pt-3">Tahun Ajaran</label>
-                                            <select id="tahun-ajaran" class="form-select" name="school_year_id">
+                                            <select id="school_year_add" class="form-select" name="school_year_id">
                                                 @foreach ($schoolYears as $schoolYear)
                                                     <option value="{{ $schoolYear->id }}">{{ $schoolYear->school_year }}</option>
                                                 @endforeach
@@ -248,6 +248,12 @@
 
 @section('script')
     <script>
+        $('#employee_add').select2({
+            dropdownParent: $('#modal-add')
+        });
+         $('#school_year_add').select2({
+            dropdownParent: $('#modal-add')
+        });
         $('#employee-edit').select2({
             dropdownParent: $('#modal-edit')
         });
