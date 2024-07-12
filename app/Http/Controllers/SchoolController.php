@@ -66,9 +66,10 @@ class SchoolController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(School $school)
+    public function show($slug)
     {
-        //
+        $school = $this->school->showWithSlug($slug);
+        return view('admin.pages.list-school.detail', compact('school'));
     }
 
     /**
