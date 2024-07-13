@@ -27,10 +27,9 @@
         </div>
         <div class="col-lg-6 mb-3">
             <div class="d-flex gap-2 justify-content-end">
-                <button type="button" class="btn mb-1 btn-success btn-lg px-4 fs-4 font-medium" data-bs-toggle="modal"
-                    data-bs-target="#modal-import">
+                <a href="/school/presence-student" type="button" class="btn mb-1 btn-success btn-lg px-4 fs-4 font-medium">
                     Export
-                </button>
+                </a>
             </div>
         </div>
     </div>

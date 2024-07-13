@@ -5,7 +5,7 @@
     <h3>Detail Sekolah</h3>
 
     <div class="gap-3">
-        <button class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#modal-edit-information">Edit Informasi</button>
+        <a href="{{ route('update-information.index') }}" class="btn btn-success me-2">Edit Informasi</a>
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-create-masterKey">Tambah Master Key</button>
     </div>
 </div>

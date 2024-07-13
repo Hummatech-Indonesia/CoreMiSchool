@@ -30,9 +30,9 @@
                             <span class="text-dark fs-3 fw-semibold lh-1 mb-1 username">
                                 Wira Cinta Syafa
                             </span>
-                            <span class="text-dark fs-3 fw-bold lh-1 role">
+                            {{-- <span class="text-dark fs-3 fw-bold lh-1 role">
                                 head master
-                            </span>
+                            </span> --}}
                         </div>
                     </li>
                     <li class="nav-item dropdown">

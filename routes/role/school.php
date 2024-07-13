@@ -61,6 +61,9 @@ Route::get('school/clock-settings', function(){
 Route::get('school/presence', function(){
     return view('school.pages.attendace.presence');
 })->name('presence.index');
+Route::get('school/presence-student', function(){
+    return view('school.pages.attendace.student');
+})->name('presence-student.index');
 
 
 //alumni
@@ -98,9 +101,14 @@ Route::put('school/update-class-level/{levelClass}', [LevelClassController::clas
 Route::delete('school/delete-class-level/{levelClass}', [LevelClassController::class, 'destroy'])->name('class-level.delete');
 
 // setting informasi
-Route::get('school/settings/information', function(){
+Route::get('school/information', function(){
     return view('school.pages.settings.information');
 })->name('settings-information.index');
+
+// update informasi
+Route::get('school/update-information', function(){
+    return view('school.pages.settings.update-information');
+})->name('update-information.index');
 
 // rfid
 Route::get('school/rfid', function(){
