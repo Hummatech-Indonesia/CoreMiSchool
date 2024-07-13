@@ -268,7 +268,7 @@
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right category-menu" style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate3d(0px, 23.2px, 0px);" data-popper-placement="bottom-end">
-                            <a href="{{ route('detail-teacher.index') }}" class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3">
+                            <a href="{{ route('detail-teacher.index', [$teacher->user->slug]) }}" class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3">
                                 <i class="fs-4 ti ti-eye"></i>Detail
                             </a>
                             <button type="button" class="btn-edit note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3"

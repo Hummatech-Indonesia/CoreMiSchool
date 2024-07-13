@@ -41,4 +41,9 @@ class LevelClassRepository extends BaseRepository implements LevelClassInterface
     {
         return $this->model->query()->where('school_id', $data)->get();
     }
+
+    public function whereSchool(mixed $id): mixed
+    {
+        return $this->model->query()->where('school_id', $id)->latest()->paginate(10);
+    }
 }

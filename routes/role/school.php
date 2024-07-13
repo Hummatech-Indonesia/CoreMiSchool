@@ -7,6 +7,7 @@ use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\Teacher\StaffController;
 use App\Http\Controllers\Teacher\TeacherController;
+use App\Http\Controllers\TeacherMapleController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -26,9 +27,10 @@ Route::post('school/add-teacher', [TeacherController::class, 'store'])->name('te
 Route::put('school/update-teacher/{employee}', [TeacherController::class, 'update'])->name('teacher.update');
 Route::delete('school/delete-teacher/{employee}', [TeacherController::class, 'destroy'])->name('teacher.delete');
 
-Route::get('school/detail-teacher', function(){
-    return view('school.pages.teacher.detail-teacher');
-})->name('detail-teacher.index');
+Route::get('school/detail-teacher/{employee}', [TeacherMapleController::class, 'index'])->name('detail-teacher.index');
+Route::post('school/add-maple-teacher/{employee}', [TeacherMapleController::class, 'store'])->name('maple-teacher.store');
+Route::put('school/update-maple-teacher/{teacherMaple}', [TeacherMapleController::class, 'update'])->name('maple-teacher.update');
+Route::delete('school/delete-maple-teacher/{teacherMaple}', [TeacherMapleController::class, 'destroy'])->name('maple-teacher.delete');
 
 
 //mata pelajaran

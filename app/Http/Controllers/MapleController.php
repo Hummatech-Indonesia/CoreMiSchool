@@ -27,7 +27,7 @@ class MapleController extends Controller
      */
     public function index()
     {
-        $maples = $this->maple->get();
+        $maples = $this->maple->whereSchool(auth()->user()->school->id);
         $religions = $this->religion->get();
         return view('school.pages.subjects.create-subjects', compact('maples', 'religions'));
     }

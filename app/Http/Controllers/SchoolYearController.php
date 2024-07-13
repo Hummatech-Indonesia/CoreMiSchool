@@ -24,7 +24,7 @@ class SchoolYearController extends Controller
      */
     public function index()
     {
-        $schoolYears = $this->schoolYear->get();
+        $schoolYears = $this->schoolYear->whereSchool(auth()->user()->school->id);
         return view('school.pages.school-year.index', compact('schoolYears'));
     }
 

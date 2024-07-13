@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Teacher;
 
 use App\Http\Controllers\Controller;
 use App\Contracts\Interfaces\EmployeeInterface;
+use App\Contracts\Interfaces\MapleInterface;
 use App\Contracts\Interfaces\ReligionInterface;
 use App\Enums\RoleEnum;
 use App\Http\Requests\StoreEmployeeRequest;
@@ -29,7 +30,7 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $teachers = $this->employee->paginate(RoleEnum::TEACHER->value);
+        $teachers = $this->employee->whereSchool(auth()->user()->school->id, RoleEnum::TEACHER->value);
         $religions = $this->religion->get();
         return view('school.pages.teacher.index', compact('teachers', 'religions'));
     }

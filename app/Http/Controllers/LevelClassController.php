@@ -24,7 +24,7 @@ class LevelClassController extends Controller
      */
     public function index()
     {
-        $levelClasses = $this->levelClass->get();
+        $levelClasses = $this->levelClass->whereSchool(auth()->user()->school->id);
         return view('school.pages.class-level.index', compact('levelClasses'));
     }
 
