@@ -7,8 +7,7 @@
                 <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
             </form>
         </div>
-        <button type="button" class="btn mb-1 btn-primary"
-            data-bs-toggle="modal" data-bs-target="#modal-import">
+        <button type="button" class="btn mb-1 btn-primary" data-bs-toggle="modal" data-bs-target="#modal-import">
             Tambah Siswa
         </button>
     </div>
@@ -225,8 +224,10 @@
             <thead class="text-dark fs-4">
                 <tr class="">
                     <th class="fs-4 fw-semibold mb-0">Nama</th>
-                    <th class="fs-4 fw-semibold mb-0">NISN</th>
+                    <th class="fs-4 fw-semibold mb-0">Kelas</th>
                     <th class="fs-4 fw-semibold mb-0">Jenis Kelamin</th>
+                    <th class="fs-4 fw-semibold mb-0">NISN</th>
+                    <th class="fs-4 fw-semibold mb-0">RFID</th>
                     <th class="fs-4 fw-semibold mb-0">Aksi</th>
                 </tr>
             </thead>
@@ -238,8 +239,28 @@
                                 style="object-fit: cover" width="30" height="30" alt="" />
                             {{ $student->user->name }}
                         </td>
-                        <td>{{ $student->nisn }}</td>
+                        <td>Kelas Dumy</td>
                         <td>{{ $student->gender == 'famale' ? 'Perempuan' : 'Laki-laki' }}</td>
+                        <td>{{ $student->nisn }}</td>
+                        <td>
+                            @if ($student->modelHasRfid)
+                                {{ $student->modelHasRfid->rfid }}
+                                <button type="submit" class="btn btn-rounded btn-warning ms-2" data-bs-toggle="modal"
+                                    data-bs-target="#modal-rfid">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                        viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M21 12a1 1 0 0 0-1 1v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h6a1 1 0 0 0 0-2H5a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-6a1 1 0 0 0-1-1m-15 .76V17a1 1 0 0 0 1 1h4.24a1 1 0 0 0 .71-.29l6.92-6.93L21.71 8a1 1 0 0 0 0-1.42l-4.24-4.29a1 1 0 0 0-1.42 0l-2.82 2.83l-6.94 6.93a1 1 0 0 0-.29.71m10.76-8.35l2.83 2.83l-1.42 1.42l-2.83-2.83ZM8 13.17l5.93-5.93l2.83 2.83L10.83 16H8Z" />
+                                    </svg>
+                                </button>
+                            @else
+                                <button type="button" class="btn mb-1 btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#modal-rfid">
+                                    Tambah RFID
+                                </button>
+                            @endif
+                        </td>
+
                         <td>
                             <div class="category-selector btn-group">
                                 <a class="nav-link category-dropdown label-group p-0" data-bs-toggle="dropdown"
@@ -255,6 +276,10 @@
                                 <div class="dropdown-menu dropdown-menu-right category-menu"
                                     style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate3d(0px, 23.2px, 0px);"
                                     data-popper-placement="bottom-end">
+                                    <button data-bs-toggle="modal" data-bs-target="#modal-detail"
+                                        class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3">
+                                        <i class="fs-4 ti ti-eye"></i>Detail
+                                    </button>
                                     <button
                                         class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3 btn-edit"
                                         data-id="{{ $student->id }}" data-name="{{ $student->user->name }}"
@@ -515,6 +540,120 @@
             </div>
         </div>
     </div>
+
+    <!-- tambah rfid -->
+    <div class="modal fade" id="modal-rfid" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="importPegawai">Tambah RFID</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <div class="form-group d-flex">
+                            <h6 for="" class="mb-2">Nama : </h6>
+                            <p class="ms-3">Olivia Rhye</p>
+                        </div>
+                        <div class="form-group">
+                            <h6 for="" class="mb-2">RFID :</h6>
+                            <p>Lakukan tab pada rfid reader untuk menginputkan rfid</p>
+                            <input type="text" class="form-control" placeholder="Masukkan RFID">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-rounded btn-light-danger text-danger"
+                        data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- modal detail -->
+        <div class="modal fade" id="modal-detail" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content modal-lg">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="importPegawai">Detail Siswa</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <div class="row justify-content-center">
+                            <div class="col-12">
+                                <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}"
+                                    class="rounded-circle user-profile mb-3"
+                                    style="object-fit: cover; width: 150px; height: 150px;" alt="User Profile Picture" />
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-12 col-md-6">
+                                <div class="d-flex justify-content-between" style="margin-bottom: 0.5rem;">
+                                    <h6 style="margin-bottom: 0;">Nama:</h6>
+                                    <p class="ms-2" style="margin-bottom: 0;">Suyadi Oke</p>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="d-flex justify-content-between" style="margin-bottom: 0.5rem;">
+                                    <h6 style="margin-bottom: 0;">Email:</h6>
+                                    <p class="ms-2" style="margin-bottom: 0;">suyadi@gmail.com</p>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="d-flex justify-content-between" style="margin-bottom: 0.5rem;">
+                                    <h6 style="margin-bottom: 0;">No Telepon:</h6>
+                                    <p class="ms-2" style="margin-bottom: 0;">089121289098</p>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="d-flex justify-content-between" style="margin-bottom: 0.5rem;">
+                                    <h6 style="margin-bottom: 0;">Jenis Kelamin:</h6>
+                                    <p class="ms-2" style="margin-bottom: 0;">Laki - laki</p>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="d-flex justify-content-between" style="margin-bottom: 0.5rem;">
+                                    <h6 style="margin-bottom: 0;">NIP:</h6>
+                                    <p class="ms-2" style="margin-bottom: 0;">123123123</p>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="d-flex justify-content-between" style="margin-bottom: 0.5rem;">
+                                    <h6 style="margin-bottom: 0;">RFID:</h6>
+                                    <p class="ms-2" style="margin-bottom: 0;">123123123</p>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="d-flex justify-content-between text-start">
+                                    <h6 style="margin-bottom: 0;">Alamat:</h6>
+                                    <p class="ms-2 text-muted text-end text-break" style="margin-bottom: 0;">jl. sembarang,
+                                        desa. opowae, kec. kepanjen, kab. Malang</p>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="d-flex justify-content-between text-start">
+                                    <h6 style="margin-bottom: 0;">Jumlah Mata Pelajaran:</h6>
+                                    <p class="ms-2 text-muted text-break" style="margin-bottom: 0;">4 Mata Pelajaran</p>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-rounded btn-light-danger text-danger"
+                            data-bs-dismiss="modal">Tutup</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     <x-delete-modal-component />
 @endsection
