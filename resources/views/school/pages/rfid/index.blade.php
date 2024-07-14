@@ -2,283 +2,141 @@
 
 @section('content')
 
-
-<ul class="nav nav-tabs" role="tablist">
-    <li class="nav-item" role="presentation">
-        <a class="nav-link px-4 active" data-bs-toggle="tab" href="#student" role="tab" aria-selected="true">
-            <span>Siswa</span>
-        </a>
-    </li>
-    <li class="nav-item" role="presentation">
-        <a class="nav-link px-4" data-bs-toggle="tab" href="#employee" role="tab" aria-selected="false" tabindex="-1">
-            <span>Pegawai</span>
-        </a>
-    </li>
-    <li class="nav-item" role="presentation">
-        <a class="nav-link px-4" data-bs-toggle="tab" href="#teacher" role="tab" aria-selected="false" tabindex="-1">
-            <span>Guru</span>
-        </a>
-    </li>
-</ul>
-
-{{-- tab content --}}
-<div class="tab-content">
-    <div class="tab-pane active" id="student" role="tabpanel">
-        <div class="p-3">
-            <div class="row mt-3 mb-4">
-                <form class="d-flex gap-2">
-                    <div class="position-relative">
-                        <div class="">
-                            <input type="text" name="search" class="form-control search-chat py-2 ps-5" id="search-name" placeholder="Cari">
-                            <i class="ti ti-search position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
-                        </div>
-                    </div>
-
-                    <div class="d-flex gap-2">
-                        <select name="" class="form-select" id="search-status">
-                            <option value="">XI MIPA</option>
-                            <option value="">XI IPS</option>
-                        </select>
-                    </div>
-                </form>
+<div class="card bg-info shadow-none position-relative overflow-hidden">
+    <div class="card-body px-4 py-3">
+        <div class="row align-items-center">
+            <div class="col-9">
+                <h4 class="fw-semibold text-white mb-8">Kartu RFID</h4>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a class="text-white text-decoration-none" href="javascript:void(0)">Daftar - daftar RFID di sekolah</a></li>
+                    </ol>
+                </nav>
             </div>
-
-            <div class="table-responsive rounded-2">
-                <table class="table border text-nowrap customize-table mb-0 align-middle text-center">
-                    <thead>
-                        <tr>
-                            <th>Nama</th>
-                            <th>Kelas</th>
-                            <th>NISN</th>
-                            <th>Email</th>
-                            <th>RFID</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Arya Rizki</td>
-                            <td>SMKN 1 Kepanjen</td>
-                            <td>12345678</td>
-                            <td>arya@gmail.com</td>
-                            <td>1235678</td>
-                            <td>
-                                <button class="btn btn-primary me-2">RFID</button>
-                                <button type="button" class="btn btn-danger btn-sm">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 12 12">
-                                        <path fill="#ffffff" d="M5 3h2a1 1 0 0 0-2 0M4 3a2 2 0 1 1 4 0h2.5a.5.5 0 0 1 0 1h-.441l-.443 5.17A2 2 0 0 1 7.623 11H4.377a2 2 0 0 1-1.993-1.83L1.941 4H1.5a.5.5 0 0 1 0-1zm3.5 3a.5.5 0 0 0-1 0v2a.5.5 0 0 0 1 0zM5 5.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5M3.38 9.085a1 1 0 0 0 .997.915h3.246a1 1 0 0 0 .996-.915L9.055 4h-6.11z" /></svg>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Arya Rizki</td>
-                            <td>SMKN 1 Kepanjen</td>
-                            <td>12345678</td>
-                            <td>arya@gmail.com</td>
-                            <td>1235678</td>
-                            <td>
-                                <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#modal-create-student">Tambah RFID</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <div class="tab-pane p-3" id="employee" role="tabpanel">
-        <div class="row mt-3 mb-4">
-            <form class="d-flex gap-2">
-                <div class="position-relative">
-                    <div class="">
-                        <input type="text" name="search" class="form-control search-chat py-2 ps-5" id="search-name" placeholder="Cari">
-                        <i class="ti ti-search position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
-                    </div>
+            <div class="col-3">
+                <div class="text-center mb-n5">
+                    <img src="{{ asset('admin_assets/dist/images/breadcrumb/ChatBc.png') }}" alt="" class="img-fluid mb-n4">
                 </div>
-
-                <div class="d-flex gap-2">
-                    <select name="" class="form-select" id="search-status">
-                        <option value="">pegawai</option>
-                        <option value="">guru</option>
-                    </select>
-                </div>
-            </form>
-        </div>
-
-        <div class="table-responsive rounded-2">
-            <table class="table border text-nowrap customize-table mb-0 align-middle text-center">
-                <thead>
-                    <tr>
-                        <th>Nama</th>
-                        <th>Kelas</th>
-                        <th>NISN</th>
-                        <th>Email</th>
-                        <th>RFID</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Arya Rizki</td>
-                        <td>SMKN 1 Kepanjen</td>
-                        <td>12345678</td>
-                        <td>arya@gmail.com</td>
-                        <td>1235678</td>
-                        <td>
-                            <button class="btn btn-primary me-2">RFID</button>
-                            <button type="button" class="btn btn-danger btn-sm">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 12 12">
-                                    <path fill="#ffffff" d="M5 3h2a1 1 0 0 0-2 0M4 3a2 2 0 1 1 4 0h2.5a.5.5 0 0 1 0 1h-.441l-.443 5.17A2 2 0 0 1 7.623 11H4.377a2 2 0 0 1-1.993-1.83L1.941 4H1.5a.5.5 0 0 1 0-1zm3.5 3a.5.5 0 0 0-1 0v2a.5.5 0 0 0 1 0zM5 5.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5M3.38 9.085a1 1 0 0 0 .997.915h3.246a1 1 0 0 0 .996-.915L9.055 4h-6.11z" /></svg>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Arya Rizki</td>
-                        <td>SMKN 1 Kepanjen</td>
-                        <td>12345678</td>
-                        <td>arya@gmail.com</td>
-                        <td>1235678</td>
-                        <td>
-                            <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#modal-create-employee">Tambah RFID</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="tab-pane p-3" id="teacher" role="tabpanel">
-        <div class="row mt-3 mb-4">
-            <form class="d-flex gap-2">
-                <div class="position-relative">
-                    <div class="">
-                        <input type="text" name="search" class="form-control search-chat py-2 ps-5" id="search-name" placeholder="Cari">
-                        <i class="ti ti-search position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
-                    </div>
-                </div>
-
-                <div class="d-flex gap-2">
-                    <select name="" class="form-select" id="search-status">
-                        <option value="">pegawai</option>
-                        <option value="">guru</option>
-                    </select>
-                </div>
-            </form>
-        </div>
-
-        <div class="table-responsive rounded-2">
-            <table class="table border text-nowrap customize-table mb-0 align-middle text-center">
-                <thead>
-                    <tr>
-                        <th>Nama</th>
-                        <th>Kelas</th>
-                        <th>NISN</th>
-                        <th>Email</th>
-                        <th>RFID</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Arya Rizki</td>
-                        <td>SMKN 1 Kepanjen</td>
-                        <td>12345678</td>
-                        <td>arya@gmail.com</td>
-                        <td>1235678</td>
-                        <td>
-                            <button class="btn btn-primary me-2">RFID</button>
-                            <button type="button" class="btn btn-danger btn-sm">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 12 12">
-                                    <path fill="#ffffff" d="M5 3h2a1 1 0 0 0-2 0M4 3a2 2 0 1 1 4 0h2.5a.5.5 0 0 1 0 1h-.441l-.443 5.17A2 2 0 0 1 7.623 11H4.377a2 2 0 0 1-1.993-1.83L1.941 4H1.5a.5.5 0 0 1 0-1zm3.5 3a.5.5 0 0 0-1 0v2a.5.5 0 0 0 1 0zM5 5.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5M3.38 9.085a1 1 0 0 0 .997.915h3.246a1 1 0 0 0 .996-.915L9.055 4h-6.11z" /></svg>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Arya Rizki</td>
-                        <td>SMKN 1 Kepanjen</td>
-                        <td>12345678</td>
-                        <td>arya@gmail.com</td>
-                        <td>1235678</td>
-                        <td>
-                            <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#modal-create-employee">Tambah RFID</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="modal-create-student" tabindex="-1" aria-labelledby="tambahRfid" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="tambahRfid">Tambah RFID</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="mb-3">
-                    <span class="text-dark fw-semibold me-2">Nama :</span>
-                    Arya Rizki
-                </div>
-                <div class="mb-3">
-                    <span class="text-dark fw-semibold me-2">Email :</span>
-                    arya@gmail.com
-                </div>
-                <div class="mb-3">
-                    <span class="text-dark fw-semibold me-2">RFID :</span>
-                </div>
-                <div class="mb-3">
-                    Lakukan tab pada rfid reader untuk menginputkan rfid
-                </div>
-                <div>
-                    <input type="text" class="form-control">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-rounded btn-light-danger text-danger" data-bs-dismiss="modal">Tutup</button>
-                <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
             </div>
         </div>
     </div>
 </div>
 
+{{-- <div class="">
+    <span class="mb-1 badge font-medium bg-light-success text-success me-2">Digunakan: {{ $usedRfids->count() }}</span>
+<span class="mb-1 badge font-medium bg-light-danger text-danger">Belum Digunakan: {{ $notUsedRfids->count() }}</span>
+</div> --}}
 
-<div class="modal fade" id="modal-create-employee" tabindex="-1" aria-labelledby="tambahRfid" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="tambahRfid">Tambah RFID</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="mb-3">
-                    <span class="text-dark fw-semibold me-2">Nama :</span>
-                    Arya Rizki
-                </div>
-                <div class="mb-3">
-                    <span class="text-dark fw-semibold me-2">Email :</span>
-                    arya@gmail.com
-                </div>
-                <div class="mb-3">
-                    <span class="text-dark fw-semibold me-2">Status :</span>
-                    Pegawai
-                </div>
-                <div class="mb-3">
-                    <span class="text-dark fw-semibold me-2">RFID :</span>
-                </div>
-                <div class="mb-3">
-                    Lakukan tab pada rfid reader untuk menginputkan rfid
-                </div>
-                <div>
-                    <input type="text" class="form-control">
+
+<div class="row mt-5 mb-4">
+    <div class="col-lg-4 mb-3">
+        <form class="d-flex gap-2">
+            <div class="position-relative">
+                <div class="">
+                    <input type="text" name="search" class="form-control search-chat py-2 px-5 ps-5" id="search-name" placeholder="Cari">
+                    <i class="ti ti-search position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-rounded btn-light-danger text-danger" data-bs-dismiss="modal">Tutup</button>
-                <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
+
+            <div class="d-flex gap-2">
+                <select name="" class="form-select" id="search-status">
+                    <option value="">Digunakan</option>
+                    <option value="">Belum Digunakan</option>
+                </select>
+                <select name="" class="form-select" id="">
+                    <option value="">Tampilkan semua</option>
+                    <option value="">Terbaru</option>
+                    <option value="">Terlama</option>
+                </select>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 
+<div class="mt-2">
+    <div class="table-responsive rounded-2">
+        <table class="table border text-nowrap customize-table mb-0 align-middle text-center">
+            <thead>
+                <tr>
+                    <th>Nomor RFID</th>
+                    <th>Pengguna</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse (range(1,4) as $rfid)
+                <tr>
+                    <td>1234567</td>
+                    <td>-</td>
+                    <td>
+                        <span class="mb-1 badge px-4 font-medium bg-light-danger text-danger">Belum Digunakan</span>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-sm btn-danger btn-delete" data-id="1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24">
+                                <path fill="#ffffff" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z" /></svg>
+                        </button>
+                    </td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="4">Belum ada RFID</td>
+                </tr>
+                @endforelse
+
+                @forelse (range(1,3) as $rfid)
+                <tr>
+                    <td>1234567</td>
+                    <td>Suyadi Oke</td>
+                    <td>
+                        <span class="mb-1 badge px-5 font-medium bg-light-success text-success">Aktif</span>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-sm btn-danger btn-delete" data-id="1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24">
+                                <path fill="#ffffff" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z" /></svg>
+                        </button>
+                    </td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="4">Belum ada RFID</td>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-create" tabindex="-1" aria-labelledby="tambahRfid" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="" method="post">
+            @csrf
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tambahRfid">Tambah RFID</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <span class="text-dark fw-semibold me-2">RFID :</span>
+                    </div>
+                    <div class="mb-3">
+                        Anda juga bisa melakukan tab ke rfid reader untuk menginputkan rfid
+                    </div>
+                    <div>
+                        <input type="text" name="rfid" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-rounded btn-light-danger text-danger" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-rounded btn-light-success text-success">Tambah</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<x-delete-modal-component />
 
 @endsection
