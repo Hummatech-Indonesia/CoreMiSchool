@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\RfidInterface;
-use App\Enums\RfidStatusEnum;
 use App\Models\Rfid;
 use App\Http\Requests\StoreRfidRequest;
 use App\Http\Requests\UpdateRfidRequest;
@@ -40,8 +39,12 @@ class RfidController extends Controller
      */
     public function store(StoreRfidRequest $request)
     {
-        $this->rfid->store($request->validated());
-        return redirect()->back()->with('success', 'Berhasil mendaftarkan RFID');
+        try {
+            $this->rfid->store($request->validated());
+            return redirect()->back()->with('success', 'Berhasil mendaftarkan RFID');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('warning', 'RFID sudah tersedia');
+        }
     }
 
     /**
@@ -65,8 +68,12 @@ class RfidController extends Controller
      */
     public function update(UpdateRfidRequest $request, Rfid $rfid)
     {
-        $this->rfid->update($request, $rfid->id);
-        return redirect()->back()->with('success', 'Berhasil memperbarui RFID');
+        try {
+            $this->rfid->update($request, $rfid->id);
+            return redirect()->back()->with('success', 'Berhasil memperbarui RFID');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('warning', 'RFID sudah tersedia');
+        }
     }
 
     /**

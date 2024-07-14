@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/admin', function () {
     return view('admin.pages.dashboard');
-});
+})->name('admin.dashboard');
 
 Route::get('admin/rfid', [RfidController::class, 'index'])->name('rfid-admin.index');
 Route::post('admin/rfid', [RfidController::class, 'store'])->name('rfid-admin.store');
