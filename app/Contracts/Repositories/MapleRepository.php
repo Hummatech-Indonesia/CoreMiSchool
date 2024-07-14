@@ -26,7 +26,7 @@ class MapleRepository extends BaseRepository implements MapleInterface
     {
         return $this->model->query()->findOrFail($id);
     }
-    
+
     public function update(mixed $id, array $data): mixed
     {
         return $this->model->query()->findOrFail($id)->update($data);
@@ -40,5 +40,10 @@ class MapleRepository extends BaseRepository implements MapleInterface
     public function paginate() : mixed
     {
         return $this->model->query()->latest()->paginate(10);
+    }
+
+    public function whereSchool(mixed $id): mixed
+    {
+        return $this->model->query()->where('school_id', $id)->latest()->paginate(10);
     }
 }

@@ -26,7 +26,7 @@ class SchoolYearRepository extends BaseRepository implements SchoolYearInterface
     {
         return $this->model->query()->findOrFail($id);
     }
-    
+
     public function update(mixed $id, array $data): mixed
     {
         return $this->model->query()->findOrFail($id)->update($data);
@@ -41,9 +41,14 @@ class SchoolYearRepository extends BaseRepository implements SchoolYearInterface
     {
         return $this->model->query()->latest()->paginate(10);
     }
-    
+
     public function where(mixed $data): mixed
     {
         return $this->model->query()->where('school_id', $data)->get();
+    }
+
+    public function whereSchool(mixed $id): mixed
+    {
+        return $this->model->query()->where('school_id', $id)->latest()->paginate(10);
     }
 }

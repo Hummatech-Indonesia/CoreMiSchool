@@ -2,7 +2,7 @@
 
 namespace App\Contracts\Interfaces\Eloquent;
 
-interface WhereUserIdInterface
+interface WhereSchoolInterface
 {
     /**
      * Handle get data where user_id from models.
@@ -12,5 +12,5 @@ interface WhereUserIdInterface
      * @return mixed
      */
 
-    public function whereUserId(mixed $id): mixed;
+    public function whereSchool(mixed $id): mixed;
 }

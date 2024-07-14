@@ -23,7 +23,6 @@ class StoreTeacherMapleRequest extends FormRequest
     {
         return [
             'maple_id' => 'required',
-            'employee_id' => 'required',
             'school_year_id' => 'required'
         ];
     }
@@ -37,7 +36,6 @@ class StoreTeacherMapleRequest extends FormRequest
     {
         return [
             'maple_id.required' => 'ID mapel wajib diisi.',
-            'employee_id.required' => 'ID karyawan wajib diisi.',
             'school_year_id.required' => 'ID tahun ajaran wajib diisi.',
         ];
     }

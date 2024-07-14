@@ -102,7 +102,7 @@
                                     }
                                 @endphp
                                 <tr>
-                                    <td>{{ $hasRfid ? $hasRfid->model->user->name : '-' }}</td>
+                                    <td>{{ $rfid->status->value == 'used' && $hasRfid ? $hasRfid->model->user->name : '-' }}</td>
                                     <td>{{ $rfid->rfid }}</td>
                                     <td>
                                         <span class="mb-1 badge px-4 font-medium bg-light-{{ $rfid->status->color() }} text-{{ $rfid->status->color() }}">{{ $rfid->status->label() }}</span>

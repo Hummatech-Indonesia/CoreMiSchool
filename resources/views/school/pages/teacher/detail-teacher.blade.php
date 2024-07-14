@@ -32,87 +32,29 @@
 </div>
 
 <div class="row">
-    <div class="col-lg-3">
-        <div class="card card-body bg-transparent border-2 shadow-none">
-            <div class="text-center">
-                <h5>Pendidikan Kewarganegaraan</h5>
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="me-1" width="14" height="14" viewBox="0 0 24 24"><path fill="none" stroke="#5A6A85" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 4V2m0 2v2m0-2h-4.5M3 10v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-9zm0 0V6a2 2 0 0 1 2-2h2m0-2v4m14 4V6a2 2 0 0 0-2-2h-.5"/></svg>
-                    2023/2024
-                </div>
-                <div class="mt-2">
-                    <button type="button" class="btn mb-1 btn-light-danger text-danger">
-                        Hapus
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3">
-        <div class="card card-body bg-transparent border-2 shadow-none">
-            <div class="text-center">
-                <h5>Pendidikan Kewarganegaraan</h5>
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="me-1" width="14" height="14" viewBox="0 0 24 24"><path fill="none" stroke="#5A6A85" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 4V2m0 2v2m0-2h-4.5M3 10v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-9zm0 0V6a2 2 0 0 1 2-2h2m0-2v4m14 4V6a2 2 0 0 0-2-2h-.5"/></svg>
-                    2023/2024
-                </div>
-                <div class="mt-2">
-                    <button type="button" class="btn mb-1 btn-light-danger text-danger">
-                        Hapus
-                    </button>
+    @forelse ($teacherMaples as $teacherMaple)
+        <div class="col-lg-3">
+            <div class="card card-body bg-transparent border-2 shadow-none">
+                <div class="text-center">
+                    <h5>{{ $teacherMaple->maple->name }}</h5>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="me-1" width="14" height="14" viewBox="0 0 24 24"><path fill="none" stroke="#5A6A85" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 4V2m0 2v2m0-2h-4.5M3 10v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-9zm0 0V6a2 2 0 0 1 2-2h2m0-2v4m14 4V6a2 2 0 0 0-2-2h-.5"/></svg>
+                        {{ $teacherMaple->schoolYear->school_year }}
+                    </div>
+                    <div class="mt-2">
+                        <button type="button" class="btn btn-delete mb-1 btn-light-danger text-danger" data-id="{{ $teacherMaple->id }}">
+                            Hapus
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-lg-3">
-        <div class="card card-body bg-transparent border-2 shadow-none">
-            <div class="text-center">
-                <h5>Pendidikan Kewarganegaraan</h5>
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="me-1" width="14" height="14" viewBox="0 0 24 24"><path fill="none" stroke="#5A6A85" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 4V2m0 2v2m0-2h-4.5M3 10v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-9zm0 0V6a2 2 0 0 1 2-2h2m0-2v4m14 4V6a2 2 0 0 0-2-2h-.5"/></svg>
-                    2023/2024
-                </div>
-                <div class="mt-2">
-                    <button type="button" class="btn mb-1 btn-light-danger text-danger">
-                        Hapus
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3">
-        <div class="card card-body bg-transparent border-2 shadow-none">
-            <div class="text-center">
-                <h5>Pendidikan Kewarganegaraan</h5>
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="me-1" width="14" height="14" viewBox="0 0 24 24"><path fill="none" stroke="#5A6A85" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 4V2m0 2v2m0-2h-4.5M3 10v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-9zm0 0V6a2 2 0 0 1 2-2h2m0-2v4m14 4V6a2 2 0 0 0-2-2h-.5"/></svg>
-                    2023/2024
-                </div>
-                <div class="mt-2">
-                    <button type="button" class="btn mb-1 btn-light-danger text-danger">
-                        Hapus
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3">
-        <div class="card card-body bg-transparent border-2 shadow-none">
-            <div class="text-center">
-                <h5>Pendidikan Kewarganegaraan</h5>
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="me-1" width="14" height="14" viewBox="0 0 24 24"><path fill="none" stroke="#5A6A85" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 4V2m0 2v2m0-2h-4.5M3 10v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-9zm0 0V6a2 2 0 0 1 2-2h2m0-2v4m14 4V6a2 2 0 0 0-2-2h-.5"/></svg>
-                    2023/2024
-                </div>
-                <div class="mt-2">
-                    <button type="button" class="btn mb-1 btn-light-danger text-danger">
-                        Hapus
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+    @empty
+    <h5>Data Kosong</h5>
+    @endforelse
 </div>
+
+<x-delete-modal-component/>
 
 <div class="modal fade" id="modal-create-subjectTeacher" tabindex="-1" aria-labelledby="tambahPelajaran" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -121,30 +63,46 @@
                 <h5 class="modal-title" id="tambahPelajaran">Tambah Pelajaran Guru</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <form action="">
+            <form action="{{ route('maple-teacher.store', [$employee_id]) }}" method="POST" enctype="multipart/form-data">
+                @method('post')
+                @csrf
+                <div class="modal-body">
                     <div class="mb-3">
                         <label for="">Pilih Pelajaran</label>
-                        <select class="form-select form-select mb-3">
-                            <option value="">Pendidikan Kewarganegaraan</option>
-                            <option value="">Ilmu Pengetahuan Alam</option>
-                            <option value="">Matematika</option>
+                        <select class="form-select form-select mb-3" name="maple_id">
+                            <option value="">Pilih Mata Pelajaran</option>
+                            @foreach ($maples as $maple)
+                                <option value="{{ $maple->id }}">{{ $maple->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="">Tahun Ajaran</label>
-                        <select class="form-select form-select mb-3">
-                            <option value="">2023/2024</option>
-                            <option value="">2024/2025</option>
+                        <select class="form-select form-select mb-3" name="school_year_id">
+                            <option value="">Pilih Tahun Ajaran</option>
+                            @foreach ($schoolYears as $schoolYear)
+                                <option value="{{ $schoolYear->id }}">{{ $schoolYear->school_year }}</option>
+                            @endforeach
                         </select>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
+@endsection
+
+@section('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $('.btn-delete').on('click', function() {
+        var id = $(this).data('id');
+        $('#form-delete').attr('action', '/school/delete-maple-teacher/' + id);
+        $('#modal-delete').modal('show');
+    });
+</script>
 @endsection

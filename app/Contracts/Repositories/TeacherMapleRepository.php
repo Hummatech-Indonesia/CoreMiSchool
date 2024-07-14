@@ -26,7 +26,7 @@ class TeacherMapleRepository extends BaseRepository implements TeacherMapleInter
     {
         return $this->model->query()->findOrFail($id);
     }
-    
+
     public function update(mixed $id, array $data): mixed
     {
         return $this->model->query()->findOrFail($id)->update($data);
@@ -40,5 +40,10 @@ class TeacherMapleRepository extends BaseRepository implements TeacherMapleInter
     public function paginate() : mixed
     {
         return $this->model->query()->latest()->paginate(10);
+    }
+
+    public function where(mixed $data): mixed
+    {
+        return $this->model->query()->whereIn('employee_id', $data)->latest()->paginate(10);
     }
 }
