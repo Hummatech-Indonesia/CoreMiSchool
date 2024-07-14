@@ -55,7 +55,7 @@
         </div>
     </div>
     <div class="item">
-        <div class="card border-0 zoom-in bg-light-info shadow-none">
+        <div class="card border-0 zoom-in bg-light-danger shadow-none">
             <div class="card-body">
                 <div class="text-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="text-danger" width="60" height="60" viewBox="0 0 24 24">
@@ -64,19 +64,19 @@
                             <path d="M6 10.6V16c0 1.657 2.686 3 6 3c2.334 0 4.357-.666 5.35-1.64M18 14v-3.4M3 3l18 18"></path>
                         </g>
                     </svg>
-                    <p class="fw-semibold fs-3 text-info mb-1">Projects</p>
-                    <h5 class="fw-semibold text-info mb-0">356</h5>
+                    <p class="fw-semibold fs-3 text-danger mb-1">Sekolah Nonactive</p>
+                    <h5 class="fw-semibold text-danger mb-0">356</h5>
                 </div>
             </div>
         </div>
     </div>
     <div class="item">
-        <div class="card border-0 zoom-in bg-light-danger shadow-none">
+        <div class="card border-0 zoom-in bg-light-info shadow-none">
             <div class="card-body">
                 <div class="text-center">
-                    <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-favorites.svg" width="50" height="50" class="mb-3" alt="">
-                    <p class="fw-semibold fs-3 text-danger mb-1">Events</p>
-                    <h5 class="fw-semibold text-danger mb-0">696</h5>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 14 14"><path fill="#5D87FF" fill-rule="evenodd" d="M6.375 1.653C5.386 1.099 3.536.42 1.496.179C.674.082 0 .76 0 1.588v8c0 .829.677 1.489 1.492 1.637c1.84.334 3.371 1.216 4.348 1.914c.164.117.345.205.535.266zm1.25 11.752c.19-.06.37-.149.534-.265c.977-.698 2.508-1.581 4.349-1.915c.815-.148 1.492-.808 1.492-1.637v-8C14 .76 13.326.082 12.504.18c-2.04.242-3.89.92-4.879 1.474v11.752Z" clip-rule="evenodd"/></svg>
+                    <p class="fw-semibold fs-3 text-info mb-1">Guru</p>
+                    <h5 class="fw-semibold text-info mb-0">696</h5>
                 </div>
             </div>
         </div>
