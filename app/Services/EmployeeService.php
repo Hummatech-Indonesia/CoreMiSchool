@@ -69,8 +69,11 @@ class EmployeeService
         return $data;
     }
 
-    public function delete(Student $student)
+    public function delete(Employee $employee)
     {
-        //
+        if ($employee->image != null) {
+            $this->remove($employee->image);
+        }
+        $employee->user->delete();
     }
 }

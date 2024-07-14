@@ -460,121 +460,120 @@
     </div>
 </div>
 
-
-    <!-- tambah rfid -->
-    <div class="modal fade" id="modal-rfid" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="importPegawai">Tambah RFID</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <div class="form-group d-flex">
-                            <h6 for="" class="mb-2">Nama : </h6>
-                            <p class="ms-3">Olivia Rhye</p>
-                        </div>
-                        <div class="form-group">
-                            <h6 for="" class="mb-2">RFID :</h6>
-                            <p>Lakukan tab pada rfid reader untuk menginputkan rfid</p>
-                            <input type="text" class="form-control" placeholder="Masukkan RFID">
-                        </div>
+<!-- tambah rfid -->
+<div class="modal fade" id="modal-rfid" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="importPegawai">Tambah RFID</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <div class="form-group d-flex">
+                        <h6 for="" class="mb-2">Nama : </h6>
+                        <p class="ms-3">Olivia Rhye</p>
+                    </div>
+                    <div class="form-group">
+                        <h6 for="" class="mb-2">RFID :</h6>
+                        <p>Lakukan tab pada rfid reader untuk menginputkan rfid</p>
+                        <input type="text" class="form-control" placeholder="Masukkan RFID">
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-rounded btn-light-danger text-danger"
-                        data-bs-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-rounded btn-light-danger text-danger"
+                    data-bs-dismiss="modal">Tutup</button>
+                <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- modal detail -->
-    <div class="modal fade" id="modal-detail" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content modal-lg">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="importPegawai">Detail</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <div class="row justify-content-center">
-                        <div class="col-12">
-                            <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}"
-                                class="rounded-circle user-profile mb-3"
-                                style="object-fit: cover; width: 150px; height: 150px;" alt="User Profile Picture" />
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-12 col-md-6">
-                            <div class="d-flex justify-content-between" style="margin-bottom: 0.5rem;">
-                                <h6 style="margin-bottom: 0;">Nama:</h6>
-                                <p class="ms-2" style="margin-bottom: 0;">Suyadi Oke</p>
-                            </div>
-                            <hr>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <div class="d-flex justify-content-between" style="margin-bottom: 0.5rem;">
-                                <h6 style="margin-bottom: 0;">Email:</h6>
-                                <p class="ms-2" style="margin-bottom: 0;">suyadi@gmail.com</p>
-                            </div>
-                            <hr>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <div class="d-flex justify-content-between" style="margin-bottom: 0.5rem;">
-                                <h6 style="margin-bottom: 0;">No Telepon:</h6>
-                                <p class="ms-2" style="margin-bottom: 0;">089121289098</p>
-                            </div>
-                            <hr>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <div class="d-flex justify-content-between" style="margin-bottom: 0.5rem;">
-                                <h6 style="margin-bottom: 0;">Jenis Kelamin:</h6>
-                                <p class="ms-2" style="margin-bottom: 0;">Laki - laki</p>
-                            </div>
-                            <hr>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <div class="d-flex justify-content-between" style="margin-bottom: 0.5rem;">
-                                <h6 style="margin-bottom: 0;">NIP:</h6>
-                                <p class="ms-2" style="margin-bottom: 0;">123123123</p>
-                            </div>
-                            <hr>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <div class="d-flex justify-content-between" style="margin-bottom: 0.5rem;">
-                                <h6 style="margin-bottom: 0;">RFID:</h6>
-                                <p class="ms-2" style="margin-bottom: 0;">123123123</p>
-                            </div>
-                            <hr>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <div class="d-flex justify-content-between text-start">
-                                <h6 style="margin-bottom: 0;">Alamat:</h6>
-                                <p class="ms-2 text-muted text-end text-break" style="margin-bottom: 0;">jl. sembarang,
-                                    desa. opowae, kec. kepanjen, kab. Malang</p>
-                            </div>
-                            <hr>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <div class="d-flex justify-content-between text-start">
-                                <h6 style="margin-bottom: 0;">Jumlah Mata Pelajaran:</h6>
-                                <p class="ms-2 text-muted text-break" style="margin-bottom: 0;">4 Mata Pelajaran</p>
-                            </div>
-                            <hr>
-                        </div>
+<!-- modal detail -->
+<div class="modal fade" id="modal-detail" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h5 class="modal-title" id="importPegawai">Detail</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}"
+                            class="rounded-circle user-profile mb-3"
+                            style="object-fit: cover; width: 150px; height: 150px;" alt="User Profile Picture" />
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-rounded btn-light-danger text-danger"
-                        data-bs-dismiss="modal">Tutup</button>
+                <div class="row mt-3">
+                    <div class="col-12 col-md-6">
+                        <div class="d-flex justify-content-between" style="margin-bottom: 0.5rem;">
+                            <h6 style="margin-bottom: 0;">Nama:</h6>
+                            <p class="ms-2" style="margin-bottom: 0;">Suyadi Oke</p>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="d-flex justify-content-between" style="margin-bottom: 0.5rem;">
+                            <h6 style="margin-bottom: 0;">Email:</h6>
+                            <p class="ms-2" style="margin-bottom: 0;">suyadi@gmail.com</p>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="d-flex justify-content-between" style="margin-bottom: 0.5rem;">
+                            <h6 style="margin-bottom: 0;">No Telepon:</h6>
+                            <p class="ms-2" style="margin-bottom: 0;">089121289098</p>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="d-flex justify-content-between" style="margin-bottom: 0.5rem;">
+                            <h6 style="margin-bottom: 0;">Jenis Kelamin:</h6>
+                            <p class="ms-2" style="margin-bottom: 0;">Laki - laki</p>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="d-flex justify-content-between" style="margin-bottom: 0.5rem;">
+                            <h6 style="margin-bottom: 0;">NIP:</h6>
+                            <p class="ms-2" style="margin-bottom: 0;">123123123</p>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="d-flex justify-content-between" style="margin-bottom: 0.5rem;">
+                            <h6 style="margin-bottom: 0;">RFID:</h6>
+                            <p class="ms-2" style="margin-bottom: 0;">123123123</p>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="d-flex justify-content-between text-start">
+                            <h6 style="margin-bottom: 0;">Alamat:</h6>
+                            <p class="ms-2 text-muted text-end text-break" style="margin-bottom: 0;">jl. sembarang,
+                                desa. opowae, kec. kepanjen, kab. Malang</p>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="d-flex justify-content-between text-start">
+                            <h6 style="margin-bottom: 0;">Jumlah Mata Pelajaran:</h6>
+                            <p class="ms-2 text-muted text-break" style="margin-bottom: 0;">4 Mata Pelajaran</p>
+                        </div>
+                        <hr>
+                    </div>
                 </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-rounded btn-light-danger text-danger"
+                    data-bs-dismiss="modal">Tutup</button>
             </div>
         </div>
     </div>
-    
+</div>
+
 @endsection
 
 @section('script')

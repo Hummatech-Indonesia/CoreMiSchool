@@ -308,7 +308,6 @@
     </div>
 </div>
 
-<!-- modal edit -->
 <div class="modal fade" id="modal-update" tabindex="-1" aria-labelledby="editPegawaiLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -464,6 +463,9 @@
     </div>
 </div>
 
+<x-delete-modal-component/>
+
+
 @endsection
 
 @section('script')
@@ -497,6 +499,13 @@
         $('#status-edit').val(status).trigger('change');
         $('#modal-update').modal('show');
     });
+
+    $('.btn-delete').on('click', function() {
+        var id = $(this).data('id');
+        $('#form-delete').attr('action', '/school/delete-employee/' + id);
+        $('#modal-delete').modal('show');
+    });
+
 </script>
 
 <script src="{{ asset('admin_assets/dist/libs/jquery-steps/build/jquery.steps.min.js') }}"></script>

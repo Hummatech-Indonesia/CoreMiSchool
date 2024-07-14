@@ -26,7 +26,7 @@ class UserRepository extends BaseRepository implements UserInterface
     {
         return $this->model->query()->findOrFail($id);
     }
-    
+
     public function update(mixed $id, array $data): mixed
     {
         return $this->model->query()->findOrFail($id)->update($data);
@@ -40,5 +40,10 @@ class UserRepository extends BaseRepository implements UserInterface
     public function paginate() : mixed
     {
         return $this->model->query()->latest()->paginate(10);
+    }
+
+    public function showWithSlug(string $slug): mixed
+    {
+        return $this->model->query()->where('slug', $slug)->firstOrFail();
     }
 }

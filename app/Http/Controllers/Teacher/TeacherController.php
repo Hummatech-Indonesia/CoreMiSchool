@@ -4,22 +4,26 @@ namespace App\Http\Controllers\Teacher;
 
 use App\Http\Controllers\Controller;
 use App\Contracts\Interfaces\EmployeeInterface;
-use App\Contracts\Interfaces\MapleInterface;
 use App\Contracts\Interfaces\ReligionInterface;
+use App\Contracts\Interfaces\UserInterface;
 use App\Enums\RoleEnum;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
 use App\Models\Employee;
 use App\Services\TeacherService;
+use Illuminate\Support\Str;
+
 
 class TeacherController extends Controller
 {
+    private UserInterface $user;
     private EmployeeInterface $employee;
     private TeacherService $service;
     private ReligionInterface $religion;
 
-    public function __construct(EmployeeInterface $employee, TeacherService $service, ReligionInterface $religion)
+    public function __construct(UserInterface $user, EmployeeInterface $employee, TeacherService $service, ReligionInterface $religion)
     {
+        $this->user = $user;
         $this->employee = $employee;
         $this->service = $service;
         $this->religion = $religion;
@@ -48,9 +52,18 @@ class TeacherController extends Controller
      */
     public function store(StoreEmployeeRequest $request)
     {
-        $data = $this->service->store($request);
-        $this->employee->store($data);
-        return redirect()->back()->with('success', 'Berhasil menambahkan data guru');
+        try {
+            $data = $this->service->store($request);
+            $this->employee->store($data);
+            return redirect()->back()->with('success', 'Berhasil menambahkan data guru');
+        } catch (\Throwable $th) {
+            $data = $this->user->showWithSlug(Str::slug($request->name));
+            if ($data) {
+                return redirect()->back()->with('warning', 'Data guru sudah tersedia');
+            } else {
+                return redirect()->back()->with('error', 'Kesalahan menambahkan data guru');
+            }
+        }
     }
 
     /**
@@ -74,9 +87,18 @@ class TeacherController extends Controller
      */
     public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
-        $data = $this->service->update($employee, $request);
-        $this->employee->update($employee->id, $data);
-        return redirect()->back()->with('success', 'Berhasil memperbaiki guru');
+        try {
+            $data = $this->service->update($employee, $request);
+            $this->employee->update($employee->id, $data);
+            return redirect()->back()->with('success', 'Berhasil memperbaiki guru');
+        } catch (\Throwable $th) {
+            $data = $this->user->showWithSlug(Str::slug($request->name));
+            if ($data) {
+                return redirect()->back()->with('warning', 'Data guru sudah tersedia');
+            } else {
+                return redirect()->back()->with('error', 'Kesalahan menambahkan data guru');
+            }
+        }
     }
 
     /**
@@ -84,7 +106,8 @@ class TeacherController extends Controller
      */
     public function destroy(Employee $employee)
     {
+        $this->service->delete($employee);
         $this->employee->delete($employee->id);
-        return redirect();
+        return redirect()->back()->with('success', 'Data guru berhasil dihapus');
     }
 }
