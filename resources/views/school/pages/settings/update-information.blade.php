@@ -87,7 +87,7 @@
                     </div>
 
                     <div class="text-end">
-                        <a href="{{ route('school/information') }}" class="btn btn-primary me-2">Kembali</a>
+                        <a href="{{ route('settings-information.index') }}" class="btn btn-primary me-2">Kembali</a>
                         <button type="submit" class="btn btn-success">Simpan</button>
                     </div>
                 </div>
