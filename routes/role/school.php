@@ -118,3 +118,8 @@ Route::get('school/update-information', function(){
 Route::get('school/rfid', function(){
     return view('school.pages.rfid.index');
 })->name('rfid.index');
+
+// rfid aktif
+Route::get('school/rfid-active', function(){
+    return view('school.pages.rfid.rfid-active');
+})->name('rfid-active.index');
