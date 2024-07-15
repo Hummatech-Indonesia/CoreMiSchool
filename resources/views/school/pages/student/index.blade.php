@@ -642,8 +642,7 @@
                         <div class="col-12 col-md-6">
                             <div class="d-flex text-start">
                                 <h6 style="margin-bottom: 0;">Alamat:</h6>
-                                <p class="ms-2 text-muted text-break" style="margin-bottom: 0;">jl. sembarang,
-                                    desa. opowae, kec. kepanjen, kab. Malang</p>
+                                <p class="ms-2 text-muted text-break" style="margin-bottom: 0;" id="address-detail"></p>
                             </div>
                             <hr>
                         </div>

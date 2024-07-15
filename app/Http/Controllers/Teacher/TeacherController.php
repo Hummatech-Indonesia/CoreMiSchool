@@ -92,14 +92,9 @@ class TeacherController extends Controller
         try {
             $data = $this->service->update($employee, $request);
             $this->employee->update($employee->id, $data);
-            return redirect()->back()->with('success', 'Berhasil memperbaiki guru');
+            return redirect()->back()->with('success', 'Berhasil memperbaiki data guru');
         } catch (\Throwable $th) {
-            $data = $this->user->showEmail($request->email);
-            if ($data) {
-                return redirect()->back()->with('warning', 'Data guru sudah tersedia');
-            } else {
-                return redirect()->back()->with('error', 'Kesalahan menambahkan data guru');
-            }
+            return redirect()->back()->with('error', 'Kesalahan memperbaiki data guru');
         }
     }
 

@@ -69,9 +69,6 @@ class TeacherService
             $data['image'] = $employee->image;
         }
 
-        $data['status'] = RoleEnum::TEACHER->value;
-        $data['user_id'] = $employee->user_id;
-        $data['school_id'] = auth()->user()->school->id;
         return $data;
     }
 
