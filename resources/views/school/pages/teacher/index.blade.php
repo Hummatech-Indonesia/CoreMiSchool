@@ -546,7 +546,7 @@
                             <div class="form-group">
                                 <h6 for="" class="mb-2">RFID :</h6>
                                 <p>Lakukan tab pada rfid reader untuk menginputkan rfid</p>
-                                <input type="text" name="rfid" class="form-control" placeholder="Masukkan RFID">
+                                <input type="text" id="rfid"name="rfid" class="form-control" placeholder="Masukkan RFID">
                             </div>
                         </div>
                     </div>
@@ -815,5 +815,12 @@
                 $(this).closest('.table-responsive').css('overflow', 'auto');
             });
         });
+    </script>
+    <script>
+        $(document).ready(function(){
+        $('#modal-rfid').on('shown.bs.modal', function () {
+            $('#rfid').focus().select();
+        });
+    });
     </script>
 @endsection
