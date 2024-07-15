@@ -22,9 +22,6 @@ class StoreAttendanceRuleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'school_id' => 'required',
-            'day' => 'required',
-            'role' => 'required',
             'checkin_start' => 'required',
             'checkin_end' => 'required',
             'checkout_start' => 'required',
