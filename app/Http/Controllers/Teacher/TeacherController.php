@@ -105,6 +105,7 @@ class TeacherController extends Controller
     {
         $this->service->delete($employee);
         $this->employee->delete($employee->id);
+        $employee->user->delete();
         return redirect()->back()->with('success', 'Data guru berhasil dihapus');
     }
 }

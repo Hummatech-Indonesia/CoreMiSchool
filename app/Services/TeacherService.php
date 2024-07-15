@@ -77,6 +77,5 @@ class TeacherService
         if ($employee->image != null) {
             $this->remove($employee->image);
         }
-        $employee->user->delete();
     }
 }
