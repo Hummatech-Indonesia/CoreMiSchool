@@ -55,7 +55,7 @@
         <form action="" method="post" class="d-flex align-items-center gap-3">
             <span class="">Tambah RFID: </span>
             @csrf
-            <input type="text" name="rfid" class="form-control w-auto">
+            <input type="text" name="rfid" class="form-control w-auto" id="rfid-input">
             @error('rfid')
                 <strong class="text-danger">{{ $message }}</strong>
             @enderror
@@ -108,6 +108,10 @@
             var id = $(this).data('id');
             $('#form-delete').attr('action', '/school/rfid/' + id);
             $('#modal-delete').modal('show');
+        });
+
+        $(document).ready(function() {
+            $('#rfid-input').focus();
         });
     </script>
 @endsection
