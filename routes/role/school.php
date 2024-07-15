@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttendanceRuleController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\LevelClassController;
 use App\Http\Controllers\MapleController;
@@ -54,9 +55,12 @@ Route::delete('school/student/{student}', [StudentController::class, 'destroy'])
 
 
 // absen
+// Route::get('school/clock-settings', [AttendanceRuleController::class, 'index'])->name('clock-settings.index');
 Route::get('school/clock-settings', function(){
-    return view('school.pages.attendace.clock-settings');
+    return view('school.pages.attendace.copy-clock-settings');
 })->name('clock-settings.index');
+Route::get('school/get-clock-settings', [AttendanceRuleController::class, 'index'])->name('clock-settings.get');
+Route::post('school/add-clock-settings', [AttendanceRuleController::class, 'store'])->name('clock-settings.store');
 
 Route::get('school/presence', function(){
     return view('school.pages.attendace.presence');

@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Traits\Models\BelongsToCity;
 use App\Traits\Models\BelongsToProvince;
 use App\Traits\Models\BelongsToUser;
-use App\Traits\Models\HasManyClassroom;
+use App\Traits\Models\HasManyAttendanceRule;
 use App\Traits\Models\HasManyEmployee;
 use App\Traits\Models\HasManyLessonHour;
 use App\Traits\Models\HasManyLevelClass;
@@ -23,7 +23,7 @@ class School extends Model
     HasManyStudent, HasManyEmployee,
     HasManyMaple, HasManySchoolYear,
     HasManyLessonHour, HasManyLevelClass,
-    MorphManyRfid;
+    MorphManyRfid, HasManyAttendanceRule;
 
     protected $fillable = [
         'npsn',
