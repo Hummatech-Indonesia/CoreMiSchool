@@ -124,7 +124,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex align-items-start mb-3">
-                            <h4>Jumlah Ekstrakulikuler</h4>
+                            <h4>Jumlah Ekstrakurikuler</h4>
                             <div class="ms-auto">
                                 <div class="bg-success text-light d-inline-block p-1 rounded">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23"
