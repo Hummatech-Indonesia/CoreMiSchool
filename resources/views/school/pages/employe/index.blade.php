@@ -51,7 +51,6 @@
                 <th>Status</th>
                 <th>NIP</th>
                 <th>RFID</th>
-                {{-- <th>Tipe Pegawai</th> --}}
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -66,7 +65,17 @@
                     <td>{{ $staff->gender == 'male' ? 'Laki Laki' : 'Perempuan' }}</td>
                     <td>{{ $staff->active == '1' ? 'Aktif' : 'Tidak Aktif' }}</td>
                     <td>{{ $staff->nip }}</td>
-                    <td>{{ $staff->modelHasRfid ? $staff->modelHasRfid->rfid : '-' }}</td>
+                    <td>{{ $staff->modelHasRfid ? $staff->modelHasRfid->rfid : '-' }}
+                        <button type="submit" class="btn btn-rounded btn-light-warning text-warning ms-2"
+                            data-bs-toggle="modal" data-bs-target="#modal-rfid">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                    d="M21 12a1 1 0 0 0-1 1v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h6a1 1 0 0 0 0-2H5a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-6a1 1 0 0 0-1-1m-15 .76V17a1 1 0 0 0 1 1h4.24a1 1 0 0 0 .71-.29l6.92-6.93L21.71 8a1 1 0 0 0 0-1.42l-4.24-4.29a1 1 0 0 0-1.42 0l-2.82 2.83l-6.94 6.93a1 1 0 0 0-.29.71m10.76-8.35l2.83 2.83l-1.42 1.42l-2.83-2.83ZM8 13.17l5.93-5.93l2.83 2.83L10.83 16H8Z" />
+                            </svg>
+                        </button>
+    
+                    </td>
                     {{-- <td>
                         <span class="mb-1 badge px-4 font-medium bg-light-primary text-primary">Staff</span>
                     </td> --}}
@@ -292,7 +301,7 @@
                                 </div>
                                 <div class="d-flex justify-content-end mt-3 mx-4">
                                     <button type="button" class="btn mb-1 waves-effect waves-light btn-outline-primary prev-step">Kembali</button>
-                                    <button type="submit" class="btn mb-1 waves-effect waves-light btn-rounded btn-primary ms-3 next-step">Simpan</button>
+                                    <button type="submit" class="btn mb-1 waves-effect waves-light btn-rounded btn-primary ms-3">Simpan</button>
                                 </div>
                             </section>
                         </form>
@@ -458,6 +467,36 @@
             <div class="modal-footer">
                 {{-- <button type="button" class="btn btn-rounded btn-light-danger text-danger" data-bs-dismiss="modal">Tutup</button>
                 <button type="submit" class="btn btn-rounded btn-light-success text-success">Tambah</button> --}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- tambah rfid -->
+<div class="modal fade" id="modal-rfid" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="importPegawai">Tambah RFID</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <div class="form-group d-flex">
+                        <h6 for="" class="mb-2">Nama : </h6>
+                        <p class="ms-3">Olivia Rhye</p>
+                    </div>
+                    <div class="form-group">
+                        <h6 for="" class="mb-2">RFID :</h6>
+                        <p>Lakukan tab pada rfid reader untuk menginputkan rfid</p>
+                        <input type="text" class="form-control" placeholder="Masukkan RFID">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-rounded btn-light-danger text-danger"
+                    data-bs-dismiss="modal">Tutup</button>
+                <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
             </div>
         </div>
     </div>

@@ -116,8 +116,14 @@ Route::get('school/update-information', function(){
 })->name('update-information.index');
 
 // rfid
-Route::get('school/rfid', function(){
-    return view('school.pages.rfid.index');
-})->name('rfid.index');
+Route::get('school/rfid', [ModelHasRfidController::class, 'index'])->name('rfid-school.index');
+Route::post('school/rfid', [ModelHasRfidController::class, 'store'])->name('rfid-school.store');
+Route::delete('school/rfid/{modelHasRfid}', [ModelHasRfidController::class, 'destroy'])->name('rfid-school.delete');
+
+//rfid for studen and employee
 Route::put('school/add-to-rfid/{role}/{id}', [ModelHasRfidController::class, 'update'])->name('add-to-rfid.update');
 
+// rfid aktif
+Route::get('school/rfid-active', function(){
+    return view('school.pages.rfid.rfid-active');
+})->name('rfid-active.index');

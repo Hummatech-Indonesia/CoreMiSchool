@@ -12,6 +12,7 @@ use App\Contracts\Interfaces\LessonHourInterface;
 use App\Contracts\Interfaces\LessonScheduleInterface;
 use App\Contracts\Interfaces\LevelClassInterface;
 use App\Contracts\Interfaces\MapleInterface;
+use App\Contracts\Interfaces\ModelHasRfidInterface;
 use App\Contracts\Interfaces\ProvinceInterface;
 use App\Contracts\Interfaces\ReligionInterface;
 use App\Contracts\Interfaces\RfidInterface;
@@ -32,6 +33,7 @@ use App\Contracts\Repositories\LessonHourRepository;
 use App\Contracts\Repositories\LessonScheduleRepository;
 use App\Contracts\Repositories\LevelClassRepository;
 use App\Contracts\Repositories\MapleRepository;
+use App\Contracts\Repositories\ModelHasRfidRepository;
 use App\Contracts\Repositories\ProvinceRepository;
 use App\Contracts\Repositories\ReligionRepository;
 use App\Contracts\Repositories\RfidRepository;
@@ -67,6 +69,7 @@ class AppServiceProvider extends ServiceProvider
         RfidInterface::class => RfidRepository::class,
         LevelClassInterface::class => LevelClassRepository::class,
         AttendanceRuleInterface::class => AttendanceRuleRepository::class,
+        ModelHasRfidInterface::class => ModelHasRfidRepository::class,
     ];
 
     /**

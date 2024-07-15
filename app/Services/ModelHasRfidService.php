@@ -20,8 +20,7 @@ class ModelHasRfidService
     public function check(StoreModelHasRfidRequest $request): array|bool
     {
         $data = $request->validated();
-        $result = $this->rfid->where($data['rfid']);
-        return $result;
+        return $this->rfid->where($data['rfid']);
     }
 
     public function update(UpdateModelHasRfidRequest $request, string $role, string $id): void
