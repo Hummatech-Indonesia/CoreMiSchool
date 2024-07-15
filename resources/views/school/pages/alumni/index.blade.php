@@ -26,6 +26,7 @@
         <table class="table border text-nowrap customize-table mb-0 align-middle text-center">
             <thead class="text-dark fs-4">
                 <tr class="">
+                    <th class="fs-4 fw-semibold mb-0">No</th>
                     <th class="fs-4 fw-semibold mb-0">Nama</th>
                     <th class="fs-4 fw-semibold mb-0">Kelas</th>
                     <th class="fs-4 fw-semibold mb-0">NISN</th>
@@ -36,6 +37,7 @@
             <tbody>
                 @foreach (range(1, 5) as $item)
                     <tr>
+                        <td>{{ $item }}</td>
                         <td>
                             <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}"
                                 class="rounded-circle me-2 user-profile" style="object-fit: cover" width="30"

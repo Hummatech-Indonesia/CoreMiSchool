@@ -27,6 +27,7 @@
         <table class="table border text-nowrap customize-table mb-0 align-middle text-center">
             <thead>
                 <tr>
+                    <th>No</th>
                     <th>Tahun Ajaran</th>
                     <th>Status</th>
                     <th>Aksi</th>
@@ -35,6 +36,7 @@
             <tbody>
                 @forelse ($schoolYears as $schoolYear)
                     <tr>
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $schoolYear->school_year }}</td>
                         <td>{{ $schoolYear->active == 1 ? 'Aktif' : 'Tidak aktif' }}</td>
                         <td>
