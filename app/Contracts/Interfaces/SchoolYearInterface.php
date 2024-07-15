@@ -14,5 +14,5 @@ use App\Contracts\Interfaces\Eloquent\WhereSchoolInterface;
 
 interface SchoolYearInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface, WhereInterface, WhereSchoolInterface
 {
-    //
+    public function active(mixed $id): mixed;
 }
