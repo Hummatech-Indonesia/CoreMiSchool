@@ -280,7 +280,7 @@
                         <td>{{ $teacher->modelHasRfid ? $teacher->modelHasRfid->rfid : '' }}
 
                             <button type="submit" class="btn btn-rounded btn-light-warning text-warning ms-2 btn-rfid"
-                                data-id="{{ $teacher->id }}"
+                                data-id="{{ $teacher->id }}" data-name="{{ $teacher->user->name }}"
                                 data-rfid="{{ $teacher->modelHasRfid ? $teacher->modelHasRfid->rfid : '' }}"
                                 data-role="teacher">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -541,7 +541,7 @@
                         <div class="mb-3">
                             <div class="form-group d-flex">
                                 <h6 for="" class="mb-2">Nama : </h6>
-                                <p class="ms-3">Olivia Rhye</p>
+                                <p class="ms-3" id="name-detail-rfid"></p>
                             </div>
                             <div class="form-group">
                                 <h6 for="" class="mb-2">RFID :</h6>
@@ -731,7 +731,9 @@
             var id = $(this).data('id');
             var role = $(this).data('role');
             var oldRfid = $(this).data('rfid');
+            var name = $(this).data('name');
             $('#form-rfid').attr('action', '/school/add-to-rfid/' + role + '/' + id);
+            $('#name-detail-rfid').text(name);
             $('#modal-rfid').modal('show');
             $('#modal-rfid #old_rfid_input').val(oldRfid);
         });
