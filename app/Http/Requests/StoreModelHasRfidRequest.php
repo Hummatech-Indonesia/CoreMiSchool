@@ -22,7 +22,7 @@ class StoreModelHasRfidRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'rfid' => 'required',
+            'rfid' => 'required|unique:model_has_rfids,rfid',
         ];
     }
 
@@ -35,6 +35,7 @@ class StoreModelHasRfidRequest extends FormRequest
     {
         return [
             'rfid.required' => 'RFID wajib diisi.',
+            'rfid.unique' => 'RFID sudah ditambahkan.',
         ];
     }
 }

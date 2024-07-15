@@ -4,6 +4,7 @@ use App\Http\Controllers\AttendanceRuleController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\LevelClassController;
 use App\Http\Controllers\MapleController;
+use App\Http\Controllers\ModelHasRfidController;
 use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\Teacher\StaffController;
@@ -115,6 +116,6 @@ Route::get('school/update-information', function(){
 })->name('update-information.index');
 
 // rfid
-Route::get('school/rfid', function(){
-    return view('school.pages.rfid.index');
-})->name('rfid.index');
+Route::get('school/rfid', [ModelHasRfidController::class, 'index'])->name('rfid-school.index');
+Route::post('school/rfid', [ModelHasRfidController::class, 'store'])->name('rfid-school.store');
+Route::delete('school/rfid/{modelHasRfid}', [ModelHasRfidController::class, 'destroy'])->name('rfid-school.delete');
