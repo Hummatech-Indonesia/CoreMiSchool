@@ -67,4 +67,9 @@ class EmployeeRepository extends BaseRepository implements EmployeeInterface
     {
         return $this->model->query()->whereRelation('user', 'slug', $slug)->firstOrFail();
     }
+
+    public function getCountEmployee(mixed $query): mixed
+    {
+        return $this->model->query()->whereRelation('user.roles', 'name', $query)->count();
+    }
 }

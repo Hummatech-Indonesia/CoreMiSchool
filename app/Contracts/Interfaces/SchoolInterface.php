@@ -13,5 +13,5 @@ use App\Contracts\Interfaces\Eloquent\WhereUserIdInterface;
 
 interface SchoolInterface extends GetInterface, StoreInterface, UpdateInterface, ShowWithSlugInterface, DeleteInterface, PaginateInterface, WhereInterface, WhereUserIdInterface
 {
-    //
+    public function getActiveCount(mixed $query): mixed;
 }

@@ -28,7 +28,7 @@ class SchoolRepository extends BaseRepository implements SchoolInterface
             $query->where('slug', $slug);
         })->firstOrFail();
     }
-    
+
     public function update(mixed $id, array $data): mixed
     {
         return $this->model->query()->findOrFail($id)->update($data);
@@ -52,5 +52,10 @@ class SchoolRepository extends BaseRepository implements SchoolInterface
     public function whereUserId(mixed $id): mixed
     {
         return $this->model->query()->where('user_id', $id)->firstOrFail();
+    }
+
+    public function getActiveCount(mixed $query): mixed
+    {
+        return $this->model->query()->where('active', $query)->count();
     }
 }
