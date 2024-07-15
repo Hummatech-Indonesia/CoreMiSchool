@@ -42,7 +42,7 @@ class ModelHasRfidController extends Controller
     public function store(StoreModelHasRfidRequest $request)
     {
         $exist = $this->service->check($request);
-    
+
         if ($exist) {
             $this->modelHasRfid->store($request->validated());
             return redirect()->back()->with('success', 'Berhasil menambahkan kartu rfid');
@@ -73,7 +73,7 @@ class ModelHasRfidController extends Controller
     public function update(UpdateModelHasRfidRequest $request, string $role, string $id)
     {
         try {
-            $this->modelHasRfid->where($request->rfid);
+            $data = $this->modelHasRfid->where($request->rfid);
             $this->service->update($request, $role, $id);
             return redirect()->back()->with('success', 'Berhasil menambahkan rfid');
         } catch (\Throwable $th) {

@@ -29,7 +29,7 @@ class ModelHasRfidRepository extends BaseRepository implements ModelHasRfidInter
 
     public function update(mixed $id, array $data): mixed
     {
-        return $this->model->query()->findOrFail($id)->update($data);
+        return $this->model->query()->where('rfid', $id)->update($data);
     }
 
     public function delete(mixed $id): mixed
