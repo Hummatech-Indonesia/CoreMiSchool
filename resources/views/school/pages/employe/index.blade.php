@@ -59,9 +59,13 @@
                 @forelse ($staffs as $staff)
                     <tr>
                         <td>
-                            <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}"
-                                class="rounded-circle me-2 user-profile" style="object-fit: cover" width="30"
-                                height="30" alt="" />
+                            <img src="{{ $staff->image ? asset('storage/' . $staff->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}"
+                            class="rounded-circle me-2 user-profile"
+                            style="object-fit: cover"
+                            width="30"
+                            height="30"
+                            alt="{{ $staff->user->name }}" />
+
                             {{ $staff->user->name }}
                         </td>
                         <td>{{ $staff->user->email }}</td>
