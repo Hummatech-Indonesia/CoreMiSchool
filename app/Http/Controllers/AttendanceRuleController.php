@@ -6,15 +6,18 @@ use App\Contracts\Interfaces\AttendanceRuleInterface;
 use App\Models\AttendanceRule;
 use App\Http\Requests\StoreAttendanceRuleRequest;
 use App\Http\Requests\UpdateAttendanceRuleRequest;
+use App\Services\AttendanceRuleService;
 use Illuminate\Http\Request;
 
 class AttendanceRuleController extends Controller
 {
     private AttendanceRuleInterface $attendanceRule;
+    private AttendanceRuleService $service;
 
-    public function __construct(AttendanceRuleInterface $attendanceRule)
+    public function __construct(AttendanceRuleInterface $attendanceRule, AttendanceRuleService $service)
     {
         $this->attendanceRule = $attendanceRule;
+        $this->service = $service;
     }
 
     /**
@@ -48,9 +51,10 @@ class AttendanceRuleController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAttendanceRuleRequest $request)
+    public function store(StoreAttendanceRuleRequest $request, string $day, string $role)
     {
-        $this->attendanceRule->store($request->validated());
+        $data = $this->service->storeOrUpdate($request, $day, $role);
+        $this->attendanceRule->store($data);
         return redirect()->back()->with('success', 'Berhasil menambahkan waktu absen');
     }
 

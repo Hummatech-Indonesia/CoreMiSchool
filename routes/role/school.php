@@ -60,7 +60,7 @@ Route::get('school/clock-settings', function(){
     return view('school.pages.attendace.copy-clock-settings');
 })->name('clock-settings.index');
 Route::get('school/get-clock-settings', [AttendanceRuleController::class, 'index'])->name('clock-settings.get');
-Route::post('school/add-clock-settings', [AttendanceRuleController::class, 'store'])->name('clock-settings.store');
+Route::post('school/add-clock-settings/{day}/{role}', [AttendanceRuleController::class, 'store'])->name('clock-settings.store');
 
 Route::get('school/presence', function(){
     return view('school.pages.attendace.presence');
