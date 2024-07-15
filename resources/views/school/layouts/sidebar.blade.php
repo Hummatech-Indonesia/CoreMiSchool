@@ -260,12 +260,35 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="{{ route('rfid-school.index') }}" class="sidebar-link">
-                                <div class="round-16 d-flex align-items-center justify-content-center">
-                                    <i class="ti ti-circle"></i>
+                            <a href="javascript:void(0)" class="sidebar-link has-arrow" aria-expanded="false"
+                                style="display: flex; align-items: center;">
+                                <div class="d-flex">
+                                    <div class="round-16 d-flex align-items-center justify-content-center">
+                                        <i class="ti ti-circle"></i>
+                                    </div>
+                                    <span class="hide-menu ms-4">RFID</span>
                                 </div>
-                                <span class="hide-menu">RFID</span>
+                                <i class="ti ti-angle-down" style="margin-left: auto;"></i>
                             </a>
+                            <ul aria-expanded="false" class="collapse second-level">
+                                <li class="sidebar-item">
+                                    <a href="{{ route('rfid-school.index') }}" class="sidebar-link"
+                                        style="display: flex; align-items: center; margin-left: 20px;">
+                                        <div class="round-16 d-flex align-items-center justify-content-center ms-3">
+                                            <i class="ti ti-circle"></i>
+                                        </div>
+                                        <span class="hide-menu ">Belum Digunakan</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="/school/rfid-active" class="sidebar-link" style="display: flex; align-items: center; margin-left: 20px;">
+                                        <div class="round-16 d-flex align-items-center justify-content-center ms-3">
+                                            <i class="ti ti-circle"></i>
+                                        </div>
+                                    <span class="hide-menu ">Sudah Digunakan</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </li>
