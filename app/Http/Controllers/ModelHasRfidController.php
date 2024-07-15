@@ -27,8 +27,17 @@ class ModelHasRfidController extends Controller
      */
     public function index()
     {
-        $rfids = $this->modelHasRfid->get();
+        $rfids = $this->modelHasRfid->nonActiveRfid();
         return view('school.pages.rfid.index', compact('rfids'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function showActive()
+    {
+        $rfids = $this->modelHasRfid->activeRfid();
+        return view('school.pages.rfid.rfid-active', compact('rfids'));
     }
 
     /**

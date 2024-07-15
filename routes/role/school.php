@@ -125,6 +125,4 @@ Route::delete('school/rfid/{modelHasRfid}', [ModelHasRfidController::class, 'des
 Route::put('school/add-to-rfid/{role}/{id}', [ModelHasRfidController::class, 'update'])->name('add-to-rfid.update');
 
 // rfid aktif
-Route::get('school/rfid-active', function(){
-    return view('school.pages.rfid.rfid-active');
-})->name('rfid-active.index');
+Route::get('school/rfid-active', [ModelHasRfidController::class, 'showActive'])->name('rfid-active.index');
