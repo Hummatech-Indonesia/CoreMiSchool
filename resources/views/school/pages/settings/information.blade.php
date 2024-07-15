@@ -1,18 +1,17 @@
 @extends('school.layouts.app')
 
 @section('content')
-<div class="d-flex justify-content-between">
-    <h3>Detail Sekolah</h3>
 
-    <div class="gap-3">
-        <a href="{{ route('settings-information.edit') }}" class="btn btn-success me-2">Edit Informasi</a>
-        <button class="btn btn-primary btn-rfid">Tambah Master Key</button>
-    </div>
-</div>
-
-<div class="card">
+<div class="card border-1">
     <div class="card-body">
-        <div class="row pb-4 mt-5 mx-3">
+        <div class="d-flex justify-content-between">
+            <h4>Detail Sekolah</h4>
+
+            <div class="">
+                <a href="{{ route('settings-information.edit') }}" class="btn btn-success">Edit Informasi</a>
+            </div>
+        </div>
+        <div class="row pb-4 mt-3 mx-3">
             <div class="d-flex align-items-center mb-5">
                 <img class="card-img-top img-responsive me-3" style="max-height:80px; width: auto;" src="{{ asset('admin_assets/dist/images/profile/smkn1kepanjen.png') }}" alt="Card image cap">
                 <div class="d-flex flex-column flex-sm-row justify-content-between w-100 ms-3">
@@ -74,6 +73,54 @@
     </div>
 </div>
 
+<div class="card border-1">
+    <div class="card-body">
+        <h4>Daftar RFID Sekolah</h4>
+        <div class="d-flex justify-content-between mt-3">
+            <form action="">
+                <div class="position-relative">
+                    <div class="">
+                        <input type="text" name="search" class="form-control search-chat py-2 px-5 ps-5" id="search-name" placeholder="Cari...">
+                        <i class="ti ti-search position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
+                    </div>
+                </div>
+            </form>
+            <div class="">
+                <button class="btn btn-primary btn-rfid">Tambah Master Key</button>
+            </div>
+        </div>
+        <div class="mt-3">
+            <div class="table-responsive rounded-2">
+                <table class="table border text-nowrap customize-table mb-0 align-middle text-center">
+                    <thead>
+                        <tr>
+                            <th style="background-color: #5D87FF;" class="text-white">No</th>
+                            <th style="background-color: #5D87FF;" class="text-white">Nama Pengguna</th>
+                            <th style="background-color: #5D87FF;" class="text-white">Email</th>
+                            <th style="background-color: #5D87FF;" class="text-white">RFID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse (range(1,6) as $rfid)
+                        <tr>
+                            <td>1</td>
+                            <td>Arya Rizki</td>
+                            <td>arya@gmail.com</td>
+                            <td>12345678</td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="4">Belum ada RFID</td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 <div class="modal fade" id="modal-create-masterKey" tabindex="-1" aria-labelledby="tambahRfid" aria-hidden="true">
     <div class="modal-dialog">
         <form action="{{ route('master-key.store') }}" method="post">
@@ -85,12 +132,21 @@
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        Anda bisa menggunakan reader card untuk menambahkan master key
+                        <label for="">Nama</label>
+                        <input type="text" name="" class="form-control mt-1" placeholder="Masukan nama">
+                    </div>
+                    <div class="mb-3">
+                        <label for="">Email</label>
+                        <input type="text" name="" class="form-control mt-1" placeholder="Masukan Email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="">RFID</label>
+                        <p class="mt-2 fs-2">Lakukan tab pada rfid reader untuk menginputkan rfid</p>
                     </div>
                     <div>
-                        <input type="text" name="rfid" class="form-control">
+                        <input type="text" id="rfid" name="rfid" class="form-control">
                         @error('rfid')
-                            <span class="text-danger">{{ $message }}</span>
+                        <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
@@ -105,9 +161,18 @@
 
 @endsection
 @section('script')
-    <script>
-        $('.btn-rfid').on('click', function() {
-            $('#modal-create-masterKey').modal('show');
-        });
-    </script>
+<script>
+    $('.btn-rfid').on('click', function() {
+        $('#modal-create-masterKey').modal('show');
+    });
+
+</script>
+
+{{-- <script>
+    $(document).ready(function(){
+    $('#modal-create-masterKey').on('shown.bs.modal', function () {
+        $('#rfid').focus().select();
+    });
+});
+</script> --}}
 @endsection
