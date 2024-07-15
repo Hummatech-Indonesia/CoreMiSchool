@@ -29,14 +29,14 @@
     <div class="d-flex justify-content-between align-items-center">
         <div class="d-flex flex-wrap">
             <div class="col-12 col-md-6 col-lg-4 mb-3 me-2">
-                <form action="" class="position-relative px-4">
-                    <input type="text" class="form-control product-search ps-5" id="input-search"
+                <form action="" class="position-relative">
+                    <input type="text" class="form-control product-search px-4 ps-5" id="input-search"
                         placeholder="Cari tim...">
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                 </form>
             </div>
             <div class="col-12 col-md-6 col-lg-3 mb-3 me-2">
-                <select id="status-activity" class="form-select px-4">
+                <select id="status-activity" class="form-select">
                     <option value="">Semua</option>
                     <option value="">Aktif</option>
                     <option value="">NonAktif</option>
