@@ -1,4 +1,17 @@
 @extends('school.layouts.app')
+
+@section('style')
+    <link rel="stylesheet" href="{{ asset('admin_assets/dist/css/style.min.css') }}">
+
+    <style>
+        .category-selector .dropdown-menu {
+            position: absolute;
+            z-index: 1050;
+            transform: translate3d(0, 0, 0);
+        }
+    </style>
+@endsection
+
 @section('content')
     <div class="d-flex flex-wrap justify-content-between align-items-center">
         <div class="d-flex flex-wrap">
@@ -9,8 +22,7 @@
                 </form>
             </div>
         </div>
-        <button type="button" class="btn mb-1 btn-primary"
-            data-bs-toggle="modal" data-bs-target="#modal-import">
+        <button type="button" class="btn mb-1 btn-primary" data-bs-toggle="modal" data-bs-target="#modal-import">
             Tambah Ekstrakurikuler
         </button>
     </div>
@@ -53,6 +65,7 @@
         <table class="table border text-nowrap customize-table mb-0 align-middle text-center">
             <thead class="text-dark fs-4">
                 <tr class="">
+                    <th class="fs-4 fw-semibold mb-0">No</th>
                     <th class="fs-4 fw-semibold mb-0">Ekstrakurikuler</th>
                     <th class="fs-4 fw-semibold mb-0">Pengajar</th>
                     <th class="fs-4 fw-semibold mb-0">Anggota</th>
@@ -62,6 +75,7 @@
             <tbody>
                 @foreach (range(1, 5) as $item)
                     <tr>
+                        <td>{{ $item }}</td>
                         <td>
                             Basket
                         </td>
@@ -160,4 +174,18 @@
             </li>
         </ul>
     </nav>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('.category-dropdown').on('show.bs.dropdown', function() {
+                $(this).closest('.table-responsive').css('overflow', 'visible');
+            });
+
+            $('.category-dropdown').on('hide.bs.dropdown', function() {
+                $(this).closest('.table-responsive').css('overflow', 'auto');
+            });
+        });
+    </script>
 @endsection
