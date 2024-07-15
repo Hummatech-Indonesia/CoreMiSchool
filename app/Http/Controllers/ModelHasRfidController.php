@@ -24,7 +24,8 @@ class ModelHasRfidController extends Controller
      */
     public function index()
     {
-        //
+        $rfids = $this->modelHasRfid->get();
+        return view('school.pages.rfid.index', compact('rfids'));
     }
 
     /**
@@ -40,12 +41,13 @@ class ModelHasRfidController extends Controller
      */
     public function store(StoreModelHasRfidRequest $request)
     {
-        $data = $this->service->check($request);
-        if ($data != null) {
-            $this->modelHasRfid->store($data);
-            return redirect()->back()->with('success', 'Berhasil memakai kartu rfid');
+        $exist = $this->service->check($request);
+    
+        if ($exist) {
+            $this->modelHasRfid->store($request->validated());
+            return redirect()->back()->with('success', 'Berhasil menambahkan kartu rfid');
         } else {
-            return redirect()->back()->with('error', 'Kartu rfid belum terdaftar');
+            return redirect()->back()->with('error', 'Kartu rfid tidak valid');
         }
     }
 
@@ -68,9 +70,15 @@ class ModelHasRfidController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateModelHasRfidRequest $request, ModelHasRfid $modelHasRfid)
+    public function update(UpdateModelHasRfidRequest $request, string $role, string $id)
     {
-        //
+        try {
+            $this->modelHasRfid->where($request->rfid);
+            $this->service->update($request, $role, $id);
+            return redirect()->back()->with('success', 'Berhasil menambahkan rfid');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('warning', 'Rfid belum terdaftarkan');
+        }
     }
 
     /**
@@ -78,6 +86,7 @@ class ModelHasRfidController extends Controller
      */
     public function destroy(ModelHasRfid $modelHasRfid)
     {
-        //
+        $this->modelHasRfid->delete($modelHasRfid->id);
+        return redirect()->back()->with('success', 'Kartu rfid berhasil dihapus');
     }
 }
