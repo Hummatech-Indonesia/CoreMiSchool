@@ -1,48 +1,55 @@
 @extends('school.layouts.app')
 
 @section('style')
-<style>
-    .select2-container--default .select2-selection--single {
-        background-color: #f9f9f9;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        padding: 6px;
-        height: 38px;
-    }
-    .select2-container--default .select2-selection--single .select2-selection__rendered {
-        color: #555;
-        line-height: 28px;
-    }
-    .select2-container--default .select2-selection--single .select2-selection__arrow {
-        height: 36px;
-        right: 10px;
-    }
-    .select2-container--default .select2-selection--multiple {
-        background-color: #f9f9f9;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        padding: 6px;
-    }
-    .select2-container--default .select2-selection--multiple .select2-selection__choice {
-        background-color: #e4e4e4;
-        border: 1px solid #aaa;
-        border-radius: 4px;
-        padding: 3px 10px;
-        margin: 3px 0;
-        color: #333;
-    }
-    .select2-container--default .select2-results__option--highlighted[aria-selected] {
-        background-color: #007bff;
-        color: white;
-    }
-    .select2-container--default .select2-results__option[aria-selected="true"] {
-        background-color: #007bff;
-        color: white;
-    }
-    .select2-container {
-        width: 100% !important;
-    }
-</style>
+    <style>
+        .select2-container--default .select2-selection--single {
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 6px;
+            height: 38px;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            color: #555;
+            line-height: 28px;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 36px;
+            right: 10px;
+        }
+
+        .select2-container--default .select2-selection--multiple {
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 6px;
+        }
+
+        .select2-container--default .select2-selection--multiple .select2-selection__choice {
+            background-color: #e4e4e4;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            padding: 3px 10px;
+            margin: 3px 0;
+            color: #333;
+        }
+
+        .select2-container--default .select2-results__option--highlighted[aria-selected] {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .select2-container--default .select2-results__option[aria-selected="true"] {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .select2-container {
+            width: 100% !important;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -121,7 +128,8 @@
                                             <label for="" class="mb-2 pt-3">Tahun Ajaran</label>
                                             <select id="school_year_add" class="form-select" name="school_year_id">
                                                 @foreach ($schoolYears as $schoolYear)
-                                                    <option value="{{ $schoolYear->id }}">{{ $schoolYear->school_year }}</option>
+                                                    <option value="{{ $schoolYear->id }}">{{ $schoolYear->school_year }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                             @error('school_year_id')
@@ -148,7 +156,8 @@
             <div class="col-lg-3">
                 <div class="card">
                     <div class="position-relative">
-                        <img class="card-img-top img-responsive"src="{{ asset('admin_assets/dist/images/backgrounds/student.png') }}" alt="Card image cap">
+                        <img class="card-img-top img-responsive"src="{{ asset('admin_assets/dist/images/backgrounds/student.png') }}"
+                            alt="Card image cap">
                         <div class="d-flex justify-content-end position-absolute top-0 pt-2 end-0 me-2">
                             <div class="category-selector btn-group">
                                 <a class="nav-link category-dropdown label-group p-0" data-bs-toggle="dropdown"
@@ -163,16 +172,17 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right category-menu"
                                     data-popper-placement="bottom-end">
-                                    <button type="button" class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-edit"
-                                        data-id="{{ $classroom->id }}"
-                                        data-name="{{ $classroom->name }}"
+                                    <button type="button"
+                                        class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-edit"
+                                        data-id="{{ $classroom->id }}" data-name="{{ $classroom->name }}"
                                         data-employee_id="{{ $classroom->employee_id }}"
                                         data-level_class_id="{{ $classroom->level_class_id }}"
                                         data-school_year_id="{{ $classroom->school_year_id }}">
                                         Edit
                                     </button>
 
-                                    <a class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-delete" data-id="{{ $classroom->id }}">
+                                    <a class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-delete"
+                                        data-id="{{ $classroom->id }}">
                                         Hapus
                                     </a>
                                 </div>
@@ -210,7 +220,12 @@
                 </div>
             </div>
         @empty
-            <div class="text-center">Kelas belum ditambahkan</div>
+            <div class="d-flex flex-column justify-content-center align-items-center">
+                <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt="" width="300px">
+                <p class="fs-5 text-dark text-center mt-2">
+                    Kelas belum ditambahkan
+                </p>
+            </div>
         @endforelse
     </div>
 
@@ -229,7 +244,8 @@
                         <div class="mb-3">
                             <div class="form-group">
                                 <label for="" class="mb-2">Nama Kelas</label>
-                                <input type="text" id="name-edit" class="form-control" name="name" value="{{ old('name') }}">
+                                <input type="text" id="name-edit" class="form-control" name="name"
+                                    value="{{ old('name') }}">
                                 @error('name')
                                     <strong class="text-danger">{{ $message }}</strong>
                                 @enderror
@@ -253,7 +269,8 @@
                                             <label for="" class="mb-2 pt-3">Tingkatan Kelas</label>
                                             <select id="level_class-edit" class="form-select" name="level_class_id">
                                                 @foreach ($levelClasses as $levelClass)
-                                                    <option value="{{ $levelClass->id }}">{{ $levelClass->name }}</option>
+                                                    <option value="{{ $levelClass->id }}">{{ $levelClass->name }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                             @error('level_class_id')
@@ -268,7 +285,8 @@
                                             <label for="" class="mb-2 pt-3">Tahun Ajaran</label>
                                             <select id="school_year-edit" class="form-select" name="school_year_id">
                                                 @foreach ($schoolYears as $schoolYear)
-                                                    <option value="{{ $schoolYear->id }}">{{ $schoolYear->school_year }}</option>
+                                                    <option value="{{ $schoolYear->id }}">{{ $schoolYear->school_year }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                             @error('school_year_id')
@@ -289,7 +307,7 @@
             </div>
         </div>
     </div>
-<x-delete-modal-component />
+    <x-delete-modal-component />
 @endsection
 
 @section('script')
@@ -297,13 +315,13 @@
         $('#employee_add').select2({
             dropdownParent: $('#modal-add')
         });
-         $('#school_year_add').select2({
+        $('#school_year_add').select2({
             dropdownParent: $('#modal-add')
         });
         $('#employee-edit').select2({
             dropdownParent: $('#modal-edit')
         });
-         $('#school_year-edit').select2({
+        $('#school_year-edit').select2({
             dropdownParent: $('#modal-edit')
         });
 
@@ -329,4 +347,4 @@
             $('#modal-delete').modal('show');
         });
     </script>
-@endsection    
+@endsection
