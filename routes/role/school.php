@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AttendanceRuleController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\LevelClassController;
@@ -68,9 +69,8 @@ Route::get('school/clock-settings', function(){
 Route::get('school/get-clock-settings', [AttendanceRuleController::class, 'index'])->name('clock-settings.get');
 Route::post('school/add-clock-settings/{day}/{role}', [AttendanceRuleController::class, 'store'])->name('clock-settings.store');
 
-Route::get('school/presence', function(){
-    return view('school.pages.attendace.presence');
-})->name('presence.index');
+Route::get('school/presence', [AttendanceController::class, 'index'])->name('presence.index');
+
 Route::get('school/presence-student', function(){
     return view('school.pages.attendace.student');
 })->name('presence-student.index');

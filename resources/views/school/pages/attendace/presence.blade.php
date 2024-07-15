@@ -44,33 +44,33 @@
                     <th class="fs-4 fw-semibold mb-0">Masuk</th>
                     <th class="fs-4 fw-semibold mb-0">Pulang</th>
                     <th class="fs-4 fw-semibold mb-0">Point</th>
-                    <th class="fs-4 fw-semibold mb-0">Max Point</th>
                     <th class="fs-4 fw-semibold mb-0">Status</th>
                     <th class="fs-4 fw-semibold mb-0">Status</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td> 1</td>
-                    <td> Prasetyo Budi Nugroho</td>
-                    <td> 07.30</td>
-                    <td>16.00</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>Masuk</td>
-                    <td>
-                        <button type="button" class="btn mb-1 btn-light-primary text-primary btn-sm px-4 fs-2 font-medium"
-                            data-bs-toggle="modal" data-bs-target="#modal-import">
-                            Upload
-                        </button>
-                    </td>
-                </tr>
-                <tr>
+                @forelse ($attendances as $attendance)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $attendance->classroomStudent->student->user->name }}</td>
+                        <td>{{ $attendance->checkin }}</td>
+                        <td>{{ $attendance->checkout }}</td>
+                        <td>{{ $attendance->point }}</td>
+                        <td>{{ $attendance->status == 'present' ? 'Masuk' : ($attendance->status == 'sick' ? 'Sakit' : ($attendance->status == 'alpha' ? 'Alpha' : ($attendance->status == 'permit' ? 'Izin' : ''))) }}</td>
+                        <td>
+                            <button type="button" class="btn mb-1 btn-light-primary text-primary btn-sm px-4 fs-2 font-medium"
+                                data-bs-toggle="modal" data-bs-target="#modal-import">
+                                Upload
+                            </button>
+                        </td>
+                    </tr>
+                @empty
+                @endforelse
+                {{-- <tr>
                     <td>2</td>
                     <td> Prasetyo Budi Nugroho</td>
                     <td> 07.30</td>
                     <td>16.00</td>
-                    <td>1</td>
                     <td>1</td>
                     <td>Masuk</td>
                     <td>
@@ -85,7 +85,7 @@
                             </svg>
                         </button>
                     </td>
-                </tr>
+                </tr> --}}
             </tbody>
         </table>
     </div>
