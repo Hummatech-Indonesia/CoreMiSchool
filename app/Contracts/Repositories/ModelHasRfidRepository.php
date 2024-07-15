@@ -16,6 +16,20 @@ class ModelHasRfidRepository extends BaseRepository implements ModelHasRfidInter
     {
         return $this->model->query()->get();
     }
+    public function activeRfid(): mixed
+    {
+        return $this->model->query()
+            ->whereNotNull('model_type')
+            ->whereNotNull('model_id')
+            ->get();
+    }
+    public function nonActiveRfid(): mixed
+    {
+        return $this->model->query()
+            ->whereNull('model_type')
+            ->whereNull('model_id')
+            ->get();
+    }
 
     public function store(array $data): mixed
     {
@@ -37,7 +51,7 @@ class ModelHasRfidRepository extends BaseRepository implements ModelHasRfidInter
         return $this->model->query()->findOrFail($id)->delete();
     }
 
-    public function paginate() : mixed
+    public function paginate(): mixed
     {
         return $this->model->query()->latest()->paginate(10);
     }

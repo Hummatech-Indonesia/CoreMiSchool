@@ -39,10 +39,10 @@
             </div>
 
             <div class="d-flex gap-2">
-                <select name="" class="form-select" id="search-status">
+                {{-- <select name="" class="form-select" id="search-status">
                     <option value="">Digunakan</option>
                     <option value="">Belum Digunakan</option>
-                </select>
+                </select> --}}
                 <select name="" class="form-select" id="">
                     <option value="">Tampilkan semua</option>
                     <option value="">Terbaru</option>

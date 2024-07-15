@@ -28,7 +28,8 @@
                     <li class="nav-item">
                         <div class="d-none d-md-flex flex-column align-items-end justify-content-center me-2">
                             <span class="text-dark fs-3 fw-semibold lh-1 mb-1 username">
-                                Wira Cinta Syafa
+                                M. Ardian
+
                             </span>
                             {{-- <span class="text-dark fs-3 fw-bold lh-1 role">
                                 head master
