@@ -90,7 +90,15 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="4">Belum ada RFID</td>
+                    <td colspan="7" class="text-center align-middle">
+                        <div class="d-flex flex-column justify-content-center align-items-center">
+                            <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt=""
+                                width="300px">
+                            <p class="fs-5 text-dark text-center mt-2">
+                                RFID belum ditambahkan
+                            </p>
+                        </div>
+                    </td>
                 </tr>
                 @endforelse
             </tbody>
