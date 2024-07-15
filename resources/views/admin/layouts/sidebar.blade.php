@@ -60,7 +60,7 @@
                         <span class="hide-menu">Daftar Sekolah</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
+                {{-- <li class="sidebar-item">
                     <a class="sidebar-link" href="/admin/news" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
@@ -75,8 +75,8 @@
                             </svg> </span>
                         <span class="hide-menu">Berita</span>
                     </a>
-                </li>
-                <li class="sidebar-item">
+                </li> --}}
+                {{-- <li class="sidebar-item">
                     <a class="sidebar-link" href="/faq" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
@@ -89,7 +89,7 @@
                             </svg> </span>
                         <span class="hide-menu">FAQ</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="sidebar-item">
                     <a class="sidebar-link has-arrow" href="#" aria-expanded="false">
                         <span class="d-flex">
