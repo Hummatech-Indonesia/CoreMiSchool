@@ -70,7 +70,8 @@
                         <td>{{ $staff->nip }}</td>
                         <td>{{ $staff->modelHasRfid ? $staff->modelHasRfid->rfid : '' }}
                             <button type="submit" class="btn btn-rounded btn-light-warning text-warning ms-2 btn-rfid"
-                                data-id="{{ $staff->id }}" data-role="staff" data-rfid="{{ $staff->modelHasRfid ? $staff->modelHasRfid->rfid : '' }}">
+                                data-id="{{ $staff->id }}" data-role="staff"
+                                data-rfid="{{ $staff->modelHasRfid ? $staff->modelHasRfid->rfid : '' }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                     <path fill="currentColor"
                                         d="M21 12a1 1 0 0 0-1 1v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h6a1 1 0 0 0 0-2H5a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-6a1 1 0 0 0-1-1m-15 .76V17a1 1 0 0 0 1 1h4.24a1 1 0 0 0 .71-.29l6.92-6.93L21.71 8a1 1 0 0 0 0-1.42l-4.24-4.29a1 1 0 0 0-1.42 0l-2.82 2.83l-6.94 6.93a1 1 0 0 0-.29.71m10.76-8.35l2.83 2.83l-1.42 1.42l-2.83-2.83ZM8 13.17l5.93-5.93l2.83 2.83L10.83 16H8Z" />
@@ -95,14 +96,16 @@
                                 <div class="dropdown-menu dropdown-menu-right category-menu"
                                     style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate3d(0px, 23.2px, 0px);"
                                     data-popper-placement="bottom-end">
-                                    <button class="btn-detail note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3"
+                                    <button
+                                        class="btn-detail note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3"
                                         data-id="{{ $staff->id }}" data-name="{{ $staff->user->name }}"
                                         data-email="{{ $staff->user->email }}" data-gender="{{ $staff->gender }}"
                                         data-status="{{ $staff->active }}" data-nip="{{ $staff->nip }}"
                                         data-nik="{{ $staff->nik }}" data-birth_date="{{ $staff->birth_date }}"
                                         data-birth_place="{{ $staff->birth_place }}"
                                         data-phone="{{ $staff->phone_number }}" data-address="{{ $staff->address }}"
-                                        data-religion="{{ $staff->religion_id }}" data-rfid="{{ $staff->modelHasRfid ? $staff->modelHasRfid->rfid : 'Tidak ada' }}">
+                                        data-religion="{{ $staff->religion_id }}"
+                                        data-rfid="{{ $staff->modelHasRfid ? $staff->modelHasRfid->rfid : 'Tidak ada' }}">
                                         <i class="fs-4 ti ti-eye"></i>Detail
                                     </button>
                                     <button type="button"
@@ -366,6 +369,7 @@
         </div>
     </div>
 
+    <!-- modal edit -->
     <div class="modal fade" id="modal-update" tabindex="-1" aria-labelledby="editPegawaiLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -521,7 +525,7 @@
                                         <button type="button"
                                             class="btn mb-1 waves-effect waves-light btn-outline-primary prev-step">Kembali</button>
                                         <button type="submit"
-                                            class="btn mb-1 waves-effect waves-light btn-rounded btn-primary ms-3 next-step">Simpan</button>
+                                            class="btn mb-1 waves-effect waves-light btn-rounded btn-primary ms-3">Simpan</button>
                                     </div>
                                 </section>
                             </form>
@@ -633,7 +637,8 @@
                         <div class="col-12 col-md-6">
                             <div class="d-flex text-start">
                                 <h6 style="margin-bottom: 0;">Alamat:</h6>
-                                <p class="ms-2 text-muted text-break" style="margin-bottom: 0;" id="address-detail">jl. sembarang,
+                                <p class="ms-2 text-muted text-break" style="margin-bottom: 0;" id="address-detail">jl.
+                                    sembarang,
                                     desa. opowae, kec. kepanjen, kab. Malang</p>
                             </div>
                             <hr>
@@ -693,7 +698,7 @@
             var status = $(this).data('status');
             var nip = $(this).data('nip');
             var nik = $(this).data('nik');
-            var birth_date =  $(this).data('birth_date');
+            var birth_date = $(this).data('birth_date');
             var birth_place = $(this).data('birth_place');
             var phone = $(this).data('phone');
             var address = $(this).data('address');
@@ -778,7 +783,7 @@
             editSections.hide();
             editSections.eq(currentEditSection).show();
 
-            $(".next-edit-step").click(function() {
+            $(".next-step").on('click', function() {
                 if (currentEditSection < editSections.length - 1) {
                     editSections.eq(currentEditSection).hide();
                     editSteps.eq(currentEditSection).removeClass("current").addClass("done");
@@ -788,7 +793,7 @@
                 }
             });
 
-            $(".prev-edit-step").click(function() {
+            $(".prev-step").on('click', function() {
                 if (currentEditSection > 0) {
                     editSections.eq(currentEditSection).hide();
                     editSteps.eq(currentEditSection).removeClass("current").addClass("disabled");
