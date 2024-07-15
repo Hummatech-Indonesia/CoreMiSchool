@@ -78,6 +78,5 @@ class StudentService
         if ($student->image != null) {
             $this->remove($student->image);
         }
-        $student->user->delete();
     }
 }

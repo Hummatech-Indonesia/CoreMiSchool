@@ -106,6 +106,7 @@ class StudentController extends Controller
     {
         $this->service->delete($student);
         $this->student->delete($student->id);
+        $student->user->delete();
         return redirect()->back()->with('success', 'Siswa berhasil dihapus');
     }
 }

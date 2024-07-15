@@ -74,7 +74,7 @@
                 <form action="{{ route('rfid-admin.store') }}" method="post" class="d-flex align-items-center gap-3">
                     <span class="">Tambah RFID: </span>
                     @csrf
-                    <input type="text" name="rfid" class="form-control w-auto">
+                    <input type="text" name="rfid" class="form-control w-auto" id="rfid-input">
                     <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
                 </form>
             </div>
@@ -238,6 +238,10 @@
             var id = $(this).data('id');
             $('#form-delete').attr('action', '/admin/rfid/' + id);
             $('#modal-delete').modal('show');
+        });
+
+        $(document).ready(function() {
+            $('#rfid-input').focus();
         });
     </script>
 @endsection
