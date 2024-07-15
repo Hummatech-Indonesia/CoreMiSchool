@@ -68,9 +68,15 @@ class ModelHasRfidController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateModelHasRfidRequest $request, ModelHasRfid $modelHasRfid)
+    public function update(UpdateModelHasRfidRequest $request, string $role, string $id)
     {
-        //
+        try {
+            $this->modelHasRfid->where($request->rfid);
+            $this->service->update($request, $role, $id);
+            return redirect()->back()->with('success', 'Berhasil menambahkan rfid');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('warning', 'Rfid belum terdaftarkan');
+        }
     }
 
     /**

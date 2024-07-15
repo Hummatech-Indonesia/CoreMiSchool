@@ -41,4 +41,9 @@ class ModelHasRfidRepository extends BaseRepository implements ModelHasRfidInter
     {
         return $this->model->query()->latest()->paginate(10);
     }
+
+    public function where(mixed $data): mixed
+    {
+        return $this->model->query()->where('rfid', $data)->firstOrFail();
+    }
 }
