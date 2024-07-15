@@ -61,7 +61,7 @@ Route::get('school/clock-settings', function(){
     return view('school.pages.attendace.copy-clock-settings');
 })->name('clock-settings.index');
 Route::get('school/get-clock-settings', [AttendanceRuleController::class, 'index'])->name('clock-settings.get');
-Route::post('school/add-clock-settings', [AttendanceRuleController::class, 'store'])->name('clock-settings.store');
+Route::post('school/add-clock-settings/{day}/{role}', [AttendanceRuleController::class, 'store'])->name('clock-settings.store');
 
 Route::get('school/presence', function(){
     return view('school.pages.attendace.presence');
@@ -119,3 +119,8 @@ Route::get('school/update-information', function(){
 Route::get('school/rfid', [ModelHasRfidController::class, 'index'])->name('rfid-school.index');
 Route::post('school/rfid', [ModelHasRfidController::class, 'store'])->name('rfid-school.store');
 Route::delete('school/rfid/{modelHasRfid}', [ModelHasRfidController::class, 'destroy'])->name('rfid-school.delete');
+
+// rfid aktif
+Route::get('school/rfid-active', function(){
+    return view('school.pages.rfid.rfid-active');
+})->name('rfid-active.index');
