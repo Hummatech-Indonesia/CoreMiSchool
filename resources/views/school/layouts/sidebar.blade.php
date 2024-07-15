@@ -167,17 +167,35 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('create-subjects') }}" aria-expanded="false">
-                        <span>
+                    <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
+                        <span class="d-flex">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                viewBox="0 0 14 14">
-                                <path fill="none" stroke="currentColor" stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="M9 .5v6l3.59 4.57a1.5 1.5 0 0 1-1.18 2.43H2.59a1.5 1.5 0 0 1-1.18-2.43L5 6.5v-6M3.5.5h7" />
-                            </svg>
+                            viewBox="0 0 14 14">
+                            <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M9 .5v6l3.59 4.57a1.5 1.5 0 0 1-1.18 2.43H2.59a1.5 1.5 0 0 1-1.18-2.43L5 6.5v-6M3.5.5h7" />
+                        </svg>
                         </span>
                         <span class="hide-menu">Mata Pelajaran</span>
                     </a>
+                    <ul aria-expanded="false" class="collapse first-level">
+                        <li class="sidebar-item">
+                            <a href="{{ route('create-subjects') }}" class="sidebar-link">
+                                <div class="round-16 d-flex align-items-center justify-content-center">
+                                    <i class="ti ti-circle"></i>
+                                </div>
+                                <span class="hide-menu">Mata Pelajaran</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="{{ route('lesson-hours.index') }}" class="sidebar-link">
+                                <div class="round-16 d-flex align-items-center justify-content-center">
+                                    <i class="ti ti-circle"></i>
+                                </div>
+                                <span class="hide-menu">Jam Pelajaran</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">

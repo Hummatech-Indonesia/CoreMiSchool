@@ -10,13 +10,6 @@
                     <i class="ti ti-search position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
                 </div>
             </div>
-
-            <div class="d-flex gap-2">
-                <select name="" class="form-select" id="search-status">
-                    <option value="">2023/2024</option>
-                    <option value="">2024/2025</option>
-                </select>
-            </div>
         </form>
     </div>
     <div class="col-lg-6 mb-3">
