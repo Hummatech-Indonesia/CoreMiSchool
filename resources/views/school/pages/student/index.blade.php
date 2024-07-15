@@ -235,7 +235,7 @@
                 @forelse ($students as $student)
                     <tr>
                         <td>
-                            <img src="{{ asset('storage/' . $student->image) }}" class="rounded-circle me-2 user-profile"
+                            <img src="{{ $student->image ? asset('storage/'. $student->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}" class="rounded-circle me-2 user-profile"
                                 style="object-fit: cover" width="30" height="30" alt="" />
                             {{ $student->user->name }}
                         </td>
@@ -280,7 +280,8 @@
                                         data-number_akta="{{ $student->number_akta }}"
                                         data-order_child="{{ $student->order_child }}"
                                         data-count_siblings="{{ $student->count_siblings }}"
-                                        data-address="{{ $student->address }}" data-rfid="{{$student->modelHasRfid ? $student->modelHasRfid->rfid : 'Tidak ada'}}">
+                                        data-address="{{ $student->address }}" data-rfid="{{$student->modelHasRfid ? $student->modelHasRfid->rfid : 'Tidak ada'}}"
+                                        data-image="{{ $student->image ? asset('storage/'. $student->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}">
                                         <i class="fs-4 ti ti-eye"></i>Detail
                                     </button>
                                     <button
@@ -598,7 +599,7 @@
                 <div class="modal-body text-center">
                     <div class="row justify-content-center">
                         <div class="col-12">
-                            <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}"
+                            <img id="image-detail" src=""
                                 class="rounded-circle user-profile mb-3"
                                 style="object-fit: cover; width: 150px; height: 150px;" alt="User Profile Picture" />
                         </div>
@@ -720,6 +721,7 @@
             var order_child = $(this).data('order_child');
             var address = $(this).data('address');
             var rfid = $(this).data('rfid');
+            var image = $(this).data('image');
             $('#name-detail').text(name);
             $('#email-detail').text(email);
             $('#nisn-detail').text(nisn);
@@ -732,6 +734,7 @@
             $('#address-detail').text(address);
             $('#gender-detail').text(gender);
             $('#rfid-detail').text(rfid);
+            $('#image-detail').attr('src', image);
             $('#modal-detail').modal('show');
         });
 
