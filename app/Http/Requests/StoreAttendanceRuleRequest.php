@@ -21,13 +21,23 @@ class StoreAttendanceRuleRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'checkin_start' => 'required',
-            'checkin_end' => 'required',
-            'checkout_start' => 'required',
-            'checkout_end' => 'required',
+        $rules = [
             'is_holiday' => 'nullable'
         ];
+
+        if ($this->has('is_holiday')) {
+            $rules['checkin_start'] = 'nullable';
+            $rules['checkin_end'] = 'nullable';
+            $rules['checkout_start'] = 'nullable';
+            $rules['checkout_end'] = 'nullable';
+        } else {
+            $rules['checkin_start'] = 'required';
+            $rules['checkin_end'] = 'required';
+            $rules['checkout_start'] = 'required';
+            $rules['checkout_end'] = 'required';
+        }
+
+        return $rules;
     }
 
     /**
