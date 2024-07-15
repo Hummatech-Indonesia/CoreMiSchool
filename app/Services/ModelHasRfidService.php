@@ -31,19 +31,24 @@ class ModelHasRfidService
     public function update(UpdateModelHasRfidRequest $request, string $role, string $id): mixed
     {
         $data = $request->validated();
+
+        // update old rfid
+        $this->modelRfid->update($request->old_rfid, ['model_type' => null, 'model_id' => null]);
+
         $rfid = $this->modelRfid->where($data['rfid']);
         if ($rfid->model_type == null) {
             if ($role == RoleEnum::STUDENT->value) {
-                $this->modelRfid->update($data['rfid'] ,['model_type' => 'App\Models\Student', 'model_id' => $id]);
+                $this->modelRfid->update($data['rfid'], ['model_type' => 'App\Models\Student', 'model_id' => $id]);
             } else if ($role == RoleEnum::TEACHER->value) {
-                $this->modelRfid->update($data['rfid'] ,['model_type' => 'App\Models\Employee', 'model_id' => $id]);
+                $this->modelRfid->update($data['rfid'], ['model_type' => 'App\Models\Employee', 'model_id' => $id]);
             } else {
-                $this->modelRfid->update($data['rfid'] ,['model_type' => 'App\Models\Employee', 'model_id' => $id]);
+                $this->modelRfid->update($data['rfid'], ['model_type' => 'App\Models\Employee', 'model_id' => $id]);
             }
 
             return redirect()->back()->with('success', 'Berhasil menambahkan rfid');
         } else {
-            return redirect()->back()->with('error', 'Data telah digunakan');
+            return redirect()->back()->with('error', 'RFID telah digunakan');
         }
+
     }
 }

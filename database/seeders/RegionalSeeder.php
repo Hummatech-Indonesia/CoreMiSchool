@@ -49,26 +49,18 @@ class RegionalSeeder extends Seeder
             unset($value['full_code']);
         }
 
-        echo "Memulai proses seeder data Provinsi...\n";
         Province::insert($data_prov);
-        echo "Done seeder data Provinsi...\n";
 
-        echo "Memulai proses seeder data Kabupaten...\n";
         City::insert($data_kab);
-        echo "Done seeder data Kabupaten...\n";
 
         $chunk_kec = array_chunk($data_kec, 1000);
         foreach ($chunk_kec as $key => $chunk) {
-            echo "Memulai proses seeder data Kecamatan... ke " . $key + 1 . "000\n";
             SubDistrict::insert($chunk);
-            echo "Done seeder data Kecamatan... ke " . $key + 1 . "000\n";
         }
 
         $chunk_kel = array_chunk($data_kel, 1000);
         foreach ($chunk_kel as $key => $chunk) {
-            echo "Memulai proses seeder data Kelurahan... ke " . $key + 1 . "000\n";
             Village::insert($chunk);
-            echo "Done seeder data Kelurahan... ke " . $key + 1 . "000\n";
         }
     }
 }
