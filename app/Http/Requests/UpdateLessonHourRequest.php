@@ -11,7 +11,7 @@ class UpdateLessonHourRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class UpdateLessonHourRequest extends FormRequest
         return [
             'name' => 'required',
             'start' => 'required',
-            'end' => 'required'
+            'end' => 'required|after:start'
         ];
     }
 
@@ -36,9 +36,19 @@ class UpdateLessonHourRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'Mohon untuk masukan nama jam pelajaran.',
-            'start.required' => 'Mohon untuk masukan waktu mulai jam pelajaran.',
-            'end.required' => 'Mohon untuk masukan waktu selesai jam pelajaran.',
+            'name.required' => 'Nama jam pelajaran harus diisi.',
+            'start.required' => 'Waktu mulai jam pelajaran harus diisi.',
+            'end.required' => 'Waktu selesai jam pelajaran harus diisi.',
+            'end.after' => 'Waktu selesai harus setelah waktu mulai.',
         ];
     }
+
+    // public function withValidator($validator)
+    // {
+    //     $validator->after(function ($validator) {
+    //         if ($validator->fails()) {
+    //             session()->flash('edit_errors', true);
+    //         }
+    //     });
+    // }
 }

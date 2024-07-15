@@ -3,6 +3,7 @@
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AttendanceRuleController;
 use App\Http\Controllers\ClassroomController;
+use App\Http\Controllers\LessonHourController;
 use App\Http\Controllers\LevelClassController;
 use App\Http\Controllers\MapleController;
 use App\Http\Controllers\ModelHasRfidController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\Teacher\StaffController;
 use App\Http\Controllers\Teacher\TeacherController;
 use App\Http\Controllers\TeacherMapleController;
+use Illuminate\Database\Query\IndexHint;
 use Illuminate\Support\Facades\Route;
 
 
@@ -44,10 +46,8 @@ Route::put('school/update-subjects/{maple}', [MapleController::class, 'update'])
 Route::delete('school/delete-subjects/{maple}', [MapleController::class, 'destroy'])->name('subjects.delete');
 
 // jam mata pelajaran
-Route::get('school/lesson-hours', function(){
-    return view('school.pages.subjects.lesson-hours');
-})->name('lesson-hours.index');
-
+// Route::get('school/lesson-hours', [LessonHourController::class, 'index'])->name('lesson-hours.index');
+Route::resource('school/lesson-hours', LessonHourController::class);
 //semeter
 Route::get('school/semesters', function(){
     return view('school.pages.semesters.index');
