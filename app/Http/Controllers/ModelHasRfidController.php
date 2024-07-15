@@ -55,8 +55,11 @@ class ModelHasRfidController extends Controller
     {
         $exist = $this->service->check($request);
 
+        $data = $request->validated();
+        $data['school_id'] = auth()->user()->school->id;
+
         if ($exist) {
-            $this->modelHasRfid->store($request->validated());
+            $this->modelHasRfid->store($data);
             return redirect()->back()->with('success', 'Berhasil menambahkan kartu rfid');
         } else {
             return redirect()->back()->with('error', 'Kartu rfid tidak valid');

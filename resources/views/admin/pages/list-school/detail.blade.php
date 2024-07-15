@@ -11,7 +11,7 @@
                                 <div class="d-flex align-items-center mb-5">
                                     <img class="card-img-top img-responsive me-3" style="max-height:80px; width: auto;"
                                         src="{{ asset('storage/'. $school->image) }}"
-                                        alt="Card image cap">
+                                        alt="{{ $school->user->name }}">
                                     <div class="d-flex flex-column flex-sm-row justify-content-between w-100 ms-3">
                                         <div>
                                             <h3 class="mb-1">{{ $school->user->name }}</h3>
@@ -19,7 +19,7 @@
                                         </div>
                                         <div>
                                             <h5 class="mb-1">Tahun Ajaran</h5>
-                                            <h5>2023/2024</h5>
+                                            <h5>{{ $schoolYear->school_year }}</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -114,7 +114,7 @@
                             </div>
                         </div>
                         <div class="bg-light-warning text-warning d-inline-block px-3 py-1 fs-8 rounded">
-                            18
+                            {{ $classrooms }}
                         </div>
                     </div>
                 </div>
@@ -136,7 +136,7 @@
                             </div>
                         </div>
                         <div class="bg-light-success text-success d-inline-block px-3 py-1 fs-8 rounded">
-                            18
+                            0
                         </div>
                     </div>
                 </div>
@@ -175,19 +175,19 @@
                         <div class="rfid-container d-flex flex-wrap justify-content-center justify-content-md-between mx-md-5">
                             <div class="rfid-item mb-3 text-center">
                                 <div class="bg-light-primary text-primary d-inline-block px-4 py-4 fs-8 rounded fixed-size-div">
-                                    <b>100</b>
+                                    <b>{{ $rfids->count() }}</b>
                                 </div>
                                 <h5>Jumlah RFID</h5>
                             </div>
                             <div class="rfid-item mb-3 text-center">
                                 <div class="bg-light-success text-success d-inline-block px-4 py-4 fs-8 rounded fixed-size-div">
-                                    <b>50</b>
+                                    <b>{{ $activeRfids->count() }}</b>
                                 </div>
                                 <h5>RFID Aktif</h5>
                             </div>
                             <div class="rfid-item mb-3 text-center">
                                 <div class="bg-light-danger text-danger d-inline-block px-4 py-4 fs-8 rounded fixed-size-div">
-                                    <b>100</b>
+                                    <b>{{ $nonactiveRfids->count() }}</b>
                                 </div>
                                 <h5>RFID Tidak Aktif</h5>
                             </div>

@@ -44,7 +44,6 @@ class ClassroomRepository extends BaseRepository implements ClassroomInterface
 
     public function whereInSchoolYears($schoolYears)
     {
-        $schoolYearIds = $schoolYears->pluck('id')->toArray();
-        return $this->model->query()->whereIn('school_year_id', $schoolYearIds)->get();
+        return $this->model->query()->where('school_year_id', $schoolYears)->get();
     }
 }
