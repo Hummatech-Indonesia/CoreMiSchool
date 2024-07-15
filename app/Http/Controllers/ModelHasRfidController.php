@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\ModelHasRfidInterface;
+use App\Contracts\Interfaces\SchoolInterface;
 use App\Models\ModelHasRfid;
 use App\Http\Requests\StoreModelHasRfidRequest;
 use App\Http\Requests\UpdateModelHasRfidRequest;
@@ -12,11 +13,13 @@ class ModelHasRfidController extends Controller
 {
     private ModelHasRfidInterface $modelHasRfid;
     private ModelHasRfidService $service;
+    private SchoolInterface $school;
 
-    public function __construct(ModelHasRfidInterface $modelHasRfid, ModelHasRfidService $service)
+    public function __construct(ModelHasRfidInterface $modelHasRfid, ModelHasRfidService $service, SchoolInterface $school)
     {
         $this->modelHasRfid = $modelHasRfid;
         $this->service = $service;
+        $this->school = $school;
     }
 
     /**
@@ -48,6 +51,18 @@ class ModelHasRfidController extends Controller
             return redirect()->back()->with('success', 'Berhasil menambahkan kartu rfid');
         } else {
             return redirect()->back()->with('error', 'Kartu rfid tidak valid');
+        }
+    }
+
+    public function storeMaster(StoreModelHasRfidRequest $request)
+    {
+        $exist = $this->service->check($request);
+        $school = $this->school->whereUserId(auth()->user()->id);
+        if ($exist) {
+            $this->modelHasRfid->store(['rfid' => $request->rfid, 'model_type' => 'App\Models\School', 'model_id' => $school->id]);
+            return redirect()->back()->with('success', 'Berhasil menambahkan master key');
+        } else {
+            return redirect()->back()->with('error', 'Kartu tidak valid');
         }
     }
 

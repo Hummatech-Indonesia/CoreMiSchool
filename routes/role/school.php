@@ -5,6 +5,7 @@ use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\LevelClassController;
 use App\Http\Controllers\MapleController;
 use App\Http\Controllers\ModelHasRfidController;
+use App\Http\Controllers\SchoolDashboardController;
 use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\Teacher\StaffController;
@@ -41,6 +42,10 @@ Route::post('school/add-subjects', [MapleController::class, 'store'])->name('sub
 Route::put('school/update-subjects/{maple}', [MapleController::class, 'update'])->name('subjects.update');
 Route::delete('school/delete-subjects/{maple}', [MapleController::class, 'destroy'])->name('subjects.delete');
 
+// jam mata pelajaran
+Route::get('school/lesson-hours', function(){
+    return view('school.pages.subjects.lesson-hours');
+})->name('lesson-hours.index');
 
 //semeter
 Route::get('school/semesters', function(){
@@ -106,14 +111,10 @@ Route::put('school/update-class-level/{levelClass}', [LevelClassController::clas
 Route::delete('school/delete-class-level/{levelClass}', [LevelClassController::class, 'destroy'])->name('class-level.delete');
 
 // setting informasi
-Route::get('school/information', function(){
-    return view('school.pages.settings.information');
-})->name('settings-information.index');
-
-// update informasi
-Route::get('school/update-information', function(){
-    return view('school.pages.settings.update-information');
-})->name('update-information.index');
+Route::get('school/information', [SchoolDashboardController::class, 'index'])->name('settings-information.index');
+Route::post('school/information/add-masterKey', [ModelHasRfidController::class, 'storeMaster'])->name('master-key.store');
+Route::get('school/information/edit', [SchoolDashboardController::class, 'edit'])->name('settings-information.edit');
+Route::put('school/information/update', [SchoolDashboardController::class, 'update'])->name('settings-information.update');
 
 // rfid
 Route::get('school/rfid', [ModelHasRfidController::class, 'index'])->name('rfid-school.index');
