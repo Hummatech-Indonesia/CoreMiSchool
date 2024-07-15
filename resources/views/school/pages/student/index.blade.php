@@ -244,7 +244,7 @@
                         <td>{{ $student->nisn }}</td>
                         <td>{{ $student->modelHasRfid ? $student->modelHasRfid->rfid : '-' }}
                             <button type="submit" class="btn btn-rounded btn-light-warning text-warning ms-2 btn-rfid"
-                                data-id="{{ $student->id }}" data-role="student" data-name="{{ $student->user->name }}" data-rfid="{{ $student->modelHasRfid->rfid }}">
+                                data-id="{{ $student->id }}" data-role="student" data-name="{{ $student->user->name }}" data-rfid="{{ $student->modelHasRfid ? $student->modelHasRfid->rfid : '-' }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                     viewBox="0 0 24 24">
                                     <path fill="currentColor"
