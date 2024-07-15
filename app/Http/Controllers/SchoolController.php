@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\CityInterface;
+use App\Contracts\Interfaces\ClassroomInterface;
 use App\Contracts\Interfaces\EmployeeInterface;
+use App\Contracts\Interfaces\ModelHasRfidInterface;
 use App\Contracts\Interfaces\ProvinceInterface;
 use App\Contracts\Interfaces\SchoolInterface;
+use App\Contracts\Interfaces\SchoolYearInterface;
 use App\Contracts\Interfaces\SubDistrictInterface;
 use App\Contracts\Interfaces\VillageInterface;
 use App\Models\School;
@@ -22,8 +25,11 @@ class SchoolController extends Controller
     private SubDistrictInterface $subdistrict;
     private VillageInterface $village;
     private EmployeeInterface $employee;
+    private ClassroomInterface $classroom;
+    private SchoolYearInterface $schoolYear;
+    private ModelHasRfidInterface $modelHasRfid;
 
-    public function __construct(SchoolInterface $school, SchoolService $service, ProvinceInterface $province, CityInterface $city, SubDistrictInterface $subdistrict, VillageInterface $village, EmployeeInterface $employee)
+    public function __construct(SchoolInterface $school, SchoolService $service, ProvinceInterface $province, CityInterface $city, SubDistrictInterface $subdistrict, VillageInterface $village, EmployeeInterface $employee, ClassroomInterface $classroom, SchoolYearInterface $schoolYear, ModelHasRfidInterface $modelHasRfid)
     {
         $this->school = $school;
         $this->service = $service;
@@ -32,6 +38,9 @@ class SchoolController extends Controller
         $this->subdistrict = $subdistrict;
         $this->village = $village;
         $this->employee = $employee;
+        $this->classroom = $classroom;
+        $this->schoolYear = $schoolYear;
+        $this->modelHasRfid = $modelHasRfid;
     }
 
     /**
@@ -75,7 +84,19 @@ class SchoolController extends Controller
     {
         $school = $this->school->showWithSlug($slug);
         $teachers = $this->employee->getTeacherBySchool($school->id);
-        return view('admin.pages.list-school.detail', compact('school', 'teachers'));
+        $schoolYears = $this->schoolYear->whereSchool($school->id);
+        $rfids = $this->modelHasRfid->whereSchool($school->id);
+        $activeRfids = $this->modelHasRfid->whereNotNull('model_type');
+        $nonactiveRfids = $this->modelHasRfid->whereNull('model_type');
+        $schoolYear = $this->schoolYear->active($school->id);
+        
+        $classrooms = 0;
+        // Loop untuk menghitung jumlah classrooms dari setiap schoolYear
+        foreach ($schoolYears as $schoolYear) {
+            $classrooms += $this->classroom->whereInSchoolYears($schoolYear->school_year)->count();
+        }
+
+        return view('admin.pages.list-school.detail', compact('school', 'teachers', 'classrooms', 'rfids', 'activeRfids', 'nonactiveRfids', 'schoolYear'));
     }
 
     /**

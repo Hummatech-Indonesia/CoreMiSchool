@@ -23,6 +23,7 @@ class StoreModelHasRfidRequest extends FormRequest
     {
         return [
             'rfid' => 'required|unique:model_has_rfids,rfid',
+            'school_id' => 'nullable',
         ];
     }
 
