@@ -41,6 +41,10 @@ Route::post('school/add-subjects', [MapleController::class, 'store'])->name('sub
 Route::put('school/update-subjects/{maple}', [MapleController::class, 'update'])->name('subjects.update');
 Route::delete('school/delete-subjects/{maple}', [MapleController::class, 'destroy'])->name('subjects.delete');
 
+// jam mata pelajaran
+Route::get('school/lesson-hours', function(){
+    return view('school.pages.subjects.lesson-hours');
+})->name('lesson-hours.index');
 
 //semeter
 Route::get('school/semesters', function(){
