@@ -12,5 +12,5 @@ use App\Contracts\Interfaces\Eloquent\WhereInterface;
 
 interface ModelHasRfidInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface, WhereInterface
 {
-    //
+    public function exists(mixed $rfid): mixed;
 }

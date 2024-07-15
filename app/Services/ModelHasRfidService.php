@@ -28,17 +28,22 @@ class ModelHasRfidService
         return $this->rfid->where($data['rfid']);
     }
 
-    public function update(UpdateModelHasRfidRequest $request, string $role, string $id): array|bool
+    public function update(UpdateModelHasRfidRequest $request, string $role, string $id): mixed
     {
         $data = $request->validated();
-        if ($role == RoleEnum::STUDENT->value) {
-            $this->modelRfid->update($data['rfid'] ,['model_type' => 'App\Models\Student', 'model_id' => $id]);
-        } else if ($role == RoleEnum::TEACHER->value) {
-            $this->modelRfid->update($data['rfid'] ,['model_type' => 'App\Models\Employee', 'model_id' => $id]);
-        } else {
-            $this->modelRfid->update($data['rfid'] ,['model_type' => 'App\Models\Employee', 'model_id' => $id]);
-        }
+        $rfid = $this->modelRfid->where($data['rfid']);
+        if ($rfid->model_type == null) {
+            if ($role == RoleEnum::STUDENT->value) {
+                $this->modelRfid->update($data['rfid'] ,['model_type' => 'App\Models\Student', 'model_id' => $id]);
+            } else if ($role == RoleEnum::TEACHER->value) {
+                $this->modelRfid->update($data['rfid'] ,['model_type' => 'App\Models\Employee', 'model_id' => $id]);
+            } else {
+                $this->modelRfid->update($data['rfid'] ,['model_type' => 'App\Models\Employee', 'model_id' => $id]);
+            }
 
-        return $data;
+            return redirect()->back()->with('success', 'Berhasil menambahkan rfid');
+        } else {
+            return redirect()->back()->with('error', 'Data telah digunakan');
+        }
     }
 }
