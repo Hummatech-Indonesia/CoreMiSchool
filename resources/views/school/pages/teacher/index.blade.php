@@ -251,8 +251,8 @@
                 <td>{{ $teacher->active == 1 ? 'Aktif' : 'Tidak aktif' }}</td>
                 <td>{{ $teacher->nip }}</td>
                 <td>{{ $teacher->modelHasRfid ? $teacher->modelHasRfid->rfid : '-' }}
-                    <button type="submit" class="btn btn-rounded btn-light-warning text-warning ms-2"
-                        data-bs-toggle="modal" data-bs-target="#modal-rfid">
+                    <button type="submit" class="btn btn-rounded btn-light-warning text-warning ms-2 btn-rfid"
+                        data-id="{{ $teacher->id }}" data-role="teacher">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                             viewBox="0 0 24 24">
                             <path fill="currentColor"
@@ -268,7 +268,7 @@
                 </td>
                 <td>
                     <div class="category-selector btn-group">
-                        <a class="nav-link category-dropdown label-group p-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
+                        <button class=" nav-link category-dropdown label-group p-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
                             <div class="category">
                                 <div class="category-business"></div>
                                 <div class="category-social"></div>
@@ -276,7 +276,7 @@
                                     <i class="ti ti-dots-vertical fs-5"></i>
                                 </span>
                             </div>
-                        </a>
+                        </button>
                         <div class="dropdown-menu dropdown-menu-right category-menu" style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate3d(0px, 23.2px, 0px);" data-popper-placement="bottom-end">
                             <button data-bs-toggle="modal" data-bs-target="#modal-detail"
                                 class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3">
@@ -468,24 +468,28 @@
                 <h5 class="modal-title" id="importPegawai">Tambah RFID</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <div class="mb-3">
-                    <div class="form-group d-flex">
-                        <h6 for="" class="mb-2">Nama : </h6>
-                        <p class="ms-3">Olivia Rhye</p>
-                    </div>
-                    <div class="form-group">
-                        <h6 for="" class="mb-2">RFID :</h6>
-                        <p>Lakukan tab pada rfid reader untuk menginputkan rfid</p>
-                        <input type="text" class="form-control" placeholder="Masukkan RFID">
+            <form id="form-rfid" method="POST" enctype="multipart/form-data">
+                @method('put')
+                @csrf
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <div class="form-group d-flex">
+                            <h6 for="" class="mb-2">Nama : </h6>
+                            <p class="ms-3">Olivia Rhye</p>
+                        </div>
+                        <div class="form-group">
+                            <h6 for="" class="mb-2">RFID :</h6>
+                            <p>Lakukan tab pada rfid reader untuk menginputkan rfid</p>
+                            <input type="text" name="rfid" class="form-control" placeholder="Masukkan RFID">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-rounded btn-light-danger text-danger"
-                    data-bs-dismiss="modal">Tutup</button>
-                <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-rounded btn-light-danger text-danger"
+                        data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -611,6 +615,13 @@
         var id = $(this).data('id');
         $('#form-delete').attr('action', '/school/delete-teacher/' + id);
         $('#modal-delete').modal('show');
+    });
+
+    $('.btn-rfid').on('click', function() {
+        var id = $(this).data('id');
+        var role = $(this).data('role');
+        $('#form-rfid').attr('action', '/school/add-to-rfid/' + role + '/' + id);
+        $('#modal-rfid').modal('show');
     });
 
 </script>

@@ -2,19 +2,24 @@
 
 namespace App\Services;
 
+use App\Contracts\Interfaces\ModelHasRfidInterface;
 use App\Contracts\Interfaces\RfidInterface;
 use App\Enums\RoleEnum;
 use App\Http\Requests\StoreModelHasRfidRequest;
 use App\Http\Requests\UpdateModelHasRfidRequest;
 use App\Models\Employee;
+use App\Models\ModelHasRfid;
 use App\Models\Student;
 
 class ModelHasRfidService
 {
     private RfidInterface $rfid;
+    private ModelHasRfidInterface $modelRfid;
 
-    public function __construct(RfidInterface $rfid) {
+    public function __construct(RfidInterface $rfid, ModelHasRfidInterface $modelRfid)
+    {
         $this->rfid = $rfid;
+        $this->modelRfid = $modelRfid;
     }
 
     public function check(StoreModelHasRfidRequest $request): array|bool
@@ -23,18 +28,22 @@ class ModelHasRfidService
         return $this->rfid->where($data['rfid']);
     }
 
-    public function update(UpdateModelHasRfidRequest $request, string $role, string $id): void
+    public function update(UpdateModelHasRfidRequest $request, string $role, string $id): mixed
     {
         $data = $request->validated();
-        if ($role == RoleEnum::STUDENT->value) {
-            $student = Student::find($id);
-            $student->modelHasRfid()->create(['rfid' => $data['rfid']]);
-        } else if ($role == RoleEnum::TEACHER->value) {
-            $teacher = Employee::find($id);
-            $teacher->modelHasRfid()->create(['rfid' => $data['rfid']]);
+        $rfid = $this->modelRfid->where($data['rfid']);
+        if ($rfid->model_type == null) {
+            if ($role == RoleEnum::STUDENT->value) {
+                $this->modelRfid->update($data['rfid'] ,['model_type' => 'App\Models\Student', 'model_id' => $id]);
+            } else if ($role == RoleEnum::TEACHER->value) {
+                $this->modelRfid->update($data['rfid'] ,['model_type' => 'App\Models\Employee', 'model_id' => $id]);
+            } else {
+                $this->modelRfid->update($data['rfid'] ,['model_type' => 'App\Models\Employee', 'model_id' => $id]);
+            }
+
+            return redirect()->back()->with('success', 'Berhasil menambahkan rfid');
         } else {
-            $employee = Employee::find($id);
-            $employee->modelHasRfid()->create(['rfid' => $data['rfid']]);
+            return redirect()->back()->with('error', 'Data telah digunakan');
         }
     }
 }
