@@ -95,10 +95,16 @@
                                 <div class="dropdown-menu dropdown-menu-right category-menu"
                                     style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate3d(0px, 23.2px, 0px);"
                                     data-popper-placement="bottom-end">
-                                    <a
-                                        class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3">
+                                    <button class="btn-detail note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3"
+                                        data-id="{{ $staff->id }}" data-name="{{ $staff->user->name }}"
+                                        data-email="{{ $staff->user->email }}" data-gender="{{ $staff->gender }}"
+                                        data-status="{{ $staff->active }}" data-nip="{{ $staff->nip }}"
+                                        data-nik="{{ $staff->nik }}" data-birth_date="{{ $staff->birth_date }}"
+                                        data-birth_place="{{ $staff->birth_place }}"
+                                        data-phone="{{ $staff->phone_number }}" data-address="{{ $staff->address }}"
+                                        data-religion="{{ $staff->religion_id }}" data-rfid="{{ $staff->modelHasRfid ? $staff->modelHasRfid->rfid : 'Tidak ada' }}">
                                         <i class="fs-4 ti ti-eye"></i>Detail
-                                    </a>
+                                    </button>
                                     <button type="button"
                                         class="btn-edit note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3"
                                         data-id="{{ $staff->id }}" data-name="{{ $staff->user->name }}"
@@ -566,6 +572,82 @@
         </div>
     </div>
 
+    <div class="modal fade" id="modal-detail" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content modal-lg">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="importPegawai">Detail</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="row justify-content-center">
+                        <div class="col-12">
+                            <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}"
+                                class="rounded-circle user-profile mb-3"
+                                style="object-fit: cover; width: 150px; height: 150px;" alt="User Profile Picture" />
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12 col-md-6">
+                            <div class="d-flex" style="margin-bottom: 0.5rem;">
+                                <h6 style="margin-bottom: 0;">Nama:</h6>
+                                <p class="ms-2" style="margin-bottom: 0;" id="name-detail">Suyadi Oke</p>
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="d-flex" style="margin-bottom: 0.5rem;">
+                                <h6 style="margin-bottom: 0;">Email:</h6>
+                                <p class="ms-2" style="margin-bottom: 0;" id="email-detail">suyadi@gmail.com</p>
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="d-flex" style="margin-bottom: 0.5rem;">
+                                <h6 style="margin-bottom: 0;">No Telepon:</h6>
+                                <p class="ms-2" style="margin-bottom: 0;" id="phone-detail">089121289098</p>
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="d-flex" style="margin-bottom: 0.5rem;">
+                                <h6 style="margin-bottom: 0;">Jenis Kelamin:</h6>
+                                <p class="ms-2" style="margin-bottom: 0;" id="gender-detail">Laki - laki</p>
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="d-flex" style="margin-bottom: 0.5rem;">
+                                <h6 style="margin-bottom: 0;">NIP:</h6>
+                                <p class="ms-2" style="margin-bottom: 0;" id="nip-detail">123123123</p>
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="d-flex" style="margin-bottom: 0.5rem;">
+                                <h6 style="margin-bottom: 0;">RFID:</h6>
+                                <p class="ms-2" style="margin-bottom: 0;" id="rfid-detail">123123123</p>
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="d-flex text-start">
+                                <h6 style="margin-bottom: 0;">Alamat:</h6>
+                                <p class="ms-2 text-muted text-break" style="margin-bottom: 0;" id="address-detail">jl. sembarang,
+                                    desa. opowae, kec. kepanjen, kab. Malang</p>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-rounded btn-light-danger text-danger"
+                        data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <x-delete-modal-component />
 @endsection
 
@@ -601,6 +683,37 @@
             $('#religion-edit').val(religion).trigger('change');
             $('#status-edit').val(status).trigger('change');
             $('#modal-update').modal('show');
+        });
+
+        $('.btn-detail').on('click', function() {
+            var id = $(this).data('id');
+            var name = $(this).data('name');
+            var email = $(this).data('email');
+            var gender = $(this).data('gender');
+            var status = $(this).data('status');
+            var nip = $(this).data('nip');
+            var nik = $(this).data('nik');
+            var birth_date =  $(this).data('birth_date');
+            var birth_place = $(this).data('birth_place');
+            var phone = $(this).data('phone');
+            var address = $(this).data('address');
+            var religion = $(this).data('religion');
+            var rfid = $(this).data('rfid');
+            var maple = $(this).data('maple');
+            $('#name-detail').text(name);
+            $('#email-detail').text(email);
+            $('#nip-detail').text(nip);
+            $('#nik-detail').text(nik);
+            $('#birth_date-detail').text(birth_date);
+            $('#birth_place-detail').text(birth_place);
+            $('#phone-detail').text(phone);
+            $('#address-detail').text(address);
+            $('#gender-detail').text(gender);
+            $('#religion-detail').text(religion);
+            $('#status-detail').text(status);
+            $('#rfid-detail').text(rfid);
+            $('#maple-detail').text(maple);
+            $('#modal-detail').modal('show');
         });
 
         $('.btn-delete').on('click', function() {
