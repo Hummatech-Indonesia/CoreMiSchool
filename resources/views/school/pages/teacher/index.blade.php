@@ -253,7 +253,7 @@
                 <td>{{ $teacher->modelHasRfid ? $teacher->modelHasRfid->rfid : '' }}
 
                     <button type="submit" class="btn btn-rounded btn-light-warning text-warning ms-2 btn-rfid"
-                        data-id="{{ $teacher->id }}" data-role="teacher">
+                        data-id="{{ $teacher->id }}" data-rfid="{{ $teacher->modelHasRfid ? $teacher->modelHasRfid->rfid : '' }}" data-role="teacher">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                             viewBox="0 0 24 24">
                             <path fill="currentColor"
@@ -476,6 +476,7 @@
             <form id="form-rfid" method="POST" enctype="multipart/form-data">
                 @method('put')
                 @csrf
+                <input type="hidden" name="old_rfid" id="old_rfid_input">
                 <div class="modal-body">
                     <div class="mb-3">
                         <div class="form-group d-flex">
@@ -656,8 +657,10 @@
     $('.btn-rfid').on('click', function() {
         var id = $(this).data('id');
         var role = $(this).data('role');
+        var oldRfid = $(this).data('rfid');
         $('#form-rfid').attr('action', '/school/add-to-rfid/' + role + '/' + id);
         $('#modal-rfid').modal('show');
+        $('#modal-rfid #old_rfid_input').val(oldRfid);
     });
 
 </script>
