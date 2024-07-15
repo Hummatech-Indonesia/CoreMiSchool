@@ -511,57 +511,57 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-12 col-md-6">
-                        <div class="d-flex justify-content-between" style="margin-bottom: 0.5rem;">
+                        <div class="d-flex" style="margin-bottom: 0.5rem;">
                             <h6 style="margin-bottom: 0;">Nama:</h6>
                             <p class="ms-2" style="margin-bottom: 0;">Suyadi Oke</p>
                         </div>
                         <hr>
                     </div>
                     <div class="col-12 col-md-6">
-                        <div class="d-flex justify-content-between" style="margin-bottom: 0.5rem;">
+                        <div class="d-flex" style="margin-bottom: 0.5rem;">
                             <h6 style="margin-bottom: 0;">Email:</h6>
                             <p class="ms-2" style="margin-bottom: 0;">suyadi@gmail.com</p>
                         </div>
                         <hr>
                     </div>
                     <div class="col-12 col-md-6">
-                        <div class="d-flex justify-content-between" style="margin-bottom: 0.5rem;">
+                        <div class="d-flex" style="margin-bottom: 0.5rem;">
                             <h6 style="margin-bottom: 0;">No Telepon:</h6>
                             <p class="ms-2" style="margin-bottom: 0;">089121289098</p>
                         </div>
                         <hr>
                     </div>
                     <div class="col-12 col-md-6">
-                        <div class="d-flex justify-content-between" style="margin-bottom: 0.5rem;">
+                        <div class="d-flex" style="margin-bottom: 0.5rem;">
                             <h6 style="margin-bottom: 0;">Jenis Kelamin:</h6>
                             <p class="ms-2" style="margin-bottom: 0;">Laki - laki</p>
                         </div>
                         <hr>
                     </div>
                     <div class="col-12 col-md-6">
-                        <div class="d-flex justify-content-between" style="margin-bottom: 0.5rem;">
+                        <div class="d-flex" style="margin-bottom: 0.5rem;">
                             <h6 style="margin-bottom: 0;">NIP:</h6>
                             <p class="ms-2" style="margin-bottom: 0;">123123123</p>
                         </div>
                         <hr>
                     </div>
                     <div class="col-12 col-md-6">
-                        <div class="d-flex justify-content-between" style="margin-bottom: 0.5rem;">
+                        <div class="d-flex" style="margin-bottom: 0.5rem;">
                             <h6 style="margin-bottom: 0;">RFID:</h6>
                             <p class="ms-2" style="margin-bottom: 0;">123123123</p>
                         </div>
                         <hr>
                     </div>
                     <div class="col-12 col-md-6">
-                        <div class="d-flex justify-content-between text-start">
+                        <div class="d-flex text-start">
                             <h6 style="margin-bottom: 0;">Alamat:</h6>
-                            <p class="ms-2 text-muted text-end text-break" style="margin-bottom: 0;">jl. sembarang,
+                            <p class="ms-2 text-muted text-break" style="margin-bottom: 0;">jl. sembarang,
                                 desa. opowae, kec. kepanjen, kab. Malang</p>
                         </div>
                         <hr>
                     </div>
                     <div class="col-12 col-md-6">
-                        <div class="d-flex justify-content-between text-start">
+                        <div class="d-flex text-start">
                             <h6 style="margin-bottom: 0;">Jumlah Mata Pelajaran:</h6>
                             <p class="ms-2 text-muted text-break" style="margin-bottom: 0;">4 Mata Pelajaran</p>
                         </div>
