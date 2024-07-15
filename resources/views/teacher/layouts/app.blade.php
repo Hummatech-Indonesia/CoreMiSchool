@@ -5,7 +5,7 @@
 
 <head>
     <!--  Title -->
-    <title>{{ env('APP_NAME') }} | Teacher</title>
+    <title>MiSchool | Teacher</title>
     <!--  Required Meta Tag -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -16,8 +16,7 @@
     <meta name="keywords" content="Mordenize" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!--  Favicon -->
-    <link rel="shortcut icon" type="image/png"
-        href="{{ asset('assets/images/logo/logo-M.png') }}" />
+    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logo/logo-M.png') }}" />
     <!-- Owl Carousel  -->
     <link rel="stylesheet" href="{{ asset('admin_assets/dist/libs/owl.carousel/dist/owl.carousel.min.js') }}">
 
@@ -29,19 +28,18 @@
 <body>
     <!-- Preloader -->
     <div class="preloader">
-        <img src="{{ asset('preloader.png') }}" style="width:150px" alt="loader" class="lds-ripple" />
+        <img src="{{ asset('assets/images/logo/logo-M.png') }}" style="width:100px" alt="loader" class="lds-ripple" />
     </div>
     <!-- Preloader -->
     <div class="preloader">
-        <img src="{{ asset('preloader.png') }}" style="width:150px" alt="loader" class="lds-ripple" />
+        <img src="{{ asset('assets/images/logo/logo-M.png') }}" style="width:100px" alt="loader" class="lds-ripple" />
     </div>
     <!--  Body Wrapper -->
-    <div class="page-wrapper" id="main-wrapper" data-theme="blue_theme" data-layout="vertical" data-sidebartype="full"
-        data-sidebar-position="fixed" data-header-position="fixed">
+    <div class="page-wrapper" id="main-wrapper" data-theme="blue_theme" data-layout="vertical" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Sidebar Start -->
         @include('teacher.layouts.sidebar')
         <!--  Sidebar End -->
-                <!-- SignIn modal content -->
+        <!-- SignIn modal content -->
 
         <!--  Main wrapper -->
         <div class="body-wrapper">
@@ -55,8 +53,7 @@
         </div>
     </div>
     <!--  Shopping Cart -->
-    <div class="offcanvas offcanvas-end shopping-cart" tabindex="-1" id="offcanvasRight"
-        aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas offcanvas-end shopping-cart" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header py-4">
             <h5 class="offcanvas-title fs-5 fw-semibold" id="offcanvasRightLabel">Shopping Cart</h5>
             <span class="badge bg-primary rounded-4 px-3 py-1 lh-sm">5 new</span>
@@ -65,22 +62,16 @@
             <ul class="mb-0">
                 <li class="pb-7">
                     <div class="d-flex align-items-center">
-                        <img src="../../dist/images/products/product-1.jpg" width="95" height="75"
-                            class="rounded-1 me-9 flex-shrink-0" alt="" />
+                        <img src="../../dist/images/products/product-1.jpg" width="95" height="75" class="rounded-1 me-9 flex-shrink-0" alt="" />
                         <div>
                             <h6 class="mb-1">Supreme toys cooker</h6>
                             <p class="mb-0 text-muted fs-2">Kitchenware Item</p>
                             <div class="d-flex align-items-center justify-content-between mt-2">
                                 <h6 class="fs-2 fw-semibold mb-0 text-muted">$250</h6>
                                 <div class="input-group input-group-sm w-50">
-                                    <button class="btn border-0 round-20 minus p-0 bg-light-success text-success "
-                                        type="button" id="add1"> - </button>
-                                    <input type="text"
-                                        class="form-control round-20 bg-transparent text-muted fs-2 border-0  text-center qty"
-                                        placeholder="" aria-label="Example text with button addon"
-                                        aria-describedby="add1" value="1" />
-                                    <button class="btn text-success bg-light-success  p-0 round-20 border-0 add"
-                                        type="button" id="addo2"> + </button>
+                                    <button class="btn border-0 round-20 minus p-0 bg-light-success text-success " type="button" id="add1"> - </button>
+                                    <input type="text" class="form-control round-20 bg-transparent text-muted fs-2 border-0  text-center qty" placeholder="" aria-label="Example text with button addon" aria-describedby="add1" value="1" />
+                                    <button class="btn text-success bg-light-success  p-0 round-20 border-0 add" type="button" id="addo2"> + </button>
                                 </div>
                             </div>
                         </div>
@@ -88,22 +79,16 @@
                 </li>
                 <li class="pb-7">
                     <div class="d-flex align-items-center">
-                        <img src="../../dist/images/products/product-2.jpg" width="95" height="75"
-                            class="rounded-1 me-9 flex-shrink-0" alt="" />
+                        <img src="../../dist/images/products/product-2.jpg" width="95" height="75" class="rounded-1 me-9 flex-shrink-0" alt="" />
                         <div>
                             <h6 class="mb-1">Supreme toys cooker</h6>
                             <p class="mb-0 text-muted fs-2">Kitchenware Item</p>
                             <div class="d-flex align-items-center justify-content-between mt-2">
                                 <h6 class="fs-2 fw-semibold mb-0 text-muted">$250</h6>
                                 <div class="input-group input-group-sm w-50">
-                                    <button class="btn border-0 round-20 minus p-0 bg-light-success text-success "
-                                        type="button" id="add2"> - </button>
-                                    <input type="text"
-                                        class="form-control round-20 bg-transparent text-muted fs-2 border-0  text-center qty"
-                                        placeholder="" aria-label="Example text with button addon"
-                                        aria-describedby="add2" value="1" />
-                                    <button class="btn text-success bg-light-success  p-0 round-20 border-0 add"
-                                        type="button" id="addon34"> + </button>
+                                    <button class="btn border-0 round-20 minus p-0 bg-light-success text-success " type="button" id="add2"> - </button>
+                                    <input type="text" class="form-control round-20 bg-transparent text-muted fs-2 border-0  text-center qty" placeholder="" aria-label="Example text with button addon" aria-describedby="add2" value="1" />
+                                    <button class="btn text-success bg-light-success  p-0 round-20 border-0 add" type="button" id="addon34"> + </button>
                                 </div>
                             </div>
                         </div>
@@ -111,22 +96,16 @@
                 </li>
                 <li class="pb-7">
                     <div class="d-flex align-items-center">
-                        <img src="../../dist/images/products/product-3.jpg" width="95" height="75"
-                            class="rounded-1 me-9 flex-shrink-0" alt="" />
+                        <img src="../../dist/images/products/product-3.jpg" width="95" height="75" class="rounded-1 me-9 flex-shrink-0" alt="" />
                         <div>
                             <h6 class="mb-1">Supreme toys cooker</h6>
                             <p class="mb-0 text-muted fs-2">Kitchenware Item</p>
                             <div class="d-flex align-items-center justify-content-between mt-2">
                                 <h6 class="fs-2 fw-semibold mb-0 text-muted">$250</h6>
                                 <div class="input-group input-group-sm w-50">
-                                    <button class="btn border-0 round-20 minus p-0 bg-light-success text-success "
-                                        type="button" id="add3"> - </button>
-                                    <input type="text"
-                                        class="form-control round-20 bg-transparent text-muted fs-2 border-0  text-center qty"
-                                        placeholder="" aria-label="Example text with button addon"
-                                        aria-describedby="add3" value="1" />
-                                    <button class="btn text-success bg-light-success  p-0 round-20 border-0 add"
-                                        type="button" id="addon3"> + </button>
+                                    <button class="btn border-0 round-20 minus p-0 bg-light-success text-success " type="button" id="add3"> - </button>
+                                    <input type="text" class="form-control round-20 bg-transparent text-muted fs-2 border-0  text-center qty" placeholder="" aria-label="Example text with button addon" aria-describedby="add3" value="1" />
+                                    <button class="btn text-success bg-light-success  p-0 round-20 border-0 add" type="button" id="addon3"> + </button>
                                 </div>
                             </div>
                         </div>
@@ -152,12 +131,10 @@
     </div>
 
     <!--  Mobilenavbar -->
-    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="mobilenavbar"
-        aria-labelledby="offcanvasWithBothOptionsLabel">
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="mobilenavbar" aria-labelledby="offcanvasWithBothOptionsLabel">
         <nav class="sidebar-nav scroll-sidebar">
             <div class="offcanvas-header justify-content-between">
-                <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico"
-                    alt="" class="img-fluid">
+                <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico" alt="" class="img-fluid">
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body profile-dropdown mobile-navbar" data-simplebar="" data-simplebar>
@@ -172,10 +149,8 @@
                         <ul aria-expanded="false" class="collapse first-level my-3">
                             <li class="sidebar-item py-2">
                                 <a href="#" class="d-flex align-items-center">
-                                    <div
-                                        class="bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
-                                        <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-dd-chat.svg"
-                                            alt="" class="img-fluid" width="24" height="24">
+                                    <div class="bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
+                                        <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-dd-chat.svg" alt="" class="img-fluid" width="24" height="24">
                                     </div>
                                     <div class="d-inline-block">
                                         <h6 class="mb-1 bg-hover-primary">Chat Application</h6>
@@ -185,10 +160,8 @@
                             </li>
                             <li class="sidebar-item py-2">
                                 <a href="#" class="d-flex align-items-center">
-                                    <div
-                                        class="bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
-                                        <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-dd-invoice.svg"
-                                            alt="" class="img-fluid" width="24" height="24">
+                                    <div class="bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
+                                        <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-dd-invoice.svg" alt="" class="img-fluid" width="24" height="24">
                                     </div>
                                     <div class="d-inline-block">
                                         <h6 class="mb-1 bg-hover-primary">Invoice App</h6>
@@ -198,10 +171,8 @@
                             </li>
                             <li class="sidebar-item py-2">
                                 <a href="#" class="d-flex align-items-center">
-                                    <div
-                                        class="bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
-                                        <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-dd-mobile.svg"
-                                            alt="" class="img-fluid" width="24" height="24">
+                                    <div class="bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
+                                        <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-dd-mobile.svg" alt="" class="img-fluid" width="24" height="24">
                                     </div>
                                     <div class="d-inline-block">
                                         <h6 class="mb-1 bg-hover-primary">Contact Application</h6>
@@ -211,10 +182,8 @@
                             </li>
                             <li class="sidebar-item py-2">
                                 <a href="#" class="d-flex align-items-center">
-                                    <div
-                                        class="bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
-                                        <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-dd-message-box.svg"
-                                            alt="" class="img-fluid" width="24" height="24">
+                                    <div class="bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
+                                        <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-dd-message-box.svg" alt="" class="img-fluid" width="24" height="24">
                                     </div>
                                     <div class="d-inline-block">
                                         <h6 class="mb-1 bg-hover-primary">Email App</h6>
@@ -224,10 +193,8 @@
                             </li>
                             <li class="sidebar-item py-2">
                                 <a href="#" class="d-flex align-items-center">
-                                    <div
-                                        class="bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
-                                        <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-dd-cart.svg"
-                                            alt="" class="img-fluid" width="24" height="24">
+                                    <div class="bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
+                                        <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-dd-cart.svg" alt="" class="img-fluid" width="24" height="24">
                                     </div>
                                     <div class="d-inline-block">
                                         <h6 class="mb-1 bg-hover-primary">User Profile</h6>
@@ -237,10 +204,8 @@
                             </li>
                             <li class="sidebar-item py-2">
                                 <a href="#" class="d-flex align-items-center">
-                                    <div
-                                        class="bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
-                                        <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-dd-date.svg"
-                                            alt="" class="img-fluid" width="24" height="24">
+                                    <div class="bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
+                                        <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-dd-date.svg" alt="" class="img-fluid" width="24" height="24">
                                     </div>
                                     <div class="d-inline-block">
                                         <h6 class="mb-1 bg-hover-primary">Calendar App</h6>
@@ -250,10 +215,8 @@
                             </li>
                             <li class="sidebar-item py-2">
                                 <a href="#" class="d-flex align-items-center">
-                                    <div
-                                        class="bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
-                                        <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-dd-lifebuoy.svg"
-                                            alt="" class="img-fluid" width="24" height="24">
+                                    <div class="bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
+                                        <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-dd-lifebuoy.svg" alt="" class="img-fluid" width="24" height="24">
                                     </div>
                                     <div class="d-inline-block">
                                         <h6 class="mb-1 bg-hover-primary">Contact List Table</h6>
@@ -263,10 +226,8 @@
                             </li>
                             <li class="sidebar-item py-2">
                                 <a href="#" class="d-flex align-items-center">
-                                    <div
-                                        class="bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
-                                        <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-dd-application.svg"
-                                            alt="" class="img-fluid" width="24" height="24">
+                                    <div class="bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
+                                        <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-dd-application.svg" alt="" class="img-fluid" width="24" height="24">
                                     </div>
                                     <div class="d-inline-block">
                                         <h6 class="mb-1 bg-hover-primary">Notes Application</h6>
@@ -371,8 +332,7 @@
                         <li class="p-1 mb-1 bg-hover-light-black">
                             <a href="#">
                                 <span class="fs-3 text-black fw-normal d-block">Detail</span>
-                                <span
-                                    class="fs-3 text-muted d-block">/apps/blog/detail/streaming-video-way-before-it-was-cool-go-dark-tomorrow</span>
+                                <span class="fs-3 text-muted d-block">/apps/blog/detail/streaming-video-way-before-it-was-cool-go-dark-tomorrow</span>
                             </a>
                         </li>
                         <li class="p-1 mb-1 bg-hover-light-black">
@@ -408,8 +368,7 @@
                         <li class="p-1 mb-1 bg-hover-light-black">
                             <a href="#">
                                 <span class="fs-3 text-black fw-normal d-block">Detail</span>
-                                <span
-                                    class="fs-3 text-muted d-block">/apps/blog/detail/streaming-video-way-before-it-was-cool-go-dark-tomorrow</span>
+                                <span class="fs-3 text-muted d-block">/apps/blog/detail/streaming-video-way-before-it-was-cool-go-dark-tomorrow</span>
                             </a>
                         </li>
                         <li class="p-1 mb-1 bg-hover-light-black">
