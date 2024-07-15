@@ -75,7 +75,8 @@
                         <td>{{ $staff->modelHasRfid ? $staff->modelHasRfid->rfid : '' }}
                             <button type="submit" class="btn btn-rounded btn-light-warning text-warning ms-2 btn-rfid"
                                 data-id="{{ $staff->id }}" data-role="staff"
-                                data-rfid="{{ $staff->modelHasRfid ? $staff->modelHasRfid->rfid : '' }}">
+                                data-rfid="{{ $staff->modelHasRfid ? $staff->modelHasRfid->rfid : '' }}"
+                                data-name="{{ $staff->user->name }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                     <path fill="currentColor"
                                         d="M21 12a1 1 0 0 0-1 1v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h6a1 1 0 0 0 0-2H5a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-6a1 1 0 0 0-1-1m-15 .76V17a1 1 0 0 0 1 1h4.24a1 1 0 0 0 .71-.29l6.92-6.93L21.71 8a1 1 0 0 0 0-1.42l-4.24-4.29a1 1 0 0 0-1.42 0l-2.82 2.83l-6.94 6.93a1 1 0 0 0-.29.71m10.76-8.35l2.83 2.83l-1.42 1.42l-2.83-2.83ZM8 13.17l5.93-5.93l2.83 2.83L10.83 16H8Z" />
@@ -561,12 +562,13 @@
                         <div class="mb-3">
                             <div class="form-group d-flex">
                                 <h6 for="" class="mb-2">Nama : </h6>
-                                <p class="ms-3">Olivia Rhye</p>
+                                <p class="ms-3" id="name-detail-rfid"></p>
                             </div>
                             <div class="form-group">
                                 <h6 for="" class="mb-2">RFID :</h6>
                                 <p>Lakukan tab pada rfid reader untuk menginputkan rfid</p>
-                                <input type="text" name="rfid" class="form-control" placeholder="Masukkan RFID">
+                                <input type="text" name="rfid" id="rfid" class="form-control"
+                                    placeholder="Masukkan RFID">
                             </div>
                         </div>
                     </div>
@@ -738,6 +740,10 @@
             var id = $(this).data('id');
             var role = $(this).data('role');
             var rfid = $(this).data('rfid');
+            var name = $(this).data('name');
+
+
+            $('#name-detail-rfid').text(name);
             $('#form-rfid').attr('action', '/school/add-to-rfid/' + role + '/' + id);
             $('#modal-rfid').modal('show');
             $('#modal-rfid #old_rfid_input').val(rfid);
@@ -820,6 +826,16 @@
 
             $('.category-dropdown').on('hide.bs.dropdown', function() {
                 $(this).closest('.table-responsive').css('overflow', 'auto');
+            });
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#modal-rfid').on('shown.bs.modal', function() {
+                $('#rfid').focus().select();
             });
         });
     </script>
