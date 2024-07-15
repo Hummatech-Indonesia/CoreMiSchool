@@ -42,8 +42,8 @@ class UserRepository extends BaseRepository implements UserInterface
         return $this->model->query()->latest()->paginate(10);
     }
 
-    public function showWithSlug(string $slug): mixed
+    public function showEmail(string $email): mixed
     {
-        return $this->model->query()->where('slug', $slug)->firstOrFail();
+        return $this->model->query()->where('email', $email)->firstOrFail();
     }
 }
