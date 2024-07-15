@@ -600,7 +600,7 @@
                         <div class="col-12 col-md-6">
                             <div class="d-flex" style="margin-bottom: 0.5rem;">
                                 <h6 style="margin-bottom: 0;">Jenis Kelamin:</h6>
-                                <p class="ms-2" style="margin-bottom: 0;" id="gender-detail">Laki - laki</p>
+                                <p class="ms-2" style="margin-bottom: 0;" id="gender-detail"></p>
                             </div>
                             <hr>
                         </div>
@@ -684,6 +684,10 @@
             var name = $(this).data('name');
             var email = $(this).data('email');
             var gender = $(this).data('gender');
+            var genderTranslation = {
+        'male': 'laki-laki',
+        'female': 'perempuan'
+    };
             var status = $(this).data('status');
             var nip = $(this).data('nip');
             var nik = $(this).data('nik');
@@ -695,6 +699,11 @@
             var rfid = $(this).data('rfid');
             var maple = $(this).data('maple');
             var image = $(this).data('image');
+            var genderTranslation = {
+                'male': 'laki-laki',
+                'female': 'perempuan'
+            };
+
             $('#name-detail').text(name);
             $('#email-detail').text(email);
             $('#nip-detail').text(nip);
@@ -703,7 +712,7 @@
             $('#birth_place-detail').text(birth_place);
             $('#phone-detail').text(phone);
             $('#address-detail').text(address);
-            $('#gender-detail').text(gender);
+            $('#gender-detail').text(genderTranslation[gender] || gender);
             $('#religion-detail').text(religion);
             $('#status-detail').text(status);
             $('#rfid-detail').text(rfid);
