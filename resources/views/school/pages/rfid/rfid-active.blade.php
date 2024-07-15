@@ -51,14 +51,14 @@
             </div>
         </form>
     </div>
-    <div class="col-lg-8 mb-3 d-flex justify-content-end">
+    {{-- <div class="col-lg-8 mb-3 d-flex justify-content-end">
         <form action="" method="post" class="d-flex align-items-center gap-3">
             <span class="">Tambah RFID: </span>
             @csrf
             <input type="text" name="rfid" class="form-control w-auto">
             <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
         </form>
-    </div>
+    </div> --}}
 </div>
 
 <div class="mt-2">
@@ -67,16 +67,18 @@
             <thead>
                 <tr>
                     <th>Nomor RFID</th>
+                    <th>Pengguna</th>
                     <th>Status</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                @forelse (range(1,10) as $rfid)
+                @forelse (range(1,6) as $rfid)
                 <tr>
                     <td>1234567</td>
+                    <td>Suyadi Oke</td>
                     <td>
-                        <span class="mb-1 badge px-4 font-medium bg-light-danger text-danger">Belum Digunakan</span>
+                        <span class="mb-1 badge px-5 font-medium bg-light-success text-success">Aktif</span>
                     </td>
                     <td>
                         <button type="button" class="btn btn-sm btn-danger btn-delete" data-id="1">
