@@ -301,7 +301,7 @@
                                 </div>
                                 <div class="d-flex justify-content-end mt-3 mx-4">
                                     <button type="button" class="btn mb-1 waves-effect waves-light btn-outline-primary prev-step">Kembali</button>
-                                    <button type="submit" class="btn mb-1 waves-effect waves-light btn-rounded btn-primary ms-3 next-step">Simpan</button>
+                                    <button type="submit" class="btn mb-1 waves-effect waves-light btn-rounded btn-primary ms-3">Simpan</button>
                                 </div>
                             </section>
                         </form>
