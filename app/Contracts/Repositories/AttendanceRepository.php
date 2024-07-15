@@ -26,7 +26,7 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
     {
         return $this->model->query()->findOrFail($id);
     }
-    
+
     public function update(mixed $id, array $data): mixed
     {
         return $this->model->query()->findOrFail($id)->update($data);
@@ -40,5 +40,10 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
     public function paginate() : mixed
     {
         return $this->model->query()->latest()->paginate(10);
+    }
+
+    public function whereSchool(mixed $id): mixed
+    {
+        return $this->model->query()->whereRelation('classroomStudent.classroom.schoolYear.school', 'id', $id)->latest()->paginate(10);
     }
 }

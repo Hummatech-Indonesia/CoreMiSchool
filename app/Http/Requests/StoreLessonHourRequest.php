@@ -41,4 +41,13 @@ class StoreLessonHourRequest extends FormRequest
             'end.required' => 'Mohon untuk masukan waktu selesai jam pelajaran.',
         ];
     }
+
+    // public function withValidator($validator)
+    // {
+    //     $validator->after(function ($validator) {
+    //         if ($validator->fails()) {
+    //             session()->flash('create_errors', true);
+    //         }
+    //     });
+    // }
 }

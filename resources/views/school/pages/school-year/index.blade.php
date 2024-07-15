@@ -28,6 +28,7 @@
             <thead>
                 <tr>
                     <th>Tahun Ajaran</th>
+                    <th>Status</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -35,6 +36,7 @@
                 @forelse ($schoolYears as $schoolYear)
                     <tr>
                         <td>{{ $schoolYear->school_year }}</td>
+                        <td>{{ $schoolYear->active == 1 ? 'Aktif' : 'Tidak aktif' }}</td>
                         <td>
                             <div class="gap-3">
                                 <button class="btn btn-edit btn-light-primary text-primary mb-2 me-2"

@@ -21,7 +21,12 @@ class DatabaseSeeder extends Seeder
             SchoolSeeder::class,
             LessonHourSeeder::class,
             SchoolYearSeeder::class,
-            LevelClassSeeder::class
+            LevelClassSeeder::class,
+            EmployeeSeeder::class,
+            StudentSeeder::class,
+            ClassroomSeeder::class,
+            ClassroomStudentSeeder::class,
+            AttendanceSeeder::class
         ]);
     }
 }

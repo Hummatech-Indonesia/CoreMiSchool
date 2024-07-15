@@ -2,18 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Interfaces\AttendanceInterface;
 use App\Models\Attendance;
 use App\Http\Requests\StoreAttendanceRequest;
 use App\Http\Requests\UpdateAttendanceRequest;
 
 class AttendanceController extends Controller
 {
+    private AttendanceInterface $attendance;
+
+    public function __construct(AttendanceInterface $attendance)
+    {
+        $this->attendance = $attendance;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $attendances = $this->attendance->whereSchool(auth()->user()->school->id);
+        return view('school.pages.attendace.presence', compact('attendances'));
     }
 
     /**
