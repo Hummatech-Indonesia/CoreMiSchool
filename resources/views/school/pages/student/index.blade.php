@@ -242,25 +242,16 @@
                         <td>Kelas Dumy</td>
                         <td>{{ $student->gender == 'famale' ? 'Perempuan' : 'Laki-laki' }}</td>
                         <td>{{ $student->nisn }}</td>
-                        <td>
-                            @if ($student->modelHasRfid)
-                                {{ $student->modelHasRfid->rfid }}
-                                <button type="submit" class="btn btn-rounded btn-warning ms-2" data-bs-toggle="modal"
-                                    data-bs-target="#modal-rfid">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                        viewBox="0 0 24 24">
-                                        <path fill="currentColor"
-                                            d="M21 12a1 1 0 0 0-1 1v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h6a1 1 0 0 0 0-2H5a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-6a1 1 0 0 0-1-1m-15 .76V17a1 1 0 0 0 1 1h4.24a1 1 0 0 0 .71-.29l6.92-6.93L21.71 8a1 1 0 0 0 0-1.42l-4.24-4.29a1 1 0 0 0-1.42 0l-2.82 2.83l-6.94 6.93a1 1 0 0 0-.29.71m10.76-8.35l2.83 2.83l-1.42 1.42l-2.83-2.83ZM8 13.17l5.93-5.93l2.83 2.83L10.83 16H8Z" />
-                                    </svg>
-                                </button>
-                            @else
-                                <button type="button" class="btn mb-1 btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#modal-rfid">
-                                    Tambah RFID
-                                </button>
-                            @endif
+                        <td>{{ $student->modelHasRfid ? $student->modelHasRfid->rfid : '-' }}
+                            <button type="submit" class="btn btn-rounded btn-light-warning text-warning ms-2 btn-rfid"
+                                data-id="{{ $student->id }}" data-role="student" data-name="{{ $student->user->name }}" data-rfid="{{ $student->modelHasRfid->rfid }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                    viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M21 12a1 1 0 0 0-1 1v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h6a1 1 0 0 0 0-2H5a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-6a1 1 0 0 0-1-1m-15 .76V17a1 1 0 0 0 1 1h4.24a1 1 0 0 0 .71-.29l6.92-6.93L21.71 8a1 1 0 0 0 0-1.42l-4.24-4.29a1 1 0 0 0-1.42 0l-2.82 2.83l-6.94 6.93a1 1 0 0 0-.29.71m10.76-8.35l2.83 2.83l-1.42 1.42l-2.83-2.83ZM8 13.17l5.93-5.93l2.83 2.83L10.83 16H8Z" />
+                                </svg>
+                            </button>
                         </td>
-
                         <td>
                             <div class="category-selector btn-group">
                                 <a class="nav-link category-dropdown label-group p-0" data-bs-toggle="dropdown"
@@ -549,24 +540,28 @@
                     <h5 class="modal-title" id="importPegawai">Tambah RFID</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <div class="form-group d-flex">
-                            <h6 for="" class="mb-2">Nama : </h6>
-                            <p class="ms-3">Olivia Rhye</p>
-                        </div>
-                        <div class="form-group">
-                            <h6 for="" class="mb-2">RFID :</h6>
-                            <p>Lakukan tab pada rfid reader untuk menginputkan rfid</p>
-                            <input type="text" class="form-control" placeholder="Masukkan RFID">
+                <form id="form-rfid" method="POST" enctype="multipart/form-data">
+                    @method('put')
+                    @csrf
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <div class="form-group d-flex">
+                                <h6 for="" class="mb-2">Nama : </h6>
+                                <p class="ms-3" id="name"></p>
+                            </div>
+                            <div class="form-group">
+                                <h6 for="" class="mb-2">RFID : <span id="rfid"></span></h6>
+                                <p>Lakukan tab pada rfid reader untuk menginputkan rfid</p>
+                                <input type="text" name="rfid" class="form-control" placeholder="Masukkan RFID">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-rounded btn-light-danger text-danger"
-                        data-bs-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-rounded btn-light-danger text-danger"
+                            data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -659,6 +654,17 @@
         //  $('#gender-edit').select2({
         //     dropdownParent: $('#modal-edit')
         // });
+
+        $('.btn-rfid').on('click', function() {
+            var id = $(this).data('id');
+            var name = $(this).data('name');
+            var rfid = $(this).data('rfid');
+            var role = $(this).data('role');
+            $('#name').text(name);
+            $('#rfid').text(rfid);
+            $('#form-rfid').attr('action', '/school/add-to-rfid/' + role + '/' + id);
+            $('#modal-rfid').modal('show');
+        });
 
         $('.btn-edit').click(function() {
             var id = $(this).data('id');
