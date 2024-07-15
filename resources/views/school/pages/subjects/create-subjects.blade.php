@@ -35,9 +35,6 @@
             <button class="btn btn-success px-4" data-bs-toggle="modal" data-bs-target="#modal-create">
                 Tambah Pelajaran
             </button>
-            <a href="{{ route('detail-teacher.index') }}" class="btn btn-primary px-4">
-                Kembali
-            </a>
         </div>
     </div>
 </div>
@@ -75,7 +72,7 @@
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="">Nama</label>
+                        <label for="">Mata Pelajaran</label>
                         <input type="text" name="name" class="form-control">
                     </div>
                     <div class="mb-3">
