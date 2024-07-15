@@ -2,14 +2,14 @@
 
 namespace App\Contracts\Repositories;
 
-use App\Contracts\Interfaces\ModelHasRfidInterface;
-use App\Models\ModelHasRfid;
+use App\Contracts\Interfaces\AttendanceRuleInterface;
+use App\Models\AttendanceRule;
 
-class ModelHasRfidRepository extends BaseRepository implements ModelHasRfidInterface
+class AttendanceRuleRepository extends BaseRepository implements AttendanceRuleInterface
 {
-    public function __construct(ModelHasRfid $modelHasRfid)
+    public function __construct(AttendanceRule $attendanceRule)
     {
-        $this->model = $modelHasRfid;
+        $this->model = $attendanceRule;
     }
 
     public function get(): mixed
@@ -19,7 +19,7 @@ class ModelHasRfidRepository extends BaseRepository implements ModelHasRfidInter
 
     public function store(array $data): mixed
     {
-        return $this->model->query()->create($data);
+        return $this->model->query()->updateOrCreate(['school_id' => auth()->user()->school->id, 'day' => $data['day']], $data);
     }
 
     public function show(mixed $id): mixed
@@ -42,8 +42,8 @@ class ModelHasRfidRepository extends BaseRepository implements ModelHasRfidInter
         return $this->model->query()->latest()->paginate(10);
     }
 
-    public function where(mixed $data): mixed
+    public function whereDayRole(mixed $day, mixed $role): mixed
     {
-        return $this->model->query()->where('rfid', $data)->firstOrFail();
+        return $this->model->query()->where('day', $day)->where('role', $role)->firstOrFail();
     }
 }

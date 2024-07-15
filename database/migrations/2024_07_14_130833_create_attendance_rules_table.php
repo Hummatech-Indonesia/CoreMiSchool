@@ -26,7 +26,7 @@ return new class extends Migration
             $table->time('checkout_start');
             $table->time('checkout_end');
             $table->boolean('is_holiday')->default(false);
-            $table->unique(['school_id', 'day']);
+            $table->unique(['day']);
             $table->timestamps();
         });
     }

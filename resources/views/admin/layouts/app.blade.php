@@ -3,7 +3,7 @@
 
 <head>
     <!--  Title -->
-    <title>{{ env('APP_NAME') }} | Admin</title>
+    <title>MiSchool | Admin</title>
     <!--  Required Meta Tag -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,7 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!--  Favicon -->
     <link rel="shortcut icon" type="image/png"
-        href="{{ asset('mobilelogo.png') }}" />
+        href="{{ asset('assets/images/logo/logo-M.png') }}" />
     <!-- Owl Carousel  -->
     <link rel="stylesheet" href="{{ asset('admin_assets/dist/libs/owl.carousel/dist/owl.carousel.min.js') }}">
 
