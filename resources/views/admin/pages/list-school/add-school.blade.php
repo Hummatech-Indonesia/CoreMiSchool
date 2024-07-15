@@ -32,6 +32,7 @@
                     <div class="wizard-content">
                         <form action="{{ route('school-admin.store') }}" class="tab-wizard wizard-circle wizard clearfix" role="application" id="steps-uid-0" method="POST" enctype="multipart/form-data">
                             @csrf
+                            @method('POST')
                             <div class="steps clearfix">
                                 <ul role="tablist">
                                     <li role="tab" class="first current" aria-disabled="false" aria-selected="true">
@@ -258,7 +259,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <h6>Web (Opsional)</h6>
-                                            <input type="number" name="website_school" value="{{ old('website_school') }}" class="form-control mb-3">
+                                            <input type="text" name="website_school" value="{{ old('website_school') }}" class="form-control mb-3">
                                             @error('website_school')
                                                 <strong class="text-danger">{{ $message }}</strong>
                                             @enderror

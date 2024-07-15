@@ -77,10 +77,8 @@ class StaffService
 
     public function delete(Employee $employee)
     {
-        dd($employee);
         if ($employee->image != null) {
             $this->remove($employee->image);
         }
-        $employee->user->delete();
     }
 }

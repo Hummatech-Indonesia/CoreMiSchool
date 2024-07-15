@@ -89,6 +89,9 @@
                     </div>
                     <div>
                         <input type="text" name="rfid" class="form-control">
+                        @error('rfid')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
                 <div class="modal-footer">
