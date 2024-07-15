@@ -10,6 +10,7 @@ use App\Traits\Models\HasManyEmployee;
 use App\Traits\Models\HasManyLessonHour;
 use App\Traits\Models\HasManyLevelClass;
 use App\Traits\Models\HasManyMaple;
+use App\Traits\Models\HasManyModelHasRfid;
 use App\Traits\Models\HasManySchoolYear;
 use App\Traits\Models\HasManyStudent;
 use App\Traits\Models\MorphManyRfid;
@@ -23,7 +24,7 @@ class School extends Model
     HasManyStudent, HasManyEmployee,
     HasManyMaple, HasManySchoolYear,
     HasManyLessonHour, HasManyLevelClass,
-    MorphManyRfid, HasManyAttendanceRule;
+    MorphManyRfid, HasManyAttendanceRule, HasManyModelHasRfid;
 
     protected $fillable = [
         'npsn',
