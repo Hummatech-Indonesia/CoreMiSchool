@@ -36,7 +36,6 @@
     </div>
 </div>
 
-
 <!-- modal tambah -->
 <div class="modal fade" id="modal-create" tabindex="-1" aria-labelledby="guru" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -244,7 +243,7 @@
             @forelse ($teachers as $teacher)
             <tr>
                 <td>
-                    <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}" class="rounded-circle me-2 user-profile" style="object-fit: cover" width="30" height="30" alt="" />
+                    <img src="{{ $teacher->image ? asset('storage/'. $teacher->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}" class="rounded-circle me-2 user-profile" style="object-fit: cover" width="30" height="30" alt="" />
                     {{ $teacher->user->name }}
                 </td>
                 <td>{{ $teacher->gender == 'male' ? 'Laki Laki' : 'Perempuan' }}</td>
@@ -284,7 +283,7 @@
                                 data-gender="{{ $teacher->gender }}" data-status="{{ $teacher->active }}" data-nip="{{ $teacher->nip }}"
                                 data-nik="{{ $teacher->nik }}" data-birth_date="{{ $teacher->birth_date }}" data-birth_place="{{ $teacher->birth_place }}"
                                 data-phone="{{ $teacher->phone_number }}" data-address="{{ $teacher->address }}" data-religion="{{ $teacher->religion_id }}" data-rfid="{{ $teacher->modelHasRfid ? $teacher->modelHasRfid->rfid : 'Tidak ada' }}"
-                                data-maple="{{ $teacher->teacherMaples ? $teacher->teacherMaples->count() : '0' }}">
+                                data-maple="{{ $teacher->teacherMaples ? $teacher->teacherMaples->count() : '0' }}" data-image="{{ $teacher->image ? asset('storage/'. $teacher->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}">
                                 <i class="fs-4 ti ti-eye"></i>Detail
                             </button>
                             <button type="button" class="btn-edit note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3"
@@ -511,7 +510,7 @@
             <div class="modal-body text-center">
                 <div class="row justify-content-center">
                     <div class="col-12">
-                        <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}"
+                        <img id="image-detail" src=""
                             class="rounded-circle user-profile mb-3"
                             style="object-fit: cover; width: 150px; height: 150px;" alt="User Profile Picture" />
                     </div>
@@ -632,6 +631,7 @@
         var religion = $(this).data('religion');
         var rfid = $(this).data('rfid');
         var maple = $(this).data('maple');
+        var image = $(this).data('image');
         $('#name-detail').text(name);
         $('#email-detail').text(email);
         $('#nip-detail').text(nip);
@@ -645,6 +645,7 @@
         $('#status-detail').text(status);
         $('#rfid-detail').text(rfid);
         $('#maple-detail').text(maple);
+        $('#image-detail').attr('src',image);
         $('#modal-detail').modal('show');
     });
 
