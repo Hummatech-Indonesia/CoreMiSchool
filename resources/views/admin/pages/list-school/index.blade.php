@@ -31,7 +31,7 @@
             <div class="col-12 col-md-6 col-lg-4 mb-3 me-2">
                 <form action="" class="position-relative">
                     <input type="text" class="form-control product-search px-4 ps-5" id="input-search"
-                        placeholder="Cari tim...">
+                        placeholder="Cari...">
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                 </form>
             </div>
