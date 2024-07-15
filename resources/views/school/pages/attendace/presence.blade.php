@@ -45,7 +45,7 @@
                     <th class="fs-4 fw-semibold mb-0">Pulang</th>
                     <th class="fs-4 fw-semibold mb-0">Point</th>
                     <th class="fs-4 fw-semibold mb-0">Status</th>
-                    <th class="fs-4 fw-semibold mb-0">Status</th>
+                    <th class="fs-4 fw-semibold mb-0">Aksi</th>
                 </tr>
             </thead>
             <tbody>

@@ -27,6 +27,7 @@
             <table class="table border text-nowrap customize-table mb-0 align-middle text-center">
                 <thead>
                     <tr>
+                        <th>No</th>
                         <th>Jam</th>
                         <th>Penempatan</th>
                         <th>Aksi</th>
@@ -41,6 +42,7 @@
 
                     @forelse ($lessonHours as $lessonHour)
                         <tr>
+                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $lessonHour->start }} - {{ $lessonHour->end }}</td>
                             <td>{{ $lessonHour->name }}</td>
                             <td>
