@@ -242,7 +242,7 @@
                         <td>Kelas Dumy</td>
                         <td>{{ $student->gender == 'famale' ? 'Perempuan' : 'Laki-laki' }}</td>
                         <td>{{ $student->nisn }}</td>
-                        <td>{{ $student->modelHasRfid ? $student->modelHasRfid->rfid : '-' }}
+                        <td>{{ $student->modelHasRfid ? $student->modelHasRfid->rfid : '' }}
                             <button type="submit" class="btn btn-rounded btn-light-warning text-warning ms-2 btn-rfid"
                                 data-id="{{ $student->id }}" data-role="student" data-name="{{ $student->user->name }}" data-rfid="{{ $student->modelHasRfid ? $student->modelHasRfid->rfid : '-' }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -267,8 +267,18 @@
                                 <div class="dropdown-menu dropdown-menu-right category-menu"
                                     style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate3d(0px, 23.2px, 0px);"
                                     data-popper-placement="bottom-end">
-                                    <button data-bs-toggle="modal" data-bs-target="#modal-detail"
-                                        class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3">
+                                    <button class="btn-detail note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3"
+                                        data-id="{{ $student->id }}" data-name="{{ $student->user->name }}"
+                                        data-email="{{ $student->user->email }}" data-nisn="{{ $student->nisn }}"
+                                        data-religion_id="{{ $student->religion_id }}"
+                                        data-gender="{{ $student->gender }}"
+                                        data-birth_place="{{ $student->birth_place }}"
+                                        data-birth_date="{{ $student->birth_date }}" data-nik="{{ $student->nik }}"
+                                        data-number_kk="{{ $student->number_kk }}"
+                                        data-number_akta="{{ $student->number_akta }}"
+                                        data-order_child="{{ $student->order_child }}"
+                                        data-count_siblings="{{ $student->count_siblings }}"
+                                        data-address="{{ $student->address }}" data-rfid="{{$student->modelHasRfid ? $student->modelHasRfid->rfid : 'Tidak ada'}}">
                                         <i class="fs-4 ti ti-eye"></i>Detail
                                     </button>
                                     <button
@@ -594,21 +604,14 @@
                         <div class="col-12 col-md-6">
                             <div class="d-flex " style="margin-bottom: 0.5rem;">
                                 <h6 style="margin-bottom: 0;">Nama:</h6>
-                                <p class="ms-2" style="margin-bottom: 0;">Suyadi Oke</p>
+                                <p class="ms-2" style="margin-bottom: 0;" id="name-detail"></p>
                             </div>
                             <hr>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="d-flex" style="margin-bottom: 0.5rem;">
                                 <h6 style="margin-bottom: 0;">Email:</h6>
-                                <p class="ms-2" style="margin-bottom: 0;">suyadi@gmail.com</p>
-                            </div>
-                            <hr>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <div class="d-flex" style="margin-bottom: 0.5rem;">
-                                <h6 style="margin-bottom: 0;">No Telepon:</h6>
-                                <p class="ms-2" style="margin-bottom: 0;">089121289098</p>
+                                <p class="ms-2" style="margin-bottom: 0;" id="email-detail"></p>
                             </div>
                             <hr>
                         </div>
@@ -621,15 +624,15 @@
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="d-flex" style="margin-bottom: 0.5rem;">
-                                <h6 style="margin-bottom: 0;">NIP:</h6>
-                                <p class="ms-2" style="margin-bottom: 0;">123123123</p>
+                                <h6 style="margin-bottom: 0;">NIK:</h6>
+                                <p class="ms-2" style="margin-bottom: 0;" id="nik-detail"></p>
                             </div>
                             <hr>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="d-flex" style="margin-bottom: 0.5rem;">
                                 <h6 style="margin-bottom: 0;">RFID:</h6>
-                                <p class="ms-2" style="margin-bottom: 0;">123123123</p>
+                                <p class="ms-2" style="margin-bottom: 0;" id="rfid-detail"></p>
                             </div>
                             <hr>
                         </div>
@@ -656,13 +659,6 @@
 
 @section('script')
     <script>
-        // $('#religion-edit').select2({
-        //     dropdownParent: $('#modal-edit')
-        // });
-        //  $('#gender-edit').select2({
-        //     dropdownParent: $('#modal-edit')
-        // });
-
         $('.btn-rfid').on('click', function() {
             var id = $(this).data('id');
             var name = $(this).data('name');
@@ -689,7 +685,6 @@
             var order_child = $(this).data('order_child');
             var count_siblings = $(this).data('count_siblings');
             var address = $(this).data('address');
-
             $('#name-edit').val(name);
             $('#email-edit').val(email);
             $('#nisn-edit').val(nisn);
@@ -703,9 +698,38 @@
             $('#address-edit').val(address);
             $('#religion-edit').val(religion_id).trigger('change');
             $('#gender-edit').val(gender).trigger('change');
-
             $('#form-update').attr('action', '/school/student/' + id);
             $('#modal-edit').modal('show');
+        });
+
+        $('.btn-detail').click(function() {
+            var id = $(this).data('id');
+            var name = $(this).data('name');
+            var email = $(this).data('email');
+            var nisn = $(this).data('nisn');
+            var religion_id = $(this).data('religion_id');
+            var gender = $(this).data('gender');
+            var birth_place = $(this).data('birth_place');
+            var birth_date = $(this).data('birth_date');
+            var nik = $(this).data('nik');
+            var number_kk = $(this).data('number_kk');
+            var number_akta = $(this).data('number_akta');
+            var order_child = $(this).data('order_child');
+            var address = $(this).data('address');
+            var rfid = $(this).data('rfid');
+            $('#name-detail').text(name);
+            $('#email-detail').text(email);
+            $('#nisn-detail').text(nisn);
+            $('#birth_place-detail').text(birth_place);
+            $('#birth_date-detail').text(birth_date);
+            $('#nik-detail').text(nik);
+            $('#number_kk-detail').text(number_kk);
+            $('#number_akta-detail').text(number_akta);
+            $('#order_child-detail').text(order_child);
+            $('#address-detail').text(address);
+            $('#gender-detail').text(gender);
+            $('#rfid-detail').text(rfid);
+            $('#modal-detail').modal('show');
         });
 
         $('.btn-delete').click(function() {
