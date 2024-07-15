@@ -25,7 +25,8 @@ class EmployeeSeeder extends Seeder
             'active' => '',
             'user_id' => '',
             'religion_id' => '',
-            'school_id' => ''
+            'school_id' => '
+            '
         ]);
     }
 }

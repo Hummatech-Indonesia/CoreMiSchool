@@ -59,9 +59,13 @@
                 @forelse ($staffs as $staff)
                     <tr>
                         <td>
-                            <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}"
-                                class="rounded-circle me-2 user-profile" style="object-fit: cover" width="30"
-                                height="30" alt="" />
+                            <img src="{{ $staff->image ? asset('storage/' . $staff->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}"
+                            class="rounded-circle me-2 user-profile"
+                            style="object-fit: cover"
+                            width="30"
+                            height="30"
+                            alt="{{ $staff->user->name }}" />
+
                             {{ $staff->user->name }}
                         </td>
                         <td>{{ $staff->user->email }}</td>
@@ -105,7 +109,8 @@
                                         data-birth_place="{{ $staff->birth_place }}"
                                         data-phone="{{ $staff->phone_number }}" data-address="{{ $staff->address }}"
                                         data-religion="{{ $staff->religion_id }}"
-                                        data-rfid="{{ $staff->modelHasRfid ? $staff->modelHasRfid->rfid : 'Tidak ada' }}">
+                                        data-rfid="{{ $staff->modelHasRfid ? $staff->modelHasRfid->rfid : 'Tidak ada' }}"
+                                        data-image="{{ $staff->image ? asset('storage/' . $staff->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}">
                                         <i class="fs-4 ti ti-eye"></i>Detail
                                     </button>
                                     <button type="button"
@@ -586,7 +591,7 @@
                 <div class="modal-body text-center">
                     <div class="row justify-content-center">
                         <div class="col-12">
-                            <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}"
+                            <img id="image-detail" src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}"
                                 class="rounded-circle user-profile mb-3"
                                 style="object-fit: cover; width: 150px; height: 150px;" alt="User Profile Picture" />
                         </div>
@@ -705,6 +710,7 @@
             var religion = $(this).data('religion');
             var rfid = $(this).data('rfid');
             var maple = $(this).data('maple');
+            var image = $(this).data('image');
             $('#name-detail').text(name);
             $('#email-detail').text(email);
             $('#nip-detail').text(nip);
@@ -718,6 +724,7 @@
             $('#status-detail').text(status);
             $('#rfid-detail').text(rfid);
             $('#maple-detail').text(maple);
+            $('#image-detail').attr('src', image);
             $('#modal-detail').modal('show');
         });
 

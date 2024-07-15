@@ -42,6 +42,10 @@ Route::post('school/add-subjects', [MapleController::class, 'store'])->name('sub
 Route::put('school/update-subjects/{maple}', [MapleController::class, 'update'])->name('subjects.update');
 Route::delete('school/delete-subjects/{maple}', [MapleController::class, 'destroy'])->name('subjects.delete');
 
+// jam mata pelajaran
+Route::get('school/lesson-hours', function(){
+    return view('school.pages.subjects.lesson-hours');
+})->name('lesson-hours.index');
 
 //semeter
 Route::get('school/semesters', function(){
@@ -121,6 +125,4 @@ Route::delete('school/rfid/{modelHasRfid}', [ModelHasRfidController::class, 'des
 Route::put('school/add-to-rfid/{role}/{id}', [ModelHasRfidController::class, 'update'])->name('add-to-rfid.update');
 
 // rfid aktif
-Route::get('school/rfid-active', function(){
-    return view('school.pages.rfid.rfid-active');
-})->name('rfid-active.index');
+Route::get('school/rfid-active', [ModelHasRfidController::class, 'showActive'])->name('rfid-active.index');

@@ -41,7 +41,7 @@
                             aria-expanded="false">
                             <div class="d-flex align-items-center">
                                 <div class="">
-                                    <img src="#"
+                                    <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}"
                                         class="rounded-circle user-profile" style="object-fit: cover" width="35"
                                         height="35" alt="" />
                                 </div>
@@ -54,7 +54,7 @@
                                     <h5 class="mb-0 fs-5 fw-semibold">Admin Profile</h5>
                                 </div>
                                 <div class="d-flex align-items-center py-9 mx-7 border-bottom">
-                                    <img src="#"
+                                    <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}"
                                         class="rounded-circle user-profile" style="object-fit: cover" width="80"
                                         height="80" alt="" />
                                     <div class="ms-3">
