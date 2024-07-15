@@ -100,7 +100,7 @@
             <button class="navbar-toggler p-0 border-0" type="button" id="drop1" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 <div class="">
-                    <img src="#"
+                    <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}"
                         class="rounded-circle user-profile" style="object-fit: cover" width="35" height="35"
                         alt="" />
                 </div>
@@ -127,7 +127,7 @@
                     </div>
                     <div class="message-body">
                         <a class="py-8 px-7 mt-8 d-flex align-items-center"
-                            href="#">
+                            href="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}">
                             <span class="d-flex align-items-center justify-content-center bg-light rounded-1 p-6">
                                 <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-account.svg"
                                     alt="" width="24" height="24">

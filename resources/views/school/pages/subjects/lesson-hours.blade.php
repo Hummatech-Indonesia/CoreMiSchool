@@ -38,7 +38,7 @@
                     <td>Jam Ke-1</td>
                     <td>
                         <div class="gap-3">
-                            <button class="btn btn-light-primary text-primary me-2">Edit</button>
+                            <button class="btn btn-light-primary text-primary me-2" data-bs-toggle="modal" data-bs-target="#modal-create">Edit</button>
                             <button class="btn btn-light-danger text-danger">Hapus</button>
                         </div>
                     </td>
@@ -66,6 +66,46 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="tambahPelajaran">Tambah Jam Pelajaran</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" method="POST" enctype="multipart/form-data">
+                {{-- @method('post') --}}
+                @csrf
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-6 mb-3">
+                            <label for="">Jam Mulai</label>
+                            <input type="time" name="name" class="form-control">
+                        </div>
+                        <div class="col-lg-6 mb-3">
+                            <label for="">Jam Berakhir</label>
+                            <input type="time" name="name" class="form-control">
+                        </div>
+                        <div class="col-lg-12 mb-3">
+                            <label for="">Jam Ke-</label>
+                            <input type="number" name="name" class="form-control">
+                        </div>
+                        <div class="col-lg-12 mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                                Istirahat
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-update" tabindex="-1" aria-labelledby="tambahPelajaran" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tambahPelajaran">Edit Jam Pelajaran</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="" method="POST" enctype="multipart/form-data">
