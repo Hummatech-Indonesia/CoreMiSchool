@@ -18,7 +18,9 @@ class TeacherController extends Controller
 {
     private UserInterface $user;
     private EmployeeInterface $employee;
+
     private TeacherService $service;
+
     private ReligionInterface $religion;
 
     public function __construct(UserInterface $user, EmployeeInterface $employee, TeacherService $service, ReligionInterface $religion)
@@ -57,7 +59,7 @@ class TeacherController extends Controller
             $this->employee->store($data);
             return redirect()->back()->with('success', 'Berhasil menambahkan data guru');
         } catch (\Throwable $th) {
-            $data = $this->user->showWithSlug(Str::slug($request->name));
+            $data = $this->user->showEmail($request->email);
             if ($data) {
                 return redirect()->back()->with('warning', 'Data guru sudah tersedia');
             } else {
@@ -92,7 +94,7 @@ class TeacherController extends Controller
             $this->employee->update($employee->id, $data);
             return redirect()->back()->with('success', 'Berhasil memperbaiki guru');
         } catch (\Throwable $th) {
-            $data = $this->user->showWithSlug(Str::slug($request->name));
+            $data = $this->user->showEmail($request->email);
             if ($data) {
                 return redirect()->back()->with('warning', 'Data guru sudah tersedia');
             } else {

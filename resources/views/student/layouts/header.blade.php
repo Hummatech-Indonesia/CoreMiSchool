@@ -80,10 +80,12 @@
                                         </div>
                                     </a>
                                 </div>
-                                <form action="#" method="POST">
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                     @csrf
                                     <div class="d-grid py-4 px-7 pt-8">
-                                        <button class="btn btn-outline-primary" id="logoutBtn">Log Out</button>
+                                        <button class="btn btn-outline-primary" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                      document.getElementById('logout-form').submit();">Log Out</button>
                                     </div>
                                 </form>
                             </div>

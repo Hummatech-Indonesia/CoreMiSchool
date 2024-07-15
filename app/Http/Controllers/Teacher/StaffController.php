@@ -56,7 +56,7 @@ class StaffController extends Controller
             $this->employee->store($data);
             return redirect()->back()->with('success', 'Berhasil menambahkan data pegawai');
         } catch (\Throwable $th) {
-            $data = $this->user->showWithSlug(Str::slug($request->name));
+            $data = $this->user->showEmail($request->email);
             if ($data) {
                 return redirect()->back()->with('warning', 'Data pegawai sudah tersedia');
             } else {
@@ -91,7 +91,7 @@ class StaffController extends Controller
             $this->employee->update($employee->id, $data);
             return redirect()->back()->with('success', 'Berhasil memperbaiki pegawai');
         } catch (\Throwable $th) {
-            $data = $this->user->showWithSlug(Str::slug($request->name));
+            $data = $this->user->showEmail($request->email);
             if ($data) {
                 return redirect()->back()->with('warning', 'Data pegawai sudah tersedia');
             } else {

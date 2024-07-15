@@ -55,7 +55,7 @@ class StudentController extends Controller
             $this->student->store($data);
             return redirect()->back()->with('success', 'Siswa berhasil ditambahkan');
         } catch (\Throwable $th) {
-            $data = $this->user->showWithSlug(Str::slug($request->name));
+            $data = $this->user->showEmail($request->email);
             if ($data) {
                 return redirect()->back()->with('warning', 'Data siswa sudah tersedia');
             } else {
@@ -90,7 +90,7 @@ class StudentController extends Controller
             $this->student->update($student->id, $data);
             return redirect()->back()->with('success', 'Siswa berhasil diperbarui');
         } catch (\Throwable $th) {
-            $data = $this->user->showWithSlug(Str::slug($request->name));
+            $data = $this->user->showEmail($request->email);
             if ($data) {
                 return redirect()->back()->with('warning', 'Data siswa sudah tersedia');
             } else {
