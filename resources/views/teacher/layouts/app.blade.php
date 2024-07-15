@@ -5,7 +5,7 @@
 
 <head>
     <!--  Title -->
-    <title>{{ env('APP_NAME') }}</title>
+    <title>{{ env('APP_NAME') }} | Teacher</title>
     <!--  Required Meta Tag -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -17,7 +17,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!--  Favicon -->
     <link rel="shortcut icon" type="image/png"
-        href="{{ asset('mobilelogo.png') }}" />
+        href="{{ asset('assets/images/logo/logo-M.png') }}" />
     <!-- Owl Carousel  -->
     <link rel="stylesheet" href="{{ asset('admin_assets/dist/libs/owl.carousel/dist/owl.carousel.min.js') }}">
 
@@ -39,14 +39,14 @@
     <div class="page-wrapper" id="main-wrapper" data-theme="blue_theme" data-layout="vertical" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Sidebar Start -->
-        @include('admin.layouts.sidebar')
+        @include('teacher.layouts.sidebar')
         <!--  Sidebar End -->
                 <!-- SignIn modal content -->
 
         <!--  Main wrapper -->
         <div class="body-wrapper">
             <!--  Header Start -->
-            @include('admin.layouts.header')
+            @include('teacher.layouts.header')
             <!--  Header End -->
             <div class="px-4" style="padding-top: calc(70px + 15px);">
                 <!--  Owl carousel -->

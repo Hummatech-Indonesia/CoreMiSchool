@@ -11,7 +11,7 @@
         </div>
         <button type="button" class="btn mb-1 btn-primary"
             data-bs-toggle="modal" data-bs-target="#modal-import">
-            Tambah Ekstrakulikuler
+            Tambah Ekstrakurikuler
         </button>
     </div>
 
@@ -20,13 +20,13 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="importPegawai">Tambah Ekstrakulikuler</h5>
+                    <h5 class="modal-title" id="importPegawai">Tambah Ekstrakurikuler</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
                         <div class="form-group">
-                            <label for="" class="mb-2">Nama Ekstrakulikuler</label>
+                            <label for="" class="mb-2">Nama Ekstrakurikuler</label>
                             <input type="text" class="form-control">
                         </div>
                         <div class="form-group">
@@ -53,7 +53,7 @@
         <table class="table border text-nowrap customize-table mb-0 align-middle text-center">
             <thead class="text-dark fs-4">
                 <tr class="">
-                    <th class="fs-4 fw-semibold mb-0">Ekstrakulikuler</th>
+                    <th class="fs-4 fw-semibold mb-0">Ekstrakurikuler</th>
                     <th class="fs-4 fw-semibold mb-0">Pengajar</th>
                     <th class="fs-4 fw-semibold mb-0">Anggota</th>
                     <th class="fs-4 fw-semibold mb-0">Aksi</th>
@@ -112,13 +112,13 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="importPegawai">Edit Ekstrakulikuler</h5>
+                    <h5 class="modal-title" id="importPegawai">Edit Ekstrakurikuler</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
                         <div class="form-group">
-                            <label for="" class="mb-2">Nama Ekstrakulikuler</label>
+                            <label for="" class="mb-2">Nama Ekstrakurikuler</label>
                             <input type="text" class="form-control">
                         </div>
                         <div class="form-group">
