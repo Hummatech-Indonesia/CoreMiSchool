@@ -2,6 +2,13 @@
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('admin_assets/dist/css/style.min.css') }}">
+    <style>
+        .category-selector .dropdown-menu {
+            position: absolute;
+            z-index: 1050;
+            transform: translate3d(0, 0, 0);
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -17,11 +24,6 @@
                 </div>
 
                 <div class="d-flex gap-2">
-                    <select name="" class="form-select" id="search-status">
-                        <option value="">SMKN 1 MALANG</option>
-                        <option value="">SMKN 1 KEPANJEN</option>
-                    </select>
-
                     <select name="" class="form-select" id="search-status">
                         <option value="">Tampilkan semua</option>
                         <option value="">Terbaru</option>
@@ -46,6 +48,7 @@
         <table class="table border text-nowrap customize-table mb-0 align-middle text-center">
             <thead>
                 <tr>
+                    <th>No</th>
                     <th>Pegawai</th>
                     <th>Email</th>
                     <th>Kelamin</th>
@@ -58,14 +61,11 @@
             <tbody>
                 @forelse ($staffs as $staff)
                     <tr>
+                        <td>{{ $loop->iteration }}</td>
                         <td>
                             <img src="{{ $staff->image ? asset('storage/' . $staff->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}"
-                            class="rounded-circle me-2 user-profile"
-                            style="object-fit: cover"
-                            width="30"
-                            height="30"
-                            alt="{{ $staff->user->name }}" />
-
+                                class="rounded-circle me-2 user-profile" style="object-fit: cover" width="30"
+                                height="30" alt="{{ $staff->user->name }}" />
                             {{ $staff->user->name }}
                         </td>
                         <td>{{ $staff->user->email }}</td>
@@ -82,11 +82,8 @@
                                 </svg>
                             </button>
                         </td>
-                        {{-- <td>
-                        <span class="mb-1 badge px-4 font-medium bg-light-primary text-primary">Staff</span>
-                    </td> --}}
                         <td>
-                            <div class="category-selector btn-group">
+                            <div class="category-selector btn-group position-relative">
                                 <a class="nav-link category-dropdown label-group p-0" data-bs-toggle="dropdown"
                                     href="#" role="button" aria-haspopup="true" aria-expanded="true">
                                     <div class="category">
@@ -97,9 +94,8 @@
                                         </span>
                                     </div>
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-right category-menu"
-                                    style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate3d(0px, 23.2px, 0px);"
-                                    data-popper-placement="bottom-end">
+                                <div class="dropdown-menu dropdown-menu-right category-menu position-absolute"
+                                    style="z-index: 1050;">
                                     <button
                                         class="btn-detail note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3"
                                         data-id="{{ $staff->id }}" data-name="{{ $staff->user->name }}"
@@ -134,7 +130,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="7" class="text-center align-middle">
+                        <td colspan="8" class="text-center align-middle">
                             <div class="d-flex flex-column justify-content-center align-items-center">
                                 <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt=""
                                     width="300px">
@@ -149,6 +145,8 @@
         </table>
     </div>
 
+
+    <!-- modal import -->
     <div class="modal fade" id="modal-import" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -201,6 +199,7 @@
         </div>
     </div>
 
+    <!-- modal tambah -->
     <div class="modal fade" id="modal-create" tabindex="-1" aria-labelledby="tambahPegawai" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -581,6 +580,7 @@
         </div>
     </div>
 
+    <!-- modal detail -->
     <div class="modal fade" id="modal-detail" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content modal-lg">
@@ -808,6 +808,18 @@
                     editSections.eq(currentEditSection).show();
                     editSteps.eq(currentEditSection).removeClass("done").addClass("current");
                 }
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('.category-dropdown').on('show.bs.dropdown', function() {
+                $(this).closest('.table-responsive').css('overflow', 'visible');
+            });
+
+            $('.category-dropdown').on('hide.bs.dropdown', function() {
+                $(this).closest('.table-responsive').css('overflow', 'auto');
             });
         });
     </script>

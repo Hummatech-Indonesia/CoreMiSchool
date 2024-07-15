@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Classroom;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,12 @@ class ClassroomSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Classroom::create([
+            'id' => '1',
+            'name' => '11 Rpl 1',
+            'employee_id' => '1',
+            'school_year_id' => '4',
+            'level_class_id' => '2'
+        ]);
     }
 }

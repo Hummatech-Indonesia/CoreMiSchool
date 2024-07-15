@@ -19,7 +19,7 @@ class AttendanceRuleRepository extends BaseRepository implements AttendanceRuleI
 
     public function store(array $data): mixed
     {
-        return $this->model->query()->updateOrCreate(['school_id' => auth()->user()->school->id, 'day' => $data['day']], $data);
+        return $this->model->query()->updateOrCreate(['day' => $data['day'], 'role' => $data['role']], $data);
     }
 
     public function show(mixed $id): mixed

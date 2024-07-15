@@ -22,7 +22,7 @@ class Employee extends Model
         'nip',
         'birth_date',
         'birth_place',
-        'genre',
+        'gender',
         'nik',
         'phone_number',
         'address',

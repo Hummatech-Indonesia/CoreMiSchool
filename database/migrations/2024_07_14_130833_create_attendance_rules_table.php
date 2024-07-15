@@ -21,12 +21,11 @@ return new class extends Migration
             $this->addForeignId($table, 'school_id');
             $table->enum('day', [DayEnum::MONDAY->value, DayEnum::TUESDAY->value, DayEnum::WEDNESDAY->value, DayEnum::THRUSDAY->value, DayEnum::FRIDAY->value, DayEnum::SATURDAY->value, DayEnum::SUNDAY->value]);
             $table->enum('role', [RoleEnum::STUDENT->value, RoleEnum::TEACHER->value]);
-            $table->time('checkin_start');
-            $table->time('checkin_end');
-            $table->time('checkout_start');
-            $table->time('checkout_end');
+            $table->time('checkin_start')->default('00:00:00');
+            $table->time('checkin_end')->default('00:00:00');
+            $table->time('checkout_start')->default('00:00:00');
+            $table->time('checkout_end')->default('00:00:00');
             $table->boolean('is_holiday')->default(false);
-            $table->unique(['day']);
             $table->timestamps();
         });
     }

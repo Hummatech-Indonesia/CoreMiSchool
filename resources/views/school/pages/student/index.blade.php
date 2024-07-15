@@ -1,4 +1,15 @@
 @extends('school.layouts.app')
+@section('style')
+    <link rel="stylesheet" href="{{ asset('admin_assets/dist/css/style.min.css') }}">
+
+    <style>
+        .category-selector .dropdown-menu {
+            position: absolute;
+            z-index: 1050;
+            transform: translate3d(0, 0, 0);
+        }
+    </style>
+@endsection
 @section('content')
     <div class="d-flex justify-content-between mb-3">
         <div class="col-12 col-md-6 col-lg-2 me-3">
@@ -223,6 +234,7 @@
         <table class="table border text-nowrap customize-table mb-0 align-middle text-center">
             <thead class="text-dark fs-4">
                 <tr class="">
+                    <th class="fs-4 fw-semibold mb-0">No</th>
                     <th class="fs-4 fw-semibold mb-0">Nama</th>
                     <th class="fs-4 fw-semibold mb-0">Kelas</th>
                     <th class="fs-4 fw-semibold mb-0">Jenis Kelamin</th>
@@ -234,9 +246,11 @@
             <tbody>
                 @forelse ($students as $student)
                     <tr>
+                        <td>{{ $loop->iteration }}</td>
                         <td>
-                            <img src="{{ $student->image ? asset('storage/'. $student->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}" class="rounded-circle me-2 user-profile"
-                                style="object-fit: cover" width="30" height="30" alt="" />
+                            <img src="{{ $student->image ? asset('storage/' . $student->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}"
+                                class="rounded-circle me-2 user-profile" style="object-fit: cover" width="30"
+                                height="30" alt="" />
                             {{ $student->user->name }}
                         </td>
                         <td>Kelas Dumy</td>
@@ -255,7 +269,7 @@
                             </button>
                         </td>
                         <td>
-                            <div class="category-selector btn-group">
+                            <div class="category-selector btn-group position-relative">
                                 <a class="nav-link category-dropdown label-group p-0" data-bs-toggle="dropdown"
                                     href="#" role="button" aria-haspopup="true" aria-expanded="true">
                                     <div class="category">
@@ -266,10 +280,10 @@
                                         </span>
                                     </div>
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-right category-menu"
-                                    style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate3d(0px, 23.2px, 0px);"
-                                    data-popper-placement="bottom-end">
-                                    <button class="btn-detail note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3"
+                                <div class="dropdown-menu dropdown-menu-right category-menu position-absolute"
+                                    style="z-index: 1050;">
+                                    <button
+                                        class="btn-detail note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3"
                                         data-id="{{ $student->id }}" data-name="{{ $student->user->name }}"
                                         data-email="{{ $student->user->email }}" data-nisn="{{ $student->nisn }}"
                                         data-religion_id="{{ $student->religion_id }}"
@@ -280,8 +294,9 @@
                                         data-number_akta="{{ $student->number_akta }}"
                                         data-order_child="{{ $student->order_child }}"
                                         data-count_siblings="{{ $student->count_siblings }}"
-                                        data-address="{{ $student->address }}" data-rfid="{{$student->modelHasRfid ? $student->modelHasRfid->rfid : 'Tidak ada'}}"
-                                        data-image="{{ $student->image ? asset('storage/'. $student->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}">
+                                        data-address="{{ $student->address }}"
+                                        data-rfid="{{ $student->modelHasRfid ? $student->modelHasRfid->rfid : 'Tidak ada' }}"
+                                        data-image="{{ $student->image ? asset('storage/' . $student->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}">
                                         <i class="fs-4 ti ti-eye"></i>Detail
                                     </button>
                                     <button
@@ -323,6 +338,8 @@
             </tbody>
         </table>
     </div>
+
+
     <nav aria-label="...">
         <ul class="pagination justify-content-end mb-0 mt-4">
             <li class="page-item disabled">
@@ -599,8 +616,7 @@
                 <div class="modal-body text-center">
                     <div class="row justify-content-center">
                         <div class="col-12">
-                            <img id="image-detail" src=""
-                                class="rounded-circle user-profile mb-3"
+                            <img id="image-detail" src="" class="rounded-circle user-profile mb-3"
                                 style="object-fit: cover; width: 150px; height: 150px;" alt="User Profile Picture" />
                         </div>
                     </div>
@@ -742,6 +758,18 @@
             var id = $(this).data('id');
             $('#form-delete').attr('action', '/school/student/' + id);
             $('#modal-delete').modal('show');
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('.category-dropdown').on('show.bs.dropdown', function() {
+                $(this).closest('.table-responsive').css('overflow', 'visible');
+            });
+
+            $('.category-dropdown').on('hide.bs.dropdown', function() {
+                $(this).closest('.table-responsive').css('overflow', 'auto');
+            });
         });
     </script>
 @endsection

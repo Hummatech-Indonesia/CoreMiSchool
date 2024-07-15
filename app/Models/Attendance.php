@@ -16,5 +16,8 @@ class Attendance extends Model
         'classroom_student_id',
         'point',
         'status',
+        'proof',
+        'checkin',
+        'checkout'
     ];
 }
