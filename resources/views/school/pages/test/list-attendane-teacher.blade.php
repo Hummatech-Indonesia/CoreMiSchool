@@ -38,10 +38,7 @@
 </head>
 <body>
 
-    <div class="p-3">
-        <div class="text-end">
-            <p style="color: #6c6c6c;">terakhir disinkronkan pada 3 Agustus 2023</p>
-        </div>
+    <div class="p-3 mt-4">
         <div class="row p-2">
             <div class="col-lg-6 p-2">
                 <div class="card" style="background-color: #f4f4f4">
