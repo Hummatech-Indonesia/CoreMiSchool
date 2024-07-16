@@ -5,7 +5,11 @@
     <div class="d-flex flex-wrap">
         <select id="tahun-ajaran" class="form-select">
             <option value="">Tahun Ajaran</option>
-            <option value="">2023/2024</option>
+            @forelse ($schoolYears as $schoolYear)
+                <option value="{{ $schoolYear->id }}">{{ $schoolYear->school_year }}</option>
+            @empty
+                <option>Belum ada tahun ajaran</option>
+            @endforelse
         </select>
     </div>
 </div>
@@ -13,7 +17,7 @@
 <div class="card card-body">
     <div class="d-flex justify-content-between">
         <div>
-            <h4>XII RPL 2</h4>
+            <h4>{{ $classroom->name }}</h4>
             <div>
                 <p>Pilih siswa di sebelah kiri untuk memasukkan siswa ke dalam Kelas</p>
             </div>
