@@ -9,8 +9,9 @@ use App\Contracts\Interfaces\Eloquent\ShowInterface;
 use App\Contracts\Interfaces\Eloquent\StoreInterface;
 use App\Contracts\Interfaces\Eloquent\UpdateInterface;
 use App\Contracts\Interfaces\Eloquent\WhereSchoolInterface;
+use Illuminate\Http\Request;
 
-interface ExtracurricularInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface, WhereSchoolInterface
+interface ExtracurricularInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface
 {
-    //
+    public function whereSchool(mixed $id, Request $request): mixed;
 }

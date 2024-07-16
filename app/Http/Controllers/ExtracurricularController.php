@@ -8,6 +8,7 @@ use App\Models\Extracurricular;
 use App\Http\Requests\StoreExtracurricularRequest;
 use App\Http\Requests\UpdateExtracurricularRequest;
 use App\Services\ExtracurricularService;
+use Illuminate\Http\Request;
 
 class ExtracurricularController extends Controller
 {
@@ -25,10 +26,10 @@ class ExtracurricularController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $employees = $this->employee->getSchool(auth()->user()->school->id);
-        $extracurriculars = $this->extracurricular->whereSchool(auth()->user()->school->id);
+        $extracurriculars = $this->extracurricular->whereSchool(auth()->user()->school->id, $request);
         return view('school.pages.extracurricular.index', compact('extracurriculars', 'employees'));
     }
 
