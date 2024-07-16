@@ -56,4 +56,17 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
             ->whereMonth('created_at', $month)
             ->count();
     }
+
+    public function checkPresence(mixed $id, mixed $status): mixed
+    {
+        return $this->model->query()
+            ->whereRelation('classroomStudent.classroom', 'student_id', $id)
+            ->where('status', $status)
+            ->first();
+    }
+
+    public function updateCheckOut(mixed $id, array $data): mixed
+    {
+        return $this->model->query()->whereRelation('classroomStudent.classroom', 'student_id', $id)->update($data);
+    }
 }

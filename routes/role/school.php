@@ -159,14 +159,11 @@ Route::get('menu-test', function () {
     return view('school.pages.test.menu');
 })->name('menu-test.index');
 
-Route::get('user-list', function () {
-    return view('school.pages.test.user-list');
-})->name('user-list.index');
+Route::get('user-list', function () {return view('school.pages.test.user-list');})->name('user-list.index');
 
 // list absensi
-Route::get('list-attendance', function () {
-    return view('school.pages.test.list-attendance');
-})->name('list-attendance.index');
+Route::get('list-attendance/{school_id}', [AttendanceStudentController::class, 'index'])->name('list-attendance.index');
+Route::post('add-list-attendance/{school_id}', [AttendanceStudentController::class, 'store'])->name('add-list-attendance.index');
 
 Route::get('attendance-test', [AttendanceMasterController::class, 'index'])->name('attendance-test.index');
 Route::post('attendance-test', [AttendanceMasterController::class, 'check'])->name('attendance-test.check');
@@ -175,3 +172,7 @@ Route::post('attendance-test', [AttendanceMasterController::class, 'check'])->na
 // Route::prefix('school')->group(function () {
 //     route.....
 // });
+
+//LONTONG YAA 1 BIJI SAJA
+//SAMA JANGAN LUPA MINTA LONTONG
+
