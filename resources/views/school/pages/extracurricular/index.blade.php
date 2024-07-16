@@ -142,11 +142,11 @@
                         <div class="mb-3">
                             <div class="form-group">
                                 <label for="" class="mb-2">Nama Extracurricular</label>
-                                <input type="text" class="form-control" id="name-update">
+                                <input type="text" class="form-control" id="name-update" name="name">
                             </div>
                             <div class="form-group">
                                 <label for="" class="mb-2 pt-3">Pengajar</label>
-                                <select id="employee-update" class="form-control">
+                                <select id="employee-update" class="form-control" name="employee_id">
                                     <option value="">Pilih Pengajar</option>
                                     @forelse ($employees as $employee)
                                         <option value="{{ $employee->id }}">{{ $employee->user->name }}</option>
