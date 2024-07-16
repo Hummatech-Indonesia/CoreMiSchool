@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreAttendanceRequest extends FormRequest
+class CheckMasterKeyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,19 +22,15 @@ class StoreAttendanceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'rfid' => 'required',
+            'rfid' => 'required|exists:model_has_rfids,rfid'
         ];
     }
 
-    /**
-     * Custom validation messages.
-     *
-     * @return array<string, string>
-     */
     public function messages(): array
     {
         return [
-            'rfid.required' => 'RFID harus diisi.',
+            'rfid.required' => 'RFID tidak boleh kosong',
+            'rfid.exists' => 'RFID tidak ditemukan'
         ];
     }
 }

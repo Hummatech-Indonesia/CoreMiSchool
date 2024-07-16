@@ -89,11 +89,11 @@ class SchoolController extends Controller
         $activeRfids = $this->modelHasRfid->whereNotNull('model_type');
         $nonactiveRfids = $this->modelHasRfid->whereNull('model_type');
         $schoolYear = $this->schoolYear->active($school->id);
-        
+
         $classrooms = 0;
         // Loop untuk menghitung jumlah classrooms dari setiap schoolYear
         foreach ($schoolYears as $schoolYear) {
-            $classrooms += $this->classroom->whereInSchoolYears($schoolYear->school_year)->count();
+            $classrooms += $this->classroom->whereSchoolYears($schoolYear->school_year)->count();
         }
 
         return view('admin.pages.list-school.detail', compact('school', 'teachers', 'classrooms', 'rfids', 'activeRfids', 'nonactiveRfids', 'schoolYear'));

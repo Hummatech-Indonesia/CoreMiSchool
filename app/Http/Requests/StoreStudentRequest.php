@@ -65,6 +65,6 @@ class StoreStudentRequest extends FormRequest
             'order_child.required' => 'Anak ke- tidak boleh kosong',
             'order_child.numeric' => 'Anak ke- harus berupa angka',
             'count_siblings.numeric' => 'Jumlah saudaa harus berupa angka',
-        ];  
+        ];
     }
 }

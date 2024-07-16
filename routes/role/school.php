@@ -3,6 +3,7 @@
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AttendanceMasterController;
 use App\Http\Controllers\AttendanceRuleController;
+use App\Http\Controllers\AttendanceStudentController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\ClassroomStudentController;
 use App\Http\Controllers\ExtracurricularController;
@@ -156,22 +157,20 @@ Route::get('school/{classroom}', [ClassroomController::class, 'show'])->name('cl
 Route::put('school/{classroom}', [ClassroomStudentController::class, 'update'])->name('classroom.update');
 
 //tes absensi
-<<<<<<< Updated upstream
+Route::post('attendance-create/{school_id}', [AttendanceStudentController::class, 'store'])->name('attendance.store');
+
 Route::get('menu-test', function () {
     return view('school.pages.test.menu');
 })->name('menu-test.index');
+
 Route::get('user-list', function () {
     return view('school.pages.test.user-list');
 })->name('user-list.index');
-Route::get('attendance-test', [AttendanceMasterController::class, 'index'])->name('attendance-test.index');
-=======
-Route::get('attendance-test', function(){
-    return view('school.pages.test.attendance');
-})->name('attendance-test.index');
-
 
 // list absensi
-Route::get('list-attendance', function(){
+Route::get('list-attendance', function () {
     return view('school.pages.test.list-attendance');
 })->name('list-attendance.index');
->>>>>>> Stashed changes
+
+Route::get('attendance-test', [AttendanceMasterController::class, 'index'])->name('attendance-test.index');
+Route::post('attendance-test', [AttendanceMasterController::class, 'check'])->name('attendance-test.check');

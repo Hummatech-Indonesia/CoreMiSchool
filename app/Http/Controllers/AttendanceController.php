@@ -3,17 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\AttendanceInterface;
-use App\Models\Attendance;
+use App\Contracts\Interfaces\AttendanceRuleInterface;
+use App\Contracts\Interfaces\ClassroomStudentInterface;
+use App\Contracts\Interfaces\ModelHasRfidInterface;
+use App\Contracts\Interfaces\StudentInterface;
 use App\Http\Requests\StoreAttendanceRequest;
 use App\Http\Requests\UpdateAttendanceRequest;
+use App\Models\Attendance;
+use App\Models\School;
+use Carbon\Carbon;
 
 class AttendanceController extends Controller
 {
     private AttendanceInterface $attendance;
+    private ModelHasRfidInterface $modelHasRfid;
+    private AttendanceRuleInterface $attendanceRule;
+    private ClassroomStudentInterface $classroomStudent;
+    private StudentInterface $student;
 
-    public function __construct(AttendanceInterface $attendance)
+    public function __construct(AttendanceInterface $attendance, StudentInterface $student, AttendanceRuleInterface $attendanceRule)
     {
         $this->attendance = $attendance;
+        $this->student = $student;
+        $this->attendanceRule = $attendanceRule;
     }
     /**
      * Display a listing of the resource.

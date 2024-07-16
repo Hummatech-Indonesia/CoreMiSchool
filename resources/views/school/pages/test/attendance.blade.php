@@ -67,11 +67,17 @@
                         <img src="{{ asset('admin_assets/dist/images/ilustrations/scan.png') }}" style="width:250px"
                             alt="Illustration" />
                     </div>
-                    <div>
-                        <h4 class="mb-3">RFID :</h4>
-                        <input type="text" class="form-control pt-3"
-                            style="background-color: #F5F5F5; border: none; height: 50px; font-size: 18;">
-                    </div>
+                    <form action="{{ route('attendance-test.check') }}" method="POST">
+                        @csrf
+                        <div>
+                            <h4 class="mb-3">RFID :</h4>
+                            <input type="text" name="rfid" id="rfid-input" class="form-control pt-3" style="background-color: #F5F5F5; border: none; height: 50px; font-size: 18;">
+                            @error('rfid')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <button type="submit" class="btn btn-light-primary text-primary">Masuk</button>
+                    </form>
                     <div class="text-end pt-3">
                         <a href="/school" type="button" class="btn btn-primary w-25" style="background-color: #5D87FF; border: none">Beranda</a>
                     </div>
@@ -80,10 +86,15 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <script>
+         $(document).ready(function() {
+            $('#rfid-input').focus();
+        });
     </script>
 </body>
 

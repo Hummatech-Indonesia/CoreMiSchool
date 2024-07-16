@@ -26,4 +26,17 @@ class AttendanceService
         $data = $request->validated();
         return $data;
     }
+
+    public function storeByStudent($time, $classroom_student_id, $status): array|bool
+    {
+        $data = ([
+            'classroom_student_id' => $classroom_student_id,
+            'point' => '10',
+            'status' => $status,
+            'checkin' => $time,
+            'checkout' => '00:00:00'
+        ]);
+
+        return $data;
+    }
 }
