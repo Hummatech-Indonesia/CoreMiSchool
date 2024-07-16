@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\Interfaces\EmployeeInterface;
 use App\Models\Employee;
+use Illuminate\Http\Request;
+use App\Services\EmployeeService;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
-use App\Services\EmployeeService;
+use App\Contracts\Interfaces\EmployeeInterface;
 
 class EmployeeController extends Controller
 {

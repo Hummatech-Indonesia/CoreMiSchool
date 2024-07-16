@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\AttendanceMasterController;
 use App\Http\Controllers\AttendanceRuleController;
 use App\Http\Controllers\AttendanceStudentController;
 use App\Http\Controllers\ClassroomController;
@@ -29,6 +30,8 @@ Route::prefix('school')->group(function () {
     Route::post('add-employee', [StaffController::class, 'store'])->name('employe.store');
     Route::put('update-employee/{employee}', [StaffController::class, 'update'])->name('employe.update');
     Route::delete('delete-employee/{employee}', [StaffController::class, 'destroy'])->name('employe.delete');
+    Route::post('import-employee/', [StaffController::class, 'import'])->name('employe.import');
+    Route::get('download-template-employee/', [StaffController::class, 'downloadTemplate'])->name('employe.download-template');
 
     // guru
     Route::get('teacher', [TeacherController::class, 'index'])->name('teacher.index');
@@ -154,12 +157,13 @@ Route::get('school/{classroom}', [ClassroomController::class, 'show'])->name('cl
 Route::put('school/{classroom}', [ClassroomStudentController::class, 'update'])->name('classroom.update');
 
 //tes absensi
-Route::get('attendance-test', function () {
-    return view('school.pages.test.attendance');
-})->name('attendance-test.index');
+Route::post('attendance-create/{school_id}', [AttendanceStudentController::class, 'store'])->name('attendance.store');
 
 Route::get('menu-test', function () {
     return view('school.pages.test.menu');
 })->name('menu-test.index');
+Route::get('user-list', function () {
+    return view('school.pages.test.user-list');
+})->name('user-list.index');
 
-Route::post('attendance-create/{school_id}', [AttendanceStudentController::class, 'store'])->name('attendance.store');
+Route::get('attendance-test', [AttendanceMasterController::class, 'index'])->name('attendance-test.index');

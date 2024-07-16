@@ -67,13 +67,13 @@
                             </a>
                         </div>
                         <div class="col-lg-6 col-md-6 mb-4">
-                            <a href="javascript:void(0)">
+                            <a href="/user-list">
                                 <div class="card bg-transparent border-0 custom-card bg-image"
                                     style="background-image: url('{{ asset('admin_assets/dist/images/ilustrations/siswa.png') }}');">
                                     <div class="card-body custom-card-body text-white">
                                         <div class="text-container">
-                                            <h2>Siswa</h2>
-                                            <p>Informasi Siswa</p>
+                                            <h2>Daftar Siswa</h2>
+                                            <p>Absensi</p>
                                         </div>
                                     </div>
                                 </div>
@@ -85,8 +85,8 @@
                                     style="background-image: url('{{ asset('admin_assets/dist/images/ilustrations/today.png') }}');">
                                     <div class="card-body custom-card-body text-white">
                                         <div class="text-container">
-                                            <h2>Today</h2>
-                                            <p>Informasi Hari Ini</p>
+                                            <h2>Presensi Hari ini</h2>
+                                            <p> Daftar Absensi</p>
                                         </div>
                                     </div>
                                 </div>
@@ -99,7 +99,7 @@
                                     <div class="card-body custom-card-body text-white">
                                         <div class="text-container">
                                             <h2>Sinkronisasi</h2>
-                                            <p>Proses Sinkronisasi</p>
+                                            <p>Absensi</p>
                                         </div>
                                     </div>
                                 </div>
