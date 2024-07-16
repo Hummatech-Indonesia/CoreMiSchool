@@ -386,7 +386,7 @@
                 grid: {
                     borderColor: "transparent",
                 },
-                colors: ["#615dff", "#49BEFF", "#49BEFF", "#615dff"],
+                colors: ["#13deb9", "#5d87ff", "#ffae1f", "#fa896b"],
                 fill: {
                     type: "gradient",
                     gradient: {

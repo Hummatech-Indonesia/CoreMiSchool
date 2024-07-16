@@ -7,6 +7,7 @@ use App\Models\SchoolYear;
 use App\Http\Requests\StoreSchoolYearRequest;
 use App\Http\Requests\UpdateSchoolYearRequest;
 use App\Services\SchoolYearService;
+use Illuminate\Http\Request;
 
 class SchoolYearController extends Controller
 {
@@ -22,9 +23,9 @@ class SchoolYearController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index( Request $request)
     {
-        $schoolYears = $this->schoolYear->whereSchool(auth()->user()->school->id);
+        $schoolYears = $this->schoolYear->whereSchool(auth()->user()->school->id, $request);
         return view('school.pages.school-year.index', compact('schoolYears'));
     }
 

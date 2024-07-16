@@ -37,23 +37,23 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (range(1, 5) as $item)
+                @foreach ($classroom->classroomStudents as $student)
                     <tr>
-                        <td>{{ $item }}</td>
+                        <td>{{ $loop->iteration }}</td>
                         <td>
                             <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}"
                                 class="rounded-circle me-2 user-profile" style="object-fit: cover" width="30"
                                 height="30" alt="" />
-                            Arya Rizki
+                            {{ $student->student->user->name }}
                         </td>
                         <td>
-                            XII RPL 2
+                            {{ $classroom->name }}
                         </td>
                         <td>
-                            1234567890
+                            {{ $student->student->nisn }}
                         </td>
                         <td>
-                            Laki Laki
+                            {{ $student->student->gender }}
                         </td>
                         <td>
                             <div class="">
@@ -74,7 +74,7 @@
                                             class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
                                             Jadikan Siswa
                                         </button>
-    
+
                                         <a class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-delete">
                                             Hapus
                                         </a>

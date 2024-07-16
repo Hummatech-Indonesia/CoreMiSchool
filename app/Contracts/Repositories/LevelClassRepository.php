@@ -4,6 +4,7 @@ namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\LevelClassInterface;
 use App\Models\LevelClass;
+use Illuminate\Http\Request;
 
 class LevelClassRepository extends BaseRepository implements LevelClassInterface
 {
@@ -36,14 +37,18 @@ class LevelClassRepository extends BaseRepository implements LevelClassInterface
     {
         return $this->model->query()->findOrFail($id)->delete();
     }
-    
+
     public function where(mixed $data): mixed
     {
         return $this->model->query()->where('school_id', $data)->get();
     }
 
-    public function whereSchool(mixed $id): mixed
+    public function whereSchool(mixed $id, Request $request): mixed
     {
-        return $this->model->query()->where('school_id', $id)->latest()->paginate(10);
+        return $this->model->query()->where('school_id', $id)
+        ->when($request->name, function ($query) use ($request) {
+            $query->where('name', 'LIKE', '%' .  $request->name . '%');
+        })
+        ->latest()->paginate(10);
     }
 }

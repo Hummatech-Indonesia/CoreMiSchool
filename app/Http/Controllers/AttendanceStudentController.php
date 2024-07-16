@@ -9,12 +9,14 @@ use App\Contracts\Interfaces\ModelHasRfidInterface;
 use App\Contracts\Interfaces\RfidInterface;
 use App\Contracts\Interfaces\StudentInterface;
 use App\Enums\AttendanceEnum;
+use App\Enums\DayEnum;
 use App\Http\Requests\StoreAttendanceRequest;
 use App\Http\Requests\UpdateAttendanceRequest;
 use App\Models\Rfid;
 use App\Services\AttendanceService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class AttendanceStudentController extends Controller
 {
@@ -26,7 +28,7 @@ class AttendanceStudentController extends Controller
     private StudentInterface $student;
     private AttendanceService $service;
 
-    public function __construct(AttendanceInterface $attendance, StudentInterface $student, AttendanceRuleInterface $attendanceRule, ClassroomStudentInterface $classroomStudent, AttendanceService $service, RfidInterface $rfid)
+    public function __construct(ModelHasRfidInterface $modelHasRfid, AttendanceInterface $attendance, StudentInterface $student, AttendanceRuleInterface $attendanceRule, ClassroomStudentInterface $classroomStudent, AttendanceService $service, RfidInterface $rfid)
     {
         $this->attendance = $attendance;
         $this->rfid = $rfid;
@@ -34,14 +36,15 @@ class AttendanceStudentController extends Controller
         $this->attendanceRule = $attendanceRule;
         $this->classroomStudent = $classroomStudent;
         $this->service = $service;
+        $this->modelHasRfid = $modelHasRfid;
     }
 
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(string $school_id)
     {
-        //
+        return view('school.pages.test.list-attendance', compact('school_id'));
     }
 
     /**
@@ -65,21 +68,38 @@ class AttendanceStudentController extends Controller
         $user = $this->modelHasRfid->whereRfid($data['rfid']);
         if (!$user) return redirect()->back()->with('error', 'Data tidak tersedia');
 
-        $time = Carbon::parse(now());
-        $day = $time->format('l');
+        $time = now();
+        $day = strtolower($time->format('l'));
+        $clock = $time->format('H:i:s');
 
         $this->student->show($user->model_id);
 
         $rule = $this->attendanceRule->showByDay($school_id, $day);
-        if ($rule->is_holiday == 1) return redirect()->back()->with('warning', 'Hari ini libur ');
-        if ($time > $rule->checkin_start) return redirect()->back()->with('warning', 'Absen sudah melebihi jamnya');
 
-        $classroomStudent = $this->classroomStudent->whereStudent($user->model_id);
+        $presence = $this->attendance->checkPresence($user->model_id, AttendanceEnum::PRESENT->value);
 
-        $data = $this->service->storeByStudent($time->format('h:i:s'), $classroomStudent->id, AttendanceEnum::PRESENT->value);
-        $this->attendance->store($data);
+        if ($clock >= $rule->checkin_start && $clock <= $rule->checkin_end) {
 
-        return redirect()->back()->with('success', 'Berhasil absen');
+            if ($rule->is_holiday == true) return redirect()->back()->with('warning', 'Hari ini libur ');
+            if ($time->format('H:i:s') > $rule->checkin_end) return redirect()->back()->with('warning', 'Absen sudah melebihi jamnya');
+
+            if ($presence) return redirect()->back()->with('warning', 'Sudah absen');
+
+            $classroomStudent = $this->classroomStudent->whereStudent($user->model_id);
+
+            $data = $this->service->storeByStudent($time->format('H:i:s'), $classroomStudent->id, AttendanceEnum::PRESENT->value);
+            $this->attendance->store($data);
+
+            return redirect()->back()->with('success', 'Berhasil absen');
+        } else if ($clock >= $rule->checkout_start && $clock <= $rule->checkout_end) {
+            if (!$presence) return redirect()->back()->with('warning', 'Anda belum absen pagi');
+            if ($presence->checkout != '00:00:00') return redirect()->back()->with('warning', 'Anda sudah absen pulang');
+
+            $this->attendance->updateCheckOut($user->model_id, ['checkout' => $clock]);
+            return redirect()->back()->with('success', 'Berhasil absen keluar');
+        } else {
+            return redirect()->back()->with('warning', 'Waktu absen sudah melebihi batas waktu');
+        }
     }
 
     /**

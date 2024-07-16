@@ -24,7 +24,7 @@ class UpdateEmployeeRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required',
-            'image' => 'nullable',
+            'image' => 'nullable|mimes:jpg,jpeg,png',
             'nip' => 'required|max:18',
             'birth_date' => 'required|date',
             'birth_place' => 'required',

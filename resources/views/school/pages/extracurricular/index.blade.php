@@ -16,8 +16,8 @@
     <div class="d-flex flex-wrap justify-content-between align-items-center">
         <div class="d-flex flex-wrap">
             <div class="col-12 col-md-6 col-lg-12 mb-3 me-3">
-                <form class="position-relative">
-                    <input type="text" name="search" class="form-control product-search ps-5" id="input-search" placeholder="Cari..." value="{{ old('search', request('search')) }}">
+                <form class="position-relative" action="/school/extracurricular">
+                    <input type="text" name="name" class="form-control product-search ps-5" id="input-search" placeholder="Cari..." value="{{ old('name', request()->name) }}">
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                 </form>
             </div>
@@ -142,11 +142,11 @@
                         <div class="mb-3">
                             <div class="form-group">
                                 <label for="" class="mb-2">Nama Extracurricular</label>
-                                <input type="text" class="form-control" id="name-update">
+                                <input type="text" class="form-control" id="name-update" name="name">
                             </div>
                             <div class="form-group">
                                 <label for="" class="mb-2 pt-3">Pengajar</label>
-                                <select id="employee-update" class="form-control">
+                                <select id="employee-update" class="form-control" name="employee_id">
                                     <option value="">Pilih Pengajar</option>
                                     @forelse ($employees as $employee)
                                         <option value="{{ $employee->id }}">{{ $employee->user->name }}</option>

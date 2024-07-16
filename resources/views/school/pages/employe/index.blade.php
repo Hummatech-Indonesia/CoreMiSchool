@@ -119,9 +119,8 @@
                                         data-email="{{ $staff->user->email }}" data-gender="{{ $staff->gender }}"
                                         data-status="{{ $staff->active }}" data-nip="{{ $staff->nip }}"
                                         data-nik="{{ $staff->nik }}" data-birth_date="{{ $staff->birth_date }}"
-                                        data-birth_place="{{ $staff->birth_place }}"
-                                        data-phone="{{ $staff->phone_number }}" data-address="{{ $staff->address }}"
-                                        data-religion="{{ $staff->religion_id }}">
+                                        data-birth_place="{{ $staff->birth_place }}" data-phone="{{ $staff->phone_number }}"
+                                        data-address="{{ $staff->address }}" data-religion="{{ $staff->religion_id }}">
                                         <i class="fs-4 ti ti-edit"></i>Edit
                                     </button>
                                     <button data-id="{{ $staff->id }}"

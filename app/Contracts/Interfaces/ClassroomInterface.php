@@ -9,10 +9,13 @@ use App\Contracts\Interfaces\Eloquent\ShowInterface;
 use App\Contracts\Interfaces\Eloquent\StoreInterface;
 use App\Contracts\Interfaces\Eloquent\UpdateInterface;
 use App\Contracts\Interfaces\Eloquent\WhereInterface;
+use Illuminate\Http\Request;
 
 interface ClassroomInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface
 {
     public function whereInSchoolYears($schoolYears);
-    public function whereSchoolYears($schoolYears);
-    public function countClass(mixed $id) : mixed;
+    public function countClass(mixed $id): mixed;
+    public function getAlumni(): mixed;
+    public function search(Request $request):mixed;
+
 }

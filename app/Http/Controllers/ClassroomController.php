@@ -14,6 +14,7 @@ use App\Models\Classroom;
 use App\Http\Requests\StoreClassroomRequest;
 use App\Http\Requests\UpdateClassroomRequest;
 use App\Models\ClassroomStudent;
+use Illuminate\Http\Request;
 
 class ClassroomController extends Controller
 {
@@ -39,12 +40,12 @@ class ClassroomController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $school = $this->school->whereUserId(auth()->user()->id);
         $levelClasses = $this->levelClass->where($school->id);
         $schoolYears = $this->schoolYear->where($school->id);
-        $classrooms = $this->classroom->get();
+        $classrooms = $this->classroom->search($request)->get();
         $teachers = $this->employee->getTeacherBySchool($school->id);
         return view('school.pages.class.index', compact('classrooms', 'levelClasses', 'schoolYears', 'teachers'));
     }
@@ -103,5 +104,14 @@ class ClassroomController extends Controller
     {
         $this->classroom->delete($classroom->id);
         return redirect()->back()->with('success', 'Berhasil menghapus kelas');
+    }
+
+    public function classroomAlumni(): mixed {
+        $classrooms = $this->classroom->getAlumni();
+        return view('school.pages.alumni.class', compact('classrooms'));
+    }
+
+    public function studentAlumni(Classroom $classroom): mixed {
+        return view('school.pages.alumni.index', compact('classroom'));
     }
 }
