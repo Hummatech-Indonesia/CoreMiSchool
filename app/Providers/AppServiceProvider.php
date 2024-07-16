@@ -19,6 +19,7 @@ use App\Contracts\Interfaces\ReligionInterface;
 use App\Contracts\Interfaces\RfidInterface;
 use App\Contracts\Interfaces\SchoolInterface;
 use App\Contracts\Interfaces\SchoolYearInterface;
+use App\Contracts\Interfaces\SemesterInterface;
 use App\Contracts\Interfaces\StudentInterface;
 use App\Contracts\Interfaces\SubDistrictInterface;
 use App\Contracts\Interfaces\TeacherMapleInterface;
@@ -41,6 +42,7 @@ use App\Contracts\Repositories\ReligionRepository;
 use App\Contracts\Repositories\RfidRepository;
 use App\Contracts\Repositories\SchoolRepository;
 use App\Contracts\Repositories\SchoolYearRepository;
+use App\Contracts\Repositories\SemesterRepository;
 use App\Contracts\Repositories\StudentRepository;
 use App\Contracts\Repositories\SubDistrictRepository;
 use App\Contracts\Repositories\TeacherMapleRepository;
@@ -58,6 +60,7 @@ class AppServiceProvider extends ServiceProvider
         CityInterface::class => CityRepository::class,
         SubDistrictInterface::class => SubDistrictRepository::class,
         SchoolInterface::class => SchoolRepository::class,
+        SemesterInterface::class => SemesterRepository::class,
         EmployeeInterface::class => EmployeeRepository::class,
         MapleInterface::class => MapleRepository::class,
         VillageInterface::class => VillageRepository::class,

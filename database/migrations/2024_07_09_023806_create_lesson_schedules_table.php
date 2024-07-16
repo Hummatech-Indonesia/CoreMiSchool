@@ -16,7 +16,7 @@ return new class extends Migration
     {
         Schema::create('lesson_schedules', function (Blueprint $table) {
             $table->id();
-            $this->addForeignId($table, 'classroom_id');
+            $this->addForeignUuid($table, 'classroom_id');
             $this->addForeignIdTo($table, 'lesson_hour_start', 'lesson_hours');
             $this->addForeignIdTo($table, 'lesson_hour_end', 'lesson_hours');
             $this->addForeignId($table, 'teacher_maple_id');
