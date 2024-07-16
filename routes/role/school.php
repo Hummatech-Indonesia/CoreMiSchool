@@ -72,7 +72,7 @@ Route::prefix('school')->group(function() {
     Route::get('class-alumni', function(){
         return view('school.pages.alumni.class');
     })->name('class-alumni.index');
-    
+
     Route::get('alumni', function(){
         return view('school.pages.alumni.index');
     })->name('alumni.index');

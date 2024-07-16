@@ -172,7 +172,7 @@
                                 d="M208 352c-2.39 0-4.78.35-7.06 1.09C187.98 357.3 174.35 360 160 360c-14.35 0-27.98-2.7-40.95-6.91c-2.28-.74-4.66-1.09-7.05-1.09C49.94 352-.33 402.48 0 464.62C.14 490.88 21.73 512 48 512h224c26.27 0 47.86-21.12 48-47.38c.33-62.14-49.94-112.62-112-112.62m-48-32c53.02 0 96-42.98 96-96s-42.98-96-96-96s-96 42.98-96 96s42.98 96 96 96M592 0H208c-26.47 0-48 22.25-48 49.59V96c23.42 0 45.1 6.78 64 17.8V64h352v288h-64v-64H384v64h-76.24c19.1 16.69 33.12 38.73 39.69 64H592c26.47 0 48-22.25 48-49.59V49.59C640 22.25 618.47 0 592 0" />
                         </svg>
                         <p class="fw-semibold fs-3 text-primary mb-1"> Guru </p>
-                        <h5 class="fw-semibold text-primary mb-0">96</h5>
+                        <h5 class="fw-semibold text-primary mb-0">{{ $school->employees()->where('status', 'teacher')->count() }}</h5>
                     </div>
                 </div>
             </div>
@@ -189,7 +189,7 @@
                                 d="M15 30v3a1 1 0 0 0 1 1h17a1 1 0 0 0 1-1V23a1 1 0 0 0-1-1h-7v-1.47a1 1 0 0 0-2 0V22h-2v-3.58a32 32 0 0 0-5.14-.42a26 26 0 0 0-11 2.39a3.28 3.28 0 0 0-1.88 3V30Zm17 2H17v-8h7v.42a1 1 0 0 0 2 0V24h6Z" />
                         </svg>
                         <p class="fw-semibold fs-3 text-success mb-2 pt-2">Pegawai</p>
-                        <h5 class="fw-semibold text-success mb-0">3,650</h5>
+                        <h5 class="fw-semibold text-success mb-0">{{ $school->employees()->where('status', 'staff')->count() }}</h5>
                     </div>
                 </div>
             </div>
@@ -219,7 +219,7 @@
                                 d="M7 14s-1 0-1-1s1-4 5-4s5 3 5 4s-1 1-1 1zm4-6a3 3 0 1 0 0-6a3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5a2.5 2.5 0 0 0 0 5" />
                         </svg>
                         <p class="fw-semibold fs-3 text-info mb-1">Siswa</p>
-                        <h5 class="fw-semibold text-info mb-0">696</h5>
+                        <h5 class="fw-semibold text-info mb-0">{{ $school->students->count() }}</h5>
                     </div>
                 </div>
             </div>
@@ -234,7 +234,7 @@
                                 d="M14.942 12.57L10 4.335V1h.5c.275 0 .5-.225.5-.5s-.225-.5-.5-.5h-5c-.275 0-.5.225-.5.5s.225.5.5.5H6v3.335L1.058 12.57C-.074 14.456.8 16 3 16h10c2.2 0 3.074-1.543 1.942-3.43M3.766 10L7 4.61V1h2v3.61L12.234 10z" />
                         </svg>
                         <p class="fw-semibold fs-3 text-warning mb-1 pt-2">Pelajaran</p>
-                        <h5 class="fw-semibold text-warning mb-0">96</h5>
+                        <h5 class="fw-semibold text-warning mb-0">{{ $school->maples->count() }}</h5>
                     </div>
                 </div>
             </div>
@@ -248,7 +248,7 @@
                                 d="M232 216h-24V40a16 16 0 0 0-16-16H64a16 16 0 0 0-16 16v176H24a8 8 0 0 0 0 16h208a8 8 0 0 0 0-16m-68-72a12 12 0 1 1 12-12a12 12 0 0 1-12 12" />
                         </svg>
                         <p class="fw-semibold fs-3 text-info mb-1">Kelas</p>
-                        <h5 class="fw-semibold text-info mb-0">59</h5>
+                        <h5 class="fw-semibold text-info mb-0">{{ $classrooms }}</h5>
                     </div>
                 </div>
             </div>
