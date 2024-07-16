@@ -104,4 +104,13 @@ class ClassroomController extends Controller
         $this->classroom->delete($classroom->id);
         return redirect()->back()->with('success', 'Berhasil menghapus kelas');
     }
+
+    public function classroomAlumni(): mixed {
+        $classrooms = $this->classroom->getAlumni();
+        return view('school.pages.alumni.class', compact('classrooms'));
+    }
+
+    public function studentAlumni(Classroom $classroom): mixed {
+        return view('school.pages.alumni.index', compact('classroom'));
+    }
 }

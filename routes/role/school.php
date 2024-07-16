@@ -75,13 +75,9 @@ Route::prefix('school')->group(function () {
     })->name('presence-student.index');
 
     //alumni
-    Route::get('class-alumni', function () {
-        return view('school.pages.alumni.class');
-    })->name('class-alumni.index');
+    Route::get('class-alumni', [ClassroomController::class, 'classroomAlumni'])->name('class-alumni.index');
 
-    Route::get('alumni', function () {
-        return view('school.pages.alumni.index');
-    })->name('alumni.index');
+    Route::get('alumni/{classroom}', [ClassroomController::class, 'studentAlumni'])->name('alumni.index');
 
     //Extracurricular
     Route::get('extracurricular', [ExtracurricularController::class, 'index'])->name('extraa.index');
@@ -178,3 +174,9 @@ Route::get('attendance-test', function () {
 Route::get('list-attendance', function () {
     return view('school.pages.test.list-attendance');
 })->name('list-attendance.index');
+
+
+// url yang berawalan school/ masukkan pada prefix school
+// Route::prefix('school')->group(function () {
+//     route.....
+// });
