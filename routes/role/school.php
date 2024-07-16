@@ -10,6 +10,7 @@ use App\Http\Controllers\MapleController;
 use App\Http\Controllers\ModelHasRfidController;
 use App\Http\Controllers\SchoolDashboardController;
 use App\Http\Controllers\SchoolYearController;
+use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\Teacher\StaffController;
 use App\Http\Controllers\Teacher\TeacherController;
@@ -119,6 +120,21 @@ Route::prefix('school')->group(function() {
 
     // rfid aktif
     Route::get('rfid-active', [ModelHasRfidController::class, 'showActive'])->name('rfid-active.index');
+    
+    //mata pelajaran
+    Route::get('create-subjects', [MapleController::class, 'index'])->name('create-subjects');
+    Route::post('add-subjects', [MapleController::class, 'store'])->name('subjects.store');
+    Route::put('update-subjects/{maple}', [MapleController::class, 'update'])->name('subjects.update');
+    Route::delete('delete-subjects/{maple}', [MapleController::class, 'destroy'])->name('subjects.delete');
+
+    // jam mata pelajaran
+    // Route::get('lesson-hours', [LessonHourController::class, 'index'])->name('lesson-hours.index');
+    Route::resource('lesson-hours', LessonHourController::class);
+    //semeter
+    Route::prefix('semesters')->name('semesters.')->group(function() {
+        Route::get('/', [SemesterController::class, 'index'])->name('index');
+        Route::post('/', [SemesterController::class, 'store'])->name('store');
+    });
 });
 
 
