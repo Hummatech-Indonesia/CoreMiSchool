@@ -3,16 +3,17 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        <div class="row pb-4 mt-5 mx-3">
-            <h4>Edit Profil Sekolah</h4>
-            <div class="d-flex justify-content-center">
-                <img src="{{ asset('storage/'.$school->image) }}" width="180px" alt="">
-            </div>
-            <div class="d-flex justify-content-center mt-4">
-                <button class="btn btn-primary px-4">Ganti Foto</button>
-            </div>
-
-            <form action="{{ route('settings-information.update') }}" method="POST">
+        <form action="{{ route('settings-information.update', $school->id) }}" method="POST" enctype="multipart/form-data">
+            <div class="row pb-4 mt-5 mx-3">
+                <h4>Edit Profil Sekolah</h4>
+                <div class="d-flex justify-content-center">
+                    <img id="preview-image" src="{{ asset('storage/'.$school->image) }}" width="180px" alt="Foto Profil Sekolah">
+                </div>
+                <div class="d-flex justify-content-center mt-4">
+                    <button type="button" id="change-photo-button" class="btn btn-primary px-4">Ganti Foto</button>
+                </div>
+                <input type="file" id="photo-input" name="image" accept="image/*" style="display: none;">
+                @method('PUT')
                 @csrf
                 <div class="row mt-5">
                     <div class="col-md-6 mb-4">
@@ -45,8 +46,15 @@
                     </div>
                     <div class="col-md-12 mb-4">
                         <label for="">Alamat Sekolah</label>
-                        <textarea name="address" class="form-control mt-1" placeholder="Masukan alamat sekolah" rows="6">{{ old('address', $school->address) }}</textarea>
+                        <textarea name="address" class="form-control mt-1" placeholder="Masukan alamat sekolah" rows="2">{{ old('address', $school->address) }}</textarea>
                         @error('address')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="col-md-12 mb-4">
+                        <label for="">Deskripsi Sekolah</label>
+                        <textarea name="description" class="form-control mt-1" placeholder="Masukan deskripsi sekolah" rows="6">{{ old('description', $school->description) }}</textarea>
+                        @error('description')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
@@ -91,8 +99,28 @@
                         <button type="submit" class="btn btn-success">Simpan</button>
                     </div>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 </div>
+@endsection
+@section('script')
+    <script>
+        document.getElementById('change-photo-button').addEventListener('click', function() {
+            document.getElementById('photo-input').click();
+        });
+
+        document.getElementById('photo-input').addEventListener('change', function(event) {
+            var input = event.target;
+            var reader = new FileReader();
+
+            reader.onload = function(){
+                var dataURL = reader.result;
+                var output = document.getElementById('preview-image');
+                output.src = dataURL;
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        });
+    </script>
 @endsection
