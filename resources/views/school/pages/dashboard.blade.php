@@ -260,7 +260,7 @@
             <div class="card w-100 border bg-transparent">
                 <div class="card-body d-flex justify-content-between">
                     <h5>Tahun Ajaran Saat Ini</h5>
-                    <span class="mb-1 badge bg-danger">2023/2024</span>
+                    <span class="mb-1 badge bg-danger">{{ $schoolYear->school_year }}</span>
                 </div>
             </div>
         </div>
@@ -268,7 +268,7 @@
             <div class="card w-100 border bg-transparent">
                 <div class="card-body d-flex justify-content-between">
                     <h5>Semester Saat Ini</h5>
-                    <span class="mb-1 badge bg-primary">Ganjil</span>
+                    <span class="mb-1 badge bg-primary">{{ $semester->type == 'ganjil' ? 'Ganjil' : 'Genap'}}</span>
                 </div>
             </div>
         </div>

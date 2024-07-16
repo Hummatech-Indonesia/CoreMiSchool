@@ -77,6 +77,8 @@ class EmployeeRepository extends BaseRepository implements EmployeeInterface
         })
         ->when($request->filter === "terlama", function($query) {
             $query->oldest();
+        }) ->when($request->status, function($query) use ($request) {
+            $query->where('status', $request->status);
         })
         ->latest()
         ->paginate(10);

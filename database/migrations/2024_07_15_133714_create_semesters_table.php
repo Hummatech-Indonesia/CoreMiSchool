@@ -1,12 +1,15 @@
 <?php
 
 use App\Enums\SemesterEnum;
+use App\Traits\Migrations\HasForeign;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
+    use HasForeign;
+
     /**
      * Run the migrations.
      */
@@ -15,7 +18,7 @@ return new class extends Migration
         Schema::create('semesters', function (Blueprint $table) {
             $table->id();
             $table->string('type')->enum([SemesterEnum::GANJIL, SemesterEnum::GENAP]);
-            $table->foreignId('school_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $this->addForeignId($table,'school_id');
             $table->timestamps();
         });
     }

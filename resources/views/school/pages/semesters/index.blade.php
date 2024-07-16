@@ -3,8 +3,9 @@
     use Carbon\Carbon;
     use Illuminate\Support\Str;
 
-    $latestSemester = $semesters->sortByDesc('created_at')->first();
     $firstSemester = $semesters->sortBy('created_at')->first();
+    // dd($semesters);
+    $latestSemester = $semesters->sortByDesc('created_at')->first();
 @endphp
 @extends('school.layouts.app')
 
@@ -64,18 +65,17 @@
                                 <tr>
                                     <td>
                                         <div class="d-flex justify-content-center">
-                                            <p>{{ ucfirst($semester->type) }}</p>
-
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="mx-3" width="20"
-                                                height="20" viewBox="0 0 256 256">
-                                                <path fill="currentColor"
-                                                    d="m221.66 133.66l-72 72a8 8 0 0 1-11.32-11.32L196.69 136H40a8 8 0 0 1 0-16h156.69l-58.35-58.34a8 8 0 0 1 11.32-11.32l72 72a8 8 0 0 1 0 11.32" />
-                                            </svg>
                                             @if ($semester->type == SemesterEnum::GANJIL->value)
                                                 <p> Genap</p>
                                             @else
                                                 <p> Ganjil</p>
                                             @endif
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mx-3" width="20"
+                                            height="20" viewBox="0 0 256 256">
+                                            <path fill="currentColor"
+                                                    d="m221.66 133.66l-72 72a8 8 0 0 1-11.32-11.32L196.69 136H40a8 8 0 0 1 0-16h156.69l-58.35-58.34a8 8 0 0 1 11.32-11.32l72 72a8 8 0 0 1 0 11.32" />
+                                            </svg>
+                                            <p>{{ ucfirst($semester->type) }}</p>
                                         </div>
                                     </td>
                                     <td>
