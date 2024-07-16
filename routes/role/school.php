@@ -159,3 +159,6 @@ Route::get('attendance-test', function () {
 Route::get('menu-test', function () {
     return view('school.pages.test.menu');
 })->name('menu-test.index');
+Route::get('user-list', function () {
+    return view('school.pages.test.user-list');
+})->name('user-list.index');
