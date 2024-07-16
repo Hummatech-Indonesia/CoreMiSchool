@@ -80,7 +80,7 @@
             <form action="">
                 <div class="position-relative">
                     <div class="">
-                        <input type="text" name="search" class="form-control search-chat py-2 px-5 ps-5" id="search-name" placeholder="Cari...">
+                        <input type="text" name="name" class="form-control search-chat py-2 px-5 ps-5" id="search-name" placeholder="Cari..." value="{{ old('name', request()->name) }}">
                         <i class="ti ti-search position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
                     </div>
                 </div>

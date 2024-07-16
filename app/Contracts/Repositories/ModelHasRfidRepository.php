@@ -4,6 +4,7 @@ namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\ModelHasRfidInterface;
 use App\Models\ModelHasRfid;
+use Illuminate\Http\Request;
 
 class ModelHasRfidRepository extends BaseRepository implements ModelHasRfidInterface
 {
@@ -31,10 +32,13 @@ class ModelHasRfidRepository extends BaseRepository implements ModelHasRfidInter
             ->get();
     }
 
-    public function masterRfid(): mixed
+    public function masterRfid(Request $request): mixed
     {
         return $this->model->query()
             ->where('model_type', 'App\Models\School')
+            ->when($request->name, function ($query) use ($request) {
+                $query->where('rfid', 'LIKE', '%' .  $request->name . '%');
+            })
             ->get();
     }
 
