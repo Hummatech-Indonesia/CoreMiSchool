@@ -17,4 +17,7 @@ class Extracurricular extends Model
         'employee_id',
         'school_id',
     ];
+
+    public $incrementing = false;
+    public $keyType = 'char';
 }

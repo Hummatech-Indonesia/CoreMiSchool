@@ -1,5 +1,6 @@
 @extends('school.layouts.app')
 @section('content')
+<div class="d-flex justify-content-between">
     <div class="d-flex flex-wrap align-items-center">
         <div class="col-12 col-md-2 mb-3">
             <form action="" class="position-relative">
@@ -13,13 +14,14 @@
                 <option value="">2023/2024</option>
             </select>
         </div>
-        <div class="col-12 col-md-2 mb-3 ms-3">
-            <select id="status-activity" class="form-select">
-                <option value="">Kelas</option>
-                <option value="">12 RPL 1</option>
-            </select>
-        </div>
     </div>
+
+    <div>
+        <a href="{{ route('class-alumni.index') }}" class="btn btn-primary">
+            Kembali
+        </a>
+    </div>
+</div>
 
 
     <div class="table-responsive rounded-2 mb-4">
@@ -54,9 +56,31 @@
                             Laki Laki
                         </td>
                         <td>
-                            <button type="button"
-                                class="btn mb-1 btn-sm waves-effect waves-light btn-rounded btn-primary">Jadikan
-                                Siswa</button>
+                            <div class="">
+                                <div class="category-selector btn-group">
+                                    <a class="nav-link category-dropdown label-group p-0" data-bs-toggle="dropdown"
+                                        href="#" role="button" aria-haspopup="true" aria-expanded="true">
+                                        <div class="category">
+                                            <div class="category-business"></div>
+                                            <div class="category-social"></div>
+                                            <span class="more-options text-dark">
+                                                <i class="ti ti-dots-vertical fs-5"></i>
+                                            </span>
+                                        </div>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right category-menu"
+                                        data-popper-placement="bottom-end">
+                                        <button type="button"
+                                            class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
+                                            Jadikan Siswa
+                                        </button>
+    
+                                        <a class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-delete">
+                                            Hapus
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 @endforeach

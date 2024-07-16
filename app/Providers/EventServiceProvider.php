@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Models\Classroom;
+use App\Models\Extracurricular;
 use App\Models\LessonHour;
 use App\Observers\ClassroomObserver;
+use App\Observers\ExtracurricularObserver;
 use App\Observers\LessonHourObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -31,6 +33,7 @@ class EventServiceProvider extends ServiceProvider
     {
         LessonHour::observe(LessonHourObserver::class);
         Classroom::observe(ClassroomObserver::class);
+        Extracurricular::observe(ExtracurricularObserver::class);
     }
 
     /**
