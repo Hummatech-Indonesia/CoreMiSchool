@@ -7,6 +7,7 @@ use App\Models\LevelClass;
 use App\Http\Requests\StoreLevelClassRequest;
 use App\Http\Requests\UpdateLevelClassRequest;
 use App\Services\LevelClassService;
+use Illuminate\Http\Request;
 
 class LevelClassController extends Controller
 {
@@ -22,9 +23,9 @@ class LevelClassController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $levelClasses = $this->levelClass->whereSchool(auth()->user()->school->id);
+        $levelClasses = $this->levelClass->whereSchool(auth()->user()->school->id, $request);
         return view('school.pages.class-level.index', compact('levelClasses'));
     }
 
