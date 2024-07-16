@@ -20,7 +20,7 @@ use App\Http\Controllers\TeacherMapleController;
 use Illuminate\Database\Query\IndexHint;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('school')->group(function() {
+Route::prefix('school')->group(function () {
     Route::get('', [SchoolDashboardController::class, 'index'])->name('school.index');
 
     // pegawai
@@ -58,7 +58,7 @@ Route::prefix('school')->group(function() {
 
     // absen
     // Route::get('clock-settings', [AttendanceRuleController::class, 'index'])->name('clock-settings.index');
-    Route::get('clock-settings', function(){
+    Route::get('clock-settings', function () {
         return view('school.pages.attendace.copy-clock-settings');
     })->name('clock-settings.index');
     Route::get('get-clock-settings', [AttendanceRuleController::class, 'index'])->name('clock-settings.get');
@@ -66,16 +66,16 @@ Route::prefix('school')->group(function() {
 
     Route::get('presence', [AttendanceController::class, 'index'])->name('presence.index');
 
-    Route::get('presence-student', function(){
+    Route::get('presence-student', function () {
         return view('school.pages.attendace.student');
     })->name('presence-student.index');
 
     //alumni
-    Route::get('class-alumni', function(){
+    Route::get('class-alumni', function () {
         return view('school.pages.alumni.class');
     })->name('class-alumni.index');
 
-    Route::get('alumni', function(){
+    Route::get('alumni', function () {
         return view('school.pages.alumni.index');
     })->name('alumni.index');
 
@@ -92,7 +92,7 @@ Route::prefix('school')->group(function() {
     Route::delete('delete-class/{classroom}', [ClassroomController::class, 'destroy'])->name('class.delete');
 
     // detail kelas
-    Route::get('detail-class', function(){
+    Route::get('detail-class', function () {
         return view('school.pages.class.detail-class');
     })->name('detail-class.index');
 
@@ -135,7 +135,7 @@ Route::prefix('school')->group(function() {
     // Route::get('lesson-hours', [LessonHourController::class, 'index'])->name('lesson-hours.index');
     Route::resource('lesson-hours', LessonHourController::class);
     //semeter
-    Route::prefix('semesters')->name('semesters.')->group(function() {
+    Route::prefix('semesters')->name('semesters.')->group(function () {
         Route::get('/', [SemesterController::class, 'index'])->name('index');
         Route::post('/', [SemesterController::class, 'store'])->name('store');
     });
@@ -153,6 +153,9 @@ Route::get('school/{classroom}', [ClassroomController::class, 'show'])->name('cl
 Route::put('school/{classroom}', [ClassroomStudentController::class, 'update'])->name('classroom.update');
 
 //tes absensi
-Route::get('attendance-test', function(){
+Route::get('attendance-test', function () {
     return view('school.pages.test.attendance');
 })->name('attendance-test.index');
+Route::get('menu-test', function () {
+    return view('school.pages.test.menu');
+})->name('menu-test.index');

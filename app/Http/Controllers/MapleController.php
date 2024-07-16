@@ -47,7 +47,7 @@ class MapleController extends Controller
     {
         $data = $this->service->store($request);
         $this->maple->store($data);
-        return redirect()->back()->with('success', 'Berhasil menambahkan mapel pelajaram');
+        return redirect()->back()->with('success', 'Berhasil menambahkan mata pelajaran');
     }
 
     /**
@@ -73,7 +73,7 @@ class MapleController extends Controller
     {
         $data = $this->service->update($maple, $request);
         $this->maple->update($maple->id, $data);
-        return redirect()->back()->with('success', 'Berhasil memperbarui mapel pelajaram');
+        return redirect()->back()->with('success', 'Berhasil memperbarui mata pelajaran');
     }
 
     /**
@@ -82,6 +82,6 @@ class MapleController extends Controller
     public function destroy(Maple $maple)
     {
         $this->maple->delete($maple->id);
-        return redirect()->back()->with('success', 'Berhasil menghapus mapel pelajaran');
+        return redirect()->back()->with('success', 'Berhasil menghapus mata pelajaran');
     }
 }
