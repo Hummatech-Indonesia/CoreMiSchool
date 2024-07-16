@@ -26,7 +26,7 @@ class ClassroomStudentRepository extends BaseRepository implements ClassroomStud
     {
         return $this->model->query()->findOrFail($id);
     }
-    
+
     public function update(mixed $id, array $data): mixed
     {
         return $this->model->query()->findOrFail($id)->update($data);
@@ -45,5 +45,10 @@ class ClassroomStudentRepository extends BaseRepository implements ClassroomStud
     public function where(mixed $data): mixed
     {
         return $this->model->query()->where('classroom_id', $data)->get();
+    }
+
+    public function whereStudent(mixed $id): mixed
+    {
+        return $this->model->query()->where('student_id', $id)->firstOrFail();
     }
 }

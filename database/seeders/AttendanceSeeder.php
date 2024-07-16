@@ -17,7 +17,7 @@ class AttendanceSeeder extends Seeder
         Attendance::create([
             'id' => '1',
             'classroom_student_id' => '1',
-            'point' => '11',
+            'point' => '10',
             'proof' => null,
             'status' => AttendanceEnum::PRESENT->value,
             'checkin' => '07:00:00',
