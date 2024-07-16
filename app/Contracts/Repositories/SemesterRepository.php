@@ -16,11 +16,16 @@ class SemesterRepository extends BaseRepository implements SemesterInterface
 
     public function get(): mixed
     {
-        return $this->model->query()->where('school_id', auth()->user()->school->id)->get();
+        return $this->model->query()->where('school_id', auth()->user()->school->id)->orderBy('created_at', 'desc')->get();
     }
 
     public function store(array $data): mixed
     {
         return $this->model->query()->create($data);
+    }
+
+    public function whereSchool(mixed $id): mixed
+    {
+        return $this->model->query()->where('school_id', $id)->latest()->firstOrFail();
     }
 }

@@ -12,5 +12,5 @@ use App\Contracts\Interfaces\Eloquent\WhereSchoolInterface;
 
 interface AttendanceInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface, WhereSchoolInterface
 {
-    //
+    public function AttendanceChart(mixed $id, mixed $year, mixed $month) : mixed;
 }

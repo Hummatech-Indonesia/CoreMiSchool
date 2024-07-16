@@ -8,6 +8,7 @@ use App\Contracts\Interfaces\MapleInterface;
 use App\Contracts\Interfaces\ModelHasRfidInterface;
 use App\Contracts\Interfaces\SchoolInterface;
 use App\Contracts\Interfaces\SchoolYearInterface;
+use App\Contracts\Interfaces\SemesterInterface;
 use App\Contracts\Interfaces\StudentInterface;
 use App\Http\Requests\StoreModelHasRfidRequest;
 use App\Models\School;
@@ -20,26 +21,26 @@ class SchoolDashboardController extends Controller
     private SchoolInterface $school;
     private SchoolYearInterface $schoolYear;
     private ModelHasRfidInterface $rfid;
-
-    private EmployeeInterface $employee;
-    private StudentInterface $student;
-    private MapleInterface $maple;
     private ClassroomInterface $classroom;
+    private SemesterInterface $semester;
 
     public function __construct(SchoolInterface $school,
-    SchoolYearInterface $schoolYear, ModelHasRfidInterface $rfid, ClassroomInterface $classroom)
+    SchoolYearInterface $schoolYear, ModelHasRfidInterface $rfid, ClassroomInterface $classroom, SemesterInterface $semester)
     {
         $this->school = $school;
         $this->schoolYear = $schoolYear;
         $this->rfid = $rfid;
         $this->classroom = $classroom;
+        $this->semester = $semester;
     }
 
     public function index()
     {
         $school = $this->school->whereUserId(auth()->user()->id);
         $classrooms = $this->classroom->countClass(auth()->user()->school->id);
-        return view('school.pages.dashboard', compact('school', 'classrooms'));
+        $schoolYear = $this->schoolYear->active(auth()->user()->school->id);
+        $semester = $this->semester->whereSchool(auth()->user()->school->id);
+        return view('school.pages.dashboard', compact('school', 'classrooms', 'schoolYear', 'semester'));
     }
 
     public function show()
