@@ -58,20 +58,15 @@ class SchoolService
             'email' => $data['email'],
             'password' => Hash::make($data['npsn']),
         ];
-        $user = $this->user->update($school->user_id ,$dataUser);
-        $user->assignRole(RoleEnum::SCHOOL->value);
+        $this->user->update($school->user_id, $dataUser);
 
-        $old_image = $school->image;
-        $image = "";
-
-        if ($request->hasFile('image')) {
-            if (file_exists(public_path($old_image))) {
-                unlink(public_path($old_image));
-            }
-            $image = $this->upload(UploadDiskEnum::LOGO->value, $request->image);
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $this->remove($school->image);
+            $data['image'] = $request->file('image')->store(UploadDiskEnum::TEACHER->value, 'public');
+        } else {
+            $data['image'] = $school->image;
         }
 
-        $data['image'] = $image ?: $old_image;
         return $data;
     }
 

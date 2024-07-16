@@ -67,7 +67,8 @@ class StoreSchoolRequest extends FormRequest
             'city.required' => 'Kabupaten atau kota wajib di isi',
             'sub_district_id.required' => 'Kecamatan wajib di isi',
             'type.required' => 'Tipe sekolah wajib di isi',
-            'level.required' => 'Jenjang wajib di isi'
+            'level.required' => 'Jenjang wajib di isi',
+            'accreditation.required' => 'Akreditasi harus diisi',
         ];
     }
 }

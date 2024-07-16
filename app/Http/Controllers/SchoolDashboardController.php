@@ -66,9 +66,4 @@ class SchoolDashboardController extends Controller
         $school = $this->school->showWithSlug(auth()->user()->slug);
         return view('school.pages.settings.update-information', compact('school'));
     }
-
-    public function update()
-    {
-        //
-    }
 }
