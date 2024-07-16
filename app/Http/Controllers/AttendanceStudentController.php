@@ -6,10 +6,12 @@ use App\Contracts\Interfaces\AttendanceInterface;
 use App\Contracts\Interfaces\AttendanceRuleInterface;
 use App\Contracts\Interfaces\ClassroomStudentInterface;
 use App\Contracts\Interfaces\ModelHasRfidInterface;
+use App\Contracts\Interfaces\RfidInterface;
 use App\Contracts\Interfaces\StudentInterface;
 use App\Enums\AttendanceEnum;
 use App\Http\Requests\StoreAttendanceRequest;
 use App\Http\Requests\UpdateAttendanceRequest;
+use App\Models\Rfid;
 use App\Services\AttendanceService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -18,14 +20,16 @@ class AttendanceStudentController extends Controller
 {
     private AttendanceInterface $attendance;
     private ModelHasRfidInterface $modelHasRfid;
+    private RfidInterface $rfid;
     private AttendanceRuleInterface $attendanceRule;
     private ClassroomStudentInterface $classroomStudent;
     private StudentInterface $student;
     private AttendanceService $service;
 
-    public function __construct(AttendanceInterface $attendance, StudentInterface $student, AttendanceRuleInterface $attendanceRule, ClassroomStudentInterface $classroomStudent, AttendanceService $service)
+    public function __construct(AttendanceInterface $attendance, StudentInterface $student, AttendanceRuleInterface $attendanceRule, ClassroomStudentInterface $classroomStudent, AttendanceService $service, RfidInterface $rfid)
     {
         $this->attendance = $attendance;
+        $this->rfid = $rfid;
         $this->student = $student;
         $this->attendanceRule = $attendanceRule;
         $this->classroomStudent = $classroomStudent;
@@ -53,29 +57,29 @@ class AttendanceStudentController extends Controller
      */
     public function store(StoreAttendanceRequest $request, string $school_id)
     {
-        try {
-            $data = $request->validated();
-            $user = $this->modelHasRfid->whereRfid($data['rfid']);
-            if (!$user) return redirect()->back()->with('error', 'Data tidak tersedia');
+        $data = $request->validated();
 
-            $time = Carbon::parse(now());
-            $day = $time->format('l');
+        $rfid = $this->rfid->where($data['rfid']);
+        if (!$rfid) return redirect()->back()->with('error', 'Rfid belum terdaftarkan');
 
-            $this->student->show($user->model_id);
+        $user = $this->modelHasRfid->whereRfid($data['rfid']);
+        if (!$user) return redirect()->back()->with('error', 'Data tidak tersedia');
 
-            $rule = $this->attendanceRule->showByDay($school_id, $day);
-            if ($rule->is_holiday == 1) return redirect()->back()->with('warning', 'Hari ini libur ');
-            if ($time > $rule->checkin_start) return redirect()->back()->with('warning', 'Absen sudah melebihi jamnya');
+        $time = Carbon::parse(now());
+        $day = $time->format('l');
 
-            $classroomStudent = $this->classroomStudent->whereStudent($user->model_id);
+        $this->student->show($user->model_id);
 
-            $data = $this->service->storeByStudent($time->format('h:i:s'), $classroomStudent->id, AttendanceEnum::PRESENT->value);
-            $this->attendance->store($data);
+        $rule = $this->attendanceRule->showByDay($school_id, $day);
+        if ($rule->is_holiday == 1) return redirect()->back()->with('warning', 'Hari ini libur ');
+        if ($time > $rule->checkin_start) return redirect()->back()->with('warning', 'Absen sudah melebihi jamnya');
 
-            return redirect()->back()->with('success', 'Berhasil absen');
-        } catch (\Throwable $th) {
-            return redirect()->back()-with('error', 'Rfid belum terdaftar');
-        }
+        $classroomStudent = $this->classroomStudent->whereStudent($user->model_id);
+
+        $data = $this->service->storeByStudent($time->format('h:i:s'), $classroomStudent->id, AttendanceEnum::PRESENT->value);
+        $this->attendance->store($data);
+
+        return redirect()->back()->with('success', 'Berhasil absen');
     }
 
     /**
