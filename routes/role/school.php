@@ -27,6 +27,8 @@ Route::prefix('school')->group(function() {
     Route::post('add-employee', [StaffController::class, 'store'])->name('employe.store');
     Route::put('update-employee/{employee}', [StaffController::class, 'update'])->name('employe.update');
     Route::delete('delete-employee/{employee}', [StaffController::class, 'destroy'])->name('employe.delete');
+    Route::post('import-employee/', [StaffController::class, 'import'])->name('employe.import');
+    Route::get('download-template-employee/', [StaffController::class, 'downloadTemplate'])->name('employe.download-template');
 
     // guru
     Route::get('teacher', [TeacherController::class, 'index'])->name('teacher.index');
