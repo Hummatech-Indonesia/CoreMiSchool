@@ -47,6 +47,11 @@ class ClassroomRepository extends BaseRepository implements ClassroomInterface
         return $this->model->query()->whereIn('school_year_id', $schoolYears)->get();
     }
 
+    public function whereSchoolYears($schoolYears)
+    {
+        return $this->model->query()->where('school_year_id', $schoolYears)->get();
+    }
+
     public function countClass(mixed $id): mixed
     {
         return $this->model->query()->whereRelation('schoolYear', 'school_id', $id)->count();
