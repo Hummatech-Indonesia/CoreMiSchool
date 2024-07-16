@@ -37,6 +37,7 @@ class ClassroomController extends Controller
         $school = $this->school->whereUserId(auth()->user()->id);
         $levelClasses = $this->levelClass->where($school->id);
         $schoolYears = $this->schoolYear->where($school->id);
+        $classrooms = $this->classroom->whereInSchoolYears($schoolYears->pluck('id'));
         $classrooms = $this->classroom->get();
         $teachers = $this->employee->getTeacherBySchool($school->id);
         return view('school.pages.class.index', compact('classrooms', 'levelClasses', 'schoolYears', 'teachers'));
