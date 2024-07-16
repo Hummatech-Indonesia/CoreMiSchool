@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\AttendanceMasterController;
 use App\Http\Controllers\AttendanceRuleController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\ClassroomStudentController;
@@ -153,9 +154,7 @@ Route::get('school/{classroom}', [ClassroomController::class, 'show'])->name('cl
 Route::put('school/{classroom}', [ClassroomStudentController::class, 'update'])->name('classroom.update');
 
 //tes absensi
-Route::get('attendance-test', function () {
-    return view('school.pages.test.attendance');
-})->name('attendance-test.index');
 Route::get('menu-test', function () {
     return view('school.pages.test.menu');
 })->name('menu-test.index');
+Route::get('attendance-test', [AttendanceMasterController::class, 'index'])->name('attendance-test.index');
