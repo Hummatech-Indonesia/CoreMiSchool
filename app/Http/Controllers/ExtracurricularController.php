@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Interfaces\EmployeeInterface;
 use App\Contracts\Interfaces\ExtracurricularInterface;
 use App\Models\Extracurricular;
 use App\Http\Requests\StoreExtracurricularRequest;
@@ -12,11 +13,13 @@ class ExtracurricularController extends Controller
 {
     private ExtracurricularInterface $extracurricular;
     private ExtracurricularService $service;
+    private EmployeeInterface $employee;
 
-    public function __construct(ExtracurricularInterface $extracurricular, ExtracurricularService $service)
+    public function __construct(ExtracurricularInterface $extracurricular, ExtracurricularService $service, EmployeeInterface $employee)
     {
         $this->extracurricular = $extracurricular;
         $this->service = $service;
+        $this->employee = $employee;
     }
 
     /**
@@ -24,8 +27,9 @@ class ExtracurricularController extends Controller
      */
     public function index()
     {
+        $employees = $this->employee->getSchool(auth()->user()->school->id);
         $extracurriculars = $this->extracurricular->whereSchool(auth()->user()->school->id);
-        return view('school.pages.extracurricular.index', compact('extracurriculars'));
+        return view('school.pages.extracurricular.index', compact('extracurriculars', 'employees'));
     }
 
     /**

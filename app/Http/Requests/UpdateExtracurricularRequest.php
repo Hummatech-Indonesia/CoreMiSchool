@@ -11,7 +11,7 @@ class UpdateExtracurricularRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,21 @@ class UpdateExtracurricularRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required',
+            'employee_id' => 'required',
+        ];
+    }
+
+    /**
+     * Custom validation messages.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Nama harus diisi.',
+            'employee_id.required' => 'Pengajar harus diisi.',
         ];
     }
 }

@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
             StudentSeeder::class,
             ClassroomSeeder::class,
             ClassroomStudentSeeder::class,
-            AttendanceSeeder::class
+            AttendanceSeeder::class,
+            ExtracurricularSeeder::class
         ]);
     }
 }

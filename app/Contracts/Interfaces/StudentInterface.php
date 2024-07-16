@@ -12,5 +12,5 @@ use App\Contracts\Interfaces\Eloquent\WhereSchoolInterface;
 
 interface StudentInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface, WhereSchoolInterface
 {
-    //
+    public function doesntHaveClassroom(): mixed;
 }

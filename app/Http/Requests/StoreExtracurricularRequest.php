@@ -26,4 +26,17 @@ class StoreExtracurricularRequest extends FormRequest
             'employee_id' => 'required',
         ];
     }
+
+    /**
+     * Custom validation messages.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Nama harus diisi.',
+            'employee_id.required' => 'Pengajar harus diisi.',
+        ];
+    }
 }

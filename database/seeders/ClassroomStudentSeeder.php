@@ -13,10 +13,6 @@ class ClassroomStudentSeeder extends Seeder
      */
     public function run(): void
     {
-        ClassroomStudent::create([
-            'id' => '1',
-            'student_id' => '1',
-            'classroom_id' => '1',
-        ]);
+        //
     }
 }

@@ -67,13 +67,21 @@ Route::prefix('school')->group(function() {
     Route::get('presence-student', function(){
         return view('school.pages.attendace.student');
     })->name('presence-student.index');
+
     //alumni
+    Route::get('class-alumni', function(){
+        return view('school.pages.alumni.class');
+    })->name('class-alumni.index');
+    
     Route::get('alumni', function(){
         return view('school.pages.alumni.index');
     })->name('alumni.index');
 
     //Extracurricular
     Route::get('extracurricular', [ExtracurricularController::class, 'index'])->name('extraa.index');
+    Route::post('add-extracurricular', [ExtracurricularController::class, 'store'])->name('extraa.store');
+    Route::put('update-extracurricular/{extracurricular}', [ExtracurricularController::class, 'update'])->name('extraa.update');
+    Route::delete('delete-extracurricular/{extracurricular}', [ExtracurricularController::class, 'destroy'])->name('extraa.delete');
 
     //kelas
     Route::get('class', [ClassroomController::class, 'index'])->name('class.index');
@@ -132,14 +140,10 @@ Route::prefix('school')->group(function() {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
+//kelas
+Route::get('school/class', [ClassroomController::class, 'index'])->name('class.index');
+Route::post('school/add-class', [ClassroomController::class, 'store'])->name('class.store');
+Route::put('school/update-class/{classroom}', [ClassroomController::class, 'update'])->name('class.update');
+Route::delete('school/delete-class/{classroom}', [ClassroomController::class, 'destroy'])->name('class.delete');
+// detail kelas
+Route::get('school/{classroom}', [ClassroomController::class, 'show'])->name('class.show');

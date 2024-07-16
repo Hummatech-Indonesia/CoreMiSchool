@@ -214,8 +214,7 @@
                                 </span>
                             </div>
                         </div>
-                        <a href="{{ route('detail-class.index') }}" type="button"
-                            class="btn waves-effect waves-light btn-primary w-100">Masuk Kelas</a>
+                        <a href="{{ route('class.show', $classroom->id) }}" type="button" class="btn waves-effect waves-light btn-primary w-100">Masuk Kelas</a>
                     </div>
                 </div>
             </div>

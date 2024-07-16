@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('classroom_students', function (Blueprint $table) {
             $table->id();
             $this->addForeignId($table, 'student_id');
-            $this->addForeignId($table, 'classroom_id');
+            $this->addForeignUuid($table, 'classroom_id');
             $table->timestamps();
         });
     }
