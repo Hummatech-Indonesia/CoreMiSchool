@@ -17,18 +17,38 @@ class ModelHasRfidRepository extends BaseRepository implements ModelHasRfidInter
     {
         return $this->model->query()->get();
     }
-    public function activeRfid(): mixed
+    public function activeRfid(Request $request): mixed
     {
         return $this->model->query()
             ->whereNotNull('model_type')
             ->whereNotNull('model_id')
+            ->when($request->name, function ($query) use ($request) {
+                $query->where('rfid', 'LIKE', '%' .  $request->name . '%');
+            })->when($request->filter === "terbaru", function($query) {
+                $query->latest();
+            })
+            ->when($request->filter === "terlama", function($query) {
+                $query->oldest();
+            })->when($request->status, function($query) use ($request) {
+                $query->where('status', $request->status);
+            })
             ->get();
     }
-    public function nonActiveRfid(): mixed
+    public function nonActiveRfid(Request $request): mixed
     {
         return $this->model->query()
             ->whereNull('model_type')
             ->whereNull('model_id')
+            ->when($request->name, function ($query) use ($request) {
+                $query->where('rfid', 'LIKE', '%' .  $request->name . '%');
+            })->when($request->filter === "terbaru", function($query) {
+                $query->latest();
+            })
+            ->when($request->filter === "terlama", function($query) {
+                $query->oldest();
+            })->when($request->status, function($query) use ($request) {
+                $query->where('status', $request->status);
+            })
             ->get();
     }
 
