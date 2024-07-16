@@ -86,8 +86,8 @@ Route::prefix('school')->group(function() {
     //Extracurricular
     Route::get('extracurricular', [ExtracurricularController::class, 'index'])->name('extraa.index');
     Route::post('add-extracurricular', [ExtracurricularController::class, 'store'])->name('extraa.store');
-    Route::put('update-extracurricular', [ExtracurricularController::class, 'update'])->name('extraa.update');
-    Route::delete('delete-extracurricular', [ExtracurricularController::class, 'destroy'])->name('extraa.delete');
+    Route::put('update-extracurricular/{extracurricular}', [ExtracurricularController::class, 'update'])->name('extraa.update');
+    Route::delete('delete-extracurricular/{extracurricular}', [ExtracurricularController::class, 'destroy'])->name('extraa.delete');
 
     //kelas
     Route::get('class', [ClassroomController::class, 'index'])->name('class.index');
@@ -128,7 +128,7 @@ Route::prefix('school')->group(function() {
 
     // rfid aktif
     Route::get('rfid-active', [ModelHasRfidController::class, 'showActive'])->name('rfid-active.index');
-    
+
     //mata pelajaran
     Route::get('create-subjects', [MapleController::class, 'index'])->name('create-subjects');
     Route::post('add-subjects', [MapleController::class, 'store'])->name('subjects.store');
