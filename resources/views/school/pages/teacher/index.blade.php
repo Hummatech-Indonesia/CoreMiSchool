@@ -31,21 +31,15 @@
                             <option value="0">Aktif</option>
                             <option value="1">Tidak Aktif</option>
                         </select>
-                        <div>
-                            <button type="submit" class="btn btn-primary">filter</button>
-                        </div>
-                    </form>
-                    <form action="" class="d-flex gap-1">
                         <select name="filter" class="form-select" id="search-status">
                             <option value="">Tampilkan semua</option>
                             <option value="terbaru">Terbaru</option>
                             <option value="terlama">Terlama</option>
                         </select>
-                        <div>
-                            <button type="submit" class="btn btn-primary">filter</button>
-                        </div>
+                        <button type="submit" class="btn btn-primary">Filter</button>
                     </form>
                 </div>
+
             </div>
             <button type="button" class="btn mb-1 btn-primary btn-lg px-4 fs-4 font-medium text-end" data-bs-toggle="modal" data-bs-target="#modal-create">
                 Tambah Guru
