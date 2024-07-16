@@ -10,8 +10,10 @@ use App\Contracts\Interfaces\Eloquent\StoreInterface;
 use App\Contracts\Interfaces\Eloquent\UpdateInterface;
 use App\Contracts\Interfaces\Eloquent\WhereInterface;
 use App\Contracts\Interfaces\Eloquent\WhereSchoolInterface;
+use Illuminate\Http\Request;
 
-interface LevelClassInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, WhereInterface, WhereSchoolInterface
+interface LevelClassInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, WhereInterface
 {
-    //
+    public function whereSchool(mixed $id, Request $request): mixed;
+
 }

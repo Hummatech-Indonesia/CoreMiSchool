@@ -17,6 +17,7 @@ class LevelClassSeeder extends Seeder
             'Kelas 10',
             'Kelas 11',
             'Kelas 12',
+            'Alumni',
         ];
 
         foreach ($class as $index => $data) {
