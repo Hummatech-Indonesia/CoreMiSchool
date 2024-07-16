@@ -26,7 +26,7 @@ class ClassroomRepository extends BaseRepository implements ClassroomInterface
     {
         return $this->model->query()->findOrFail($id);
     }
-    
+
     public function update(mixed $id, array $data): mixed
     {
         return $this->model->query()->findOrFail($id)->update($data);
@@ -44,6 +44,6 @@ class ClassroomRepository extends BaseRepository implements ClassroomInterface
 
     public function whereInSchoolYears($schoolYears)
     {
-        return $this->model->query()->where('school_year_id', $schoolYears)->get();
+        return $this->model->query()->whereIn('school_year_id', $schoolYears)->get();
     }
 }

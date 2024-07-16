@@ -79,6 +79,9 @@ Route::prefix('school')->group(function() {
 
     //Extracurricular
     Route::get('extracurricular', [ExtracurricularController::class, 'index'])->name('extraa.index');
+    Route::post('add-extracurricular', [ExtracurricularController::class, 'store'])->name('extraa.store');
+    Route::put('update-extracurricular', [ExtracurricularController::class, 'update'])->name('extraa.update');
+    Route::delete('delete-extracurricular', [ExtracurricularController::class, 'destroy'])->name('extraa.delete');
 
     //kelas
     Route::get('class', [ClassroomController::class, 'index'])->name('class.index');
