@@ -15,7 +15,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('classrooms', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('name');
             $this->addForeignId($table, 'employee_id');
             $this->addForeignId($table, 'school_year_id');
