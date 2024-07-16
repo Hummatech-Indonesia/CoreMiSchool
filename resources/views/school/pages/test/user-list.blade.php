@@ -75,7 +75,7 @@
             <h3 class="text-center flex-grow-1 m-0">Daftar Pengguna</h3>
             <div class="d-flex justify-content-between">
                 <div class="text-start">
-                    <button class="btn btn-secondary">Kembali</button>
+                    <a href="{{ route('attendance-test.index') }}" class="btn btn-secondary">Kembali</a>
                 </div>
                 <div class="d-flex">
                     <input type="text" class="form-control me-2" placeholder="Search">
