@@ -155,11 +155,11 @@
 
 </script>
 
-{{-- <script>
+<script>
     $(document).ready(function(){
     $('#modal-create-masterKey').on('shown.bs.modal', function () {
         $('#rfid').focus().select();
     });
 });
-</script> --}}
+</script>
 @endsection
