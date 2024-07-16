@@ -7,7 +7,7 @@ Route::get('teacher', function(){
     return view('teacher.pages.dashboard');
 })->name('teacher.dashboard');
 
-// ekstrakurikuler
-Route::get('teacher/ekstrakurikuler', function(){
+// extracurricular
+Route::get('teacher/extracurricular', function(){
     return view('teacher.pages.ekstrakulikuler.index');
-})->name('teacher.ekstrakurikuler.index');
+})->name('teacher.extracurricular.index');

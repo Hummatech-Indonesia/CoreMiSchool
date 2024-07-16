@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Enums\RoleEnum;
 use App\Enums\SchoolEnum;
+use App\Enums\SemesterEnum;
 use App\Models\School;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -32,5 +33,7 @@ class SchoolSeeder extends Seeder
             'level' => SchoolEnum::SMASMKMA->value,
             'accreditation' => 'Akreditasi A',
         ]);
+
+        $user->semester()->create(['type' => SemesterEnum::GANJIL]);
     }
 }

@@ -32,13 +32,13 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="importPegawai">Tambah Ekstrakurikuler</h5>
+                    <h5 class="modal-title" id="importPegawai">Tambah Extracurricular</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
                         <div class="form-group">
-                            <label for="" class="mb-2">Nama Ekstrakurikuler</label>
+                            <label for="" class="mb-2">Nama Extracurricular</label>
                             <input type="text" class="form-control">
                         </div>
                         <div class="form-group">
@@ -66,24 +66,24 @@
             <thead class="text-dark fs-4">
                 <tr class="">
                     <th class="fs-4 fw-semibold mb-0">No</th>
-                    <th class="fs-4 fw-semibold mb-0">Ekstrakurikuler</th>
+                    <th class="fs-4 fw-semibold mb-0">Extracurricular</th>
                     <th class="fs-4 fw-semibold mb-0">Pengajar</th>
                     <th class="fs-4 fw-semibold mb-0">Anggota</th>
                     <th class="fs-4 fw-semibold mb-0">Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (range(1, 5) as $item)
+                @forelse ($extracurriculars as $extracurricular)
                     <tr>
                         <td>{{ $item }}</td>
                         <td>
-                            Basket
+                            {{ $extracurricular->name }}
                         </td>
                         <td>
-                            Prasetyo Budi Nugroho
+                            {{ $extracurricular->employee->user->name }}
                         </td>
                         <td>
-                            20 Siswa
+                            {{ $extracurricular->extracurricularStudents ? $extracurricular->extracurricularStudents->count() : '0' }} Siswa
                         </td>
                         <td>
                             <div class="category-selector btn-group">
@@ -116,7 +116,8 @@
                             </div>
                         </td>
                     </tr>
-                @endforeach
+                @empty
+                @endforelse
             </tbody>
         </table>
     </div>
@@ -126,13 +127,13 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="importPegawai">Edit Ekstrakurikuler</h5>
+                    <h5 class="modal-title" id="importPegawai">Edit Extracurricular</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
                         <div class="form-group">
-                            <label for="" class="mb-2">Nama Ekstrakurikuler</label>
+                            <label for="" class="mb-2">Nama Extracurricular</label>
                             <input type="text" class="form-control">
                         </div>
                         <div class="form-group">
