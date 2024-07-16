@@ -312,7 +312,7 @@
                 <h5 class="modal-title" id="importPegawai">Edit Siswa</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form id="form-update" method="post">
+            <form id="form-update" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">

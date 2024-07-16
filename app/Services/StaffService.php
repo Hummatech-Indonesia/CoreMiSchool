@@ -19,7 +19,8 @@ class StaffService
 
     private UserInterface $user;
 
-    public function __construct(UserInterface $user) {
+    public function __construct(UserInterface $user)
+    {
         $this->user = $user;
     }
 
@@ -63,8 +64,12 @@ class StaffService
         $this->user->update($employee->user_id, $dataUser);
 
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $this->remove($employee->image);
-            $data['image'] = $request->file('image')->store(UploadDiskEnum::STAFF->value, 'public');
+            if ($employee->image == null) {
+                $data['image'] = $request->file('image')->store(UploadDiskEnum::STAFF->value, 'public');
+            } else {
+                $this->remove($employee->image);
+                $data['image'] = $request->file('image')->store(UploadDiskEnum::STAFF->value, 'public');
+            }
         } else {
             $data['image'] = $employee->image;
         }

@@ -95,6 +95,7 @@ class TeacherController extends Controller
             $this->employee->update($employee->id, $data);
             return redirect()->back()->with('success', 'Berhasil memperbaiki data guru');
         } catch (\Throwable $th) {
+            dd($th);
             return redirect()->back()->with('error', 'Kesalahan memperbaiki data guru');
         }
     }

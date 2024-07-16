@@ -25,7 +25,7 @@ class AttendanceMasterController extends Controller
         $data = $request->validated();
         $card = $this->modelHasRfid->where($data['rfid']);
         if ($card->model_type == 'App\Models\School') {
-            return view('school.pages.test.user-list')->with('success', 'Berhasil masuk');
+            return to_route('list-attendance.index', ['school_id' => $card->model_id])->with('success', 'Berhasil masuk');
         } else {
             return redirect()->back()->with('error', 'Kartu bukan master key!');
         }

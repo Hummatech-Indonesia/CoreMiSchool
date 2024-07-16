@@ -81,31 +81,31 @@
                         </li>
                     </ul>
                     <div class="tab-content mt-3">
-                        <div class="tab-pane active" id="siswa-${day}" role="tabpanel">
-                            <form id="form-store" enctype="multipart/form-data" method="POST">
+                        <div class="tab-pane active" id="form-content-${day}-${role}" role="tabpanel">
+                            <form id="form-store-${day}-${role}" enctype="multipart/form-data" method="POST">
                                 @method('post')
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-6 mb-3">
-                                        <label for="waktu-masuk-${day}" class="mb-2">Waktu Masuk Dimulai</label>
-                                        <input type="time" class="form-control" id="waktu-masuk" name="checkin_start" value="${data.start_time || ''}">
+                                        <label for="waktu-masuk-${day}-${role}" class="mb-2">Waktu Masuk Dimulai</label>
+                                        <input type="time" class="form-control" id="waktu-masuk-${day}-${role}" name="checkin_start" value="${data.start_time || ''}">
                                     </div>
                                     <div class="col-lg-6 mb-3">
-                                        <label for="waktu-selesai-${day}" class="mb-2">Waktu Masuk Selesai</label>
-                                        <input type="time" class="form-control" id="waktu-selesai" name="checkin_end" value="${data.end_time || ''}">
+                                        <label for="waktu-selesai-${day}-${role}" class="mb-2">Waktu Masuk Selesai</label>
+                                        <input type="time" class="form-control" id="waktu-selesai-${day}-${role}" name="checkin_end" value="${data.end_time || ''}">
                                     </div>
                                     <div class="col-lg-6 mb-3">
-                                        <label for="waktu-pulang-${day}" class="mb-2">Waktu Pulang Dimulai</label>
-                                        <input type="time" class="form-control" id="waktu-pulang" name="checkout_start" value="${data.leave_start || ''}">
+                                        <label for="waktu-pulang-${day}-${role}" class="mb-2">Waktu Pulang Dimulai</label>
+                                        <input type="time" class="form-control" id="waktu-pulang-${day}-${role}" name="checkout_start" value="${data.leave_start || ''}">
                                     </div>
                                     <div class="col-lg-6 mb-3">
-                                        <label for="waktu-pulang-selesai-${day}" class="mb-2">Waktu Pulang Selesai</label>
-                                        <input type="time" class="form-control" id="waktu-pulang-selesai" name="checkout_end" value="${data.leave_end || ''}">
+                                        <label for="waktu-pulang-selesai-${day}-${role}" class="mb-2">Waktu Pulang Selesai</label>
+                                        <input type="time" class="form-control" id="waktu-pulang-selesai-${day}-${role}" name="checkout_end" value="${data.leave_end || ''}">
                                     </div>
                                     <div class="mt-4">
                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" name="is_holiday" id="libur" ${data.holiday ? 'checked' : ''}>
-                                            <label class="form-check-label" for="libur-${day}">Libur</label>
+                                            <input class="form-check-input" type="checkbox" role="switch" name="is_holiday" id="libur-${day}-${role}" ${data.holiday ? 'checked' : ''}>
+                                            <label class="form-check-label" for="libur-${day}-${role}">Libur</label>
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-end mt-4 mb-3">
@@ -118,7 +118,7 @@
                 </div>
             `;
             $('#' + day).html(content);
-            $('#form-store').attr('action', '/school/add-clock-settings/' + day + '/' + role);
+            $('#form-store-' + day + '-' + role).attr('action', '/school/add-clock-settings/' + day + '/' + role);
         }
 
         function renderDefaultContent(day, role) {
@@ -137,31 +137,31 @@
                         </li>
                     </ul>
                     <div class="tab-content mt-3">
-                        <div class="tab-pane active" id="siswa-${day}" role="tabpanel">
-                            <form id="form-store" enctype="multipart/form-data" method="POST">
+                        <div class="tab-pane active" id="form-content-${day}-${role}" role="tabpanel">
+                            <form id="form-store-${day}-${role}" enctype="multipart/form-data" method="POST">
                                 @method('post')
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-6 mb-3">
-                                        <label for="waktu-masuk-${day}" class="mb-2">Waktu Masuk Dimulai</label>
-                                        <input type="time" class="form-control" id="waktu-masuk" name="checkin_start">
+                                        <label for="waktu-masuk-${day}-${role}" class="mb-2">Waktu Masuk Dimulai</label>
+                                        <input type="time" class="form-control" id="waktu-masuk-${day}-${role}" name="checkin_start">
                                     </div>
                                     <div class="col-lg-6 mb-3">
-                                        <label for="waktu-selesai-${day}" class="mb-2">Waktu Masuk Selesai</label>
-                                        <input type="time" class="form-control" id="waktu-selesai" name="checkin_end">
+                                        <label for="waktu-selesai-${day}-${role}" class="mb-2">Waktu Masuk Selesai</label>
+                                        <input type="time" class="form-control" id="waktu-selesai-${day}-${role}" name="checkin_end">
                                     </div>
                                     <div class="col-lg-6 mb-3">
-                                        <label for="waktu-pulang-${day}" class="mb-2">Waktu Pulang Dimulai</label>
-                                        <input type="time" class="form-control" id="waktu-pulang" name="checkout_start">
+                                        <label for="waktu-pulang-${day}-${role}" class="mb-2">Waktu Pulang Dimulai</label>
+                                        <input type="time" class="form-control" id="waktu-pulang-${day}-${role}" name="checkout_start">
                                     </div>
                                     <div class="col-lg-6 mb-3">
-                                        <label for="waktu-pulang-selesai-${day}" class="mb-2">Waktu Pulang Selesai</label>
-                                        <input type="time" class="form-control" id="waktu-pulang-selesai" name="checkout_end">
+                                        <label for="waktu-pulang-selesai-${day}-${role}" class="mb-2">Waktu Pulang Selesai</label>
+                                        <input type="time" class="form-control" id="waktu-pulang-selesai-${day}-${role}" name="checkout_end">
                                     </div>
                                     <div class="mt-4">
                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" name="is_holiday" id="libur">
-                                            <label class="form-check-label" for="libur-${day}">Libur</label>
+                                            <input class="form-check-input" type="checkbox" role="switch" name="is_holiday" id="libur-${day}-${role}">
+                                            <label class="form-check-label" for="libur-${day}-${role}">Libur</label>
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-end mt-4 mb-3">
@@ -174,7 +174,7 @@
                 </div>
             `;
             $('#' + day).html(defaultContent);
-            $('#form-store').attr('action', '/school/add-clock-settings/' + day + '/' + role);
+            $('#form-store-' + day + '-' + role).attr('action', '/school/add-clock-settings/' + day + '/' + role);
         }
 
         $('.nav-tabs a[data-bs-toggle="tab"]').on('shown.bs.tab', function(e) {
@@ -191,6 +191,5 @@
         var activeDay = $('.nav-tabs a[data-bs-toggle="tab"].active').data('day');
         loadContent(activeDay, 'student');
     });
-
 </script>
 @endsection
