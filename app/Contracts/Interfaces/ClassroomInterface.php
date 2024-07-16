@@ -13,4 +13,5 @@ use App\Contracts\Interfaces\Eloquent\WhereInterface;
 interface ClassroomInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface
 {
     public function whereInSchoolYears($schoolYears);
+    public function countClass(mixed $id) : mixed;
 }

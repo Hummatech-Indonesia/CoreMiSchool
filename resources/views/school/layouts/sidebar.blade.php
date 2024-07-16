@@ -170,11 +170,11 @@
                     <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
                         <span class="d-flex">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                            viewBox="0 0 14 14">
-                            <path fill="none" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M9 .5v6l3.59 4.57a1.5 1.5 0 0 1-1.18 2.43H2.59a1.5 1.5 0 0 1-1.18-2.43L5 6.5v-6M3.5.5h7" />
-                        </svg>
+                                viewBox="0 0 14 14">
+                                <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M9 .5v6l3.59 4.57a1.5 1.5 0 0 1-1.18 2.43H2.59a1.5 1.5 0 0 1-1.18-2.43L5 6.5v-6M3.5.5h7" />
+                            </svg>
                         </span>
                         <span class="hide-menu">Mata Pelajaran</span>
                     </a>
@@ -258,6 +258,19 @@
                     </ul>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link" href="/attendance-test" aria-expanded="false">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                viewBox="0 0 24 24">
+                                <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12V8m6 4v-2m-3 2v-1M3 4h18M4 4v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4m-8 12v4m-3 0h6" />
+                            </svg>
+                        </span>
+                        <span class="hide-menu">Test Absensi</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
                         <span class="d-flex">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -299,11 +312,12 @@
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
-                                    <a href="/school/rfid-active" class="sidebar-link" style="display: flex; align-items: center; margin-left: 20px;">
+                                    <a href="/school/rfid-active" class="sidebar-link"
+                                        style="display: flex; align-items: center; margin-left: 20px;">
                                         <div class="round-16 d-flex align-items-center justify-content-center ms-3">
                                             <i class="ti ti-circle"></i>
                                         </div>
-                                    <span class="hide-menu ">Sudah Digunakan</span>
+                                        <span class="hide-menu ">Sudah Digunakan</span>
                                     </a>
                                 </li>
                             </ul>
