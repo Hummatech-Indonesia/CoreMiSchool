@@ -16,7 +16,7 @@ return new class extends Migration
     {
         Schema::create('extracurricular_students', function (Blueprint $table) {
             $table->id();
-            $this->addForeignId($table, 'extracurricular_id');
+            $this->addForeignUuid($table, 'extracurricular_id');
             $this->addForeignId($table, 'student_id');
             $table->timestamps();
         });

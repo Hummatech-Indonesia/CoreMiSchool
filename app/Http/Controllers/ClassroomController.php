@@ -7,7 +7,6 @@ use App\Contracts\Interfaces\EmployeeInterface;
 use App\Contracts\Interfaces\LevelClassInterface;
 use App\Contracts\Interfaces\SchoolInterface;
 use App\Contracts\Interfaces\SchoolYearInterface;
-use App\Enums\RoleEnum;
 use App\Models\Classroom;
 use App\Http\Requests\StoreClassroomRequest;
 use App\Http\Requests\UpdateClassroomRequest;
