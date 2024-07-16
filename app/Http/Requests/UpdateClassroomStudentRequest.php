@@ -11,7 +11,7 @@ class UpdateClassroomStudentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class UpdateClassroomStudentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'add_students' => 'nullable|string',
+            'remove_students' => 'nullable|string',
         ];
     }
 }
