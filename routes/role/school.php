@@ -172,5 +172,10 @@ Route::get('list-attendance', function () {
     return view('school.pages.test.list-attendance');
 })->name('list-attendance.index');
 
+// list absensi guru
+Route::get('list-attendance-teacher', function () {
+    return view('school.pages.test.list-attendane-teacher');
+})->name('list-attendance-teacher.index');
+
 Route::get('attendance-test', [AttendanceMasterController::class, 'index'])->name('attendance-test.index');
 Route::post('attendance-test', [AttendanceMasterController::class, 'check'])->name('attendance-test.check');
