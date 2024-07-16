@@ -12,5 +12,5 @@ use App\Contracts\Interfaces\Eloquent\WhereInterface;
 
 interface ClassroomStudentInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface, WhereInterface
 {
-    //
+    public function whereStudent(mixed $id): mixed;
 }

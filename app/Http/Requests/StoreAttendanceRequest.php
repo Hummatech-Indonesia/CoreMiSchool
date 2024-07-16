@@ -22,7 +22,19 @@ class StoreAttendanceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'rfid' => 'required',
+        ];
+    }
+
+    /**
+     * Custom validation messages.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'rfid.required' => 'RFID harus diisi.',
         ];
     }
 }

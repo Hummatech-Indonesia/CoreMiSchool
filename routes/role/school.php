@@ -3,6 +3,7 @@
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AttendanceMasterController;
 use App\Http\Controllers\AttendanceRuleController;
+use App\Http\Controllers\AttendanceStudentController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\ClassroomStudentController;
 use App\Http\Controllers\ExtracurricularController;
@@ -156,6 +157,8 @@ Route::get('school/{classroom}', [ClassroomController::class, 'show'])->name('cl
 Route::put('school/{classroom}', [ClassroomStudentController::class, 'update'])->name('classroom.update');
 
 //tes absensi
+Route::post('attendance-create/{school_id}', [AttendanceStudentController::class, 'store'])->name('attendance.store');
+
 Route::get('menu-test', function () {
     return view('school.pages.test.menu');
 })->name('menu-test.index');

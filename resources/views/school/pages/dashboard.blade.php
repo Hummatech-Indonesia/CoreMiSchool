@@ -344,10 +344,29 @@
             var attendanceChartData = @json($attendanceChart);
 
             var categories = attendanceChartData.map(item => item.month);
-            var data = attendanceChartData.map(item => item.attendance);
+            var data1 = attendanceChartData.map(item => item.attendance_present);
+            var data2 = attendanceChartData.map(item => item.attendance_permit);
+            var data3 = attendanceChartData.map(item => item.attendance_sick);
+            var data4 = attendanceChartData.map(item => item.attendance_alpha);
 
             var investments = {
-                series: data,
+                series: [{
+                        name: "Masuk",
+                        data: data1,
+                    },
+                    {
+                        name: "Izin",
+                        data: data2,
+                    },
+                    {
+                        name: "Sakit",
+                        data: data3,
+                    },
+                    {
+                        name: "Alpha",
+                        data: data4,
+                    },
+                ],
                 chart: {
                     ffontFamily: "Plus Jakarta Sans', sans-serif",
                     foreColor: "#adb0bb",
@@ -367,7 +386,7 @@
                 grid: {
                     borderColor: "transparent",
                 },
-                colors: ["#615dff", "#49BEFF"],
+                colors: ["#615dff", "#49BEFF", "#49BEFF", "#615dff"],
                 fill: {
                     type: "gradient",
                     gradient: {
@@ -397,70 +416,9 @@
                     theme: "dark",
                 },
             };
-            var chart = new ApexCharts(document.querySelector("#investments"), options);
-            chart.render();
-        });
-    </script>
-
-    {{-- <script>
-        $(function() {
-            // Assuming $attendanceChart is structured appropriately for ApexCharts
-            var attendanceChartData = @json($attendanceChart);
-
-            var investments = {
-                series: attendanceChartData.series, // Assuming 'series' is a key in your $attendanceChart array
-                chart: {
-                    fontFamily: "Plus Jakarta Sans', sans-serif",
-                    foreColor: "#adb0bb",
-                    height: 325,
-                    type: "line",
-                    toolbar: {
-                        show: false,
-                    },
-                },
-                legend: {
-                    show: false,
-                },
-                stroke: {
-                    width: 4,
-                    curve: "smooth",
-                },
-                grid: {
-                    borderColor: "transparent",
-                },
-                colors: ["#615dff", "#49BEFF"],
-                fill: {
-                    type: "gradient",
-                    gradient: {
-                        shade: "dark",
-                        gradientToColors: ["#6993ff"],
-                        shadeIntensity: 1,
-                        type: "horizontal",
-                        opacityFrom: 1,
-                        opacityTo: 1,
-                        stops: [0, 100, 100, 100],
-                    },
-                },
-                markers: {
-                    size: 0,
-                },
-                xaxis: {
-                    type: 'category',
-                    categories: attendanceChartData.categories, // Assuming 'categories' is a key in your $attendanceChart array
-                    axisBorder: {
-                        show: false
-                    },
-                    axisTicks: {
-                        show: false,
-                    }
-                },
-                tooltip: {
-                    theme: "dark",
-                },
-            };
             new ApexCharts(document.querySelector("#investments"), investments).render();
         });
-    </script> --}}
+    </script>
 
     <script>
         var breakupOptions = {
