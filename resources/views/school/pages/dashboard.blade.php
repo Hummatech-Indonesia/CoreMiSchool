@@ -260,7 +260,7 @@
             <div class="card w-100 border bg-transparent">
                 <div class="card-body d-flex justify-content-between">
                     <h5>Tahun Ajaran Saat Ini</h5>
-                    <span class="mb-1 badge bg-danger">2023/2024</span>
+                    <span class="mb-1 badge bg-danger">{{ $schoolYear->school_year }}</span>
                 </div>
             </div>
         </div>
@@ -268,7 +268,7 @@
             <div class="card w-100 border bg-transparent">
                 <div class="card-body d-flex justify-content-between">
                     <h5>Semester Saat Ini</h5>
-                    <span class="mb-1 badge bg-primary">Ganjil</span>
+                    <span class="mb-1 badge bg-primary">{{ $semester->type == 'ganjil' ? 'Ganjil' : 'Genap'}}</span>
                 </div>
             </div>
         </div>
@@ -341,16 +341,13 @@
 
     <script>
         $(function() {
+            var attendanceChartData = @json($attendanceChart);
+
+            var categories = attendanceChartData.map(item => item.month);
+            var data = attendanceChartData.map(item => item.attendance);
+
             var investments = {
-                series: [{
-                        name: "BTC",
-                        data: [3500, 1000, 4000, 2500, 3500, 1500, 2500, 1900, 3500, 2000, 4500],
-                    },
-                    {
-                        name: "ETH",
-                        data: [3000, 2100, 3500, 1000, 2000, 1000, 5000, 2000, 1100, 2500, 3300],
-                    },
-                ],
+                series: data,
                 chart: {
                     ffontFamily: "Plus Jakarta Sans', sans-serif",
                     foreColor: "#adb0bb",
@@ -388,9 +385,68 @@
                 },
                 xaxis: {
                     type: 'category',
-                    categories: [
-                        "Jan", "Feb", "Mar", "Apr", "May", "Jun", "July", "Aug", "Sept", "Oct", "Nov"
-                    ],
+                    categories: categories,
+                    axisBorder: {
+                        show: false
+                    },
+                    axisTicks: {
+                        show: false,
+                    }
+                },
+                tooltip: {
+                    theme: "dark",
+                },
+            };
+            var chart = new ApexCharts(document.querySelector("#investments"), options);
+            chart.render();
+        });
+    </script>
+
+    {{-- <script>
+        $(function() {
+            // Assuming $attendanceChart is structured appropriately for ApexCharts
+            var attendanceChartData = @json($attendanceChart);
+
+            var investments = {
+                series: attendanceChartData.series, // Assuming 'series' is a key in your $attendanceChart array
+                chart: {
+                    fontFamily: "Plus Jakarta Sans', sans-serif",
+                    foreColor: "#adb0bb",
+                    height: 325,
+                    type: "line",
+                    toolbar: {
+                        show: false,
+                    },
+                },
+                legend: {
+                    show: false,
+                },
+                stroke: {
+                    width: 4,
+                    curve: "smooth",
+                },
+                grid: {
+                    borderColor: "transparent",
+                },
+                colors: ["#615dff", "#49BEFF"],
+                fill: {
+                    type: "gradient",
+                    gradient: {
+                        shade: "dark",
+                        gradientToColors: ["#6993ff"],
+                        shadeIntensity: 1,
+                        type: "horizontal",
+                        opacityFrom: 1,
+                        opacityTo: 1,
+                        stops: [0, 100, 100, 100],
+                    },
+                },
+                markers: {
+                    size: 0,
+                },
+                xaxis: {
+                    type: 'category',
+                    categories: attendanceChartData.categories, // Assuming 'categories' is a key in your $attendanceChart array
                     axisBorder: {
                         show: false
                     },
@@ -404,7 +460,7 @@
             };
             new ApexCharts(document.querySelector("#investments"), investments).render();
         });
-    </script>
+    </script> --}}
 
     <script>
         var breakupOptions = {

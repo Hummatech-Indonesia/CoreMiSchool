@@ -24,7 +24,7 @@ class SchoolYearSeeder extends Seeder
             ],
             [
                 'school_year' => '2023/2024',
-                'active' => '1',
+                'active' => '0',
             ],
             [
                 'school_year' => '2024/2025',
