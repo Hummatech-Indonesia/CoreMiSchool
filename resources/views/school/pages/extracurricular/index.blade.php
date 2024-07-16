@@ -113,10 +113,10 @@
                                         data-id="{{ $extracurricular->id }}" data-name="{{ $extracurricular->name }}" data-employee="{{ $extracurricular->employee_id }}">
                                         <i class="fs-4 ti ti-edit"></i>Edit
                                     </button>
-                                    <a
-                                        class="note-business badge-group-item badge-business dropdown-item text-danger position-relative category-business d-flex align-items-center gap-3">
+                                    <button class="btn-delete note-business badge-group-item badge-business dropdown-item text-danger position-relative category-business d-flex align-items-center gap-3"
+                                        data-id="{{ $extracurricular->id }}">
                                         <i class="fs-4 ti ti-trash"></i>Hapus
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                         </td>
@@ -136,7 +136,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form id="form-update" method="POST" enctype="multipart/form-data">
-                    @method('post')
+                    @method('put')
                     @csrf
                     <div class="modal-body">
                         <div class="mb-3">
@@ -147,12 +147,11 @@
                             <div class="form-group">
                                 <label for="" class="mb-2 pt-3">Pengajar</label>
                                 <select id="employee-update" class="form-control">
-                                    @forelse ($employees as $emloyee)
-
-                                    @empty
-
-                                    @endforelse
                                     <option value="">Pilih Pengajar</option>
+                                    @forelse ($employees as $employee)
+                                        <option value="{{ $employee->id }}">{{ $employee->user->name }}</option>
+                                    @empty
+                                    @endforelse
                                 </select>
                             </div>
                         </div>
@@ -166,6 +165,8 @@
             </div>
         </div>
     </div>
+
+    <x-delete-modal-component />
 
     <nav aria-label="...">
         <ul class="pagination justify-content-end mb-0 mt-4">
@@ -203,15 +204,17 @@
         $('.btn-edit').click(function() {
             var id = $(this).data('id');
             var name = $(this).data('name');
-            var employee_id = $(this).data('employee_id');
-            var level_class_id = $(this).data('level_class_id');
-            var school_year_id = $(this).data('school_year_id');
-            $('#name-edit').val(name);
-            $('#employee-edit').val(employee_id).trigger('change');
-            $('#level_class-edit').val(level_class_id).trigger('change');
-            $('#school_year-edit').val(school_year_id).trigger('change');
-            $('#form-update').attr('action', '/school/update-class/' + id);
+            var employee = $(this).data('employee');
+            $('#name-update').val(name);
+            $('#employee-update').val(employee).trigger('change');
+            $('#form-update').attr('action', `{{route('extraa.update', '')}}/${id}`);
             $('#modal-edit').modal('show');
+        });
+
+        $('.btn-delete').on('click', function() {
+            var id = $(this).data('id');
+            $('#form-delete').attr('action', `{{route('extraa.delete', '')}}/${id}`);
+            $('#modal-delete').modal('show');
         });
     </script>
 @endsection
