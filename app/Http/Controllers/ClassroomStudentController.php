@@ -68,9 +68,28 @@ class ClassroomStudentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateClassroomStudentRequest $request, ClassroomStudent $classroomStudent)
+    public function update(UpdateClassroomStudentRequest $request, Classroom $classroom)
     {
-        //
+        // Convert comma-separated IDs to array
+        $addStudents = $request->input('add_students') ? explode(',', $request->input('add_students')) : [];
+        $removeStudents = $request->input('remove_students') ? explode(',', $request->input('remove_students')) : [];
+
+        // Add students to classroom
+        foreach ($addStudents as $studentId) {
+            ClassroomStudent::firstOrCreate([
+                'classroom_id' => $classroom->id,
+                'student_id' => $studentId,
+            ]);
+        }
+
+        // Remove students from classroom
+        foreach ($removeStudents as $studentId) {
+            ClassroomStudent::where('classroom_id', $classroom->id)
+                ->where('student_id', $studentId)
+                ->delete();
+        }
+         
+        return to_route('class.show', $classroom->id)->with('success', 'Berhasil meyimpan perubahan siswa');
     }
 
     /**

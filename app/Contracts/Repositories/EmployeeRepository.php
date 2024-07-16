@@ -5,6 +5,7 @@ namespace App\Contracts\Repositories;
 use App\Contracts\Interfaces\EmployeeInterface;
 use App\Enums\RoleEnum;
 use App\Models\Employee;
+use Illuminate\Http\Request;
 
 class EmployeeRepository extends BaseRepository implements EmployeeInterface
 {
@@ -63,9 +64,22 @@ class EmployeeRepository extends BaseRepository implements EmployeeInterface
         return $this->model->query()->whereRelation('user.roles', 'name', RoleEnum::TEACHER->value)->where('school_id', $id)->get();
     }
 
-    public function whereSchool(mixed $id, $query): mixed
+    public function whereSchool(mixed $id, $query, Request $request): mixed
     {
-        return $this->model->query()->whereRelation('user.roles', 'name', $query)->where('school_id', $id)->latest()->paginate(10);
+        return $this->model->query()->whereRelation('user.roles', 'name', $query)
+        ->where('school_id', $id)
+        ->when($request->search, function ($query) use ($request) {
+            $query->whereHas('user', function($q) use ($request){
+                $q->where('name', 'LIKE', '%' .  $request->search . '%');
+            });
+        })->when($request->filter === "terbaru", function($query) {
+            $query->latest();
+        })
+        ->when($request->filter === "terlama", function($query) {
+            $query->oldest();
+        })
+        ->latest()
+        ->paginate(10);
     }
 
     public function showWithSlug(string $slug): mixed

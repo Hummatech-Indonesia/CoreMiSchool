@@ -12,6 +12,7 @@ use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
 use App\Contracts\Interfaces\EmployeeInterface;
 use App\Contracts\Interfaces\ReligionInterface;
+use Illuminate\Http\Request;
 
 class StaffController extends Controller
 {
@@ -31,9 +32,9 @@ class StaffController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $staffs = $this->employee->whereSchool(auth()->user()->school->id, RoleEnum::STAFF->value);
+        $staffs = $this->employee->whereSchool(auth()->user()->school->id, RoleEnum::STAFF->value, $request);
         $religions = $this->religion->get();
         return view('school.pages.employe.index', compact('staffs', 'religions'));
     }
