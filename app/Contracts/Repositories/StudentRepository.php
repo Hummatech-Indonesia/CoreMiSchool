@@ -47,4 +47,8 @@ class StudentRepository extends BaseRepository implements StudentInterface
         return $this->model->query()->where('school_id', $id)->latest()->paginate(10);
     }
 
+    public function doesntHaveClassroom(): mixed
+    {
+        return $this->model->query()->whereDoesntHave('classroomStudents')->get();
+    }
 }

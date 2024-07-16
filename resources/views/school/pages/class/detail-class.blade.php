@@ -44,17 +44,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (range(1,3) as $item)
+                        @forelse ($students as $student)
                         <tr>
-                            <td>Olivia Rhye</td>
-                            <td>1234567890</td>
+                            <td>{{ $student->user->name }}</td>
+                            <td>{{ $student->nisn }}</td>
                             <td>
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
                                 </div>
                             </td>
                         </tr>
-                        @endforeach
+                        @empty
+                        <tr>
+                            <td colspan="3">Semua siswa sudah memiliki kelas</td>
+                        </tr>
+                        @endforelse
                     </tbody>
                 </table>
                 <div class="text-end mt-3 mb-3">
@@ -81,17 +85,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (range(1,3) as $item)
+                        @forelse ($classroomStudents as $classroomStudent)
                         <tr>
-                            <td>Olivia Rhye</td>
-                            <td>1234567890</td>
+                            <td>{{ $classroomStudent->student->user->name }}</td>
+                            <td>{{ $classroomStudent->student->nisn }}</td>
                             <td>
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
                                 </div>
                             </td>
                         </tr>
-                        @endforeach
+                        @empty
+                        <tr>
+                            <td colspan="3">Kelas ini kosong</td>
+                        </tr>
+                        @endforelse
                     </tbody>
                 </table>
                 <div class="text-end mt-3 mb-3">
@@ -115,19 +123,23 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (range(1,7) as $item)
+            @forelse ($classroomStudents as $classroomStudent)
             <tr>
                 <td>
-                    <img src="{{asset('admin_assets/dist/images/profile/user-1.jpg')}}" class="rounded-circle me-2 user-profile" style="object-fit: cover" width="30" height="30" alt="" />
-                    Olivia Rhye
+                    <img src="{{ $classroomStudent->image ? asset('storage/' . $classroomStudent->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}" class="rounded-circle me-2 user-profile" style="object-fit: cover" width="30" height="30" alt="" />
+                    {{ $classroomStudent->student->user->name }}
                 </td>
-                <td>XI RPL 2</td>
-                <td>1234567890</td>
+                <td>{{ $classroomStudent->classroom->name }}</td>
+                <td>{{ $classroomStudent->student->nisn }}</td>
                 <td>
-                    Laki-laki
+                    {{ $classroomStudent->student->gender == 'male' ? 'Laki-laki' : 'Perempuan' }}
                 </td>
             </tr>
-            @endforeach
+            @empty
+            <tr>
+                <td colspan="3">Kelas ini kosong</td>
+            </tr>
+            @endforelse
         </tbody>
     </table>
 </div>

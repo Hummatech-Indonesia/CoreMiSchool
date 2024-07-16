@@ -41,4 +41,9 @@ class ClassroomStudentRepository extends BaseRepository implements ClassroomStud
     {
         return $this->model->query()->latest()->paginate(10);
     }
+
+    public function where(mixed $data): mixed
+    {
+        return $this->model->query()->where('classroom_id', $data)->get();
+    }
 }

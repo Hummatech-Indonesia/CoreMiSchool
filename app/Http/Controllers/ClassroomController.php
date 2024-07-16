@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\ClassroomInterface;
+use App\Contracts\Interfaces\ClassroomStudentInterface;
 use App\Contracts\Interfaces\EmployeeInterface;
 use App\Contracts\Interfaces\LevelClassInterface;
 use App\Contracts\Interfaces\SchoolInterface;
 use App\Contracts\Interfaces\SchoolYearInterface;
+use App\Contracts\Interfaces\StudentInterface;
 use App\Enums\RoleEnum;
 use App\Models\Classroom;
 use App\Http\Requests\StoreClassroomRequest;
 use App\Http\Requests\UpdateClassroomRequest;
+use App\Models\ClassroomStudent;
 
 class ClassroomController extends Controller
 {
@@ -19,14 +22,18 @@ class ClassroomController extends Controller
     private SchoolYearInterface $schoolYear;
     private EmployeeInterface $employee;
     private SchoolInterface $school;
+    private StudentInterface $student;
+    private ClassroomStudentInterface $classroomStudent;
 
-    public function __construct(ClassroomInterface $classroom, LevelClassInterface $levelClass, SchoolYearInterface $schoolYear, EmployeeInterface $employee, SchoolInterface $school)
+    public function __construct(ClassroomInterface $classroom, LevelClassInterface $levelClass, SchoolYearInterface $schoolYear, EmployeeInterface $employee, SchoolInterface $school, StudentInterface $student, ClassroomStudentInterface $classroomStudent)
     {
         $this->classroom = $classroom;
         $this->levelClass = $levelClass;
         $this->schoolYear = $schoolYear;
         $this->employee = $employee;
         $this->school = $school;
+        $this->student = $student;
+        $this->classroomStudent = $classroomStudent;
     }
 
     /**
@@ -67,7 +74,9 @@ class ClassroomController extends Controller
     public function show(Classroom $classroom)
     {
         $schoolYears = $this->schoolYear->whereSchool(auth()->user()->school->id);
-        return view('school.pages.class.detail-class', compact('classroom', 'schoolYears'));
+        $students = $this->student->doesntHaveClassroom();
+        $classroomStudents = $this->classroomStudent->where($classroom->id);
+        return view('school.pages.class.detail-class', compact('classroom', 'schoolYears', 'students', 'classroomStudents'));
     }
 
     /**
