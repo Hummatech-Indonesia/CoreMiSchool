@@ -105,10 +105,10 @@
                                 <div class="dropdown-menu dropdown-menu-right category-menu"
                                     style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate3d(0px, 23.2px, 0px);"
                                     data-popper-placement="bottom-end">
-                                    <a
-                                        class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3" data-bs-toggle="modal" data-bs-target="#modal-detail">
+                                    <button class="btn-detail note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3"
+                                        data-id="{{ $extracurricular->id }}" data-name="{{ $extracurricular->name }}" data-employee="{{ $extracurricular->employee->user->name }}">
                                         <i class="fs-4 ti ti-eye"></i>Detail
-                                    </a>
+                                    </button>
                                     <button class="btn-edit note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3"
                                         data-id="{{ $extracurricular->id }}" data-name="{{ $extracurricular->name }}" data-employee="{{ $extracurricular->employee_id }}">
                                         <i class="fs-4 ti ti-edit"></i>Edit
@@ -174,28 +174,26 @@
                     <h5 class="modal-title" id="importPegawai">Detail Extracurricular</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="" method="POST" enctype="multipart/form-data">
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <div class="form-group">
-                                <label for="" class="mb-2 text-dark">Nama Extracurricular: </label>
-                                <div>
-                                    <p>Basket</p>
-                                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label for="" class="mb-2 text-dark">Nama Extracurricular: </label>
+                            <div>
+                                <p id="name-detail"></p>
                             </div>
-                            <div class="form-group">
-                                <label for="" class="mb-2 pt-3 text-dark">Pengajar: </label>
-                                <div>
-                                    <p>Guru</p>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="mb-2 pt-3 text-dark">Pengajar: </label>
+                            <div>
+                                <p id="employee-detail"></p>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-rounded btn-light-danger text-danger"
-                            data-bs-dismiss="modal">Tutup</button>
-                    </div>
-                </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-rounded btn-light-danger text-danger"
+                        data-bs-dismiss="modal">Tutup</button>
+                </div>
             </div>
         </div>
     </div>
@@ -249,6 +247,15 @@
             var id = $(this).data('id');
             $('#form-delete').attr('action', `{{route('extraa.delete', '')}}/${id}`);
             $('#modal-delete').modal('show');
+        });
+
+        $('.btn-detail').on('click', function() {
+            var id = $(this).data('id');
+            var name = $(this).data('name');
+            var employee = $(this).data('employee');
+            $('#name-detail').text(name);
+            $('#employee-detail').text(employee);
+            $('#modal-detail').modal('show');
         });
     </script>
 @endsection
