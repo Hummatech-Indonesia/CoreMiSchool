@@ -9,6 +9,7 @@ use App\Http\Controllers\LessonHourController;
 use App\Http\Controllers\LevelClassController;
 use App\Http\Controllers\MapleController;
 use App\Http\Controllers\ModelHasRfidController;
+use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SchoolDashboardController;
 use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\SemesterController;
@@ -111,7 +112,7 @@ Route::prefix('school')->group(function () {
     Route::get('information', [SchoolDashboardController::class, 'show'])->name('settings-information.index');
     Route::post('information/add-masterKey', [ModelHasRfidController::class, 'storeMaster'])->name('master-key.store');
     Route::get('information/edit', [SchoolDashboardController::class, 'edit'])->name('settings-information.edit');
-    Route::put('information/update', [SchoolDashboardController::class, 'update'])->name('settings-information.update');
+    Route::put('information/update/{school}', [SchoolController::class, 'update'])->name('settings-information.update');
 
     // rfid
     Route::get('rfid', [ModelHasRfidController::class, 'index'])->name('rfid-school.index');

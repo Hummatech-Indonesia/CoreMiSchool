@@ -114,7 +114,7 @@ class SchoolController extends Controller
     {
         $data = $this->service->update($school, $request);
         $this->school->update($school->id, $data);
-        return to_route('school-admin.index')->with('success', 'Berhasil memperbarui sekolah');
+        return to_route('settings-information.index')->with('success', 'Berhasil memperbarui sekolah');
     }
 
     /**

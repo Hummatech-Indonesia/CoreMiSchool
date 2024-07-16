@@ -51,8 +51,8 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
     {
         return $this->model->query()
             ->whereRelation('classroomStudent.classroom.schoolYear', 'school_id', $id)
-            ->whereYear('date', $year)
-            ->whereMonth('date', $month)
+            ->whereYear('created_at', $year)
+            ->whereMonth('created_at', $month)
             ->count();
     }
 }

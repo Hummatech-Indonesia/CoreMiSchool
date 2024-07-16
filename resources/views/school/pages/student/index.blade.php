@@ -233,7 +233,7 @@
                     <img src="{{ $student->image ? asset('storage/' . $student->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}" class="rounded-circle me-2 user-profile" style="object-fit: cover" width="30" height="30" alt="" />
                     {{ $student->user->name }}
                 </td>
-                <td>{{ $student->classroomStudents ? $student->classroomStudents[0]->classroom->name : 'Kelas tidak ada' }}</td>
+                <td>{{ count($student->classroomStudents) > 0 ? $student->classroomStudents[0]->classroom->name : 'Kelas tidak ada' }}</td>
                 <td>{{ $student->gender == 'famale' ? 'Perempuan' : 'Laki-laki' }}</td>
                 <td>{{ $student->nisn }}</td>
                 <td>{{ $student->modelHasRfid ? $student->modelHasRfid->rfid : '' }}
