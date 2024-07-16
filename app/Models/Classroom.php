@@ -19,4 +19,7 @@ class Classroom extends Model
         'school_year_id',
         'level_class_id'
     ];
+
+    public $incrementing = false;
+    public $keyType = 'char';
 }

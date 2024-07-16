@@ -65,7 +65,8 @@ class ClassroomController extends Controller
      */
     public function show(Classroom $classroom)
     {
-        return view('school.pages.class.detail-class', compact('classroom   '));
+        $schoolYears = $this->schoolYear->whereSchool(auth()->user()->school->id);
+        return view('school.pages.class.detail-class', compact('classroom', 'schoolYears'));
     }
 
     /**

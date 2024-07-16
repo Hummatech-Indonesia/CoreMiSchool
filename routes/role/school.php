@@ -138,14 +138,10 @@ Route::prefix('school')->group(function() {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
+//kelas
+Route::get('school/class', [ClassroomController::class, 'index'])->name('class.index');
+Route::post('school/add-class', [ClassroomController::class, 'store'])->name('class.store');
+Route::put('school/update-class/{classroom}', [ClassroomController::class, 'update'])->name('class.update');
+Route::delete('school/delete-class/{classroom}', [ClassroomController::class, 'destroy'])->name('class.delete');
+// detail kelas
+Route::get('school/{classroom}', [ClassroomController::class, 'show'])->name('class.show');
