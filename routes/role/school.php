@@ -148,4 +148,10 @@ Route::put('school/update-class/{classroom}', [ClassroomController::class, 'upda
 Route::delete('school/delete-class/{classroom}', [ClassroomController::class, 'destroy'])->name('class.delete');
 // detail kelas
 Route::get('school/{classroom}', [ClassroomController::class, 'show'])->name('class.show');
+
 Route::put('school/{classroom}', [ClassroomStudentController::class, 'update'])->name('classroom.update');
+
+//tes absensi
+Route::get('attendance-test', function(){
+    return view('school.pages.test.attendance');
+})->name('attendance-test.index');
