@@ -3,6 +3,7 @@
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AttendanceRuleController;
 use App\Http\Controllers\ClassroomController;
+use App\Http\Controllers\ClassroomStudentController;
 use App\Http\Controllers\ExtracurricularController;
 use App\Http\Controllers\LessonHourController;
 use App\Http\Controllers\LevelClassController;
@@ -153,3 +154,4 @@ Route::put('school/update-class/{classroom}', [ClassroomController::class, 'upda
 Route::delete('school/delete-class/{classroom}', [ClassroomController::class, 'destroy'])->name('class.delete');
 // detail kelas
 Route::get('school/{classroom}', [ClassroomController::class, 'show'])->name('class.show');
+Route::put('school/{classroom}', [ClassroomStudentController::class, 'update'])->name('classroom.update');
