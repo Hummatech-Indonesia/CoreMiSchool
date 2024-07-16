@@ -73,7 +73,12 @@ Route::prefix('school')->group(function() {
     Route::get('presence-student', function(){
         return view('school.pages.attendace.student');
     })->name('presence-student.index');
+
     //alumni
+    Route::get('class-alumni', function(){
+        return view('school.pages.alumni.class');
+    })->name('class-alumni.index');
+    
     Route::get('alumni', function(){
         return view('school.pages.alumni.index');
     })->name('alumni.index');
