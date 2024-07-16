@@ -14,7 +14,7 @@ class SchoolChartService
         $this->attendance = $attendance;
     }
 
-    public function Chart(AttendanceInterface $attendance)
+    public function ChartAttendance(AttendanceInterface $attendance)
     {
         $Curentyear = Carbon::now()->year;
         $Curentmonth = Carbon::now()->month;
@@ -29,7 +29,7 @@ class SchoolChartService
             $grafikDataCollection[] = [
                 'year' => $Curentyear,
                 'month' => $yearMonth,
-                '$attendance' => $attendance
+                'attendance' => $attendance
             ];
         }
         $data  = array_values($grafikDataCollection);

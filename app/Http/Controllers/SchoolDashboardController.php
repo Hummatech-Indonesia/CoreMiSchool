@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Interfaces\AttendanceInterface;
 use App\Contracts\Interfaces\ClassroomInterface;
 use App\Contracts\Interfaces\EmployeeInterface;
 use App\Contracts\Interfaces\MapleInterface;
@@ -13,6 +14,7 @@ use App\Contracts\Interfaces\StudentInterface;
 use App\Http\Requests\StoreModelHasRfidRequest;
 use App\Models\School;
 use App\Services\ModelHasRfidService;
+use App\Services\SchoolChartService;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\FuncCall;
 
@@ -23,15 +25,21 @@ class SchoolDashboardController extends Controller
     private ModelHasRfidInterface $rfid;
     private ClassroomInterface $classroom;
     private SemesterInterface $semester;
+    private AttendanceInterface $attendance;
 
-    public function __construct(SchoolInterface $school,
-    SchoolYearInterface $schoolYear, ModelHasRfidInterface $rfid, ClassroomInterface $classroom, SemesterInterface $semester)
+    private SchoolChartService $schoolChart;
+
+    public function __construct(SchoolInterface $school, SchoolYearInterface $schoolYear,
+    ModelHasRfidInterface $rfid, ClassroomInterface $classroom, SemesterInterface $semester,
+    SchoolChartService $schoolChart, AttendanceInterface $attendance)
     {
         $this->school = $school;
         $this->schoolYear = $schoolYear;
         $this->rfid = $rfid;
         $this->classroom = $classroom;
         $this->semester = $semester;
+        $this->attendance = $attendance;
+        $this->schoolChart = $schoolChart;
     }
 
     public function index()
@@ -40,7 +48,9 @@ class SchoolDashboardController extends Controller
         $classrooms = $this->classroom->countClass(auth()->user()->school->id);
         $schoolYear = $this->schoolYear->active(auth()->user()->school->id);
         $semester = $this->semester->whereSchool(auth()->user()->school->id);
-        return view('school.pages.dashboard', compact('school', 'classrooms', 'schoolYear', 'semester'));
+        $attendanceChart = $this->schoolChart->ChartAttendance($this->attendance);
+        // dd($attendanceChart);
+        return view('school.pages.dashboard', compact('school', 'classrooms', 'schoolYear', 'semester', 'attendanceChart'));
     }
 
     public function show()
