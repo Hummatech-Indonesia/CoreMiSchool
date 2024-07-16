@@ -15,7 +15,7 @@
     <link id="themeColors" rel="stylesheet" href="{{ asset('admin_assets/dist/css/style.min.css') }}" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
-    
+
     <title>MiSchool | Absensi</title>
     <style>
         .nav-pills .nav-link {
@@ -85,7 +85,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (range(1,5) as $item)    
+                                        @foreach (range(1,5) as $item)
                                         <tr>
                                             <td>Arya Maulana</td>
                                             <td>SMKN 1 Kepanjen</td>
@@ -105,7 +105,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (range(1,5) as $item)    
+                                        @foreach (range(1,5) as $item)
                                         <tr>
                                             <td>Arya Maulana</td>
                                             <td>SMKN 1 Kepanjen</td>
@@ -125,7 +125,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (range(1,5) as $item)    
+                                        @foreach (range(1,5) as $item)
                                         <tr>
                                             <td>Arya Maulana</td>
                                             <td>SMKN 1 Kepanjen</td>
@@ -145,7 +145,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (range(1,5) as $item)    
+                                        @foreach (range(1,5) as $item)
                                         <tr>
                                             <td>Arya Maulana</td>
                                             <td>SMKN 1 Kepanjen</td>
@@ -174,8 +174,11 @@
                 </div>
                 <div>
                     <h5 class="mb-3">RFID :</h5>
-                    <input type="text" class="form-control pt-3"
-                        style="background-color: #F5F5F5; border: none; height: 50px; font-size: 18;">
+                    <form action="{{ route('add-list-attendance.index', ['school_id' => $school_id]) }}" method="POST" enctype="multipart/form-data">
+                        @method('post')
+                        @csrf
+                        <input type="text" class="form-control pt-3" name="rfid" style="background-color: #F5F5F5; border: none; height: 50px; font-size: 18;">
+                    </form>
                 </div>
                 <div>
                     <h5 style="color: #37B8F1;" class="mt-2">Copyright by Hummatech</h5>
