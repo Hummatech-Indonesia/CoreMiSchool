@@ -2,33 +2,50 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Interfaces\ModelHasRfidInterface;
 use App\Contracts\Interfaces\SchoolInterface;
 use App\Contracts\Interfaces\SchoolYearInterface;
+use App\Http\Requests\StoreModelHasRfidRequest;
 use App\Models\School;
+use App\Services\ModelHasRfidService;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\FuncCall;
 
 class SchoolDashboardController extends Controller
 {
     private SchoolInterface $school;
     private SchoolYearInterface $schoolYear;
+    private ModelHasRfidInterface $rfid;
 
-    public function __construct(SchoolInterface $school, SchoolYearInterface $schoolYear) {
+    public function __construct(SchoolInterface $school, SchoolYearInterface $schoolYear, ModelHasRfidInterface $rfid)
+    {
         $this->school = $school;
         $this->schoolYear = $schoolYear;
+        $this->rfid = $rfid;
     }
 
-    public function index() {
+    public function index()
+    {
+        $classroomCount =
+        return view('school.pages.dashboard');
+    }
+
+    public function show()
+    {
+        $rfids = $this->rfid->masterRfid();
         $school = $this->school->showWithSlug(auth()->user()->slug);
         $schoolYear = $this->schoolYear->active($school->id);
-        return view('school.pages.settings.information', compact('school', 'schoolYear'));
+        return view('school.pages.settings.information', compact('school', 'schoolYear', 'rfids'));
     }
 
-    public function edit() {
+    public function edit()
+    {
         $school = $this->school->showWithSlug(auth()->user()->slug);
         return view('school.pages.settings.update-information', compact('school'));
     }
 
-    public function update() {
+    public function update()
+    {
         //
     }
 }

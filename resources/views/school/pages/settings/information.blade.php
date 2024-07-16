@@ -95,19 +95,14 @@
                     <thead>
                         <tr>
                             <th style="background-color: #5D87FF;" class="text-white">No</th>
-                            <th style="background-color: #5D87FF;" class="text-white">Nama Pengguna</th>
-                            <th style="background-color: #5D87FF;" class="text-white">Email</th>
                             <th style="background-color: #5D87FF;" class="text-white">RFID</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse (range(1,6) as $rfid)
+                        @forelse ($rfids as $rfid)
                         <tr>
-                            <td>1</td>
-                            <td>Arya Rizki</td>
-                            <td>arya@gmail.com</td>
-                            <td>12345678</td>
-                        </tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $rfid->rfid }}</td>
                         @empty
                         <tr>
                             <td colspan="4">Belum ada RFID</td>
@@ -131,14 +126,6 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="">Nama</label>
-                        <input type="text" name="" class="form-control mt-1" placeholder="Masukan nama">
-                    </div>
-                    <div class="mb-3">
-                        <label for="">Email</label>
-                        <input type="text" name="" class="form-control mt-1" placeholder="Masukan Email">
-                    </div>
                     <div class="mb-3">
                         <label for="">RFID</label>
                         <p class="mt-2 fs-2">Lakukan tab pada rfid reader untuk menginputkan rfid</p>
