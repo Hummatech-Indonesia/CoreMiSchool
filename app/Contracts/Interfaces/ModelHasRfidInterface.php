@@ -15,6 +15,7 @@ interface ModelHasRfidInterface extends GetInterface, StoreInterface, UpdateInte
     public function exists(mixed $rfid): mixed;
 
     public function activeRfid(): mixed;
+    public function masterRfid(): mixed;
     public function nonActiveRfid(): mixed;
     public function whereSchool($id): mixed;
     public function whereNotNull(mixed $column):mixed;

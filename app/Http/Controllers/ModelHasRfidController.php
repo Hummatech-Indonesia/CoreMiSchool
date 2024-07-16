@@ -69,9 +69,9 @@ class ModelHasRfidController extends Controller
     public function storeMaster(StoreModelHasRfidRequest $request)
     {
         $exist = $this->service->check($request);
-        $school = $this->school->whereUserId(auth()->user()->id);
+        $school = auth_school();
         if ($exist) {
-            $this->modelHasRfid->store(['rfid' => $request->rfid, 'model_type' => 'App\Models\School', 'model_id' => $school->id]);
+            $this->modelHasRfid->store(['rfid' => $request->rfid, 'model_type' => 'App\Models\School', 'model_id' => $school->id, 'school_id' => auth_school()->id]);
             return redirect()->back()->with('success', 'Berhasil menambahkan master key');
         } else {
             return redirect()->back()->with('error', 'Kartu tidak valid');

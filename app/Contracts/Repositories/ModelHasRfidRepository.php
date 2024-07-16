@@ -31,6 +31,13 @@ class ModelHasRfidRepository extends BaseRepository implements ModelHasRfidInter
             ->get();
     }
 
+    public function masterRfid(): mixed
+    {
+        return $this->model->query()
+            ->where('model_type', 'App\Models\School')
+            ->get();
+    }
+
     public function store(array $data): mixed
     {
         return $this->model->query()->create($data);
@@ -66,17 +73,17 @@ class ModelHasRfidRepository extends BaseRepository implements ModelHasRfidInter
         return $this->model->query()->where('rfid', $rfid)->exists();
     }
 
-    public function whereSchool($id): mixed 
+    public function whereSchool($id): mixed
     {
         return $this->model->query()->where('school_id', $id)->get();
     }
 
-    public function whereNotNull(mixed $column):mixed 
+    public function whereNotNull(mixed $column):mixed
     {
         return $this->model->query()->whereNotNull($column)->get();
     }
 
-    public function whereNull(mixed $column):mixed 
+    public function whereNull(mixed $column):mixed
     {
         return $this->model->query()->whereNull($column)->get();
     }

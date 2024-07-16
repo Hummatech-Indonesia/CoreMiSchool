@@ -20,9 +20,7 @@ use Illuminate\Database\Query\IndexHint;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('school')->group(function() {
-    Route::get('', function(){
-        return view('school.pages.dashboard');
-    })->name('school.index');
+    Route::get('', [SchoolDashboardController::class, 'index'])->name('school.index');
 
     // pegawai
     Route::get('employe', [StaffController::class, 'index'])->name('school.employee.index');
@@ -50,10 +48,6 @@ Route::prefix('school')->group(function() {
     // jam mata pelajaran
     // Route::get('lesson-hours', [LessonHourController::class, 'index'])->name('lesson-hours.index');
     Route::resource('lesson-hours', LessonHourController::class);
-    //semeter
-    Route::get('semesters', function(){
-        return view('school.pages.semesters.index');
-    })->name('semesters.index');
 
     //siswa
     Route::get('student', [StudentController::class, 'index'])->name('school-student.index');
@@ -114,7 +108,7 @@ Route::prefix('school')->group(function() {
     Route::delete('delete-class-level/{levelClass}', [LevelClassController::class, 'destroy'])->name('class-level.delete');
 
     // setting informasi
-    Route::get('information', [SchoolDashboardController::class, 'index'])->name('settings-information.index');
+    Route::get('information', [SchoolDashboardController::class, 'show'])->name('settings-information.index');
     Route::post('information/add-masterKey', [ModelHasRfidController::class, 'storeMaster'])->name('master-key.store');
     Route::get('information/edit', [SchoolDashboardController::class, 'edit'])->name('settings-information.edit');
     Route::put('information/update', [SchoolDashboardController::class, 'update'])->name('settings-information.update');
