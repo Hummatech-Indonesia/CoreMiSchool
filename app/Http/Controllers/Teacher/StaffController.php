@@ -12,7 +12,9 @@ use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
 use App\Contracts\Interfaces\EmployeeInterface;
 use App\Contracts\Interfaces\ReligionInterface;
+use App\Imports\EmployeeImport;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class StaffController extends Controller
 {
@@ -110,5 +112,18 @@ class StaffController extends Controller
         $this->employee->delete($employee->id);
         $employee->user->delete();
         return redirect()->back()->with('success', 'Data pegawai berhasil dihapus');
+    }
+
+    public function downloadTemplate()
+    {
+        $template = public_path('file/format-excel-import-employee.xlsx');
+        return response()->download($template, 'format-excel-import-employee.xlsx');
+    }
+
+    public function import(Request $request)
+    {
+        $file = $request->file('file');
+        Excel::import(new EmployeeImport, $file);
+        return to_route('school.employee.index')->with('success', "Berhasil Mengimport Data!");
     }
 }
