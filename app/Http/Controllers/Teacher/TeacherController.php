@@ -11,6 +11,7 @@ use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
 use App\Models\Employee;
 use App\Services\TeacherService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 
@@ -34,9 +35,9 @@ class TeacherController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $teachers = $this->employee->whereSchool(auth()->user()->school->id, RoleEnum::TEACHER->value);
+        $teachers = $this->employee->whereSchool(auth()->user()->school->id, RoleEnum::TEACHER->value, $request);
         $religions = $this->religion->get();
         return view('school.pages.teacher.index', compact('teachers', 'religions'));
     }
