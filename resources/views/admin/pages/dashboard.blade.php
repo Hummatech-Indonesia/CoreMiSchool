@@ -66,7 +66,7 @@
                             <path d="M6 10.6V16c0 1.657 2.686 3 6 3c2.334 0 4.357-.666 5.35-1.64M18 14v-3.4M3 3l18 18"></path>
                         </g>
                     </svg>
-                    <p class="fw-semibold fs-5 mt-2 text-danger mb-1">Sekolah Nonactive</p>
+                    <p class="fw-semibold fs-3 mt-2 text-danger mb-1">Sekolah Tidak Aktif</p>
                     <h5 class="fw-semibold text-danger mb-0">{{ $school_not_active }}</h5>
                 </div>
             </div>
