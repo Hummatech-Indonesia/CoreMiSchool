@@ -4,6 +4,7 @@ namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\ClassroomStudentInterface;
 use App\Models\ClassroomStudent;
+use Illuminate\Http\Request;
 
 class ClassroomStudentRepository extends BaseRepository implements ClassroomStudentInterface
 {
@@ -42,9 +43,16 @@ class ClassroomStudentRepository extends BaseRepository implements ClassroomStud
         return $this->model->query()->latest()->paginate(10);
     }
 
-    public function where(mixed $data): mixed
+    public function where(mixed $data, Request $request): mixed
     {
-        return $this->model->query()->where('classroom_id', $data)->get();
+        return $this->model->query()
+        ->where('classroom_id', $data)
+        ->when($request->name, function ($query) use ($request) {
+            $query->whereHas('student.user', function ($query) use ($request) {
+                $query->where('name', 'LIKE', '%' . $request->name . '%');
+            });
+        })
+        ->paginate(10);
     }
 
     public function whereStudent(mixed $id): mixed

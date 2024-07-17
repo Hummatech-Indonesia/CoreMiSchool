@@ -16,7 +16,7 @@ interface ClassroomInterface extends GetInterface, StoreInterface, UpdateInterfa
     public function whereInSchoolYears($schoolYears);
     public function whereSchoolYears($schoolYears);
     public function countClass(mixed $id): mixed;
-    public function getAlumni(): mixed;
+    public function getAlumni(Request $request): mixed;
     public function search(Request $request):mixed;
 
 }

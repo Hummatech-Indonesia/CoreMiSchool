@@ -106,12 +106,14 @@ class ClassroomController extends Controller
         return redirect()->back()->with('success', 'Berhasil menghapus kelas');
     }
 
-    public function classroomAlumni(): mixed {
-        $classrooms = $this->classroom->getAlumni();
-        return view('school.pages.alumni.class', compact('classrooms'));
+    public function classroomAlumni(Request $request): mixed {
+        $classrooms = $this->classroom->getAlumni($request);
+        $schoolYears = $this->schoolYear->get();
+        return view('school.pages.alumni.class', compact('classrooms', 'schoolYears'));
     }
 
-    public function studentAlumni(Classroom $classroom): mixed {
-        return view('school.pages.alumni.index', compact('classroom'));
+    public function studentAlumni(Classroom $classroom, Request $request): mixed {
+        $students = $this->classroomStudent->where($classroom->id, $request);
+        return view('school.pages.alumni.index', compact('students'));
     }
 }

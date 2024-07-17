@@ -1,27 +1,20 @@
 @extends('school.layouts.app')
 @section('content')
-<div class="d-flex justify-content-between">
-    <div class="d-flex flex-wrap align-items-center">
-        <div class="col-12 col-md-2 mb-3">
-            <form action="" class="position-relative">
-                <input type="text" class="form-control product-search ps-5" id="input-search" placeholder="Cari...">
-                <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
-            </form>
-        </div>
-        <div class="col-12 col-md-2 mb-3 ms-3">
-            <select id="status-activity" class="form-select">
-                <option value="">Tahun Ajaran</option>
-                <option value="">2023/2024</option>
-            </select>
-        </div>
-    </div>
+    <div class="d-flex justify-content-between">
+        <form action="">
+            <div class="d-flex flex-wrap align-items-center">
+                <div class="col-12 col-md-8 mb-3">
+                    <input type="text" name="name" value="{{ old('name', request('name')) }}" class="form-control product-search" id="input-search" placeholder="Cari...">
+                </div>
+            </div>
+        </form>
 
-    <div>
-        <a href="{{ route('class-alumni.index') }}" class="btn btn-primary">
-            Kembali
-        </a>
+        <div>
+            <a href="{{ route('class-alumni.index') }}" class="btn btn-primary">
+                Kembali
+            </a>
+        </div>
     </div>
-</div>
 
 
     <div class="table-responsive rounded-2 mb-4">
@@ -37,7 +30,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($classroom->classroomStudents as $student)
+                @foreach ($students as $student)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>
@@ -47,7 +40,7 @@
                             {{ $student->student->user->name }}
                         </td>
                         <td>
-                            {{ $classroom->name }}
+                            {{ $student->classroom->name }}
                         </td>
                         <td>
                             {{ $student->student->nisn }}
@@ -75,7 +68,8 @@
                                             Jadikan Siswa
                                         </button>
 
-                                        <a class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-delete">
+                                        <a
+                                            class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-delete">
                                             Hapus
                                         </a>
                                     </div>
