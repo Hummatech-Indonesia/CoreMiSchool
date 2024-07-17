@@ -34,58 +34,40 @@ class AttendanceController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function student(Request $request)
     {
         $attendances = $this->attendance->whereSchool(auth()->user()->school->id, $request);
         $schoolYears = $this->schoolYear->get();
-        return view('school.pages.attendace.presence', compact('attendances', 'schoolYears'));
+        return view('school.pages.attendace.student.index', compact('attendances', 'schoolYears'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display a listing of the resource.
      */
-    public function create()
+    public function teacher(Request $request)
     {
-        //
+        $attendances = $this->attendance->whereSchool(auth()->user()->school->id, $request);
+        $schoolYears = $this->schoolYear->get();
+        return view('school.pages.attendace.teacher.index', compact('attendances', 'schoolYears'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Display a listing of the resource.
      */
-    public function store(StoreAttendanceRequest $request)
+    public function studentExportPreview(Request $request)
     {
-        //
+        $attendances = $this->attendance->whereSchool(auth()->user()->school->id, $request);
+        $schoolYears = $this->schoolYear->get();
+        return view('school.pages.attendace.student.export', compact('attendances', 'schoolYears'));
     }
 
     /**
-     * Display the specified resource.
+     * Display a listing of the resource.
      */
-    public function show(Attendance $attendance)
+    public function teacherExportPreview(Request $request)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Attendance $attendance)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateAttendanceRequest $request, Attendance $attendance)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Attendance $attendance)
-    {
-        //
+        $attendances = $this->attendance->whereSchool(auth()->user()->school->id, $request);
+        $schoolYears = $this->schoolYear->get();
+        return view('school.pages.attendace.teacher.export', compact('attendances', 'schoolYears'));
     }
 }
