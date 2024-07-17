@@ -67,13 +67,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (range(1,5) as $item)
-                                        <tr>
-                                            <td>Arya Maulana</td>
-                                            <td>SMKN 1 Kepanjen</td>
-                                            <td>07.00</td>
-                                        </tr>
-                                        @endforeach
+                                        @forelse ($present as $data)
+                                            <tr>
+                                                <td>{{ $data->employee->user->name }}</td>
+                                                <td>{{ $data->employee->school->user->name }}</td>
+                                                <td>{{ $data->checkin }}</td>
+                                            </tr>
+                                        @empty
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
@@ -87,13 +88,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (range(1,5) as $item)
+                                        @forelse ($out as $item)
                                         <tr>
-                                            <td>Arya Maulana</td>
-                                            <td>SMKN 1 Kepanjen</td>
-                                            <td>07.00</td>
+                                            <td>{{ $item->employee->user->name }}</td>
+                                            <td>{{ $item->employee->school->user->name }}</td>
+                                            <td>{{ $item->checkout }}</td>
                                         </tr>
-                                        @endforeach
+                                        @empty
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
@@ -115,9 +117,12 @@
                         alt="Illustration" />
                 </div>
                 <div>
-                    <h6 class="mb-3">RFID :</h6>
-                    <input type="text" name="" id="rfid" class="form-control pt-3"
-                        style="background-color: #F5F5F5; border: none; height: 50px; font-size: 18;">
+                    <form action="{{ route('add-teacher-list-attendance.index', ['school_id' => $school_id]) }}" method="POST" enctype="multipart/form-data">
+                        @method('post')
+                        @csrf
+                        <h6 class="mb-3">RFID :</h6>
+                        <input type="text" name="rfid" id="rfid-input" class="form-control pt-3" style="background-color: #F5F5F5; border: none; height: 50px; font-size: 18;">
+                    </form>
                 </div>
                 <div class="d-flex justify-content-between mt-3">
                     <h6 style="color: #37B8F1;" class="mt-2">Copyright by Hummatech</h6>
@@ -152,11 +157,9 @@
     <script src="{{ asset('admin_assets/dist/js/dashboard.js') }}"></script>
 
     <script>
-    window.onload = function() {
-        var input = document.getElementById('rfid');
-        input.focus();
-        input.select();
-    };
+        $(document).ready(function() {
+            $('#rfid-input').focus();
+        });
     </script>
 </body>
 </html>
