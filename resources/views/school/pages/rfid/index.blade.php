@@ -33,7 +33,7 @@
         <form class="d-flex gap-2">
             <div class="position-relative">
                 <div class="">
-                    <input type="text" name="search" class="form-control search-chat py-2 px-5 ps-5" id="search-name" placeholder="Cari">
+                    <input type="text" name="name" class="form-control search-chat py-2 px-5 ps-5" id="search-name" placeholder="Cari" value="{{ old('name', request()->name) }}">
                     <i class="ti ti-search position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
                 </div>
             </div>
@@ -43,11 +43,14 @@
                     <option value="">Digunakan</option>
                     <option value="">Belum Digunakan</option>
                 </select> --}}
-                <select name="" class="form-select" id="">
+                <select name="filter" class="form-select" id="">
                     <option value="">Tampilkan semua</option>
-                    <option value="">Terbaru</option>
-                    <option value="">Terlama</option>
+                    <option value="terbaru">Terbaru</option>
+                    <option value="terlama">Terlama</option>
                 </select>
+                <div>
+                    <button type="submit" class="btn btn-primary btn-md">filter</button>
+                </div>
             </div>
         </form>
     </div>

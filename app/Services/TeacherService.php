@@ -63,8 +63,12 @@ class TeacherService
         $this->user->update($employee->user_id, $dataUser);
 
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $this->remove($employee->image);
-            $data['image'] = $request->file('image')->store(UploadDiskEnum::TEACHER->value, 'public');
+            if ($employee->image == null) {
+                $data['image'] = $request->file('image')->store(UploadDiskEnum::TEACHER->value, 'public');
+            } else {
+                $this->remove($employee->image);
+                $data['image'] = $request->file('image')->store(UploadDiskEnum::TEACHER->value, 'public');
+            }
         } else {
             $data['image'] = $employee->image;
         }

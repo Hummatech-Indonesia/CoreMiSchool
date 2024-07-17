@@ -4,6 +4,7 @@ namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\ClassroomInterface;
 use App\Models\Classroom;
+use Illuminate\Http\Request;
 
 class ClassroomRepository extends BaseRepository implements ClassroomInterface
 {
@@ -48,14 +49,14 @@ class ClassroomRepository extends BaseRepository implements ClassroomInterface
 
     public function whereInSchoolYears($schoolYears)
     {
-        return $this->model->query()->whereIn('school_year_id', $schoolYears)
-            ->whereRelation('levelClass', 'name', '!=', 'Alumni')
-            ->get();
+        return $this->model->query()->whereIn('school_year_id', $schoolYears)->get();
     }
 
     public function whereSchoolYears($schoolYears)
     {
-        return $this->model->query()->where('school_year_id', $schoolYears)->get();
+        return $this->model->query()->where('school_year_id', $schoolYears)
+        ->whereRelation('levelClass', 'name', '!=', 'Alumni')
+        ->get();
     }
 
     public function countClass(mixed $id): mixed
@@ -68,5 +69,23 @@ class ClassroomRepository extends BaseRepository implements ClassroomInterface
         return $this->model->query()
             ->whereRelation('levelClass', 'name', 'Alumni')
             ->get();
+    }
+
+    public function search(Request $request):mixed
+    {
+        $query = $this->model->query();
+
+        $query->when($request->name, function ($query) use ($request) {
+            $query->where('name', 'LIKE', '%' . $request->name . '%');
+        });
+
+        $query->when($request->filter, function ($query) use ($request) {
+            if ($request->filter === 'terbaru') {
+                $query->latest();
+            } elseif ($request->filter === 'terlama') {
+                $query->oldest();
+            }
+        });
+        return $query;
     }
 }

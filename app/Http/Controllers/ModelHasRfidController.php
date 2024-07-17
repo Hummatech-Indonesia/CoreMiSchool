@@ -8,6 +8,7 @@ use App\Models\ModelHasRfid;
 use App\Http\Requests\StoreModelHasRfidRequest;
 use App\Http\Requests\UpdateModelHasRfidRequest;
 use App\Services\ModelHasRfidService;
+use Illuminate\Http\Request;
 
 class ModelHasRfidController extends Controller
 {
@@ -25,18 +26,18 @@ class ModelHasRfidController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $rfids = $this->modelHasRfid->nonActiveRfid();
+        $rfids = $this->modelHasRfid->nonActiveRfid($request);
         return view('school.pages.rfid.index', compact('rfids'));
     }
 
     /**
      * Display a listing of the resource.
      */
-    public function showActive()
+    public function showActive(Request $request)
     {
-        $rfids = $this->modelHasRfid->activeRfid();
+        $rfids = $this->modelHasRfid->activeRfid($request);
         return view('school.pages.rfid.rfid-active', compact('rfids'));
     }
 

@@ -165,6 +165,11 @@ Route::get('user-list', function () {return view('school.pages.test.user-list');
 Route::get('list-attendance/{school_id}', [AttendanceStudentController::class, 'index'])->name('list-attendance.index');
 Route::post('add-list-attendance/{school_id}', [AttendanceStudentController::class, 'store'])->name('add-list-attendance.index');
 
+// list absensi guru
+Route::get('list-attendance-teacher', function () {
+    return view('school.pages.test.list-attendane-teacher');
+})->name('list-attendance-teacher.index');
+
 Route::get('attendance-test', [AttendanceMasterController::class, 'index'])->name('attendance-test.index');
 Route::post('attendance-test', [AttendanceMasterController::class, 'check'])->name('attendance-test.check');
 

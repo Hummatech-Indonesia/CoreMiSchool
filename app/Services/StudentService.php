@@ -20,7 +20,8 @@ class StudentService
     private UserInterface $user;
     private StudentInterface $student;
 
-    public function __construct(UserInterface $user, StudentInterface $student) {
+    public function __construct(UserInterface $user, StudentInterface $student)
+    {
         $this->user = $user;
         $this->student = $student;
     }
@@ -56,12 +57,6 @@ class StudentService
     public function update(Student $student, UpdateStudentRequest $request): array|bool
     {
         $data = $request->validated();
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $this->remove($student->image);
-            $data['image'] = $request->file('image')->store(UploadDiskEnum::STUDENT->value, 'public');
-        } else {
-            $data['image'] = $student->image;
-        }
 
         $dataUser = [
             'name' => $data['name'],
@@ -69,6 +64,18 @@ class StudentService
             'email' => $data['email'],
             'password' => Hash::make($data['nisn']),
         ];
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            if ($student->image == null) {
+                $data['image'] = $request->file('image')->store(UploadDiskEnum::STUDENT->value, 'public');
+            } else {
+                $this->remove($student->image);
+                $data['image'] = $request->file('image')->store(UploadDiskEnum::STUDENT->value, 'public');
+            }
+        } else {
+            $data['image'] = $student->image;
+        }
+
         $this->user->update($student->user_id, $dataUser);
         return $data;
     }

@@ -10,6 +10,7 @@ use App\Models\Religion;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToModel;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 class EmployeeImport implements ToModel
 {
@@ -28,14 +29,16 @@ class EmployeeImport implements ToModel
 
         $user->assignRole(RoleEnum::STAFF->value);
 
+        $birthDate = $row[4] ? Carbon::instance(Date::excelToDateTimeObject($row[4])) : null;
+
         $data = [
             'nip'        => $row[2],
-            'birth_date' => Carbon::parse($row[4])->format('Y-m-d'),
+            'birth_date' => $birthDate,
             'birth_place' => $row[3],
             'gender' => $row[5] == 'Laki-laki' ? 'male' : 'female',
             'nik' => $row[6],
-            'phone_number' => $row[7],
-            'address' => $row[8],
+            'phone_number' => $row[8],
+            'address' => $row[9],
             'status' => RoleEnum::STAFF->value,
             'school_id' => auth_school()->id,
             'religion_id' => Religion::where('name', $row[7])->first()->id,

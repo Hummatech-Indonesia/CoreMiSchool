@@ -53,9 +53,9 @@ class SchoolDashboardController extends Controller
         return view('school.pages.dashboard', compact('school', 'classrooms', 'schoolYear', 'semester', 'attendanceChart'));
     }
 
-    public function show()
+    public function show(Request $request)
     {
-        $rfids = $this->rfid->masterRfid();
+        $rfids = $this->rfid->masterRfid($request);
         $school = $this->school->showWithSlug(auth()->user()->slug);
         $schoolYear = $this->schoolYear->active($school->id);
         return view('school.pages.settings.information', compact('school', 'schoolYear', 'rfids'));
