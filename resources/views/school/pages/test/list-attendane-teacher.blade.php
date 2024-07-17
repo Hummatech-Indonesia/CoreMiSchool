@@ -15,7 +15,7 @@
     <link id="themeColors" rel="stylesheet" href="{{ asset('admin_assets/dist/css/style.min.css') }}" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
-    
+
     <title>MiSchool | Absensi</title>
     <style>
         .nav-pills .nav-link {
@@ -38,7 +38,7 @@
 </head>
 <body>
 
-    <div class="p-3 mt-4">
+    <div class="p-5">
         <div class="row p-2">
             <div class="col-lg-6 p-2">
                 <div class="card" style="background-color: #f4f4f4">
@@ -67,7 +67,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (range(1,5) as $item)    
+                                        @foreach (range(1,5) as $item)
                                         <tr>
                                             <td>Arya Maulana</td>
                                             <td>SMKN 1 Kepanjen</td>
@@ -87,7 +87,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (range(1,5) as $item)    
+                                        @foreach (range(1,5) as $item)
                                         <tr>
                                             <td>Arya Maulana</td>
                                             <td>SMKN 1 Kepanjen</td>
@@ -105,9 +105,9 @@
             </div>
 
             <div class="col-lg-6 p-5">
-                <h2 class="fw-semibold"><span style="color: #37B8F1;">Abs</span>ensi</h2>
+                <h1 class="fw-semibold"><span style="color: #37B8F1;">Abs</span>ensi</h1>
                 <div class="mt-3">
-                    <h5>silahkan tap kartu <span style="color: #37B8F1;">RFID anda</span> untuk melakukan absensi</h5>
+                    <h4>silahkan tap kartu <span style="color: #37B8F1;">RFID anda</span> untuk melakukan absensi</h4>
                 </div>
 
                 <div class="illustration-container d-flex justify-content-center my-3">

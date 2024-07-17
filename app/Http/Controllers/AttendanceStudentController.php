@@ -2,22 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\Interfaces\AttendanceInterface;
-use App\Contracts\Interfaces\AttendanceRuleInterface;
 use App\Contracts\Interfaces\ClassroomStudentInterface;
+use App\Contracts\Interfaces\AttendanceRuleInterface;
 use App\Contracts\Interfaces\ModelHasRfidInterface;
-use App\Contracts\Interfaces\RfidInterface;
+use App\Contracts\Interfaces\AttendanceInterface;
 use App\Contracts\Interfaces\StudentInterface;
-use App\Enums\AttendanceEnum;
-use App\Enums\DayEnum;
-use App\Enums\RoleEnum;
 use App\Http\Requests\StoreAttendanceRequest;
-use App\Http\Requests\UpdateAttendanceRequest;
-use App\Models\Rfid;
+use App\Contracts\Interfaces\RfidInterface;
 use App\Services\AttendanceService;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
+use App\Enums\AttendanceEnum;
+use App\Enums\RoleEnum;
 
 class AttendanceStudentController extends Controller
 {
@@ -45,15 +39,9 @@ class AttendanceStudentController extends Controller
      */
     public function index(string $school_id)
     {
-        return view('school.pages.test.list-attendance', compact('school_id'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $present = $this->attendance->getSchool($school_id, 'checkin');
+        $out = $this->attendance->getSchool($school_id, 'checkout');
+        return view('school.pages.test.list-attendance', compact('school_id', 'present'));
     }
 
     /**
@@ -67,7 +55,7 @@ class AttendanceStudentController extends Controller
         if (!$rfid) return redirect()->back()->with('error', 'Rfid belum terdaftarkan');
 
         $user = $this->modelHasRfid->whereRfid($data['rfid']);
-        if (!$user) return redirect()->back()->with('error', 'Data tidak tersedia');
+        if ($user->model_type === null) return redirect()->back()->with('error', 'Data tidak tersedia');
 
         $time = now();
         $day = strtolower($time->format('l'));
@@ -76,21 +64,17 @@ class AttendanceStudentController extends Controller
         $this->student->show($user->model_id);
 
         $rule = $this->attendanceRule->showByDay($school_id, $day, RoleEnum::STUDENT->value);
+        if (!$rule) return redirect()->back()->with('warning', 'Tidak ada jadwal absensi');
 
         $presence = $this->attendance->checkPresence($user->model_id, AttendanceEnum::PRESENT->value);
 
         if ($clock >= $rule->checkin_start && $clock <= $rule->checkin_end) {
-
             if ($rule->is_holiday == true) return redirect()->back()->with('warning', 'Hari ini libur ');
             if ($time->format('H:i:s') > $rule->checkin_end) return redirect()->back()->with('warning', 'Absen sudah melebihi jamnya');
-
             if ($presence) return redirect()->back()->with('warning', 'Sudah absen');
-
             $classroomStudent = $this->classroomStudent->whereStudent($user->model_id);
-
             $data = $this->service->storeByStudent($time->format('H:i:s'), $classroomStudent->id, AttendanceEnum::PRESENT->value);
             $this->attendance->store($data);
-
             return redirect()->back()->with('success', 'Berhasil absen');
         } else if ($clock >= $rule->checkout_start && $clock <= $rule->checkout_end) {
             if (!$presence) return redirect()->back()->with('warning', 'Anda belum absen pagi');
@@ -107,30 +91,6 @@ class AttendanceStudentController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateAttendanceRequest $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
     {
         //
     }
