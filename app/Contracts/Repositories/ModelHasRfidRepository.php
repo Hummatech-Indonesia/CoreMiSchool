@@ -32,7 +32,7 @@ class ModelHasRfidRepository extends BaseRepository implements ModelHasRfidInter
             })->when($request->status, function($query) use ($request) {
                 $query->where('status', $request->status);
             })
-            ->get();
+            ->paginate(10);
     }
     public function nonActiveRfid(Request $request): mixed
     {
@@ -49,7 +49,7 @@ class ModelHasRfidRepository extends BaseRepository implements ModelHasRfidInter
             })->when($request->status, function($query) use ($request) {
                 $query->where('status', $request->status);
             })
-            ->get();
+            ->paginate(10);
     }
 
     public function masterRfid(Request $request): mixed
