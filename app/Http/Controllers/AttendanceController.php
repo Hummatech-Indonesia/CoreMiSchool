@@ -51,7 +51,6 @@ class AttendanceController extends Controller
         }
         $schoolYear = $this->schoolYear->whereSchoolYear($year);
         $classrooms = $this->classroom->whereSchoolYears($schoolYear->id);
-        $attendances = $this->attendance->whereSchool(auth()->user()->school->id, $request);
         $schoolYears = $this->schoolYear->get();
         return view('school.pages.attendace.student.class', compact('attendances', 'schoolYears', 'classrooms'));
     }
@@ -61,7 +60,7 @@ class AttendanceController extends Controller
      */
     public function student(Classroom $classroom, Request $request)
     {
-        $attendances = $this->attendance->whereSchool(auth()->user()->school->id, $request);
+        $attendances = $this->attendance->whereClassroom($classroom->id);
         $schoolYears = $this->schoolYear->get();
         return view('school.pages.attendace.student.index', compact('attendances', 'schoolYears', 'classroom'));
     }

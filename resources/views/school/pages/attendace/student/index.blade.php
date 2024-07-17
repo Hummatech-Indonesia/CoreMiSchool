@@ -55,8 +55,8 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $attendance->classroomStudent->student->user->name }}</td>
-                        <td>{{ $attendance->checkin }}</td>
-                        <td>{{ $attendance->checkout }}</td>
+                        <td>{{ \Carbon\Carbon::parse($attendance->checkin)->format('H:i') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($attendance->checkout)->format('H:i') }}</td>
                         <td>{{ $attendance->point }}</td>
                         <td>{{ $attendance->status == 'present' ? 'Masuk' : ($attendance->status == 'sick' ? 'Sakit' : ($attendance->status == 'alpha' ? 'Alpha' : ($attendance->status == 'permit' ? 'Izin' : ''))) }}</td>
                         <td>
@@ -67,6 +67,9 @@
                         </td>
                     </tr>
                 @empty
+                    <tr>
+                        <td colspan="7">Data kosong</td>
+                    </tr>
                 @endforelse
                 {{-- <tr>
                     <td>2</td>

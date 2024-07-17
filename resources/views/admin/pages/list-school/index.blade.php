@@ -26,19 +26,12 @@
 
     <div class="d-flex justify-content-between align-items-center">
         <div class="d-flex flex-wrap">
-            <div class="col-12 col-md-6 col-lg-4 mb-3 me-2">
+            <div class="mb-3 me-2">
                 <form action="" class="position-relative">
                     <input type="text" class="form-control product-search px-4 ps-5" name="name" value="{{ old('name', request('name')) }}" id="input-search"
                         placeholder="Cari...">
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                 </form>
-            </div>
-            <div class="col-12 col-md-6 col-lg-3 mb-3 me-2">
-                <select id="status-activity" class="form-select">
-                    <option value="">Semua</option>
-                    <option value="">Aktif</option>
-                    <option value="">NonAktif</option>
-                </select>
             </div>
         </div>
         <div class="col-12 col-md-auto mb-3">
@@ -101,7 +94,7 @@
                                     <div class="d-flex pt-3">
                                         <span class="mb-1 badge bg-primary w-25 text-capitalize">{{ $school->type }}</span>
                                         <span
-                                            class="mb-1 badge bg-{{ $school->active == 1 ? 'success' : 'danger' }} ms-3">{{ $school->active == 1 ? 'Aktif' : 'Tidak aktif' }}</span>
+                                            class="mb-1 w-25 badge bg-{{ $school->active == 1 ? 'success' : 'danger' }} ms-3">{{ $school->active == 1 ? 'Aktif' : 'Tidak aktif' }}</span>
                                     </div>
                                     <div class="d-flex pt-3">
                                         @if ($school->active == 1)
