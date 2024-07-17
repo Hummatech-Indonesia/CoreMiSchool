@@ -38,7 +38,7 @@ class AttendanceTeacherController extends Controller
     {
         $present = $this->attendance->getSchool($school_id, 'checkin');
         $out = $this->attendance->getSchool($school_id, 'checkout');
-        return view('school.pages.test.list-attendance', compact('school_id', 'present', 'out'));
+        return view('school.pages.test.list-attendane-teacher', compact('school_id', 'present', 'out'));
     }
 
     /**
@@ -51,7 +51,9 @@ class AttendanceTeacherController extends Controller
         if (!$rfid) return redirect()->back()->with('error', 'Rfid belum terdaftarkan');
 
         $user = $this->modelHasRfid->whereRfid($data['rfid']);
-        if ($user->model_type === null) return redirect()->back()->with('error', 'Data tidak tersedia');
+        if ($user->model_type != 'App\Models\Employee') return redirect()->back()->with('error', 'Rfid bukan guru');
+        if ($user->model_type == 'App\Models\Employee' && $user->model->status != RoleEnum::TEACHER->value) return redirect()->back()->with('error', 'Rfid pegawai');
+        if ($user->model_type === null) return redirect()->back()->with('error', 'Rfid belum terdaftarkan ke pengguna');
 
         $time = now();
         $day = strtolower($time->format('l'));
