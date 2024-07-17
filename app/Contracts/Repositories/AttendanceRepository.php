@@ -58,6 +58,11 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
         ->latest()->paginate(10);
     }
 
+    public function getSchool(mixed $id, mixed $query): mixed
+    {
+        return $this->model->query()->whereRelation('classroomStudent.classroom.schoolYear.school', 'id', $id)->whereNotNull($query)->latest()->get();
+    }
+
     public function AttendanceChart(mixed $id, mixed $year, mixed $month, mixed $status): mixed
     {
         return $this->model->query()
