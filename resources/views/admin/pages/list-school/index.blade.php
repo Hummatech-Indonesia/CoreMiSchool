@@ -28,7 +28,7 @@
         <div class="d-flex flex-wrap">
             <div class="col-12 col-md-6 col-lg-4 mb-3 me-2">
                 <form action="" class="position-relative">
-                    <input type="text" class="form-control product-search px-4 ps-5" name="name" value="{{ old('name') }}" id="input-search"
+                    <input type="text" class="form-control product-search px-4 ps-5" name="name" value="{{ old('name', request('name')) }}" id="input-search"
                         placeholder="Cari...">
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                 </form>
@@ -330,7 +330,7 @@
         document.addEventListener('DOMContentLoaded', function () {
             // Get the active tab from local storage
             var activeTab = localStorage.getItem('activeTab');
-            
+
             // If there is an active tab stored, activate it
             if (activeTab) {
                 var tabToActivate = document.querySelector('.nav-tabs a[href="' + activeTab + '"]');
@@ -348,4 +348,4 @@
             });
         });
     </script>
-@endsection    
+@endsection
