@@ -279,7 +279,7 @@
                     <div class="text-center">Belum ada sekolah yang tidak aktif</div>
                     @endforelse
                 </div>
-                <div class="pagination justify-content-end mb-0">
+                <div class="pagination justify-content-center mb-0">
                     <x-paginate-component :paginator="$nonActiveSchools" />
                 </div>
             </div>

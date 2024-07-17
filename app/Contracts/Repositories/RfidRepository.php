@@ -91,6 +91,6 @@ class RfidRepository extends BaseRepository implements RfidInterface
             $query->oldest();
         }) ->when($request->status, function($query) use ($request) {
             $query->where('status', $request->status);
-        })->get();
+        })->paginate(10);
     }
 }

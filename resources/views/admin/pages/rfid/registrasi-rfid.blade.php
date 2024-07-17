@@ -131,6 +131,9 @@
                     </table>
                 </div>
             </div>
+            <div class="pagination justify-content-end mb-0">
+                <x-paginate-component :paginator="$rfids" />
+            </div>
         </div>
         <div class="tab-pane" id="digunakan" role="tabpanel">
 
