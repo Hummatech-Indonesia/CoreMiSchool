@@ -127,6 +127,10 @@
         </table>
     </div>
 
+    <div class="pagination justify-content-end mb-0">
+        <x-paginate-component :paginator="$extracurriculars" />
+    </div>
+
     <!-- Modal Edit -->
     <div class="modal fade" id="modal-edit" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -199,26 +203,6 @@
     </div>
 
     <x-delete-modal-component />
-
-    <nav aria-label="...">
-        <ul class="pagination justify-content-end mb-0 mt-4">
-            <li class="page-item disabled">
-                <a href="#" class="page-link" tabindex="-1" aria-disabled="true">Previous</a>
-            </li>
-            <li class="page-item active" aria-current="page">
-                <a href="#" class="page-link">1</a>
-            </li>
-            <li class="page-item">
-                <a href="#" class="page-link">2</a>
-            </li>
-            <li class="page-item">
-                <a href="#" class="page-link">3</a>
-            </li>
-            <li class="page-item">
-                <a href="#" class="page-link">Next</a>
-            </li>
-        </ul>
-    </nav>
 @endsection
 
 @section('script')
