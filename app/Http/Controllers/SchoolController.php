@@ -118,6 +118,18 @@ class SchoolController extends Controller
         return to_route('settings-information.index')->with('success', 'Berhasil memperbarui sekolah');
     }
 
+public function nonactive(School $school)
+    {
+        $this->school->update($school->id, ['active' => 0]);
+        return redirect()->back()->with('success', 'Sekolah berhasil dinonaktifkan');
+    }
+
+    public function active(School $school)
+    {
+        $this->school->update($school->id, ['active' => 1]);
+        return redirect()->back()->with('success', 'Sekolah berhasil diaktifkan');
+    }
+
     /**
      * Remove the specified resource from storage.
      */
