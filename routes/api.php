@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AttendanceMasterController;
+use App\Http\Controllers\AttendanceStudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('attendance-test', [AttendanceMasterController::class, 'check'])->name('attendance-test.check');
+Route::post('add-list-attendance/{school_id}', [AttendanceStudentController::class, 'store'])->name('add-list-attendance.index');
