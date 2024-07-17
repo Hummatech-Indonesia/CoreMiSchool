@@ -75,7 +75,7 @@ class ClassroomController extends Controller
     {
         $schoolYears = $this->schoolYear->whereSchool(auth()->user()->school->id, $request);
         $students = $this->student->doesntHaveClassroom();
-        $classroomStudents = $this->classroomStudent->where($classroom->id);
+        $classroomStudents = $this->classroomStudent->where($classroom->id, $request);
         return view('school.pages.class.detail-class', compact('classroom', 'schoolYears', 'students', 'classroomStudents'));
     }
 
