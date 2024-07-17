@@ -69,8 +69,10 @@ Route::prefix('school')->group(function () {
     Route::get('get-clock-settings', [AttendanceRuleController::class, 'index'])->name('clock-settings.get');
     Route::post('add-clock-settings/{day}/{role}', [AttendanceRuleController::class, 'store'])->name('clock-settings.store');
 
-    Route::get('presence-student', [AttendanceController::class, 'student'])->name('presence-student.index');
-    Route::get('presence-student/export', [AttendanceController::class, 'studentExportPreview'])->name('presence-student.export-preview');
+    Route::get('class-presence-student', [AttendanceController::class, 'class'])->name('class-presence-student.index');
+
+    Route::get('presence-student/{classroom}', [AttendanceController::class, 'student'])->name('presence-student.index');
+    Route::get('presence-student/{classroom}/export', [AttendanceController::class, 'studentExportPreview'])->name('presence-student.export-preview');
 
     Route::get('presence-teacher', [AttendanceController::class, 'teacher'])->name('presence-teacher.index');
     Route::get('presence-teacher/export', [AttendanceController::class, 'teacherExportPreview'])->name('presence-teacher.export-preview');

@@ -48,6 +48,11 @@ class SchoolYearRepository extends BaseRepository implements SchoolYearInterface
         return $this->model->query()->where('school_id', $data)->get();
     }
 
+    public function whereSchoolYear(mixed $data): mixed
+    {
+        return $this->model->query()->where('school_year', $data)->first();
+    }
+
     public function whereSchool(mixed $id, Request $request): mixed
     {
         return $this->model->query()->where('school_id', $id)
