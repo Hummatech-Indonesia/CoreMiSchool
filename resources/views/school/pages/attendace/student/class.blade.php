@@ -51,7 +51,7 @@
                             </span>
                         </div>
                     </div>
-                    <a href="{{ route('presence-student.index', $classroom->id) }}}" type="button"
+                    <a href="{{ route('presence-student.index', ['classroom' => $classroom->id]) }}"
                         class="btn waves-effect waves-light btn-primary w-100">Masuk Kelas</a>
                 </div>
             </div>

@@ -14,6 +14,7 @@ class Classroom extends Model
     use HasFactory, BelongsToEmployee, BelongsToLevelClass, BelongsToSchoolYear, HasManyClassroomStudent;
 
     protected $fillable = [
+        'id',
         'name',
         'employee_id',
         'school_year_id',

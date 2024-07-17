@@ -60,9 +60,9 @@ class AttendanceController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function student(Classroom $classroom, Request $request)
+    public function student(Classroom $classroom)
     {
-        $attendances = $this->attendance->whereClassroom($classroom->id);
+        $attendances = $this->attendance->whereClassroom($classroom);
         $schoolYears = $this->schoolYear->get();
         return view('school.pages.attendace.student.index', compact('attendances', 'schoolYears', 'classroom'));
     }
