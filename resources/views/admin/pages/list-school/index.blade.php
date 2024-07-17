@@ -23,25 +23,23 @@
         </div>
     </div>
 
-
-    <div class="d-flex justify-content-between align-items-center">
-        <div class="d-flex flex-wrap">
-            <div class="mb-3 me-2">
-                <form action="" class="position-relative">
-                    <input type="text" class="form-control product-search px-4 ps-5" name="name" value="{{ old('name', request('name')) }}" id="input-search"
-                        placeholder="Cari...">
-                    <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
-                </form>
-            </div>
-        </div>
-        <div class="col-12 col-md-auto mb-3">
-            <a href="{{ route('school-admin.create') }}" type="button" class="btn mb-1 waves-effect waves-light btn-rounded btn-primary">Tambah</a>
-        </div>
-    </div>
-
-
     <div class="tab-content">
         <div class="tab-pane active show" id="all" role="tabpanel">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex flex-wrap">
+                    <div class="mb-3 me-2">
+                        <form action="" class="position-relative">
+                            <input type="text" class="form-control product-search px-4 ps-5" name="name" value="{{ old('name', request('name')) }}" id="input-search"
+                                placeholder="Cari...">
+                            <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-12 col-md-auto mb-3">
+                    <a href="{{ route('school-admin.create') }}" type="button" class="btn mb-1 waves-effect waves-light btn-rounded btn-primary">Tambah</a>
+                </div>
+            </div>
+        
             <div class="p-3">
                 <div class="row">
                     @forelse ($schools as $school)
@@ -138,6 +136,21 @@
         </div>
 
         <div class="tab-pane" id="active" role="tabpanel">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex flex-wrap">
+                    <div class="mb-3 me-2">
+                        <form action="" class="position-relative">
+                            <input type="text" class="form-control product-search px-4 ps-5" name="name" value="{{ old('name', request('name')) }}" id="input-search"
+                                placeholder="Cari...">
+                            <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-12 col-md-auto mb-3">
+                    <a href="{{ route('school-admin.create') }}" type="button" class="btn mb-1 waves-effect waves-light btn-rounded btn-primary">Tambah</a>
+                </div>
+            </div>
+        
             <div class="p-3">
             <div class="row">
                     @forelse ($activeSchools as $activeSchool)
@@ -222,6 +235,21 @@
         </div>
 
         <div class="tab-pane" id="nonactive" role="tabpanel">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex flex-wrap">
+                    <div class="mb-3 me-2">
+                        <form action="" class="position-relative">
+                            <input type="text" class="form-control product-search px-4 ps-5" name="name" value="{{ old('name', request('name')) }}" id="input-search"
+                                placeholder="Cari...">
+                            <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-12 col-md-auto mb-3">
+                    <a href="{{ route('school-admin.create') }}" type="button" class="btn mb-1 waves-effect waves-light btn-rounded btn-primary">Tambah</a>
+                </div>
+            </div>
+        
             <div class="p-3">
                 <div class="row">
                     @forelse ($nonActiveSchools as $nonActiveSchool)
