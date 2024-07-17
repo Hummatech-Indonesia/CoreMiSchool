@@ -113,7 +113,7 @@ class ClassroomController extends Controller
     }
 
     public function studentAlumni(Classroom $classroom, Request $request): mixed {
-        $students = $this->classroomStudent->where($classroom->id, $request);
-        return view('school.pages.alumni.index', compact('students'));
+        $classrooms = $this->classroomStudent->where($classroom->id, $request);
+        return view('school.pages.alumni.index', compact('classrooms'));
     }
 }
