@@ -243,6 +243,15 @@
                                         <span class="hide-menu ">Siswa</span>
                                     </a>
                                 </li>
+                                <li class="sidebar-item">
+                                    <a href="{{ route('presence-teacher.index') }}" class="sidebar-link"
+                                        style="display: flex; align-items: center; margin-left: 20px;">
+                                        <div class="round-16 d-flex align-items-center justify-content-center ms-3">
+                                            <i class="ti ti-circle"></i>
+                                        </div>
+                                        <span class="hide-menu ">Guru</span>
+                                    </a>
+                                </li>
                                 {{-- <li class="sidebar-item">
                                     <a href="javascript:void(0)" class="sidebar-link" style="display: flex; align-items: center; margin-left: 20px;">
                                         <div class="round-16 d-flex align-items-center justify-content-center ms-3">
