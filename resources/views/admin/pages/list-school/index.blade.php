@@ -339,17 +339,14 @@
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Get the active tab from local storage
             var activeTab = localStorage.getItem('activeTab');
 
-            // If there is an active tab stored, activate it
             if (activeTab) {
                 var tabToActivate = document.querySelector('.nav-tabs a[href="' + activeTab + '"]');
                 var bootstrapTab = new bootstrap.Tab(tabToActivate);
                 bootstrapTab.show();
             }
 
-            // Store the active tab in local storage when a tab is clicked
             var tabLinks = document.querySelectorAll('a[data-bs-toggle="tab"]');
             tabLinks.forEach(function (tabLink) {
                 tabLink.addEventListener('shown.bs.tab', function (event) {
