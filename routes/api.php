@@ -17,7 +17,7 @@ use App\Http\Controllers\AttendanceStudentController;
 */
 
 Route::post('attendance-test', [AttendanceMasterController::class, 'check'])->name('attendance-test.check');
-Route::post('add-list-attendance/{school_id}', [AttendanceStudentController::class, 'store'])->name('add-list-attendance.index');
+Route::post('add-list-attendance', [AttendanceStudentController::class, 'store'])->name('add-list-attendance.index');
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('sync/attendance/student', [AttendanceStudentController::class, 'syncData'])->name('sync.student');

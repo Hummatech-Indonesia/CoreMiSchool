@@ -117,7 +117,7 @@
                         alt="Illustration" />
                 </div>
                 <div>
-                    <form action="{{ route('add-teacher-list-attendance.index', ['school_id' => $school_id]) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('add-teacher-list-attendance.index') }}" method="POST" enctype="multipart/form-data">
                         @method('post')
                         @csrf
                         <h6 class="mb-3">RFID :</h6>

@@ -209,8 +209,7 @@
         function masterKeyCheck() {
             $.ajax({
                 type: 'POST',
-                url: "{{ route('add-list-attendance.index', '') }}/" + JSON.parse(localStorage.getItem(
-                    'auth_user')).id,
+                url: "{{ route('add-list-attendance.index') }}",
                 data: {
                     rfid: $('#rfid-input').val()
                 },
