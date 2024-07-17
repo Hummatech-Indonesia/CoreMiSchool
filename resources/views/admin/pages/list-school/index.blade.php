@@ -10,14 +10,12 @@
                     </a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" data-bs-toggle="tab" href="#active" role="tab" aria-selected="false"
-                        tabindex="-1">
+                    <a class="nav-link" data-bs-toggle="tab" href="#active" role="tab" aria-selected="false">
                         <span>Aktif</span>
                     </a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" data-bs-toggle="tab" href="#nonactive" role="tab" aria-selected="false"
-                        tabindex="-1">
+                    <a class="nav-link" data-bs-toggle="tab" href="#nonactive" role="tab" aria-selected="false">
                         <span>Non Aktif</span>
                     </a>
                 </li>
@@ -30,7 +28,7 @@
         <div class="d-flex flex-wrap">
             <div class="col-12 col-md-6 col-lg-4 mb-3 me-2">
                 <form action="" class="position-relative">
-                    <input type="text" class="form-control product-search px-4 ps-5" id="input-search"
+                    <input type="text" class="form-control product-search px-4 ps-5" name="name" value="{{ old('name') }}" id="input-search"
                         placeholder="Cari...">
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                 </form>
@@ -322,17 +320,32 @@
 
 @section('script')
     <script>
-        // $('#religion-edit').select2({
-        //     dropdownParent: $('#modal-edit')
-        // });
-        //  $('#gender-edit').select2({
-        //     dropdownParent: $('#modal-edit')
-        // });
-
         $('.btn-delete').click(function() {
             var id = $(this).data('id');
             $('#form-delete').attr('action', '/school/' + id);
             $('#modal-delete').modal('show');
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get the active tab from local storage
+            var activeTab = localStorage.getItem('activeTab');
+            
+            // If there is an active tab stored, activate it
+            if (activeTab) {
+                var tabToActivate = document.querySelector('.nav-tabs a[href="' + activeTab + '"]');
+                var bootstrapTab = new bootstrap.Tab(tabToActivate);
+                bootstrapTab.show();
+            }
+
+            // Store the active tab in local storage when a tab is clicked
+            var tabLinks = document.querySelectorAll('a[data-bs-toggle="tab"]');
+            tabLinks.forEach(function (tabLink) {
+                tabLink.addEventListener('shown.bs.tab', function (event) {
+                    var currentTab = event.target.getAttribute('href');
+                    localStorage.setItem('activeTab', currentTab);
+                });
+            });
         });
     </script>
 @endsection    

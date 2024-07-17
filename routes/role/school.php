@@ -74,6 +74,15 @@ Route::prefix('school')->group(function () {
         return view('school.pages.attendace.student');
     })->name('presence-student.index');
 
+    // kehadiran guru
+    Route::get('presence-teacher', function(){
+        return view('school.pages.attendace.presence-teacher');
+    })->name('presence-teacher.index');
+
+    Route::get('exsport-presence-teacher', function(){
+        return view('school.pages.attendace.exsport-teacher');
+    })->name('exsport-presence-teacher.index');
+
     //alumni
     Route::get('class-alumni', [ClassroomController::class, 'classroomAlumni'])->name('class-alumni.index');
 
