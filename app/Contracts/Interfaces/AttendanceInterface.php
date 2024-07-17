@@ -9,10 +9,13 @@ use App\Contracts\Interfaces\Eloquent\ShowInterface;
 use App\Contracts\Interfaces\Eloquent\StoreInterface;
 use App\Contracts\Interfaces\Eloquent\UpdateInterface;
 use App\Contracts\Interfaces\Eloquent\WhereSchoolInterface;
+use Illuminate\Http\Request;
 
-interface AttendanceInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface, WhereSchoolInterface
+interface AttendanceInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface
 {
     public function AttendanceChart(mixed $id, mixed $year, mixed $month, mixed $status) : mixed;
     public function checkPresence(mixed $id, mixed $status) : mixed;
     public function updateCheckOut(mixed $id, array $data) : mixed;
+    public function whereSchool(mixed $id, Request $request): mixed;
+
 }

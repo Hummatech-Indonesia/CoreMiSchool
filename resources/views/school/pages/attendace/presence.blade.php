@@ -5,23 +5,25 @@
             <form class="d-flex gap-2">
                 <div class="position-relative">
                     <div class="">
-                        <input type="text" name="search" class="form-control search-chat py-2 px-5 ps-5" id="search-name"
+                        <input type="text" name="name" value="{{ old('name', request('name')) }}" class="form-control search-chat py-2 px-5 ps-5" id="search-name"
                             placeholder="Cari">
                         <i class="ti ti-search position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
                     </div>
                 </div>
 
                 <div class="d-flex gap-2">
-                    <select name="" class="form-select" id="search-status">
-                        <option value="">Tahun Ajaran</option>
-                        <option value="">2023/2024</option>
+                    <select name="year" class="form-select w-auto" id="search-status" style="width: 150px;">
+                        {{-- <option value="">Select Year</option> --}}
+                        @foreach($schoolYears as $year)
+                            <option value="{{ $year->school_year }}">{{ $year->school_year }}</option>
+                        @endforeach
                     </select>
 
-                    <form class="mt-4">
-                        <div class="form-group">
-                            <input type="date" class="form-control" value="2018-05-13">
-                        </div>
-                    </form>
+                    <div class="form-group">
+                        <input type="date" name="created_at" class="form-control" value="{{ request('created_at') }}">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Filter</button>
+
                 </div>
             </form>
         </div>
