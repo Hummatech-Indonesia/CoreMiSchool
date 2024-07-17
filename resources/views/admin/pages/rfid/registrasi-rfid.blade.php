@@ -295,6 +295,8 @@
                         $('#belum-digunakan').addClass('active');
                         break;
                     default:
+                        $('#btn-all').addClass('active');
+                        $('#all').addClass('active');
                         break;
                 }
             }
