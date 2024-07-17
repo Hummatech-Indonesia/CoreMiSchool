@@ -18,5 +18,6 @@ interface AttendanceInterface extends GetInterface, StoreInterface, UpdateInterf
     public function checkPresence(mixed $id, mixed $status) : mixed;
     public function updateCheckOut(mixed $id, array $data) : mixed;
     public function whereSchool(mixed $id, Request $request): mixed;
+    public function getStudent(mixed $id): mixed;
 
 }

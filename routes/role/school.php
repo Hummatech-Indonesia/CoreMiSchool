@@ -4,6 +4,7 @@ use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AttendanceMasterController;
 use App\Http\Controllers\AttendanceRuleController;
 use App\Http\Controllers\AttendanceStudentController;
+use App\Http\Controllers\AttendanceTeacherController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\ClassroomStudentController;
 use App\Http\Controllers\ExtracurricularController;
@@ -163,15 +164,15 @@ Route::get('user-list', function () {return view('school.pages.test.user-list');
 
 // list absensi
 Route::get('list-attendance/{school_id}', [AttendanceStudentController::class, 'index'])->name('list-attendance.index');
-Route::post('add-list-attendance/{school_id}', [AttendanceStudentController::class, 'store'])->name('add-list-attendance.index');
+Route::post('add-teacher-list-attendance/{school_id}', [AttendanceTeacherController::class, 'store'])->name('add-teacher-list-attendance.index');
 
 // list absensi guru
-Route::get('list-attendance-teacher', function () {return view('school.pages.test.list-attendane-teacher');})->name('list-attendance-teacher.index');
+Route::get('list-attendance-teacher/{school_id}', [AttendanceTeacherController::class, 'index'])->name('list-attendance-teacher.index');
 
 Route::get('attendance-test', [AttendanceMasterController::class, 'index'])->name('attendance-test.index');
-// Route::get('attendance-test', [AttendanceMasterController::class, 'index_tacher'])->name('attendance-test.index');
 
-Route::post('attendance-test', [AttendanceMasterController::class, 'check'])->name('attendance-test.check');
+Route::get('attendance-test-teacher', [AttendanceMasterController::class, 'index_teacher'])->name('attendance-test-teacher.index');
+Route::post('attendance-test-teacher', [AttendanceMasterController::class, 'check_teacher'])->name('attendance-test-teacher.check');
 
 // url yang berawalan school/ masukkan pada prefix school
 // Route::prefix('school')->group(function () {

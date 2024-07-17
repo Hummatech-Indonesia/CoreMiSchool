@@ -27,7 +27,7 @@
         <div class="checkout">
             <div class="card shadow-none border">
                 <div class="card-body p-4">
-                    <h2><b>Pendaftaran Sekolah</b></h2>
+                    <h4><b>Pendaftaran Sekolah</b></h4>
                     <h6>Registrasi</h6>
                     <div class="wizard-content">
                         <form action="{{ route('school-admin.store') }}" class="tab-wizard wizard-circle wizard clearfix" role="application" id="steps-uid-0" method="POST" enctype="multipart/form-data">
@@ -54,12 +54,12 @@
                                             Lainnya
                                         </a>
                                     </li>
-                                    <li role="tab" class="disabled last" aria-disabled="true">
+                                    {{-- <li role="tab" class="disabled last" aria-disabled="true">
                                         <a id="steps-uid-0-t-3" href="#steps-uid-0-h-3" aria-controls="steps-uid-0-p-3">
                                             <span class="step">4</span>
                                             Password
                                         </a>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </div>
 
@@ -106,7 +106,10 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <h6>Logo</h6>
-                                            <input class="form-control" name="image" type="file" id="formFile" value="{{ old('image') }}">
+                                            <div id="imagePreview" class="mt-2 mb-2">
+                                                <img id="previewImg" alt="" style="display: none; width: 200px; height: auto; object-fit: cover;" />
+                                            </div>
+                                            <input class="form-control" name="image" type="file" id="imageInput" onchange="previewFile()" value="{{ old('image') }}">
                                             @error('image')
                                                 <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -197,7 +200,7 @@
                                                     id="customControlValidation2" name="level" value="sd/mi">
                                                 <label class="custom-control-label" for="customControlValidation2">
                                                     <img src="{{ asset('admin_assets/dist/images/backgrounds/sd.png') }}"
-                                                        alt="SD/MI" style="width: 300px; height: auto;"
+                                                        alt="SD/MI" style="width: 250px; height: auto;"
                                                         class="mb-3">
                                                     <h6>SD/MI</h6>
                                                 </label>
@@ -209,7 +212,7 @@
                                                     id="customControlValidation3" name="level" value="smp/mts">
                                                 <label class="custom-control-label" for="customControlValidation3">
                                                     <img src="{{ asset('admin_assets/dist/images/backgrounds/smp.png') }}"
-                                                        alt="SMP/MTS" style="width: 300px; height: auto;"
+                                                        alt="SMP/MTS" style="width: 250px; height: auto;"
                                                         class="mb-3">
                                                     <h6>SMP/MTS</h6>
                                                 </label>
@@ -221,7 +224,7 @@
                                                     id="customControlValidation4" name="level" value="sma/smk/ma">
                                                 <label class="custom-control-label" for="customControlValidation4">
                                                     <img src="{{ asset('admin_assets/dist/images/backgrounds/sma.png') }}"
-                                                        alt="SMA/SMK/MA" style="width: 300px; height: auto;"
+                                                        alt="SMA/SMK/MA" style="width: 250px; height: auto;"
                                                         class="mb-3">
                                                     <h6>SMA/SMK/MA</h6>
                                                 </label>
@@ -330,7 +333,7 @@
                                     <button type="button"
                                         class="btn mb-1 waves-effect waves-light btn-outline-primary prev-step">Kembali</button>
                                     <button type="submit"
-                                        class="btn mb-1 waves-effect waves-light btn-rounded btn-primary ms-3 next-step">Simpan</button>
+                                        class="btn mb-1 waves-effect waves-light btn-rounded btn-primary ms-3">Simpan</button>
                                 </div>
                             </section>
                         </form>
@@ -373,5 +376,22 @@
                 }
             });
         });
+    </script>
+
+    <script>
+            function previewFile() {
+        const preview = document.getElementById('previewImg');
+        const file = document.getElementById('imageInput').files[0];
+        const reader = new FileReader();
+
+        reader.addEventListener('load', function() {
+            preview.src = reader.result;
+            preview.style.display = 'block';
+        }, false);
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
     </script>
 @endsection
