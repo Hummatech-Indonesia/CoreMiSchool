@@ -49,7 +49,7 @@ class SchoolRepository extends BaseRepository implements SchoolInterface
         ->when($request->name, function ($query) use ($request) {
             $query->whereRelation('user', 'name', 'LIKE', '%' . $request->name . '%');
         })
-        ->get();
+        ->paginate(10);
     }
 
     public function whereUserId(mixed $id): mixed

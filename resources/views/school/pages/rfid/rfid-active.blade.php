@@ -52,14 +52,6 @@
                 </div>
             </form>
         </div>
-        {{-- <div class="col-lg-8 mb-3 d-flex justify-content-end">
-        <form action="" method="post" class="d-flex align-items-center gap-3">
-            <span class="">Tambah RFID: </span>
-            @csrf
-            <input type="text" name="rfid" class="form-control w-auto">
-            <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
-        </form>
-    </div> --}}
     </div>
 
     <div class="mt-2">
@@ -99,6 +91,9 @@
                 </tbody>
             </table>
         </div>
+    </div>
+    <div class="pagination justify-content-end mb-0">
+        <x-paginate-component :paginator="$rfids" />
     </div>
 
     <div class="modal fade" id="modal-create" tabindex="-1" aria-labelledby="tambahRfid" aria-hidden="true">
