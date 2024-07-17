@@ -18,6 +18,7 @@ Route::prefix('admin')->group(function(){
     Route::get('school/create', [SchoolController::class, 'create'])->name('school-admin.create');
     Route::post('school/store', [SchoolController::class, 'store'])->name('school-admin.store');
     Route::get('school/{slug}', [SchoolController::class, 'show'])->name('school-admin.show');
+    Route::delete('school/{school}', [SchoolController::class, 'destroy'])->name('school-admin.delete');
     Route::patch('school/{school}/enable', [SchoolController::class, 'active'])->name('school-admin.active');
     Route::patch('school/{school}/disable', [SchoolController::class, 'nonactive'])->name('school-admin.nonactive');
 

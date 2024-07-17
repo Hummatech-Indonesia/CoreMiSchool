@@ -135,7 +135,9 @@ public function nonactive(School $school)
      */
     public function destroy(School $school)
     {
+        $this->service->delete($school);
         $this->school->delete($school->id);
+        $school->user->delete();
         return to_route('school-admin.index')->with('success', 'Berhasil menghapus sekolah');
     }
 }
