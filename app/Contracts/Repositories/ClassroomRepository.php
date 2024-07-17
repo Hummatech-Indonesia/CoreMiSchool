@@ -56,7 +56,7 @@ class ClassroomRepository extends BaseRepository implements ClassroomInterface
     {
         return $this->model->query()->where('school_year_id', $schoolYears)
             ->whereRelation('levelClass', 'name', '!=', 'Alumni')
-            ->get();
+            ->paginate(10);
     }
 
     public function countClass(mixed $id): mixed
