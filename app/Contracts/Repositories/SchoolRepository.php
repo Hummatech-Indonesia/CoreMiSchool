@@ -25,9 +25,7 @@ class SchoolRepository extends BaseRepository implements SchoolInterface
 
     public function showWithSlug(string $slug): mixed
     {
-        return $this->model->whereHas('user', function ($query) use ($slug) {
-            $query->where('slug', $slug);
-        })->firstOrFail();
+        return $this->model->query()->whereRelation('user', 'slug', $slug)->firstOrFail();
     }
 
     public function update(mixed $id, array $data): mixed

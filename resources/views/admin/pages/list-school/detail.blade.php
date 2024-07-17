@@ -19,7 +19,7 @@
                                         </div>
                                         <div>
                                             <h5 class="mb-1">Tahun Ajaran</h5>
-                                            <h5>{{ $schoolYear->school_year }}</h5>
+                                            <h5>{{ $schoolYear != null ? $schoolYear->school_year : 'Sekolah ini belum memiliki tahun ajaran' }}</h5>
                                         </div>
                                     </div>
                                 </div>

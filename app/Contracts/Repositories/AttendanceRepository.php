@@ -3,6 +3,7 @@
 namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\AttendanceInterface;
+use App\Enums\RoleEnum;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
 
@@ -78,6 +79,15 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
         return $this->model->query()
             ->whereRelation('classroomStudent.classroom', 'student_id', $id)
             ->where('status', $status)
+            ->first();
+    }
+
+    public function getStudent(mixed $id): mixed
+    {
+        return $this->model->query()
+            ->whereRelation('classroomStudent.classroom', 'student_id', $id)
+            ->where('status', RoleEnum::STUDENT->value)
+            ->with('classroomStudents.student')
             ->first();
     }
 

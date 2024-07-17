@@ -59,6 +59,6 @@ class SchoolYearRepository extends BaseRepository implements SchoolYearInterface
 
     public function active(mixed $id): mixed
     {
-        return $this->model->query()->where('school_id', $id)->where('active', true)->firstOrFail();
+        return $this->model->query()->where('school_id', $id)->where('active', true)->first();
     }
 }

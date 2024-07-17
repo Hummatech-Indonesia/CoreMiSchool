@@ -50,8 +50,8 @@ class SchoolController extends Controller
     public function index(Request $request)
     {
         $schools = $this->school->search($request)->get();
-        $activeSchools = $this->school->search($request)->where('1');
-        $nonActiveSchools = $this->school->search($request)->where('0');
+        $activeSchools = $this->school->where('1');
+        $nonActiveSchools = $this->school->where('0');
         return view('admin.pages.list-school.index', compact('schools', 'activeSchools', 'nonActiveSchools'));
     }
 

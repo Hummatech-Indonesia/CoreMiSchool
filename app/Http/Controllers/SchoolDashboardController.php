@@ -26,12 +26,13 @@ class SchoolDashboardController extends Controller
     private ClassroomInterface $classroom;
     private SemesterInterface $semester;
     private AttendanceInterface $attendance;
+    private StudentInterface $student;
 
     private SchoolChartService $schoolChart;
 
     public function __construct(SchoolInterface $school, SchoolYearInterface $schoolYear,
     ModelHasRfidInterface $rfid, ClassroomInterface $classroom, SemesterInterface $semester,
-    SchoolChartService $schoolChart, AttendanceInterface $attendance)
+    SchoolChartService $schoolChart, AttendanceInterface $attendance, StudentInterface $student)
     {
         $this->school = $school;
         $this->schoolYear = $schoolYear;
@@ -40,6 +41,7 @@ class SchoolDashboardController extends Controller
         $this->semester = $semester;
         $this->attendance = $attendance;
         $this->schoolChart = $schoolChart;
+        $this->student = $student;
     }
 
     public function index()
@@ -49,8 +51,8 @@ class SchoolDashboardController extends Controller
         $schoolYear = $this->schoolYear->active(auth()->user()->school->id);
         $semester = $this->semester->whereSchool(auth()->user()->school->id);
         $attendanceChart = $this->schoolChart->ChartAttendance($this->attendance);
-        // dd($attendanceChart);
-        return view('school.pages.dashboard', compact('school', 'classrooms', 'schoolYear', 'semester', 'attendanceChart'));
+        $alumni = $this->student->countStudentAlumni(auth()->user()->school->id);
+        return view('school.pages.dashboard', compact('school', 'classrooms', 'schoolYear', 'semester', 'attendanceChart', 'alumni'));
     }
 
     public function show(Request $request)
