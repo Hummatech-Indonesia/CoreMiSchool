@@ -26,7 +26,7 @@
                     </div>
                 </form>
                 <div class="d-flex gap-2">
-                    <form action="" class="d-flex gap-1">
+                    <form action="/teacher" class="d-flex gap-1">
                         <select name="status" class="form-select" id="search-status">
                             <option value="0">Aktif</option>
                             <option value="1">Tidak Aktif</option>
@@ -64,10 +64,11 @@
                             @csrf
                             <!-- Step 1 -->
                             <section>
-                                <div class="row mx-3 pt-4">
+                                <div class="row mx-3 ">
                                     <div class="col-md-12">
-                                        <label for="">Foto Pegawai ( opsional )</label>
-                                        <input type="file" name="image" id="" class="form-control mb-3">
+                                        <label for="" class="mb-2">Foto Pegawai (opsional)</label>
+                                        <img id="imagePreview" src="#" alt="Preview" style="max-width: 200px; display: none; height: auto;">
+                                        <input type="file" name="image" id="image" class="form-control mt-2 mb-3" onchange="previewImage(event)">
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -326,10 +327,11 @@
                             @csrf
                             <!-- Step 1 -->
                             <section>
-                                <div class="row mx-3 pt-4">
+                                <div class="row mx-3">
                                     <div class="col-md-12">
-                                        <label for="">Foto Pegawai ( opsional )</label>
-                                        <input type="file" name="image" id="" class="form-control mb-3">
+                                        <label for="" class="mb-2">Foto Pegawai (opsional)</label>
+                                        <img id="employeeImagePreview" src="#" alt="Preview" style="max-width: 200px; display: none; height: auto;">
+                                        <input type="file" name="image" id="employeeImage" class="form-control mt-2 mb-3" onchange="previewEmployeeImage(event)">
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -767,4 +769,38 @@
     });
 
 </script>
+
+<script>
+    function previewImage(event) {
+        const input = event.target;
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const imagePreview = document.getElementById('imagePreview');
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = 'block';
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function previewEmployeeImage(event) {
+        const input = event.target;
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const imagePreview = document.getElementById('employeeImagePreview');
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = 'block';
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+
 @endsection
