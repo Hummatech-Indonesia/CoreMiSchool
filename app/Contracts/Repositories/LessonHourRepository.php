@@ -4,6 +4,7 @@ namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\LessonHourInterface;
 use App\Models\LessonHour;
+use Illuminate\Http\Request;
 
 class LessonHourRepository extends BaseRepository implements LessonHourInterface
 {
@@ -26,7 +27,7 @@ class LessonHourRepository extends BaseRepository implements LessonHourInterface
     {
         return $this->model->query()->findOrFail($id);
     }
-    
+
     public function update(mixed $id, array $data): mixed
     {
         return $this->model->query()->findOrFail($id)->update($data);
@@ -40,5 +41,16 @@ class LessonHourRepository extends BaseRepository implements LessonHourInterface
     public function paginate() : mixed
     {
         return $this->model->query()->latest()->paginate(10);
+    }
+
+    public function search(Request $request):mixed
+    {
+        $query = $this->model->query();
+
+        $query->when($request->name, function ($query) use ($request) {
+            $query->where('name', 'LIKE', '%' . $request->name . '%');
+        });
+
+        return $query;
     }
 }

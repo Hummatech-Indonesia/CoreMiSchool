@@ -10,6 +10,7 @@ use App\Contracts\Interfaces\RfidInterface;
 use App\Contracts\Interfaces\StudentInterface;
 use App\Enums\AttendanceEnum;
 use App\Enums\DayEnum;
+use App\Enums\RoleEnum;
 use App\Http\Requests\StoreAttendanceRequest;
 use App\Http\Requests\UpdateAttendanceRequest;
 use App\Models\Rfid;
@@ -74,7 +75,7 @@ class AttendanceStudentController extends Controller
 
         $this->student->show($user->model_id);
 
-        $rule = $this->attendanceRule->showByDay($school_id, $day);
+        $rule = $this->attendanceRule->showByDay($school_id, $day, RoleEnum::STUDENT->value);
 
         $presence = $this->attendance->checkPresence($user->model_id, AttendanceEnum::PRESENT->value);
 

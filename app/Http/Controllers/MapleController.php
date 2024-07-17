@@ -8,6 +8,7 @@ use App\Models\Maple;
 use App\Http\Requests\StoreMapleRequest;
 use App\Http\Requests\UpdateMapleRequest;
 use App\Services\MapleService;
+use Illuminate\Http\Request;
 
 class MapleController extends Controller
 {
@@ -25,9 +26,9 @@ class MapleController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $maples = $this->maple->whereSchool(auth()->user()->school->id);
+        $maples = $this->maple->whereSchool(auth()->user()->school->id, $request);
         $religions = $this->religion->get();
         return view('school.pages.subjects.create-subjects', compact('maples', 'religions'));
     }

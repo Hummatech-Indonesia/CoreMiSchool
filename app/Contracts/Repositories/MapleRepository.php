@@ -4,6 +4,7 @@ namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\MapleInterface;
 use App\Models\Maple;
+use Illuminate\Http\Request;
 
 class MapleRepository extends BaseRepository implements MapleInterface
 {
@@ -42,8 +43,12 @@ class MapleRepository extends BaseRepository implements MapleInterface
         return $this->model->query()->latest()->paginate(10);
     }
 
-    public function whereSchool(mixed $id): mixed
+    public function whereSchool(mixed $id, Request $request): mixed
     {
-        return $this->model->query()->where('school_id', $id)->latest()->paginate(10);
+        return $this->model->query()->where('school_id', $id)
+        ->when($request->name, function ($query) use ($request) {
+            $query->where('name', 'LIKE', '%' .  $request->name . '%');
+        })
+        ->latest()->paginate(10);
     }
 }

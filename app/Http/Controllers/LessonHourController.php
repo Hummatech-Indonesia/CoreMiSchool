@@ -7,6 +7,7 @@ use App\Models\LessonHour;
 use App\Http\Requests\StoreLessonHourRequest;
 use App\Http\Requests\UpdateLessonHourRequest;
 use App\Services\LessonHourService;
+use Illuminate\Http\Request;
 
 class LessonHourController extends Controller
 {
@@ -22,9 +23,9 @@ class LessonHourController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $lessonHours = $this->lessonHour->get();
+        $lessonHours = $this->lessonHour->search($request)->get();
         return view('school.pages.subjects.lesson-hours', compact('lessonHours'));
     }
 
