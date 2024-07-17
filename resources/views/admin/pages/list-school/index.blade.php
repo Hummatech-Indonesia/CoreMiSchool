@@ -102,15 +102,15 @@
                                     <div class="d-flex pt-3">
                                         <span class="mb-1 badge bg-primary w-25 text-capitalize">{{ $school->type }}</span>
                                         <span
-                                            class="mb-1 badge bg-success ms-3 w-25">{{ $school->active == 1 ? 'Aktif' : 'Tidak aktif' }}</span>
+                                            class="mb-1 badge bg-{{ $school->active == 1 ? 'success' : 'danger' }} ms-3">{{ $school->active == 1 ? 'Aktif' : 'Tidak aktif' }}</span>
                                     </div>
                                     <div class="d-flex pt-3">
                                         @if ($school->active == 1)
                                             <button type="button" data-id="{{ $school->id }}"
-                                                class="btn waves-effect waves-light btn-rounded btn-light-danger text-danger w-50">Non-aktifkan</button>
+                                                class="btn waves-effect waves-light btn-rounded btn-light-danger text-danger w-50 btn-disable">Non-aktifkan</button>
                                         @else
                                             <button type="button" data-id="{{ $school->id }}"
-                                                class="btn waves-effect waves-light btn-rounded btn-light-danger text-danger w-50">Aktifkan</button>
+                                                class="btn waves-effect waves-light btn-rounded btn-light-success text-success w-50 btn-enable">Aktifkan</button>
                                         @endif
                                         <a href="{{ route('school-admin.show', $school->user->slug) }}" type="button" class="btn waves-effect waves-light btn-rounded btn-light-info text-info w-50 ms-3">Detail</a>
                                     </div>
@@ -198,7 +198,7 @@
                                         <span class="mb-1 badge bg-success ms-3 w-25">Aktif</span>
                                     </div>
                                     <div class="d-flex pt-3">
-                                        <button type="button" data-id="{{ $school->id }}" class="btn waves-effect waves-light btn-rounded btn-light-danger text-danger w-50">Non-aktifkan</button>
+                                        <button type="button" data-id="{{ $school->id }}" class="btn waves-effect waves-light btn-rounded btn-light-danger text-danger w-50 btn-disable">Non-aktifkan</button>
                                         <a href="{{ route('school-admin.show', $school->user->slug) }}" type="button" class="btn waves-effect waves-light btn-rounded btn-light-info text-info w-50 ms-3">Detail</a>
                                     </div>
                                 </div>
@@ -280,10 +280,10 @@
                                     <p class="mb-0 mt-2 text-muted">{{ $nonActiveSchool->address }}</p>
                                     <div class="d-flex pt-3">
                                         <span class="mb-1 badge bg-primary w-25">{{ $nonActiveSchool->type }}</span>
-                                        <span class="mb-1 badge bg-danger ms-3 w-25">Nonaktif</span>
+                                        <span class="mb-1 badge bg-danger ms-3">Nonaktif</span>
                                     </div>
                                     <div class="d-flex pt-3">
-                                        <button type="button" data-id="{{ $school->id }}" class="btn waves-effect waves-light btn-rounded btn-light-danger text-danger w-50">Aktifkan</button>
+                                        <button type="button" data-id="{{ $school->id }}" class="btn waves-effect waves-light btn-rounded btn-light-success text-success w-50 btn-enable">Aktifkan</button>
                                         <a href="{{ route('school-admin.show', $school->user->slug) }}" type="button" class="btn waves-effect waves-light btn-rounded btn-light-info text-info w-50 ms-3">Detail</a>
                                     </div>
                                 </div>
@@ -316,6 +316,8 @@
         </div>
     </div>
 <x-delete-modal-component />
+<x-active-confirmation-modal-component />
+<x-nonactive-confirmation-modal-component />
 @endsection
 
 @section('script')
@@ -324,6 +326,18 @@
             var id = $(this).data('id');
             $('#form-delete').attr('action', '/school/' + id);
             $('#modal-delete').modal('show');
+        });
+
+        $('.btn-enable').click(function() {
+            var id = $(this).data('id');
+            $('#form-enable').attr('action', '/admin/school/' + id + '/enable');
+            $('#modal-enable').modal('show');
+        });
+
+        $('.btn-disable').click(function() {
+            var id = $(this).data('id');
+            $('#form-disable').attr('action', '/admin/school/' + id + '/disable');
+            $('#modal-disable').modal('show');
         });
     </script>
     <script>
