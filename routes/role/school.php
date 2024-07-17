@@ -69,20 +69,11 @@ Route::prefix('school')->group(function () {
     Route::get('get-clock-settings', [AttendanceRuleController::class, 'index'])->name('clock-settings.get');
     Route::post('add-clock-settings/{day}/{role}', [AttendanceRuleController::class, 'store'])->name('clock-settings.store');
 
-    Route::get('presence', [AttendanceController::class, 'index'])->name('presence.index');
+    Route::get('presence-student', [AttendanceController::class, 'student'])->name('presence-student.index');
+    Route::get('presence-student/export', [AttendanceController::class, 'studentExportPreview'])->name('presence-student.export-preview');
 
-    Route::get('presence-student', function () {
-        return view('school.pages.attendace.student');
-    })->name('presence-student.index');
-
-    // kehadiran guru
-    Route::get('presence-teacher', function(){
-        return view('school.pages.attendace.presence-teacher');
-    })->name('presence-teacher.index');
-
-    Route::get('exsport-presence-teacher', function(){
-        return view('school.pages.attendace.exsport-teacher');
-    })->name('exsport-presence-teacher.index');
+    Route::get('presence-teacher', [AttendanceController::class, 'teacher'])->name('presence-teacher.index');
+    Route::get('presence-teacher/export', [AttendanceController::class, 'teacherExportPreview'])->name('presence-teacher.export-preview');
 
     //alumni
     Route::get('class-alumni', [ClassroomController::class, 'classroomAlumni'])->name('class-alumni.index');
@@ -180,7 +171,9 @@ Route::post('add-teacher-list-attendance/{school_id}', [AttendanceTeacherControl
 Route::get('list-attendance-teacher/{school_id}', [AttendanceTeacherController::class, 'index'])->name('list-attendance-teacher.index');
 
 Route::get('attendance-test', [AttendanceMasterController::class, 'index'])->name('attendance-test.index');
+
 Route::get('attendance-test-teacher', [AttendanceMasterController::class, 'index_teacher'])->name('attendance-test-teacher.index');
+Route::get('attendance-test', [AttendanceMasterController::class, 'index_tacher'])->name('attendance-test.index');
 
 Route::post('attendance-test', [AttendanceMasterController::class, 'check'])->name('attendance-test.check');
 Route::post('attendance-test-teacher', [AttendanceMasterController::class, 'check_teacher'])->name('attendance-test-teacher.check');
