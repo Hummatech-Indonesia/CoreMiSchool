@@ -166,7 +166,7 @@
         </div>
 
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header bg-primary d-flex align-items-center">
                         <h4 class="card-title text-white mb-0">Statistik RFID</h4>
@@ -192,18 +192,6 @@
                                 <h5>RFID Tidak Aktif</h5>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header bg-primary d-flex align-items-center">
-                        <h4 class="card-title text-white mb-0">Statistik RFID</h4>
-                    </div>
-                    <div class="card-body collapse show d-flex justify-content-center">
-                        <div id="chart-rfid" style="width: 100%; height: 300px;"></div>
                     </div>
                 </div>
             </div>
