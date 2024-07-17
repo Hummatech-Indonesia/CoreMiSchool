@@ -27,7 +27,7 @@
         </div>
         <div class="col-lg-6 mb-3">
             <div class="d-flex gap-2 justify-content-end">
-                <a href="/school/presence-student" type="button" class="btn mb-1 btn-success">
+                <a href="{{ route('exsport-presence-teacher.index') }}" type="button" class="btn mb-1 btn-success">
                     Export
                 </a>
             </div>
@@ -43,20 +43,18 @@
                     <th class="fs-4 fw-semibold mb-0">Nama</th>
                     <th class="fs-4 fw-semibold mb-0">Masuk</th>
                     <th class="fs-4 fw-semibold mb-0">Pulang</th>
-                    <th class="fs-4 fw-semibold mb-0">Point</th>
                     <th class="fs-4 fw-semibold mb-0">Status</th>
                     <th class="fs-4 fw-semibold mb-0">Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                @forelse ($attendances as $attendance)
+                @forelse (range(1,6) as $attendance)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $attendance->classroomStudent->student->user->name }}</td>
-                        <td>{{ $attendance->checkin }}</td>
-                        <td>{{ $attendance->checkout }}</td>
-                        <td>{{ $attendance->point }}</td>
-                        <td>{{ $attendance->status == 'present' ? 'Masuk' : ($attendance->status == 'sick' ? 'Sakit' : ($attendance->status == 'alpha' ? 'Alpha' : ($attendance->status == 'permit' ? 'Izin' : ''))) }}</td>
+                        <td>1</td>
+                        <td>Guru</td>
+                        <td>07.00</td>
+                        <td>16.00</td>
+                        <td>Masuk</td>
                         <td>
                             <button type="button" class="btn mb-1 btn-light-primary text-primary btn-sm px-4 fs-2 font-medium"
                                 data-bs-toggle="modal" data-bs-target="#modal-import">
@@ -66,26 +64,6 @@
                     </tr>
                 @empty
                 @endforelse
-                {{-- <tr>
-                    <td>2</td>
-                    <td> Prasetyo Budi Nugroho</td>
-                    <td> 07.30</td>
-                    <td>16.00</td>
-                    <td>1</td>
-                    <td>Masuk</td>
-                    <td>
-                        <button type="button" class="btn mb-1 btn-primary btn-sm fs-2 font-medium" data-bs-toggle="modal"
-                            data-bs-target="#modal-edit">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                <path fill="currentColor"
-                                    d="M15.75 13a.75.75 0 0 0-.75-.75H9a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 .75-.75m0 4a.75.75 0 0 0-.75-.75H9a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 .75-.75" />
-                                <path fill="currentColor" fill-rule="evenodd"
-                                    d="M7 2.25A2.75 2.75 0 0 0 4.25 5v14A2.75 2.75 0 0 0 7 21.75h10A2.75 2.75 0 0 0 19.75 19V7.968c0-.381-.124-.751-.354-1.055l-2.998-3.968a1.75 1.75 0 0 0-1.396-.695zM5.75 5c0-.69.56-1.25 1.25-1.25h7.25v4.397c0 .414.336.75.75.75h3.25V19c0 .69-.56 1.25-1.25 1.25H7c-.69 0-1.25-.56-1.25-1.25z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </button>
-                    </td>
-                </tr> --}}
             </tbody>
         </table>
     </div>
