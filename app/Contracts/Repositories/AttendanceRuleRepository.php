@@ -47,8 +47,8 @@ class AttendanceRuleRepository extends BaseRepository implements AttendanceRuleI
         return $this->model->query()->where('day', $day)->where('role', $role)->firstOrFail();
     }
 
-    public function showByDay(mixed $school_id, string $day): mixed
+    public function showByDay(mixed $school_id, string $day, string $roles): mixed
     {
-        return $this->model->query()->where(['school_id' => $school_id, 'day' => $day])->first();
+        return $this->model->query()->where(['school_id' => $school_id, 'day' => $day, 'role' => $roles])->first();
     }
 }
