@@ -76,8 +76,9 @@ class ClassroomRepository extends BaseRepository implements ClassroomInterface
         $query->when($request->filled('school_year_id'), function ($query) use ($request) {
             $query->where('school_year_id', $request->input('school_year_id'));
         });
-
-        return $query->get();
+        
+        return $query
+        ->paginate(10);
     }
 
 
