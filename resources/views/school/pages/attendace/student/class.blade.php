@@ -65,4 +65,7 @@
         </div>
     @endforelse
 </div>
+<div class="pagination justify-content-center mb-0">
+    <x-paginate-component :paginator="$classrooms" />
+</div>
 @endsection

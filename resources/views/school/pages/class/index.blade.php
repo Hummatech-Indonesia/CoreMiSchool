@@ -231,6 +231,9 @@
             </div>
         @endforelse
     </div>
+    <div class="pagination justify-content-center mb-0">
+        <x-paginate-component :paginator="$classrooms" />
+    </div>
 
     <!-- modal edit -->
     <div class="modal fade" id="modal-edit" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">

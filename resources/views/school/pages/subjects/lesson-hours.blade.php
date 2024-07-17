@@ -72,6 +72,9 @@
             </table>
         </div>
     </div>
+    <div class="pagination justify-content-end mb-0">
+        <x-paginate-component :paginator="$lessonHours" />
+    </div>
 
     <div class="modal fade" id="modal-create" tabindex="-1" aria-labelledby="tambahPelajaran" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">

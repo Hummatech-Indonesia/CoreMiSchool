@@ -45,7 +45,7 @@ class ClassroomController extends Controller
         $school = $this->school->whereUserId(auth()->user()->id);
         $levelClasses = $this->levelClass->where($school->id);
         $schoolYears = $this->schoolYear->where($school->id);
-        $classrooms = $this->classroom->search($request)->get();
+        $classrooms = $this->classroom->search($request)->paginate(10);
         $teachers = $this->employee->getTeacherBySchool($school->id);
         return view('school.pages.class.index', compact('classrooms', 'levelClasses', 'schoolYears', 'teachers'));
     }
@@ -75,7 +75,7 @@ class ClassroomController extends Controller
     {
         $schoolYears = $this->schoolYear->whereSchool(auth()->user()->school->id, $request);
         $students = $this->student->doesntHaveClassroom();
-        $classroomStudents = $this->classroomStudent->where($classroom->id);
+        $classroomStudents = $this->classroomStudent->where($classroom->id, $request);
         return view('school.pages.class.detail-class', compact('classroom', 'schoolYears', 'students', 'classroomStudents'));
     }
 
