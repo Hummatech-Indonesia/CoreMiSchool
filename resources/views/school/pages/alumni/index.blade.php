@@ -1,10 +1,22 @@
 @extends('school.layouts.app')
+@section('style')
+    <link rel="stylesheet" href="{{ asset('admin_assets/dist/css/style.min.css') }}">
+
+    <style>
+        .category-selector .dropdown-menu {
+            position: absolute;
+            z-index: 1050;
+            transform: translate3d(0, 0, 0);
+        }
+    </style>
+@endsection
 @section('content')
     <div class="d-flex justify-content-between">
         <form action="">
             <div class="d-flex flex-wrap align-items-center">
-                <div class="col-12 col-md-8 mb-3">
-                    <input type="text" name="name" value="{{ old('name', request('name')) }}" class="form-control product-search" id="input-search" placeholder="Cari...">
+                <div class="mb-3">
+                    <input type="text" name="name" value="{{ old('name', request('name')) }}"
+                        class="form-control product-search" id="input-search" placeholder="Cari...">
                 </div>
             </div>
         </form>
@@ -30,49 +42,46 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($students as $student)
+                @foreach ($classrooms as $classroom)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>
-                            <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}"
-                                class="rounded-circle me-2 user-profile" style="object-fit: cover" width="30"
-                                height="30" alt="" />
-                            {{ $student->student->user->name }}
+                            <div class="d-flex align-items-center justify-content-center">
+                                <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}"
+                                    class="rounded-circle me-2 user-profile" style="object-fit: cover" width="30"
+                                    height="30" alt="" />
+                                {{ $classroom->student->user->name }}
+                            </div>
                         </td>
                         <td>
-                            {{ $student->classroom->name }}
+                            {{ $classroom->classroom->name }}
                         </td>
                         <td>
-                            {{ $student->student->nisn }}
+                            {{ $classroom->student->nisn }}
                         </td>
-                        <td>
-                            {{ $student->student->gender }}
-                        </td>
-                        <td>
-                            <div class="">
-                                <div class="category-selector btn-group">
-                                    <a class="nav-link category-dropdown label-group p-0" data-bs-toggle="dropdown"
-                                        href="#" role="button" aria-haspopup="true" aria-expanded="true">
-                                        <div class="category">
-                                            <div class="category-business"></div>
-                                            <div class="category-social"></div>
-                                            <span class="more-options text-dark">
-                                                <i class="ti ti-dots-vertical fs-5"></i>
-                                            </span>
-                                        </div>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right category-menu"
-                                        data-popper-placement="bottom-end">
-                                        <button type="button"
-                                            class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
-                                            Jadikan Siswa
-                                        </button>
+                        <td>{{ $classroom->student->gender == 'male' ? 'Laki Laki' : 'Perempuan' }}</td>
 
-                                        <a
-                                            class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-delete">
-                                            Hapus
-                                        </a>
+                        <td>
+                            <div class="category-selector btn-group">
+                                <a class="nav-link category-dropdown label-group p-0" data-bs-toggle="dropdown"
+                                    href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <div class="category">
+                                        <div class="category-business"></div>
+                                        <div class="category-social"></div>
+                                        <span class="more-options text-dark">
+                                            <i class="ti ti-dots-vertical fs-5"></i>
+                                        </span>
                                     </div>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end category-menu">
+                                    <button type="button"
+                                        class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center">
+                                        Jadikan Siswa
+                                    </button>
+                                    <a href="#"
+                                        class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-delete">
+                                        Hapus
+                                    </a>
                                 </div>
                             </div>
                         </td>
@@ -81,23 +90,21 @@
             </tbody>
         </table>
     </div>
-    <nav aria-label="...">
-        <ul class="pagination justify-content-end mb-0 mt-4">
-            <li class="page-item disabled">
-                <a href="#" class="page-link" tabindex="-1" aria-disabled="true">Previous</a>
-            </li>
-            <li class="page-item active" aria-current="page">
-                <a href="#" class="page-link">1</a>
-            </li>
-            <li class="page-item">
-                <a href="#" class="page-link">2</a>
-            </li>
-            <li class="page-item">
-                <a href="#" class="page-link">3</a>
-            </li>
-            <li class="page-item">
-                <a href="#" class="page-link">Next</a>
-            </li>
-        </ul>
-    </nav>
+    <div class="pagination justify-content-end mb-0">
+        <x-paginate-component :paginator="$classrooms" />
+    </div>
+@endsection
+
+@section('script')
+<script>
+    $(document).ready(function() {
+        $('.category-dropdown').on('show.bs.dropdown', function() {
+            $(this).closest('.table-responsive').css('overflow', 'visible');
+        });
+
+        $('.category-dropdown').on('hide.bs.dropdown', function() {
+            $(this).closest('.table-responsive').css('overflow', 'auto');
+        });
+    });
+</script>
 @endsection
