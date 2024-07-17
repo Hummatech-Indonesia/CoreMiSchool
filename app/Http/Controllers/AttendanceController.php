@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\AttendanceInterface;
 use App\Contracts\Interfaces\AttendanceRuleInterface;
+use App\Contracts\Interfaces\AttendanceTeacherInterface;
 use App\Contracts\Interfaces\ClassroomStudentInterface;
 use App\Contracts\Interfaces\ModelHasRfidInterface;
 use App\Contracts\Interfaces\SchoolYearInterface;
@@ -18,15 +19,17 @@ use Illuminate\Http\Request;
 class AttendanceController extends Controller
 {
     private AttendanceInterface $attendance;
+    private AttendanceTeacherInterface $attendanceTeacher;
     private ModelHasRfidInterface $modelHasRfid;
     private AttendanceRuleInterface $attendanceRule;
     private ClassroomStudentInterface $classroomStudent;
     private StudentInterface $student;
     private SchoolYearInterface $schoolYear;
 
-    public function __construct(AttendanceInterface $attendance, StudentInterface $student, AttendanceRuleInterface $attendanceRule, SchoolYearInterface $schoolYear)
+    public function __construct(AttendanceInterface $attendance, AttendanceTeacherInterface $attendanceTeacher, StudentInterface $student, AttendanceRuleInterface $attendanceRule, SchoolYearInterface $schoolYear)
     {
         $this->attendance = $attendance;
+        $this->attendanceTeacher = $attendanceTeacher;
         $this->student = $student;
         $this->attendanceRule = $attendanceRule;
         $this->schoolYear = $schoolYear;
@@ -46,9 +49,9 @@ class AttendanceController extends Controller
      */
     public function teacher(Request $request)
     {
-        $attendances = $this->attendance->whereSchool(auth()->user()->school->id, $request);
+        $attendanceTeachers = $this->attendanceTeacher->whereSchool(auth()->user()->school->id, $request);
         $schoolYears = $this->schoolYear->get();
-        return view('school.pages.attendace.teacher.index', compact('attendances', 'schoolYears'));
+        return view('school.pages.attendace.teacher.index', compact('attendanceTeachers', 'schoolYears'));
     }
 
     /**
