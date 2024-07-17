@@ -69,6 +69,10 @@ Route::prefix('school')->group(function () {
     Route::get('get-clock-settings', [AttendanceRuleController::class, 'index'])->name('clock-settings.get');
     Route::post('add-clock-settings/{day}/{role}', [AttendanceRuleController::class, 'store'])->name('clock-settings.store');
 
+    Route::get('class-presence-student', function(){
+        return view('school.pages.attendace.student.class');
+    })->name('class-presence-student.index');
+
     Route::get('presence-student', [AttendanceController::class, 'student'])->name('presence-student.index');
     Route::get('presence-student/export', [AttendanceController::class, 'studentExportPreview'])->name('presence-student.export-preview');
 
