@@ -235,7 +235,7 @@
                             </a>
                             <ul aria-expanded="false" class="collapse second-level">
                                 <li class="sidebar-item">
-                                    <a href="/school/presence" class="sidebar-link"
+                                    <a href="{{ route('presence-student.index') }}" class="sidebar-link"
                                         style="display: flex; align-items: center; margin-left: 20px;">
                                         <div class="round-16 d-flex align-items-center justify-content-center ms-3">
                                             <i class="ti ti-circle"></i>
@@ -277,6 +277,19 @@
                             </svg>
                         </span>
                         <span class="hide-menu">Test Absensi</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/attendance-test-teacher" aria-expanded="false">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                viewBox="0 0 24 24">
+                                <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12V8m6 4v-2m-3 2v-1M3 4h18M4 4v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4m-8 12v4m-3 0h6" />
+                            </svg>
+                        </span>
+                        <span class="hide-menu">Test Absensi Guru</span>
                     </a>
                 </li>
                 <li class="sidebar-item">

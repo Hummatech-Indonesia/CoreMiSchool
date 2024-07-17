@@ -51,4 +51,12 @@ class StudentRepository extends BaseRepository implements StudentInterface
     {
         return $this->model->query()->whereDoesntHave('classroomStudents')->get();
     }
+
+    public function countStudentAlumni(mixed $id): mixed
+    {
+        return $this->model->query()
+            ->where('school_id', $id)
+            ->whereRelation('classroomStudents.classroom.levelClass', 'name', 'Alumni')
+            ->count();
+    }
 }

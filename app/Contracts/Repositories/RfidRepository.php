@@ -5,6 +5,7 @@ namespace App\Contracts\Repositories;
 use App\Contracts\Interfaces\RfidInterface;
 use App\Enums\RfidStatusEnum;
 use App\Models\Rfid;
+use Illuminate\Http\Request;
 
 class RfidRepository extends BaseRepository implements RfidInterface
 {
@@ -48,13 +49,48 @@ class RfidRepository extends BaseRepository implements RfidInterface
         return $this->model->query()->latest()->paginate(10);
     }
 
-    public function used(): mixed
+    public function used(Request $request): mixed
     {
-        return $this->model->query()->where('status', RfidStatusEnum::USED->value)->get();
+        return $this->model->query()->where('status', RfidStatusEnum::USED->value)
+        ->when($request->search, function ($query) use ($request) {
+            $query->where('rfid', 'LIKE', '%' .  $request->search . '%');
+        })->when($request->filter === "terbaru", function($query) {
+            $query->latest();
+        })
+        ->when($request->filter === "terlama", function($query) {
+            $query->oldest();
+        }) ->when($request->status, function($query) use ($request) {
+            $query->where('status', $request->status);
+        })->get();
     }
 
-    public function notUsed(): mixed
+    public function notUsed(Request $request): mixed
     {
-        return $this->model->query()->where('status', RfidStatusEnum::NOTUSED->value)->get();
+        return $this->model->query()->where('status', RfidStatusEnum::NOTUSED->value)
+        ->when($request->search, function ($query) use ($request) {
+            $query->where('rfid', 'LIKE', '%' .  $request->search . '%');
+        })->when($request->filter === "terbaru", function($query) {
+            $query->latest();
+        })
+        ->when($request->filter === "terlama", function($query) {
+            $query->oldest();
+        }) ->when($request->status, function($query) use ($request) {
+            $query->where('status', $request->status);
+        })->get();
+    }
+
+    public function search(Request $request): mixed
+    {
+        return $this->model->query()
+        ->when($request->search, function ($query) use ($request) {
+            $query->where('rfid', 'LIKE', '%' .  $request->search . '%');
+        })->when($request->filter === "terbaru", function($query) {
+            $query->latest();
+        })
+        ->when($request->filter === "terlama", function($query) {
+            $query->oldest();
+        }) ->when($request->status, function($query) use ($request) {
+            $query->where('status', $request->status);
+        })->get();
     }
 }

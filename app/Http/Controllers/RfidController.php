@@ -6,6 +6,7 @@ use App\Contracts\Interfaces\RfidInterface;
 use App\Models\Rfid;
 use App\Http\Requests\StoreRfidRequest;
 use App\Http\Requests\UpdateRfidRequest;
+use Illuminate\Http\Request;
 
 class RfidController extends Controller
 {
@@ -18,11 +19,11 @@ class RfidController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $rfids = $this->rfid->get();
-        $usedRfids = $this->rfid->used();
-        $notUsedRfids = $this->rfid->notUsed();
+        $rfids = $this->rfid->search($request);
+        $usedRfids = $this->rfid->used($request);
+        $notUsedRfids = $this->rfid->notUsed($request);
         return view('admin.pages.rfid.registrasi-rfid', compact('rfids', 'usedRfids', 'notUsedRfids'));
     }
 

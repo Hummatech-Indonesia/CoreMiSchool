@@ -42,7 +42,7 @@ class AttendanceStudentController extends Controller
     {
         $present = $this->attendance->getSchool($school_id, 'checkin');
         $out = $this->attendance->getSchool($school_id, 'checkout');
-        return view('school.pages.test.list-attendance', compact('school_id', 'present'));
+        return view('school.pages.test.list-attendance', compact('school_id', 'present', 'out'));
     }
 
     /**
@@ -56,6 +56,7 @@ class AttendanceStudentController extends Controller
         if (!$rfid) return ResponseHelper::jsonResponse('error', 'Rfid belum terdaftarkan', null, 400);
 
         $user = $this->modelHasRfid->whereRfid($data['rfid']);
+        if ($user->model_type != 'App\Models\Student') return redirect()->back()->with('error', 'Rfid bukan siswa/i');
         if ($user->model_type === null) return ResponseHelper::jsonResponse('error', 'Data tidak tersedia', null, 400);
 
         $time = now();

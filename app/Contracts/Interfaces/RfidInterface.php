@@ -9,9 +9,11 @@ use App\Contracts\Interfaces\Eloquent\ShowInterface;
 use App\Contracts\Interfaces\Eloquent\StoreInterface;
 use App\Contracts\Interfaces\Eloquent\UpdateInterface;
 use App\Contracts\Interfaces\Eloquent\WhereInterface;
+use Illuminate\Http\Request;
 
 interface RfidInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface, WhereInterface
 {
-    public function used(): mixed;
-    public function notUsed(): mixed;
+    public function used(Request $request): mixed;
+    public function notUsed(Request $request): mixed;
+    public function search(Request $request): mixed;
 }

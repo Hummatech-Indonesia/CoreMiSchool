@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Contracts\Interfaces\AttendanceInterface;
 use App\Contracts\Interfaces\AttendanceRuleInterface;
+use App\Contracts\Interfaces\AttendanceTeacherInterface;
 use App\Contracts\Interfaces\CityInterface;
 use App\Contracts\Interfaces\ClassroomInterface;
 use App\Contracts\Interfaces\ClassroomStudentInterface;
@@ -27,6 +28,7 @@ use App\Contracts\Interfaces\UserInterface;
 use App\Contracts\Interfaces\VillageInterface;
 use App\Contracts\Repositories\AttendanceRepository;
 use App\Contracts\Repositories\AttendanceRuleRepository;
+use App\Contracts\Repositories\AttendanceTeacherRepository;
 use App\Contracts\Repositories\CityRepository;
 use App\Contracts\Repositories\ClassroomRepository;
 use App\Contracts\Repositories\ClassroomStudentRepository;
@@ -71,6 +73,7 @@ class AppServiceProvider extends ServiceProvider
         LessonHourInterface::class => LessonHourRepository::class,
         LessonScheduleInterface::class => LessonScheduleRepository::class,
         AttendanceInterface::class => AttendanceRepository::class,
+        AttendanceTeacherInterface::class => AttendanceTeacherRepository::class,
         RfidInterface::class => RfidRepository::class,
         LevelClassInterface::class => LevelClassRepository::class,
         AttendanceRuleInterface::class => AttendanceRuleRepository::class,

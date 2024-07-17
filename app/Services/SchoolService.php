@@ -43,8 +43,9 @@ class SchoolService
         $user = $this->user->store($dataUser);
         $user->assignRole(RoleEnum::SCHOOL->value);
 
-        $image = $this->upload(UploadDiskEnum::LOGO->value, $request->image);
-        $data['image'] = $image;
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $data['image'] = $request->file('image')->store(UploadDiskEnum::LOGO->value, 'public');
+        } 
         $data['user_id'] = $user->id;
         return $data;
     }
@@ -62,7 +63,7 @@ class SchoolService
 
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $this->remove($school->image);
-            $data['image'] = $request->file('image')->store(UploadDiskEnum::TEACHER->value, 'public');
+            $data['image'] = $request->file('image')->store(UploadDiskEnum::LOGO->value, 'public');
         } else {
             $data['image'] = $school->image;
         }
@@ -70,8 +71,10 @@ class SchoolService
         return $data;
     }
 
-    public function delete(Student $student)
+    public function delete(School $school)
     {
-        //
+        if ($school->image != null) {
+            $this->remove($school->image);
+        }
     }
 }

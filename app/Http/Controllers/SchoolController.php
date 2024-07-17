@@ -47,11 +47,11 @@ class SchoolController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $schools = $this->school->get();
-        $activeSchools = $this->school->where('1');
-        $nonActiveSchools = $this->school->where('0');
+        $schools = $this->school->search($request)->get();
+        $activeSchools = $this->school->search($request)->where('1');
+        $nonActiveSchools = $this->school->search($request)->where('0');
         return view('admin.pages.list-school.index', compact('schools', 'activeSchools', 'nonActiveSchools'));
     }
 
@@ -118,12 +118,26 @@ class SchoolController extends Controller
         return to_route('settings-information.index')->with('success', 'Berhasil memperbarui sekolah');
     }
 
+public function nonactive(School $school)
+    {
+        $this->school->update($school->id, ['active' => 0]);
+        return redirect()->back()->with('success', 'Sekolah berhasil dinonaktifkan');
+    }
+
+    public function active(School $school)
+    {
+        $this->school->update($school->id, ['active' => 1]);
+        return redirect()->back()->with('success', 'Sekolah berhasil diaktifkan');
+    }
+
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(School $school)
     {
+        $this->service->delete($school);
         $this->school->delete($school->id);
+        $school->user->delete();
         return to_route('school-admin.index')->with('success', 'Berhasil menghapus sekolah');
     }
 }

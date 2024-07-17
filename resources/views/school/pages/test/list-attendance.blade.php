@@ -89,13 +89,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (range(1, 5) as $item)
+                                        @forelse ($present as $item)
                                             <tr>
-                                                <td>Arya Maulana</td>
-                                                <td>SMKN 1 Kepanjen</td>
-                                                <td>07.00</td>
+                                                <td>{{ $item->classroomStudent->student->user->name }}</td>
+                                                <td>{{ $item->classroomStudent->classroom->schoolYear->school->user->name }}</td>
+                                                <td>{{ $item->checkin }}</td>
                                             </tr>
-                                        @endforeach
+                                        @empty
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
@@ -109,19 +110,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (range(1, 5) as $item)
-                                            <tr>
-                                                <td>Arya Maulana</td>
-                                                <td>SMKN 1 Kepanjen</td>
-                                                <td>07.00</td>
-                                            </tr>
-                                        @endforeach
+                                        @forelse ($out as $item_out)
+                                        <tr>
+                                            <td>{{ $item_out->classroomStudent->student->user->name }}</td>
+                                            <td>{{ $item_out->classroomStudent->classroom->schoolYear->school->user->name }}</td>
+                                            <td>{{ $item_out->checkout }}</td>
+                                        </tr>
+                                        @empty
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
@@ -141,8 +141,7 @@
                     <form id="form-check">
                         @method('post')
                         @csrf
-                        <input type="text" class="form-control pt-3" name="rfid" id="rfid-input"
-                            style="background-color: #F5F5F5; border: none; height: 50px; font-size: 18;">
+                        <input type="text" class="form-control pt-3" name="rfid" id="rfid-input" style="background-color: #F5F5F5; border: none; height: 50px; font-size: 18;">
                     </form>
                 </div>
                 <div>
