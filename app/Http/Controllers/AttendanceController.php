@@ -45,9 +45,14 @@ class AttendanceController extends Controller
      */
     public function class(Request $request)
     {
-        $schoolYear = $this->schoolYear->whereSchoolYear($request->year);
+        if ($request->year) {
+            $year = $request->year;
+        } else {
+            $activeYear = $this->schoolYear->active(auth()->user()->school->id);
+            $year = $activeYear->school_year;
+        }
+        $schoolYear = $this->schoolYear->whereSchoolYear($year);
         $classrooms = $this->classroom->whereSchoolYears($schoolYear->id);
-        $attendances = $this->attendance->whereSchool(auth()->user()->school->id, $request);
         $schoolYears = $this->schoolYear->get();
         return view('school.pages.attendace.student.class', compact('attendances', 'schoolYears', 'classrooms'));
     }
@@ -57,7 +62,7 @@ class AttendanceController extends Controller
      */
     public function student(Classroom $classroom, Request $request)
     {
-        $attendances = $this->attendance->whereSchool(auth()->user()->school->id, $request);
+        $attendances = $this->attendance->whereClassroom($classroom->id);
         $schoolYears = $this->schoolYear->get();
         return view('school.pages.attendace.student.index', compact('attendances', 'schoolYears', 'classroom'));
     }
@@ -85,7 +90,7 @@ class AttendanceController extends Controller
      */
     public function studentExportPreview(Classroom $classroom, Request $request)
     {
-        $attendances = $this->attendance->whereClassroom($classroom->id);
+        $attendances = $this->attendance->classAndDate($classroom->id, $request);
         return view('school.pages.attendace.student.export', compact('attendances', 'classroom'));
     }
 

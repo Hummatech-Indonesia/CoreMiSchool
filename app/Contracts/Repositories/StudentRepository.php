@@ -4,6 +4,7 @@ namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\StudentInterface;
 use App\Models\Student;
+use Illuminate\Http\Request;
 
 class StudentRepository extends BaseRepository implements StudentInterface
 {
@@ -42,9 +43,15 @@ class StudentRepository extends BaseRepository implements StudentInterface
         return $this->model->query()->latest()->paginate(10);
     }
 
-    public function whereSchool(mixed $id): mixed
+    public function whereSchool(mixed $id, Request $request): mixed
     {
-        return $this->model->query()->where('school_id', $id)->latest()->paginate(10);
+        return $this->model->query()->where('school_id', $id)->latest()
+        ->when($request->name, function ($query) use ($request) {
+            $query->whereHas('user', function($q) use ($request){
+                $q->where('name', 'LIKE', '%' .  $request->name . '%');
+            });
+        })
+        ->paginate(10);
     }
 
     public function doesntHaveClassroom(): mixed

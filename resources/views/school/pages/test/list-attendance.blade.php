@@ -46,7 +46,8 @@
             </div>
 
             <div class="d-flex align-items-center">
-                <button class="btn text-end d-flex" style="border-radius: 20px;border: 1px solid #e9e9e9">
+                <button class="btn text-end d-flex" style="border-radius: 20px;border: 1px solid #e9e9e9" id="sync-btn"
+                    onclick="syncAttendance()">
                     Sync Siswa
                     <div class="p-1 ms-1"
                         style="border-radius: 50%; background-color: #13DEB9;width: 23px;height: 23px;display: flex; justify-content: center; align-items: center;">
@@ -80,7 +81,7 @@
                         <div class="tab-content mt-3">
                             <div class="tab-pane fade show active" id="active" role="tabpanel"
                                 aria-labelledby="active-tab">
-                                <table class="table border customize-table align-middle">
+                                <table class="table border customize-table align-middle" id="checkin-table">
                                     <thead>
                                         <tr style="background-color: #37B8F1;">
                                             <th style="background-color: #37B8F1;" class="text-white">Nama</th>
@@ -89,19 +90,20 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($present as $item)
+                                        {{-- @forelse ($present as $item)
                                             <tr>
                                                 <td>{{ $item->classroomStudent->student->user->name }}</td>
-                                                <td>{{ $item->classroomStudent->classroom->schoolYear->school->user->name }}</td>
+                                                <td>{{ $item->classroomStudent->classroom->schoolYear->school->user->name }}
+                                                </td>
                                                 <td>{{ $item->checkin }}</td>
                                             </tr>
                                         @empty
-                                        @endforelse
+                                        @endforelse --}}
                                     </tbody>
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="link3" role="tabpanel" aria-labelledby="link3-tab">
-                                <table class="table border customize-table align-middle">
+                                <table class="table border customize-table align-middle" id="checkout-table">
                                     <thead>
                                         <tr style="background-color: #37B8F1;">
                                             <th style="background-color: #37B8F1;" class="text-white">Nama</th>
@@ -110,14 +112,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($out as $item_out)
-                                        <tr>
-                                            <td>{{ $item_out->classroomStudent->student->user->name }}</td>
-                                            <td>{{ $item_out->classroomStudent->classroom->schoolYear->school->user->name }}</td>
-                                            <td>{{ $item_out->checkout }}</td>
-                                        </tr>
-                                        @empty
-                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
@@ -141,7 +135,8 @@
                     <form id="form-check">
                         @method('post')
                         @csrf
-                        <input type="text" class="form-control pt-3" name="rfid" id="rfid-input" style="background-color: #F5F5F5; border: none; height: 50px; font-size: 18;">
+                        <input type="text" class="form-control pt-3" name="rfid" id="rfid-input"
+                            style="background-color: #F5F5F5; border: none; height: 50px; font-size: 18;">
                     </form>
                 </div>
                 <div>
@@ -176,10 +171,46 @@
             });
         });
 
+        function syncAttendance() {
+            $.ajax({
+                type: 'GET',
+                url: "{{ route('sync.student') }}",
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('auth_token')
+                },
+                success: function(data) {
+                    var tableBody = '';
+                    $.each(data.data.present, function(index, item) {
+                        tableBody += '<tr>';
+                        tableBody += '<td>' + item.name + '</td>';
+                        tableBody += '<td>' + item.school + '</td>';
+                        tableBody += '<td>' + item.checkin + '</td>';
+                        tableBody += '</tr>';
+                    });
+                    $('#checkin-table tbody').html(tableBody);
+
+                    tableBody = '';
+                    $.each(data.data.out, function(index, item) {
+                        tableBody += '<tr>';
+                        tableBody += '<td>' + item.name + '</td>';
+                        tableBody += '<td>' + item.school + '</td>';
+                        tableBody += '<td>' + item.checkout + '</td>';
+                        tableBody += '</tr>';
+                    });
+                    $('#checkout-table tbody').html(tableBody);
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+
+        }
+
         function masterKeyCheck() {
             $.ajax({
                 type: 'POST',
-                url: "{{ route('add-list-attendance.index', '') }}/" + localStorage.getItem('auth_user').id,
+                url: "{{ route('add-list-attendance.index', '') }}/" + JSON.parse(localStorage.getItem(
+                    'auth_user')).id,
                 data: {
                     rfid: $('#rfid-input').val()
                 },
@@ -206,7 +237,7 @@
                 error: function(xhr, status, error) {
                     let errorObj = JSON.parse(xhr.responseText);
                     Swal.fire({
-                        position: "top-end",
+                        position: "center",
                         icon: errorObj.status,
                         title: errorObj.message,
                         showConfirmButton: false,

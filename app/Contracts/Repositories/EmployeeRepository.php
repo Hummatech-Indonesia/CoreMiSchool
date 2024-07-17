@@ -81,7 +81,7 @@ class EmployeeRepository extends BaseRepository implements EmployeeInterface
             $query->where('status', $request->status);
         })
         ->latest()
-        ->paginate(2);
+        ->paginate(10);
     }
 
     public function showWithSlug(string $slug): mixed

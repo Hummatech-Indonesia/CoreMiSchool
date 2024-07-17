@@ -10,6 +10,7 @@ use App\Contracts\Interfaces\UserInterface;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Contracts\Interfaces\StudentInterface;
 use App\Contracts\Interfaces\ReligionInterface;
+use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
@@ -29,9 +30,9 @@ class StudentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $students = $this->student->whereSchool(auth()->user()->school->id);
+        $students = $this->student->whereSchool(auth()->user()->school->id, $request);
         $religions = $this->religion->get();
 
         return view('school.pages.student.index', compact('students', 'religions'));
