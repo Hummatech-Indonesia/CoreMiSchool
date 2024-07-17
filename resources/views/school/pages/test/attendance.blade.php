@@ -26,8 +26,10 @@
 
         @media (max-width: 768px) {
             .card-body {
-                padding: 20px; /* Add padding for smaller screens */
+                padding: 20px;
+                /* Add padding for smaller screens */
             }
+
             .illustration-container img {
                 max-width: 100%;
                 height: auto;
@@ -48,8 +50,8 @@
                         <h4 class="mt-3 text-muted">untuk memasuki halaman absensi anda membutuhkan master card</h4>
                     </div>
                     <div class="illustration-container d-flex justify-content-center">
-                        <img src="{{ asset('admin_assets/dist/images/ilustrations/absensi.png') }}" style="max-width: 83%;"
-                            alt="Illustration" />
+                        <img src="{{ asset('admin_assets/dist/images/ilustrations/absensi.png') }}"
+                            style="max-width: 83%;" alt="Illustration" />
                     </div>
                 </div>
             </div>
@@ -67,34 +69,55 @@
                         <img src="{{ asset('admin_assets/dist/images/ilustrations/scan.png') }}" style="width:250px"
                             alt="Illustration" />
                     </div>
-                    <form action="{{ route('attendance-test.check') }}" method="POST">
+                    <form id="form-check">
                         @csrf
-                        <div>
-                            <h4 class="mb-3">RFID :</h4>
-                            <input type="text" name="rfid" id="rfid-input" class="form-control pt-3" style="background-color: #F5F5F5; border: none; height: 50px; font-size: 18;">
+                        <div class="mb-3">
+                            <label for="rfid" class="form-label">RFID :</label>
+                            <input type="text" name="rfid" id="rfid-input" class="form-control pt-3"
+                                style="background-color: #F5F5F5; border: none; height: 50px; font-size: 18;" required>
                             @error('rfid')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        <button type="submit" class="btn btn-light-primary text-primary">Masuk</button>
+                        <button type="submit" class="btn btn-primary">Masuk</button>
                     </form>
+                    <button type="submit" class="btn btn-light-primary text-primary">Masuk</button>
                     <div class="text-end pt-3">
-                        <a href="/school" type="button" class="btn btn-primary w-25" style="background-color: #5D87FF; border: none">Beranda</a>
+                        <a href="/school" type="button" class="btn btn-primary w-25"
+                            style="background-color: #5D87FF; border: none">Beranda</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
     <script>
-         $(document).ready(function() {
+        $(document).ready(function() {
             $('#rfid-input').focus();
+
+            $('#form-check').submit(function(event) {
+                event.preventDefault(); // Prevent default form submission
+                masterKeyCheck(); // Call the masterKeyCheck function
+            });
         });
+
+        function masterKeyCheck() {
+            $.post("{{ route('attendance-test.check') }}", {
+                rfid: $('#rfid-input').val()
+            }, function(data) {
+                if (data.status === 'success') {
+                    localStorage.setItem('auth_token', data.data.token);
+                    localStorage.setItem('auth_user', data.data.user);
+                    window.location.href = "{{ route('list-attendance.index', '') }}/" + data.data.user.id;
+                } else {}
+            });
+        }
     </script>
 </body>
 
