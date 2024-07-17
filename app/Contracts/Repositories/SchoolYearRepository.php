@@ -59,7 +59,7 @@ class SchoolYearRepository extends BaseRepository implements SchoolYearInterface
         ->when($request->name, function ($query) use ($request) {
             $query->where('school_year', 'LIKE' , '%' . $request->name . '%');
         })
-        ->get();
+        ->paginate(10);
     }
 
     public function active(mixed $id): mixed
