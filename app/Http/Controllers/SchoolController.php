@@ -15,6 +15,7 @@ use App\Models\School;
 use App\Http\Requests\StoreSchoolRequest;
 use App\Http\Requests\UpdateSchoolRequest;
 use App\Services\SchoolService;
+use Illuminate\Http\Request;
 
 class SchoolController extends Controller
 {
@@ -80,11 +81,11 @@ class SchoolController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($slug)
+    public function show($slug, Request $request)
     {
         $school = $this->school->showWithSlug($slug);
         $teachers = $this->employee->getTeacherBySchool($school->id);
-        $schoolYears = $this->schoolYear->whereSchool($school->id);
+        $schoolYears = $this->schoolYear->whereSchool($school->id, $request);
         $rfids = $this->modelHasRfid->whereSchool($school->id);
         $activeRfids = $this->modelHasRfid->whereNotNull('model_type');
         $nonactiveRfids = $this->modelHasRfid->whereNull('model_type');
