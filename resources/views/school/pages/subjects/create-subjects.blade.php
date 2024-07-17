@@ -14,7 +14,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-lg-4 mb-3">
+        <div class="col-lg-2 mb-3">
             <div class="d-flex gap-2">
                 <form class="flex-grow-1">
                     <div class="position-relative">
@@ -22,16 +22,11 @@
                         <i class="ti ti-search position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
                     </div>
                 </form>
-
-                <select name="" class="form-select w-auto" id="search-status" style="width: 150px;">
-                    <option value="">2023/2024</option>
-                    <option value="">2024/2025</option>
-                </select>
             </div>
         </div>
 
 
-        <div class="col-lg-8 mb-3">
+        <div class="col-lg-10 mb-3">
             <div class="d-flex gap-2 justify-content-end">
                 <button class="btn btn-success px-4" data-bs-toggle="modal" data-bs-target="#modal-create">
                     Tambah Pelajaran
