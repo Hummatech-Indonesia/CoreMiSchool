@@ -38,17 +38,19 @@
 </head>
 <body>
 
-    <div class="p-3">
+    <div class="p-5">
         <div class="d-flex justify-content-between">
             <div>
                 <img src="{{ asset('assets/images/logo/logo-miscool.png') }}" width="200px" alt="">
             </div>
 
-            <div>
-                <button class="btn text-white text-end" style="background-color: #13DEB9;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                        <path fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 20v-5h-5M4 4v5h5m10.938 2A8.001 8.001 0 0 0 5.07 8m-1.008 5a8.001 8.001 0 0 0 14.868 3" /></svg>
+            <div class="d-flex align-items-center">
+                <button class="btn text-end d-flex" style="border-radius: 20px;border: 1px solid #e9e9e9">
                     Sync Siswa
+                    <div class="p-1 ms-1" style="border-radius: 50%; background-color: #13DEB9;width: 23px;height: 23px;display: flex; justify-content: center; align-items: center;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24">
+                            <path fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 20v-5h-5M4 4v5h5m10.938 2A8.001 8.001 0 0 0 5.07 8m-1.008 5a8.001 8.001 0 0 0 14.868 3" /></svg>
+                    </div>
                 </button>
             </div>
         </div>
@@ -64,58 +66,12 @@
                                 <a class="nav-link active px-4" id="active-tab" data-bs-toggle="pill" data-bs-target="#active" aria-current="page" href="#">Masuk</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link px-4" id="link1-tab" data-bs-toggle="pill" data-bs-target="#link1" href="#">Istirahat</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link px-4" id="link2-tab" data-bs-toggle="pill" data-bs-target="#link2" href="#">Kembali</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link px-4" id="link3-tab" data-bs-toggle="pill" data-bs-target="#link3" href="#">Pulang</a>
                             </li>
                         </ul>
 
                         <div class="tab-content mt-3">
                             <div class="tab-pane fade show active" id="active" role="tabpanel" aria-labelledby="active-tab">
-                                <table class="table border customize-table align-middle">
-                                    <thead>
-                                        <tr style="background-color: #37B8F1;">
-                                            <th style="background-color: #37B8F1;" class="text-white">Nama</th>
-                                            <th style="background-color: #37B8F1;" class="text-white">Sekolah</th>
-                                            <th style="background-color: #37B8F1;" class="text-white">Jam</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach (range(1,5) as $item)
-                                        <tr>
-                                            <td>Arya Maulana</td>
-                                            <td>SMKN 1 Kepanjen</td>
-                                            <td>07.00</td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="tab-pane fade" id="link1" role="tabpanel" aria-labelledby="link1-tab">
-                                <table class="table border customize-table align-middle">
-                                    <thead>
-                                        <tr style="background-color: #37B8F1;">
-                                            <th style="background-color: #37B8F1;" class="text-white">Nama</th>
-                                            <th style="background-color: #37B8F1;" class="text-white">Sekolah</th>
-                                            <th style="background-color: #37B8F1;" class="text-white">Jam</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach (range(1,5) as $item)
-                                        <tr>
-                                            <td>Arya Maulana</td>
-                                            <td>SMKN 1 Kepanjen</td>
-                                            <td>07.00</td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="tab-pane fade" id="link2" role="tabpanel" aria-labelledby="link2-tab">
                                 <table class="table border customize-table align-middle">
                                     <thead>
                                         <tr style="background-color: #37B8F1;">
