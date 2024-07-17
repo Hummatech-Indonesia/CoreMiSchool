@@ -309,6 +309,10 @@
     </table>
 </div>
 
+<div class="pagination justify-content-end mb-0">
+    <x-paginate-component :paginator="$teachers" />
+</div>
+
 <x-delete-modal-component />
 
 <!-- modal edit -->
