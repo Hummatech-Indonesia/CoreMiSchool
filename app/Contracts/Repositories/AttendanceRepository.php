@@ -4,6 +4,7 @@ namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\AttendanceInterface;
 use App\Models\Attendance;
+use Illuminate\Http\Request;
 
 class AttendanceRepository extends BaseRepository implements AttendanceInterface
 {
@@ -42,9 +43,19 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
         return $this->model->query()->latest()->paginate(10);
     }
 
-    public function whereSchool(mixed $id): mixed
+    public function whereSchool(mixed $id, Request $request): mixed
     {
-        return $this->model->query()->whereRelation('classroomStudent.classroom.schoolYear.school', 'id', $id)->latest()->paginate(10);
+        return $this->model->query()->whereRelation('classroomStudent.classroom.schoolYear.school', 'id', $id)
+        ->when($request->name, function ($query) use ($request) {
+            $query->whereRelation('classroomStudent.student.user', 'name', 'LIKE', '%' . $request->name . '%');
+        })
+        ->when($request->created_at, function ($query) use ($request) {
+            $query->whereDate('created_at', $request->created_at);
+        })
+        ->when($request->year, function ($query) use ($request) {
+            $query->whereRelation('classroomStudent.classroom.schoolYear', 'school_year', $request->year);
+        })
+        ->latest()->paginate(10);
     }
 
     public function AttendanceChart(mixed $id, mixed $year, mixed $month, mixed $status): mixed
