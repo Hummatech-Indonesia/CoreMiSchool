@@ -42,11 +42,11 @@ class AttendanceStudentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(string $school_id)
+    public function index(Request $request)
     {
-        $present = $this->attendance->getSchool($school_id, 'checkin');
-        $out = $this->attendance->getSchool($school_id, 'checkout');
-        return view('school.pages.test.list-attendance', compact('school_id', 'present', 'out'));
+        // $present = $this->attendance->getSchool($school_id, 'checkin');
+        // $out = $this->attendance->getSchool($school_id, 'checkout');
+        return view('school.pages.test.list-attendance');
     }
 
     public function syncData(Request $request) {
@@ -59,7 +59,7 @@ class AttendanceStudentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAttendanceRequest $request, string $school_id)
+    public function store(StoreAttendanceRequest $request)
     {
         $data = $request->validated();
 
@@ -77,7 +77,7 @@ class AttendanceStudentController extends Controller
 
         $this->student->show($user->model_id);
 
-        $rule = $this->attendanceRule->showByDay($school_id, $day, RoleEnum::STUDENT->value);
+        $rule = $this->attendanceRule->showByDay($request->user()->school->id, $day, RoleEnum::STUDENT->value);
         if (!$rule) return ResponseHelper::jsonResponse('warning', 'Tidak ada jadwal absensi', null, 404);
 
         $presence = $this->attendance->checkPresence($user->model_id, AttendanceEnum::PRESENT->value);
@@ -87,6 +87,7 @@ class AttendanceStudentController extends Controller
             if ($time->format('H:i:s') > $rule->checkin_end) return ResponseHelper::jsonResponse('warning', 'Absen sudah melebihi jamnya', null, 404);
             if ($presence) return ResponseHelper::jsonResponse('warning', 'Sudah absen', null, 404);
             $classroomStudent = $this->classroomStudent->whereStudent($user->model_id);
+            if (!$classroomStudent) return ResponseHelper::jsonResponse('warning', 'Siswa belum memiliki kelas');
             $data = $this->service->storeByStudent($time->format('H:i:s'), $classroomStudent->id, AttendanceEnum::PRESENT->value);
             $attendace = $this->attendance->store($data);
             return new SingleAttendaceStudentResource($attendace);

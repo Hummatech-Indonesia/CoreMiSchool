@@ -210,6 +210,9 @@
             $.ajax({
                 type: 'POST',
                 url: "{{ route('add-list-attendance.index') }}",
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('auth_token')
+                },
                 data: {
                     rfid: $('#rfid-input').val()
                 },
@@ -217,7 +220,7 @@
                     // console.log(data);
                     if (data.status === 'success') {
                         Swal.fire({
-                            position: "top-end",
+                            position: "center",
                             icon: "success",
                             title: data.message,
                             showConfirmButton: false,
@@ -225,7 +228,7 @@
                         });
                     } else {
                         Swal.fire({
-                            position: "top-end",
+                            position: "center",
                             icon: "success",
                             title: data.message,
                             showConfirmButton: false,

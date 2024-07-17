@@ -72,7 +72,6 @@
                             alt="Illustration" />
                     </div>
                     <form id="form-check">
-                        @csrf
                         <div class="mb-3">
                             <label for="rfid" class="form-label">RFID :</label>
                             <input type="text" name="rfid" id="rfid-input" class="form-control pt-3"
@@ -104,8 +103,8 @@
             $('#rfid-input').focus();
 
             $('#form-check').submit(function(event) {
-                event.preventDefault(); // Prevent default form submission
-                masterKeyCheck(); // Call the masterKeyCheck function
+                event.preventDefault();
+                masterKeyCheck();
             });
         });
 
@@ -121,7 +120,7 @@
                     if (data.status === 'success') {
                         localStorage.setItem('auth_token', data.data.token);
                         localStorage.setItem('auth_user', JSON.stringify(data.data.user));
-                        window.location.href = "{{ route('list-attendance.index', '') }}/" + data.data.user.id;
+                        window.location.href = "{{ route('list-attendance.index') }}";
                         Swal.fire({
                             icon: 'success',
                             title: 'Success',

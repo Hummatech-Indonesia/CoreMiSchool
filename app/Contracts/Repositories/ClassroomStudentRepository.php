@@ -57,6 +57,6 @@ class ClassroomStudentRepository extends BaseRepository implements ClassroomStud
 
     public function whereStudent(mixed $id): mixed
     {
-        return $this->model->query()->where('student_id', $id)->firstOrFail();
+        return $this->model->query()->where('student_id', $id)->first();
     }
 }
