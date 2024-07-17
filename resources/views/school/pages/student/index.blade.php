@@ -41,11 +41,13 @@
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
                                     <div class="form-group">
-                                        <label for="formFile" class="mb-1">Foto Siswa <span class="text-danger">(ekstensi png, jpg, jpeg)</span></label>
+                                        <label for="formFile" class="mb-1">Foto Siswa <span class="text-danger">(ekstensi
+                                                png, jpg, jpeg)</span></label>
 
-                                        <input class="form-control" name="image" type="file" id="formFile" onchange="previewImage(event)">
+                                        <input class="form-control" name="image" type="file" id="formFile"
+                                            onchange="previewImage(event)">
                                         @error('image')
-                                        <strong class="text-danger">{{ $message }}</strong>
+                                            <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
                                     </div>
                                 </div>
@@ -54,9 +56,10 @@
                                 <div class="form-floating mb-3">
                                     <div class="form-group">
                                         <label for="name" class="mb-2">Nama<span class="text-danger">*</span></label>
-                                        <input type="text" name="name" class="form-control mb-3" value="{{ old('name') }}">
+                                        <input type="text" name="name" class="form-control mb-3"
+                                            value="{{ old('name') }}">
                                         @error('name')
-                                        <strong class="text-danger">{{ $message }}</strong>
+                                            <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
                                     </div>
                                 </div>
@@ -382,25 +385,16 @@
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
                                     <div class="form-group">
-                                        <label for="formFile" class="mb-2">Foto Siswa <span class="text-danger">(ekstensi png, jpg, jpeg)</span></label>
-                                        <input class="form-control mb-3" name="image" type="file" id="studentImageInput" onchange="previewStudentImage(event)">
+                                        <label for="formFile" class="mb-2">Foto Siswa <span
+                                                class="text-danger">(ekstensi png, jpg, jpeg)</span></label>
+                                        <input class="form-control mb-3" name="image" type="file"
+                                            id="studentImageInput" onchange="previewStudentImage(event)">
                                         @error('image')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
                                     </div>
                                 </div>
                             </div>
-
-                            {{-- <div class="col-md-6">
-                                <div class="form-floating mb-3">
-                                    <label for="studentImage" class="mb-2">Foto Siswa <span class="text-danger">(ekstensi png, jpg, jpeg)</span></label>
-                                    <input class="form-control mb-3" name="image" type="file" id="studentImageInput" onchange="previewStudentImage(event)">
-                                    <div id="studentImagePreview" class="mt-2"></div>
-                                    @error('image')
-                                        <strong class="text-danger">{{ $message }}</strong>
-                                    @enderror
-                                </div>
-                            </div> --}}
 
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
@@ -798,37 +792,39 @@
         });
     </script>
 
-<script>
-    function previewImage(event) {
-        const input = event.target;
-        if (input.files && input.files[0]) {
-            const reader = new FileReader();
+    <script>
+        function previewImage(event) {
+            const input = event.target;
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
 
-            reader.onload = function(e) {
-                const imagePreview = document.getElementById('imagePreview');
-                imagePreview.innerHTML = `<img src="${e.target.result}" class="img-thumbnail" style="max-width: 100%;">`;
+                reader.onload = function(e) {
+                    const imagePreview = document.getElementById('imagePreview');
+                    imagePreview.innerHTML =
+                        `<img src="${e.target.result}" class="img-thumbnail" style="max-width: 100%;">`;
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                document.getElementById('imagePreview').innerHTML = '';
             }
-
-            reader.readAsDataURL(input.files[0]);
-        } else {
-            document.getElementById('imagePreview').innerHTML = '';
         }
-    }
 
-    function previewStudentImage(event) {
-        const input = event.target;
-        if (input.files && input.files[0]) {
-            const reader = new FileReader();
+        function previewStudentImage(event) {
+            const input = event.target;
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
 
-            reader.onload = function(e) {
-                const imagePreview = document.getElementById('studentImagePreview');
-                imagePreview.innerHTML = `<img src="${e.target.result}" class="img-thumbnail" style="max-width: 100%; height: auto;">`;
+                reader.onload = function(e) {
+                    const imagePreview = document.getElementById('studentImagePreview');
+                    imagePreview.innerHTML =
+                        `<img src="${e.target.result}" class="img-thumbnail" style="max-width: 100%; height: auto;">`;
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                document.getElementById('studentImagePreview').innerHTML = '';
             }
-
-            reader.readAsDataURL(input.files[0]);
-        } else {
-            document.getElementById('studentImagePreview').innerHTML = '';
         }
-    }
-</script>
+    </script>
 @endsection
