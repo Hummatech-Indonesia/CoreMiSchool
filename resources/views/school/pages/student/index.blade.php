@@ -13,8 +13,8 @@
 @section('content')
     <div class="d-flex justify-content-between mb-3">
         <div class="col-12 col-md-6 col-lg-2 me-3">
-            <form action="" class="position-relative">
-                <input type="text" class="form-control product-search ps-5" id="input-search" placeholder="Cari...">
+            <form class="position-relative">
+                <input type="text" name="name" class="form-control product-search ps-5" id="input-search" placeholder="Cari..." value="{{ old('name', request('name')) }}">
                 <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
             </form>
         </div>
@@ -344,27 +344,9 @@
             </tbody>
         </table>
     </div>
-
-
-    <nav aria-label="...">
-        <ul class="pagination justify-content-end mb-0 mt-4">
-            <li class="page-item disabled">
-                <a href="#" class="page-link" tabindex="-1" aria-disabled="true">Previous</a>
-            </li>
-            <li class="page-item active" aria-current="page">
-                <a href="#" class="page-link">1</a>
-            </li>
-            <li class="page-item">
-                <a href="#" class="page-link">2</a>
-            </li>
-            <li class="page-item">
-                <a href="#" class="page-link">3</a>
-            </li>
-            <li class="page-item">
-                <a href="#" class="page-link">Next</a>
-            </li>
-        </ul>
-    </nav>
+    <div class="pagination justify-content-end mb-0">
+        <x-paginate-component :paginator="$students" />
+    </div>
 
     <!-- edit modal -->
     <div class="modal fade" id="modal-edit" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
