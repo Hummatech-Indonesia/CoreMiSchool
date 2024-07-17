@@ -16,8 +16,8 @@ class ClassroomRepository extends BaseRepository implements ClassroomInterface
     public function get(): mixed
     {
         return $this->model->query()
-        ->whereRelation('levelClass', 'name', '!=', 'Alumni')
-        ->get();
+            ->whereRelation('levelClass', 'name', '!=', 'Alumni')
+            ->get();
     }
 
     public function store(array $data): mixed
@@ -43,8 +43,8 @@ class ClassroomRepository extends BaseRepository implements ClassroomInterface
     public function paginate(): mixed
     {
         return $this->model->query()->latest()
-        ->whereRelation('levelClass', 'name', '!=', 'Alumni')
-        ->paginate(10);
+            ->whereRelation('levelClass', 'name', '!=', 'Alumni')
+            ->paginate(10);
     }
 
     public function whereInSchoolYears($schoolYears)
@@ -55,8 +55,8 @@ class ClassroomRepository extends BaseRepository implements ClassroomInterface
     public function whereSchoolYears($schoolYears)
     {
         return $this->model->query()->where('school_year_id', $schoolYears)
-        ->whereRelation('levelClass', 'name', '!=', 'Alumni')
-        ->get();
+            ->whereRelation('levelClass', 'name', '!=', 'Alumni')
+            ->get();
     }
 
     public function countClass(mixed $id): mixed
@@ -64,14 +64,24 @@ class ClassroomRepository extends BaseRepository implements ClassroomInterface
         return $this->model->query()->whereRelation('schoolYear', 'school_id', $id)->count();
     }
 
-    public function getAlumni(): mixed
+    public function getAlumni(Request $request): mixed
     {
-        return $this->model->query()
-            ->whereRelation('levelClass', 'name', 'Alumni')
-            ->get();
+        $query = $this->model->query()
+            ->whereRelation('levelClass', 'name', 'Alumni');
+
+        $query->when($request->class_name, function ($query) use ($request) {
+            $query->where('name', 'LIKE', '%' . $request->class_name . '%');
+        });
+
+        $query->when($request->filled('school_year_id'), function ($query) use ($request) {
+            $query->where('school_year_id', $request->input('school_year_id'));
+        });
+
+        return $query->get();
     }
 
-    public function search(Request $request):mixed
+
+    public function search(Request $request): mixed
     {
         $query = $this->model->query();
 

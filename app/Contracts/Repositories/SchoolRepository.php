@@ -25,9 +25,7 @@ class SchoolRepository extends BaseRepository implements SchoolInterface
 
     public function showWithSlug(string $slug): mixed
     {
-        return $this->model->whereHas('user', function ($query) use ($slug) {
-            $query->where('slug', $slug);
-        })->firstOrFail();
+        return $this->model->query()->whereRelation('user', 'slug', $slug)->firstOrFail();
     }
 
     public function update(mixed $id, array $data): mixed
@@ -45,9 +43,13 @@ class SchoolRepository extends BaseRepository implements SchoolInterface
         return $this->model->query()->latest()->paginate(10);
     }
 
-    public function where(mixed $data): mixed
+    public function where(mixed $data, Request $request): mixed
     {
-        return $this->model->query()->where('active', $data)->get();
+        return $this->model->query()->where('active', $data)
+        ->when($request->name, function ($query) use ($request) {
+            $query->whereRelation('user', 'name', 'LIKE', '%' . $request->name . '%');
+        })
+        ->get();
     }
 
     public function whereUserId(mixed $id): mixed

@@ -121,6 +121,9 @@
     </table>
 </div>
 
+<div class="pagination justify-content-end mb-0">
+    <x-paginate-component :paginator="$staffs" />
+</div>
 
 <!-- modal import -->
 <div class="modal fade" id="modal-import" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">

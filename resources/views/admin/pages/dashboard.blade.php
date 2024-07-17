@@ -3,15 +3,6 @@
 @section('style')
 <link rel="stylesheet" href="{{ asset('admin_assets/dist/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}">
 <style>
-    .counter-carousel .item {
-        margin: 10px;
-    }
-
-    .card {
-        border-radius: 10px;
-        overflow: hidden;
-    }
-
     .nav-tabs .nav-link {
         margin-bottom: calc(-1* var(--bs-nav-tabs-border-width));
         border: var(--bs-nav-tabs-border-width) solid transparent;
@@ -26,14 +17,14 @@
 @endsection
 
 @section('content')
-
-<div class="owl-carousel counter-carousel owl-theme">
+<div class="owl-carousel custom-carousel owl-theme">
     {{-- <div class="item">
         <div class="card border-0 zoom-in bg-light-warning shadow-none">
             <div class="card-body p-5">
                 <div class="text-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="58" height="58" viewBox="0 0 32 32">
-                        <path fill="#FFAE1F" d="m28.504 8.136l-12-7a1 1 0 0 0-1.008 0l-12 7A1 1 0 0 0 3 9v14a1 1 0 0 0 .496.864l12 7a1 1 0 0 0 1.008 0l12-7A1 1 0 0 0 29 23V9a1 1 0 0 0-.496-.864M16 3.158L26.016 9L16 14.842L5.984 9ZM5 10.74l10 5.833V28.26L5 22.426Zm12 17.52V16.574l10-5.833v11.685Z" /></svg>
+                        <path fill="#FFAE1F" d="m28.504 8.136l-12-7a1 1 0 0 0-1.008 0l-12 7A1 1 0 0 0 3 9v14a1 1 0 0 0 .496.864l12 7a1 1 0 0 0 1.008 0l12-7A1 1 0 0 0 29 23V9a1 1 0 0 0-.496-.864M16 3.158L26.016 9L16 14.842L5.984 9ZM5 10.74l10 5.833V28.26L5 22.426Zm12 17.52V16.574l10-5.833v11.685Z" />
+                    </svg>
                     <p class="fw-semibold fs-5 mt-2 text-warning mb-1">Paket</p>
                     <h5 class="fw-semibold text-warning mb-0">0</h5>
                 </div>
@@ -77,7 +68,8 @@
             <div class="card-body p-5">
                 <div class="text-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" viewBox="0 0 14 14">
-                        <path fill="#5D87FF" fill-rule="evenodd" d="M6.375 1.653C5.386 1.099 3.536.42 1.496.179C.674.082 0 .76 0 1.588v8c0 .829.677 1.489 1.492 1.637c1.84.334 3.371 1.216 4.348 1.914c.164.117.345.205.535.266zm1.25 11.752c.19-.06.37-.149.534-.265c.977-.698 2.508-1.581 4.349-1.915c.815-.148 1.492-.808 1.492-1.637v-8C14 .76 13.326.082 12.504.18c-2.04.242-3.89.92-4.879 1.474v11.752Z" clip-rule="evenodd" /></svg>
+                        <path fill="#5D87FF" fill-rule="evenodd" d="M6.375 1.653C5.386 1.099 3.536.42 1.496.179C.674.082 0 .76 0 1.588v8c0 .829.677 1.489 1.492 1.637c1.84.334 3.371 1.216 4.348 1.914c.164.117.345.205.535.266zm1.25 11.752c.19-.06.37-.149.534-.265c.977-.698 2.508-1.581 4.349-1.915c.815-.148 1.492-.808 1.492-1.637v-8C14 .76 13.326.082 12.504.18c-2.04.242-3.89.92-4.879 1.474v11.752Z" clip-rule="evenodd" />
+                    </svg>
                     <p class="fw-semibold fs-5 mt-2 text-info mb-1">Guru</p>
                     <h5 class="fw-semibold text-info mb-0">{{ $teachers }}</h5>
                 </div>
@@ -261,47 +253,47 @@
     <div class="col-md-4">
         <div class="card bg-transparent shadow-none border-1" style="border-bottom: 6px solid #5D87FF!important;">
             <img src="{{ asset('admin_assets/dist/images/profile/no-data.png') }}" class="w-100" height="180px" style="object-fit: cover" alt="">
-            <div class="p-4">
-                <div class="d-flex justify-content-between">
-                    <h4 class="fw-semibold">Jurnal</h4>
-                    <div>
-                        <span class="badge bg-light-primary text-primary">Terlaris</span>
-                    </div>
-                </div>
-                <h3 class="text-primary fw-semibold mt-3 mb-3">Rp450.000</h3>
-                <p>Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet. Lorem ipsum Dolor Sit Amet</p>
-
-                <div class="border-bottom border-1 border-primary mt-4"></div>
-
-                <div class="mb-4 d-flex mt-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 36 35" fill="none" style="flex-shrink: 0; margin-right: 10px;">
-                        <path d="M18 3.28125C9.93586 3.28125 3.375 9.65986 3.375 17.5C3.375 25.3401 9.93586 31.7188 18 31.7188C26.0641 31.7188 32.625 25.3401 32.625 17.5C32.625 9.65986 26.0641 3.28125 18 3.28125ZM25.6113 12.7347L16.1613 23.6722C16.0577 23.7922 15.9287 23.8892 15.7831 23.9565C15.6375 24.0239 15.4788 24.06 15.3176 24.0625H15.2986C15.1409 24.0624 14.985 24.0302 14.841 23.9677C14.6969 23.9053 14.568 23.8142 14.4626 23.7002L10.4126 19.3252C10.3097 19.2191 10.2297 19.0942 10.1772 18.9576C10.1248 18.821 10.1009 18.6757 10.1071 18.53C10.1132 18.3844 10.1493 18.2414 10.2131 18.1095C10.2769 17.9776 10.3671 17.8594 10.4786 17.7619C10.59 17.6644 10.7204 17.5895 10.862 17.5417C11.0037 17.4938 11.1537 17.474 11.3033 17.4834C11.453 17.4927 11.5992 17.5311 11.7333 17.5962C11.8675 17.6612 11.9869 17.7517 12.0846 17.8623L15.2691 21.3021L23.8887 11.3278C24.082 11.1105 24.3556 10.9759 24.6502 10.9531C24.9448 10.9302 25.2368 11.021 25.4631 11.2059C25.6894 11.3907 25.8319 11.6547 25.8596 11.9407C25.8873 12.2268 25.7981 12.512 25.6113 12.7347Z" fill="#13DEB9"></path>
-                    </svg>
-                    <p class="fs-3 fw-semibold" style="margin: 0; flex-grow: 1;">Data Siswa</p>
-                </div>
-                <div class="mb-4 d-flex">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 36 35" fill="none" style="flex-shrink: 0; margin-right: 10px;">
-                        <path d="M18 3.28125C9.93586 3.28125 3.375 9.65986 3.375 17.5C3.375 25.3401 9.93586 31.7188 18 31.7188C26.0641 31.7188 32.625 25.3401 32.625 17.5C32.625 9.65986 26.0641 3.28125 18 3.28125ZM25.6113 12.7347L16.1613 23.6722C16.0577 23.7922 15.9287 23.8892 15.7831 23.9565C15.6375 24.0239 15.4788 24.06 15.3176 24.0625H15.2986C15.1409 24.0624 14.985 24.0302 14.841 23.9677C14.6969 23.9053 14.568 23.8142 14.4626 23.7002L10.4126 19.3252C10.3097 19.2191 10.2297 19.0942 10.1772 18.9576C10.1248 18.821 10.1009 18.6757 10.1071 18.53C10.1132 18.3844 10.1493 18.2414 10.2131 18.1095C10.2769 17.9776 10.3671 17.8594 10.4786 17.7619C10.59 17.6644 10.7204 17.5895 10.862 17.5417C11.0037 17.4938 11.1537 17.474 11.3033 17.4834C11.453 17.4927 11.5992 17.5311 11.7333 17.5962C11.8675 17.6612 11.9869 17.7517 12.0846 17.8623L15.2691 21.3021L23.8887 11.3278C24.082 11.1105 24.3556 10.9759 24.6502 10.9531C24.9448 10.9302 25.2368 11.021 25.4631 11.2059C25.6894 11.3907 25.8319 11.6547 25.8596 11.9407C25.8873 12.2268 25.7981 12.512 25.6113 12.7347Z" fill="#13DEB9"></path>
-                    </svg>
-                    <p class="fs-3 fw-semibold" style="margin: 0; flex-grow: 1;">Bisa menambahkan Materi dan Tugas Lorem Ipsum dolor sit ahmet</p>
-                </div>
-                <div class="mb-4 d-flex">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 36 35" fill="none" style="flex-shrink: 0; margin-right: 10px;">
-                        <path d="M18 3.28125C9.93586 3.28125 3.375 9.65986 3.375 17.5C3.375 25.3401 9.93586 31.7188 18 31.7188C26.0641 31.7188 32.625 25.3401 32.625 17.5C32.625 9.65986 26.0641 3.28125 18 3.28125ZM25.6113 12.7347L16.1613 23.6722C16.0577 23.7922 15.9287 23.8892 15.7831 23.9565C15.6375 24.0239 15.4788 24.06 15.3176 24.0625H15.2986C15.1409 24.0624 14.985 24.0302 14.841 23.9677C14.6969 23.9053 14.568 23.8142 14.4626 23.7002L10.4126 19.3252C10.3097 19.2191 10.2297 19.0942 10.1772 18.9576C10.1248 18.821 10.1009 18.6757 10.1071 18.53C10.1132 18.3844 10.1493 18.2414 10.2131 18.1095C10.2769 17.9776 10.3671 17.8594 10.4786 17.7619C10.59 17.6644 10.7204 17.5895 10.862 17.5417C11.0037 17.4938 11.1537 17.474 11.3033 17.4834C11.453 17.4927 11.5992 17.5311 11.7333 17.5962C11.8675 17.6612 11.9869 17.7517 12.0846 17.8623L15.2691 21.3021L23.8887 11.3278C24.082 11.1105 24.3556 10.9759 24.6502 10.9531C24.9448 10.9302 25.2368 11.021 25.4631 11.2059C25.6894 11.3907 25.8319 11.6547 25.8596 11.9407C25.8873 12.2268 25.7981 12.512 25.6113 12.7347Z" fill="#13DEB9"></path>
-                    </svg>
-                    <p class="fs-3 fw-semibold" style="margin: 0; flex-grow: 1;">Bisa menambahkan Materi dan Tugas Lorem Ipsum dolor sit ahmet</p>
-                </div>
-            </div>
+<div class="p-4">
+    <div class="d-flex justify-content-between">
+        <h4 class="fw-semibold">Jurnal</h4>
+        <div>
+            <span class="badge bg-light-primary text-primary">Terlaris</span>
         </div>
     </div>
-    @empty
+    <h3 class="text-primary fw-semibold mt-3 mb-3">Rp450.000</h3>
+    <p>Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet. Lorem ipsum Dolor Sit Amet</p>
 
-    @endforelse
-    <div class="mb-3">
-        <button class="btn btn-primary w-100">
-            Lihat Selengkapnya
-        </button>
+    <div class="border-bottom border-1 border-primary mt-4"></div>
+
+    <div class="mb-4 d-flex mt-4">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 36 35" fill="none" style="flex-shrink: 0; margin-right: 10px;">
+            <path d="M18 3.28125C9.93586 3.28125 3.375 9.65986 3.375 17.5C3.375 25.3401 9.93586 31.7188 18 31.7188C26.0641 31.7188 32.625 25.3401 32.625 17.5C32.625 9.65986 26.0641 3.28125 18 3.28125ZM25.6113 12.7347L16.1613 23.6722C16.0577 23.7922 15.9287 23.8892 15.7831 23.9565C15.6375 24.0239 15.4788 24.06 15.3176 24.0625H15.2986C15.1409 24.0624 14.985 24.0302 14.841 23.9677C14.6969 23.9053 14.568 23.8142 14.4626 23.7002L10.4126 19.3252C10.3097 19.2191 10.2297 19.0942 10.1772 18.9576C10.1248 18.821 10.1009 18.6757 10.1071 18.53C10.1132 18.3844 10.1493 18.2414 10.2131 18.1095C10.2769 17.9776 10.3671 17.8594 10.4786 17.7619C10.59 17.6644 10.7204 17.5895 10.862 17.5417C11.0037 17.4938 11.1537 17.474 11.3033 17.4834C11.453 17.4927 11.5992 17.5311 11.7333 17.5962C11.8675 17.6612 11.9869 17.7517 12.0846 17.8623L15.2691 21.3021L23.8887 11.3278C24.082 11.1105 24.3556 10.9759 24.6502 10.9531C24.9448 10.9302 25.2368 11.021 25.4631 11.2059C25.6894 11.3907 25.8319 11.6547 25.8596 11.9407C25.8873 12.2268 25.7981 12.512 25.6113 12.7347Z" fill="#13DEB9"></path>
+        </svg>
+        <p class="fs-3 fw-semibold" style="margin: 0; flex-grow: 1;">Data Siswa</p>
     </div>
+    <div class="mb-4 d-flex">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 36 35" fill="none" style="flex-shrink: 0; margin-right: 10px;">
+            <path d="M18 3.28125C9.93586 3.28125 3.375 9.65986 3.375 17.5C3.375 25.3401 9.93586 31.7188 18 31.7188C26.0641 31.7188 32.625 25.3401 32.625 17.5C32.625 9.65986 26.0641 3.28125 18 3.28125ZM25.6113 12.7347L16.1613 23.6722C16.0577 23.7922 15.9287 23.8892 15.7831 23.9565C15.6375 24.0239 15.4788 24.06 15.3176 24.0625H15.2986C15.1409 24.0624 14.985 24.0302 14.841 23.9677C14.6969 23.9053 14.568 23.8142 14.4626 23.7002L10.4126 19.3252C10.3097 19.2191 10.2297 19.0942 10.1772 18.9576C10.1248 18.821 10.1009 18.6757 10.1071 18.53C10.1132 18.3844 10.1493 18.2414 10.2131 18.1095C10.2769 17.9776 10.3671 17.8594 10.4786 17.7619C10.59 17.6644 10.7204 17.5895 10.862 17.5417C11.0037 17.4938 11.1537 17.474 11.3033 17.4834C11.453 17.4927 11.5992 17.5311 11.7333 17.5962C11.8675 17.6612 11.9869 17.7517 12.0846 17.8623L15.2691 21.3021L23.8887 11.3278C24.082 11.1105 24.3556 10.9759 24.6502 10.9531C24.9448 10.9302 25.2368 11.021 25.4631 11.2059C25.6894 11.3907 25.8319 11.6547 25.8596 11.9407C25.8873 12.2268 25.7981 12.512 25.6113 12.7347Z" fill="#13DEB9"></path>
+        </svg>
+        <p class="fs-3 fw-semibold" style="margin: 0; flex-grow: 1;">Bisa menambahkan Materi dan Tugas Lorem Ipsum dolor sit ahmet</p>
+    </div>
+    <div class="mb-4 d-flex">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 36 35" fill="none" style="flex-shrink: 0; margin-right: 10px;">
+            <path d="M18 3.28125C9.93586 3.28125 3.375 9.65986 3.375 17.5C3.375 25.3401 9.93586 31.7188 18 31.7188C26.0641 31.7188 32.625 25.3401 32.625 17.5C32.625 9.65986 26.0641 3.28125 18 3.28125ZM25.6113 12.7347L16.1613 23.6722C16.0577 23.7922 15.9287 23.8892 15.7831 23.9565C15.6375 24.0239 15.4788 24.06 15.3176 24.0625H15.2986C15.1409 24.0624 14.985 24.0302 14.841 23.9677C14.6969 23.9053 14.568 23.8142 14.4626 23.7002L10.4126 19.3252C10.3097 19.2191 10.2297 19.0942 10.1772 18.9576C10.1248 18.821 10.1009 18.6757 10.1071 18.53C10.1132 18.3844 10.1493 18.2414 10.2131 18.1095C10.2769 17.9776 10.3671 17.8594 10.4786 17.7619C10.59 17.6644 10.7204 17.5895 10.862 17.5417C11.0037 17.4938 11.1537 17.474 11.3033 17.4834C11.453 17.4927 11.5992 17.5311 11.7333 17.5962C11.8675 17.6612 11.9869 17.7517 12.0846 17.8623L15.2691 21.3021L23.8887 11.3278C24.082 11.1105 24.3556 10.9759 24.6502 10.9531C24.9448 10.9302 25.2368 11.021 25.4631 11.2059C25.6894 11.3907 25.8319 11.6547 25.8596 11.9407C25.8873 12.2268 25.7981 12.512 25.6113 12.7347Z" fill="#13DEB9"></path>
+        </svg>
+        <p class="fs-3 fw-semibold" style="margin: 0; flex-grow: 1;">Bisa menambahkan Materi dan Tugas Lorem Ipsum dolor sit ahmet</p>
+    </div>
+</div>
+</div>
+</div>
+@empty
+
+@endforelse
+<div class="mb-3">
+    <button class="btn btn-primary w-100">
+        Lihat Selengkapnya
+    </button>
+</div>
 </div> --}}
 
 @endsection
@@ -311,37 +303,7 @@
 <script src="{{ asset('admin_assets/dist/js/apex-chart/apex.area.init.js') }}"></script>
 <script src="{{ asset('admin_assets/dist/js/dashboard.js') }}"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-
 {{-- <script>
-        $(document).ready(function() {
-            $(".owl-carousel").owlCarousel({
-                items: 4, // Number of items to display at once
-                margin: 30, // Margin between items
-                loop: true,
-                nav: true,
-                dots: true,
-                autoplay: true,
-                autoplayTimeout: 5000,
-                autoplayHoverPause: true,
-                responsive: {
-                    0: {
-                        items: 1 // Number of items to display at once on small screens
-                    },
-                    600: {
-                        items: 2 // Number of items to display at once on medium screens
-                    },
-                    1000: {
-                        items: 4 // Number of items to display at once on large screens
-                    }
-                }
-            });
-        });
-    </script> --}}
-
-<script>
     var options = {
         series: [{
             name: "Desktops"
@@ -409,31 +371,31 @@
     var chart = new ApexCharts(document.querySelector("#chart-eLearning"), options);
     chart.render();
 
-</script>
+</script> --}}
 
 <script>
     $(document).ready(function() {
-        $(".counter-carousel").owlCarousel({
-            loop: true
-            , margin: 10
-            , nav: true
-            , autoplay: true
-            , autoplayTimeout: 5000, // Interval antara pergeseran
-            autoplaySpeed: 1000, // Kecepatan animasi pergeseran (1000 = 1 detik)
+        $(".custom-carousel").owlCarousel({
+            loop: true,
+            margin: 15,
+            nav: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
             responsive: {
                 0: {
                     items: 1
-                }
-                , 600: {
+                },
+                600: {
                     items: 2
-                }
-                , 1000: {
+                },
+                1000: {
                     items: 4
                 }
             }
         });
     });
-
 </script>
+
 
 @endsection

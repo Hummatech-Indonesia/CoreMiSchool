@@ -22,7 +22,7 @@ return new class extends Migration
             $table->enum('status', [AttendanceEnum::PRESENT->value, AttendanceEnum::PERMIT->value, AttendanceEnum::SICK->value, AttendanceEnum::ALPHA->value]);
             $table->text('proof')->nullable();
             $table->time('checkin');
-            $table->time('checkout');
+            $table->time('checkout')->nullable();
             $table->timestamps();
         });
     }

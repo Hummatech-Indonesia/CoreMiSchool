@@ -8,7 +8,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item text-primary">
-                                Siswa - X RPL 1
+                                Siswa - {{ $classroom->name }}
                             </li>
                         </ol>
                     </nav>
@@ -39,13 +39,13 @@
                 <div class="col-12 col-md-2 mb-3">
                     <div class="form-group">
                         <label for="startDate" class="mb-2">Tanggal Awal</label>
-                        <input type="date" class="form-control" id="startDate">
+                        <input type="date" class="form-control" id="startDate" name="start">
                     </div>
                 </div>
                 <div class="col-12 col-md-2 mb-3">
                     <div class="form-group">
                         <label for="endDate" class="mb-2">Tanggal Akhir</label>
-                        <input type="date" class="form-control" id="endDate">
+                        <input type="date" class="form-control" id="endDate" name="end">
                     </div>
                 </div>
                 <div class="col-12 col-md-8 mb-3 d-flex align-items-end justify-content-end">
