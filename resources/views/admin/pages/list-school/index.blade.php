@@ -113,25 +113,9 @@
                         </div>
                     @endforelse
                 </div>
-                <nav aria-label="..." class="mb-3">
-                    <ul class="pagination justify-content-center mb-0 mt-4">
-                        <li class="page-item disabled">
-                            <a href="#" class="page-link" tabindex="-1" aria-disabled="true">Previous</a>
-                        </li>
-                        <li class="page-item active" aria-current="page">
-                            <a href="#" class="page-link">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a href="#" class="page-link">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a href="#" class="page-link">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a href="#" class="page-link">Next</a>
-                        </li>
-                    </ul>
-                </nav>
+                <div class="pagination justify-content-end mb-0">
+                    <x-paginate-component :paginator="$schools" />
+                </div>
             </div>
         </div>
 
@@ -212,25 +196,9 @@
                     <div class="text-center">Belum ada sekolah yang aktif</div>
                     @endforelse
                 </div>
-                <nav aria-label="..." class="mb-3">
-                    <ul class="pagination justify-content-center mb-0 mt-4">
-                        <li class="page-item disabled">
-                            <a href="#" class="page-link" tabindex="-1" aria-disabled="true">Previous</a>
-                        </li>
-                        <li class="page-item active" aria-current="page">
-                            <a href="#" class="page-link">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a href="#" class="page-link">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a href="#" class="page-link">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a href="#" class="page-link">Next</a>
-                        </li>
-                    </ul>
-                </nav>
+                <div class="pagination justify-content-end mb-0">
+                    <x-paginate-component :paginator="$activeSchools" />
+                </div>
             </div>
         </div>
 
@@ -311,25 +279,9 @@
                     <div class="text-center">Belum ada sekolah yang tidak aktif</div>
                     @endforelse
                 </div>
-                <nav aria-label="..." class="mb-3">
-                    <ul class="pagination justify-content-center mb-0 mt-4">
-                        <li class="page-item disabled">
-                            <a href="#" class="page-link" tabindex="-1" aria-disabled="true">Previous</a>
-                        </li>
-                        <li class="page-item active" aria-current="page">
-                            <a href="#" class="page-link">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a href="#" class="page-link">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a href="#" class="page-link">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a href="#" class="page-link">Next</a>
-                        </li>
-                    </ul>
-                </nav>
+                <div class="pagination justify-content-end mb-0">
+                    <x-paginate-component :paginator="$nonActiveSchools" />
+                </div>
             </div>
         </div>
     </div>
