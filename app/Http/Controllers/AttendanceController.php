@@ -52,7 +52,7 @@ class AttendanceController extends Controller
             $year = $activeYear->school_year;
         }
         $schoolYear = $this->schoolYear->whereSchoolYear($year);
-        $classrooms = $this->classroom->whereSchoolYears($schoolYear->id);
+        $classrooms = $this->classroom->whereSchoolYears($schoolYear->id, $request);
         $schoolYears = $this->schoolYear->get();
         return view('school.pages.attendace.student.class', compact('schoolYears', 'classrooms'));
     }

@@ -14,9 +14,9 @@ use Illuminate\Http\Request;
 interface ClassroomInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface
 {
     public function whereInSchoolYears($schoolYears);
-    public function whereSchoolYears($schoolYears);
+    public function whereSchoolYears($schoolYears, Request $request);
     public function countClass(mixed $id): mixed;
     public function getAlumni(Request $request): mixed;
-    public function search(Request $request):mixed;
+    // public function search(Request $request):mixed;
 
 }

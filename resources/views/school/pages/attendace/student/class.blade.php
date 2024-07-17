@@ -4,7 +4,7 @@
 <div class="d-flex flex-wrap align-items-center">
     <div class="col-12 col-md-2 mb-3">
         <form action="" class="position-relative">
-            <input type="text" class="form-control product-search ps-5" id="input-search" placeholder="Cari...">
+            <input type="text" name="name" value="{{ request()->name }}" class="form-control product-search ps-5" id="input-search" placeholder="Cari...">
             <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
         </form>
     </div>
