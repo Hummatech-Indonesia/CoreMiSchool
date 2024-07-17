@@ -48,13 +48,13 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse (range(1,6) as $attendance)
+                @forelse ($attendanceTeachers as $attendance)
                     <tr>
-                        <td>1</td>
-                        <td>Guru</td>
-                        <td>07.00</td>
-                        <td>16.00</td>
-                        <td>Masuk</td>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $attendance->employee->user->name }}</td>
+                        <td>{{ $attendance->checkin }}</td>
+                        <td>{{ $attendance->checkout }}</td>
+                        <td>{{ $attendance->status == 'present' ? 'Masuk' : ($attendance->status == 'sick' ? 'Sakit' : ($attendance->status == 'alpha' ? 'Alpha' : ($attendance->status == 'permit' ? 'Izin' : ''))) }}</td>
                         <td>
                             <button type="button" class="btn mb-1 btn-light-primary text-primary btn-sm px-4 fs-2 font-medium"
                                 data-bs-toggle="modal" data-bs-target="#modal-import">
