@@ -58,6 +58,9 @@
             </div>
         @endforelse
     </div>
+    <div class="pagination justify-content-center mb-0">
+        <x-paginate-component :paginator="$levelClasses" />
+    </div>
 
     <div class="modal fade" id="modal-create" tabindex="-1" aria-labelledby="tambahTingkatanKelas" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
