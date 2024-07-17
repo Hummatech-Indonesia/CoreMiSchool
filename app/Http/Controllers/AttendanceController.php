@@ -10,6 +10,7 @@ use App\Contracts\Interfaces\ClassroomStudentInterface;
 use App\Contracts\Interfaces\ModelHasRfidInterface;
 use App\Contracts\Interfaces\SchoolYearInterface;
 use App\Contracts\Interfaces\StudentInterface;
+use App\Exports\TeacherAttendanceExport;
 use App\Http\Requests\StoreAttendanceRequest;
 use App\Http\Requests\UpdateAttendanceRequest;
 use App\Models\Attendance;
@@ -17,6 +18,7 @@ use App\Models\Classroom;
 use App\Models\School;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AttendanceController extends Controller
 {
@@ -78,9 +80,17 @@ class AttendanceController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function export_teacher()
+    {
+        return Excel::download(new TeacherAttendanceExport, 'attendance-teacher.xlsx');
+    }
+
+    /**
+     * Display a listing of the resource.
+     */
     public function studentExportPreview(Classroom $classroom, Request $request)
     {
-        $attendances = $this->attendance->whereClassroom($classroom->id);
+        $attendances = $this->attendance->classAndDate($classroom->id, $request);
         return view('school.pages.attendace.student.export', compact('attendances', 'classroom'));
     }
 

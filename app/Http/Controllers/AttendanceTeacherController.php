@@ -51,6 +51,7 @@ class AttendanceTeacherController extends Controller
         if (!$rfid) return redirect()->back()->with('error', 'Rfid belum terdaftarkan');
 
         $user = $this->modelHasRfid->whereRfid($data['rfid']);
+        if (!$user) return redirect()->back()->with('warning', 'Rfid belum terdaftar di sekolah');
         if ($user->model_type != 'App\Models\Employee') return redirect()->back()->with('error', 'Rfid bukan guru');
         if ($user->model_type == 'App\Models\Employee' && $user->model->status != RoleEnum::TEACHER->value) return redirect()->back()->with('error', 'Rfid pegawai');
         if ($user->model_type === null) return redirect()->back()->with('error', 'Rfid belum terdaftarkan ke pengguna');
