@@ -47,11 +47,11 @@ class SchoolController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $schools = $this->school->get();
-        $activeSchools = $this->school->where('1');
-        $nonActiveSchools = $this->school->where('0');
+        $schools = $this->school->search($request)->get();
+        $activeSchools = $this->school->search($request)->where('1');
+        $nonActiveSchools = $this->school->search($request)->where('0');
         return view('admin.pages.list-school.index', compact('schools', 'activeSchools', 'nonActiveSchools'));
     }
 

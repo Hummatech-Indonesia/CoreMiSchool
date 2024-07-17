@@ -10,8 +10,11 @@ use App\Contracts\Interfaces\Eloquent\StoreInterface;
 use App\Contracts\Interfaces\Eloquent\UpdateInterface;
 use App\Contracts\Interfaces\Eloquent\WhereInterface;
 use App\Contracts\Interfaces\Eloquent\WhereUserIdInterface;
+use Illuminate\Http\Request;
 
 interface SchoolInterface extends GetInterface, StoreInterface, UpdateInterface, ShowWithSlugInterface, DeleteInterface, PaginateInterface, WhereInterface, WhereUserIdInterface
 {
     public function getActiveCount(mixed $query): mixed;
+    public function search(Request $request):mixed;
+
 }

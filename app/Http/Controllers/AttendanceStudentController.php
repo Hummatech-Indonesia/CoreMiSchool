@@ -41,7 +41,7 @@ class AttendanceStudentController extends Controller
     {
         $present = $this->attendance->getSchool($school_id, 'checkin');
         $out = $this->attendance->getSchool($school_id, 'checkout');
-        return view('school.pages.test.list-attendance', compact('school_id', 'present'));
+        return view('school.pages.test.list-attendance', compact('school_id', 'present', 'out'));
     }
 
     /**

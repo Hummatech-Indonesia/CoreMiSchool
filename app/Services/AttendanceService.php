@@ -39,4 +39,16 @@ class AttendanceService
 
         return $data;
     }
+
+    public function storeByTeacher($time, $employee_id, $status): array|bool
+    {
+        $data = ([
+            'employee_id' => $employee_id,
+            'status' => $status,
+            'checkin' => $time,
+            'checkout' => '00:00:00'
+        ]);
+
+        return $data;
+    }
 }
