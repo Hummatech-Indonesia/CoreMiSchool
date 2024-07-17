@@ -21,7 +21,8 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
 
     public function store(array $data): mixed
     {
-        return $this->model->query()->create($data);
+        $attendance = $this->model->query()->create($data);
+        return $attendance;
     }
 
     public function show(mixed $id): mixed
@@ -61,7 +62,7 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
 
     public function getSchool(mixed $id, mixed $query): mixed
     {
-        return $this->model->query()->whereRelation('classroomStudent.classroom.schoolYear.school', 'id', $id)->whereNotNull($query)->latest()->get();
+        return $this->model->query()->with('classroomStudent.student.user')->whereRelation('classroomStudent.classroom.schoolYear.school', 'id', $id)->whereNotNull($query)->latest()->get();
     }
 
     public function AttendanceChart(mixed $id, mixed $year, mixed $month, mixed $status): mixed

@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\Interfaces\ClassroomStudentInterface;
-use App\Contracts\Interfaces\AttendanceRuleInterface;
-use App\Contracts\Interfaces\ModelHasRfidInterface;
-use App\Contracts\Interfaces\AttendanceInterface;
-use App\Contracts\Interfaces\StudentInterface;
-use App\Http\Requests\StoreAttendanceRequest;
-use App\Contracts\Interfaces\RfidInterface;
-use App\Services\AttendanceService;
-use App\Enums\AttendanceEnum;
 use App\Enums\RoleEnum;
+use Illuminate\Http\Request;
+use App\Enums\AttendanceEnum;
 use App\Helpers\ResponseHelper;
+use App\Services\AttendanceService;
+use App\Contracts\Interfaces\RfidInterface;
+use App\Http\Requests\StoreAttendanceRequest;
+use App\Contracts\Interfaces\StudentInterface;
+use App\Contracts\Interfaces\AttendanceInterface;
+use App\Http\Resources\StudentAttendacreResource;
+use App\Contracts\Interfaces\ModelHasRfidInterface;
+use App\Contracts\Interfaces\AttendanceRuleInterface;
+use App\Http\Resources\SingleAttendaceStudentResource;
+use App\Contracts\Interfaces\ClassroomStudentInterface;
+use App\Http\Resources\StudentPresentAttendacreResource;
 
 class AttendanceStudentController extends Controller
 {
@@ -45,6 +49,13 @@ class AttendanceStudentController extends Controller
         return view('school.pages.test.list-attendance', compact('school_id', 'present', 'out'));
     }
 
+    public function syncData(Request $request) {
+        $present = $this->attendance->getSchool($request->user()->school->id, 'checkin');
+        $out = $this->attendance->getSchool($request->user()->school->id, 'checkout');
+        $data = $this->service->syncStudentAttendacne($present, $out);
+        return ResponseHelper::jsonResponse('success', '', $data);
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -56,8 +67,9 @@ class AttendanceStudentController extends Controller
         if (!$rfid) return ResponseHelper::jsonResponse('error', 'Rfid belum terdaftarkan', null, 400);
 
         $user = $this->modelHasRfid->whereRfid($data['rfid']);
-        if ($user->model_type != 'App\Models\Student') return redirect()->back()->with('error', 'Rfid bukan siswa/i');
+        if (!$user) return ResponseHelper::jsonResponse('warning', 'Rfid belum terdaftar di sekolah', null, 404);
         if ($user->model_type === null) return ResponseHelper::jsonResponse('error', 'Data tidak tersedia', null, 400);
+        if ($user->model_type != 'App\Models\Student') return ResponseHelper::jsonResponse('error', 'Rfid bukan siswa/i', null, 400);
 
         $time = now();
         $day = strtolower($time->format('l'));
@@ -66,8 +78,7 @@ class AttendanceStudentController extends Controller
         $this->student->show($user->model_id);
 
         $rule = $this->attendanceRule->showByDay($school_id, $day, RoleEnum::STUDENT->value);
-        if (!$rule)
-            return ResponseHelper::jsonResponse('warning', 'Tidak ada jadwal absensi', null, 404);
+        if (!$rule) return ResponseHelper::jsonResponse('warning', 'Tidak ada jadwal absensi', null, 404);
 
         $presence = $this->attendance->checkPresence($user->model_id, AttendanceEnum::PRESENT->value);
 
@@ -78,7 +89,7 @@ class AttendanceStudentController extends Controller
             $classroomStudent = $this->classroomStudent->whereStudent($user->model_id);
             $data = $this->service->storeByStudent($time->format('H:i:s'), $classroomStudent->id, AttendanceEnum::PRESENT->value);
             $attendace = $this->attendance->store($data);
-            return ResponseHelper::jsonResponse('success', 'Berhasil absen', [$attendace], 200);
+            return new SingleAttendaceStudentResource($attendace);
         } else if ($clock >= $rule->checkout_start && $clock <= $rule->checkout_end) {
             if (!$presence) return ResponseHelper::jsonResponse('warning', 'Anda belum absen pagi', null, 404);
             if ($presence->checkout != '00:00:00') return ResponseHelper::jsonResponse('warning', 'Anda sudah absen pulang', null, 404);
