@@ -49,4 +49,28 @@ class AttendanceService
 
         return $data;
     }
+
+
+    public function syncStudentAttendacne($presentCollection, $outCollection)
+    {
+        $present = $presentCollection->map(function ($item) {
+            return [
+                'name' => $item->classroomStudent->student->user->name,
+                'school' => $item->classroomStudent->classroom->schoolYear->school->user->name,
+                'checkin' => $item->checkin,
+                'checkout' => $item->checkout,
+            ];
+        })->toArray();
+
+        $out = $outCollection->map(function ($item) {
+            return [
+                'name' => $item->classroomStudent->student->user->name,
+                'school' => $item->classroomStudent->classroom->schoolYear->school->user->name,
+                'checkin' => $item->checkin,
+                'checkout' => $item->checkout,
+            ];
+        })->toArray();
+
+        return $data = compact('present', 'out');
+    }
 }

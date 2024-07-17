@@ -76,6 +76,7 @@ Route::prefix('school')->group(function () {
 
     Route::get('presence-teacher', [AttendanceController::class, 'teacher'])->name('presence-teacher.index');
     Route::get('presence-teacher/export', [AttendanceController::class, 'teacherExportPreview'])->name('presence-teacher.export-preview');
+    Route::get('presence-teacher/export/excel', [AttendanceController::class, 'export_teacher'])->name('presence-teacher.export');
 
     //alumni
     Route::get('class-alumni', [ClassroomController::class, 'classroomAlumni'])->name('class-alumni.index');

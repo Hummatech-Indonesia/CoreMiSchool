@@ -113,7 +113,7 @@
             }, function(data) {
                 if (data.status === 'success') {
                     localStorage.setItem('auth_token', data.data.token);
-                    localStorage.setItem('auth_user', data.data.user);
+                    localStorage.setItem('auth_user', JSON.stringify(data.data.user));
                     window.location.href = "{{ route('list-attendance.index', '') }}/" + data.data.user.id;
                 } else {}
             });
