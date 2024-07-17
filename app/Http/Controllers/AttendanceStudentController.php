@@ -56,8 +56,8 @@ class AttendanceStudentController extends Controller
         if (!$rfid) return ResponseHelper::jsonResponse('error', 'Rfid belum terdaftarkan', null, 400);
 
         $user = $this->modelHasRfid->whereRfid($data['rfid']);
-        if ($user->model_type != 'App\Models\Student') return redirect()->back()->with('error', 'Rfid bukan siswa/i');
         if ($user->model_type === null) return ResponseHelper::jsonResponse('error', 'Data tidak tersedia', null, 400);
+        if ($user->model_type != 'App\Models\Student') return redirect()->back()->with('error', 'Rfid bukan siswa/i');
 
         $time = now();
         $day = strtolower($time->format('l'));

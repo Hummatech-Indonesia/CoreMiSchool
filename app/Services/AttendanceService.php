@@ -34,7 +34,6 @@ class AttendanceService
             'point' => '10',
             'status' => $status,
             'checkin' => $time,
-            'checkout' => '00:00:00'
         ]);
 
         return $data;
@@ -46,7 +45,6 @@ class AttendanceService
             'employee_id' => $employee_id,
             'status' => $status,
             'checkin' => $time,
-            'checkout' => '00:00:00'
         ]);
 
         return $data;
