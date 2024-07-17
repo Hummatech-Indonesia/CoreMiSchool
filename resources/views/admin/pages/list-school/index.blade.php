@@ -28,7 +28,7 @@
         <div class="d-flex flex-wrap">
             <div class="col-12 col-md-6 col-lg-4 mb-3 me-2">
                 <form action="" class="position-relative">
-                    <input type="text" class="form-control product-search px-4 ps-5" name="name" value="{{ old('name') }}" id="input-search"
+                    <input type="text" class="form-control product-search px-4 ps-5" name="name" value="{{ old('name', request('name')) }}" id="input-search"
                         placeholder="Cari...">
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                 </form>
@@ -71,15 +71,14 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right category-menu"
                                                     data-popper-placement="bottom-end">
-                                                    <a
-                                                        class="note-business badge-group-item text-danger badge-business dropdown-item position-relative category-business d-flex align-items-center">
+                                                    <buttonn type="button" data-id="{{ $school->id }}" class="note-business badge-group-item text-danger badge-business dropdown-item position-relative category-business d-flex align-items-center btn-delete">
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="me-1"
                                                             width="20" height="20" viewBox="0 0 256 256">
                                                             <path fill="currentColor"
                                                                 d="M216 48h-36V36a28 28 0 0 0-28-28h-48a28 28 0 0 0-28 28v12H40a12 12 0 0 0 0 24h4v136a20 20 0 0 0 20 20h128a20 20 0 0 0 20-20V72h4a12 12 0 0 0 0-24M100 36a4 4 0 0 1 4-4h48a4 4 0 0 1 4 4v12h-56Zm88 168H68V72h120Zm-72-100v64a12 12 0 0 1-24 0v-64a12 12 0 0 1 24 0m48 0v64a12 12 0 0 1-24 0v-64a12 12 0 0 1 24 0" />
                                                         </svg>
                                                         Hapus
-                                                    </a>
+                                                    </buttonn>
                                                 </div>
                                             </div>
                                         </div>
@@ -166,15 +165,14 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right category-menu"
                                                     data-popper-placement="bottom-end">
-                                                    <a
-                                                        class="note-business badge-group-item text-danger badge-business dropdown-item position-relative category-business d-flex align-items-center">
+                                                    <button type="button" data-id="{{ $activeSchool->id }}" class="note-business badge-group-item text-danger badge-business dropdown-item position-relative category-business d-flex align-items-center btn-delete">
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="me-1"
                                                             width="20" height="20" viewBox="0 0 256 256">
                                                             <path fill="currentColor"
                                                                 d="M216 48h-36V36a28 28 0 0 0-28-28h-48a28 28 0 0 0-28 28v12H40a12 12 0 0 0 0 24h4v136a20 20 0 0 0 20 20h128a20 20 0 0 0 20-20V72h4a12 12 0 0 0 0-24M100 36a4 4 0 0 1 4-4h48a4 4 0 0 1 4 4v12h-56Zm88 168H68V72h120Zm-72-100v64a12 12 0 0 1-24 0v-64a12 12 0 0 1 24 0m48 0v64a12 12 0 0 1-24 0v-64a12 12 0 0 1 24 0" />
                                                         </svg>
                                                         Hapus
-                                                    </a>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -251,15 +249,14 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right category-menu"
                                                     data-popper-placement="bottom-end">
-                                                    <a
-                                                        class="note-business badge-group-item text-danger badge-business dropdown-item position-relative category-business d-flex align-items-center">
+                                                    <button type="button" data-id="{{ $nonActiveSchool->id }}" class="note-business badge-group-item text-danger badge-business dropdown-item position-relative category-business d-flex align-items-center btn-delete">
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="me-1"
                                                             width="20" height="20" viewBox="0 0 256 256">
                                                             <path fill="currentColor"
                                                                 d="M216 48h-36V36a28 28 0 0 0-28-28h-48a28 28 0 0 0-28 28v12H40a12 12 0 0 0 0 24h4v136a20 20 0 0 0 20 20h128a20 20 0 0 0 20-20V72h4a12 12 0 0 0 0-24M100 36a4 4 0 0 1 4-4h48a4 4 0 0 1 4 4v12h-56Zm88 168H68V72h120Zm-72-100v64a12 12 0 0 1-24 0v-64a12 12 0 0 1 24 0m48 0v64a12 12 0 0 1-24 0v-64a12 12 0 0 1 24 0" />
                                                         </svg>
                                                         Hapus
-                                                    </a>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -324,7 +321,7 @@
     <script>
         $('.btn-delete').click(function() {
             var id = $(this).data('id');
-            $('#form-delete').attr('action', '/school/' + id);
+            $('#form-delete').attr('action', '/admin/school/' + id);
             $('#modal-delete').modal('show');
         });
 
@@ -342,17 +339,14 @@
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Get the active tab from local storage
             var activeTab = localStorage.getItem('activeTab');
-            
-            // If there is an active tab stored, activate it
+
             if (activeTab) {
                 var tabToActivate = document.querySelector('.nav-tabs a[href="' + activeTab + '"]');
                 var bootstrapTab = new bootstrap.Tab(tabToActivate);
                 bootstrapTab.show();
             }
 
-            // Store the active tab in local storage when a tab is clicked
             var tabLinks = document.querySelectorAll('a[data-bs-toggle="tab"]');
             tabLinks.forEach(function (tabLink) {
                 tabLink.addEventListener('shown.bs.tab', function (event) {
@@ -362,4 +356,4 @@
             });
         });
     </script>
-@endsection    
+@endsection

@@ -4,6 +4,7 @@ namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\SchoolInterface;
 use App\Models\School;
+use Illuminate\Http\Request;
 
 class SchoolRepository extends BaseRepository implements SchoolInterface
 {
@@ -57,5 +58,15 @@ class SchoolRepository extends BaseRepository implements SchoolInterface
     public function getActiveCount(mixed $query): mixed
     {
         return $this->model->query()->where('active', $query)->count();
+    }
+    public function search(Request $request):mixed
+    {
+        $query = $this->model->query();
+
+        $query->when($request->name, function ($query) use ($request) {
+            $query->whereRelation('user', 'name', 'LIKE', '%' . $request->name . '%');
+        });
+
+        return $query;
     }
 }
