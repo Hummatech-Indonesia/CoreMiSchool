@@ -99,7 +99,7 @@ class AttendanceController extends Controller
      */
     public function teacherExportPreview(Request $request)
     {
-        $attendances = $this->attendance->whereSchool(auth()->user()->school->id, $request);
+        $attendances = $this->attendanceTeacher->whereSchool(auth()->user()->school->id, $request);
         $schoolYears = $this->schoolYear->get();
         return view('school.pages.attendace.teacher.export', compact('attendances', 'schoolYears'));
     }

@@ -166,14 +166,12 @@ Route::get('menu-test', function () {
 Route::get('user-list', function () {return view('school.pages.test.user-list');})->name('user-list.index');
 
 // list absensi
-Route::get('list-attendance/{school_id}', [AttendanceStudentController::class, 'index'])->name('list-attendance.index');
-Route::post('add-teacher-list-attendance/{school_id}', [AttendanceTeacherController::class, 'store'])->name('add-teacher-list-attendance.index');
+Route::get('list-attendance', [AttendanceStudentController::class, 'index'])->name('list-attendance.index');
+Route::post('add-teacher-list-attendance', [AttendanceTeacherController::class, 'store'])->name('add-teacher-list-attendance.index');
 
 // list absensi guru
-Route::get('list-attendance-teacher/{school_id}', [AttendanceTeacherController::class, 'index'])->name('list-attendance-teacher.index');
-
+Route::get('list-attendance-teacher', [AttendanceTeacherController::class, 'index'])->name('list-attendance-teacher.index');
 Route::get('attendance-test', [AttendanceMasterController::class, 'index'])->name('attendance-test.index');
-
 Route::get('attendance-test-teacher', [AttendanceMasterController::class, 'index_teacher'])->name('attendance-test-teacher.index');
 Route::post('attendance-test-teacher', [AttendanceMasterController::class, 'check_teacher'])->name('attendance-test-teacher.check');
 

@@ -92,7 +92,7 @@ class AttendanceStudentController extends Controller
             return new SingleAttendaceStudentResource($attendace);
         } else if ($clock >= $rule->checkout_start && $clock <= $rule->checkout_end) {
             if (!$presence) return ResponseHelper::jsonResponse('warning', 'Anda belum absen pagi', null, 404);
-            if ($presence->checkout != '00:00:00') return ResponseHelper::jsonResponse('warning', 'Anda sudah absen pulang', null, 404);
+            if ($presence->checkout != null) return ResponseHelper::jsonResponse('warning', 'Anda sudah absen pulang', null, 404);
 
             $this->attendance->updateCheckOut($user->model_id, ['checkout' => $clock]);
             $attendace = $this->attendance->getStudent($user->model_id);

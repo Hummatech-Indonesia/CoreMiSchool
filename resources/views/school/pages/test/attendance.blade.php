@@ -7,6 +7,8 @@
     <title>Absensi | Test</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <style>
         .full-height {
             height: calc(100vh - 10rem);
@@ -108,14 +110,47 @@
         });
 
         function masterKeyCheck() {
-            $.post("{{ route('attendance-test.check') }}", {
-                rfid: $('#rfid-input').val()
-            }, function(data) {
-                if (data.status === 'success') {
-                    localStorage.setItem('auth_token', data.data.token);
-                    localStorage.setItem('auth_user', JSON.stringify(data.data.user));
-                    window.location.href = "{{ route('list-attendance.index', '') }}/" + data.data.user.id;
-                } else {}
+
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('attendance-test.check') }}",
+                data: {
+                    rfid: $('#rfid-input').val()
+                },
+                success: function(data) {
+                    if (data.status === 'success') {
+                        localStorage.setItem('auth_token', data.data.token);
+                        localStorage.setItem('auth_user', JSON.stringify(data.data.user));
+                        window.location.href = "{{ route('list-attendance.index', '') }}/" + data.data.user.id;
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: data.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: data.message,
+                            showConfirmButton: true
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    let errorObj = JSON.parse(xhr.responseText);
+                    Swal.fire({
+                        position: "center",
+                        icon: errorObj.status,
+                        title: errorObj.message,
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                },
+                complete: function() {
+                    Swal.hideLoading();
+                }
             });
         }
     </script>

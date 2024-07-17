@@ -89,19 +89,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (range(1, 5) as $item)
+                        @forelse ($attendances as $attendance)
                             <tr>
-                                <td>{{ $item }}</td>
-                                <td> Prasetyo Budi Nugroho</td>
-                                <td>07.00</td>
-                                <td> 16.00</td>
-                                <td>1</td>
-                                <td>10</td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $attendance->employee->user->name }}</td>
+                                <td>{{ $attendance->checkin }}</td>
+                                <td>{{ $attendance->checkout }}</td>
                                 <td>
-                                    <span class="mb-1 badge font-medium bg-light-info text-info">Masuk</span>
+                                    <span class="mb-1 badge font-medium bg-light-info text-info">{{ $attendance->status == 'present' ? 'Masuk' : ($attendance->status == 'sick' ? 'Sakit' : ($attendance->status == 'alpha' ? 'Alpha' : ($attendance->status == 'permit' ? 'Izin' : ''))) }}</span>
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                        @endforelse
                     </tbody>
                 </table>
             </div>
