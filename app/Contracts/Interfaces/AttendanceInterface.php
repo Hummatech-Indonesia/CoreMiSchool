@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 interface AttendanceInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface
 {
     public function AttendanceChart(mixed $id, mixed $year, mixed $month, mixed $status) : mixed;
+    public function getSchool(mixed $id, mixed $query): mixed;
     public function checkPresence(mixed $id, mixed $status) : mixed;
     public function updateCheckOut(mixed $id, array $data) : mixed;
     public function whereSchool(mixed $id, Request $request): mixed;
