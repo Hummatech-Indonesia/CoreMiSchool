@@ -242,6 +242,10 @@
                         showConfirmButton: false,
                         timer: 1000
                     });
+
+                    if (xhr.status == 401) {
+                        window.location.href = "{{ route('attendance-test.index') }}";
+                    }
                 }
             });
         }
