@@ -12,12 +12,12 @@
                 </div>
 
                 <div class="d-flex gap-2">
-                    <select name="year" class="form-select w-auto" id="search-status" style="width: 150px;">
-                        {{-- <option value="">Select Year</option> --}}
+                    {{-- <select name="year" class="form-select w-auto" id="search-status" style="width: 150px;">
+                        <option value="">Select Year</option>
                         @foreach($schoolYears as $year)
                             <option value="{{ $year->school_year }}">{{ $year->school_year }}</option>
                         @endforeach
-                    </select>
+                    </select> --}}
 
                     <div class="form-group">
                         <input type="date" name="created_at" class="form-control" value="{{ request('created_at') }}">
@@ -29,7 +29,7 @@
         </div>
         <div class="col-lg-6 mb-3">
             <div class="d-flex gap-2 justify-content-end">
-                <a href="{{ route('presence-student.export-preview') }}" type="button" class="btn mb-1 btn-success">
+                <a href="{{ route('presence-student.export-preview', $classroom->id) }}" type="button" class="btn mb-1 btn-success">
                     Export
                 </a>
             </div>

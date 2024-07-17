@@ -9,30 +9,32 @@
         </form>
     </div>
     <div class="col-12 col-md-2 mb-3 ms-3">
-        <select id="status-activity" class="form-select">
-            <option value="">Tahun Ajaran</option>
-            <option value="">2023/2024</option>
-        </select>
+        <form action="" class="d-flex">
+            <select id="status-activity" name="year" class="form-select">
+                @foreach ($schoolYears as $schoolYear)
+                    <option value="{{ $schoolYear->school_year }}">{{ $schoolYear->school_year }}</option>
+                @endforeach
+            </select>
+            <button type="submit" class="ms-2 btn btn-primary">Cari</button>
+        </form>
     </div>
 </div>
 
 <div class="row">
-    @forelse (range(1,5) as $classroom)
+    @forelse ($classrooms as $classroom)
         <div class="col-lg-3">
             <div class="card">
                 <div class="position-relative">
                     <img class="card-img-top img-responsive"src="{{ asset('admin_assets/dist/images/backgrounds/student.png') }}"
                         alt="Card image cap">
                 </div>
-
-
                 <div class="card-body">
                     <div class="d-flex no-block align-items-center">
-                        <h3 class="fs-4">XI RPL 1</h3>
-                        <span class="ms-auto fs-4">2023/2024</span>
+                        <h3 class="fs-4">{{ $classroom->name }}</h3>
+                        <span class="ms-auto fs-4">{{ $classroom->schoolYear->school_year }}</span>
                     </div>
                     <div class="d-flex mb-4">
-                        <span class="fs-4">Farah</span>
+                        <span class="fs-4">{{ $classroom->employee->user->name }}</span>
                         <div class="ms-auto">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -45,11 +47,11 @@
                                 <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
                             </svg>
                             <span class="ms-2 fs-4">
-                                20
+                                {{ $classroom->classroomStudents->count() }}
                             </span>
                         </div>
                     </div>
-                    <a href="{{ route('presence-student.index') }}}" type="button"
+                    <a href="{{ route('presence-student.index', $classroom->id) }}}" type="button"
                         class="btn waves-effect waves-light btn-primary w-100">Masuk Kelas</a>
                 </div>
             </div>

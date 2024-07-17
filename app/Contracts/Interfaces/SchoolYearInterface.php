@@ -16,4 +16,6 @@ use Illuminate\Http\Request;
 interface SchoolYearInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface, WhereInterface
 {
     public function active(mixed $id): mixed;
-    public function whereSchool(mixed $id, Request $request): mixed;}
+    public function whereSchool(mixed $id, Request $request): mixed;
+    public function whereSchoolYear(mixed $data): mixed;
+}
