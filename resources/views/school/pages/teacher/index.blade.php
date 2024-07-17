@@ -26,7 +26,7 @@
                     </div>
                 </form>
                 <div class="d-flex gap-2">
-                    <form action="/teacher" class="d-flex gap-1">
+                    <form class="d-flex gap-1">
                         <select name="status" class="form-select" id="search-status">
                             <option value="0">Aktif</option>
                             <option value="1">Tidak Aktif</option>
