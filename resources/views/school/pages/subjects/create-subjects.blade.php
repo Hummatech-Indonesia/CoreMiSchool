@@ -80,8 +80,8 @@
                     @csrf
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="">Mata Pelajaran</label>
-                            <input type="text" name="name" class="form-control">
+                            <label for="">Mata Pelajaran <span class="text-danger">*</span></label>
+                            <input type="text" name="name" class="form-control" placeholder="Masukan nama mata pelajaran">
                         </div>
                         <div class="mb-3">
                             <label for="">Kagamaan</label>
@@ -91,7 +91,7 @@
                         </div>
                         <div class="mb-3">
                             <select id="keagamaan" name="religion_id" class="form-select form-select mb-3">
-                                <option value="">Pilih agama</option>
+                                <option value="">Pilih agama <span class="text-danger">*</span></option>
                                 @foreach ($religions as $religion)
                                     <option value="{{ $religion->id }}">{{ $religion->name }}</option>
                                 @endforeach
@@ -118,8 +118,8 @@
                     @csrf
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="">Nama</label>
-                            <input type="text" id="name-edit" name="name" class="form-control">
+                            <label for="">Mata Pelajaran <span class="text-danger">*</span></label>
+                            <input type="text" id="name-edit" name="name" class="form-control" placeholder="Masukan nama mata pelajaran">>
                         </div>
                         <div class="mb-3">
                             <label for="">Kagamaan</label>
@@ -129,7 +129,7 @@
                         </div>
                         <div class="mb-3">
                             <select id="religion-edit" name="religion_id" class="form-select form-select mb-3">
-                                <option value="">Pilih agama</option>
+                                <option value="">Pilih agama <span class="text-danger">*</span></option>
                                 @foreach ($religions as $religion)
                                     <option value="{{ $religion->id }}">{{ $religion->name }}</option>
                                 @endforeach
