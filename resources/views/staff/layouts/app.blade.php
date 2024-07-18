@@ -39,14 +39,14 @@
     <div class="page-wrapper" id="main-wrapper" data-theme="blue_theme" data-layout="vertical" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Sidebar Start -->
-        @include('admin.layouts.sidebar')
+        @include('staff.layouts.sidebar')
         <!--  Sidebar End -->
                 <!-- SignIn modal content -->
 
         <!--  Main wrapper -->
         <div class="body-wrapper">
             <!--  Header Start -->
-            @include('admin.layouts.header')
+            @include('staff.layouts.header')
             <!--  Header End -->
             <div class="px-4" style="padding-top: calc(70px + 15px);">
                 <!--  Owl carousel -->
