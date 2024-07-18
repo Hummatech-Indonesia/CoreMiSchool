@@ -2,11 +2,8 @@
     <!-- Sidebar scroll-->
     <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-            <a href="index-2.html" class="text-nowrap logo-img">
-                <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/dark-logo.svg"
-                    class="dark-logo" width="180" alt="" />
-                <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/light-logo.svg"
-                    class="light-logo" width="180" alt="" />
+            <a href="/" class="text-nowrap logo-img">
+                <img src="{{ asset('assets/images/logo/logo-miscool.png') }}" width="200px" alt="">
             </a>
             <div class="close-btn d-lg-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
                 <i class="ti ti-x fs-8 text-muted"></i>
@@ -26,181 +23,79 @@
                 <!-- Dashboard -->
                 <!-- =================== -->
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="index-2.html" aria-expanded="false">
+                    <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false">
                         <span>
-                            <i class="ti ti-aperture"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-aperture">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                                <path d="M3.6 15h10.55" />
+                                <path d="M6.551 4.938l3.26 10.034" />
+                                <path d="M17.032 4.636l-8.535 6.201" />
+                                <path d="M20.559 14.51l-8.535 -6.201" />
+                                <path d="M12.257 20.916l3.261 -10.034" />
+                            </svg>
                         </span>
-                        <span class="hide-menu">Modern</span>
+                        <span class="hide-menu">Beranda</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="index2.html" aria-expanded="false">
+                <li class="sidebar-item ">
+                    <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false">
                         <span>
-                            <i class="ti ti-shopping-cart"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 16">
+                                <g fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M6 8V1h1v6.117L8.743 6.07a.5.5 0 0 1 .514 0L11 7.117V1h1v7a.5.5 0 0 1-.757.429L9 7.083L6.757 8.43A.5.5 0 0 1 6 8" />
+                                    <path
+                                        d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2" />
+                                    <path
+                                        d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1z" />
+                                </g>
+                            </svg>
                         </span>
-                        <span class="hide-menu">eCommerce</span>
+                        <span class="hide-menu">Jurnal</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="index3.html" aria-expanded="false">
+
+                <li class="sidebar-item ">
+                    <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false">
                         <span>
-                            <i class="ti ti-currency-dollar"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256">
+                                <path fill="currentColor"
+                                    d="M201.57 54.46a104 104 0 1 0 0 147.08a103.4 103.4 0 0 0 0-147.08M65.75 65.77a87.63 87.63 0 0 1 53.66-25.31A87.3 87.3 0 0 1 94 94.06a87.42 87.42 0 0 1-53.62 25.35a87.58 87.58 0 0 1 25.37-53.64m-25.42 69.71a103.3 103.3 0 0 0 65-30.11a103.24 103.24 0 0 0 30.13-65a87.78 87.78 0 0 1 80.18 80.14a104 104 0 0 0-95.16 95.1a87.78 87.78 0 0 1-80.18-80.14Zm149.92 54.75a87.7 87.7 0 0 1-53.66 25.31a88 88 0 0 1 79-78.95a87.58 87.58 0 0 1-25.34 53.64" />
+                            </svg>
                         </span>
-                        <span class="hide-menu">NFT</span>
+                        <span class="hide-menu">Ekstrakulikuler</span>
                     </a>
                 </li>
+
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="index4.html" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-cpu"></i>
-                        </span>
-                        <span class="hide-menu">Crypto</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="index5.html" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-activity-heartbeat"></i>
-                        </span>
-                        <span class="hide-menu">General</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="index6.html" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-playlist"></i>
-                        </span>
-                        <span class="hide-menu">Music</span>
-                    </a>
-                </li>
-                <!-- ============================= -->
-                <!-- Apps -->
-                <!-- ============================= -->
-                <li class="nav-small-cap">
-                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">Apps</span>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="app-contact2.html" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-list-details"></i>
-                        </span>
-                        <span class="hide-menu">Contact List</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="app-invoice.html" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-file-text"></i>
-                        </span>
-                        <span class="hide-menu">Invoice</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="page-user-profile.html" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-user-circle"></i>
-                        </span>
-                        <span class="hide-menu">User Profile</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link has-arrow" href="#" aria-expanded="false">
+                    <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
                         <span class="d-flex">
-                            <i class="ti ti-chart-donut-3"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2"
+                                    d="M2 6s1.5-2 5-2s5 2 5 2v14s-1.5-1-5-1s-5 1-5 1zm10 0s1.5-2 5-2s5 2 5 2v14s-1.5-1-5-1s-5 1-5 1z" />
+                            </svg>
                         </span>
-                        <span class="hide-menu">Blog</span>
+                        <span class="hide-menu">E - Learning</span>
                     </a>
                     <ul aria-expanded="false" class="collapse first-level">
                         <li class="sidebar-item">
-                            <a href="blog-posts.html" class="sidebar-link">
+                            <a href="javascript:void(0)" class="sidebar-link">
                                 <div class="round-16 d-flex align-items-center justify-content-center">
                                     <i class="ti ti-circle"></i>
                                 </div>
-                                <span class="hide-menu">Posts</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="blog-detail.html" class="sidebar-link">
-                                <div class="round-16 d-flex align-items-center justify-content-center">
-                                    <i class="ti ti-circle"></i>
-                                </div>
-                                <span class="hide-menu">Details</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link has-arrow" href="#" aria-expanded="false">
-                        <span class="d-flex">
-                            <i class="ti ti-basket"></i>
-                        </span>
-                        <span class="hide-menu">Ecommerce</span>
-                    </a>
-                    <ul aria-expanded="false" class="collapse first-level">
-                        <li class="sidebar-item">
-                            <a href="eco-shop.html" class="sidebar-link">
-                                <div class="round-16 d-flex align-items-center justify-content-center">
-                                    <i class="ti ti-circle"></i>
-                                </div>
-                                <span class="hide-menu">Shop</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="eco-shop-detail.html" class="sidebar-link">
-                                <div class="round-16 d-flex align-items-center justify-content-center">
-                                    <i class="ti ti-circle"></i>
-                                </div>
-                                <span class="hide-menu">Details</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="eco-product-list.html" class="sidebar-link">
-                                <div class="round-16 d-flex align-items-center justify-content-center">
-                                    <i class="ti ti-circle"></i>
-                                </div>
-                                <span class="hide-menu">List</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="eco-checkout.html" class="sidebar-link">
-                                <div class="round-16 d-flex align-items-center justify-content-center">
-                                    <i class="ti ti-circle"></i>
-                                </div>
-                                <span class="hide-menu">Checkout</span>
+                                <span class="hide-menu">E - Learning</span>
                             </a>
                         </li>
                     </ul>
                 </li>
             </ul>
-            <div class="unlimited-access hide-menu bg-light-primary position-relative my-7 rounded">
-                <div class="d-flex">
-                    <div class="unlimited-access-title">
-                        <h6 class="fw-semibold fs-4 mb-6 text-dark w-85">Unlimited Access</h6>
-                        <button class="btn btn-primary fs-2 fw-semibold lh-sm">Signup</button>
-                    </div>
-                    <div class="unlimited-access-img">
-                        <img src="../../dist/images/backgrounds/rocket.png" alt="" class="img-fluid">
-                    </div>
-                </div>
-            </div>
         </nav>
-        <div class="fixed-profile p-3 bg-light-secondary rounded sidebar-ad mt-3">
-            <div class="hstack gap-3">
-                <div class="john-img">
-                    <img src="../../dist/images/profile/user-1.jpg" class="rounded-circle" width="40"
-                        height="40" alt="">
-                </div>
-                <div class="john-title">
-                    <h6 class="mb-0 fs-4 fw-semibold">Mathew</h6>
-                    <span class="fs-2 text-dark">Designer</span>
-                </div>
-                <button class="border-0 bg-transparent text-primary ms-auto" tabindex="0" type="button"
-                    aria-label="logout" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="logout">
-                    <i class="ti ti-power fs-6"></i>
-                </button>
-            </div>
-        </div>
+
         <!-- End Sidebar navigation -->
     </div>
     <!-- End Sidebar scroll-->
