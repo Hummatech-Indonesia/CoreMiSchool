@@ -74,7 +74,7 @@ class ClassroomController extends Controller
     public function show(Classroom $classroom, Request $request)
     {
         $schoolYears = $this->schoolYear->whereSchool(auth()->user()->school->id, $request);
-        $students = $this->student->doesntHaveClassroom();
+        $students = $this->student->doesntHaveClassroom($request);
         $classroomStudents = $this->classroomStudent->where($classroom->id, $request);
         return view('school.pages.class.detail-class', compact('classroom', 'schoolYears', 'students', 'classroomStudents'));
     }

@@ -198,9 +198,11 @@
                         tableBody += '</tr>';
                     });
                     $('#checkout-table tbody').html(tableBody);
+                    $('#rfid-input').val('')
                 },
                 error: function(xhr, status, error) {
                     console.error(xhr.responseText);
+                    $('#rfid-input').val('')
                 }
             });
 
@@ -235,6 +237,8 @@
                             timer: 1000
                         });
                     }
+
+                    $('#rfid-input').val('')
                 },
                 error: function(xhr, status, error) {
                     let errorObj = JSON.parse(xhr.responseText);
@@ -249,6 +253,8 @@
                     if (xhr.status == 401) {
                         window.location.href = "{{ route('attendance-test.index') }}";
                     }
+
+                    $('#rfid-input').val('')
                 }
             });
         }

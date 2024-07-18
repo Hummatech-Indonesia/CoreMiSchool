@@ -47,9 +47,9 @@ class ClassroomStudentRepository extends BaseRepository implements ClassroomStud
     {
         return $this->model->query()
         ->where('classroom_id', $data)
-        ->when($request->name, function ($query) use ($request) {
+        ->when($request->search, function ($query) use ($request) {
             $query->whereHas('student.user', function ($query) use ($request) {
-                $query->where('name', 'LIKE', '%' . $request->name . '%');
+                $query->where('name', 'LIKE', '%' . $request->search . '%');
             });
         })
         ->paginate(10);
