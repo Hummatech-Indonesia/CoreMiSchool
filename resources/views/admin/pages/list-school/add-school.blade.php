@@ -70,7 +70,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <h6>Nama Sekolah</h6>
-                                            <input type="text" name="name" class="form-control mb-3" value="{{ old('name') }}">
+                                            <input type="text" name="name" class="form-control mb-3" value="{{ old('name') }}" placeholder="Masukkan nama sekolah">
                                             @error('name')
                                                 <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -79,7 +79,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <h6>NPSN</h6>
-                                            <input type="number" name="npsn" class="form-control mb-3" value="{{ old('npsn') }}">
+                                            <input type="number" name="npsn" class="form-control mb-3" value="{{ old('npsn') }}" placeholder="Masukkan NPSN sekolah">
                                             @error('npsn')
                                                 <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -88,7 +88,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <h6>Email</h6>
-                                            <input type="email" name="email" class="form-control mb-3" value="{{ old('email') }}">
+                                            <input type="email" name="email" class="form-control mb-3" value="{{ old('email') }}" placeholder="Masukkan email sekolah">
                                             @error('email')
                                                 <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -97,7 +97,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <h6>Nomor Telepon</h6>
-                                            <input type="number" name="phone_number" class="form-control mb-3" value="{{ old('phone_number') }}">
+                                            <input type="number" name="phone_number" class="form-control mb-3" value="{{ old('phone_number') }}" placeholder="Masukkan nomor telepon sekolah">
                                             @error('phone_number')
                                                 <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -177,7 +177,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <h6>Kode Pos</h6>
-                                            <input type="number" name="pas_code" value="{{ old('pas_code') }}" class="form-control mb-3">
+                                            <input type="number" name="pas_code" value="{{ old('pas_code') }}" class="form-control mb-3" placeholder="Masukkan kode pos sekolah">
                                             @error('pas_code')
                                                 <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -186,7 +186,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <h6>Alamat</h6>
-                                            <textarea name="address" class="form-control mb-4" rows="3">{{ old('address') }}</textarea>
+                                            <textarea name="address" class="form-control mb-4" rows="3" placeholder="Masukkan alamat sekolah">{{ old('address') }}</textarea>
                                             @error('address')
                                                 <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -253,7 +253,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <h6>Kepala Sekolah</h6>
-                                            <input type="text" name="head_school" value="{{ old('head_school') }}" class="form-control mb-3">
+                                            <input type="text" name="head_school" value="{{ old('head_school') }}" class="form-control mb-3" placeholder="Masukkan nama kepala sekolah">
                                             @error('head_school')
                                                 <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -262,7 +262,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <h6>Web (Opsional)</h6>
-                                            <input type="text" name="website_school" value="{{ old('website_school') }}" class="form-control mb-3">
+                                            <input type="text" name="website_school" value="{{ old('website_school') }}" class="form-control mb-3" placeholder="Masukkan website sekolah">
                                             @error('website_school')
                                                 <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -283,7 +283,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <h6>NIP Kepala Sekolah</h6>
-                                            <input type="number" name="nip" value="{{ old('nip') }}" class="form-control mb-3">
+                                            <input type="number" name="nip" value="{{ old('nip') }}" class="form-control mb-3" placeholder="Masukkan NIP Kepala Sekolah">
                                             @error('nip')
                                                 <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -292,7 +292,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <h6>Deskripsi (Opsional)</h6>
-                                            <textarea name="description" class="form-control mb-4" rows="3">{{ old('description') }}</textarea>
+                                            <textarea name="description" class="form-control mb-4" rows="3" placeholder="Masukkan deskripsi sekolah">{{ old('description') }}</textarea>
                                             @error('description')
                                                 <strong class="text-danger">{{ $message }}</strong>
                                             @enderror

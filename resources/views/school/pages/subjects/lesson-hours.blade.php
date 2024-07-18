@@ -88,7 +88,7 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-lg-6 mb-3">
-                                <label for="">Jam Mulai</label>
+                                <label for="">Jam Mulai<span class="text-danger">*</span></label>
                                 <input type="time" name="start" class="form-control @error('end') is-invalid @enderror"
                                     value="{{ $lastHour->start }}">
                                 @error('start')
@@ -98,7 +98,7 @@
                                 @enderror
                             </div>
                             <div class="col-lg-6 mb-3">
-                                <label for="">Jam Berakhir</label>
+                                <label for="">Jam Berakhir<span class="text-danger">*</span></label>
                                 <input type="time" name="end"
                                     class="form-control @error('end') is-invalid @enderror">
                                 @error('end')
@@ -108,7 +108,7 @@
                                 @enderror
                             </div>
                             <div class="col-lg-12 mb-3">
-                                <label for="">Jam Ke-</label>
+                                <label for="">Jam Ke-<span class="text-danger">*</span></label>
                                 <input type="number" name="name"
                                     class="form-control @error('name') is-invalid @enderror" value="{{ $jam + 1 }}">
                                 @error('name')
@@ -146,9 +146,8 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-lg-6 mb-3">
-                                <label for="">Jam Mulai</label>
-                                <input type="time" name="start"
-                                    class="form-control @error('start') is-invalid @enderror" id="start">
+                                <label for="">Jam Mulai<span class="text-danger">*</span></label>
+                                <input type="time" name="start" class="form-control @error('start') is-invalid @enderror" id="start">
                                 @error('start')
                                     <div class="invalid-feedback">
                                         <small>{{ $message }}</small>
@@ -156,9 +155,8 @@
                                 @enderror
                             </div>
                             <div class="col-lg-6 mb-3">
-                                <label for="">Jam Berakhir</label>
-                                <input type="time" name="end"
-                                    class="form-control @error('end') is-invalid @enderror" id="end">
+                                <label for="">Jam Berakhir<span class="text-danger">*</span></label>
+                                <input type="time" name="end" class="form-control @error('end') is-invalid @enderror" id="end">
                                 @error('end')
                                     <div class="invalid-feedback">
                                         <small>{{ $message }}</small>
@@ -166,7 +164,7 @@
                                 @enderror
                             </div>
                             <div class="col-lg-12 mb-3">
-                                <label for="">Jam Ke-</label>
+                                <label for="">Jam Ke-<span class="text-danger">*</span></label>
                                 <input type="number" name="name"
                                     class="form-control @error('name') is-active @enderror" id="name">
                                 @error('name')
@@ -185,7 +183,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
+                        <button type="submit" class="btn btn-rounded btn-primary">Simpan</button>
                     </div>
                 </form>
             </div>
