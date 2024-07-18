@@ -96,7 +96,7 @@
                         <div class="mb-3">
                             <div class="form-group">
                                 <label for="" class="mb-2">Nama Kelas</label>
-                                <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                                <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Masukkan nama kelas">
                                 @error('name')
                                     <strong class="text-danger">{{ $message }}</strong>
                                 @enderror
@@ -179,8 +179,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right category-menu"
                                     data-popper-placement="bottom-end">
-                                    <button type="button"
-                                        class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-edit"
+                                    <button type="button" class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-edit"
                                         data-id="{{ $classroom->id }}" data-name="{{ $classroom->name }}"
                                         data-employee_id="{{ $classroom->employee_id }}"
                                         data-level_class_id="{{ $classroom->level_class_id }}"
@@ -188,10 +187,10 @@
                                         Edit
                                     </button>
 
-                                    <a class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-delete"
+                                    <button class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-delete"
                                         data-id="{{ $classroom->id }}">
                                         Hapus
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -321,18 +320,18 @@
 
 @section('script')
     <script>
-        $('#employee_add').select2({
-            dropdownParent: $('#modal-add')
-        });
-        $('#school_year_add').select2({
-            dropdownParent: $('#modal-add')
-        });
-        $('#employee-edit').select2({
-            dropdownParent: $('#modal-edit')
-        });
-        $('#school_year-edit').select2({
-            dropdownParent: $('#modal-edit')
-        });
+        // $('#employee_add').select2({
+        //     dropdownParent: $('#modal-add')
+        // });
+        // $('#school_year_add').select2({
+        //     dropdownParent: $('#modal-add')
+        // });
+        // $('#employee-edit').select2({
+        //     dropdownParent: $('#modal-edit')
+        // });
+        // $('#school_year-edit').select2({
+        //     dropdownParent: $('#modal-edit')
+        // });
 
         $('.btn-edit').click(function() {
             var id = $(this).data('id');

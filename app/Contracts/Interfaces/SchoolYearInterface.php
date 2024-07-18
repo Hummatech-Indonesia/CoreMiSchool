@@ -18,4 +18,5 @@ interface SchoolYearInterface extends GetInterface, StoreInterface, UpdateInterf
     public function active(mixed $id): mixed;
     public function whereSchool(mixed $id, Request $request): mixed;
     public function whereSchoolYear(mixed $data): mixed;
+    public function whereActive() : mixed;
 }
