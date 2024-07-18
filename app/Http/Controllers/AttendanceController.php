@@ -10,6 +10,8 @@ use App\Contracts\Interfaces\ClassroomStudentInterface;
 use App\Contracts\Interfaces\ModelHasRfidInterface;
 use App\Contracts\Interfaces\SchoolYearInterface;
 use App\Contracts\Interfaces\StudentInterface;
+use App\Exports\AttendanceExport;
+use App\Exports\StudentAttendanceExport;
 use App\Exports\TeacherAttendanceExport;
 use App\Http\Requests\StoreAttendanceRequest;
 use App\Http\Requests\UpdateAttendanceRequest;
@@ -83,6 +85,10 @@ class AttendanceController extends Controller
     public function export_teacher(Request $request)
     {
         return Excel::download(new TeacherAttendanceExport($request, $this->attendanceTeacher), 'attendance-teacher.xlsx');
+    }
+    public function export_student(Classroom $classroom, Request $request)
+    {
+        return Excel::download(new StudentAttendanceExport($classroom->id, $request->start, $request->end), 'Kehadiran-siswa-'.$classroom->name.'.xlsx');
     }
 
     /**
