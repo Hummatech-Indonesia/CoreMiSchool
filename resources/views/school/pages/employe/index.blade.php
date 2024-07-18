@@ -30,7 +30,7 @@
                 </select>
             </div>
             <div>
-                <button type="submit" class="btn btn-primary btn-md">filter</button>
+                <button type="submit" class="btn btn-primary btn-md">Filter</button>
             </div>
         </form>
     </div>
@@ -47,14 +47,13 @@
 </div>
 
 <div class="table-responsive rounded-2">
-    <table class="table border text-nowrap customize-table mb-0 align-middle text-center">
+    <table class="table border text-nowrap customize-table mb-0 align-middle ">
         <thead>
             <tr>
                 <th>No</th>
-                <th>Pegawai</th>
-                <th>Email</th>
-                <th>Kelamin</th>
+                <th class="text-start">Nama Pegawai</th>
                 <th>Status</th>
+                <th>Email</th>
                 <th>NIP</th>
                 <th>RFID</th>
                 <th>Aksi</th>
@@ -65,12 +64,21 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>
-                    <img src="{{ $staff->image ? asset('storage/' . $staff->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}" class="rounded-circle me-2 user-profile" style="object-fit: cover" width="30" height="30" alt="{{ $staff->user->name }}" />
-                    {{ $staff->user->name }}
+                    <div class="d-flex align-items-center">
+                        <img src="{{ $staff->image ? asset('storage/' . $staff->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}" class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40" height="40" alt="{{ $staff->user->name }}" />
+                        <div class="ms-3">
+                            <h6 class="fs-4 fw-semibold mb-0 text-start">{{ $staff->user->name }}</h6>
+                            <span class="fw-normal">{{ $staff->gender == 'male' ? 'Laki Laki' : 'Perempuan' }}</span>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <span class="badge {{ $staff->active == '1' ? 'bg-light-primary text-primary' : 'bg-light-danger text-danger' }} fw-semibold fs-2">
+                        {{ $staff->active == '1' ? 'Aktif' : 'Tidak Aktif' }}
+                    </span>
+
                 </td>
                 <td>{{ $staff->user->email }}</td>
-                <td>{{ $staff->gender == 'male' ? 'Laki Laki' : 'Perempuan' }}</td>
-                <td>{{ $staff->active == '1' ? 'Aktif' : 'Tidak Aktif' }}</td>
                 <td>{{ $staff->nip }}</td>
                 <td>{{ $staff->modelHasRfid ? $staff->modelHasRfid->rfid : '' }}
                     <button type="submit" class="btn btn-rounded btn-light-warning text-warning ms-2 btn-rfid" data-id="{{ $staff->id }}" data-role="staff" data-rfid="{{ $staff->modelHasRfid ? $staff->modelHasRfid->rfid : '' }}" data-name="{{ $staff->user->name }}">
@@ -168,7 +176,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-rounded btn-light-danger text-danger" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn mb-1 waves-effect waves-light btn-light" data-bs-dismiss="modal">Tutup</button>
                     <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
                 </div>
             </form>
@@ -321,7 +329,7 @@
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-end mt-3 mx-4">
-                                    <button type="button" class="btn mb-1 waves-effect waves-light btn-outline-primary prev-step">Kembali</button>
+                                    <button type="button" class="btn mb-1 waves-effect waves-light btn-light prev-step">Kembali</button>
                                     <button type="submit" class="btn mb-1 waves-effect waves-light btn-rounded btn-primary ms-3">Simpan</button>
                                 </div>
                             </section>
@@ -481,7 +489,7 @@
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-end mt-3 mx-4">
-                                    <button type="button" class="btn mb-1 waves-effect waves-light btn-outline-primary prev-step">Kembali</button>
+                                    <button type="button" class="btn mb-1 waves-effect waves-light btn-light prev-step">Kembali</button>
                                     <button type="submit" class="btn mb-1 waves-effect waves-light btn-rounded btn-primary ms-3">Simpan</button>
                                 </div>
                             </section>
@@ -524,8 +532,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-rounded btn-light-danger text-danger" data-bs-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
+                    <button type="button" class="btn mb-1 waves-effect waves-light btn-light" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-rounded btn-primary">Simpan</button>
                 </div>
             </form>
         </div>
@@ -601,7 +609,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-rounded btn-light-danger text-danger" data-bs-dismiss="modal">Tutup</button>
+                <button type="button" class="btn mb-1 waves-effect waves-light btn-light" data-bs-dismiss="modal">Tutup</button>
             </div>
         </div>
     </div>

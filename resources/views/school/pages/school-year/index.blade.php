@@ -82,7 +82,7 @@
                     @csrf
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="">Tahun Ajaran</label>
+                            <label for="">Tahun Ajaran <span class="text-danger" style="font-size: larger;">*</span></label>
                             <input type="text" name="school_year" class="form-control" placeholder="Masukkan tahun ajaran">
                             @error('school_year')
                                 <strong class="text-danger">{{ $message }}</strong>
@@ -119,7 +119,7 @@
                     @csrf
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="">Tahun Ajaran</label>
+                            <label for="">Tahun Ajaran <span class="text-danger" style="font-size: larger;">*</span></label>
                             <input type="text" id="year-update" name="school_year" class="form-control" placeholder="Masukkan tahun ajaran">
                         </div>
                         <div class="mb-3">

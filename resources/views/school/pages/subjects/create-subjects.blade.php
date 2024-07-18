@@ -119,7 +119,7 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="">Mata Pelajaran <span class="text-danger">*</span></label>
-                            <input type="text" id="name-edit" name="name" class="form-control" placeholder="Masukan nama mata pelajaran">>
+                            <input type="text" id="name-edit" name="name" class="form-control" placeholder="Masukan nama mata pelajaran">
                         </div>
                         <div class="mb-3">
                             <label for="">Kagamaan</label>
