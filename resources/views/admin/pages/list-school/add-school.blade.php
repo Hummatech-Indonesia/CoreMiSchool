@@ -129,7 +129,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <h6>Provinsi</h6>
-                                            <select class="form-select mr-sm-2 mb-4" id="inlineFormCustomSelect" name="province_id">
+                                            <select class="form-select mr-sm-2 mb-4 province" id="inlineFormCustomSelect" name="province_id">
                                                 <option selected>Pilih provinsi</option>
                                                 @forelse ($provinces as $province)
                                                     <option value="{{ $province->id }}">{{ $province->name }}</option>
@@ -145,13 +145,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <h6>Kota/Kabupaten</h6>
-                                            <select class="form-select mr-sm-2 mb-4" id="inlineFormCustomSelect" name="city_id">
+                                            <select class="form-select mr-sm-2 mb-4 city" id="inlineFormCustomSelect" name="city_id">
                                                 <option selected>Pilih kota/kabupaten</option>
-                                                @forelse ($cities as $city)
-                                                    <option value="{{ $city->id }}">{{ $city->name }}</option>
-                                                @empty
-                                                    <option disabled>Data tidak ditemukan</option>
-                                                @endforelse
                                             </select>
                                             @error('city_id')
                                                 <strong class="text-danger">{{ $message }}</strong>
@@ -345,6 +340,32 @@
 @endsection
 
 @section('script')
+    <script>
+        
+        $('.province').change(function() {
+            var id = $(this).val();
+            getCities(id);
+        })
+
+        function getCities(id) {
+            $.ajax({
+                url: "/admin/get-cities",
+                method: "GET",
+                data: {
+                    province_id: id
+                },
+                dataType: "JSON",
+                beforeSend: function() {
+                    $('.city').html('')
+                },
+                success: function(response) {
+                    $.each(response.data, function(index, data) {
+                        $('.city').append('<option value="' + data.id + '">' + data.name + '</option>')
+                    });
+                }
+            })
+        }
+    </script>
     <script>
         $(document).ready(function() {
             var currentSection = 0;

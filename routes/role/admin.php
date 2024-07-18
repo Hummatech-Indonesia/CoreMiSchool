@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\CityController;
 use App\Http\Controllers\RfidController;
 use App\Http\Controllers\SchoolController;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,8 @@ Route::prefix('admin')->group(function(){
     Route::delete('school/{school}', [SchoolController::class, 'destroy'])->name('school-admin.delete');
     Route::patch('school/{school}/enable', [SchoolController::class, 'active'])->name('school-admin.active');
     Route::patch('school/{school}/disable', [SchoolController::class, 'nonactive'])->name('school-admin.nonactive');
+
+    Route::get('get-cities', [CityController::class, 'show'])->name('city.show');
 
     Route::get('faq', function () {
         return view('admin.pages.faq.faq');
