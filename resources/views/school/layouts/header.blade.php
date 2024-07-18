@@ -16,10 +16,10 @@
             </div>
         </ul>
         <div class="d-block d-lg-none">
-            <img src="{{ asset('assets/images/logo/logo-miscool.png') }}"
-                class="dark-logo" width="180" alt="" />
-            <img src="{{ asset('assets/images/logo/logo-miscool.png') }}"
-                class="light-logo" width="180" alt="" />
+            <img src="{{ asset('assets/images/logo/logo-miscool.png') }}" class="dark-logo" width="180"
+                alt="" />
+            <img src="{{ asset('assets/images/logo/logo-miscool.png') }}" class="light-logo" width="180"
+                alt="" />
         </div>
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
@@ -41,9 +41,9 @@
                             aria-expanded="false">
                             <div class="d-flex align-items-center">
                                 <div class="">
-                                    <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}"
+                                    <img src="{{ Auth::user()->image ? asset('storage/' . Auth::user()->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}"
                                         class="rounded-circle user-profile" style="object-fit: cover" width="35"
-                                        height="35" alt="" />
+                                        height="35" alt="User Profile Image" />
                                 </div>
                             </div>
                         </a>
@@ -51,25 +51,23 @@
                             aria-labelledby="drop1">
                             <div class="profile-dropdown position-relative" data-simplebar>
                                 <div class="py-3 px-7 pb-0">
-                                    <h5 class="mb-0 fs-5 fw-semibold">Admin Profile</h5>
+                                    <h5 class="mb-0 fs-5 fw-semibold">{{ auth()->user()->name }} Profile</h5>
                                 </div>
                                 <div class="d-flex align-items-center py-9 mx-7 border-bottom">
-                                    <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}"
+                                    <img src="{{ Auth::user()->image ? asset('storage/' . Auth::user()->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}"
                                         class="rounded-circle user-profile" style="object-fit: cover" width="80"
                                         height="80" alt="" />
                                     <div class="ms-3">
-                                        <h5 class="mb-1 fs-3 username">Ardi</h5>
-                                        <span
-                                            class="mb-1 d-block text-dark role">Ardii</span>
+                                        <h5 class="mb-1 fs-3 username">{{ auth()->user()->name }}</h5>
+                                        <span class="mb-1 d-block text-dark role">{{ auth()->user()->name }}</span>
                                         <p class="mb-0 d-flex text-dark align-items-center gap-2 email">
                                             <i class="ti ti-mail fs-4"></i>
-                                            Ardi@gmail.com
+                                            {{ auth()->user()->email }}
                                         </p>
                                     </div>
                                 </div>
                                 <div class="message-body">
-                                    <a class="py-8 px-7 mt-8 d-flex align-items-center"
-                                        href="#">
+                                    <a class="py-8 px-7 mt-8 d-flex align-items-center" href="#">
                                         <span
                                             class="d-flex align-items-center justify-content-center bg-light rounded-1 p-6">
                                             <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-account.svg"
@@ -85,8 +83,9 @@
                                     @csrf
                                     <div class="d-grid py-4 px-7 pt-8">
                                         <button class="btn btn-outline-primary" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                      document.getElementById('logout-form').submit();">Log Out</button>
+                                            onclick="event.preventDefault();
+                                                      document.getElementById('logout-form').submit();">Log
+                                            Out</button>
                                     </div>
                                 </form>
                             </div>
@@ -101,34 +100,30 @@
             <button class="navbar-toggler p-0 border-0" type="button" id="drop1" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 <div class="">
-                    <img src="#"
-                        class="rounded-circle user-profile" style="object-fit: cover" width="35" height="35"
-                        alt="" />
+                    <img src="{{ Auth::user()->image ? asset('storage/' . Auth::user()->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}" class="rounded-circle user-profile" style="object-fit: cover" width="35"
+                        height="35" alt="" />
                 </div>
             </button>
             <div class="dropdown-menu content-dd dropdown-menu-end dropdown-menu-animate-down" style="width: 320px;"
                 aria-labelledby="drop1">
                 <div class="profile-dropdown position-relative" data-simplebar>
                     <div class="py-3 px-7 pb-0">
-                        <h5 class="mb-0 fs-5 fw-semibold">Admin Profile</h5>
+                        <h5 class="mb-0 fs-5 fw-semibold">{{ auth()->user()->name }} Profile</h5>
                     </div>
                     <div class="d-flex align-items-center py-9 mx-7 border-bottom">
-                        <img src="#"
-                            class="rounded-circle user-profile" style="object-fit: cover" width="80"
-                            height="80" alt="" />
+                        <img src="{{ Auth::user()->image ? asset('storage/' . Auth::user()->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}" class="rounded-circle user-profile" style="object-fit: cover"
+                            width="80" height="80" alt="" />
                         <div class="ms-3">
-                            <h5 class="mb-1 fs-3 username">Ardii</h5>
-                            <span
-                                class="mb-1 d-block text-dark role">Ardii</span>
+                            <h5 class="mb-1 fs-3 username">{{ auth()->user()->name }}</h5>
+                            <span class="mb-1 d-block text-dark role">{{ auth()->user()->name }}</span>
                             <p class="mb-0 d-flex text-dark align-items-center gap-2 email">
                                 <i class="ti ti-mail fs-4"></i>
-                                ardi@gmail.com
+                                {{ auth()->user()->email }}
                             </p>
                         </div>
                     </div>
                     <div class="message-body">
-                        <a class="py-8 px-7 mt-8 d-flex align-items-center"
-                            href="#">
+                        <a class="py-8 px-7 mt-8 d-flex align-items-center" href="#">
                             <span class="d-flex align-items-center justify-content-center bg-light rounded-1 p-6">
                                 <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-account.svg"
                                     alt="" width="24" height="24">
@@ -139,10 +134,13 @@
                             </div>
                         </a>
                     </div>
-                    <form action="#" method="POST">
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
                         @csrf
                         <div class="d-grid py-4 px-7 pt-8">
-                            <button class="btn btn-outline-primary" id="logoutBtn">Log Out</button>
+                            <button class="btn btn-outline-primary" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                          document.getElementById('logout-form').submit();">Log
+                                Out</button>
                         </div>
                     </form>
                 </div>
