@@ -94,7 +94,7 @@ class SchoolController extends Controller
         $classrooms = 0;
         // Loop untuk menghitung jumlah classrooms dari setiap schoolYear
         foreach ($schoolYears as $schoolYear) {
-            $classrooms += $this->classroom->whereSchoolYears($schoolYear->school_year)->count();
+            $classrooms += $this->classroom->whereSchoolYears($schoolYear->school_year, $request)->count();
         }
 
         return view('admin.pages.list-school.detail', compact('school', 'teachers', 'classrooms', 'rfids', 'activeRfids', 'nonactiveRfids', 'schoolYear'));
