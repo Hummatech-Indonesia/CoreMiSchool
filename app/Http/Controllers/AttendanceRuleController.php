@@ -53,6 +53,7 @@ class AttendanceRuleController extends Controller
      */
     public function store(StoreAttendanceRuleRequest $request, string $day, string $role)
     {
+
         $data = $this->service->storeOrUpdate($request, $day, $role);
         $this->attendanceRule->store($data);
         return redirect()->back()->with('success', 'Berhasil menambahkan waktu absen');

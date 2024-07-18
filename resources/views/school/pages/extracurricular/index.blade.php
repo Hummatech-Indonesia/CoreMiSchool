@@ -7,6 +7,27 @@
             z-index: 1050;
             transform: translate3d(0, 0, 0);
         }
+
+        .select2-selection__rendered  {
+            width: 100%;
+            height: 36px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .select2-selection {
+            height: fit-content!important;
+            color: #555 !important;
+            background-color: #fff !important;
+            background-image: none !important;
+            border: 1px solid #ccc !important;
+            border-radius: 4px !important;
+        }
     </style>
 @endsection
 
@@ -15,7 +36,8 @@
         <div class="d-flex flex-wrap">
             <div class="col-12 col-md-6 col-lg-12 mb-3 me-3">
                 <form class="position-relative" action="/school/extracurricular">
-                    <input type="text" name="name" class="form-control product-search ps-5" id="input-search" placeholder="Cari..." value="{{ old('name', request()->name) }}">
+                    <input type="text" name="name" class="form-control product-search ps-5" id="input-search"
+                        placeholder="Cari..." value="{{ old('name', request()->name) }}">
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                 </form>
             </div>
@@ -44,7 +66,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="" class="mb-2 pt-3">Pengajar</label>
-                                <select id="pengajar" class="form-control" name="employee_id">
+                                <select id="pengajar" class="select2" name="employee_id" style="width: 100%">
                                     <option value="">Pilih Pengajar</option>
                                     @forelse ($employees as $employee)
                                         <option value="{{ $employee->id }}">{{ $employee->user->name }}</option>
@@ -86,7 +108,8 @@
                             {{ $extracurricular->employee->user->name }}
                         </td>
                         <td>
-                            {{ $extracurricular->extracurricularStudents ? $extracurricular->extracurricularStudents->count() : '0' }} Siswa
+                            {{ $extracurricular->extracurricularStudents ? $extracurricular->extracurricularStudents->count() : '0' }}
+                            Siswa
                         </td>
                         <td>
                             <div class="category-selector btn-group">
@@ -103,15 +126,20 @@
                                 <div class="dropdown-menu dropdown-menu-right category-menu"
                                     style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate3d(0px, 23.2px, 0px);"
                                     data-popper-placement="bottom-end">
-                                    <button class="btn-detail note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3"
-                                        data-id="{{ $extracurricular->id }}" data-name="{{ $extracurricular->name }}" data-employee="{{ $extracurricular->employee->user->name }}">
+                                    <button
+                                        class="btn-detail note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3"
+                                        data-id="{{ $extracurricular->id }}" data-name="{{ $extracurricular->name }}"
+                                        data-employee="{{ $extracurricular->employee->user->name }}">
                                         <i class="fs-4 ti ti-eye"></i>Detail
                                     </button>
-                                    <button class="btn-edit note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3"
-                                        data-id="{{ $extracurricular->id }}" data-name="{{ $extracurricular->name }}" data-employee="{{ $extracurricular->employee_id }}">
+                                    <button
+                                        class="btn-edit note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3"
+                                        data-id="{{ $extracurricular->id }}" data-name="{{ $extracurricular->name }}"
+                                        data-employee="{{ $extracurricular->employee_id }}">
                                         <i class="fs-4 ti ti-edit"></i>Edit
                                     </button>
-                                    <button class="btn-delete note-business badge-group-item badge-business dropdown-item text-danger position-relative category-business d-flex align-items-center gap-3"
+                                    <button
+                                        class="btn-delete note-business badge-group-item badge-business dropdown-item text-danger position-relative category-business d-flex align-items-center gap-3"
                                         data-id="{{ $extracurricular->id }}">
                                         <i class="fs-4 ti ti-trash"></i>Hapus
                                     </button>
@@ -148,7 +176,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="" class="mb-2 pt-3">Pengajar</label>
-                                <select id="employee-update" class="form-control" name="employee_id">
+                                <select id="employee-update" class="form-control form-select select2" name="employee_id">
                                     <option value="">Pilih Pengajar</option>
                                     @forelse ($employees as $employee)
                                         <option value="{{ $employee->id }}">{{ $employee->user->name }}</option>
@@ -206,6 +234,9 @@
 @section('script')
     <script>
         $(document).ready(function() {
+            $('.select2').select2({
+                dropdownParent: $('#modal-create')
+            });
             $('.category-dropdown').on('show.bs.dropdown', function() {
                 $(this).closest('.table-responsive').css('overflow', 'visible');
             });
@@ -221,13 +252,13 @@
             var employee = $(this).data('employee');
             $('#name-update').val(name);
             $('#employee-update').val(employee).trigger('change');
-            $('#form-update').attr('action', `{{route('extraa.update', '')}}/${id}`);
+            $('#form-update').attr('action', `{{ route('extraa.update', '') }}/${id}`);
             $('#modal-edit').modal('show');
         });
 
         $('.btn-delete').on('click', function() {
             var id = $(this).data('id');
-            $('#form-delete').attr('action', `{{route('extraa.delete', '')}}/${id}`);
+            $('#form-delete').attr('action', `{{ route('extraa.delete', '') }}/${id}`);
             $('#modal-delete').modal('show');
         });
 
