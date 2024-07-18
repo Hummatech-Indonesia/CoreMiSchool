@@ -53,30 +53,33 @@
 @endsection
 
 @section('content')
-    <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
-        <div class="d-flex flex-wrap">
-            <div class="col-12 col-md-6 col-lg-5 mb-3 me-3">
-                <form action="/school/class" class="position-relative">
-                    <input type="text" class="form-control product-search ps-5" name="name" value="{{ old('name', request()->name) }}" id="input-search" placeholder="Cari...">
-                    <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
-                </form>
-            </div>
-            <form action="" method="GET">
-                <div class="col-12 col-md-6 col-lg-12 mb-3 d-flex">
-                    <select id="status-activity" name="filter" class="form-select">
-                        <option value="terbaru">Terbaru</option>
-                        <option value="terlama">Terlama</option>
-                    </select>
-                    <button type="submit" class="btn btn-primary ms-3">Filter</button>
-                </div>
+<div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+    <div class="d-flex flex-wrap align-items-center">
+        <div class="col-12 col-md-6 col-lg-4 mb-3 me-3">
+            <form action="/school/class" class="position-relative">
+                <input type="text" class="form-control product-search ps-5" name="name" value="{{ old('name', request()->name) }}" id="input-search" placeholder="Cari...">
+                <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
             </form>
-
         </div>
-        <button type="button" class="btn mb-1 btn-primary px-4 fs-4 font-medium" data-bs-toggle="modal"
-            data-bs-target="#modal-add">
-            Tambah Kelas
-        </button>
+        <div class="col-12 col-md-6 col-lg-7 mb-3 d-flex align-items-center">
+            <form method="GET" class="d-flex">
+                <select id="status-activity" name="status" class="form-select me-2">
+                    <option value="terbaru">Terbaru</option>
+                    <option value="terlama">Terlama</option>
+                </select>
+                <select id="status-activity" name="school_year" class="form-select me-2">
+                    @foreach ($schoolYears as $schoolYear)
+                        <option value="{{ $schoolYear->school_year }}">{{ $schoolYear->school_year }}</option>
+                    @endforeach
+                </select>
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </form>
+        </div>
     </div>
+    <button type="button" class="btn mb-1 btn-primary px-4 fs-4 font-medium" data-bs-toggle="modal" data-bs-target="#modal-add">
+        Tambah Kelas
+    </button>
+</div>
 
     <!-- modal tambah -->
     <div class="modal fade" id="modal-add" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
