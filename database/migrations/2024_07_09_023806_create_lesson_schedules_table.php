@@ -21,7 +21,7 @@ return new class extends Migration
             $this->addForeignIdTo($table, 'lesson_hour_end', 'lesson_hours');
             $this->addForeignId($table, 'teacher_maple_id');
             $this->addForeignId($table, 'school_year_id');
-            $table->enum('day', [DayEnum::MONDAY->value, DayEnum::TUESDAY->value, DayEnum::WEDNESDAY->value, DayEnum::THRUSDAY->value, DayEnum::FRIDAY->value, DayEnum::SATURDAY->value, DayEnum::SUNDAY->value]);
+            $table->enum('day', [DayEnum::MONDAY->value, DayEnum::TUESDAY->value, DayEnum::WEDNESDAY->value, DayEnum::THURSDAY->value, DayEnum::FRIDAY->value, DayEnum::SATURDAY->value, DayEnum::SUNDAY->value]);
             $table->timestamps();
         });
     }
