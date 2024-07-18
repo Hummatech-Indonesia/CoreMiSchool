@@ -72,19 +72,19 @@
                 <div class="tab-pane active" id="siswa-senin" role="tabpanel">
                     <div class="row">
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Masuk Dimulai</label>
+                            <label for="" class="mb-2">Waktu Masuk Dimulai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Masuk Selesai</label>
+                            <label for="" class="mb-2">Waktu Masuk Selesai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Pulang Dimulai</label>
+                            <label for="" class="mb-2">Waktu Pulang Dimulai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Pulang Selesai</label>
+                            <label for="" class="mb-2">Waktu Pulang Selesai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="mt-4">
@@ -101,19 +101,19 @@
                 <div class="tab-pane" id="guru-senin" role="tabpanel">
                     <div class="row">
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Masuk Dimulai</label>
+                            <label for="" class="mb-2">Waktu Masuk Dimulai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Masuk Selesai</label>
+                            <label for="" class="mb-2">Waktu Masuk Selesai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Pulang Dimulai</label>
+                            <label for="" class="mb-2">Waktu Pulang Dimulai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Pulang Selesai</label>
+                            <label for="" class="mb-2">Waktu Pulang Selesai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="mt-4">
@@ -150,19 +150,19 @@
                 <div class="tab-pane active" id="siswa-selasa" role="tabpanel">
                     <div class="row">
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Masuk Dimulai</label>
+                            <label for="" class="mb-2">Waktu Masuk Dimulai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Masuk Selesai</label>
+                            <label for="" class="mb-2">Waktu Masuk Selesai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Pulang Dimulai</label>
+                            <label for="" class="mb-2">Waktu Pulang Dimulai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Pulang Selesai</label>
+                            <label for="" class="mb-2">Waktu Pulang Selesai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="mt-4">
@@ -179,19 +179,19 @@
                 <div class="tab-pane" id="guru-selasa" role="tabpanel">
                     <div class="row">
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Masuk Dimulai</label>
+                            <label for="" class="mb-2">Waktu Masuk Dimulai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Masuk Selesai</label>
+                            <label for="" class="mb-2">Waktu Masuk Selesai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Pulang Dimulai</label>
+                            <label for="" class="mb-2">Waktu Pulang Dimulai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Pulang Selesai</label>
+                            <label for="" class="mb-2">Waktu Pulang Selesai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="mt-4">
@@ -228,19 +228,19 @@
                 <div class="tab-pane active" id="siswa-rabu" role="tabpanel">
                     <div class="row">
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Masuk Dimulai</label>
+                            <label for="" class="mb-2">Waktu Masuk Dimulai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Masuk Selesai</label>
+                            <label for="" class="mb-2">Waktu Masuk Selesai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Pulang Dimulai</label>
+                            <label for="" class="mb-2">Waktu Pulang Dimulai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Pulang Selesai</label>
+                            <label for="" class="mb-2">Waktu Pulang Selesai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="mt-4">
@@ -257,19 +257,19 @@
                 <div class="tab-pane" id="guru-rabu" role="tabpanel">
                     <div class="row">
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Masuk Dimulai</label>
+                            <label for="" class="mb-2">Waktu Masuk Dimulai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Masuk Selesai</label>
+                            <label for="" class="mb-2">Waktu Masuk Selesai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Pulang Dimulai</label>
+                            <label for="" class="mb-2">Waktu Pulang Dimulai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Pulang Selesai</label>
+                            <label for="" class="mb-2">Waktu Pulang Selesai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="mt-4">
@@ -306,19 +306,19 @@
                 <div class="tab-pane active" id="siswa-kamis" role="tabpanel">
                     <div class="row">
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Masuk Dimulai</label>
+                            <label for="" class="mb-2">Waktu Masuk Dimulai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Masuk Selesai</label>
+                            <label for="" class="mb-2">Waktu Masuk Selesai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Pulang Dimulai</label>
+                            <label for="" class="mb-2">Waktu Pulang Dimulai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Pulang Selesai</label>
+                            <label for="" class="mb-2">Waktu Pulang Selesai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="mt-4">
@@ -335,19 +335,19 @@
                 <div class="tab-pane" id="guru-kamis" role="tabpanel">
                     <div class="row">
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Masuk Dimulai</label>
+                            <label for="" class="mb-2">Waktu Masuk Dimulai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Masuk Selesai</label>
+                            <label for="" class="mb-2">Waktu Masuk Selesai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Pulang Dimulai</label>
+                            <label for="" class="mb-2">Waktu Pulang Dimulai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Pulang Selesai</label>
+                            <label for="" class="mb-2">Waktu Pulang Selesai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="mt-4">
@@ -384,19 +384,19 @@
                 <div class="tab-pane active" id="siswa-jumat" role="tabpanel">
                     <div class="row">
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Masuk Dimulai</label>
+                            <label for="" class="mb-2">Waktu Masuk Dimulai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Masuk Selesai</label>
+                            <label for="" class="mb-2">Waktu Masuk Selesai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Pulang Dimulai</label>
+                            <label for="" class="mb-2">Waktu Pulang Dimulai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Pulang Selesai</label>
+                            <label for="" class="mb-2">Waktu Pulang Selesai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="mt-4">
@@ -413,19 +413,19 @@
                 <div class="tab-pane" id="guru-jumat" role="tabpanel">
                     <div class="row">
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Masuk Dimulai</label>
+                            <label for="" class="mb-2">Waktu Masuk Dimulai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Masuk Selesai</label>
+                            <label for="" class="mb-2">Waktu Masuk Selesai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Pulang Dimulai</label>
+                            <label for="" class="mb-2">Waktu Pulang Dimulai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Pulang Selesai</label>
+                            <label for="" class="mb-2">Waktu Pulang Selesai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="mt-4">
@@ -463,19 +463,19 @@
                 <div class="tab-pane active" id="siswa-sabtu" role="tabpanel">
                     <div class="row">
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Masuk Dimulai</label>
+                            <label for="" class="mb-2">Waktu Masuk Dimulai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Masuk Selesai</label>
+                            <label for="" class="mb-2">Waktu Masuk Selesai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Pulang Dimulai</label>
+                            <label for="" class="mb-2">Waktu Pulang Dimulai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Pulang Selesai</label>
+                            <label for="" class="mb-2">Waktu Pulang Selesai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="mt-4">
@@ -492,19 +492,19 @@
                 <div class="tab-pane" id="guru-sabtu" role="tabpanel">
                     <div class="row">
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Masuk Dimulai</label>
+                            <label for="" class="mb-2">Waktu Masuk Dimulai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Masuk Selesai</label>
+                            <label for="" class="mb-2">Waktu Masuk Selesai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Pulang Dimulai</label>
+                            <label for="" class="mb-2">Waktu Pulang Dimulai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Pulang Selesai</label>
+                            <label for="" class="mb-2">Waktu Pulang Selesai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="mt-4">
@@ -541,19 +541,19 @@
                 <div class="tab-pane active" id="siswa-minggu" role="tabpanel">
                     <div class="row">
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Masuk Dimulai</label>
+                            <label for="" class="mb-2">Waktu Masuk Dimulai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Masuk Selesai</label>
+                            <label for="" class="mb-2">Waktu Masuk Selesai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Pulang Dimulai</label>
+                            <label for="" class="mb-2">Waktu Pulang Dimulai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Pulang Selesai</label>
+                            <label for="" class="mb-2">Waktu Pulang Selesai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="mt-4">
@@ -570,19 +570,19 @@
                 <div class="tab-pane" id="guru-minggu" role="tabpanel">
                     <div class="row">
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Masuk Dimulai</label>
+                            <label for="" class="mb-2">Waktu Masuk Dimulai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Masuk Selesai</label>
+                            <label for="" class="mb-2">Waktu Masuk Selesai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Pulang Dimulai</label>
+                            <label for="" class="mb-2">Waktu Pulang Dimulai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="" class="mb-2">Waktu Pulang Selesai</label>
+                            <label for="" class="mb-2">Waktu Pulang Selesai<span class="text-danger">*</span></label>
                             <input type="time" class="form-control">
                         </div>
                         <div class="mt-4">

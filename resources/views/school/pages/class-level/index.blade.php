@@ -102,8 +102,8 @@
                     @csrf
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="">Nama Tingkatan Kelas</label>
-                            <input type="text" name="name" id="name-update" class="form-control">
+                            <label for="">Tingkatan Kelas</label>
+                            <input type="text" name="name" id="name-update" class="form-control" placeholder="Masukkan tingkatan kelas">
                             @error('name')
                                 <strong class="text-danger">{{ $message }}</strong>
                             @enderror

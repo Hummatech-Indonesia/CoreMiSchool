@@ -90,13 +90,13 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <div class="form-group">
-                            <label for="" class="mb-2">Surat izin siswa</label>
+                            <label for="" class="mb-2">Surat izin siswa<span class="text-d">*</span></label>
                             <form class="mt-3">
                                 <input class="form-control" type="file" id="formFile">
                             </form>
                         </div>
                         <div class="form-group">
-                            <label for="" class="mb-2 pt-3">Status</label>
+                            <label for="" class="mb-2 pt-3">Status<span class="text-d">*</span></label>
                             <select id="pengajar" class="form-select">
                                 <option value="1">izin</option>
                                 <option value="2">sakit</option>
@@ -122,12 +122,12 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <div class="form-group">
-                            <label for="" class="mb-2">Surat izin siswa</label>
+                            <label for="" class="mb-2">Surat izin siswa<span class="text-d">*</span></label>
                             <input class="form-control mb-2" type="file" id="formFile">
                             <small class="text-info">Download</small>
                         </div>
                         <div class="form-group">
-                            <label for="" class="mb-2 pt-3">Status</label>
+                            <label for="" class="mb-2 pt-3">Status<span class="text-d">*</span></label>
                             <select id="pengajar" class="form-select">
                                 <option value="1">izin</option>
                                 <option value="2">sakit</option>
