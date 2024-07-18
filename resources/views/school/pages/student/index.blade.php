@@ -54,8 +54,7 @@
                                 <div class="form-floating mb-3">
                                     <div class="form-group">
                                         <label for="name" class="mb-2">Nama <span class="text-danger" style="font-size: larger;">*</span></label>
-                                        <input type="text" name="name" class="form-control mb-3"
-                                            value="{{ old('name') }}">
+                                        <input type="text" name="name" class="form-control mb-3" placeholder="Masukkan nama" value="{{ old('name') }}">
                                         @error('name')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -66,8 +65,7 @@
                                 <div class="form-floating mb-3">
                                     <div class="form-group">
                                         <label for="" class="mb-2">Email <span class="text-danger" style="font-size: larger;">*</span></label>
-                                        <input type="text" name="email" class="form-control mb-3"
-                                            value="{{ old('email') }}">
+                                        <input type="text" name="email" class="form-control mb-3" placeholder="Masukkan email" value="{{ old('email') }}">
                                         @error('email')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -78,8 +76,7 @@
                                 <div class="form-floating mb-3">
                                     <div class="form-group">
                                         <label for="" class="mb-2">NISN <span class="text-danger" style="font-size: larger;">*</span></label>
-                                        <input type="text" name="nisn" class="form-control"
-                                            value="{{ old('nisn') }}">
+                                        <input type="text" name="nisn" class="form-control" placeholder="Masukkan nisn" value="{{ old('nisn') }}">
                                         @error('nisn')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -123,8 +120,7 @@
                                 <div class="form-floating mb-3">
                                     <div class="form-group">
                                         <label for="birth_place" class="mb-2">Tempat Lahir <span class="text-danger" style="font-size: larger;">*</span></label>
-                                        <input type="text" name="birth_place" class="form-control"
-                                            value="{{ old('birth_place') }}">
+                                        <input type="text" name="birth_place" class="form-control" placeholder="Masukkan tempat lahir" value="{{ old('birth_place') }}">
                                         @error('birth_place')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -135,8 +131,7 @@
                                 <div class="form-floating mb-3">
                                     <div class="form-group">
                                         <label for="birth_date" class="mb-2">Tanggal Lahir <span class="text-danger" style="font-size: larger;">*</span></label>
-                                        <input type="date" name="birth_date" class="form-control"
-                                            value="{{ old('birth_date') }}">
+                                        <input type="date" name="birth_date" class="form-control" value="{{ old('birth_date') }}">
                                         @error('birth_date')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -147,8 +142,7 @@
                                 <div class="form-floating mb-3">
                                     <div class="form-group">
                                         <label for="nik" class="mb-2">NIK <span class="text-danger" style="font-size: larger;">*</span></label>
-                                        <input type="number" name="nik" class="form-control"
-                                            value="{{ old('nik') }}">
+                                        <input type="number" name="nik" class="form-control" placeholder="Masukkan nik" value="{{ old('nik') }}">
                                         @error('nik')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -159,8 +153,7 @@
                                 <div class="form-floating mb-3">
                                     <div class="form-group">
                                         <label for="number_kk" class="mb-2">Nomor KK <span class="text-danger" style="font-size: larger;">*</span></label>
-                                        <input type="number" name="number_kk" class="form-control"
-                                            value="{{ old('number_kk') }}">
+                                        <input type="number" name="number_kk" class="form-control" placeholder="Masukkan nomer kk" value="{{ old('number_kk') }}">
                                         @error('number_kk')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -171,8 +164,7 @@
                                 <div class="form-floating mb-3">
                                     <div class="form-group">
                                         <label for="number_akta" class="mb-2">Nomor Akta <span class="text-danger" style="font-size: larger;">*</span></label>
-                                        <input type="number" name="number_akta" class="form-control"
-                                            value="{{ old('number_akta') }}">
+                                        <input type="number" name="number_akta" class="form-control" placeholder="Masukkan nomer akta" value="{{ old('number_akta') }}">
                                         @error('number_akta')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -183,8 +175,7 @@
                                 <div class="form-floating mb-3">
                                     <div class="form-group">
                                         <label for="order_child" class="mb-2">Anak Ke- <span class="text-danger" style="font-size: larger;">*</span></label>
-                                        <input type="number" name="order_child" class="form-control"
-                                            value="{{ old('order_child') }}">
+                                        <input type="number" name="order_child" class="form-control" placeholder="Anak ke-" value="{{ old('order_child') }}">
                                         @error('order_child')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -195,8 +186,7 @@
                                 <div class="form-floating mb-3">
                                     <div class="form-group">
                                         <label for="count_siblings" class="mb-2">Jumlah Saudara <span class="text-danger" style="font-size: larger;">*</span></label>
-                                        <input type="number" name="count_siblings" class="form-control"
-                                            value="{{ old('count_siblings') }}">
+                                        <input type="number" name="count_siblings" class="form-control" placeholder="Jumlah saudara" value="{{ old('count_siblings') }}">
                                         @error('count_siblings')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -206,7 +196,7 @@
                             <div class="col-md-12">
                                 <div class="mb-3 form-group">
                                     <label for="address" class="mb-2">Alamat <span class="text-danger" style="font-size: larger;">*</span></label>
-                                    <textarea name="address" id="address" class="form-control">{{ old('address') }}</textarea>
+                                    <textarea placeholder="Masukkan alamat" name="address" id="address" class="form-control">{{ old('address') }}</textarea>
                                     @error('address')
                                         <strong class="text-danger">{{ $message }}</strong>
                                     @enderror
@@ -373,8 +363,7 @@
                                     <div class="form-group">
                                         <label for="name-edit" class="mb-2">Nama<span
                                                 class="text-danger">*</span></label>
-                                        <input type="text" name="name" id="name-edit" class="form-control mb-3"
-                                            value="{{ old('name') }}">
+                                        <input type="text" name="name" id="name-edit" class="form-control mb-3" placeholder="Masukkan nama" value="{{ old('name') }}">
                                         @error('name')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -386,8 +375,7 @@
                                     <div class="form-group">
                                         <label for="email-edit" class="mb-2">Email<span
                                                 class="text-danger">*</span></label>
-                                        <input type="text" name="email" id="email-edit" class="form-control mb-3"
-                                            value="{{ old('email') }}">
+                                        <input type="text" name="email" id="email-edit" class="form-control mb-3" placeholder="Masukkan email" value="{{ old('email') }}">
                                         @error('email')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -399,8 +387,7 @@
                                     <div class="form-group">
                                         <label for="nisn-edit" class="mb-2">NISN<span
                                                 class="text-danger">*</span></label>
-                                        <input type="text" name="nisn" id="nisn-edit" class="form-control"
-                                            value="{{ old('nisn') }}">
+                                        <input type="text" name="nisn" id="nisn-edit" class="form-control" placeholder="Masukkan nisn" value="{{ old('nisn') }}">
                                         @error('nisn')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -445,7 +432,7 @@
                                     <div class="form-group">
                                         <label for="birth_place-edit" class="mb-2">Tempat Lahir<span
                                                 class="text-danger">*</span></label>
-                                        <input type="text" name="birth_place" id="birth_place-edit"
+                                        <input type="text" name="birth_place" id="birth_place-edit" placeholder="Masukkan tempat lahir"
                                             class="form-control" value="{{ old('birth_place') }}">
                                         @error('birth_place')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -471,7 +458,7 @@
                                     <div class="form-group">
                                         <label for="nik-edit" class="mb-2">NIK<span
                                                 class="text-danger">*</span></label>
-                                        <input type="number" name="nik" id="nik-edit" class="form-control"
+                                        <input type="number" name="nik" id="nik-edit" class="form-control" placeholder="Masukkan nik"
                                             value="{{ old('nik') }}">
                                         @error('nik')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -484,7 +471,7 @@
                                     <div class="form-group">
                                         <label for="number_kk-edit" class="mb-2">Nomor KK<span
                                                 class="text-danger">*</span></label>
-                                        <input type="number" name="number_kk" id="number_kk-edit" class="form-control"
+                                        <input type="number" name="number_kk" id="number_kk-edit" class="form-control" placeholder="Masukkan nomer kk"
                                             value="{{ old('number_kk') }}">
                                         @error('number_kk')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -497,7 +484,7 @@
                                     <div class="form-group">
                                         <label for="number_akta-edit" class="mb-2">Nomor Akta<span
                                                 class="text-danger">*</span></label>
-                                        <input type="number" name="number_akta" id="number_akta-edit"
+                                        <input type="number" name="number_akta" id="number_akta-edit" placeholder="Masukkan nomer akta"
                                             class="form-control" value="{{ old('number_akta') }}">
                                         @error('number_akta')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -510,7 +497,7 @@
                                     <div class="form-group">
                                         <label for="order_child-edit" class="mb-2">Anak Ke-<span
                                                 class="text-danger">*</span></label>
-                                        <input type="number" name="order_child" id="order_child-edit"
+                                        <input type="number" name="order_child" id="order_child-edit" placeholder="Anak ke-"
                                             class="form-control" value="{{ old('order_child') }}">
                                         @error('order_child')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -523,7 +510,7 @@
                                     <div class="form-group">
                                         <label for="count_siblings-edit" class="mb-2">Jumlah Saudara<span
                                                 class="text-danger">*</span></label>
-                                        <input type="number" name="count_siblings" id="count_siblings-edit"
+                                        <input type="number" name="count_siblings" id="count_siblings-edit" placeholder="Masukkan jumlah saudara"
                                             class="form-control" value="{{ old('count_siblings') }}">
                                         @error('count_siblings')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -535,7 +522,7 @@
                                 <div class="mb-3 form-group">
                                     <label for="address-edit" class="mb-2">Alamat<span
                                             class="text-danger">*</span></label>
-                                    <textarea name="address" id="address-edit" class="form-control">{{ old('address') }}</textarea>
+                                    <textarea name="address" id="address-edit" class="form-control" placeholder="Masukkan alamat">{{ old('address') }}</textarea>
                                     @error('address')
                                         <strong class="text-danger">{{ $message }}</strong>
                                     @enderror

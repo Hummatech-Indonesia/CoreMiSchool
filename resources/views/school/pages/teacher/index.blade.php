@@ -72,7 +72,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Nama <span class="text-danger" style="font-size: larger;">*</span></label>
-                                            <input type="text" name="name" class="form-control mb-3" value="{{ old('name') }}">
+                                            <input type="text" name="name" placeholder="Masukkan nama" class="form-control mb-3" value="{{ old('name') }}">
                                             @error('name')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -81,7 +81,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">NIP <span class="text-danger" style="font-size: larger;">*</span></label>
-                                            <input type="number" name="nip" class="form-control mb-3" value="{{ old('nip') }}">
+                                            <input type="number" name="nip" placeholder="Masukkan nip" class="form-control mb-3" value="{{ old('nip') }}">
                                             @error('nip')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -91,6 +91,7 @@
                                         <div class="form-group">
                                             <label for="">Agama</label>
                                             <select name="religion_id" id="" class="form-select">
+                                                <option>Pilih agama..</option>
                                                 @foreach ($religions as $religion)
                                                 <option value="{{ $religion->id }}">{{ $religion->name }}</option>
                                                 @endforeach
@@ -112,7 +113,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Tempat Lahir <span class="text-danger" style="font-size: larger;">*</span></label>
-                                            <input type="text" class="form-control" name="birth_place" value="{{ old('birth_place') }}">
+                                            <input type="text" placeholder="Masukkan tempat lahir" class="form-control" name="birth_place" value="{{ old('birth_place') }}">
                                             @error('birth_place')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -143,7 +144,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">NIK <span class="text-danger" style="font-size: larger;">*</span></label>
-                                            <input type="text" name="nik" class="form-control mb-3" value="{{ old('nik') }}">
+                                            <input type="text" placeholder="Masukkan nik" name="nik" class="form-control mb-3" value="{{ old('nik') }}">
                                             @error('nik')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -152,7 +153,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">No Telp <span class="text-danger" style="font-size: larger;">*</span></label>
-                                            <input type="text" name="phone_number" class="form-control mb-3" value="{{ old('phone_number') }}">
+                                            <input type="text" placeholder="Masukkan no telp" name="phone_number" class="form-control mb-3" value="{{ old('phone_number') }}">
                                             @error('phone_number')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -161,7 +162,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Email <span class="text-danger" style="font-size: larger;">*</span></label>
-                                            <input type="text" name="email" class="form-control mb-3" value="{{ old('email') }}">
+                                            <input type="text" placeholder="Masukkan email" name="email" class="form-control mb-3" value="{{ old('email') }}">
                                             @error('email')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -179,7 +180,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <h6>Alamat <span class="text-danger" style="font-size: larger;">*</span></h6>
-                                            <textarea name="address" class="form-control mb-3" rows="3">{{ old('address') }}</textarea>
+                                            <textarea name="address" class="form-control mb-3" placeholder="Masukkan alamat" rows="3">{{ old('address') }}</textarea>
                                             @error('address')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -339,7 +340,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Nama <span class="text-danger" style="font-size: larger;">*</span></label>
-                                            <input type="text" name="name" id="name-edit" class="form-control mb-3" value="{{ old('name') }}">
+                                            <input type="text" name="name" placeholder="Masukkan nama" id="name-edit" class="form-control mb-3" value="{{ old('name') }}">
                                             @error('name')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -348,7 +349,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">NIP <span class="text-danger" style="font-size: larger;">*</span></label>
-                                            <input type="number" name="nip" id="nip-edit" class="form-control mb-3" value="{{ old('nip') }}">
+                                            <input type="number" name="nip" placeholder="Masukkan nip" id="nip-edit" class="form-control mb-3" value="{{ old('nip') }}">
                                             @error('nip')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -358,6 +359,7 @@
                                         <div class="form-group">
                                             <label for="">Agama</label>
                                             <select name="religion_id" id="religion-edit" class="form-select">
+                                                <option>Pilih agama..</option>
                                                 @foreach ($religions as $religion)
                                                 <option value="{{ $religion->id }}">{{ $religion->name }}
                                                 </option>
@@ -380,7 +382,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Tempat Lahir <span class="text-danger" style="font-size: larger;">*</span></label>
-                                            <input type="text" class="form-control" id="birth_place-edit" name="birth_place" value="{{ old('birth_place') }}">
+                                            <input type="text" placeholder="Masukkan tempat lahir" class="form-control" id="birth_place-edit" name="birth_place" value="{{ old('birth_place') }}">
                                             @error('birth_place')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -411,7 +413,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">NIK <span class="text-danger" style="font-size: larger;">*</span></label>
-                                            <input type="text" name="nik" id="nik-edit" class="form-control mb-3" value="{{ old('nik') }}">
+                                            <input type="text" name="nik" placeholder="Masukkan nik" id="nik-edit" class="form-control mb-3" value="{{ old('nik') }}">
                                             @error('nik')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -420,7 +422,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">No Telp <span class="text-danger" style="font-size: larger;">*</span></label>
-                                            <input type="text" name="phone_number" id="phone-edit" class="form-control mb-3" value="{{ old('phone_number') }}">
+                                            <input type="text" name="phone_number" placeholder="Masukkan no telp" id="phone-edit" class="form-control mb-3" value="{{ old('phone_number') }}">
                                             @error('phone_number')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -429,7 +431,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Email <span class="text-danger" style="font-size: larger;">*</span></label>
-                                            <input type="text" name="email" id="email-edit" class="form-control mb-3" value="{{ old('email') }}">
+                                            <input type="text" name="email" placeholder="Masukkan email" id="email-edit" class="form-control mb-3" value="{{ old('email') }}">
                                             @error('email')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -447,7 +449,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <h6>Alamat <span class="text-danger" style="font-size: larger;">*</span></h6>
-                                            <textarea name="address" id="address-edit" class="form-control mb-3" rows="3">{{ old('address') }}</textarea>
+                                            <textarea name="address" placeholder="Masukkan alamat" id="address-edit" class="form-control mb-3" rows="3">{{ old('address') }}</textarea>
                                             @error('address')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror

@@ -83,7 +83,7 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="">Tahun Ajaran</label>
-                            <input type="text" name="school_year" class="form-control">
+                            <input type="text" name="school_year" class="form-control" placeholder="Masukkan tahun ajaran">
                             @error('school_year')
                                 <strong class="text-danger">{{ $message }}</strong>
                             @enderror
@@ -120,7 +120,7 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="">Tahun Ajaran</label>
-                            <input type="text" id="year-update" name="school_year" class="form-control">
+                            <input type="text" id="year-update" name="school_year" class="form-control" placeholder="Masukkan tahun ajaran">
                         </div>
                         <div class="mb-3">
                             <label for="">Status</label>
