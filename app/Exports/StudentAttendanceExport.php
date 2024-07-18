@@ -2,6 +2,7 @@
 
 namespace App\Exports;
 
+use App\Contracts\Interfaces\AttendanceInterface;
 use App\Models\Attendance;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
@@ -10,18 +11,20 @@ use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Style\Border;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
+use Illuminate\Http\Request;
 
 class StudentAttendanceExport implements FromView, ShouldAutoSize, WithStyles
 {
     protected $classroom_id;
-    protected $start;
-    protected $end;
+    private AttendanceInterface $attendance;
+    private Request $request;
 
-    public function __construct($classroom_id, $start, $end)
+    public function __construct($classroom_id, Request $request, AttendanceInterface $attendance)
     {
         $this->classroom_id = $classroom_id;
-        $this->start = $start;
-        $this->end = $end;
+        $this->attendance = $attendance;
+        $this->request = $request;
     }
 
     /**
@@ -30,11 +33,7 @@ class StudentAttendanceExport implements FromView, ShouldAutoSize, WithStyles
     public function view(): View
     {
         return view('school.export.invoices-attendance-student', [
-            'items' => Attendance::whereHas('classroomStudent.classroom', function($query) {
-                $query->where('id', $this->classroom_id);
-            })->when($this->start && $this->end, function ($query) {
-                $query->whereBetween('created_at', [$this->start, $this->end]);
-            })->get()
+            'items' => $this->attendance->classAndDate($this->classroom_id, $this->request)
         ]);
     }
 
@@ -53,6 +52,14 @@ class StudentAttendanceExport implements FromView, ShouldAutoSize, WithStyles
                     'borderStyle' => Border::BORDER_THIN,
                     'color' => ['argb' => '000000'],
                 ],
+            ],
+        ]);
+
+        $headerRange = "A1:{$highestColumn}1"; // Sesuaikan dengan rentang header
+        $sheet->getStyle($headerRange)->applyFromArray([
+            'fill' => [
+                'fillType' => Fill::FILL_SOLID,
+                'color' => ['argb' => 'FFFF00'], // Warna background kuning
             ],
         ]);
     }
