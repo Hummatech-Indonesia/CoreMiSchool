@@ -1,7 +1,6 @@
 @extends('school.layouts.app')
 
 @section('style')
-<link rel="stylesheet" href="{{ asset('admin_assets/dist/css/style.min.css') }}">
 <style>
     .category-selector .dropdown-menu {
         position: absolute;
