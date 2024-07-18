@@ -56,7 +56,7 @@
                             </td>
                         </tr>
                         @empty
-                        <tr>
+                        <tr class="empty-tr">
                             <td colspan="3" class="text-center align-middle">
                                 <div class="d-flex flex-column justify-content-center align-items-center">
                                     <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt=""
@@ -151,7 +151,7 @@
                 </td>
             </tr>
             @empty
-            <tr>
+            <tr class="empty-tr">
                 <td colspan="4">Kelas ini kosong</td>
             </tr>
             @endforelse
@@ -191,6 +191,7 @@
         var addStudents = [];
         var removeStudents = [];
 
+        $('.empty-tr').remove();
         $('#right-table tbody tr').each(function() {
             addStudents.push($(this).data('id'));
         });
