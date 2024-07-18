@@ -61,16 +61,20 @@
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                 </form>
             </div>
-            <form action="" method="GET">
-                <div class="col-12 col-md-6 col-lg-12 mb-3 d-flex">
-                    <select id="status-activity" name="filter" class="form-select">
+            <div class="col-12 col-md-6 col-lg-12 mb-3 d-flex">
+                <form method="GET">
+                    <select id="status-activity" name="status" class="form-select">
                         <option value="terbaru">Terbaru</option>
                         <option value="terlama">Terlama</option>
                     </select>
+                    <select id="status-activity" name="school_year" class="form-select">
+                        @foreach ($schoolYears as $schoolYear)
+                            <option value="{{ $schoolYear->school_year }}">{{ $schoolYear->school_year }}</option>
+                        @endforeach
+                    </select>
                     <button type="submit" class="btn btn-primary ms-3">Filter</button>
-                </div>
-            </form>
-
+                </form>
+            </div>
         </div>
         <button type="button" class="btn mb-1 btn-primary px-4 fs-4 font-medium" data-bs-toggle="modal"
             data-bs-target="#modal-add">
