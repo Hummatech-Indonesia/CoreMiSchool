@@ -205,8 +205,6 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset('admin_assets/dist/summernote/dist/summernote-lite.min.js') }}"></script>
-
     <script>
         $(document).ready(function() {
             var quote = $('<blockquote class="quote">hello<footer>world</footer></blockquote>')[0];
