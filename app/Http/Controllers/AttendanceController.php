@@ -80,9 +80,9 @@ class AttendanceController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function export_teacher()
+    public function export_teacher(Request $request)
     {
-        return Excel::download(new TeacherAttendanceExport, 'attendance-teacher.xlsx');
+        return Excel::download(new TeacherAttendanceExport($request, $this->attendanceTeacher), 'attendance-teacher.xlsx');
     }
 
     /**

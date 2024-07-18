@@ -49,8 +49,8 @@ class AttendanceTeacherRepository extends BaseRepository implements AttendanceTe
         ->when($request->name, function ($query) use ($request) {
             $query->whereRelation('employee.user', 'name', 'LIKE', '%' . $request->name . '%');
         })
-        ->when($request->created_at, function ($query) use ($request) {
-            $query->whereDate('created_at', $request->created_at);
+        ->when($request->end, function ($query) use ($request) {
+            $query->whereBetween('created_at', [$request->start, $request->end]);
         })
         ->latest()->paginate(10);
     }
@@ -71,5 +71,10 @@ class AttendanceTeacherRepository extends BaseRepository implements AttendanceTe
     public function updateCheckOut(mixed $id, array $data): mixed
     {
         return $this->model->query()->where('employee_id', $id)->update($data);
+    }
+
+    public function whereBetween(Request $request): mixed
+    {
+        return $this->model->query()->whereBetween('created_at', [$request->start, $request->end])->get();
     }
 }
