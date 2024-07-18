@@ -118,7 +118,7 @@ class SchoolController extends Controller
         return to_route('settings-information.index')->with('success', 'Berhasil memperbarui sekolah');
     }
 
-public function nonactive(School $school)
+    public function nonactive(School $school)
     {
         $this->school->update($school->id, ['active' => 0]);
         return redirect()->back()->with('success', 'Sekolah berhasil dinonaktifkan');
