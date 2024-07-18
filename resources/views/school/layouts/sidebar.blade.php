@@ -59,7 +59,7 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item">
+                {{-- <li class="sidebar-item">
                     <a class="sidebar-link" href="/school/teacher" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
@@ -73,7 +73,7 @@
                         </span>
                         <span class="hide-menu">Guru</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/school/student" aria-expanded="false">
                         <span>
@@ -86,7 +86,7 @@
                         <span class="hide-menu">Siswa</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
+                {{-- <li class="sidebar-item">
                     <a class="sidebar-link
                     {{ request()->routeIs('class-alumni.index') ||
                         request()->routeIs('alumni.index') ? 'active' : '' }}" href="{{ route('class-alumni.index') }}" aria-expanded="false">
@@ -98,7 +98,7 @@
                         </span>
                         <span class="hide-menu">Alumni</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/school/extracurricular" aria-expanded="false">
                         <span>
@@ -127,7 +127,7 @@
                         <span class="hide-menu">Tahun Ajaran</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
+                {{-- <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('class-level.index') }}" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -142,7 +142,7 @@
                         </span>
                         <span class="hide-menu">Tingkatan Kelas</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="sidebar-item">
                     <a class="sidebar-link
                         {{ request()->routeIs('class.index') ||
@@ -157,7 +157,7 @@
                         <span class="hide-menu">Kelas</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
+                {{-- <li class="sidebar-item">
                     <a class="sidebar-link" href="/school/semesters" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -169,7 +169,7 @@
                         </span>
                         <span class="hide-menu">Semester</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="sidebar-item">
                     <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
                         <span class="d-flex">
