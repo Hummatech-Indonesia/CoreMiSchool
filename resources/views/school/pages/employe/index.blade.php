@@ -199,11 +199,10 @@
                                             <img id="previewImg" alt="" style="display: none; width: 200px; height: auto; object-fit: cover;" />
                                         </div>
                                         <input type="file" name="image" id="imageInput" class="form-control mb-3" onchange="previewFile()">
-
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">Nama</label>
+                                            <label for="">Nama <span class="text-danger" style="font-size: larger;">*</span></label>
                                             <input type="text" name="name" class="form-control mb-3" value="{{ old('name') }}">
                                             @error('name')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -212,7 +211,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">NIP</label>
+                                            <label for="">NIP <span class="text-danger" style="font-size: larger;">*</span></label>
                                             <input type="number" name="nip" class="form-control mb-3" value="{{ old('nip') }}">
                                             @error('nip')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -235,7 +234,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">Tanggal Lahir</label>
+                                            <label for="">Tanggal Lahir <span class="text-danger" style="font-size: larger;">*</span></label>
                                             <input type="date" name="birth_date" class="form-control mb-3" value="{{ old('birth_date') }}">
                                             @error('birth_date')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -244,7 +243,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">Tempat Lahir</label>
+                                            <label for="">Tempat Lahir <span class="text-danger" style="font-size: larger;">*</span></label>
                                             <input type="text" class="form-control" name="birth_place" value="{{ old('birth_place') }}">
                                             @error('birth_place')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -252,7 +251,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="">Jenis Kelamin</label>
+                                        <label for="">Jenis Kelamin <span class="text-danger" style="font-size: larger;">*</span></label>
                                         <div class="form-check d-flex align-items-center mt-2">
                                             <div class="custom-control custom-radio me-4">
                                                 <input type="radio" class="custom-control-input" id="customControlValidationA" name="gender" value="male">
@@ -277,7 +276,7 @@
                                 <div class="row mx-3 pt-4">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">NIK</label>
+                                            <label for="">NIK <span class="text-danger" style="font-size: larger;">*</span></label>
                                             <input type="text" name="nik" class="form-control mb-3" value="{{ old('nik') }}">
                                             @error('nik')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -286,7 +285,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">No Telp</label>
+                                            <label for="">No Telp <span class="text-danger" style="font-size: larger;">*</span></label>
                                             <input type="text" name="phone_number" class="form-control mb-3" value="{{ old('phone_number') }}">
                                             @error('phone_number')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -295,7 +294,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">Email</label>
+                                            <label for="">Email <span class="text-danger" style="font-size: larger;">*</span></label>
                                             <input type="text" name="email" class="form-control mb-3" value="{{ old('email') }}">
                                             @error('email')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -313,7 +312,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <h6>Alamat</h6>
+                                            <h6>Alamat <span class="text-danger" style="font-size: larger;">*</span></h6>
                                             <textarea name="address" class="form-control mb-3" rows="3">{{ old('address') }}</textarea>
                                             @error('address')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -365,7 +364,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">Nama</label>
+                                            <label for="">Nama <span class="text-danger" style="font-size: larger;">*</span></label>
                                             <input type="text" name="name" id="name-edit" class="form-control mb-3" value="{{ old('name') }}">
                                             @error('name')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -374,7 +373,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">NIP</label>
+                                            <label for="">NIP <span class="text-danger" style="font-size: larger;">*</span></label>
                                             <input type="number" name="nip" id="nip-edit" class="form-control mb-3" value="{{ old('nip') }}">
                                             @error('nip')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -397,7 +396,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">Tanggal Lahir</label>
+                                            <label for="">Tanggal Lahir <span class="text-danger" style="font-size: larger;">*</span></label>
                                             <input type="date" name="birth_date" id="birth_date-edit" class="form-control mb-3" value="{{ old('birth_date') }}">
                                             @error('birth_date')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -406,7 +405,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">Tempat Lahir</label>
+                                            <label for="">Tempat Lahir <span class="text-danger" style="font-size: larger;">*</span></label>
                                             <input type="text" class="form-control" id="birth_place-edit" name="birth_place" value="{{ old('birth_place') }}">
                                             @error('birth_place')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -414,7 +413,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="">Jenis Kelamin</label>
+                                        <label for="">Jenis Kelamin <span class="text-danger" style="font-size: larger;">*</span></label>
                                         <div class="form-check d-flex align-items-center mt-2">
                                             <div class="custom-control custom-radio me-4">
                                                 <input type="radio" class="custom-control-input" id="maleEdit" name="gender" value="male">
@@ -437,7 +436,7 @@
                                 <div class="row mx-3 pt-4">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">NIK</label>
+                                            <label for="">NIK <span class="text-danger" style="font-size: larger;">*</span></label>
                                             <input type="text" name="nik" id="nik-edit" class="form-control mb-3" value="{{ old('nik') }}">
                                             @error('nik')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -446,7 +445,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">No Telp</label>
+                                            <label for="">No Telp <span class="text-danger" style="font-size: larger;">*</span></label>
                                             <input type="text" name="phone_number" id="phone-edit" class="form-control mb-3" value="{{ old('phone_number') }}">
                                             @error('phone_number')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -455,7 +454,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">Email</label>
+                                            <label for="">Email <span class="text-danger" style="font-size: larger;">*</span></label>
                                             <input type="text" name="email" id="email-edit" class="form-control mb-3" value="{{ old('email') }}">
                                             @error('email')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -473,7 +472,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <h6>Alamat</h6>
+                                            <h6>Alamat <span class="text-danger" style="font-size: larger;">*</span></h6>
                                             <textarea name="address" id="address-edit" class="form-control mb-3" rows="3">{{ old('address') }}</textarea>
                                             @error('address')
                                             <strong class="text-danger">{{ $message }}</strong>
