@@ -86,19 +86,19 @@
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-6 mb-3">
-                                        <label for="waktu-masuk-${day}-${role}" class="mb-2">Waktu Masuk Dimulai</label>
+                                        <label for="waktu-masuk-${day}-${role}" class="mb-2">Waktu Masuk Dimulai<span class="text-danger">*</span></label>
                                         <input type="time" class="form-control" id="waktu-masuk-${day}-${role}" name="checkin_start" value="${data.start_time || ''}">
                                     </div>
                                     <div class="col-lg-6 mb-3">
-                                        <label for="waktu-selesai-${day}-${role}" class="mb-2">Waktu Masuk Selesai</label>
+                                        <label for="waktu-selesai-${day}-${role}" class="mb-2">Waktu Masuk Selesai<span class="text-danger">*</span></label>
                                         <input type="time" class="form-control" id="waktu-selesai-${day}-${role}" name="checkin_end" value="${data.end_time || ''}">
                                     </div>
                                     <div class="col-lg-6 mb-3">
-                                        <label for="waktu-pulang-${day}-${role}" class="mb-2">Waktu Pulang Dimulai</label>
+                                        <label for="waktu-pulang-${day}-${role}" class="mb-2">Waktu Pulang Dimulai<span class="text-danger">*</span></label>
                                         <input type="time" class="form-control" id="waktu-pulang-${day}-${role}" name="checkout_start" value="${data.leave_start || ''}">
                                     </div>
                                     <div class="col-lg-6 mb-3">
-                                        <label for="waktu-pulang-selesai-${day}-${role}" class="mb-2">Waktu Pulang Selesai</label>
+                                        <label for="waktu-pulang-selesai-${day}-${role}" class="mb-2">Waktu Pulang Selesai<span class="text-danger">*</span></label>
                                         <input type="time" class="form-control" id="waktu-pulang-selesai-${day}-${role}" name="checkout_end" value="${data.leave_end || ''}">
                                     </div>
                                     <div class="mt-4">
@@ -142,19 +142,19 @@
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-6 mb-3">
-                                        <label for="waktu-masuk-${day}-${role}" class="mb-2">Waktu Masuk Dimulai</label>
+                                        <label for="waktu-masuk-${day}-${role}" class="mb-2">Waktu Masuk Dimulai<span class="text-danger">*</span></label>
                                         <input type="time" class="form-control" id="waktu-masuk-${day}-${role}" name="checkin_start">
                                     </div>
                                     <div class="col-lg-6 mb-3">
-                                        <label for="waktu-selesai-${day}-${role}" class="mb-2">Waktu Masuk Selesai</label>
+                                        <label for="waktu-selesai-${day}-${role}" class="mb-2">Waktu Masuk Selesai<span class="text-danger">*</span></label>
                                         <input type="time" class="form-control" id="waktu-selesai-${day}-${role}" name="checkin_end">
                                     </div>
                                     <div class="col-lg-6 mb-3">
-                                        <label for="waktu-pulang-${day}-${role}" class="mb-2">Waktu Pulang Dimulai</label>
+                                        <label for="waktu-pulang-${day}-${role}" class="mb-2">Waktu Pulang Dimulai<span class="text-danger">*</span></label>
                                         <input type="time" class="form-control" id="waktu-pulang-${day}-${role}" name="checkout_start">
                                     </div>
                                     <div class="col-lg-6 mb-3">
-                                        <label for="waktu-pulang-selesai-${day}-${role}" class="mb-2">Waktu Pulang Selesai</label>
+                                        <label for="waktu-pulang-selesai-${day}-${role}" class="mb-2">Waktu Pulang Selesai<span class="text-danger">*</span></label>
                                         <input type="time" class="form-control" id="waktu-pulang-selesai-${day}-${role}" name="checkout_end">
                                     </div>
                                     <div class="mt-4">
