@@ -41,8 +41,13 @@
                         <span class="hide-menu">Beranda</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('school-admin.index') }}" aria-expanded="false">
+                <li
+                    class="sidebar-item ">
+                    <a class="sidebar-link {{ request()->routeIs('school-admin.index') ||
+                        request()->routeIs('school-admin.create') ||
+                        request()->routeIs('school-admin.show') ||
+                        request()->routeIs('school-admin.active') ||
+                        request()->routeIs('school-admin.nonactive') ? 'active' : '' }}" href="{{ route('school-admin.index') }}" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -60,6 +65,8 @@
                         <span class="hide-menu">Daftar Sekolah</span>
                     </a>
                 </li>
+
+
                 {{-- <li class="sidebar-item">
                     <a class="sidebar-link" href="/admin/news" aria-expanded="false">
                         <span>
@@ -93,14 +100,17 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link has-arrow" href="#" aria-expanded="false">
                         <span class="d-flex">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-file-invoice">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-file-invoice">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <path d="M14 3v4a1 1 0 0 0 1 1h4" />
                                 <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
                                 <path d="M9 7l1 0" />
                                 <path d="M9 13l6 0" />
                                 <path d="M13 17l2 0" />
-                              </svg>
+                            </svg>
                         </span>
                         <span class="hide-menu">Registrasi</span>
                     </a>
