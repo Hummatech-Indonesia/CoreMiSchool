@@ -138,7 +138,7 @@
                 </div>
             </div> --}}
         </nav>
-        <div class="fixed-profile p-3 bg-light-secondary rounded sidebar-ad mt-3">
+        {{-- <div class="fixed-profile p-3 bg-light-secondary rounded sidebar-ad mt-3">
             <div class="hstack gap-3">
                 <div class="john-img">
                     <img src="#" class="rounded-circle" width="40" height="40" alt="">
@@ -152,7 +152,8 @@
                     <i class="ti ti-power fs-6"></i>
                 </button>
             </div>
-        </div>
+        </div> --}}
+
         <!-- End Sidebar navigation -->
     </div>
     <!-- End Sidebar scroll-->
