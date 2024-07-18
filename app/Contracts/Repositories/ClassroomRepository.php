@@ -100,6 +100,11 @@ class ClassroomRepository extends BaseRepository implements ClassroomInterface
                 $query->oldest();
             }
         });
+
+        $query->when($request->school_year, function ($query) use ($request) {
+            $query->whereRelation('schoolYear', 'school_year', 'LIKE', '%' .  $request->school_year . '%');
+        });
+
         return $query;
     }
 }

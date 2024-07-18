@@ -41,9 +41,7 @@
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
                                     <div class="form-group">
-                                        <label for="formFile" class="mb-1">Foto Siswa <span class="text-danger">(ekstensi
-                                                png, jpg, jpeg)</span></label>
-
+                                        <label for="formFile" class="mb-1">Foto Siswa <span class="text-danger">(ekstensi png, jpg, jpeg)</span></label>
                                         <input class="form-control" name="image" type="file" id="formFile"
                                             onchange="previewImage(event)">
                                         @error('image')
