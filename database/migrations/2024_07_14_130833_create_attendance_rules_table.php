@@ -19,7 +19,7 @@ return new class extends Migration
         Schema::create('attendance_rules', function (Blueprint $table) {
             $table->id();
             $this->addForeignId($table, 'school_id');
-            $table->enum('day', [DayEnum::MONDAY->value, DayEnum::TUESDAY->value, DayEnum::WEDNESDAY->value, DayEnum::THRUSDAY->value, DayEnum::FRIDAY->value, DayEnum::SATURDAY->value, DayEnum::SUNDAY->value]);
+            $table->enum('day', [DayEnum::MONDAY->value, DayEnum::TUESDAY->value, DayEnum::WEDNESDAY->value, DayEnum::THURSDAY->value, DayEnum::FRIDAY->value, DayEnum::SATURDAY->value, DayEnum::SUNDAY->value]);
             $table->enum('role', [RoleEnum::STUDENT->value, RoleEnum::TEACHER->value]);
             $table->time('checkin_start')->nullable();
             $table->time('checkin_end')->nullable();
