@@ -46,7 +46,7 @@
                     <span class="hide-menu">Master</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('school.employee.index') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ request()->routeIs('school.employee.index' ? 'active' : '') }}" href="{{ route('school.employee.index') }}" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 36 36">
                                 <path fill="currentColor"
@@ -87,7 +87,9 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('class-alumni.index') }}" aria-expanded="false">
+                    <a class="sidebar-link
+                    {{ request()->routeIs('class-alumni.index') ||
+                        request()->routeIs('alumni.index') ? 'active' : '' }}" href="{{ route('class-alumni.index') }}" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256">
                                 <path fill="currentColor"
@@ -142,7 +144,9 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/school/class" aria-expanded="false">
+                    <a class="sidebar-link
+                        {{ request()->routeIs('class.index') ||
+                        request()->routeIs('class.show') ? 'active' : '' }}" href="/school/class" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                 viewBox="0 0 256 256">
