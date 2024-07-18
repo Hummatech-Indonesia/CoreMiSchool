@@ -104,7 +104,7 @@
                                     </div>
                                     <div class="mt-4">
                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" name="is_holiday" id="libur-${day}-${role}" ${data.holiday ? 'checked' : ''}>
+                                            <input class="form-check-input" type="checkbox" role="switch" value="${data.holiday == '1' ? '0' : '1'}" name="is_holiday" id="libur-${day}-${role}" ${data.holiday ? 'checked' : ''}>
                                             <label class="form-check-label" for="libur-${day}-${role}">Libur</label>
                                         </div>
                                     </div>
@@ -160,7 +160,7 @@
                                     </div>
                                     <div class="mt-4">
                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" name="is_holiday" id="libur-${day}-${role}">
+                                            <input class="form-check-input" type="checkbox" value="1" role="switch" name="is_holiday" id="libur-${day}-${role}">
                                             <label class="form-check-label" for="libur-${day}-${role}">Libur</label>
                                         </div>
                                     </div>
