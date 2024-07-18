@@ -127,11 +127,11 @@
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="">RFID</label>
+                        <label for="">RFID<span class="text-d">*</span></label>
                         <p class="mt-2 fs-2">Lakukan tab pada rfid reader untuk menginputkan rfid</p>
                     </div>
                     <div>
-                        <input type="text" id="rfid" name="rfid" class="form-control">
+                        <input type="text" id="rfid" name="rfid" placeholder="Masukkan RFID" class="form-control">
                         @error('rfid')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
