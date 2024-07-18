@@ -200,10 +200,6 @@
 @endsection
 
 @section('script')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.48.0/apexcharts.min.js"
-        integrity="sha512-wqcdhB5VcHuNzKcjnxN9wI5tB3nNorVX7Zz9NtKBxmofNskRC29uaQDnv71I/zhCDLZsNrg75oG8cJHuBvKWGw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
         <script>
             var options = {
                 series: [44, 55, 41],
