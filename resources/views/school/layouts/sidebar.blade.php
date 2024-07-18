@@ -317,6 +317,14 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
+                            <a href="/school/rfid-active" class="sidebar-link">
+                                <div class="round-16 d-flex align-items-center justify-content-center">
+                                    <i class="ti ti-circle"></i>
+                                </div>
+                                <span class="hide-menu">RFID</span>
+                            </a>
+                        </li>
+                        {{-- <li class="sidebar-item">
                             <a href="javascript:void(0)" class="sidebar-link has-arrow" aria-expanded="false"
                                 style="display: flex; align-items: center;">
                                 <div class="d-flex">
@@ -347,13 +355,11 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
             </ul>
         </nav>
-
-        <!-- End Sidebar navigation -->
     </div>
     <!-- End Sidebar scroll-->
 </aside>
