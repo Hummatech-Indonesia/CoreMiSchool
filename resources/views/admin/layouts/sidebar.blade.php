@@ -126,33 +126,7 @@
                     </ul>
                 </li>
             </ul>
-            {{-- <div class="unlimited-access hide-menu bg-light-primary position-relative my-7 rounded">
-                <div class="d-flex">
-                    <div class="unlimited-access-title">
-                        <h6 class="fw-semibold fs-4 mb-6 text-dark w-85">Unlimited Access</h6>
-                        <button class="btn btn-primary fs-2 fw-semibold lh-sm">Signup</button>
-                    </div>
-                    <div class="unlimited-access-img">
-                        <img src="#" alt="" class="img-fluid">
-                    </div>
-                </div>
-            </div> --}}
         </nav>
-        {{-- <div class="fixed-profile p-3 bg-light-secondary rounded sidebar-ad mt-3">
-            <div class="hstack gap-3">
-                <div class="john-img">
-                    <img src="#" class="rounded-circle" width="40" height="40" alt="">
-                </div>
-                <div class="john-title">
-                    <h6 class="mb-0 fs-4 fw-semibold">Mathew</h6>
-                    <span class="fs-2 text-dark">Designer</span>
-                </div>
-                <button class="border-0 bg-transparent text-primary ms-auto" tabindex="0" type="button"
-                    aria-label="logout" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="logout">
-                    <i class="ti ti-power fs-6"></i>
-                </button>
-            </div>
-        </div> --}}
 
         <!-- End Sidebar navigation -->
     </div>
