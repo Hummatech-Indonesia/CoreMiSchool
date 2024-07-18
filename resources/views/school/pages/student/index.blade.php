@@ -205,7 +205,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-rounded btn-light-danger text-danger"
+                        <button type="button" class="btn mb-1 waves-effect waves-light btn-light"
                             data-bs-dismiss="modal">Tutup</button>
                         <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
                     </div>
@@ -216,12 +216,11 @@
 
 
     <div class="table-responsive rounded-2 mb-4">
-        <table class="table border text-nowrap customize-table mb-0 align-middle text-center">
+        <table class="table border text-nowrap customize-table mb-0 align-middle">
             <thead class="text-dark fs-4">
                 <tr class="">
                     <th class="fs-4 fw-semibold mb-0">No</th>
                     <th class="fs-4 fw-semibold mb-0">Nama</th>
-                    <th class="fs-4 fw-semibold mb-0">Kelas</th>
                     <th class="fs-4 fw-semibold mb-0">Jenis Kelamin</th>
                     <th class="fs-4 fw-semibold mb-0">NISN</th>
                     <th class="fs-4 fw-semibold mb-0">RFID</th>
@@ -233,16 +232,17 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>
-                            <img src="{{ $student->image ? asset('storage/' . $student->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}"
-                                class="rounded-circle me-2 user-profile" style="object-fit: cover" width="30"
-                                height="30" alt="" />
-                            {{ $student->user->name }}
-                        </td>
-                        <td>{{ count($student->classroomStudents) > 0 ? $student->classroomStudents[0]->classroom->name : 'Kelas tidak ada' }}
+                            <div class="d-flex align-items-center">
+                                <img src="{{ $student->image ? asset('storage/' . $student->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}" class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40" height="40" alt="{{ $student->user->name }}" />
+                                <div class="ms-3">
+                                    <h6 class="fs-4 fw-semibold mb-0 text-start">{{ $student->user->name }}</h6>
+                                    <span class="fw-normal">{{ count($student->classroomStudents) > 0 ? $student->classroomStudents[0]->classroom->name : 'Kelas tidak ada' }}</span>
+                                </div>
+                            </div>
                         </td>
                         <td>{{ $student->gender == 'famale' ? 'Perempuan' : 'Laki-laki' }}</td>
                         <td>{{ $student->nisn }}</td>
-                        <td>{{ $student->modelHasRfid ? $student->modelHasRfid->rfid : '' }}
+                        {{-- <td>{{ $student->modelHasRfid ? $student->modelHasRfid->rfid : '' }}
                             <button type="submit" class="btn btn-rounded btn-light-warning text-warning ms-2 btn-rfid"
                                 data-id="{{ $student->id }}" data-role="student"
                                 data-name="{{ $student->user->name }}"
@@ -252,6 +252,25 @@
                                     <path fill="currentColor"
                                         d="M21 12a1 1 0 0 0-1 1v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h6a1 1 0 0 0 0-2H5a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-6a1 1 0 0 0-1-1m-15 .76V17a1 1 0 0 0 1 1h4.24a1 1 0 0 0 .71-.29l6.92-6.93L21.71 8a1 1 0 0 0 0-1.42l-4.24-4.29a1 1 0 0 0-1.42 0l-2.82 2.83l-6.94 6.93a1 1 0 0 0-.29.71m10.76-8.35l2.83 2.83l-1.42 1.42l-2.83-2.83ZM8 13.17l5.93-5.93l2.83 2.83L10.83 16H8Z" />
                                 </svg>
+                            </button>
+                        </td> --}}
+                        <td>
+                            {{ $student->modelHasRfid ? $student->modelHasRfid->rfid : '' }}
+                            <button type="submit"
+                                class="btn btn-rounded {{ $student->modelHasRfid ? 'btn-light-warning text-warning' : 'btn-light-primary text-primary' }} ms-2 btn-rfid"
+                                data-id="{{ $student->id }}"
+                                data-role="student"
+                                data-name="{{ $student->user->name }}"
+                                data-rfid="{{ $student->modelHasRfid ? $student->modelHasRfid->rfid : '-' }}">
+
+                                @if($student->modelHasRfid)
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M21 12a1 1 0 0 0-1 1v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h6a1 1 0 0 0 0-2H5a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-6a1 1 0 0 0-1-1m-15 .76V17a1 1 0 0 0 1 1h4.24a1 1 0 0 0 .71-.29l6.92-6.93L21.71 8a1 1 0 0 0 0-1.42l-4.24-4.29a1 1 0 0 0-1.42 0l-2.82 2.83l-6.94 6.93a1 1 0 0 0-.29.71m10.76-8.35l2.83 2.83l-1.42 1.42l-2.83-2.83ZM8 13.17l5.93-5.93l2.83 2.83L10.83 16H8Z" />
+                                    </svg>
+                                @else
+                                    Tambah RFID
+                                @endif
                             </button>
                         </td>
                         <td>
@@ -531,7 +550,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-rounded btn-light-danger text-danger"
+                        <button type="button" class="btn mb-1 waves-effect waves-light btn-light"
                             data-bs-dismiss="modal">Tutup</button>
                         <button type="submit" class="btn btn-rounded btn-success">Simpan</button>
                     </div>
@@ -567,9 +586,9 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-rounded btn-light-danger text-danger"
+                        <button type="button" class="btn mb-1 waves-effect waves-light btn-light"
                             data-bs-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
+                        <button type="submit" class="btn btn-rounded btn-primary">Simpan</button>
                     </div>
                 </form>
             </div>
@@ -637,7 +656,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-rounded btn-light-danger text-danger"
+                    <button type="button" class="btn mb-1 waves-effect waves-light btn-light"
                         data-bs-dismiss="modal">Tutup</button>
                 </div>
             </div>
