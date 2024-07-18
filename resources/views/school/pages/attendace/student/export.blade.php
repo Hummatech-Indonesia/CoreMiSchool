@@ -55,7 +55,7 @@
                             </button>
                         </div>
                     </form>
-                    <div class="col-12 col-md-6 mb-3 d-flex align-items-end justify-content-end">
+                    <a href="{{ route('presence-student.export', $classroom->id) }}" class="col-12 col-md-6 mb-3 d-flex align-items-end justify-content-end">
                         <button type="button" class="btn btn-success ms-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                 <g fill="none">
@@ -67,7 +67,7 @@
                             </svg>
                             Ekspor
                         </button>
-                    </div>
+                    </a>
                 </div>
         </div>
     </div>
@@ -94,12 +94,12 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $attendance->classroomStudent->student->user->name }}</td>
-                                <td>{{ $attendance->created_at->format('H:i') }}</td>
-                                <td>{{ $attendance->updated_at->format('H:i') }}</td>
-                                <td>{{ $attendance->points }}</td>
-                                <td>{{ $attendance->max_points }}</td>
+                                <td>{{ $attendance->checkin }}</td>
+                                <td>{{ $attendance->checkout }}</td>
+                                <td>{{ $attendance->point }}</td>
+                                <td>10</td>
                                 <td>
-                                    <span class="mb-1 badge font-medium bg-light-info text-info">{{ $attendance->status }}</span>
+                                    <span class="mb-1 badge font-medium bg-light-info text-info">{{ $attendance->status == 'present' ? 'Masuk' : ($attendance->status == 'sick' ? 'Sakit' : ($attendance->status == 'alpha' ? 'Alpha' : ($attendance->status == 'permit' ? 'Izin' : ''))) }}</span>
                                 </td>
                             </tr>
                         @empty
@@ -112,5 +112,5 @@
             </div>
         </div>
     </div>
-    
+
 @endsection

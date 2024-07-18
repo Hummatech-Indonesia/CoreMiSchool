@@ -136,6 +136,9 @@
                             showConfirmButton: true
                         });
                     }
+
+                    $('#rfid-input').val('')
+
                 },
                 error: function(xhr, status, error) {
                     let errorObj = JSON.parse(xhr.responseText);
@@ -146,9 +149,11 @@
                         showConfirmButton: false,
                         timer: 1000
                     });
+                    $('#rfid-input').val('')
                 },
                 complete: function() {
                     Swal.hideLoading();
+                    $('#rfid-input').val('')
                 }
             });
         }
