@@ -80,10 +80,9 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
         return $this->model->query()->with('classroomStudent.student.user')->whereRelation('classroomStudent.classroom.schoolYear.school', 'id', $id)->whereNotNull($query)->latest()->get();
     }
 
-    public function AttendanceChart(mixed $id, mixed $year, mixed $month, mixed $status): mixed
+    public function AttendanceChart(mixed $year, mixed $month, mixed $status): mixed
     {
         return $this->model->query()
-            ->whereRelation('classroomStudent.classroom.schoolYear', 'school_id', $id)
             ->where('status', $status)
             ->whereYear('created_at', $year)
             ->whereMonth('created_at', $month)

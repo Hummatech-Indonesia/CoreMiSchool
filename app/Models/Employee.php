@@ -2,38 +2,23 @@
 
 namespace App\Models;
 
-use App\Traits\Models\BelongsToReligion;
-use App\Traits\Models\BelongsToSchool;
-use App\Traits\Models\BelongsToUser;
-use App\Traits\Models\HasManyAttendanceTeacher;
-use App\Traits\Models\HasManyClassroom;
-use App\Traits\Models\HasManyExtracurricular;
-use App\Traits\Models\HasManyTeacherMaple;
-use App\Traits\Models\MorphManyRfid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\Models\HasManyAttendanceTeacher;
+use App\Traits\Models\HasManyExtracurricular;
+use App\Traits\Models\HasManyTeacherSubject;
+use App\Traits\Models\BelongsToReligion;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Models\HasManyClassroom;
+use App\Traits\Models\BelongsToUser;
+use App\Traits\Models\MorphManyRfid;
+
 
 class Employee extends Model
 {
     use HasFactory, BelongsToUser,
-    BelongsToSchool, BelongsToReligion,
-    HasManyClassroom, HasManyTeacherMaple,
-    HasManyExtracurricular, HasManyAttendanceTeacher,
-    MorphManyRfid;
+    BelongsToReligion,HasManyClassroom,
+    HasManyTeacherSubject, HasManyExtracurricular,
+    HasManyAttendanceTeacher, MorphManyRfid;
 
-    protected $fillable = [
-        'image',
-        'nip',
-        'birth_date',
-        'birth_place',
-        'gender',
-        'nik',
-        'phone_number',
-        'address',
-        'status',
-        'active',
-        'user_id',
-        'religion_id',
-        'school_id'
-    ];
+    protected $guarded = ['id'];
 }

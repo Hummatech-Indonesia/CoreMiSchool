@@ -9,14 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class LessonHour extends Model
 {
-    use HasFactory, BelongsToSchool, HasManyLessonSchedule;
+    use HasFactory, HasManyLessonSchedule;
 
     protected $guarded = ['id'];
-
-    protected $fillable = [
-        'name',
-        'school_id',
-        'start',
-        'end'
-    ];
 }

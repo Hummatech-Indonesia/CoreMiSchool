@@ -2,19 +2,19 @@
 
 namespace App\Traits\Models;
 
-use App\Models\TeacherMaple;
+use App\Models\Subject;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-trait BelongsToTeacherMaple {
+trait BelongsToSubject {
 
     /**
      * Get the school that owns the BelongsToSchool
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function teacherMaple(): BelongsTo
+    public function subject(): BelongsTo
     {
-        return $this->belongsTo(TeacherMaple::class);
+        return $this->belongsTo(Subject::class);
     }
 
 }

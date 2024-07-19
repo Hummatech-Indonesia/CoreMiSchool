@@ -13,22 +13,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-    use HasFactory, BelongsToUser, BelongsToSchool, BelongsToReligion, HasManyClassroomStudent, HasManyExtracurricularStudent, MorphManyRfid;
+    use HasFactory, BelongsToUser,
+    BelongsToReligion, HasManyClassroomStudent,
+    HasManyExtracurricularStudent, MorphManyRfid;
 
-    protected $fillable = [
-        'user_id',
-        'image',
-        'nisn',
-        'nik',
-        'religion_id',
-        'gender',
-        'birth_date',
-        'birth_place',
-        'address',
-        'number_kk',
-        'number_akta',
-        'order_child',
-        'count_siblings',
-        'school_id'
-    ];
+    protected $guarded = ['id'];
 }

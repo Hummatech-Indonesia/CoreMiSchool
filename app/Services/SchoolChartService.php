@@ -25,10 +25,10 @@ class SchoolChartService
         for($month = 1; $month <= 12; $month++){
             $date = Carbon::createFromDate($Curentyear, $month, 1);
             $yearMonth = $date->isoFormat('MMMM');
-            $attendance_present = $this->attendance->AttendanceChart(auth()->user()->school->id, $Curentyear, $month, AttendanceEnum::PRESENT->value);
-            $attendance_permit = $this->attendance->AttendanceChart(auth()->user()->school->id, $Curentyear, $month, AttendanceEnum::PERMIT->value);
-            $attendance_sick = $this->attendance->AttendanceChart(auth()->user()->school->id, $Curentyear, $month, AttendanceEnum::SICK->value);
-            $attendance_alpha = $this->attendance->AttendanceChart(auth()->user()->school->id, $Curentyear, $month, AttendanceEnum::ALPHA->value);
+            $attendance_present = $this->attendance->AttendanceChart($Curentyear, $month, AttendanceEnum::PRESENT->value);
+            $attendance_permit = $this->attendance->AttendanceChart($Curentyear, $month, AttendanceEnum::PERMIT->value);
+            $attendance_sick = $this->attendance->AttendanceChart($Curentyear, $month, AttendanceEnum::SICK->value);
+            $attendance_alpha = $this->attendance->AttendanceChart($Curentyear, $month, AttendanceEnum::ALPHA->value);
 
             $grafikDataCollection[] = [
                 'year' => $Curentyear,

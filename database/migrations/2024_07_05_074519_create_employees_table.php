@@ -30,7 +30,6 @@ return new class extends Migration
             $table->boolean('active')->default(true);
             $this->addForeignId($table, 'user_id');
             $this->addForeignIdNull($table, 'religion_id');
-            $this->addForeignId($table, 'school_id');
             $table->timestamps();
         });
     }

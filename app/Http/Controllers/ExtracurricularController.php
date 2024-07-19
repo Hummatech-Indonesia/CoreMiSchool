@@ -46,8 +46,7 @@ class ExtracurricularController extends Controller
      */
     public function store(StoreExtracurricularRequest $request)
     {
-        $data = $this->service->store($request);
-        $this->extracurricular->store($data);
+        $this->extracurricular->store($request->validated());
         return redirect()->back()->with('success', 'Berhasil menambahkan ekstrakulikuler');
     }
 
@@ -72,8 +71,7 @@ class ExtracurricularController extends Controller
      */
     public function update(UpdateExtracurricularRequest $request, Extracurricular $extracurricular)
     {
-        $data = $this->service->update($extracurricular, $request);
-        $this->extracurricular->update($extracurricular->id, $data);
+        $this->extracurricular->update($extracurricular->id, $request->validated());
         return redirect()->back()->with('success', 'Berhasil memperbarui ekstrakulikuler');
     }
 

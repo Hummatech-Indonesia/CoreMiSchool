@@ -24,8 +24,8 @@ class SemesterRepository extends BaseRepository implements SemesterInterface
         return $this->model->query()->create($data);
     }
 
-    public function whereSchool(mixed $id): mixed
+    public function whereSchool(): mixed
     {
-        return $this->model->query()->where('school_id', $id)->latest()->firstOrFail();
+        return $this->model->query()->latest()->firstOrFail();
     }
 }

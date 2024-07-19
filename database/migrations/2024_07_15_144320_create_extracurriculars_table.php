@@ -18,7 +18,6 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('name');
             $this->addForeignId($table, 'employee_id');
-            $this->addForeignId($table, 'school_id');
             $table->timestamps();
         });
     }

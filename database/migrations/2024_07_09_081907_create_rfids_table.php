@@ -15,7 +15,6 @@ return new class extends Migration
         Schema::create('rfids', function (Blueprint $table) {
             $table->id();
             $table->string('rfid')->unique();
-            $table->enum('status', [RfidStatusEnum::NOTUSED->value, RfidStatusEnum::USED->value])->default(RfidStatusEnum::NOTUSED->value);
             $table->timestamps();
         });
     }

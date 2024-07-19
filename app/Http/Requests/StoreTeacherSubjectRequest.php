@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRfidRequest extends FormRequest
+class StoreTeacherSubjectRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,15 +22,7 @@ class StoreRfidRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'rfid' => 'required|unique:rfids,rfid'
-        ];
-    }
-
-    public function messages(): array
-    {
-        return [
-            'rfid.required' => 'RFID tidak boleh kosong',
-            'rfid.unique' => 'RFID sudah terdaftar'
+            //
         ];
     }
 }

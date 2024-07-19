@@ -84,13 +84,6 @@ class RfidRepository extends BaseRepository implements RfidInterface
         return $this->model->query()
         ->when($request->search, function ($query) use ($request) {
             $query->where('rfid', 'LIKE', '%' .  $request->search . '%');
-        })->when($request->filter === "terbaru", function($query) {
-            $query->latest();
-        })
-        ->when($request->filter === "terlama", function($query) {
-            $query->oldest();
-        }) ->when($request->status, function($query) use ($request) {
-            $query->where('status', $request->status);
         })->paginate(10);
     }
 }

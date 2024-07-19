@@ -26,7 +26,6 @@ class AttendanceRuleSeeder extends Seeder
 
         foreach ($days as $day) {
             AttendanceRule::create([
-                'school_id' => '1',
                 'day' => $day,
                 'role' => RoleEnum::TEACHER,
                 'checkin_start' => '07:00:00',
@@ -39,7 +38,6 @@ class AttendanceRuleSeeder extends Seeder
 
         foreach ($days as $day) {
             AttendanceRule::create([
-                'school_id' => '1',
                 'day' => $day,
                 'role' => RoleEnum::STUDENT,
                 'checkin_start' => '07:00:00',

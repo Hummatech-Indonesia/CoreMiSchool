@@ -48,7 +48,6 @@ class StaffService
 
         $data['status'] = RoleEnum::STAFF->value;
         $data['user_id'] = $user->id;
-        $data['school_id'] = auth()->user()->school->id;
         return $data;
     }
 
@@ -76,7 +75,6 @@ class StaffService
 
         $data['status'] = RoleEnum::STAFF->value;
         $data['user_id'] = $employee->user_id;
-        $data['school_id'] = auth()->user()->school->id;
         return $data;
     }
 

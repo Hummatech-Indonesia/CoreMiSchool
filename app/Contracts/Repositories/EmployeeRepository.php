@@ -50,8 +50,7 @@ class EmployeeRepository extends BaseRepository implements EmployeeInterface
     public function where(mixed $data): mixed
     {
         return $this->model->query()
-            ->whereRelation('user.roles', 'name', $data)
-            ->get();
+            ->whereRelation('user.roles', 'name', $data)->count();
     }
 
     public function getSchool(mixed $id): mixed
@@ -64,10 +63,9 @@ class EmployeeRepository extends BaseRepository implements EmployeeInterface
         return $this->model->query()->whereRelation('user.roles', 'name', RoleEnum::TEACHER->value)->where('school_id', $id)->get();
     }
 
-    public function whereSchool(mixed $id, $query, Request $request): mixed
+    public function whereSchool($query, Request $request): mixed
     {
         return $this->model->query()->whereRelation('user.roles', 'name', $query)
-        ->where('school_id', $id)
         ->when($request->search, function ($query) use ($request) {
             $query->whereHas('user', function($q) use ($request){
                 $q->where('name', 'LIKE', '%' .  $request->search . '%');

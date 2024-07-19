@@ -24,10 +24,10 @@ class School extends Model
     use HasFactory, BelongsToCity,
     BelongsToUser, BelongsToProvince,
     HasManyStudent, HasManyEmployee,
-    HasManyMaple, HasManySchoolYear,
-    HasManyLessonHour, HasManyLevelClass,
-    MorphManyRfid, HasManyAttendanceRule,
-    HasManyExtracurricular, HasManyModelHasRfid,
+    HasManySchoolYear,HasManyLessonHour,
+    HasManyLevelClass,MorphManyRfid,
+    HasManyAttendanceRule,HasManyExtracurricular,
+    HasManyModelHasRfid,
     HasManySemester;
 
     protected $fillable = [

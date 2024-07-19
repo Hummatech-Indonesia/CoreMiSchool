@@ -10,13 +10,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Extracurricular extends Model
 {
-    use HasFactory, BelongsToEmployee, BelongsToSchool, HasManyExtracurricularStudent;
+    use HasFactory, BelongsToEmployee, HasManyExtracurricularStudent;
 
-    protected $fillable = [
-        'name',
-        'employee_id',
-        'school_id',
-    ];
+    protected $guarded = ['id'];
 
     public $incrementing = false;
     public $keyType = 'char';

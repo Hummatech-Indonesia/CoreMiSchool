@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\SchoolYearInterface;
-use App\Models\SchoolYear;
 use App\Http\Requests\StoreSchoolYearRequest;
 use App\Http\Requests\UpdateSchoolYearRequest;
 use App\Services\SchoolYearService;
 use Illuminate\Http\Request;
+use App\Models\SchoolYear;
 
 class SchoolYearController extends Controller
 {
@@ -23,7 +23,7 @@ class SchoolYearController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index( Request $request)
+    public function index(Request $request)
     {
         $schoolYears = $this->schoolYear->whereSchool(auth()->user()->school->id, $request);
         return view('school.pages.school-year.index', compact('schoolYears'));
@@ -42,8 +42,7 @@ class SchoolYearController extends Controller
      */
     public function store(StoreSchoolYearRequest $request)
     {
-        $data = $this->service->store($request);
-        $this->schoolYear->store($data);
+        $this->schoolYear->store($request->validate());
         return redirect()->back()->with('success', 'Berhasil menambahkan tahun ajaran');
     }
 
@@ -68,8 +67,7 @@ class SchoolYearController extends Controller
      */
     public function update(UpdateSchoolYearRequest $request, SchoolYear $schoolYear)
     {
-        $data = $this->service->update($schoolYear ,$request);
-        $this->schoolYear->update($schoolYear->id, $data);
+        $this->schoolYear->update($schoolYear->id, $request->validated());
         return redirect()->back()->with('success', 'Berhasil memperbaiki tahun ajaran');
     }
 

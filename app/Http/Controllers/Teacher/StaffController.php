@@ -35,7 +35,7 @@ class StaffController extends Controller
      */
     public function index(Request $request)
     {
-        $staffs = $this->employee->whereSchool(auth()->user()->school->id, RoleEnum::STAFF->value, $request);
+        $staffs = $this->employee->whereSchool(RoleEnum::STAFF->value, $request);
         $religions = $this->religion->get();
         return view('school.pages.employe.index', compact('staffs', 'religions'));
     }

@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
             // AttendanceSeeder::class,
             ExtracurricularSeeder::class,
             AttendanceRuleSeeder::class,
-            MapleSeeder::class
+            SubjectSeeder::class
         ]);
     }
 }

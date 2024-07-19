@@ -42,8 +42,7 @@ class LessonHourController extends Controller
      */
     public function store(StoreLessonHourRequest $request)
     {
-        $data = $this->service->store($request);
-        $this->lessonHour->store($data);
+        $this->lessonHour->store($request->validated());
         return redirect()->back()->with('success', 'Berhasil menambahkan jam pelajaran');
     }
 
@@ -68,8 +67,7 @@ class LessonHourController extends Controller
      */
     public function update(UpdateLessonHourRequest $request, LessonHour $lessonHour)
     {
-        $data = $this->service->update($lessonHour, $request);
-        $this->lessonHour->update($lessonHour->id ,$data);
+        $this->lessonHour->update($lessonHour->id ,$request->validated());
         return redirect()->back()->with('success', 'Berhasil memperbarui jam pelajaran');
     }
 

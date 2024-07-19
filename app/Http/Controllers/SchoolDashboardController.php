@@ -7,10 +7,13 @@ use App\Contracts\Interfaces\ClassroomInterface;
 use App\Contracts\Interfaces\EmployeeInterface;
 use App\Contracts\Interfaces\MapleInterface;
 use App\Contracts\Interfaces\ModelHasRfidInterface;
+use App\Contracts\Interfaces\RfidInterface;
 use App\Contracts\Interfaces\SchoolInterface;
 use App\Contracts\Interfaces\SchoolYearInterface;
 use App\Contracts\Interfaces\SemesterInterface;
 use App\Contracts\Interfaces\StudentInterface;
+use App\Contracts\Interfaces\SubjectInterface;
+use App\Enums\RoleEnum;
 use App\Http\Requests\StoreModelHasRfidRequest;
 use App\Models\School;
 use App\Services\ModelHasRfidService;
@@ -22,18 +25,20 @@ class SchoolDashboardController extends Controller
 {
     private SchoolInterface $school;
     private SchoolYearInterface $schoolYear;
-    private ModelHasRfidInterface $rfid;
+    private RfidInterface $rfid;
     private ClassroomInterface $classroom;
     private SemesterInterface $semester;
     private AttendanceInterface $attendance;
     private StudentInterface $student;
-
+    private EmployeeInterface $employee;
     private SchoolChartService $schoolChart;
+    private SubjectInterface $subjects;
 
     public function __construct(SchoolInterface $school, SchoolYearInterface $schoolYear,
-    ModelHasRfidInterface $rfid, ClassroomInterface $classroom, SemesterInterface $semester,
-    SchoolChartService $schoolChart, AttendanceInterface $attendance, StudentInterface $student)
+    RfidInterface $rfid, ClassroomInterface $classroom, SemesterInterface $semester,
+    SchoolChartService $schoolChart, AttendanceInterface $attendance, StudentInterface $student, EmployeeInterface $employee, SubjectInterface $subjects)
     {
+        $this->employee = $employee;
         $this->school = $school;
         $this->schoolYear = $schoolYear;
         $this->rfid = $rfid;
@@ -42,22 +47,27 @@ class SchoolDashboardController extends Controller
         $this->attendance = $attendance;
         $this->schoolChart = $schoolChart;
         $this->student = $student;
+        $this->subjects = $subjects;
     }
 
     public function index()
     {
-        $school = $this->school->whereUserId(auth()->user()->id);
-        $classrooms = $this->classroom->countClass(auth()->user()->school->id);
-        $schoolYear = $this->schoolYear->active(auth()->user()->school->id);
-        $semester = $this->semester->whereSchool(auth()->user()->school->id);
+        $classrooms = $this->classroom->countClass();
+        $schoolYear = $this->schoolYear->active();
+        $semester = $this->semester->whereSchool();
         $attendanceChart = $this->schoolChart->ChartAttendance($this->attendance);
-        $alumni = $this->student->countStudentAlumni(auth()->user()->school->id);
-        return view('school.pages.dashboard', compact('school', 'classrooms', 'schoolYear', 'semester', 'attendanceChart', 'alumni'));
+        $alumni = $this->student->countStudentAlumni();
+        $teachers = $this->employee->where(RoleEnum::TEACHER->value);
+        $employees = $this->employee->where(RoleEnum::STAFF->value);
+        $students = $this->student->count();
+        $subjects = $this->subjects->count();
+
+        return view('school.pages.dashboard', compact('classrooms', 'schoolYear', 'semester', 'attendanceChart', 'alumni', 'teachers', 'employees', 'students', 'subjects'));
     }
 
     public function show(Request $request)
     {
-        $rfids = $this->rfid->masterRfid($request);
+        $rfids = $this->rfid->search($request);
         $school = $this->school->showWithSlug(auth()->user()->slug);
         $schoolYear = $this->schoolYear->active($school->id);
         return view('school.pages.settings.information', compact('school', 'schoolYear', 'rfids'));

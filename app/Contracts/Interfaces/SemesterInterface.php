@@ -12,5 +12,5 @@ use App\Contracts\Interfaces\Eloquent\WhereInterface;
 
 interface SemesterInterface extends GetInterface, StoreInterface
 {
-    public function whereSchool(mixed $id): mixed;
+    public function whereSchool(): mixed;
 }
