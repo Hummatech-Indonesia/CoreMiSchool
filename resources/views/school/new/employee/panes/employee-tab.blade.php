@@ -60,7 +60,8 @@
                             <td>lukman@gmail.com</td>
                             <td>2131123123</td>
                             <td>123123123
-                                <button type="submit" class="btn btn-rounded btn-warning p-1 ms-2 btn-rfid">
+                                <button type="submit" class="btn btn-rounded btn-warning p-1 ms-2 btn-rfid"
+                                    data-bs-toggle="modal" data-bs-target="#modal-rfid">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                         viewBox="0 0 24 24">
                                         <path fill="currentColor"
@@ -82,14 +83,17 @@
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
                                         <li>
-                                            <a data-id="1dbf93d1-4e70-37ec-abda-b496e6a3c177"
+                                            <button type="button" data-id="1dbf93d1-4e70-37ec-abda-b496e6a3c177" data-bs-toggle="modal" data-bs-target="#modal-detail"
                                                 class="btn-detail dropdown-item d-flex align-items-center gap-3"><i
-                                                    class="fs-4 ti ti-eye"></i>Detail</a>
+                                                    class="fs-4 ti ti-eye"></i>Detail</button>
                                         </li>
+
                                         <li>
-                                            <a data-id="1dbf93d1-4e70-37ec-abda-b496e6a3c177"
-                                                class="btn-update dropdown-item d-flex align-items-center gap-3"><i
-                                                    class="fs-4 ti ti-edit"></i>Edit</a>
+                                            <button type="button" data-id="1dbf93d1-4e70-37ec-abda-b496e6a3c177"
+                                                class="btn-update dropdown-item d-flex align-items-center gap-3"
+                                                data-bs-toggle="modal" data-bs-target="#update-employe">
+                                                <i class="fs-4 ti ti-edit"></i>Edit
+                                            </button>
                                         </li>
                                         <li>
                                             <a data-id="1dbf93d1-4e70-37ec-abda-b496e6a3c177"
@@ -106,3 +110,7 @@
         </div>
     </div>
 </div>
+
+@include('school.new.employee.widgets.employe.update-employe')
+@include('school.new.employee.widgets.employe.modal-rfid')
+@include('school.new.employee.widgets.employe.modal-detail')

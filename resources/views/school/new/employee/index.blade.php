@@ -88,6 +88,8 @@
 
     @include('school.new.employee.widgets.teacher.import-teacher')
     @include('school.new.employee.widgets.employe.import-employe')
+    @include('school.new.employee.widgets.employe.add-employe')
+
 @endsection
 
 @section('script')
