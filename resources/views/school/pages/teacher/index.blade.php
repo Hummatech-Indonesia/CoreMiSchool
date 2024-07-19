@@ -704,7 +704,7 @@
         sections.hide();
         sections.eq(currentSection).show();
 
-        $(".next-step").click(function() {
+        $(".next-step ").click(function() {
             if (currentSection < sections.length - 1) {
                 sections.eq(currentSection).hide();
                 steps.eq(currentSection).removeClass("current").addClass("done");
