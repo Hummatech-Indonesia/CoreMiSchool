@@ -58,9 +58,9 @@ class EmployeeRepository extends BaseRepository implements EmployeeInterface
         return $this->model->query()->where('school_id', $id)->get();
     }
 
-    public function getTeacherBySchool(mixed $id): mixed
+    public function getTeacherBySchool(): mixed
     {
-        return $this->model->query()->whereRelation('user.roles', 'name', RoleEnum::TEACHER->value)->where('school_id', $id)->get();
+        return $this->model->query()->whereRelation('user.roles', 'name', RoleEnum::TEACHER->value)->get();
     }
 
     public function whereSchool($query, Request $request): mixed

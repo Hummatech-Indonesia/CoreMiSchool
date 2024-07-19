@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Interfaces\ModelHasRfidInterface;
 use App\Contracts\Interfaces\SchoolYearInterface;
 use App\Http\Requests\StoreSchoolYearRequest;
 use App\Http\Requests\UpdateSchoolYearRequest;
@@ -13,11 +14,13 @@ class SchoolYearController extends Controller
 {
     private SchoolYearInterface $schoolYear;
     private SchoolYearService $service;
+    private ModelHasRfidInterface $rfid;
 
-    public function __construct(SchoolYearInterface $schoolYear, SchoolYearService $service)
+    public function __construct(SchoolYearInterface $schoolYear, SchoolYearService $service, ModelHasRfidInterface $rfid)
     {
         $this->schoolYear = $schoolYear;
         $this->service = $service;
+        $this->rfid = $rfid;
     }
 
     /**

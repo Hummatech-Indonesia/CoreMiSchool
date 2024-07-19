@@ -3,6 +3,7 @@
 namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\ModelHasRfidInterface;
+use App\Enums\RoleEnum;
 use App\Models\ModelHasRfid;
 use Illuminate\Http\Request;
 
@@ -115,5 +116,18 @@ class ModelHasRfidRepository extends BaseRepository implements ModelHasRfidInter
     public function whereRfid(mixed $query): mixed
     {
         return $this->model->query()->where('rfid', $query)->first();
+    }
+
+    public function getRfid(): mixed
+    {
+        return $this->model->query()
+            ->where(function ($query) {
+                $query->whereHas('model', function ($query) {
+                    $query->whereHas('user.roles', function ($query) {
+                        $query->whereNot('name', RoleEnum::STAFF->value);
+                    });
+                })->orWhereNull('model_type');
+            })
+            ->get();
     }
 }

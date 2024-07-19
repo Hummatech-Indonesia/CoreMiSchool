@@ -84,7 +84,7 @@ class SchoolController extends Controller
     public function show($slug, Request $request)
     {
         $school = $this->school->showWithSlug($slug);
-        $teachers = $this->employee->getTeacherBySchool($school->id);
+        $teachers = $this->employee->getTeacherBySchool();
         $schoolYears = $this->schoolYear->whereSchool($school->id, $request);
         $rfids = $this->modelHasRfid->whereSchool($school->id);
         $activeRfids = $this->modelHasRfid->whereNotNull('model_type');
