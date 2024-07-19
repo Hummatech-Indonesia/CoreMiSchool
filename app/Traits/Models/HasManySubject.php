@@ -2,19 +2,19 @@
 
 namespace App\Traits\Models;
 
-use App\Models\TeacherMaple;
+use App\Models\Subject;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-trait HasManyTeacherMaple {
+trait HasManySubject {
 
     /**
      * Get all of the students for the HasManyStudent
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function teacherMaples(): HasMany
+    public function subjects(): HasMany
     {
-        return $this->hasMany(TeacherMaple::class);
+        return $this->hasMany(Subject::class);
     }
 
 }

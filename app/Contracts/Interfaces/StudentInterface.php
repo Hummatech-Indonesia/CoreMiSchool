@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 interface StudentInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface
 {
     public function doesntHaveClassroom(Request $request): mixed;
-    public function countStudentAlumni(mixed $id) : mixed;
-    public function whereSchool(mixed $id, Request $request): mixed;
+    public function countStudentAlumni() : mixed;
+    public function whereSchool(Request $request): mixed;
+    public function count() : mixed;
 }

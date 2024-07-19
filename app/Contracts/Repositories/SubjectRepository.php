@@ -2,15 +2,15 @@
 
 namespace App\Contracts\Repositories;
 
-use App\Contracts\Interfaces\MapleInterface;
-use App\Models\Maple;
+use App\Contracts\Interfaces\SubjectInterface;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 
-class MapleRepository extends BaseRepository implements MapleInterface
+class SubjectRepository extends BaseRepository implements SubjectInterface
 {
-    public function __construct(Maple $maple)
+    public function __construct(Subject $subject)
     {
-        $this->model = $maple;
+        $this->model = $subject;
     }
 
     public function get(): mixed
@@ -43,9 +43,14 @@ class MapleRepository extends BaseRepository implements MapleInterface
         return $this->model->query()->latest()->paginate(10);
     }
 
-    public function whereSchool(mixed $id, Request $request): mixed
+    public function count(): mixed
     {
-        return $this->model->query()->where('school_id', $id)
+        return $this->model->query()->count();
+    }
+
+    public function whereSchool(Request $request): mixed
+    {
+        return $this->model->query()
         ->when($request->name, function ($query) use ($request) {
             $query->where('name', 'LIKE', '%' .  $request->name . '%');
         })

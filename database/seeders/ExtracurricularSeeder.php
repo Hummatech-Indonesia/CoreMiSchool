@@ -18,7 +18,6 @@ class ExtracurricularSeeder extends Seeder
             'id' => Uuid::uuid(),
             'name' => 'Sepak Bola',
             'employee_id' => '1',
-            'school_id' => '1'
         ]);
 
         ExtracurricularStudent::create([

@@ -17,12 +17,10 @@ use Illuminate\Support\Str;
 
 class TeacherController extends Controller
 {
-    private UserInterface $user;
-    private EmployeeInterface $employee;
-
-    private TeacherService $service;
-
     private ReligionInterface $religion;
+    private EmployeeInterface $employee;
+    private TeacherService $service;
+    private UserInterface $user;
 
     public function __construct(UserInterface $user, EmployeeInterface $employee, TeacherService $service, ReligionInterface $religion)
     {
@@ -37,7 +35,7 @@ class TeacherController extends Controller
      */
     public function index(Request $request)
     {
-        $teachers = $this->employee->whereSchool(auth()->user()->school->id, RoleEnum::TEACHER->value, $request);
+        $teachers = $this->employee->whereSchool(RoleEnum::TEACHER->value, $request);
         $religions = $this->religion->get();
         return view('school.pages.teacher.index', compact('teachers', 'religions'));
     }

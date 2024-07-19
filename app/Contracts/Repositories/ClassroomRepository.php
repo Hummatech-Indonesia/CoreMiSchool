@@ -62,9 +62,9 @@ class ClassroomRepository extends BaseRepository implements ClassroomInterface
             ->paginate(10);
     }
 
-    public function countClass(mixed $id): mixed
+    public function countClass(): mixed
     {
-        return $this->model->query()->whereRelation('schoolYear', 'school_id', $id)->count();
+        return $this->model->query()->count();
     }
 
     public function getAlumni(Request $request): mixed
@@ -103,6 +103,10 @@ class ClassroomRepository extends BaseRepository implements ClassroomInterface
 
         $query->when($request->school_year, function ($query) use ($request) {
             $query->whereRelation('schoolYear', 'school_year', 'LIKE', '%' .  $request->school_year . '%');
+        });
+
+        $query->when($request->school_year == null, function($query) {
+            $query->whereRelation('schoolYear', 'active', true);
         });
 
         return $query;

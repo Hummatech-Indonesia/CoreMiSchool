@@ -32,7 +32,7 @@ class StudentController extends Controller
      */
     public function index(Request $request)
     {
-        $students = $this->student->whereSchool(auth()->user()->school->id, $request);
+        $students = $this->student->whereSchool($request);
         $religions = $this->religion->get();
 
         return view('school.pages.student.index', compact('students', 'religions'));

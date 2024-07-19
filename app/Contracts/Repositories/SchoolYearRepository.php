@@ -45,7 +45,7 @@ class SchoolYearRepository extends BaseRepository implements SchoolYearInterface
 
     public function where(mixed $data): mixed
     {
-        return $this->model->query()->where('school_id', $data)->get();
+        return $this->model->query()->get();
     }
 
     public function whereSchoolYear(mixed $data): mixed
@@ -55,16 +55,16 @@ class SchoolYearRepository extends BaseRepository implements SchoolYearInterface
 
     public function whereSchool(mixed $id, Request $request): mixed
     {
-        return $this->model->query()->where('school_id', $id)
-        ->when($request->name, function ($query) use ($request) {
-            $query->where('school_year', 'LIKE' , '%' . $request->name . '%');
-        })
-        ->paginate(10);
+        return $this->model->query()
+            ->when($request->name, function ($query) use ($request) {
+                $query->where('school_year', 'LIKE' , '%' . $request->name . '%');
+            })
+            ->paginate(10);
     }
 
-    public function active(mixed $id): mixed
+    public function active(): mixed
     {
-        return $this->model->query()->where('school_id', $id)->where('active', true)->first();
+        return $this->model->query()->where('active', true)->first();
     }
 
     public function whereActive(): mixed

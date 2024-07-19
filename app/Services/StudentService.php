@@ -48,7 +48,6 @@ class StudentService
         $user = $this->user->store($dataUser);
 
         $data['user_id'] = $user->id;
-        $data['school_id'] = auth()->user()->school->id;
 
         $user->assignRole(RoleEnum::STUDENT->value);
         return $data;

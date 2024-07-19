@@ -23,8 +23,7 @@ class LessonHourSeeder extends Seeder
             $end = $start->copy()->addMinutes(45);
 
             $data[] = [
-                "name" => "Jam ke $time",
-                "school_id" => 1,
+                "name" => $time == 4 || $time == 7 ? 'Istirahat' : 'Jam ke - '. $time,
                 "start" => $start->toDateTimeString(),
                 "end" => $end->toDateTimeString()
             ];

@@ -12,14 +12,17 @@ use App\Http\Controllers\LessonHourController;
 use App\Http\Controllers\LevelClassController;
 use App\Http\Controllers\MapleController;
 use App\Http\Controllers\ModelHasRfidController;
+use App\Http\Controllers\RfidController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SchoolDashboardController;
 use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\Teacher\StaffController;
 use App\Http\Controllers\Teacher\TeacherController;
 use App\Http\Controllers\TeacherMapleController;
+use App\Http\Controllers\TeacherSubjectController;
 use Illuminate\Database\Query\IndexHint;
 use Illuminate\Support\Facades\Route;
 
@@ -40,16 +43,17 @@ Route::prefix('school')->group(function () {
     Route::put('update-teacher/{employee}', [TeacherController::class, 'update'])->name('teacher.update');
     Route::delete('delete-teacher/{employee}', [TeacherController::class, 'destroy'])->name('teacher.delete');
 
-    Route::get('detail-teacher/{employee}', [TeacherMapleController::class, 'index'])->name('detail-teacher.index');
-    Route::post('add-maple-teacher/{employee}', [TeacherMapleController::class, 'store'])->name('maple-teacher.store');
-    Route::put('update-maple-teacher/{teacherMaple}', [TeacherMapleController::class, 'update'])->name('maple-teacher.update');
-    Route::delete('delete-maple-teacher/{teacherMaple}', [TeacherMapleController::class, 'destroy'])->name('maple-teacher.delete');
+    Route::get('detail-teacher/{employee}', [TeacherSubjectController::class, 'index'])->name('detail-teacher.index');
+    Route::post('add-maple-teacher/{employee}', [TeacherSubjectController::class, 'store'])->name('maple-teacher.store');
+    Route::put('update-maple-teacher/{teacherMaple}', [TeacherSubjectController::class, 'update'])->name('maple-teacher.update');
+    Route::delete('delete-maple-teacher/{teacherMaple}', [TeacherSubjectController::class, 'destroy'])->name('maple-teacher.delete');
 
     //mata pelajaran
-    Route::get('create-subjects', [MapleController::class, 'index'])->name('create-subjects');
-    Route::post('add-subjects', [MapleController::class, 'store'])->name('subjects.store');
-    Route::put('update-subjects/{maple}', [MapleController::class, 'update'])->name('subjects.update');
-    Route::delete('delete-subjects/{maple}', [MapleController::class, 'destroy'])->name('subjects.delete');
+    Route::resource('subject', SubjectController::class);
+    // Route::get('create-subjects', [MapleController::class, 'index'])->name('create-subjects');
+    // Route::post('add-subjects', [MapleController::class, 'store'])->name('subjects.store');
+    // Route::put('update-subjects/{maple}', [MapleController::class, 'update'])->name('subjects.update');
+    // Route::delete('delete-subjects/{maple}', [MapleController::class, 'destroy'])->name('subjects.delete');
 
     // jam mata pelajaran
     // Route::get('lesson-hours', [LessonHourController::class, 'index'])->name('lesson-hours.index');
@@ -114,7 +118,11 @@ Route::prefix('school')->group(function () {
     Route::delete('delete-class-level/{levelClass}', [LevelClassController::class, 'destroy'])->name('class-level.delete');
 
     // setting informasi
-    Route::get('information', [SchoolDashboardController::class, 'show'])->name('settings-information.index');
+    Route::prefix('information')->group(function(){
+        Route::get('', [SchoolDashboardController::class, 'show'])->name('settings-information.index');
+        Route::resource('rfid', RfidController::class);
+    });
+
     Route::post('information/add-masterKey', [ModelHasRfidController::class, 'storeMaster'])->name('master-key.store');
     Route::get('information/edit', [SchoolDashboardController::class, 'edit'])->name('settings-information.edit');
     Route::put('information/update/{school}', [SchoolController::class, 'update'])->name('settings-information.update');
@@ -130,12 +138,6 @@ Route::prefix('school')->group(function () {
     // rfid aktif
     Route::get('rfid-active', [ModelHasRfidController::class, 'showActive'])->name('rfid-active.index');
 
-    //mata pelajaran
-    Route::get('create-subjects', [MapleController::class, 'index'])->name('create-subjects');
-    Route::post('add-subjects', [MapleController::class, 'store'])->name('subjects.store');
-    Route::put('update-subjects/{maple}', [MapleController::class, 'update'])->name('subjects.update');
-    Route::delete('delete-subjects/{maple}', [MapleController::class, 'destroy'])->name('subjects.delete');
-
     // jam mata pelajaran
     // Route::get('lesson-hours', [LessonHourController::class, 'index'])->name('lesson-hours.index');
     Route::resource('lesson-hours', LessonHourController::class);
@@ -148,7 +150,8 @@ Route::prefix('school')->group(function () {
 
 
 //kelas
-Route::get('school/class', [ClassroomController::class, 'index'])->name('class.index');
+Route::get('school/class', [ClassroomController::class, 'in
+dex'])->name('class.index');
 Route::post('school/add-class', [ClassroomController::class, 'store'])->name('class.store');
 Route::put('school/update-class/{classroom}', [ClassroomController::class, 'update'])->name('class.update');
 Route::delete('school/delete-class/{classroom}', [ClassroomController::class, 'destroy'])->name('class.delete');
