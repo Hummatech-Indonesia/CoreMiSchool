@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Enums\GenderEnum;
+use App\Enums\RoleEnum;
 use App\Models\Employee;
 use Illuminate\Database\Seeder;
 
@@ -22,11 +23,10 @@ class EmployeeSeeder extends Seeder
             'nik' => '12345678910123',
             'phone_number' => '00000000000',
             'address' => 'Permata Regency',
-            'status' => 'teacher',
+            'status' => RoleEnum::TEACHER->value,
             'active' => '1',
             'user_id' => '3',
             'religion_id' => '1',
-            'school_id' => '1'
         ]);
 
         Employee::create([
@@ -38,11 +38,10 @@ class EmployeeSeeder extends Seeder
             'nik' => '12345678910123',
             'phone_number' => '00000000000',
             'address' => 'Permata Regency',
-            'status' => 'staff',
+            'status' => RoleEnum::STAFF->value,
             'active' => '1',
             'user_id' => '5',
             'religion_id' => '1',
-            'school_id' => '1'
         ]);
     }
 }

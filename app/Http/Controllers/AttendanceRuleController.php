@@ -25,9 +25,6 @@ class AttendanceRuleController extends Controller
      */
     public function index(Request $request)
     {
-        // $attendanceRules = $this->attendanceRule->get();
-        // return view('school.pages.attendace.copy-clock-settings', compact('attendanceRules'));
-
         $day = $request->query('day');
         $role = $request->query('role');
         $attendanceRules = $this->attendanceRule->whereDayRole($day, $role);

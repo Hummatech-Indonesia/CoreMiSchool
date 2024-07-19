@@ -2,18 +2,18 @@
 
 namespace Database\Seeders;
 
-use App\Models\Maple;
+use App\Models\Subject;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class MapleSeeder extends Seeder
+class SubjectSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $maples = [
+        $subjects = [
             'Matematika',
             'PJOK',
             'Bahasa Indonesia',
@@ -32,11 +32,10 @@ class MapleSeeder extends Seeder
             'Informatika'
         ];
 
-        foreach ($maples as $maple) {
-            Maple::create([
-                'school_id' => '1',
-                'name' => $maple,
-                'religion_id' => ($maple == 'Pendidikan Agama Islam' ? '1' : ($maple == 'Pendidikan Agama Kristen' ? '2' : ($maple == 'Pendidikan Agama Katolik' ? '3' : ($maple == 'Pendidikan Agama Hindu' ? '4' : ($maple == 'Pendidikan Agama Budha' ? '5' : ($maple == 'Pendidikan Agama Konghucu' ? '6' : null)))))),
+        foreach ($subjects as $subject) {
+            Subject::create([
+                'name' => $subject,
+                'religion_id' => ($subject == 'Pendidikan Agama Islam' ? '1' : ($subject == 'Pendidikan Agama Kristen' ? '2' : ($subject == 'Pendidikan Agama Katolik' ? '3' : ($subject == 'Pendidikan Agama Hindu' ? '4' : ($subject == 'Pendidikan Agama Budha' ? '5' : ($subject == 'Pendidikan Agama Konghucu' ? '6' : null)))))),
             ]);
         }
     }

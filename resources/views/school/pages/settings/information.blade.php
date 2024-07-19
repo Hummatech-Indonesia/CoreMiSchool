@@ -68,7 +68,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
@@ -80,7 +79,7 @@
             <form action="">
                 <div class="position-relative">
                     <div class="">
-                        <input type="text" name="name" class="form-control search-chat py-2 px-5 ps-5" id="search-name" placeholder="Cari..." value="{{ old('name', request()->name) }}">
+                        <input type="text" name="search" class="form-control search-chat py-2 px-5 ps-5" id="search-name" placeholder="Cari..." value="{{ old('name', request()->name) }}">
                         <i class="ti ti-search position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
                     </div>
                 </div>
@@ -118,7 +117,7 @@
 
 <div class="modal fade" id="modal-create-masterKey" tabindex="-1" aria-labelledby="tambahRfid" aria-hidden="true">
     <div class="modal-dialog">
-        <form action="{{ route('master-key.store') }}" method="post">
+        <form action="{{ route('rfid.store') }}" method="post">
             @csrf
             <div class="modal-content">
                 <div class="modal-header">

@@ -49,14 +49,14 @@
                 </a>
             </li>
             <li class="nav-item d-flex align-items-center ms-md-auto mt-2 mt-md-0">
-                <a href="javascript:void(0)" class="btn btn-success d-flex align-items-center px-3" id="add-notes">
+                <button type="button" class="btn btn-success px-4" data-bs-toggle="modal" data-bs-target="#modal-import">
                     Import Pegawai
-                </a>
+                </button>
             </li>
             <li class="nav-item d-flex align-items-center ms-2 mt-2 mt-md-0">
-                <a href="javascript:void(0)" class="btn btn-primary d-flex align-items-center px-3" id="add-employee">
+                <button type="button" class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#modal-create">
                     Tambah Pegawai
-                </a>
+                </button>
             </li>
         </ul>
 
@@ -71,4 +71,6 @@
             </div>
         </div>
     </div>
+
+    @include('school.new.employee.widgets.modal-import')
 @endsection

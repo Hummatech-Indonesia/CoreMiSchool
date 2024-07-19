@@ -43,15 +43,21 @@ class StudentRepository extends BaseRepository implements StudentInterface
         return $this->model->query()->latest()->paginate(10);
     }
 
-    public function whereSchool(mixed $id, Request $request): mixed
+    public function count(): mixed
     {
-        return $this->model->query()->where('school_id', $id)->latest()
-        ->when($request->name, function ($query) use ($request) {
-            $query->whereHas('user', function($q) use ($request){
-                $q->where('name', 'LIKE', '%' .  $request->name . '%');
-            });
-        })
-        ->paginate(10);
+        return $this->model->query()->count();
+    }
+
+    public function whereSchool(Request $request): mixed
+    {
+        return $this->model->query()
+            ->when($request->name, function ($query) use ($request) {
+                $query->whereHas('user', function($q) use ($request){
+                    $q->where('name', 'LIKE', '%' .  $request->name . '%');
+                });
+            })
+            ->latest()
+            ->paginate(10);
     }
 
     public function doesntHaveClassroom(Request $request): mixed
@@ -65,10 +71,9 @@ class StudentRepository extends BaseRepository implements StudentInterface
         ->paginate(10);
     }
 
-    public function countStudentAlumni(mixed $id): mixed
+    public function countStudentAlumni(): mixed
     {
         return $this->model->query()
-            ->where('school_id', $id)
             ->whereRelation('classroomStudents.classroom.levelClass', 'name', 'Alumni')
             ->count();
     }

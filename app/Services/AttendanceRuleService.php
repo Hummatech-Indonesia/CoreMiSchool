@@ -11,7 +11,6 @@ class AttendanceRuleService
         $data = $request->validated();
         $data['day'] = $day;
         $data['role'] = $role;
-        $data['school_id'] = auth()->user()->school->id;
         $data['is_holiday'] = isset($data['is_holiday']) ? 1 : 0;
 
         return $data;

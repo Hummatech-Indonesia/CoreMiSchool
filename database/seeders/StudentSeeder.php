@@ -27,8 +27,7 @@ class StudentSeeder extends Seeder
             'number_kk' => '123456789101234',
             'number_akta' => '1234567891012',
             'order_child' => '2',
-            'count_siblings' => '3',
-            'school_id' => '1'
+            'count_siblings' => '3'
         ]);
     }
 }

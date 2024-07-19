@@ -11,14 +11,12 @@ class SchoolYearService
     public function store(StoreSchoolYearRequest $request): array|bool
     {
         $data = $request->validated();
-        $data['school_id'] = auth()->user()->school->id;
         return $data;
     }
 
     public function update(SchoolYear $schoolYear, UpdateSchoolYearRequest $request): array|bool
     {
         $data = $request->validated();
-        $data['school_id'] = auth()->user()->school->id;
         return $data;
     }
 

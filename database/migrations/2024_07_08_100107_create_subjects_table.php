@@ -8,17 +8,15 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     use HasForeign;
-
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('teacher_maples', function (Blueprint $table) {
+        Schema::create('subjects', function (Blueprint $table) {
             $table->id();
-            $this->addForeignId($table, 'maple_id');
-            $this->addForeignId($table, 'employee_id');
-            $this->addForeignId($table, 'school_year_id');
+            $table->string('name');
+            $this->addForeignIdNull($table, 'religion_id');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('teacher_maples');
+        Schema::dropIfExists('subjects');
     }
 };

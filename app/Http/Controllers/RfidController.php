@@ -42,9 +42,9 @@ class RfidController extends Controller
     {
         try {
             $this->rfid->store($request->validated());
-            return redirect()->back()->with('success', 'Berhasil mendaftarkan RFID');
+            return redirect()->back()->with('success', 'Berhasil mendaftarkan MasterKey');
         } catch (\Throwable $th) {
-            return redirect()->back()->with('warning', 'RFID sudah tersedia');
+            return redirect()->back()->with('warning', 'MasterKey sudah tersedia');
         }
     }
 

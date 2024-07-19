@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    use HasForeign;
     /**
      * Run the migrations.
      */
@@ -18,7 +17,6 @@ return new class extends Migration
             $table->string('rfid');
             $table->string('model_type')->nullable();
             $table->unsignedBigInteger('model_id')->nullable();
-            $this->addForeignId($table, 'school_id');
             $table->timestamps();
         });
     }

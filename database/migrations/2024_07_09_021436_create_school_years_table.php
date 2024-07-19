@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    use HasForeign;
-
     /**
      * Run the migrations.
      */
@@ -17,7 +15,6 @@ return new class extends Migration
         Schema::create('school_years', function (Blueprint $table) {
             $table->id();
             $table->string('school_year');
-            $this->addForeignId($table, 'school_id');
             $table->boolean('active')->default(true);
             $table->timestamps();
         });

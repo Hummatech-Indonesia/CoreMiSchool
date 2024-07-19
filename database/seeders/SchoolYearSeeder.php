@@ -35,7 +35,6 @@ class SchoolYearSeeder extends Seeder
         foreach ($year as $item => $data) {
             SchoolYear::create([
                 'school_year' => $data['school_year'],
-                'school_id' => '1',
                 'active' => $data['active']
             ]);
         };

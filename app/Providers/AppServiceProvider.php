@@ -13,7 +13,7 @@ use App\Contracts\Interfaces\ExtracurricularInterface;
 use App\Contracts\Interfaces\LessonHourInterface;
 use App\Contracts\Interfaces\LessonScheduleInterface;
 use App\Contracts\Interfaces\LevelClassInterface;
-use App\Contracts\Interfaces\MapleInterface;
+use App\Contracts\Interfaces\SubjectInterface;
 use App\Contracts\Interfaces\ModelHasRfidInterface;
 use App\Contracts\Interfaces\ProvinceInterface;
 use App\Contracts\Interfaces\ReligionInterface;
@@ -23,7 +23,6 @@ use App\Contracts\Interfaces\SchoolYearInterface;
 use App\Contracts\Interfaces\SemesterInterface;
 use App\Contracts\Interfaces\StudentInterface;
 use App\Contracts\Interfaces\SubDistrictInterface;
-use App\Contracts\Interfaces\TeacherMapleInterface;
 use App\Contracts\Interfaces\UserInterface;
 use App\Contracts\Interfaces\VillageInterface;
 use App\Contracts\Repositories\AttendanceRepository;
@@ -37,7 +36,7 @@ use App\Contracts\Repositories\ExtracurricularRepository;
 use App\Contracts\Repositories\LessonHourRepository;
 use App\Contracts\Repositories\LessonScheduleRepository;
 use App\Contracts\Repositories\LevelClassRepository;
-use App\Contracts\Repositories\MapleRepository;
+use App\Contracts\Repositories\SubjectRepository;
 use App\Contracts\Repositories\ModelHasRfidRepository;
 use App\Contracts\Repositories\ProvinceRepository;
 use App\Contracts\Repositories\ReligionRepository;
@@ -47,7 +46,6 @@ use App\Contracts\Repositories\SchoolYearRepository;
 use App\Contracts\Repositories\SemesterRepository;
 use App\Contracts\Repositories\StudentRepository;
 use App\Contracts\Repositories\SubDistrictRepository;
-use App\Contracts\Repositories\TeacherMapleRepository;
 use App\Contracts\Repositories\UserRepository;
 use App\Contracts\Repositories\VillageRepository;
 use Illuminate\Support\ServiceProvider;
@@ -64,11 +62,10 @@ class AppServiceProvider extends ServiceProvider
         SchoolInterface::class => SchoolRepository::class,
         SemesterInterface::class => SemesterRepository::class,
         EmployeeInterface::class => EmployeeRepository::class,
-        MapleInterface::class => MapleRepository::class,
+        SubjectInterface::class => SubjectRepository::class,
         VillageInterface::class => VillageRepository::class,
         SchoolYearInterface::class => SchoolYearRepository::class,
         ClassroomInterface::class => ClassroomRepository::class,
-        TeacherMapleInterface::class => TeacherMapleRepository::class,
         ClassroomStudentInterface::class => ClassroomStudentRepository::class,
         LessonHourInterface::class => LessonHourRepository::class,
         LessonScheduleInterface::class => LessonScheduleRepository::class,

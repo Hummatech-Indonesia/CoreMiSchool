@@ -36,19 +36,19 @@
     </div>
 
     <div class="row">
-        @forelse ($maples as $maple)
+        @forelse ($subjects as $subject)
             <div class="col-lg-3">
                 <div class="card card-body bg-transparent border-2 shadow-none">
                     <div class="text-center">
-                        <h5>{{ $maple->name }}</h5>
+                        <h5>{{ $subject->name }}</h5>
                         <div class="mt-4">
                             <button type="button" class="btn btn-edit mb-1 btn-primary px-4 me-2"
-                                data-id="{{ $maple->id }}" data-name="{{ $maple->name }}"
-                                data-religion="{{ $maple->religion_id }}">
+                                data-id="{{ $subject->id }}" data-name="{{ $subject->name }}"
+                                data-religion="{{ $subject->religion_id }}">
                                 Edit
                             </button>
                             <button type="button" class="btn btn-delete mb-1 btn-light-danger text-danger px-4"
-                                data-id="{{ $maple->id }}">
+                                data-id="{{ $subject->id }}">
                                 Hapus
                             </button>
                         </div>
@@ -65,7 +65,7 @@
         @endforelse
     </div>
     <div class="pagination justify-content-center mb-0">
-        <x-paginate-component :paginator="$maples" />
+        <x-paginate-component :paginator="$subjects" />
     </div>
 
     <div class="modal fade" id="modal-create" tabindex="-1" aria-labelledby="tambahPelajaran" aria-hidden="true">
@@ -75,7 +75,7 @@
                     <h5 class="modal-title" id="tambahPelajaran">Tambah Pelajaran</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('subjects.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('subject.store') }}" method="POST" enctype="multipart/form-data">
                     @method('post')
                     @csrf
                     <div class="modal-body">
@@ -153,7 +153,7 @@
             var id = $(this).data('id');
             var name = $(this).data('name');
             var religion = $(this).data('religion');
-            $('#form-edit').attr('action', '{{ route('subjects.update', '') }}/' + id);
+            $('#form-edit').attr('action', '{{ route('subject.update', '') }}/' + id);
             $('#name-edit').val(name);
             $('#religion-edit').val(religion).trigger('change');
             religion == '' ? $('#check').prop('checked', false) : $('#check').prop('checked', true);
@@ -163,7 +163,7 @@
 
         $('.btn-delete').on('click', function() {
             var id = $(this).data('id');
-            $('#form-delete').attr('action', '/school/delete-subjects/' + id);
+            $('#form-delete').attr('action', '{{ route('subject.destroy', '') }}/' + id);
             $('#modal-delete').modal('show');
         });
     </script>

@@ -47,7 +47,6 @@ class TeacherService
 
         $data['status'] = RoleEnum::TEACHER->value;
         $data['user_id'] = $user->id;
-        $data['school_id'] = auth()->user()->school->id;
         return $data;
     }
 
