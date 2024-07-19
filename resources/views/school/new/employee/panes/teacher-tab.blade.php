@@ -82,7 +82,7 @@
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
                                         <li>
-                                            <button type="button" data-id="1dbf93d1-4e70-37ec-abda-b496e6a3c177" data-bs-toggle="modal" data-bs-target="#update-teacher"
+                                            <button type="button" data-id="1dbf93d1-4e70-37ec-abda-b496e6a3c177"
                                                 class="btn-detail dropdown-item d-flex align-items-center gap-3"><i
                                                     class="fs-4 ti ti-eye"></i>Detail</button>
                                         </li>

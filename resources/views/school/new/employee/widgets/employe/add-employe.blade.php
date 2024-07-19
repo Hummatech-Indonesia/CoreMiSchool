@@ -1,15 +1,15 @@
 <!-- modal tambah -->
-<div class="modal fade" id="create-employe" tabindex="-1" aria-labelledby="tambahPegawai" aria-hidden="true">
+<div class="modal fade" id="modal-add-emplo" tabindex="-1" aria-labelledby="addEmployee" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="tambahPegawai">Tambah Pegawai</h5>
+                <h5 class="modal-title" id="addEmployee">Tambah Pegawai</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="">
                     <div class="wizard-content">
-                        <form action="{{ route('employe.store') }}" class="tab-wizard wizard-circle wizard clearfix" role="application" id="steps-uid-0" method="POST" enctype="multipart/form-data">
+                        <form id="add-form"  class="tab-wizard wizard-circle wizard clearfix" role="application" method="POST" enctype="multipart/form-data">
                             @method('post')
                             @csrf
                             <!-- Step 1 -->
@@ -43,12 +43,12 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Agama</label>
-                                            {{-- <select name="religion_id" id="" class="form-select">
-                                                @foreach ($religions as $religion)
+                                            <select name="religion_id" id="" class="form-select">
+                                                {{-- @foreach ($religions as $religion)
                                                 <option value="{{ $religion->id }}">{{ $religion->name }}
                                                 </option>
-                                                @endforeach
-                                            </select> --}}
+                                                @endforeach --}}
+                                            </select>
                                             @error('religion_id')
                                             <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -89,7 +89,7 @@
 
                                 </div>
                                 <div class="d-flex justify-content-end mt-3 mx-4">
-                                    <button type="button" class="btn btn-primary next-step">Berikutnya</button>
+                                    <button type="button" class="btn btn-primary next-add-step">Berikutnya</button>
                                 </div>
                             </section>
 
@@ -143,18 +143,14 @@
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-end mt-3 mx-4">
-                                    <button type="button" class="btn mb-1 waves-effect waves-light btn-light prev-step">Kembali</button>
+                                    <button type="button" class="btn mb-1 waves-effect waves-light btn-light prev-add-step">Kembali</button>
                                     <button type="submit" class="btn mb-1 waves-effect waves-light btn-rounded btn-primary ms-3">Simpan</button>
                                 </div>
                             </section>
+
                         </form>
                     </div>
                 </div>
-
-            </div>
-            <div class="modal-footer">
-                {{-- <button type="button" class="btn btn-rounded btn-light-danger text-danger" data-bs-dismiss="modal">Tutup</button>
-                <button type="submit" class="btn btn-rounded btn-light-success text-success">Tambah</button> --}}
             </div>
         </div>
     </div>

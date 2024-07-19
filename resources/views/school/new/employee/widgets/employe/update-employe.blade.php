@@ -1,15 +1,15 @@
 <!-- modal edit -->
-<div class="modal fade" id="update-employe" tabindex="-1" aria-labelledby="editPegawaiLabel" aria-hidden="true">
+<div class="modal fade" id="modal-update-employee" tabindex="-1" aria-labelledby="editEmployee" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editPegawaiLabel">Edit Pegawai</h5>
+                <h5 class="modal-title" id="editEmployee">Edit Employee</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+            <div class="modal-body">
                 <div class="">
                     <div class="wizard-content">
-                        <form id="editForm" class="tab-wizard wizard-circle wizard clearfix" role="application" method="POST" enctype="multipart/form-data">
+                        <form id="edit-form" class="tab-wizard wizard-circle wizard clearfix" role="application" method="POST" enctype="multipart/form-data">
                             @method('put')
                             @csrf
                             <!-- Step 1 -->
@@ -87,7 +87,7 @@
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-end mt-3 mx-4">
-                                    <button type="button" class="btn btn-primary next-step">Berikutnya</button>
+                                    <button type="button" class="btn btn-primary next-edit-step">Berikutnya</button>
                                 </div>
                             </section>
 
@@ -141,18 +141,14 @@
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-end mt-3 mx-4">
-                                    <button type="button" class="btn mb-1 waves-effect waves-light btn-light prev-step">Kembali</button>
+                                    <button type="button" class="btn mb-1 waves-effect waves-light btn-light prev-edit-step">Kembali</button>
                                     <button type="submit" class="btn mb-1 waves-effect waves-light btn-rounded btn-primary ms-3">Simpan</button>
                                 </div>
                             </section>
+
                         </form>
                     </div>
                 </div>
-
-            </div>
-            <div class="modal-footer">
-                {{-- <button type="button" class="btn btn-rounded btn-light-danger text-danger" data-bs-dismiss="modal">Tutup</button>
-                <button type="submit" class="btn btn-rounded btn-light-success text-success">Tambah</button> --}}
             </div>
         </div>
     </div>
