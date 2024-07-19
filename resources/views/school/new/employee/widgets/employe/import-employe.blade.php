@@ -1,9 +1,9 @@
 <!-- modal import -->
-<div class="modal fade" id="modal-import" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
+<div class="modal fade" id="import-employe" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="importPegawai">Import Pegawai</h5>
+                <h5 class="modal-title" id="importPegawai">Import pegawai</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="{{ route('employe.import') }}" method="POST" enctype="multipart/form-data">
