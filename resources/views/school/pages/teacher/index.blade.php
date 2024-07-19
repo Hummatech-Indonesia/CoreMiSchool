@@ -240,12 +240,11 @@
 </div>
 
 <div class="table-responsive rounded-2">
-    <table class="table border text-nowrap customize-table mb-0 align-middle text-center">
+    <table class="table border text-nowrap customize-table mb-0 align-middle">
         <thead>
             <tr>
                 <th>No</th>
                 <th>Guru</th>
-                <th>Kelamin</th>
                 <th>Status</th>
                 <th>NIP</th>
                 <th>RFID</th>
@@ -258,11 +257,17 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>
-                    <img src="{{ $teacher->image ? asset('storage/' . $teacher->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}" class="rounded-circle me-2 user-profile" style="object-fit: cover" width="30" height="30" alt="" />
-                    {{ $teacher->user->name }}
+                    <div class="d-flex align-items-center">
+                        <img src="{{ $teacher->image ? asset('storage/' . $teacher->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}" class="rounded-circle" width="40" height="40">
+                        <div class="ms-3">
+                          <h6 class="fs-4 fw-semibold mb-0">{{ $teacher->user->name }}</h6>
+                          <span class="fw-normal">{{ $teacher->gender == 'male' ? 'Laki Laki' : 'Perempuan' }}</span>
+                        </div>
+                      </div>
                 </td>
-                <td>{{ $teacher->gender == 'male' ? 'Laki Laki' : 'Perempuan' }}</td>
-                <td>{{ $teacher->active == 1 ? 'Aktif' : 'Tidak aktif' }}</td>
+                <td>
+                    <span class="badge {{ $teacher->active == '1' ? 'bg-light-primary text-primary' : 'bg-light-danger text-danger' }}">{{ $teacher->active == '1' ? 'Aktif' : 'Tidak Aktif' }}</span>
+                </td>
                 <td>{{ $teacher->nip }}</td>
                 <td>{{ $teacher->modelHasRfid ? $teacher->modelHasRfid->rfid : '' }}
 

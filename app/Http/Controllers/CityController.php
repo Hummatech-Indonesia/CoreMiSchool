@@ -6,6 +6,7 @@ use App\Contracts\Interfaces\CityInterface;
 use App\Models\City;
 use App\Http\Requests\StoreCityRequest;
 use App\Http\Requests\UpdateCityRequest;
+use Illuminate\Http\Request;
 
 class CityController extends Controller
 {
@@ -44,9 +45,11 @@ class CityController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(City $city)
+    public function show(Request $request)
     {
-        //
+        $provinceId = $request->input('province_id');
+        $cities = $this->city->where($provinceId);
+        return response()->json(['data' => $cities]);
     }
 
     /**

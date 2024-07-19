@@ -36,4 +36,9 @@ class CityRepository extends BaseRepository implements CityInterface
     {
         return $this->model->query()->findOrFail($id)->delete();
     }
+
+    public function where(mixed $data): mixed
+    {
+        return $this->model->query()->where('province_id', $data)->get();
+    }
 }

@@ -81,14 +81,13 @@ class ClassroomStudentController extends Controller
                 'student_id' => $studentId,
             ]);
         }
-
         // Remove students from classroom
         foreach ($removeStudents as $studentId) {
             ClassroomStudent::where('classroom_id', $classroom->id)
                 ->where('student_id', $studentId)
                 ->delete();
         }
-         
+
         return to_route('class.show', $classroom->id)->with('success', 'Berhasil meyimpan perubahan siswa');
     }
 

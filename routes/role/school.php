@@ -179,6 +179,33 @@ Route::get('attendance-test', [AttendanceMasterController::class, 'index'])->nam
 Route::get('attendance-test-teacher', [AttendanceMasterController::class, 'index_teacher'])->name('attendance-test-teacher.index');
 Route::post('attendance-test-teacher', [AttendanceMasterController::class, 'check_teacher'])->name('attendance-test-teacher.check');
 
+
+
+
+
+
+
+// route baru
+
+// student
+Route::get('school/students', function(){
+    return view('school.new.student.index');
+})->name('new.student.index');
+//pegawai
+Route::get('new/school/employee', function(){
+    return view('school.new.employee.index');
+})->name('new.employee.index');
+
+
+
+
+
+
+
+
+
+
+
 // url yang berawalan school/ masukkan pada prefix school
 // Route::prefix('school')->group(function () {
 //     route.....
