@@ -183,11 +183,15 @@ Route::post('attendance-test-teacher', [AttendanceMasterController::class, 'chec
 
 
 // route baru
+
+// student
 Route::get('school/students', function(){
     return view('school.new.student.index');
 })->name('new.student.index');
-
-
+//pegawai
+Route::get('new/school/employee', function(){
+    return view('school.new.employee.index');
+})->name('new.employee.index');
 
 
 
