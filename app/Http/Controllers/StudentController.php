@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Interfaces\ClassroomStudentInterface;
 use App\Models\Student;
 use Illuminate\Support\Str;
 use App\Services\StudentService;
@@ -18,13 +19,15 @@ class StudentController extends Controller
     private StudentInterface $student;
     private StudentService $service;
     private ReligionInterface $religion;
+    private ClassroomStudentInterface $classroomStudent;
 
-    public function __construct(UserInterface $user, StudentInterface $student, StudentService $service, ReligionInterface $religion)
+    public function __construct(UserInterface $user, StudentInterface $student, StudentService $service, ReligionInterface $religion, ClassroomStudentInterface $classroomStudent)
     {
         $this->user = $user;
         $this->student = $student;
         $this->service = $service;
         $this->religion = $religion;
+        $this->classroomStudent = $classroomStudent;
     }
 
     /**
@@ -33,9 +36,10 @@ class StudentController extends Controller
     public function index(Request $request)
     {
         $students = $this->student->search($request);
+        $alumnus = $this->classroomStudent->getAlumnus();
         $religions = $this->religion->get();
 
-        return view('school.new.student.index', compact('students', 'religions'));
+        return view('school.new.student.index', compact('students', 'religions', 'alumnus'));
     }
 
     /**
