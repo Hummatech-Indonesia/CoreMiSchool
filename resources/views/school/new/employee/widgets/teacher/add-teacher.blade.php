@@ -154,8 +154,9 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Pekerjaan</label>
-                                            <select name="active" id="" class="form-select mb-3">
-                                                <option value="">Pilih jenis pekerjaan</option>
+                                            <select name="active" id="" class="select2 form-control"
+                                            multiple="multiple"
+                                            style="height: 36px; width: 100%">
                                                 <option value="1">Guru</option>
                                                 <option value="0">Pegawai</option>
                                             </select>
