@@ -50,18 +50,7 @@
                     <span class="d-none d-md-block font-weight-medium">Staff</span>
                 </a>
             </li>
-            <li class="nav-item d-flex align-items-center ms-md-auto mt-2 mt-md-0">
-                <button type="button" class="btn btn-success px-4" data-bs-toggle="modal" data-bs-target="#import-teacher">
-                    Import Pegawai
-                </button>
-            </li>
-            <li class="nav-item d-flex align-items-center ms-2 mt-2 mt-md-0">
-                <button type="button" class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#create-teacher">
-                    Tambah
-                </button>
-            </li>
-
-            {{-- <li class="nav-item d-flex align-items-center ms-md-auto mt-2 mt-md-0" id="guru-buttons">
+            <li class="nav-item d-flex align-items-center ms-md-auto mt-2 mt-md-0" id="guru-buttons">
                 <button type="button" class="btn btn-success px-4" data-bs-toggle="modal" data-bs-target="#import-teacher">
                     Import Guru
                 </button>
@@ -81,7 +70,7 @@
                 <button type="button" class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#modal-add-emplo">
                     Tambah Pegawai
                 </button>
-            </li> --}}
+            </li>
         </ul>
 
 
