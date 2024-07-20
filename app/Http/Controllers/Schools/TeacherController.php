@@ -56,12 +56,7 @@ class TeacherController extends Controller
             $this->employee->store($data);
             return redirect()->back()->with('success', 'Berhasil menambahkan data guru');
         } catch (\Throwable $th) {
-            $data = $this->user->showEmail($request->email);
-            if ($data) {
-                return redirect()->back()->with('warning', 'Data guru sudah tersedia');
-            } else {
-                return redirect()->back()->with('error', 'Kesalahan menambahkan data guru');
-            }
+            return redirect()->back()->with('error', 'Kesalahan menambahkan data guru');
         }
     }
 

@@ -9,7 +9,7 @@
             <div class="modal-body">
                 <div class="">
                     <div class="wizard-content">
-                        <form action="{{ route('school.teachers.store') }}" class="tab-wizard wizard-circle wizard clearfix"
+                        <form action="{{ route('school.teacher.store') }}" class="tab-wizard wizard-circle wizard clearfix"
                             role="application" id="form-add" method="POST" enctype="multipart/form-data">
                             @method('post')
                             @csrf

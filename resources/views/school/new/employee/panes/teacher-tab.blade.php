@@ -41,12 +41,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (range(1, 5) as $item)
+                    @foreach ($teachers as $teacher)
                         <tr>
-                            <td>{{ $item }}</td>
+                            <td>{{ $loop->iteration }}</td>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}"
+                                    <img src="{{ $teacher->image ? asset('storage/' . $teacher->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}"
                                         class="rounded-circle" width="40" height="40">
                                     <div class="ms-3">
                                         <h6 class="fs-4 fw-semibold mb-0">Ahmad Lukman Hakim</h6>
@@ -88,7 +88,7 @@
                                         </li>
                                         <li>
                                             <button type="button" class="btn-update dropdown-item d-flex align-items-center gap-3 btn-edit"
-                                                data-id="{{ $teacher->id }}" 
+                                                data-id="{{ $teacher->id }}"
                                                 data-name="{{ $teacher->user->name }}"
                                                 data-nip="{{ $teacher->nip }}"
                                                 data-religionId="{{ $teacher->religion_id }}"

@@ -44,6 +44,6 @@ class UserRepository extends BaseRepository implements UserInterface
 
     public function showEmail(string $email): mixed
     {
-        return $this->model->query()->where('email', $email)->firstOrFail();
+        return $this->model->query()->where('email', $email)->first();
     }
 }

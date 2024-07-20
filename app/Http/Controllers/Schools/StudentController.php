@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Schools;
 
 use App\Contracts\Interfaces\ClassroomStudentInterface;
 use App\Models\Student;
@@ -11,6 +11,7 @@ use App\Contracts\Interfaces\UserInterface;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Contracts\Interfaces\StudentInterface;
 use App\Contracts\Interfaces\ReligionInterface;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller

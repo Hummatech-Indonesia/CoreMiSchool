@@ -32,9 +32,10 @@ class StaffService
 
     public function store(StoreEmployeeRequest $request): array|bool
     {
-        if ($this->user->showEmail($request->email)) return redirect()->back()->with('warning', 'Data pegawai sudah tersedia');
-
         $data = $request->validated();
+        $rules = $this->user->showEmail($data['email']);
+        if($rules) return redirect()->back()->with('warning', 'Data pegawai sudah tersedia');
+
         $dataUser = [
             'name' => $data['name'],
             'slug' => Str::slug($data['name']),
@@ -55,9 +56,10 @@ class StaffService
 
     public function update(Employee $employee, UpdateEmployeeRequest $request): array|bool
     {
-        if($this->user->showEmail($request->email)) return redirect()->back()->with('warning', 'Data guru sudah tersedia');
-
         $data = $request->validated();
+        $rules = $this->user->showEmail($data['email']);
+        if($rules) return redirect()->back()->with('warning', 'Data pegawai sudah tersedia');
+
         $dataUser = [
             'name' => $data['name'],
             'slug' => Str::slug($data['name']),
