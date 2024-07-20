@@ -60,7 +60,7 @@
                     <h5 class="modal-title" id="importPegawai">Tambah Extracurricular</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('extraa.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('school.extracurricular.store') }}" method="POST" enctype="multipart/form-data">
                     @method('post')
                     @csrf
                     <div class="modal-body">
@@ -254,13 +254,13 @@
             var employee = $(this).data('employee');
             $('#name-update').val(name);
             $('#employee-update').val(employee).trigger('change');
-            $('#form-update').attr('action', `{{ route('extraa.update', '') }}/${id}`);
+            $('#form-update').attr('action', `{{ route('school.extracurricular.update', '') }}/${id}`);
             $('#modal-edit').modal('show');
         });
 
         $('.btn-delete').on('click', function() {
             var id = $(this).data('id');
-            $('#form-delete').attr('action', `{{ route('extraa.delete', '') }}/${id}`);
+            $('#form-delete').attr('action', `{{ route('school.extracurricular.destroy', '') }}/${id}`);
             $('#modal-delete').modal('show');
         });
 

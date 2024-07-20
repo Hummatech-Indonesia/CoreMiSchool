@@ -10,11 +10,11 @@ use App\Contracts\Interfaces\SchoolInterface;
 use App\Http\Requests\StoreModelHasRfidRequest;
 use App\Http\Requests\UpdateModelHasRfidRequest;
 use App\Contracts\Interfaces\ModelHasRfidInterface;
-use F9Web\ApiResponseHelpers;
+// use F9Web\ApiResponseHelpers;
 
 class ModelHasRfidController extends Controller
 {
-    use ApiResponseHelpers;
+    // use ApiResponseHelpers;
     private ModelHasRfidInterface $modelHasRfid;
     private ModelHasRfidService $service;
     private SchoolInterface $school;

@@ -34,6 +34,10 @@ Route::prefix('school')->name('school.')->group(function() {
     Route::resource('teacher', TeacherController::class);
     Route::resource('staff', StaffController::class);
     Route::resource('students', StudentController::class);
+    Route::resource('subject', SubjectController::class);
+    Route::resource('school-years', SchoolYearController::class);
+    Route::resource('lesson-hours', LessonHourController::class);
+    Route::resource('extracurricular', ExtracurricularController::class);
 });
 
 Route::prefix('school')->group(function () {
@@ -58,16 +62,6 @@ Route::prefix('school')->group(function () {
     Route::put('update-maple-teacher/{teacherMaple}', [TeacherSubjectController::class, 'update'])->name('maple-teacher.update');
     Route::delete('delete-maple-teacher/{teacherMaple}', [TeacherSubjectController::class, 'destroy'])->name('maple-teacher.delete');
 
-    //mata pelajaran
-    Route::resource('subject', SubjectController::class);
-    // Route::get('create-subjects', [MapleController::class, 'index'])->name('create-subjects');
-    // Route::post('add-subjects', [MapleController::class, 'store'])->name('subjects.store');
-    // Route::put('update-subjects/{maple}', [MapleController::class, 'update'])->name('subjects.update');
-    // Route::delete('delete-subjects/{maple}', [MapleController::class, 'destroy'])->name('subjects.delete');
-
-    // jam mata pelajaran
-    // Route::get('lesson-hours', [LessonHourController::class, 'index'])->name('lesson-hours.index');
-    Route::resource('lesson-hours', LessonHourController::class);
 
     // student
     Route::get('students', [StudentController::class, 'index'])->name('student.index');
@@ -101,12 +95,6 @@ Route::prefix('school')->group(function () {
 
     Route::get('alumni/{classroom}', [ClassroomController::class, 'studentAlumni'])->name('alumni.index');
 
-    //Extracurricular
-    Route::get('extracurricular', [ExtracurricularController::class, 'index'])->name('extraa.index');
-    Route::post('add-extracurricular', [ExtracurricularController::class, 'store'])->name('extraa.store');
-    Route::put('update-extracurricular/{extracurricular}', [ExtracurricularController::class, 'update'])->name('extraa.update');
-    Route::delete('delete-extracurricular/{extracurricular}', [ExtracurricularController::class, 'destroy'])->name('extraa.delete');
-
     //kelas
     Route::get('class', [ClassroomController::class, 'index'])->name('class.index');
     Route::post('add-class', [ClassroomController::class, 'store'])->name('class.store');
@@ -117,12 +105,6 @@ Route::prefix('school')->group(function () {
     Route::get('detail-class', function () {
         return view('school.pages.class.detail-class');
     })->name('detail-class.index');
-
-    // tahun ajaran
-    Route::get('school-year', [SchoolYearController::class, 'index'])->name('school-year.index');
-    Route::post('add-school-year', [SchoolYearController::class, 'store'])->name('school-year.store');
-    Route::put('update-school-year/{schoolYear}', [SchoolYearController::class, 'update'])->name('school-year.update');
-    Route::delete('delete-school-year/{schoolYear}', [SchoolYearController::class, 'destroy'])->name('school-year.delete');
 
     // tingkatan kelas
     Route::get('class-level', [LevelClassController::class, 'index'])->name('class-level.index');
@@ -151,9 +133,6 @@ Route::prefix('school')->group(function () {
     // rfid aktif
     Route::get('rfid-active', [ModelHasRfidController::class, 'showActive'])->name('rfid-active.index');
 
-    // jam mata pelajaran
-    // Route::get('lesson-hours', [LessonHourController::class, 'index'])->name('lesson-hours.index');
-    Route::resource('lesson-hours', LessonHourController::class);
     //semeter
     Route::prefix('semesters')->name('semesters.')->group(function () {
         Route::get('/', [SemesterController::class, 'index'])->name('index');

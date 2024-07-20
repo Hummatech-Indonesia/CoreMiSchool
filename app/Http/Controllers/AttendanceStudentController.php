@@ -17,11 +17,11 @@ use App\Contracts\Interfaces\AttendanceRuleInterface;
 use App\Http\Resources\SingleAttendaceStudentResource;
 use App\Contracts\Interfaces\ClassroomStudentInterface;
 use App\Http\Resources\StudentPresentAttendacreResource;
-use F9Web\ApiResponseHelpers;
+// use F9Web\ApiResponseHelpers;
 
 class AttendanceStudentController extends Controller
 {
-    use ApiResponseHelpers;
+    // use ApiResponseHelpers;
     private AttendanceInterface $attendance;
     private ModelHasRfidInterface $modelHasRfid;
     private RfidInterface $rfid;

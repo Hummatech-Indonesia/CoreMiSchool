@@ -75,7 +75,7 @@
                     <h5 class="modal-title" id="tambahPelajaran">Tambah Pelajaran</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('subject.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('school.subject.store') }}" method="POST" enctype="multipart/form-data">
                     @method('post')
                     @csrf
                     <div class="modal-body">
@@ -153,7 +153,7 @@
             var id = $(this).data('id');
             var name = $(this).data('name');
             var religion = $(this).data('religion');
-            $('#form-edit').attr('action', '{{ route('subject.update', '') }}/' + id);
+            $('#form-edit').attr('action', '{{ route('school.subject.update', '') }}/' + id);
             $('#name-edit').val(name);
             $('#religion-edit').val(religion).trigger('change');
             religion == '' ? $('#check').prop('checked', false) : $('#check').prop('checked', true);
@@ -163,7 +163,7 @@
 
         $('.btn-delete').on('click', function() {
             var id = $(this).data('id');
-            $('#form-delete').attr('action', '{{ route('subject.destroy', '') }}/' + id);
+            $('#form-delete').attr('action', '{{ route('school.subject.destroy', '') }}/' + id);
             $('#modal-delete').modal('show');
         });
     </script>
