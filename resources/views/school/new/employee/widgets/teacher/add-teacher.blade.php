@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="guru">Tambah Guru</h5>
+                <h5 class="modal-title" id="guru">Tambah Pegawai</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -109,7 +109,7 @@
                             <!-- Step 2 -->
                             <section>
                                 <div class="row mx-3 pt-4">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="">NIK <span class="text-danger"
                                                     style="font-size: larger;">*</span></label>
@@ -120,7 +120,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="">No Telp <span class="text-danger"
                                                     style="font-size: larger;">*</span></label>
@@ -131,7 +131,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="">Email <span class="text-danger"
                                                     style="font-size: larger;">*</span></label>
@@ -148,6 +148,16 @@
                                             <select name="active" id="" class="form-select mb-3">
                                                 <option value="1">Aktif</option>
                                                 <option value="0">NonAktif</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Pekerjaan</label>
+                                            <select name="active" id="" class="form-select mb-3">
+                                                <option value="">Pilih jenis pekerjaan</option>
+                                                <option value="1">Guru</option>
+                                                <option value="0">Pegawai</option>
                                             </select>
                                         </div>
                                     </div>
