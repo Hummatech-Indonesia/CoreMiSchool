@@ -67,7 +67,7 @@
                 </button>
             </li>
             <li class="nav-item d-flex align-items-center ms-2 mt-2 mt-md-0 d-none" id="pegawai-buttons">
-                <button type="button" class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#create-employe">
+                <button type="button" class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#modal-add-emplo">
                     Tambah Pegawai
                 </button>
             </li>
@@ -89,6 +89,8 @@
     @include('school.new.employee.widgets.teacher.import-teacher')
     @include('school.new.employee.widgets.employe.import-employe')
     @include('school.new.employee.widgets.employe.add-employe')
+    @include('school.new.employee.widgets.teacher.add-teacher')
+
 
 @endsection
 
@@ -118,43 +120,13 @@
         });
     </script>
 
-<script>
-    $(document).ready(function() {
-        var currentSection = 0;
-        var sections = $("form > section");
-        var steps = $(".steps li");
 
-        sections.hide();
-        sections.eq(currentSection).show();
-
-        $(".next-step").click(function() {
-            if (currentSection < sections.length - 1) {
-                sections.eq(currentSection).hide();
-                steps.eq(currentSection).removeClass("current").addClass("done");
-                currentSection++;
-                sections.eq(currentSection).show();
-                steps.eq(currentSection).removeClass("disabled").addClass("current");
-            }
-        });
-
-        $(".prev-step").click(function() {
-            if (currentSection > 0) {
-                sections.eq(currentSection).hide();
-                steps.eq(currentSection).removeClass("current").addClass("disabled");
-                currentSection--;
-                sections.eq(currentSection).show();
-                steps.eq(currentSection).removeClass("done").addClass("current");
-            }
-        });
-    });
-
-</script>
-
+{{-- edit employe --}}
 <script>
     $(document).ready(function() {
         var currentEditSection = 0;
-        var editSections = $("#form-edit > section");
-        var editSteps = $("#editSteps li");
+        var editSections = $("#edit-form > section");
+        var editSteps = $(".edit-steps li");
 
         editSections.hide();
         editSections.eq(currentEditSection).show();
@@ -180,5 +152,156 @@
         });
     });
 
+    function previewEditImage(event) {
+        var reader = new FileReader();
+        reader.onload = function() {
+            var output = document.getElementById('editImagePreview');
+            output.src = reader.result;
+            output.style.display = 'block';
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    }
 </script>
+
+{{-- edit guru --}}
+<script>
+    $(document).ready(function() {
+        var currentAddSection = 0;
+        var addSections = $("#add-form > section");
+        var addSteps = $(".add-steps li");
+
+        addSections.hide();
+        addSections.eq(currentAddSection).show();
+
+        $(".next-add-step").click(function() {
+            if (currentAddSection < addSections.length - 1) {
+                addSections.eq(currentAddSection).hide();
+                addSteps.eq(currentAddSection).removeClass("current").addClass("done");
+                currentAddSection++;
+                addSections.eq(currentAddSection).show();
+                addSteps.eq(currentAddSection).removeClass("disabled").addClass("current");
+            }
+        });
+
+        $(".prev-add-step").click(function() {
+            if (currentAddSection > 0) {
+                addSections.eq(currentAddSection).hide();
+                addSteps.eq(currentAddSection).removeClass("current").addClass("disabled");
+                currentAddSection--;
+                addSections.eq(currentAddSection).show();
+                addSteps.eq(currentAddSection).removeClass("done").addClass("current");
+            }
+        });
+    });
+
+    function previewAddImage(event) {
+        var reader = new FileReader();
+        reader.onload = function() {
+            var output = document.getElementById('addImagePreview');
+            output.src = reader.result;
+            output.style.display = 'block';
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
+
+{{-- tambah guru --}}
+<script>
+    $(document).ready(function() {
+        var currentAddSection = 0;
+        var addSections = $("#form-add > section");
+        var addSteps = $(".add-steps li");
+
+        addSections.hide();
+        addSections.eq(currentAddSection).show();
+
+        $(".next-add-step").click(function() {
+            if (currentAddSection < addSections.length - 1) {
+                addSections.eq(currentAddSection).hide();
+                addSteps.eq(currentAddSection).removeClass("current").addClass("done");
+                currentAddSection++;
+                addSections.eq(currentAddSection).show();
+                addSteps.eq(currentAddSection).removeClass("disabled").addClass("current");
+            }
+        });
+
+        $(".prev-add-step").click(function() {
+            if (currentAddSection > 0) {
+                addSections.eq(currentAddSection).hide();
+                addSteps.eq(currentAddSection).removeClass("current").addClass("disabled");
+                currentAddSection--;
+                addSections.eq(currentAddSection).show();
+                addSteps.eq(currentAddSection).removeClass("done").addClass("current");
+            }
+        });
+    });
+
+    function previewAddImage(event) {
+        var reader = new FileReader();
+        reader.onload = function() {
+            var output = document.getElementById('addImagePreview');
+            output.src = reader.result;
+            output.style.display = 'block';
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
+
+
+<script>
+    $(document).ready(function() {
+        // Namespace the script
+        var teacherFormWizard = (function() {
+            var currentStep = 0;
+            var steps = $("#form-edit > section");
+            var stepIndicators = $(".wizard-steps li");
+
+            function showStep(stepIndex) {
+                steps.hide();
+                steps.eq(stepIndex).show();
+                stepIndicators.removeClass("current").addClass("disabled");
+                stepIndicators.eq(stepIndex).removeClass("disabled").addClass("current");
+            }
+
+            function nextStep() {
+                if (currentStep < steps.length - 1) {
+                    currentStep++;
+                    showStep(currentStep);
+                }
+            }
+
+            function prevStep() {
+                if (currentStep > 0) {
+                    currentStep--;
+                    showStep(currentStep);
+                }
+            }
+
+            $(".next-step").click(nextStep);
+            $(".prev-step").click(prevStep);
+
+            // Initialize
+            showStep(currentStep);
+
+            return {
+                nextStep: nextStep,
+                prevStep: prevStep
+            };
+        })();
+
+        function previewEmployeeImage(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var output = document.getElementById('employeeImagePreview');
+                output.src = reader.result;
+                output.style.display = 'block';
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        // Attach the preview function to the file input change event
+        $("#employeeImage").on('change', previewEmployeeImage);
+    });
+</script>
+
 @endsection

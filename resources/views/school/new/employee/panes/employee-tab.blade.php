@@ -91,7 +91,7 @@
                                         <li>
                                             <button type="button" data-id="1dbf93d1-4e70-37ec-abda-b496e6a3c177"
                                                 class="btn-update dropdown-item d-flex align-items-center gap-3"
-                                                data-bs-toggle="modal" data-bs-target="#update-employe">
+                                                data-bs-toggle="modal" data-bs-target="#modal-update-employee">
                                                 <i class="fs-4 ti ti-edit"></i>Edit
                                             </button>
                                         </li>
