@@ -41,25 +41,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($teachers as $teacher)
+                    @forelse ($teachers as $teacher)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ $teacher->image ? asset('storage/' . $teacher->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}"
+                                    <img src="{{ asset('storage/'. $teacher->image) }}"
                                         class="rounded-circle" width="40" height="40">
                                     <div class="ms-3">
-                                        <h6 class="fs-4 fw-semibold mb-0">Ahmad Lukman Hakim</h6>
-                                        <span class="fw-normal">Laki Laki</span>
+                                        <h6 class="fs-4 fw-semibold mb-0">{{ $teacher->user->name }}</h6>
+                                        <span class="fw-normal">{{ $teacher->gender->label() }}</span>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                <span class="badge bg-light-primary text-primary">Aktif</span>
+                                <span class="badge bg-light-{{ $teacher->active == 1 ? 'primary' : 'danger' }} text-{{ $teacher->active == 1 ? 'primary' : 'danger' }}">{{ $teacher->active == 1 ? 'Aktif' : 'Tidak aktif' }}</span>
                             </td>
-                            <td>lukman@gmail.com</td>
-                            <td>2131123123</td>
-                            <td>123123123
+                            <td>{{ $teacher->user->email }}</td>
+                            <td>{{ $teacher->nip }}</td>
+                            <td>-
                                 <button type="button" class="btn btn-rounded btn-warning p-1 ms-2 btn-rfid"  data-bs-toggle="modal" data-bs-target="#rfid-teacher">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                         viewBox="0 0 24 24">
@@ -83,8 +83,8 @@
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
                                         <li>
                                             <button type="button" data-id="1dbf93d1-4e70-37ec-abda-b496e6a3c177"
-                                                class="btn-detail dropdown-item d-flex align-items-center gap-3">
-                                                <i class="fs-4 ti ti-eye"></i>Detail</button>
+                                                class="btn-detail dropdown-item d-flex align-items-center gap-3"><i
+                                                    class="fs-4 ti ti-eye"></i>Detail</button>
                                         </li>
                                         <li>
                                             <button type="button" class="btn-update dropdown-item d-flex align-items-center gap-3 btn-edit"
@@ -105,14 +105,18 @@
                                         </li>
                                         <li>
                                             <a data-id="1dbf93d1-4e70-37ec-abda-b496e6a3c177"
-                                                class="btn-delete dropdown-item d-flex align-items-center gap-3 text-danger">
-                                                <i class="fs-4 ti ti-trash"></i>Delete</a>
+                                                class="btn-delete dropdown-item d-flex align-items-center gap-3 text-danger"><i
+                                                    class="fs-4 ti ti-trash"></i>Delete</a>
                                         </li>
                                     </ul>
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="7">Belum ada guru</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
