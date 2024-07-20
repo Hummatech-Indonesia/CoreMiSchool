@@ -71,4 +71,9 @@ class ClassroomStudentRepository extends BaseRepository implements ClassroomStud
             ->orderBy('updated_at', 'desc')
             ->get();
     }
+
+    public function getAlumnus(): mixed
+    {
+        return $this->model->query()->whereRelation('classroom.schoolYear', 'active', false)->get();
+    }
 }
