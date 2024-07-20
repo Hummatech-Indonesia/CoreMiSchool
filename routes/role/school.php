@@ -15,6 +15,9 @@ use App\Http\Controllers\ModelHasRfidController;
 use App\Http\Controllers\RfidController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SchoolDashboardController;
+use App\Http\Controllers\Schools\EmployeeController;
+use App\Http\Controllers\Schools\StaffController as SchoolsStaffController;
+use App\Http\Controllers\Schools\TeacherController as SchoolsTeacherController;
 use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\StudentController;
@@ -25,6 +28,14 @@ use App\Http\Controllers\TeacherMapleController;
 use App\Http\Controllers\TeacherSubjectController;
 use Illuminate\Database\Query\IndexHint;
 use Illuminate\Support\Facades\Route;
+
+
+
+Route::prefix('school')->name('school.')->group(function() {
+    Route::resource('employees', EmployeeController::class);
+    Route::resource('teachers', SchoolsTeacherController::class);
+    Route::resource('staff', SchoolsStaffController::class);
+});
 
 Route::prefix('school')->group(function () {
     Route::get('', [SchoolDashboardController::class, 'index'])->name('school.index');
@@ -192,6 +203,11 @@ Route::post('attendance-test-teacher', [AttendanceMasterController::class, 'chec
 Route::get('school/employee', function(){
     return view('school.new.employee.index');
 })->name('new.employee.index');
+
+//kelas
+Route::get('new/school/class', function(){
+    return view('school.new.class.index');
+})->name('new.class.index');
 
 
 

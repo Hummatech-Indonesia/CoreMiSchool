@@ -9,7 +9,7 @@
             <div class="modal-body">
                 <div class="">
                     <div class="wizard-content">
-                        <form id="add-form"  class="tab-wizard wizard-circle wizard clearfix" role="application" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('school.staff.store') }}" id="add-form"  class="tab-wizard wizard-circle wizard clearfix" role="application" method="POST" enctype="multipart/form-data">
                             @method('post')
                             @csrf
                             <!-- Step 1 -->
@@ -44,10 +44,10 @@
                                         <div class="form-group">
                                             <label for="">Agama</label>
                                             <select name="religion_id" id="" class="form-select">
-                                                {{-- @foreach ($religions as $religion)
+                                                @foreach ($religions as $religion)
                                                 <option value="{{ $religion->id }}">{{ $religion->name }}
                                                 </option>
-                                                @endforeach --}}
+                                                @endforeach
                                             </select>
                                             @error('religion_id')
                                             <strong class="text-danger">{{ $message }}</strong>

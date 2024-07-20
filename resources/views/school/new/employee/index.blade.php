@@ -4,7 +4,7 @@
         <div class="card-body px-4 py-3">
             <div class="row align-items-center">
                 <div class="col-9">
-                    <h4 class="fw-semibold mb-8 text-light">FAQ</h4>
+                    <h4 class="fw-semibold mb-8 text-light">Pegawai</h4>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item" aria-current="page">Daftar - daftar guru dan staff di sekolah</li>
@@ -50,29 +50,28 @@
                     <span class="d-none d-md-block font-weight-medium">Staff</span>
                 </a>
             </li>
-            <li class="nav-item d-flex align-items-center ms-md-auto mt-2 mt-md-0" id="guru-buttons">
+            <li class="nav-item d-flex align-items-center ms-md-auto mt-2 mt-md-0 guru-buttons">
                 <button type="button" class="btn btn-success px-4" data-bs-toggle="modal" data-bs-target="#import-teacher">
                     Import Guru
                 </button>
             </li>
-            <li class="nav-item d-flex align-items-center ms-2 mt-2 mt-md-0" id="guru-buttons">
+            <li class="nav-item d-flex align-items-center ms-2 mt-2 mt-md-0 guru-buttons">
                 <button type="button" class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#create-teacher">
                     Tambah Guru
                 </button>
             </li>
 
-            <li class="nav-item d-flex align-items-center ms-md-auto mt-2 mt-md-0 d-none" id="pegawai-buttons">
+            <li class="nav-item d-flex align-items-center ms-md-auto mt-2 mt-md-0 pegawai-buttons d-none">
                 <button type="button" class="btn btn-success px-4" data-bs-toggle="modal" data-bs-target="#import-employe">
                     Import Pegawai
                 </button>
             </li>
-            <li class="nav-item d-flex align-items-center ms-2 mt-2 mt-md-0 d-none" id="pegawai-buttons">
+            <li class="nav-item d-flex align-items-center ms-2 mt-2 mt-md-0 pegawai-buttons d-none">
                 <button type="button" class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#modal-add-emplo">
                     Tambah Pegawai
                 </button>
             </li>
         </ul>
-
 
 
         <!-- Tab Content -->
@@ -95,30 +94,30 @@
 @endsection
 
 @section('script')
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var tabs = document.querySelectorAll('#nav-tab a[data-bs-toggle="pill"]');
-            var guruButtons = document.querySelectorAll('#guru-buttons');
-            var pegawaiButtons = document.querySelectorAll('#pegawai-buttons');
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var tabs = document.querySelectorAll('#nav-tab a[data-bs-toggle="pill"]');
+        var guruButtons = document.querySelectorAll('.guru-buttons');
+        var pegawaiButtons = document.querySelectorAll('.pegawai-buttons');
 
-            function updateButtons() {
-                var activeTab = document.querySelector('#nav-tab .nav-link.active').getAttribute('id');
-                if (activeTab === 'teacher-tab') {
-                    guruButtons.forEach(btn => btn.classList.remove('d-none'));
-                    pegawaiButtons.forEach(btn => btn.classList.add('d-none'));
-                } else if (activeTab === 'employee-tab') {
-                    guruButtons.forEach(btn => btn.classList.add('d-none'));
-                    pegawaiButtons.forEach(btn => btn.classList.remove('d-none'));
-                }
+        function updateButtons() {
+            var activeTab = document.querySelector('#nav-tab .nav-link.active').getAttribute('id');
+            if (activeTab === 'teacher-tab') {
+                guruButtons.forEach(btn => btn.classList.remove('d-none'));
+                pegawaiButtons.forEach(btn => btn.classList.add('d-none'));
+            } else if (activeTab === 'employee-tab') {
+                guruButtons.forEach(btn => btn.classList.add('d-none'));
+                pegawaiButtons.forEach(btn => btn.classList.remove('d-none'));
             }
+        }
 
-            tabs.forEach(tab => {
-                tab.addEventListener('shown.bs.tab', updateButtons);
-            });
-
-            updateButtons();
+        tabs.forEach(tab => {
+            tab.addEventListener('shown.bs.tab', updateButtons);
         });
-    </script>
+
+        updateButtons();
+    });
+</script>
 
 
 {{-- edit employe --}}

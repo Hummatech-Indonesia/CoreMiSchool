@@ -41,25 +41,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (range(1, 5) as $item)
+                    @forelse ($teachers as $teacher)
                         <tr>
-                            <td>{{ $item }}</td>
+                            <td>{{ $loop->iteration }}</td>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}"
+                                    <img src="{{ asset('storage/'. $teacher->image) }}"
                                         class="rounded-circle" width="40" height="40">
                                     <div class="ms-3">
-                                        <h6 class="fs-4 fw-semibold mb-0">Ahmad Lukman Hakim</h6>
-                                        <span class="fw-normal">Laki Laki</span>
+                                        <h6 class="fs-4 fw-semibold mb-0">{{ $teacher->user->name }}</h6>
+                                        <span class="fw-normal">{{ $teacher->gender->label() }}</span>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                <span class="badge bg-light-primary text-primary">Aktif</span>
+                                <span class="badge bg-light-{{ $teacher->active == 1 ? 'primary' : 'danger' }} text-{{ $teacher->active == 1 ? 'primary' : 'danger' }}">{{ $teacher->active == 1 ? 'Aktif' : 'Tidak aktif' }}</span>
                             </td>
-                            <td>lukman@gmail.com</td>
-                            <td>2131123123</td>
-                            <td>123123123
+                            <td>{{ $teacher->user->email }}</td>
+                            <td>{{ $teacher->nip }}</td>
+                            <td>-
                                 <button type="button" class="btn btn-rounded btn-warning p-1 ms-2 btn-rfid"  data-bs-toggle="modal" data-bs-target="#rfid-teacher">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                         viewBox="0 0 24 24">
@@ -102,7 +102,11 @@
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="7">Belum ada staff</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

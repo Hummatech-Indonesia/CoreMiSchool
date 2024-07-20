@@ -95,7 +95,8 @@
 
     <script src="{{ asset('admin_assets/dist/libs/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('admin_assets/dist/libs/select2/dist/js/select2.min.js') }}"></script>
-    <script src="{{ asset('admin_assets/dist/js/forms/select2.init.js                   ') }}"></script>
+    <script src="{{ asset('admin_assets/dist/js/forms/select2.init.js') }}"></script>
+
     @yield('script')
 </body>
 
