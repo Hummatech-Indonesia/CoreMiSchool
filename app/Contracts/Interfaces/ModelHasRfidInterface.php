@@ -8,10 +8,11 @@ use App\Contracts\Interfaces\Eloquent\PaginateInterface;
 use App\Contracts\Interfaces\Eloquent\ShowInterface;
 use App\Contracts\Interfaces\Eloquent\StoreInterface;
 use App\Contracts\Interfaces\Eloquent\UpdateInterface;
+use App\Contracts\Interfaces\Eloquent\UpdateOrCreateInterface;
 use App\Contracts\Interfaces\Eloquent\WhereInterface;
 use Illuminate\Http\Request;
 
-interface ModelHasRfidInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface, WhereInterface
+interface ModelHasRfidInterface extends GetInterface, StoreInterface, UpdateOrCreateInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface, WhereInterface
 {
     public function exists(mixed $rfid): mixed;
 
@@ -22,6 +23,6 @@ interface ModelHasRfidInterface extends GetInterface, StoreInterface, UpdateInte
     public function whereNotNull(mixed $column):mixed;
     public function whereNull(mixed $column):mixed;
     public function getRfid() : mixed;
-
+    public function getByActiveStudent() : mixed;
     public function whereRfid(mixed $query) : mixed;
 }

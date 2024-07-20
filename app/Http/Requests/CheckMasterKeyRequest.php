@@ -22,7 +22,7 @@ class CheckMasterKeyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'rfid' => 'required|exists:model_has_rfids,rfid'
+            'rfid' => 'required'
         ];
     }
 

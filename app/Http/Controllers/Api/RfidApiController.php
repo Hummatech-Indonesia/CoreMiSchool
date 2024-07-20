@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\RfidResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\ResourceResponse;
 
 class RfidApiController extends Controller
 {
@@ -20,9 +21,9 @@ class RfidApiController extends Controller
 
     /** * Display a listing of the resource.
      */
-    public function index() : JsonResponse
+    public function index() : mixed
     {
-        $cards = $this->rfid->getRfid();
-        return ResponseHelper::jsonResponse(RfidResource::collection($cards), 'Berhasil mengirim data rfid');
+        $cards = $this->rfid->getByActiveStudent();
+        return RfidResource::collection($cards);
     }
 }

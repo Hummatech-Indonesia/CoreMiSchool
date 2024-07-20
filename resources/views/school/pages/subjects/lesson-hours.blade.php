@@ -6,8 +6,8 @@
             <form class="d-flex gap-2">
                 <div class="position-relative">
                     <div class="">
-                        <input type="text" name="name" value="{{ old('name', request('name')) }}" class="form-control search-chat py-2 px-4 ps-5" id="search-name"
-                            placeholder="Cari">
+                        <input type="text" name="name" value="{{ old('name', request('name')) }}"
+                            class="form-control search-chat py-2 px-4 ps-5" id="search-name" placeholder="Cari">
                         <i class="ti ti-search position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
                     </div>
                 </div>
@@ -36,8 +36,10 @@
                 <tbody>
                     @php
                         $lastHour = $lessonHours->sortByDesc('end')->first();
-                        preg_match('/\d+/', $lastHour->name, $matches);
-                        $jam = $matches[0];
+                        if ($lastHour->name != 'Istirahat') {
+                            preg_match('/\d+/', $lastHour->name, $matches);
+                            $jam = $matches[0];
+                        }
                     @endphp
 
                     @forelse ($lessonHours as $lessonHour)
@@ -90,16 +92,17 @@
                             <div class="col-lg-6 mb-3">
                                 <label for="">Jam Mulai<span class="text-danger">*</span></label>
                                 <input type="time" name="start" class="form-control @error('end') is-invalid @enderror"
-                                    value="{{ $lastHour->start }}">
+                                    value="{{ $lastHour->end }}">
                                 @error('start')
                                     <div class="invalid-feedback">
                                         <small>{{ $message }}</small>
                                     </div>
                                 @enderror
                             </div>
+                            {{-- @dd(Carbon\Carbon::create($lastHour->start)->addMinute(45)->format('H:i')) --}}
                             <div class="col-lg-6 mb-3">
                                 <label for="">Jam Berakhir<span class="text-danger">*</span></label>
-                                <input type="time" name="end"
+                                <input type="time" name="end" value="{{ Carbon\Carbon::create($lastHour->start)->addMinutes(45 * 2)->format('H:i') }}"
                                     class="form-control @error('end') is-invalid @enderror">
                                 @error('end')
                                     <div class="invalid-feedback">
@@ -110,7 +113,8 @@
                             <div class="col-lg-12 mb-3">
                                 <label for="">Jam Ke-<span class="text-danger">*</span></label>
                                 <input type="number" name="name"
-                                    class="form-control @error('name') is-invalid @enderror" value="{{ $jam + 1 }}">
+                                    class="form-control @error('name') is-invalid @enderror"
+                                    value="{{ isset($jam) ? $jam + 1 : '' }}">
                                 @error('name')
                                     <div class="invalid-feedback">
                                         <small>{{ $message }}</small>
@@ -147,7 +151,8 @@
                         <div class="row">
                             <div class="col-lg-6 mb-3">
                                 <label for="">Jam Mulai<span class="text-danger">*</span></label>
-                                <input type="time" name="start" class="form-control @error('start') is-invalid @enderror" id="start">
+                                <input type="time" name="start"
+                                    class="form-control @error('start') is-invalid @enderror" id="start">
                                 @error('start')
                                     <div class="invalid-feedback">
                                         <small>{{ $message }}</small>
@@ -156,7 +161,8 @@
                             </div>
                             <div class="col-lg-6 mb-3">
                                 <label for="">Jam Berakhir<span class="text-danger">*</span></label>
-                                <input type="time" name="end" class="form-control @error('end') is-invalid @enderror" id="end">
+                                <input type="time" name="end"
+                                    class="form-control @error('end') is-invalid @enderror" id="end">
                                 @error('end')
                                     <div class="invalid-feedback">
                                         <small>{{ $message }}</small>

@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\Interfaces\RfidInterface;
 use App\Models\Rfid;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use App\Http\Requests\StoreRfidRequest;
 use App\Http\Requests\UpdateRfidRequest;
-use Illuminate\Http\Request;
+use App\Contracts\Interfaces\RfidInterface;
 
 class RfidController extends Controller
 {
     private RfidInterface $rfid;
 
-    public function __construct(RfidInterface $rfid) {
+    public function __construct(RfidInterface $rfid)
+    {
         $this->rfid = $rfid;
     }
 
@@ -41,10 +43,18 @@ class RfidController extends Controller
     public function store(StoreRfidRequest $request)
     {
         try {
+            $response = Http::get('http://127.0.0.1:8001/api/rfid-check', [
+                'rfid' => $request->rfid
+            ]);
+
+            $data = $response->json();
+            $statusCode = $response->status();
+
+            if ($statusCode >= 400) return redirect()->back()->with('error', $data['error']);
             $this->rfid->store($request->validated());
             return redirect()->back()->with('success', 'Berhasil mendaftarkan MasterKey');
-        } catch (\Throwable $th) {
-            return redirect()->back()->with('warning', 'MasterKey sudah tersedia');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan pada server');
         }
     }
 

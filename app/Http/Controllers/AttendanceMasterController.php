@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\ModelHasRfidInterface;
+use App\Contracts\Interfaces\RfidInterface;
 use App\Helpers\ResponseHelper;
 use App\Http\Requests\CheckMasterKeyRequest;
 use App\Services\AttendanceService;
@@ -12,11 +13,13 @@ class AttendanceMasterController extends Controller
 {
     private ModelHasRfidInterface $modelHasRfid;
     private AttendanceService $service;
+    private RfidInterface $rfid;
 
-    public function __construct(ModelHasRfidInterface $modelHasRfid, AttendanceService $service)
+    public function __construct(ModelHasRfidInterface $modelHasRfid, AttendanceService $service, RfidInterface $rfid)
     {
         $this->modelHasRfid = $modelHasRfid;
         $this->service = $service;
+        $this->rfid = $rfid;
     }
 
     public function index()
@@ -31,11 +34,11 @@ class AttendanceMasterController extends Controller
     public function check(CheckMasterKeyRequest $request)
     {
         $data = $request->validated();
-        $card = $this->modelHasRfid->where($data['rfid']);
-        if ($card->model_type == 'App\Models\School') {
-            $user = \App\Models\User::whereRelation('school.modelHasRfid', 'rfid', $data['rfid'])->first();
-            $token = $user->createToken($user->password)->plainTextToken;
-            return ResponseHelper::jsonResponse('success', 'Berhasil masuk', ['user' => $user->school, 'token' => $token]);
+        $card = $this->rfid->where($data['rfid']);
+        if ($card) {
+            // $user = \App\Models\User::whereRelation('school.modelHasRfid', 'rfid', $data['rfid'])->first();
+            // $token = $user->createToken($user->password)->plainTextToken;
+            return ResponseHelper::jsonResponse('success', 'valid rfid');
         } else {
             return ResponseHelper::jsonResponse('error', 'Kartu tidak terdaftar sebagai master key!', null, 404);
         }

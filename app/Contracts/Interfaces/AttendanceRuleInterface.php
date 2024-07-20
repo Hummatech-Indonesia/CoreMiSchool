@@ -12,5 +12,5 @@ use App\Contracts\Interfaces\Eloquent\UpdateInterface;
 interface AttendanceRuleInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface
 {
     public function whereDayRole(mixed $day, mixed $role): mixed;
-    public function showByDay(mixed $school_id, string $day, string $roles): mixed;
+    public function showByDay(string $day, string $roles): mixed;
 }

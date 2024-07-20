@@ -32,18 +32,16 @@ class ModelHasRfidService
     {
         $data = $request->validated();
 
-        // update old rfid
-        $this->modelRfid->update($request->old_rfid, ['model_type' => null, 'model_id' => null]);
-
         $rfid = $this->modelRfid->where($data['rfid']);
-        if ($rfid->model_type == null) {
-            if ($role == RoleEnum::STUDENT->value) {
-                $this->modelRfid->update($data['rfid'], ['model_type' => 'App\Models\Student', 'model_id' => $id]);
-            } else if ($role == RoleEnum::TEACHER->value) {
-                $this->modelRfid->update($data['rfid'], ['model_type' => 'App\Models\Employee', 'model_id' => $id]);
-            } else {
-                $this->modelRfid->update($data['rfid'], ['model_type' => 'App\Models\Employee', 'model_id' => $id]);
-            }
+        if (!$rfid) {
+            $this->modelRfid->updateOrCreate(
+                ['rfid' => $request->old_rfid],
+                [
+                    'rfid' => $data['rfid'],
+                    'model_type' => "App\Models\\" . ucfirst($role),
+                    'model_id' => $id
+                ]
+            );
 
             return redirect()->back()->with('success', 'Berhasil menambahkan rfid');
         } else {

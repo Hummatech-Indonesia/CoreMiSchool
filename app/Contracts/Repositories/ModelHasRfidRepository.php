@@ -3,6 +3,7 @@
 namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\ModelHasRfidInterface;
+use App\Enums\RfidTypeEnum;
 use App\Enums\RoleEnum;
 use App\Models\ModelHasRfid;
 use Illuminate\Http\Request;
@@ -77,6 +78,10 @@ class ModelHasRfidRepository extends BaseRepository implements ModelHasRfidInter
     {
         return $this->model->query()->where('rfid', $id)->update($data);
     }
+    public function updateOrCreate(array $match ,array $data): mixed
+    {
+        return $this->model->query()->updateOrCreate($match, $data);
+    }
 
     public function delete(mixed $id): mixed
     {
@@ -90,7 +95,7 @@ class ModelHasRfidRepository extends BaseRepository implements ModelHasRfidInter
 
     public function where(mixed $data): mixed
     {
-        return $this->model->query()->where('rfid', $data)->firstOrFail();
+        return $this->model->query()->where('rfid', $data)->first();
     }
 
     public function exists(mixed $rfid): mixed
@@ -127,6 +132,19 @@ class ModelHasRfidRepository extends BaseRepository implements ModelHasRfidInter
                         $query->whereNot('name', RoleEnum::STAFF->value);
                     });
                 })->orWhereNull('model_type');
+            })
+            ->get();
+    }
+
+
+    public function getByActiveStudent(): mixed
+    {
+        return $this->model->query()
+            ->where('model_type' , RfidTypeEnum::STUDENT->value)
+            ->whereRelation('model', function($q) {
+                $q->whereHas('classroomStudents.classroom.schoolYear', function ($q) {
+                    $q->where('active', 1);
+                });
             })
             ->get();
     }
