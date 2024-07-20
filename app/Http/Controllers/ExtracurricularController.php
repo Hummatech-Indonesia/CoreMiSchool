@@ -28,7 +28,7 @@ class ExtracurricularController extends Controller
      */
     public function index(Request $request)
     {
-        $employees = $this->employee->getSchool(auth()->user()->school->id);
+        $employees = $this->employee->get();
         $extracurriculars = $this->extracurricular->whereSchool(auth()->user()->school->id, $request);
         return view('school.pages.extracurricular.index', compact('extracurriculars', 'employees'));
     }
