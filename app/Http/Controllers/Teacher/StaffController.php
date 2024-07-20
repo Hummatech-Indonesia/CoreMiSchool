@@ -58,12 +58,7 @@ class StaffController extends Controller
             $this->employee->store($data);
             return redirect()->back()->with('success', 'Berhasil menambahkan data pegawai');
         } catch (\Throwable $th) {
-            $data = $this->user->showEmail($request->email);
-            if ($data) {
-                return redirect()->back()->with('warning', 'Data pegawai sudah tersedia');
-            } else {
-                return redirect()->back()->with('error', 'Kesalahan menambahkan data pegawai');
-            }
+            return redirect()->back()->with('error', 'Kesalahan menambahkan data pegawai');
         }
     }
 

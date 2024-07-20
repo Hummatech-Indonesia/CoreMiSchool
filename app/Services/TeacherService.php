@@ -31,6 +31,8 @@ class TeacherService
 
     public function store(StoreEmployeeRequest $request): array|bool
     {
+        if($this->user->showEmail($request->email)) return redirect()->back()->with('warning', 'Data guru sudah tersedia');
+
         $data = $request->validated();
         $dataUser = [
             'name' => $data['name'],
@@ -52,6 +54,8 @@ class TeacherService
 
     public function update(Employee $employee, UpdateEmployeeRequest $request): array|bool
     {
+        if($this->user->showEmail($request->email)) return redirect()->back()->with('warning', 'Data guru sudah tersedia');
+
         $data = $request->validated();
         $dataUser = [
             'name' => $data['name'],
