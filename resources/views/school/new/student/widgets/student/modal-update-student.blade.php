@@ -64,7 +64,11 @@
                                 <div class="form-group">
                                     <label for="religion-edit" class="mb-2">Agama<span class="text-danger">*</span></label>
                                     <select id="religion-edit" name="religion_id" class="form-select">
-                                        <option value="">Islam</option>
+                                        @forelse ($religions as $religion)
+                                            <option value="{{ $religion->id }}">{{ $religion->name }}</option>
+                                        @empty
+                                            <option>Tidak tersedia</option>
+                                        @endforelse
                                     </select>
                                     @error('religion_id')
                                     <strong class="text-danger">{{ $message }}</strong>

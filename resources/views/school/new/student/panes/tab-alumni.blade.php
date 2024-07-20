@@ -4,15 +4,15 @@
         <div class="col-lg-8 col-md-12 mb-3">
             <form class="d-flex gap-2">
                 <div class="position-relative">
-                    <input type="text" name="name" class="form-control product-search ps-5" id="input-search" placeholder="Cari..." value="{{ old('name', request('name')) }}">
+                    <input type="text" name="search" class="form-control product-search ps-5" id="input-search" placeholder="Cari..." value="{{ old('name', request('name')) }}">
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                 </div>
 
                 <div class="d-flex gap-2">
-                    <select name="filter" class="form-select" id="">
+                    <select name="gender" class="form-select" id="">
                         <option value="">Tampilkan semua</option>
-                        <option value="laki-laki">Laki-laki</option>
-                        <option value="perempuan">Perempuan</option>
+                        <option value="male">Laki-laki</option>
+                        <option value="female">Perempuan</option>
                     </select>
                     <div>
                         <button type="submit" class="btn btn-primary btn-md">filter</button>
@@ -39,23 +39,21 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse (range(1,5) as $student)
+                @forelse ($alumnus as $student)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>
                         <div class="d-flex align-items-center">
                             <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}" class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40" height="40" alt="" />
                             <div class="ms-3">
-                                <h6 class="fs-4 fw-semibold mb-0 text-start">Suyadi Oke</h6>
-                                <span class="fw-normal">XI RPL 1</span>
+                                <h6 class="fs-4 fw-semibold mb-0 text-start">{{ $student->student->user->name }}</h6>
+                                <span class="fw-normal">{{ $student->classroom->name }}</span>
                             </div>
                         </div>
                     </td>
-                    <td>Laki-laki</td>
-                    <td>12345678</td>
-                    <td>
-                        1234567
-                    </td>
+                    <td>{{ $student->student->gender == 'male' ? 'Laki Laki' : 'Perempuan' }}</td>
+                    <td>{{ $student->student->nisn }}</td>
+                    <td>{{ $student->modelHasRfid ? $student->modelHasRfid->rfid : 'Kosong' }}</td>
                     <td>
                         <div class="dropdown dropstart">
                             <a href="#" class="text-muted" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
