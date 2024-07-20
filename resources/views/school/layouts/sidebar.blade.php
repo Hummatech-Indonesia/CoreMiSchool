@@ -46,7 +46,7 @@
                     <span class="hide-menu">Master</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->routeIs('school.employee.index' ? 'active' : '') }}" href="{{ route('school.employee.index') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ request()->routeIs('school.employees.index' ? 'active' : '') }}" href="{{ route('school.employees.index') }}" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 36 36">
                                 <path fill="currentColor"

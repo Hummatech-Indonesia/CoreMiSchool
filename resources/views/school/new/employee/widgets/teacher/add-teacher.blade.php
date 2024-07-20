@@ -9,7 +9,7 @@
             <div class="modal-body">
                 <div class="">
                     <div class="wizard-content">
-                        <form action="{{ route('teacher.store') }}" class="tab-wizard wizard-circle wizard clearfix"
+                        <form action="{{ route('school.teachers.store') }}" class="tab-wizard wizard-circle wizard clearfix"
                             role="application" id="form-add" method="POST" enctype="multipart/form-data">
                             @method('post')
                             @csrf
@@ -50,9 +50,9 @@
                                             <label for="">Agama</label>
                                             <select name="religion_id" id="" class="form-select">
                                                 <option>Pilih agama..</option>
-                                                {{-- @foreach ($religions as $religion)
+                                                @foreach ($religions as $religion)
                                                 <option value="{{ $religion->id }}">{{ $religion->name }}</option>
-                                                @endforeach --}}
+                                                @endforeach
                                             </select>
                                             @error('religion_id')
                                                 <strong class="text-danger">{{ $message }}</strong>
@@ -99,6 +99,9 @@
                                                     for="customControlValidationB">Perempuan</label>
                                             </div>
                                         </div>
+                                        @error('gender')
+                                            <strong class="text-danger">{{ $message }}</strong>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-end mt-3 mx-4">

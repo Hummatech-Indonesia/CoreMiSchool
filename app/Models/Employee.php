@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\GenderEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Traits\Models\HasManyAttendanceTeacher;
 use App\Traits\Models\HasManyExtracurricular;
@@ -21,4 +22,7 @@ class Employee extends Model
     HasManyAttendanceTeacher, MorphManyRfid;
 
     protected $guarded = ['id'];
+    protected $casts = [
+        'gender' => GenderEnum::class,
+    ];
 }
