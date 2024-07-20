@@ -38,7 +38,7 @@ class ClassroomStudentRepository extends BaseRepository implements ClassroomStud
         return $this->model->query()->findOrFail($id)->delete();
     }
 
-    public function paginate() : mixed
+    public function paginate(): mixed
     {
         return $this->model->query()->latest()->paginate(10);
     }
@@ -46,17 +46,29 @@ class ClassroomStudentRepository extends BaseRepository implements ClassroomStud
     public function where(mixed $data, Request $request): mixed
     {
         return $this->model->query()
-        ->where('classroom_id', $data)
-        ->when($request->search, function ($query) use ($request) {
-            $query->whereHas('student.user', function ($query) use ($request) {
-                $query->where('name', 'LIKE', '%' . $request->search . '%');
-            });
-        })
-        ->paginate(10);
+            ->where('classroom_id', $data)
+            ->when($request->search, function ($query) use ($request) {
+                $query->whereHas('student.user', function ($query) use ($request) {
+                    $query->where('name', 'LIKE', '%' . $request->search . '%');
+                });
+            })
+            ->paginate(10);
     }
 
     public function whereStudent(mixed $id): mixed
     {
         return $this->model->query()->where('student_id', $id)->first();
+    }
+
+
+    public function activeStudents(): mixed
+    {
+        return $this->model->query()
+        ->with('student.modelHasRfid')
+            ->whereHas('classroom.schoolYear', function ($q) {
+                $q->where('active', 1);
+            })
+            ->orderBy('updated_at', 'desc')
+            ->get();
     }
 }

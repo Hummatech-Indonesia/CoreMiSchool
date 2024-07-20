@@ -15,9 +15,9 @@ class RfidResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->model_id ? $this->model_id : null,
+            'id' => $this->model_id,
             'rfid' => $this->rfid,
-            'name' => $this->model_type ? $this->model->name : null,
+            'name' => $this->model_type ? $this->model->user->name : null,
             'type' => $this->model_type == 'App\Models\Student' ? 'student' : ($this->model_type == 'App\Models\Employee' ? 'teacher' : 'mastercard')
         ];
     }

@@ -18,11 +18,19 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
     {
         return $this->model->query()->get();
     }
+    public function getCurrentDay(): mixed
+    {
+        return $this->model->query()->with('classroomStudent')->whereDay('checkin', now()->day)->get();
+    }
 
     public function store(array $data): mixed
     {
-        $attendance = $this->model->query()->create($data);
-        return $attendance;
+        return $this->model->query()->create($data);
+    }
+
+    public function insert(array $data): mixed
+    {
+        return $this->model->query()->insert($data);
     }
 
     public function show(mixed $id): mixed

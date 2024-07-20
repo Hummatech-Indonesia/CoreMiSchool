@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\Interfaces\ModelHasRfidInterface;
-use App\Contracts\Interfaces\SchoolInterface;
 use App\Models\ModelHasRfid;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use App\Services\ModelHasRfidService;
+use App\Contracts\Interfaces\SchoolInterface;
 use App\Http\Requests\StoreModelHasRfidRequest;
 use App\Http\Requests\UpdateModelHasRfidRequest;
-use App\Services\ModelHasRfidService;
-use Illuminate\Http\Request;
+use App\Contracts\Interfaces\ModelHasRfidInterface;
+use F9Web\ApiResponseHelpers;
 
 class ModelHasRfidController extends Controller
 {
+    use ApiResponseHelpers;
     private ModelHasRfidInterface $modelHasRfid;
     private ModelHasRfidService $service;
     private SchoolInterface $school;
@@ -97,12 +100,19 @@ class ModelHasRfidController extends Controller
      */
     public function update(UpdateModelHasRfidRequest $request, string $role, string $id)
     {
-        $data = $this->modelHasRfid->exists($request->rfid);
-        if (!$data) {
-            return redirect()->back()->with('warning', 'Rfid belum terdaftarkan');
-        } else {
+        try {
+            $response = Http::get('http://127.0.0.1:8001/api/rfid-check', [
+                'rfid' => $request->rfid
+            ]);
+
+            $data = $response->json();
+            $statusCode = $response->status();
+
+            if ($statusCode >= 400) return redirect()->back()->with('error', $data['error']);
             $this->service->update($request, $role, $id);
             return redirect()->back();
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan pada server');
         }
     }
 
@@ -113,5 +123,12 @@ class ModelHasRfidController extends Controller
     {
         $this->modelHasRfid->delete($modelHasRfid->id);
         return redirect()->back()->with('success', 'Kartu rfid berhasil dihapus');
+    }
+
+
+    public function getStudents(Request $request)
+    {
+        $students = $this->modelHasRfid->getByActiveStudent();
+        return ;
     }
 }

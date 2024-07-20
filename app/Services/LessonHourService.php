@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Contracts\Interfaces\LessonHourInterface;
 use App\Http\Requests\StoreLessonHourRequest;
 use App\Http\Requests\UpdateLessonHourRequest;
 use App\Models\LessonHour;

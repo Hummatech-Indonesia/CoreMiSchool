@@ -8,7 +8,11 @@
             transform: translate3d(0, 0, 0);
         }
 
-        .select2-selection__rendered  {
+        .select2 {
+            width: 100% !important;
+        }
+
+        .select2-selection__rendered {
             width: 100%;
             height: 36px;
             padding: 6px 12px;
@@ -20,8 +24,9 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
+
         .select2-selection {
-            height: fit-content!important;
+            height: fit-content !important;
             color: #555 !important;
             background-color: #fff !important;
             background-image: none !important;
@@ -66,7 +71,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="" class="mb-2 pt-3">Pengajar</label>
-                                <select id="pengajar" class="select2" name="employee_id" style="width: 100%">
+                                <select id="pengajar" class="select2" name="employee_id">
                                     <option value="">Pilih Pengajar</option>
                                     @forelse ($employees as $employee)
                                         <option value="{{ $employee->id }}">{{ $employee->user->name }}</option>
@@ -77,9 +82,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-rounded btn-light-danger text-danger"
-                            data-bs-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-rounded btn-light-success text-success">Tambah</button>
+                        <button type="button" class="btn btn-rounded btn-light" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
                     </div>
                 </form>
             </div>
@@ -187,9 +191,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-rounded btn-light-danger text-danger"
-                            data-bs-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-rounded btn-light-success text-success">Tambah</button>
+                        <button type="button" class="btn btn-rounded btn-light" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
                     </div>
                 </form>
             </div>
@@ -221,8 +224,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-rounded btn-light-danger text-danger"
-                        data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-rounded btn-light" data-bs-dismiss="modal">Tutup</button>
                 </div>
             </div>
         </div>
