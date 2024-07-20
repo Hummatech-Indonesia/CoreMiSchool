@@ -78,7 +78,7 @@
                                     <label for="gender-edit" class="mb-2">Jenis kelamin<span class="text-danger">*</span></label>
                                     <select id="gender-edit" name="gender" class="form-select">
                                         <option value="male">Laki-Laki</option>
-                                        <option value="famale">Perempuan</option>
+                                        <option value="female">Perempuan</option>
                                     </select>
                                     @error('gender')
                                     <strong class="text-danger">{{ $message }}</strong>

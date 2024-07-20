@@ -56,9 +56,9 @@
 @include('school.new.student.widgets.alumni.modal-detail-alumni')
 @include('school.new.student.widgets.alumni.modal-update-alumni')
 
-{{-- <div class="pagination justify-content-end mb-0">
-        <x-paginate-component :paginator="$students" />
-    </div> --}}
-
 <x-delete-modal-component />
+@endsection
+
+@section('script')
+    @include('school.new.student.widgets.script.student-script')
 @endsection

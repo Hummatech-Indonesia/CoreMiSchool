@@ -80,7 +80,7 @@
                                                 <label class="custom-control-label" for="customControlValidationA">Laki-laki</label>
                                             </div>
                                             <div class="custom-control custom-radio me-4">
-                                                <input type="radio" class="custom-control-input" id="customControlValidationB" name="gender" value="famale">
+                                                <input type="radio" class="custom-control-input" id="customControlValidationB" name="gender" value="female">
                                                 <label class="custom-control-label" for="customControlValidationB">Perempuan</label>
                                             </div>
 

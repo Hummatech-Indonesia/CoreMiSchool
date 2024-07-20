@@ -20,7 +20,7 @@ class StudentSeeder extends Seeder
             'nisn' => '1234567890',
             'nik' => '12345678910123',
             'religion_id' => '1',
-            'gender' => GenderEnum::FAMALE->value,
+            'gender' => GenderEnum::FEMALE->value,
             'birth_date' => now(),
             'birth_place' => 'Malanag',
             'address' => 'Permata Regency',

@@ -108,7 +108,7 @@
                                         <select id="gender" name="gender" class="form-select">
                                             <option selected>Pilih...</option>
                                             <option value="male">Laki-Laki</option>
-                                            <option value="famale">Perempuan</option>
+                                            <option value="female">Perempuan</option>
                                         </select>
                                         @error('gender')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -240,7 +240,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td>{{ $student->gender == 'famale' ? 'Perempuan' : 'Laki-laki' }}</td>
+                        <td>{{ $student->gender == 'female' ? 'Perempuan' : 'Laki-laki' }}</td>
                         <td>{{ $student->nisn }}</td>
                         {{-- <td>{{ $student->modelHasRfid ? $student->modelHasRfid->rfid : '' }}
                             <button type="submit" class="btn btn-rounded btn-light-warning text-warning ms-2 btn-rfid"
@@ -438,7 +438,7 @@
                                                 class="text-danger">*</span></label>
                                         <select id="gender-edit" name="gender" class="form-select">
                                             <option value="male">Laki-Laki</option>
-                                            <option value="famale">Perempuan</option>
+                                            <option value="female">Perempuan</option>
                                         </select>
                                         @error('gender')
                                             <strong class="text-danger">{{ $message }}</strong>

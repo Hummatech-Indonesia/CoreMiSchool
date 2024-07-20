@@ -17,6 +17,6 @@ trait HasGender
      */
     public function addGender(Blueprint $table): void
     {
-        $table->enum('gender', [GenderEnum::MALE->value, GenderEnum::FAMALE->value]);
+        $table->enum('gender', [GenderEnum::MALE->value, GenderEnum::FEMALE->value]);
     }
 }

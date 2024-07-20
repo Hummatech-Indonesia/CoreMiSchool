@@ -59,8 +59,11 @@ Route::prefix('school')->group(function () {
     // Route::get('lesson-hours', [LessonHourController::class, 'index'])->name('lesson-hours.index');
     Route::resource('lesson-hours', LessonHourController::class);
 
+    // student
+    Route::get('students', [StudentController::class, 'index'])->name('student.index');
+
     //siswa
-    Route::get('student', [StudentController::class, 'index'])->name('school-student.index');
+    Route::get('old-student', [StudentController::class, 'index'])->name('school-student.index');
     Route::post('student', [StudentController::class, 'store'])->name('school-student.store');
     Route::put('student/{student}', [StudentController::class, 'update'])->name('school-student.update');
     Route::delete('student/{student}', [StudentController::class, 'destroy'])->name('school-student.destroy');
@@ -185,13 +188,8 @@ Route::post('attendance-test-teacher', [AttendanceMasterController::class, 'chec
 
 
 // route baru
-
-// student
-Route::get('new/school/students', function(){
-    return view('school.new.student.index');
-})->name('new.student.index');
 //pegawai
-Route::get('new/school/employee', function(){
+Route::get('school/employee', function(){
     return view('school.new.employee.index');
 })->name('new.employee.index');
 

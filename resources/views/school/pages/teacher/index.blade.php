@@ -127,7 +127,7 @@
                                                 <label class="custom-control-label" for="customControlValidationA">Laki-laki</label>
                                             </div>
                                             <div class="custom-control custom-radio me-4">
-                                                <input type="radio" class="custom-control-input" id="customControlValidationB" name="gender" value="famale">
+                                                <input type="radio" class="custom-control-input" id="customControlValidationB" name="gender" value="female">
                                                 <label class="custom-control-label" for="customControlValidationB">Perempuan</label>
                                             </div>
                                         </div>
@@ -401,7 +401,7 @@
                                                 <label class="custom-control-label" for="customControlValidationA">Laki-laki</label>
                                             </div>
                                             <div class="custom-control custom-radio me-4">
-                                                <input type="radio" class="custom-control-input" id="famaleEdit" name="gender" value="famale">
+                                                <input type="radio" class="custom-control-input" id="femaleEdit" name="gender" value="female">
                                                 <label class="custom-control-label" for="customControlValidationB">Perempuan</label>
                                             </div>
                                         </div>
@@ -622,7 +622,7 @@
         $('#birth_place-edit').val(birth_place);
         $('#phone-edit').val(phone);
         $('#address-edit').val(address);
-        gender == 'male' ? $('#maleEdit').prop('checked', true) : $('#famaleEdit').prop('checked', true);
+        gender == 'male' ? $('#maleEdit').prop('checked', true) : $('#femaleEdit').prop('checked', true);
         $('#religion-edit').val(religion).trigger('change');
         $('#status-edit').val(status).trigger('change');
         $('#modal-edit').modal('show');

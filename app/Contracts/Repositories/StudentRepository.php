@@ -48,7 +48,7 @@ class StudentRepository extends BaseRepository implements StudentInterface
         return $this->model->query()->count();
     }
 
-    public function whereSchool(Request $request): mixed
+    public function search(Request $request): mixed
     {
         return $this->model->query()
             ->when($request->name, function ($query) use ($request) {
