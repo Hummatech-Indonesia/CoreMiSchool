@@ -57,3 +57,5 @@
         </div>
     @endforeach
 </div>
+
+@include('school.new.class.widgets.update-level')
