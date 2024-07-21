@@ -57,7 +57,7 @@
 
             <li class="nav-item d-flex align-items-center ms-auto mt-2 mt-md-0 d-none" id="pegawai-buttons">
                 <button type="button" class="btn btn-primary px-4" data-bs-toggle="modal"
-                    data-bs-target="#modal-add-emplo">
+                    data-bs-target="#create-level">
                     Tambah Tingkatan Kelas
                 </button>
             </li>
@@ -69,12 +69,13 @@
                 @include('school.new.class.panes.class-tab')
             </div>
             <div class="tab-pane fade" id="employee-content" role="tabpanel" aria-labelledby="employee-tab">
-                {{-- @include('school.new.employee.panes.employee-tab') --}}
+                @include('school.new.class.panes.level-tab')
             </div>
         </div>
     </div>
 
     @include('school.new.class.widgets.create-class')
+    @include('school.new.class.widgets.create-level')
 @endsection
 
 @section('script')
