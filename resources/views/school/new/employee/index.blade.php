@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container-fluid note-has-grid">
         <!-- Navigation Tabs -->
         <ul class="nav nav-pills p-3 mb-3 rounded align-items-center card flex-row flex-wrap" id="nav-tab" role="tablist">
             <li class="nav-item">
