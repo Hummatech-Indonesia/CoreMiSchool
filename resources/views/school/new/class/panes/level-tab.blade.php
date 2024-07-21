@@ -27,7 +27,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right category-menu"
                                 data-popper-placement="bottom-end">
-                                <button type="button"
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#update-level"
                                     class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-edit">
                                     Edit
                                 </button>
@@ -57,3 +57,5 @@
         </div>
     @endforeach
 </div>
+
+@include('school.new.class.widgets.update-level')

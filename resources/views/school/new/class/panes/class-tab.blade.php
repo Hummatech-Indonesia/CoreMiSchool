@@ -14,8 +14,34 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-1">
                         <h2 class="fs-4 mb-0">XII RPL 2</h2>
-                        <span class="fs-2">2023/2024</span>
+                        <span class="fs-2 ms-5">2023/2024</span>
+                        <div class="category-selector btn-group">
+                            <a class="nav-link category-dropdown label-group p-0" data-bs-toggle="dropdown"
+                                href="#" role="button" aria-haspopup="true" aria-expanded="true">
+                                <div class="category d-flex align-items-center">
+                                    <div class="category-business"></div>
+                                    <div class="category-social"></div>
+                                    <span class="more-options text-dark ms-2">
+                                        <i class="ti ti-dots-vertical fs-5"></i>
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right category-menu"
+                                data-popper-placement="bottom-end">
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#update-class"
+                                    class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-edit">
+                                    Edit
+                                </button>
+
+                                <button
+                                    class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-delete"
+                                    data-id="">
+                                    Hapus
+                                </button>
+                            </div>
+                        </div>
                     </div>
+
 
                     <span class="fs-3">Rahayu Soviya</span>
                     <div class="d-flex align-items-center mb-4 pt-3">
@@ -36,3 +62,5 @@
 
     </div>
 </div>
+
+@include('school.new.class.widgets.update-class')
