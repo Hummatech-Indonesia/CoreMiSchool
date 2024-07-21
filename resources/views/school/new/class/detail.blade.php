@@ -20,10 +20,10 @@
             </div>
         </div>
         <div class="d-flex gap-2">
-            <button type="button" class="btn btn-success px-4" data-bs-toggle="modal" data-bs-target="#modal-add">
+            <button type="button" class="btn btn-success px-4" data-bs-toggle="modal" data-bs-target="#import-student">
                 Import Siswa
             </button>
-            <button type="button" class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#modal-add">
+            <button type="button" class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#create-student">
                 Tambah Siswa
             </button>
         </div>
@@ -104,4 +104,7 @@
             </tbody>
         </table>
     </div>
+
+    @include('school.new.class.widgets.create-student')
+    @include('school.new.class.widgets.import-student')
 @endsection
