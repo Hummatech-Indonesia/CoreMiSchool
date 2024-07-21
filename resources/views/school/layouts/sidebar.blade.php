@@ -115,7 +115,7 @@
                     <span class="hide-menu">Pengaturan</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('school.school-years.index') }}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('new.school-year.index') }}" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                 viewBox="0 0 24 24">
