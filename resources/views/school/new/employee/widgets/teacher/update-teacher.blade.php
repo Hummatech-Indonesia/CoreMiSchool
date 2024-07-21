@@ -1,5 +1,5 @@
 <!-- modal edit -->
-<div class="modal fade" id="update-teacher" tabindex="-1" aria-labelledby="editPegawaiLabel" aria-hidden="true">
+<div class="modal fade" id="modal-update-teacher" tabindex="-1" aria-labelledby="editPegawaiLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -9,7 +9,7 @@
             <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
                 <div class="">
                     <div class="wizard-content">
-                        <form id="form-edit" class="tab-wizard wizard-circle wizard clearfix" role="application" method="POST" enctype="multipart/form-data">
+                        <form id="form-update" class="tab-wizard wizard-circle wizard clearfix" role="application" method="POST" enctype="multipart/form-data">
                             @method('put')
                             @csrf
                             <!-- Step 1 -->
@@ -17,7 +17,7 @@
                                 <div class="row mx-3">
                                     <div class="col-md-12">
                                         <label for="" class="mb-2">Foto Guru (opsional)</label>
-                                        <img id="employeeImagePreview" src="#" alt="Preview" style="max-width: 200px; display: none; height: auto;">
+                                        <img id="employeeImagePreview" alt="Preview" style="max-width: 200px; display: none; height: auto;">
                                         <input type="file" name="image" id="employeeImage" class="form-control mt-2 mb-3" onchange="previewEmployeeImage(event)">
                                     </div>
                                     <div class="col-md-6">

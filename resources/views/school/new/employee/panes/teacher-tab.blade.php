@@ -87,8 +87,9 @@
                                                     class="fs-4 ti ti-eye"></i>Detail</button>
                                         </li>
                                         <li>
-                                            <button type="button" class="btn-update dropdown-item d-flex align-items-center gap-3 btn-edit"
+                                            <button type="button" class="dropdown-item d-flex align-items-center gap-3 btn-edit-teacher"
                                                 data-id="{{ $teacher->id }}"
+                                                data-image="{{ asset('storage/'. $teacher->image) }}"
                                                 data-name="{{ $teacher->user->name }}"
                                                 data-nip="{{ $teacher->nip }}"
                                                 data-religionId="{{ $teacher->religion_id }}"
