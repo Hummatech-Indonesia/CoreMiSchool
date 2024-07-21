@@ -181,6 +181,9 @@ Route::post('attendance-test-teacher', [AttendanceMasterController::class, 'chec
 Route::get('school/employee', function(){
     return view('school.new.employee.index');
 })->name('new.employee.index');
+Route::get('new/school/teacher/detail', function(){
+    return view('school.new.employee.teacher-detail');
+})->name('new.teacher.detail.index');
 
 //kelas
 Route::get('new/school/class', function(){
