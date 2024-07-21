@@ -67,7 +67,8 @@
                 </button>
             </li>
             <li class="nav-item d-flex align-items-center ms-2 mt-2 mt-md-0 pegawai-buttons d-none">
-                <button type="button" class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#modal-add-emplo">
+                <button type="button" class="btn btn-primary px-4" data-bs-toggle="modal"
+                    data-bs-target="#modal-add-emplo">
                     Tambah Pegawai
                 </button>
             </li>
@@ -89,278 +90,282 @@
     @include('school.new.employee.widgets.employe.import-employe')
     @include('school.new.employee.widgets.employe.add-employe')
     @include('school.new.employee.widgets.teacher.add-teacher')
-
-
 @endsection
 
 @section('script')
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var tabs = document.querySelectorAll('#nav-tab a[data-bs-toggle="pill"]');
-        var guruButtons = document.querySelectorAll('.guru-buttons');
-        var pegawaiButtons = document.querySelectorAll('.pegawai-buttons');
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var tabs = document.querySelectorAll('#nav-tab a[data-bs-toggle="pill"]');
+            var guruButtons = document.querySelectorAll('.guru-buttons');
+            var pegawaiButtons = document.querySelectorAll('.pegawai-buttons');
 
-        function updateButtons() {
-            var activeTab = document.querySelector('#nav-tab .nav-link.active').getAttribute('id');
-            if (activeTab === 'teacher-tab') {
-                guruButtons.forEach(btn => btn.classList.remove('d-none'));
-                pegawaiButtons.forEach(btn => btn.classList.add('d-none'));
-            } else if (activeTab === 'employee-tab') {
-                guruButtons.forEach(btn => btn.classList.add('d-none'));
-                pegawaiButtons.forEach(btn => btn.classList.remove('d-none'));
+            function updateButtons() {
+                var activeTab = document.querySelector('#nav-tab .nav-link.active').getAttribute('id');
+                if (activeTab === 'teacher-tab') {
+                    guruButtons.forEach(btn => btn.classList.remove('d-none'));
+                    pegawaiButtons.forEach(btn => btn.classList.add('d-none'));
+                } else if (activeTab === 'employee-tab') {
+                    guruButtons.forEach(btn => btn.classList.add('d-none'));
+                    pegawaiButtons.forEach(btn => btn.classList.remove('d-none'));
+                }
             }
-        }
 
-        tabs.forEach(tab => {
-            tab.addEventListener('shown.bs.tab', updateButtons);
+            tabs.forEach(tab => {
+                tab.addEventListener('shown.bs.tab', updateButtons);
+            });
+
+            updateButtons();
         });
-
-        updateButtons();
-    });
-</script>
+    </script>
 
 
-{{-- edit employe --}}
-<script>
-    $(document).ready(function() {
-        var currentEditSection = 0;
-        var editSections = $("#edit-form > section");
-        var editSteps = $(".edit-steps li");
-
-        editSections.hide();
-        editSections.eq(currentEditSection).show();
-
-        $(".next-edit-step").click(function() {
-            if (currentEditSection < editSections.length - 1) {
-                editSections.eq(currentEditSection).hide();
-                editSteps.eq(currentEditSection).removeClass("current").addClass("done");
-                currentEditSection++;
-                editSections.eq(currentEditSection).show();
-                editSteps.eq(currentEditSection).removeClass("disabled").addClass("current");
-            }
-        });
-
-        $(".prev-edit-step").click(function() {
-            if (currentEditSection > 0) {
-                editSections.eq(currentEditSection).hide();
-                editSteps.eq(currentEditSection).removeClass("current").addClass("disabled");
-                currentEditSection--;
-                editSections.eq(currentEditSection).show();
-                editSteps.eq(currentEditSection).removeClass("done").addClass("current");
-            }
-        });
-    });
-
-    $('.btn-edit-employee').click(function() {
-            let id = $(this).data('id');
-            let image = $(this).data('image');
-            let name = $(this).data('name');
-            let nip = $(this).data('nip');
-            let religionId = $(this).data('religionId');
-            let birthDate = $(this).data('birthDate');
-            let birthPlace = $(this).data('birthPlace');
-            let gender = $(this).data('gender');
-            let nik = $(this).data('nik');
-            let phone = $(this).data('phone');
-            let email = $(this).data('email');
-            let active = $(this).data('active');
-            let address = $(this).data('address');
-
-            console.log(birthDate, birthPlace);
-            $('#editpreviewImg').attr('src', image);
-            $('#name-edit-staff').val(name);
-            $('#nip-edit-staff').val(nip);
-            $('#birth_date-edit-staff').val(birthDate);
-            $('#birth_place-edit-staff').val(birthPlace);
-            $('#nik-edit-staff').val(nik);
-            $('#phone-edit-staff').val(phone);
-            $('#email-edit-staff').val(email);
-            $('#address-edit-staff').val(address);
-            
-            $('#form-update').attr('action', '/school/staff/' + id);
-            $('#modal-update-employee').modal('show');
-        });
-
-    function previewEditImage(event) {
-        var reader = new FileReader();
-        reader.onload = function() {
-            var output = document.getElementById('editImagePreview');
-            output.src = reader.result;
-            output.style.display = 'block';
-        }
-        reader.readAsDataURL(event.target.files[0]);
-    }
-</script>
-
-{{-- edit guru --}}
-<script>
-    $(document).ready(function() {
-        $('.btn-edit-teacher').click(function() {
-            let id = $(this).data('id');
-            let image = $(this).data('image');
-            let name = $(this).data('name');
-            let nip = $(this).data('nip');
-            let religionId = $(this).data('religionId');
-            let birthDate = $(this).data('birthDate');
-            let birthPlace = $(this).data('birthPlace');
-            let gender = $(this).data('gender');
-            let nik = $(this).data('nik');
-            let phone = $(this).data('phone');
-            let email = $(this).data('email');
-            let active = $(this).data('active');
-            let address = $(this).data('address');
-
-            console.log(birthDate, birthPlace);
-            $('#employeeImagePreview').attr('src', image);
-            $('#name-edit').val(name);
-            $('#nip-edit').val(nip);
-            $('#birth_date-edit').val(birthDate);
-            $('#birth_place-edit').val(birthPlace);
-            $('#nik-edit').val(nik);
-            $('#phone-edit').val(phone);
-            $('#email-edit').val(email);
-            $('#address-edit').val(address);
-            
-            $('#form-update').attr('action', '/school/teacher/' + id);
-            $('#modal-update-teacher').modal('show');
-        });
-
-        var currentAddSection = 0;
-        var addSections = $("#add-form > section");
-        var addSteps = $(".add-steps li");
-
-        addSections.hide();
-        addSections.eq(currentAddSection).show();
-
-        $(".next-add-step").click(function() {
-            if (currentAddSection < addSections.length - 1) {
-                addSections.eq(currentAddSection).hide();
-                addSteps.eq(currentAddSection).removeClass("current").addClass("done");
-                currentAddSection++;
-                addSections.eq(currentAddSection).show();
-                addSteps.eq(currentAddSection).removeClass("disabled").addClass("current");
-            }
-        });
-
-        $(".prev-add-step").click(function() {
-            if (currentAddSection > 0) {
-                addSections.eq(currentAddSection).hide();
-                addSteps.eq(currentAddSection).removeClass("current").addClass("disabled");
-                currentAddSection--;
-                addSections.eq(currentAddSection).show();
-                addSteps.eq(currentAddSection).removeClass("done").addClass("current");
-            }
-        });
-    });
-
-    function previewAddImage(event) {
-        var reader = new FileReader();
-        reader.onload = function() {
-            var output = document.getElementById('addImagePreview');
-            output.src = reader.result;
-            output.style.display = 'block';
-        }
-        reader.readAsDataURL(event.target.files[0]);
-    }
-</script>
-
-{{-- tambah guru --}}
-<script>
-    $(document).ready(function() {
-        var currentAddSection = 0;
-        var addSections = $("#form-add > section");
-        var addSteps = $(".add-steps li");
-
-        addSections.hide();
-        addSections.eq(currentAddSection).show();
-
-        $(".next-add-step").click(function() {
-            if (currentAddSection < addSections.length - 1) {
-                addSections.eq(currentAddSection).hide();
-                addSteps.eq(currentAddSection).removeClass("current").addClass("done");
-                currentAddSection++;
-                addSections.eq(currentAddSection).show();
-                addSteps.eq(currentAddSection).removeClass("disabled").addClass("current");
-            }
-        });
-
-        $(".prev-add-step").click(function() {
-            if (currentAddSection > 0) {
-                addSections.eq(currentAddSection).hide();
-                addSteps.eq(currentAddSection).removeClass("current").addClass("disabled");
-                currentAddSection--;
-                addSections.eq(currentAddSection).show();
-                addSteps.eq(currentAddSection).removeClass("done").addClass("current");
-            }
-        });
-    });
-
-    function previewAddImage(event) {
-        var reader = new FileReader();
-        reader.onload = function() {
-            var output = document.getElementById('addImagePreview');
-            output.src = reader.result;
-            output.style.display = 'block';
-        }
-        reader.readAsDataURL(event.target.files[0]);
-    }
-</script>
-
-
-<script>
-    $(document).ready(function() {
-        // Namespace the script
-        var teacherFormWizard = (function() {
-            var currentStep = 0;
-            var steps = $("#form-edit > section");
-            var stepIndicators = $(".wizard-steps li");
+    {{-- edit employe --}}
+    <script>
+        $(document).ready(function() {
+            var currentEditSection = 0;
+            var editSections = $("#form-edit-employee > section");
+            var editSteps = $(".edit-steps li");
 
             function showStep(stepIndex) {
-                steps.hide();
-                steps.eq(stepIndex).show();
-                stepIndicators.removeClass("current").addClass("disabled");
-                stepIndicators.eq(stepIndex).removeClass("disabled").addClass("current");
+                editSections.hide();
+                editSections.eq(stepIndex).show();
+                editSteps.removeClass("current done disabled");
+                editSteps.eq(stepIndex).addClass("current");
             }
 
-            function nextStep() {
-                if (currentStep < steps.length - 1) {
-                    currentStep++;
-                    showStep(currentStep);
+            showStep(currentEditSection);
+
+            $(".next-edit-step").click(function() {
+                if (currentEditSection < editSections.length - 1) {
+                    currentEditSection++;
+                    showStep(currentEditSection);
                 }
-            }
+            });
 
-            function prevStep() {
-                if (currentStep > 0) {
-                    currentStep--;
-                    showStep(currentStep);
+            $(".prev-edit-step").click(function() {
+                if (currentEditSection > 0) {
+                    currentEditSection--;
+                    showStep(currentEditSection);
                 }
-            }
+            });
 
-            $(".next-step").click(nextStep);
-            $(".prev-step").click(prevStep);
+            $('.btn-edit-employee').click(function() {
+                let id = $(this).data('id');
+                let image = $(this).data('image');
+                let name = $(this).data('name');
+                let nip = $(this).data('nip');
+                let religionId = $(this).data('religionId');
+                let birthDate = $(this).data('birthDate');
+                let birthPlace = $(this).data('birthPlace');
+                let gender = $(this).data('gender');
+                let nik = $(this).data('nik');
+                let phone = $(this).data('phone');
+                let email = $(this).data('email');
+                let active = $(this).data('active');
+                let address = $(this).data('address');
 
-            // Initialize
-            showStep(currentStep);
+                $('#edit-preview-img').attr('src', image).show();
+                $('#edit-name').val(name);
+                $('#edit-nip').val(nip);
+                $('#edit-birth-date').val(birthDate);
+                $('#edit-birth-place').val(birthPlace);
+                $('#edit-nik').val(nik);
+                $('#edit-phone').val(phone);
+                $('#edit-email').val(email);
+                $('#edit-address').val(address);
 
-            return {
-                nextStep: nextStep,
-                prevStep: prevStep
-            };
-        })();
+                $('input[name="gender"][value="' + gender + '"]').prop('checked', true);
+                $('#edit-religion').val(religionId);
+                $('#edit-status').val(active);
 
-        function previewEmployeeImage(event) {
+                $('#form-edit-employee').attr('action', '/school/staff/' + id);
+                $('#modal-edit-employee').modal('show');
+            });
+        });
+
+        function previewEditImage(event) {
             var reader = new FileReader();
             reader.onload = function() {
-                var output = document.getElementById('employeeImagePreview');
+                var output = document.getElementById('edit-preview-img');
                 output.src = reader.result;
                 output.style.display = 'block';
             }
             reader.readAsDataURL(event.target.files[0]);
         }
+    </script>
 
-        // Attach the preview function to the file input change event
-        $("#employeeImage").on('change', previewEmployeeImage);
-    });
-</script>
+    {{-- edit guru --}}
+    <script>
+        $(document).ready(function() {
+            $('.btn-edit-teacher').click(function() {
+                let id = $(this).data('id');
+                let image = $(this).data('image');
+                let name = $(this).data('name');
+                let nip = $(this).data('nip');
+                let religionId = $(this).data('religionId');
+                let birthDate = $(this).data('birthDate');
+                let birthPlace = $(this).data('birthPlace');
+                let gender = $(this).data('gender');
+                let nik = $(this).data('nik');
+                let phone = $(this).data('phone');
+                let email = $(this).data('email');
+                let active = $(this).data('active');
+                let address = $(this).data('address');
 
+                $('#employeeImagePreview').attr('src', image).show();
+                $('#name-edit').val(name);
+                $('#nip-edit').val(nip);
+                $('#birth_date-edit').val(birthDate);
+                $('#birth_place-edit').val(birthPlace);
+                $('#nik-edit').val(nik);
+                $('#phone-edit').val(phone);
+                $('#email-edit').val(email);
+                $('#address-edit').val(address);
+
+                $('#religion-edit').val(religionId);
+                $('#status-edit').val(active);
+
+                $('input[name="gender"][value="' + gender + '"]').prop('checked', true);
+
+                $('#form-update').attr('action', '/school/teacher/' + id);
+                $('#modal-update-teacher').modal('show');
+            });
+
+            var currentAddSection = 0;
+            var addSections = $("#form-update > section");
+            var addSteps = $(".add-steps li");
+
+            function showStep(stepIndex) {
+                addSections.hide();
+                addSteps.removeClass("current done disabled");
+                addSections.eq(stepIndex).show();
+                addSteps.eq(stepIndex).addClass("current");
+            }
+
+            showStep(currentAddSection);
+
+            $(".next-step").click(function() {
+                if (currentAddSection < addSections.length - 1) {
+                    currentAddSection++;
+                    showStep(currentAddSection);
+                }
+            });
+
+            $(".prev-step").click(function() {
+                if (currentAddSection > 0) {
+                    currentAddSection--;
+                    showStep(currentAddSection);
+                }
+            });
+        });
+
+        function previewAddImage(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var output = document.getElementById('addImagePreview');
+                output.src = reader.result;
+                output.style.display = 'block';
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+
+    {{-- tambah guru --}}
+    <script>
+        $(document).ready(function() {
+            var currentAddSection = 0;
+            var addSections = $("#form-add > section");
+            var addSteps = $(".add-steps li");
+
+            addSections.hide();
+            addSections.eq(currentAddSection).show();
+
+            $(".next-add-step").click(function() {
+                if (currentAddSection < addSections.length - 1) {
+                    addSections.eq(currentAddSection).hide();
+                    addSteps.eq(currentAddSection).removeClass("current").addClass("done");
+                    currentAddSection++;
+                    addSections.eq(currentAddSection).show();
+                    addSteps.eq(currentAddSection).removeClass("disabled").addClass("current");
+                }
+            });
+
+            $(".prev-add-step").click(function() {
+                if (currentAddSection > 0) {
+                    addSections.eq(currentAddSection).hide();
+                    addSteps.eq(currentAddSection).removeClass("current").addClass("disabled");
+                    currentAddSection--;
+                    addSections.eq(currentAddSection).show();
+                    addSteps.eq(currentAddSection).removeClass("done").addClass("current");
+                }
+            });
+        });
+
+        function previewAddImage(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var output = document.getElementById('addImagePreview');
+                output.src = reader.result;
+                output.style.display = 'block';
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+
+
+    <script>
+        $(document).ready(function() {
+            // Namespace the script
+            var teacherFormWizard = (function() {
+                var currentStep = 0;
+                var steps = $("#form-edit > section");
+                var stepIndicators = $(".wizard-steps li");
+
+                function showStep(stepIndex) {
+                    steps.hide();
+                    steps.eq(stepIndex).show();
+                    stepIndicators.removeClass("current").addClass("disabled");
+                    stepIndicators.eq(stepIndex).removeClass("disabled").addClass("current");
+                }
+
+                function nextStep() {
+                    if (currentStep < steps.length - 1) {
+                        currentStep++;
+                        showStep(currentStep);
+                    }
+                }
+
+                function prevStep() {
+                    if (currentStep > 0) {
+                        currentStep--;
+                        showStep(currentStep);
+                    }
+                }
+
+                $(".next-step").click(nextStep);
+                $(".prev-step").click(prevStep);
+
+                // Initialize
+                showStep(currentStep);
+
+                return {
+                    nextStep: nextStep,
+                    prevStep: prevStep
+                };
+            })();
+
+            function previewEmployeeImage(event) {
+                var reader = new FileReader();
+                reader.onload = function() {
+                    var output = document.getElementById('employeeImagePreview');
+                    output.src = reader.result;
+                    output.style.display = 'block';
+                }
+                reader.readAsDataURL(event.target.files[0]);
+            }
+
+            // Attach the preview function to the file input change event
+            $("#employeeImage").on('change', previewEmployeeImage);
+        });
+    </script>
 @endsection
