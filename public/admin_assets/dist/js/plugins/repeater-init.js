@@ -10,7 +10,7 @@ $(function () {
             $(this).slideDown();
         },
         hide: function (remove) {
-            if (confirm("Are you sure you want to remove this item?")) {
+            if (confirm("Anda yakin ingin menghapus data ini?")) {
                 $(this).slideUp(remove);
             }
         },

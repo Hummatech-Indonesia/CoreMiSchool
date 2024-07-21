@@ -3,25 +3,22 @@
 <div class="card bg-primary shadow-none position-relative overflow-hidden text-light">
     <div class="card-body px-4 py-3">
         <div class="row align-items-center">
-            <div class="col-9">
-                <h4 class="fw-semibold mb-8 text-light">Kelas</h4>
+            <div class="col-8 col-md-9">
+                <h4 class="fw-semibold mb-2 text-light">Kelas</h4>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item" aria-current="page">Atur kelas dan tingkatan kelas di sini</li>
                     </ol>
                 </nav>
             </div>
-            <div class="col-3">
-                <div class="text-center mb-n5">
-                    <img src="{{ asset('admin_assets/dist/images/breadcrumb/ChatBc.png') }}" alt=""
-                        class="img-fluid mb-n4">
-                </div>
+            <div class="col-4 col-md-3 text-center mb-n5">
+                <img src="{{ asset('admin_assets/dist/images/breadcrumb/ChatBc.png') }}" alt="" class="img-fluid mb-n4">
             </div>
         </div>
     </div>
 </div>
 
-<div class="container">
+<div class="container-fluid note-has-grid">
     <!-- Navigation Tabs -->
     <ul class="nav nav-pills p-3 mb-3 rounded align-items-center card flex-row flex-wrap" id="nav-tab" role="tablist">
         <li class="nav-item">
@@ -50,31 +47,31 @@
                 <span class="d-none d-md-block font-weight-medium">Tingkatan Kelas</span>
             </a>
         </li>
-        <li class="nav-item d-flex align-items-center ms-md-auto mt-2 mt-md-0" id="guru-buttons">
-            <button type="button" class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#create-teacher">
+        <li class="nav-item d-flex align-items-center ms-auto mt-2 mt-md-0" id="guru-buttons">
+            <button type="button" class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#create-class">
                 Tambah Kelas
             </button>
         </li>
 
-        <li class="nav-item d-flex align-items-center ms-md-auto mt-2 mt-md-0 d-none" id="pegawai-buttons">
+        <li class="nav-item d-flex align-items-center ms-auto mt-2 mt-md-0 d-none" id="pegawai-buttons">
             <button type="button" class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#modal-add-emplo">
                 Tambah Tingkatan Kelas
             </button>
         </li>
     </ul>
 
-
-
     <!-- Tab Content -->
     <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active" id="teacher-content" role="tabpanel" aria-labelledby="teacher-tab">
-            {{-- @include('school.new.employee.panes.teacher-tab') --}}
+            @include('school.new.class.panes.class-tab')
         </div>
         <div class="tab-pane fade" id="employee-content" role="tabpanel" aria-labelledby="employee-tab">
             {{-- @include('school.new.employee.panes.employee-tab') --}}
         </div>
     </div>
 </div>
+
+@include('school.new.class.widgets.create-class')
 @endsection
 
 @section('script')
@@ -96,9 +93,7 @@
             tab.addEventListener('shown.bs.tab', updateButtons);
         });
 
-        // Initial call to set the correct button visibility based on the default active tab
         updateButtons();
     });
 </script>
-
 @endsection
