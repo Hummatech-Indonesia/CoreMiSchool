@@ -151,6 +151,36 @@
         });
     });
 
+    $('.btn-edit-employee').click(function() {
+            let id = $(this).data('id');
+            let image = $(this).data('image');
+            let name = $(this).data('name');
+            let nip = $(this).data('nip');
+            let religionId = $(this).data('religionId');
+            let birthDate = $(this).data('birthDate');
+            let birthPlace = $(this).data('birthPlace');
+            let gender = $(this).data('gender');
+            let nik = $(this).data('nik');
+            let phone = $(this).data('phone');
+            let email = $(this).data('email');
+            let active = $(this).data('active');
+            let address = $(this).data('address');
+
+            console.log(birthDate, birthPlace);
+            $('#editpreviewImg').attr('src', image);
+            $('#name-edit-staff').val(name);
+            $('#nip-edit-staff').val(nip);
+            $('#birth_date-edit-staff').val(birthDate);
+            $('#birth_place-edit-staff').val(birthPlace);
+            $('#nik-edit-staff').val(nik);
+            $('#phone-edit-staff').val(phone);
+            $('#email-edit-staff').val(email);
+            $('#address-edit-staff').val(address);
+            
+            $('#form-update').attr('action', '/school/staff/' + id);
+            $('#modal-update-employee').modal('show');
+        });
+
     function previewEditImage(event) {
         var reader = new FileReader();
         reader.onload = function() {
@@ -165,6 +195,36 @@
 {{-- edit guru --}}
 <script>
     $(document).ready(function() {
+        $('.btn-edit-teacher').click(function() {
+            let id = $(this).data('id');
+            let image = $(this).data('image');
+            let name = $(this).data('name');
+            let nip = $(this).data('nip');
+            let religionId = $(this).data('religionId');
+            let birthDate = $(this).data('birthDate');
+            let birthPlace = $(this).data('birthPlace');
+            let gender = $(this).data('gender');
+            let nik = $(this).data('nik');
+            let phone = $(this).data('phone');
+            let email = $(this).data('email');
+            let active = $(this).data('active');
+            let address = $(this).data('address');
+
+            console.log(birthDate, birthPlace);
+            $('#employeeImagePreview').attr('src', image);
+            $('#name-edit').val(name);
+            $('#nip-edit').val(nip);
+            $('#birth_date-edit').val(birthDate);
+            $('#birth_place-edit').val(birthPlace);
+            $('#nik-edit').val(nik);
+            $('#phone-edit').val(phone);
+            $('#email-edit').val(email);
+            $('#address-edit').val(address);
+            
+            $('#form-update').attr('action', '/school/teacher/' + id);
+            $('#modal-update-teacher').modal('show');
+        });
+
         var currentAddSection = 0;
         var addSections = $("#add-form > section");
         var addSteps = $(".add-steps li");

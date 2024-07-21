@@ -56,9 +56,9 @@ class StaffController extends Controller
         try {
             $data = $this->service->store($request);
             $this->employee->store($data);
-            return redirect()->back()->with('success', 'Berhasil menambahkan data pegawai');
+            return redirect()->back()->with('success', 'Berhasil menambahkan data staff');
         } catch (\Throwable $th) {
-            return redirect()->back()->with('error', 'Kesalahan menambahkan data pegawai \n'. $th->getMessage());
+            return redirect()->back()->with('error', 'Kesalahan menambahkan data staff \n'. $th->getMessage());
         }
     }
 
@@ -86,13 +86,13 @@ class StaffController extends Controller
         try {
             $data = $this->service->update($employee, $request);
             $this->employee->update($employee->id, $data);
-            return redirect()->back()->with('success', 'Berhasil memperbaiki pegawai');
+            return redirect()->back()->with('success', 'Berhasil memperbaiki staff');
         } catch (\Throwable $th) {
             $data = $this->user->showEmail($request->email);
             if ($data) {
-                return redirect()->back()->with('warning', 'Data pegawai sudah tersedia');
+                return redirect()->back()->with('warning', 'Data staff sudah tersedia');
             } else {
-                return redirect()->back()->with('error', 'Kesalahan menambahkan data pegawai');
+                return redirect()->back()->with('error', 'Kesalahan menambahkan data staff');
             }
         }
     }
@@ -105,7 +105,7 @@ class StaffController extends Controller
         $this->service->delete($employee);
         $this->employee->delete($employee->id);
         $employee->user->delete();
-        return redirect()->back()->with('success', 'Data pegawai berhasil dihapus');
+        return redirect()->back()->with('success', 'Data staff berhasil dihapus');
     }
 
     public function downloadTemplate()

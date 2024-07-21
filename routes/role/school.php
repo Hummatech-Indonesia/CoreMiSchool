@@ -44,18 +44,18 @@ Route::prefix('school')->group(function () {
     Route::get('', [SchoolDashboardController::class, 'index'])->name('school.index');
 
     // pegawai
-    Route::get('employe', [StaffController::class, 'index'])->name('school.employee.index');
-    Route::post('add-employee', [StaffController::class, 'store'])->name('employe.store');
-    Route::put('update-employee/{employee}', [StaffController::class, 'update'])->name('employe.update');
-    Route::delete('delete-employee/{employee}', [StaffController::class, 'destroy'])->name('employe.delete');
+    // Route::get('employe', [StaffController::class, 'index'])->name('school.employee.index');
+    // Route::post('add-employee', [StaffController::class, 'store'])->name('employe.store');
+    // Route::put('update-employee/{employee}', [StaffController::class, 'update'])->name('employe.update');
+    // Route::delete('delete-employee/{employee}', [StaffController::class, 'destroy'])->name('employe.delete');
     Route::post('import-employee/', [StaffController::class, 'import'])->name('employe.import');
     Route::get('download-template-employee/', [StaffController::class, 'downloadTemplate'])->name('employe.download-template');
 
     // guru
-    Route::get('teacher', [TeacherController::class, 'index'])->name('teacher.index');
-    Route::post('add-teacher', [TeacherController::class, 'store'])->name('teacher.store');
-    Route::put('update-teacher/{employee}', [TeacherController::class, 'update'])->name('teacher.update');
-    Route::delete('delete-teacher/{employee}', [TeacherController::class, 'destroy'])->name('teacher.delete');
+    // Route::get('teacher', [TeacherController::class, 'index'])->name('teacher.index');
+    // Route::post('add-teacher', [TeacherController::class, 'store'])->name('teacher.store');
+    // Route::put('update-teacher/{employee}', [TeacherController::class, 'update'])->name('teacher.update');
+    // Route::delete('delete-teacher/{employee}', [TeacherController::class, 'destroy'])->name('teacher.delete');
 
     Route::get('detail-teacher/{employee}', [TeacherSubjectController::class, 'index'])->name('detail-teacher.index');
     Route::post('add-maple-teacher/{employee}', [TeacherSubjectController::class, 'store'])->name('maple-teacher.store');
