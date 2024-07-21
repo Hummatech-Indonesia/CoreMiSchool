@@ -187,6 +187,11 @@ Route::get('new/school/class', function(){
     return view('school.new.class.index');
 })->name('new.class.index');
 
+// tahun ajaran
+Route::get('new/school/school-year', function(){
+    return view('school.new.school-year.index');
+})->name('new.school-year.index');
+
 
 
 
