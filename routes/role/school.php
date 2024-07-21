@@ -195,6 +195,16 @@ Route::get('new/school/school-year', function(){
     return view('school.new.school-year.index');
 })->name('new.school-year.index');
 
+// kehadiran siswa kelas
+Route::get('new/school/attendace-class', function(){
+    return view('school.new.attendace.student.class-attendace');
+})->name('new.class-attendace.index');
+
+// list kehadiran siswa
+Route::get('new/school/attendace-student', function(){
+    return view('school.new.attendace.student.list-attendace-student');
+})->name('new.attendace-student.index');
+
 
 
 

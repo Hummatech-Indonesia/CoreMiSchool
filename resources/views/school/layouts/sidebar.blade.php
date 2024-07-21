@@ -237,7 +237,7 @@
                             </a>
                             <ul aria-expanded="false" class="collapse second-level">
                                 <li class="sidebar-item">
-                                    <a href="{{ route('class-presence-student.index') }}" class="sidebar-link"
+                                    <a href="{{ route('new.class-attendace.index') }}" class="sidebar-link"
                                         style="display: flex; align-items: center; margin-left: 20px;">
                                         <div class="round-16 d-flex align-items-center justify-content-center ms-3">
                                             <i class="ti ti-circle"></i>
