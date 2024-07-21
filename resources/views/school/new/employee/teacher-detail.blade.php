@@ -1,0 +1,84 @@
+@extends('school.layouts.app')
+@section('content')
+    <div class="card bg-primary shadow-none position-relative overflow-hidden text-light">
+        <div class="card-body px-4 py-3">
+            <div class="row align-items-center">
+                <div class="col-auto">
+                    <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}" alt="Profile Image"
+                        class="img-fluid rounded-circle" style="width: 84px; height: 84px;">
+                </div>
+                <div class="col">
+                    <h4 class="fw-semibold mb-2 text-light">Suyadi Oke</h4>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb bg-transparent p-0 m-0">
+                            <li class="breadcrumb-item" aria-current="page">suyadi@gmail.com</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-12 mb-3 me-3 d-flex">
+        <span class="mb-1 badge bg-primary p-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                <path fill="currentColor"
+                    d="M12 7q-.825 0-1.412-.587T10 5t.588-1.412T12 3t1.413.588T14 5t-.587 1.413T12 7m0 14q-.625 0-1.062-.437T10.5 19.5v-9q0-.625.438-1.062T12 9t1.063.438t.437 1.062v9q0 .625-.437 1.063T12 21" />
+            </svg>
+        </span>
+        <h4 class="ms-3"> Daftar Mata Pelajaran Guru </h4>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card position-relative">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <h4 class="mb-0">Matematika</h4>
+                    </div>
+
+                    <div class="align-items-center pt-3">
+                        <h6 class="mb-3">Jenis Pelajaran :</h6>
+                        <span class="mb-1 badge font-medium fs-5 bg-light-primary text-primary">
+                            Umum
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Image Container -->
+                <div class="position-absolute bottom-0 end-0" style="padding: 0px;">
+                    <img src="{{ asset('assets/images/background/buble.png') }}" alt="Description" class="img-fluid"
+                        style="max-width: 100px; height: auto;">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card position-relative">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <h4 class="mb-0">Pendidikan Agama Islam</h4>
+                    </div>
+
+                    <div class="align-items-center pt-3">
+                        <h6 class="mb-3">Jenis Pelajaran :</h6>
+                        <div class="d-flex align-items-center">
+                            <span class="mb-1 badge font-medium fs-5 bg-light-warning text-warning">
+                                Keagamaan
+                            </span>
+                            <span class="mb-1 badge font-medium ms-2 fs-5 bg-light-primary text-primary">
+                                Islam
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image Container -->
+                <div class="position-absolute bottom-0 end-0" style="padding: 0px;">
+                    <img src="{{ asset('assets/images/background/buble.png') }}" alt="Description" class="img-fluid"
+                        style="max-width: 100px; height: auto;">
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

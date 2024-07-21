@@ -30,7 +30,7 @@
                                     <i class="fs-4 ti ti-edit"></i>
                                     Edit
                                 </button>
-    
+
                                 <button
                                     class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-delete gap-3"
                                     data-id="">
@@ -58,4 +58,4 @@
     @endforeach
 </div>
 
-@include('school.new.class.widgets.update-level')
+@include('school.new.class.widgets.class-level.update-level')

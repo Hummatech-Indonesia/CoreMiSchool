@@ -74,8 +74,8 @@
         </div>
     </div>
 
-    @include('school.new.class.widgets.create-class')
-    @include('school.new.class.widgets.create-level')
+    @include('school.new.class.widgets.class.create-class')
+    @include('school.new.class.widgets.class-level.create-level')
 @endsection
 
 @section('script')

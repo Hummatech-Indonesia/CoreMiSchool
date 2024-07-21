@@ -181,6 +181,9 @@ Route::post('attendance-test-teacher', [AttendanceMasterController::class, 'chec
 Route::get('school/employee', function(){
     return view('school.new.employee.index');
 })->name('new.employee.index');
+Route::get('new/school/teacher/detail', function(){
+    return view('school.new.employee.teacher-detail');
+})->name('new.teacher.detail.index');
 
 //kelas
 Route::get('new/school/class', function(){
@@ -205,6 +208,10 @@ Route::get('new/school/attendace-student', function(){
     return view('school.new.attendace.student.list-attendace-student');
 })->name('new.attendace-student.index');
 
+//mata pelajaran
+Route::get('new/school/subject', function(){
+    return view('school.new.subject.index');
+})->name('new.subject.index');
 
 
 

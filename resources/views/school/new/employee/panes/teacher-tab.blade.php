@@ -82,9 +82,9 @@
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
                                         <li>
-                                            <button type="button" data-id="1dbf93d1-4e70-37ec-abda-b496e6a3c177"
+                                            <a href="/new/school/teacher/detail" type="button" data-id="1dbf93d1-4e70-37ec-abda-b496e6a3c177"
                                                 class="btn-detail dropdown-item d-flex align-items-center gap-3"><i
-                                                    class="fs-4 ti ti-eye"></i>Detail</button>
+                                                    class="fs-4 ti ti-eye"></i>Detail</a>
                                         </li>
                                         <li>
                                             <button type="button" class="dropdown-item d-flex align-items-center gap-3 btn-edit-teacher"
