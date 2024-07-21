@@ -28,7 +28,7 @@
                         </span>
                     </div>
 
-                    <a href="javascript:void(0)" type="button"
+                    <a href="/new/school/class/detail" type="button"
                         class="btn waves-effect waves-light btn-primary w-100">Masuk Kelas</a>
                 </div>
             </div>

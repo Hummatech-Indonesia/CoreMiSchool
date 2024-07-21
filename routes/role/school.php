@@ -186,6 +186,9 @@ Route::get('school/employee', function(){
 Route::get('new/school/class', function(){
     return view('school.new.class.index');
 })->name('new.class.index');
+Route::get('new/school/class/detail', function(){
+    return view('school.new.class.detail');
+})->name('new.class.detail.index');
 
 // tahun ajaran
 Route::get('new/school/school-year', function(){
