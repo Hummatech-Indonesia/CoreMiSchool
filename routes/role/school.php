@@ -198,6 +198,10 @@ Route::get('new/school/school-year', function(){
     return view('school.new.school-year.index');
 })->name('new.school-year.index');
 
+//mata pelajaran
+Route::get('new/school/subject', function(){
+    return view('school.new.subject.index');
+})->name('new.subject.index');
 
 
 
