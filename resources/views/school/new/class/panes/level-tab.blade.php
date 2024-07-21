@@ -14,27 +14,27 @@
                     <div class="d-flex justify-content-between align-items-center mb-1">
                         <h2 class="fs-4 mb-0">Tingkatan Kelas</h2>
                         {{-- <span class="fs-2">2023/2024</span> --}}
-                        <div class="category-selector btn-group">
-                            <a class="nav-link category-dropdown label-group p-0" data-bs-toggle="dropdown"
+                        <div class="btn-group">
+                            <a class="nav-link label-group p-0" data-bs-toggle="dropdown"
                                 href="#" role="button" aria-haspopup="true" aria-expanded="true">
-                                <div class="category">
-                                    <div class="category-business"></div>
-                                    <div class="category-social"></div>
+                                <div>
                                     <span class="more-options text-dark">
                                         <i class="ti ti-dots-vertical fs-5"></i>
                                     </span>
                                 </div>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right category-menu"
+                            <div class="dropdown-menu dropdown-menu-right"
                                 data-popper-placement="bottom-end">
                                 <button type="button"
-                                    class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-edit">
+                                    class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-edit gap-3">
+                                    <i class="fs-4 ti ti-edit"></i>
                                     Edit
                                 </button>
-
+    
                                 <button
-                                    class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-delete"
+                                    class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-delete gap-3"
                                     data-id="">
+                                    <i class="fs-4 ti ti-trash"></i>
                                     Hapus
                                 </button>
                             </div>
