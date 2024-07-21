@@ -108,9 +108,9 @@
         </table>
     </div>
 
-    @include('school.new.class.widgets.create-student')
-    @include('school.new.class.widgets.import-student')
-    @include('school.new.class.widgets.update-student')
-    @include('school.new.class.widgets.rfid-student')
-    @include('school.new.class.widgets.detail-student')
+    @include('school.new.class.widgets.class.create-student')
+    @include('school.new.class.widgets.class.import-student')
+    @include('school.new.class.widgets.class.update-student')
+    @include('school.new.class.widgets.class.rfid-student')
+    @include('school.new.class.widgets.class.detail-student')
 @endsection

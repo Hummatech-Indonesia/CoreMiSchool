@@ -63,4 +63,4 @@
     </div>
 </div>
 
-@include('school.new.class.widgets.update-class')
+@include('school.new.class.widgets.class.update-class')
