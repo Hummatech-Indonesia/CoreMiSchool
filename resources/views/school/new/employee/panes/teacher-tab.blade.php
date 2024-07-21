@@ -33,7 +33,7 @@
                     <tr>
                         <th>No</th>
                         <th>Nama Pegawai</th>
-                        <th>Status</th>
+                        <th>Jumlah Mapel</th>
                         <th>Email</th>
                         <th>NIP</th>
                         <th>RFID</th>
