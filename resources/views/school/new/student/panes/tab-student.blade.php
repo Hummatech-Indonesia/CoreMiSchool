@@ -24,12 +24,12 @@
         <table class="table border text-nowrap customize-table mb-0 align-middle">
             <thead class="text-dark fs-4">
                 <tr class="">
-                    <th class="fs-4 fw-semibold mb-0">No</th>
-                    <th class="fs-4 fw-semibold mb-0">Nama</th>
-                    <th class="fs-4 fw-semibold mb-0">Jenis Kelamin</th>
-                    <th class="fs-4 fw-semibold mb-0">NISN</th>
-                    <th class="fs-4 fw-semibold mb-0">RFID</th>
-                    <th class="fs-4 fw-semibold mb-0">Aksi</th>
+                    <th class="text-white" style="background-color: #5D87FF;">No</th>
+                    <th class="text-white" style="background-color: #5D87FF;">Nama</th>
+                    <th class="text-white" style="background-color: #5D87FF;">Jenis Kelamin</th>
+                    <th class="text-white" style="background-color: #5D87FF;">NISN</th>
+                    <th class="text-white" style="background-color: #5D87FF;">RFID</th>
+                    <th class="text-white" style="background-color: #5D87FF;">Aksi</th>
                 </tr>
             </thead>
             <tbody>
