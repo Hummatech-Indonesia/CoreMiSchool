@@ -31,13 +31,13 @@
             <table class="table border text-nowrap customize-table mb-0 align-middle">
                 <thead class="text-dark fs-4">
                     <tr>
-                        <th>No</th>
-                        <th>Nama Pegawai</th>
-                        <th>Status</th>
-                        <th>Email</th>
-                        <th>NIP</th>
-                        <th>RFID</th>
-                        <th>Aksi</th>
+                        <th class="text-white" style="background-color: #5D87FF;">No</th>
+                        <th class="text-white" style="background-color: #5D87FF;">Nama Pegawai</th>
+                        <th class="text-white" style="background-color: #5D87FF;">Status</th>
+                        <th class="text-white" style="background-color: #5D87FF;">Email</th>
+                        <th class="text-white" style="background-color: #5D87FF;">NIP</th>
+                        <th class="text-white" style="background-color: #5D87FF;">RFID</th>
+                        <th class="text-white" style="background-color: #5D87FF;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
