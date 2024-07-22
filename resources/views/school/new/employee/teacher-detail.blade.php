@@ -4,8 +4,9 @@
         <div class="card-body px-4 py-3">
             <div class="row align-items-center">
                 <div class="col-auto">
-                    <img src="{{ asset('storage/'. $teacher->image) }}" alt="Profile Image"
-                        class="img-fluid rounded-circle" style="width: 84px; height: 84px;">
+                    <img src="{{ $teacher->image ? asset('storage/' . $teacher->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}"
+                        alt="Profile Image" class="img-fluid rounded-circle" style="width: 84px; height: 84px;">
+
                 </div>
                 <div class="col">
                     <h4 class="fw-semibold mb-2 text-light">{{ $teacher->user->name }}</h4>
@@ -35,7 +36,7 @@
                 <div class="card position-relative">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center mb-1">
-                        <h4 class="mb-0">{{ $teacher_subject->subject->name }}</h4>
+                            <h4 class="mb-0">{{ $teacher_subject->subject->name }}</h4>
                         </div>
 
                         <div class="align-items-center pt-3">
@@ -68,8 +69,11 @@
                 </div>
             </div>
         @empty
-            <div class="text-center">
-                Kosong
+            <div class="d-flex flex-column justify-content-center align-items-center">
+                <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt="" width="300px">
+                <p class="fs-5 text-dark text-center mt-2">
+                    Belum ada data
+                </p>
             </div>
         @endforelse
     </div>
