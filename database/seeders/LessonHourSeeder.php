@@ -14,21 +14,33 @@ class LessonHourSeeder extends Seeder
      */
     public function run(): void
     {
-        $data = [];
+        $days = [
+            'monday',
+            'tuesday',
+            'wednesday',
+            'thursday',
+            'friday',
+            'saturday',
+            'sunday',
+        ];
 
+        $data = [];
         $startTime = Carbon::parse('07:00');
 
-        foreach (range(1, 14) as $time) {
-            $start = $startTime->copy();
-            $end = $start->copy()->addMinutes(45);
+        foreach ($days as $day) {
+            foreach (range(1, 14) as $time) {
+                $start = $startTime->copy();
+                $end = $start->copy()->addMinutes(45);
 
-            $data[] = [
-                "name" => $time == 4 || $time == 7 ? 'Istirahat' : 'Jam ke - '. $time,
-                "start" => $start->toDateTimeString(),
-                "end" => $end->toDateTimeString()
-            ];
+                $data[] = [
+                    "day" => $day,
+                    "name" => $time == 4 || $time == 7 ? 'Istirahat' : 'Jam ke - '. $time,
+                    "start" => $start->toDateTimeString(),
+                    "end" => $end->toDateTimeString()
+                ];
 
-            $startTime = $end;
+                $startTime = $end;
+            }
         }
 
         LessonHour::insert($data);

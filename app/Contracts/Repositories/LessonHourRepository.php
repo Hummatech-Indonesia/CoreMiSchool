@@ -45,12 +45,8 @@ class LessonHourRepository extends BaseRepository implements LessonHourInterface
 
     public function search(Request $request):mixed
     {
-        $query = $this->model->query();
-
-        $query->when($request->name, function ($query) use ($request) {
-            $query->where('name', 'LIKE', '%' . $request->name . '%');
-        });
-
-        return $query;
+        return $this->model->query()
+            ->get()
+            ->groupBy('day');
     }
 }

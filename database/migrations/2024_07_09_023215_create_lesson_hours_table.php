@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\DayEnum;
 use App\Traits\Migrations\HasForeign;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -14,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('lesson_hours', function (Blueprint $table) {
             $table->id();
+            $table->enum('day', [DayEnum::MONDAY->value, DayEnum::TUESDAY->value, DayEnum::WEDNESDAY->value, DayEnum::THURSDAY->value, DayEnum::FRIDAY->value, DayEnum::SATURDAY->value, DayEnum::SUNDAY->value]);
             $table->string('name');
             $table->time('start');
             $table->time('end');
