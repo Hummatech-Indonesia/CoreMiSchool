@@ -26,8 +26,7 @@
                                 </div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" data-popper-placement="bottom-end">
-                                <button type="button" data-bs-toggle="modal" data-bs-target="#modal-update-school-year"
-                                    class="btn-update-year note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3">
+                                <button type="button" data-id="{{ $schoolYear->id }}" data-name="{{ $schoolYear->school_year }}" data-status="{{ $schoolYear->active }}" class="btn-update-year note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3">
                                     <i class="fs-4 ti ti-edit"></i>
                                     Edit
                                 </button>
@@ -54,7 +53,4 @@
         </div>
     @empty
     @endforelse
-
 </div>
-
-@include('school.new.school-year.widgets.modal-update-school-year')

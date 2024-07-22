@@ -50,8 +50,9 @@ Route::prefix('school')->name('school.')->group(function() {
     Route::resource('school-years', SchoolYearController::class);
     Route::resource('lesson-hours', LessonHourController::class);
     Route::resource('extracurricular', ExtracurricularController::class);
-    Route::resource('class', ClassroomController::class);
+    Route::resource('classroom', ClassroomController::class);
     Route::resource('level-class', LevelClassController::class);
+    Route::get('class-detail/{classroom}', [ClassroomStudentController::class, 'index'])->name('class-student.index');
 });
 
 Route::prefix('school')->group(function () {
@@ -176,9 +177,6 @@ Route::get('new/school/class', function(){
     return view('school.new.class.index');
 })->name('new.class.index');
 
-Route::get('new/school/class/detail', function(){
-    return view('school.new.class.detail');
-})->name('new.class.detail.index');
 
 // tahun ajaran
 Route::get('new/school/school-year', function(){

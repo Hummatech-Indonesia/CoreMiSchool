@@ -75,8 +75,9 @@
     </div>
 
     @include('school.new.class.widgets.class.create-class')
-    @include('school.new.class.widgets.class-level.update-level')
+    @include('school.new.class.widgets.class.update-class')
 
+    @include('school.new.class.widgets.class-level.update-level')
     @include('school.new.class.widgets.class-level.create-level')
 
     <x-delete-modal-component />
@@ -98,6 +99,11 @@
             $('#modal-delete').modal('show');
         });
 
+        $('.btn-delete-class').click(function() {
+            var id = $(this).data('id');
+            $('#form-delete').attr('action', '{{ route('school.classroom.destroy', '') }}/' + id);
+            $('#modal-delete').modal('show');
+        });
     </script>
 
     <script>

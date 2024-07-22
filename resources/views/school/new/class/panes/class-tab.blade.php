@@ -33,8 +33,8 @@
                                         Edit
                                     </button>
                                     <button
-                                        class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-delete"
-                                        data-id="">
+                                        class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-delete-class"
+                                        data-id="{{ $classroom->id }}">
                                         Hapus
                                     </button>
                                 </div>
@@ -51,8 +51,7 @@
                                 {{ $classroom->classroomStudents->count() }} Siswa
                             </span>
                         </div>
-                        <a href="/new/school/class/detail" type="button"
-                            class="btn waves-effect waves-light btn-primary w-100">Masuk Kelas</a>
+                        <a href="{{ route('school.class-student.index', ['classroom' => $classroom->id ]) }}" class="btn waves-effect waves-light btn-primary w-100">Masuk Kelas</a>
                     </div>
                 </div>
             </div>
@@ -61,5 +60,5 @@
     @endforelse
 </div>
 
-@include('school.new.class.widgets.class.update-class')
+
 

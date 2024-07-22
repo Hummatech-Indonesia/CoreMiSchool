@@ -15,7 +15,7 @@ interface EmployeeInterface extends GetInterface, StoreInterface, UpdateInterfac
 {
     public function paginate($query): mixed;
     public function whereSchool($query, Request $request): mixed;
-    public function getTeacherBySchool(): mixed;
+    public function getTeacher(): mixed;
     public function getCountEmployee(mixed $query) : mixed;
     public function getSchool(mixed $id): mixed;
     public function getByRole(mixed $role): mixed;
