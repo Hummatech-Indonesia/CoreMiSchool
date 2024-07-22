@@ -11,6 +11,7 @@ use App\Contracts\Interfaces\Eloquent\StoreInterface;
 use App\Contracts\Interfaces\Eloquent\UpdateInterface;
 use App\Contracts\Interfaces\Eloquent\WhereInterface;
 use App\Contracts\Interfaces\Eloquent\WhereSchoolInterface;
+use App\Models\SchoolYear;
 use Illuminate\Http\Request;
 
 interface SchoolYearInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface, WhereInterface
@@ -19,4 +20,6 @@ interface SchoolYearInterface extends GetInterface, StoreInterface, UpdateInterf
     public function search(Request $request): mixed;
     public function whereSchoolYear(mixed $data): mixed;
     public function whereActive() : mixed;
+    public function setNonactive(): mixed;
+    // public function setActive(SchoolYear $schoolYear): mixed;
 }

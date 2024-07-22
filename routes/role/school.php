@@ -53,7 +53,8 @@ Route::prefix('school')->name('school.')->group(function() {
     Route::resource('classroom', ClassroomController::class);
     Route::resource('level-class', LevelClassController::class);
     Route::get('class-detail/{classroom}', [ClassroomStudentController::class, 'index'])->name('class-student.index');
-    
+
+    Route::patch('school-years/{schoolYear}/active', [SchoolYearController::class, 'setActive'])->name('school-year.setActive');
 });
 
 Route::prefix('school')->group(function () {

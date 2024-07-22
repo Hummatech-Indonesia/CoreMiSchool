@@ -70,11 +70,18 @@
         $('#modal-update-school-year').modal('show');
     });
 
+    $('.activated-btn').click(function() {
+        var id = $(this).data('id');
+        $('#active-school-year-form').attr('action', '{{ route('school.school-year.setActive', ':id') }}'.replace(':id', id));
+        $('#modal-confirm-active').modal('show');
+    });
+
     $('.btn-delete-year').click(function() {
         var id = $(this).data('id');
         $('#form-delete').attr('action', '{{ route('school.school-years.destroy', '') }}/' + id);
         $('#modal-delete').modal('show');
     });
+
 </script>
 
 @endsection

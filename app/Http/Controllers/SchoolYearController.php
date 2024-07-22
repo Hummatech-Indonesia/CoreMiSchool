@@ -82,4 +82,11 @@ class SchoolYearController extends Controller
         $this->schoolYear->delete($schoolYear->id);
         return redirect()->back()->with('success', 'Berhasil menghapus tahun ajaran');
     }
+
+
+    public function setActive(SchoolYear $schoolYear) {
+        $this->schoolYear->setNonactive();
+        $schoolYear->update(['active' => 1]);
+        return back()->with('success', 'Berhasil');
+    }
 }
