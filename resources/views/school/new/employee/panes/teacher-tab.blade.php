@@ -46,16 +46,17 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ asset('storage/'. $teacher->image) }}"
+                                    <img src="{{ $teacher->image ? asset('storage/' . $teacher->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}"
                                         class="rounded-circle" width="40" height="40">
                                     <div class="ms-3">
                                         <h6 class="fs-4 fw-semibold mb-0">{{ $teacher->user->name }}</h6>
                                         <span class="fw-normal">{{ $teacher->gender->label() }}</span>
                                     </div>
                                 </div>
+
                             </td>
                             <td>
-                                <span class="badge bg-light-primary text-primary">{{ $teacher->teacherSubjects->count() }}</span>
+                                <span class="badge bg-light-primary text-primary">{{ $teacher->teacherSubjects->count() }} Mapel</span>
                             </td>
                             <td>{{ $teacher->user->email }}</td>
                             <td>{{ $teacher->nip }}</td>
