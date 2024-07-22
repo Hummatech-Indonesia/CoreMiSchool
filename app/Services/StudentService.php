@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Contracts\Interfaces\ClassroomStudentInterface;
 use App\Contracts\Interfaces\StudentInterface;
 use App\Contracts\Interfaces\UserInterface;
 use App\Enums\RoleEnum;
@@ -19,11 +20,13 @@ class StudentService
 
     private UserInterface $user;
     private StudentInterface $student;
+    private ClassroomStudentInterface $classroom;
 
-    public function __construct(UserInterface $user, StudentInterface $student)
+    public function __construct(UserInterface $user, StudentInterface $student, ClassroomStudentInterface $classroom)
     {
         $this->user = $user;
         $this->student = $student;
+        $this->classroom = $classroom;
     }
 
     public function validateAndUpload(string $disk, object $file, string $old_file = null): string

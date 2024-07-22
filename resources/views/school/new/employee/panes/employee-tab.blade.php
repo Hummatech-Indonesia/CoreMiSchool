@@ -60,8 +60,13 @@
                             </td>
                             <td>{{ $staff->user->email }}</td>
                             <td>{{ $staff->nip }}</td>
-                            <td>-
-                                <button type="submit" class="btn btn-rounded btn-warning p-1 ms-2 btn-rfid">
+                            <td>{{ $staff->modelHasRfid ? $staff->modelHasRfid->rfid : '-' }}
+                                <button type="button" class="btn btn-rounded btn-warning p-1 ms-2 btn-rfid"
+                                data-name="{{ $staff->user->name }}"
+                                    data-id="{{ $staff->id }}"
+                                    data-rfid="{{ $staff->modelHasRfid ? $staff->modelHasRfid->rfid : 'Kosong' }}"
+                                    data-old-rfid="{{ $staff->modelHasRfid ? $staff->modelHasRfid->rfid : 'Kosong' }}"
+                                    data-role="Employee">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                         viewBox="0 0 24 24">
                                         <path fill="currentColor"
@@ -103,9 +108,9 @@
                                                 data-id="{{ $staff->id }}"
                                                 data-image="{{ asset('storage/' . $staff->image) }}"
                                                 data-name="{{ $staff->user->name }}" data-nip="{{ $staff->nip }}"
-                                                data-religionId="{{ $staff->religion_id }}"
-                                                data-birthDate="{{ $staff->birth_date }}"
-                                                data-birthPlace="{{ $staff->birth_place }}"
+                                                data-religion_id="{{ $staff->religion_id }}"
+                                                data-birth_date="{{ $staff->birth_date }}"
+                                                data-birth_place="{{ $staff->birth_place }}"
                                                 data-gender="{{ $staff->gender->value }}"
                                                 data-nik="{{ $staff->nik }}" data-phone="{{ $staff->phone_number }}"
                                                 data-email="{{ $staff->user->email }}"
@@ -126,9 +131,17 @@
                             </td>
                         </tr>
                     @empty
-                        <tr>
-                            <td colspan="7">Belum ada staff</td>
-                        </tr>
+                    <tr>
+                        <td colspan="7" class="text-center align-middle">
+                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt=""
+                                    width="300px">
+                                <p class="fs-5 text-dark text-center mt-2">
+                                    Belum ada data
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
                     @endforelse
                 </tbody>
             </table>

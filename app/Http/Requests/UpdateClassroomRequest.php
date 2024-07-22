@@ -24,8 +24,6 @@ class UpdateClassroomRequest extends FormRequest
         return [
             'name' => 'required',
             'employee_id' => 'required',
-            'school_year_id' => 'required',
-            'level_class_id' => 'required',
         ];
     }
 
@@ -39,8 +37,6 @@ class UpdateClassroomRequest extends FormRequest
         return [
             'name.required' => 'Mohon untuk masukan namanya.',
             'employee_id.required' => 'Mohon untuk masukan wali kelasnya.',
-            'school_year_id.required' => 'Mohon untuk masukan tahun ajarannya.',
-            'level_class_id.required' => 'Mohon untuk masukkan tingkat kelasnya.',
         ];
     }
 }

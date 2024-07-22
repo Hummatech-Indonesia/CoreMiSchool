@@ -94,7 +94,7 @@
 @endsection
 
 @section('script')
-    {{-- handle rfid --}}
+    {{-- handle rfid teacher --}}
     <script>
         $('.btn-rfid').on('click', function() {
             var id = $(this).data('id');
@@ -107,7 +107,22 @@
             $('#old_rfid_input').val(oldRfid);
             $('#form-rfid').attr('action', '/school/add-to-rfid/' + role + '/' + id);
             $('#rfid-teacher').modal('show');
-            $('#rfid-teacher').val(rfid);
+        });
+    </script>
+
+    {{-- handle rfid staff --}}
+    <script>
+        $('.btn-rfid').on('click', function() {
+            var id = $(this).data('id');
+            var name = $(this).data('name');
+            var rfid = $(this).data('rfid');
+            var oldRfid = $(this).data('old-rfid');
+            var role = $(this).data('role');
+            $('#name-staff-rfid').text(name);
+            $('#detail-staff-rfid').text(rfid);
+            $('#old_rfid_input_staff').val(oldRfid);
+            $('#form-rfid-staff').attr('action', '/school/add-to-rfid/' + role + '/' + id);
+            $('#modal-rfid-staff').modal('show');
         });
     </script>
 
@@ -214,9 +229,9 @@
                 let image = $(this).data('image');
                 let name = $(this).data('name');
                 let nip = $(this).data('nip');
-                let religionId = $(this).data('religionId');
-                let birthDate = $(this).data('birthDate');
-                let birthPlace = $(this).data('birthPlace');
+                let religion_id = $(this).data('religion_id');
+                let birth_date = $(this).data('birth_date');
+                let birth_place = $(this).data('birth_place');
                 let gender = $(this).data('gender');
                 let nik = $(this).data('nik');
                 let phone = $(this).data('phone');
@@ -227,15 +242,15 @@
                 $('#edit-preview-img').attr('src', image).show();
                 $('#edit-name').val(name);
                 $('#edit-nip').val(nip);
-                $('#edit-birth-date').val(birthDate);
-                $('#edit-birth-place').val(birthPlace);
+                $('#edit-birth-date').val(birth_date);
+                $('#edit-birth-place').val(birth_place);
                 $('#edit-nik').val(nik);
                 $('#edit-phone').val(phone);
                 $('#edit-email').val(email);
                 $('#edit-address').val(address);
 
                 $('input[name="gender"][value="' + gender + '"]').prop('checked', true);
-                $('#edit-religion').val(religionId);
+                $('#edit-religion').val(religion_id);
                 $('#edit-status').val(active);
 
                 $('#form-edit-employee').attr('action', '/school/staff/' + id);
@@ -262,9 +277,9 @@
                 let image = $(this).data('image');
                 let name = $(this).data('name');
                 let nip = $(this).data('nip');
-                let religionId = $(this).data('religionId');
-                let birthDate = $(this).data('birthDate');
-                let birthPlace = $(this).data('birthPlace');
+                let religion_id = $(this).data('religion_id');
+                let birth_date = $(this).data('birth_date');
+                let birth_place = $(this).data('birth_place');
                 let gender = $(this).data('gender');
                 let nik = $(this).data('nik');
                 let phone = $(this).data('phone');
@@ -275,14 +290,15 @@
                 $('#employeeImagePreview').attr('src', image).show();
                 $('#name-edit').val(name);
                 $('#nip-edit').val(nip);
-                $('#birth_date-edit').val(birthDate);
-                $('#birth_place-edit').val(birthPlace);
+                $('#edit-religion-teacher').val(religion_id).trigger('change');
+                $('#birth_date-edit-teacher').val(birth_date);
+                $('#birth_place-edit-teacher').val(birth_place);
                 $('#nik-edit').val(nik);
                 $('#phone-edit').val(phone);
                 $('#email-edit').val(email);
                 $('#address-edit').val(address);
 
-                $('#religion-edit').val(religionId);
+                $('#religion-edit').val(religion_id);
                 $('#status-edit').val(active);
 
                 $('input[name="gender"][value="' + gender + '"]').prop('checked', true);

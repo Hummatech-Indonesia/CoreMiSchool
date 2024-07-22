@@ -66,7 +66,7 @@
                                     data-id="{{ $teacher->id }}"
                                     data-rfid="{{ $teacher->modelHasRfid ? $teacher->modelHasRfid->rfid : 'Kosong' }}"
                                     data-old-rfid="{{ $teacher->modelHasRfid ? $teacher->modelHasRfid->rfid : 'Kosong' }}"
-                                    data-role="{{ $teacher->user->roles->pluck('name')[0] }}">
+                                    data-role="Employee">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                         viewBox="0 0 24 24">
                                         <path fill="currentColor"
@@ -98,9 +98,9 @@
                                                 data-image="{{ asset('storage/'. $teacher->image) }}"
                                                 data-name="{{ $teacher->user->name }}"
                                                 data-nip="{{ $teacher->nip }}"
-                                                data-religionId="{{ $teacher->religion_id }}"
-                                                data-birthDate="{{ $teacher->birth_date }}"
-                                                data-birthPlace="{{ $teacher->birth_place }}"
+                                                data-religion_id="{{ $teacher->religion_id }}"
+                                                data-birth_date="{{ $teacher->birth_date }}"
+                                                data-birth_place="{{ $teacher->birth_place }}"
                                                 data-gender="{{ $teacher->gender->value }}"
                                                 data-nik="{{ $teacher->nik }}"
                                                 data-phone="{{ $teacher->phone_number }}"
@@ -121,9 +121,17 @@
                             </td>
                         </tr>
                     @empty
-                        <tr>
-                            <td colspan="7">Belum ada guru</td>
-                        </tr>
+                    <tr>
+                        <td colspan="7" class="text-center align-middle">
+                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt=""
+                                    width="300px">
+                                <p class="fs-5 text-dark text-center mt-2">
+                                    Belum ada data
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
                     @endforelse
                 </tbody>
             </table>

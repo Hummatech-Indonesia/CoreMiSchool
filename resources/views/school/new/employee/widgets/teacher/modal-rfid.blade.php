@@ -17,7 +17,10 @@
                             <p class="ms-3" id="name-detail-rfid"></p>
                         </div>
                         <div class="form-group">
-                            <h6 for="" class="mb-2">RFID :</h6>
+                            <div class="d-flex">
+                                <h6 for="" class="mb-2">RFID :</h6>
+                                <p class="ms-3" id="detail-rfid"></p>
+                            </div>
                             <p>Lakukan tab pada rfid reader untuk menginputkan rfid</p>
                             <input type="text" id="rfid" name="rfid" class="form-control" placeholder="Masukkan RFID">
                         </div>

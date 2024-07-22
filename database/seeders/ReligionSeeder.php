@@ -15,7 +15,7 @@ class ReligionSeeder extends Seeder
     {
         $religions = [
             'Islam',
-            'Kristen Protestan',
+            'Kristen',
             'Katolik',
             'Hindu',
             'Budha',
