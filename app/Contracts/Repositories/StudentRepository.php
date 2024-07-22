@@ -60,7 +60,7 @@ class StudentRepository extends BaseRepository implements StudentInterface
                 $query->where('gender', $request->gender);
             })
             ->latest()
-            ->paginate(10);
+            ->paginate(1);
     }
 
     public function doesntHaveClassroom(Request $request): mixed
