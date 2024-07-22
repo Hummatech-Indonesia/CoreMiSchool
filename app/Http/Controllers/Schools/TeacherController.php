@@ -9,9 +9,11 @@ use App\Contracts\Interfaces\UserInterface;
 use App\Enums\RoleEnum;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
+use App\Imports\TeacherImport;
 use App\Models\Employee;
 use App\Services\TeacherService;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TeacherController extends Controller
 {
@@ -95,5 +97,19 @@ class TeacherController extends Controller
         $this->employee->delete($employee->id);
         $employee->user->delete();
         return redirect()->back()->with('success', 'Data guru berhasil dihapus');
+    }
+
+    public function downloadTemplateTeacher()
+    {
+        $templatee = public_path('file/format-excel-import-teacher.xlsx');
+        dd($templatee);
+        // return response()->download($template, 'format-excel-import-guru.xlsx');
+    }
+
+    public function import(Request $request)
+    {
+        $file = $request->file('file');
+        Excel::import(new TeacherImport, $file);
+        return to_route('school.employees.index')->with('success', "Berhasil Mengimport Data!");
     }
 }

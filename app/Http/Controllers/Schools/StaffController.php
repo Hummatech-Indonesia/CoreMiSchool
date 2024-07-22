@@ -101,14 +101,15 @@ class StaffController extends Controller
 
     public function downloadTemplate()
     {
-        $template = public_path('file/format-excel-import-employee.xlsx');
-        return response()->download($template, 'format-excel-import-employee.xlsx');
+        $template = public_path('file/format-excel-import-staff.xlsx');
+        dd($template);
+        // return response()->download($template, 'format-excel-import-staff.xlsx');
     }
 
     public function import(Request $request)
     {
         $file = $request->file('file');
         Excel::import(new EmployeeImport, $file);
-        return to_route('school.employee.index')->with('success', "Berhasil Mengimport Data!");
+        return to_route('school.employees.index')->with('success', "Berhasil Mengimport Data!");
     }
-}
+}   
