@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\ModelHasRfidInterface;
 use App\Contracts\Interfaces\SchoolYearInterface;
+use App\Contracts\Interfaces\SemesterInterface;
 use App\Http\Requests\StoreSchoolYearRequest;
 use App\Http\Requests\UpdateSchoolYearRequest;
 use App\Services\SchoolYearService;
@@ -15,12 +16,14 @@ class SchoolYearController extends Controller
     private SchoolYearInterface $schoolYear;
     private SchoolYearService $service;
     private ModelHasRfidInterface $rfid;
+    private SemesterInterface $semester;
 
-    public function __construct(SchoolYearInterface $schoolYear, SchoolYearService $service, ModelHasRfidInterface $rfid)
+    public function __construct(SchoolYearInterface $schoolYear, SchoolYearService $service, ModelHasRfidInterface $rfid, SemesterInterface $semester)
     {
         $this->schoolYear = $schoolYear;
         $this->service = $service;
         $this->rfid = $rfid;
+        $this->semester = $semester;
     }
 
     /**
@@ -29,7 +32,8 @@ class SchoolYearController extends Controller
     public function index(Request $request)
     {
         $schoolYears = $this->schoolYear->search($request);
-        return view('school.new.school-year.index', compact('schoolYears'));
+        $semesters = $this->semester->get();
+        return view('school.new.school-year.index', compact('schoolYears', 'semesters'));
     }
 
     /**

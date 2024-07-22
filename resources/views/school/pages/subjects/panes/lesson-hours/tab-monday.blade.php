@@ -10,21 +10,13 @@
             </tr>
         </thead>
         <tbody>
-            {{-- @php
-            $lastHour = $lessonHours->sortByDesc('end')->first();
-            if ($lastHour->name != 'Istirahat') {
-            preg_match('/\d+/', $lastHour->name, $matches);
-            $jam = $matches[0];
-            }
-            @endphp --}}
-
-            @forelse (range(1,5) as $lessonHour)
+            @forelse ($lessonHours['monday'] as $index => $lessonHour)
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td> <span class="badge bg-light-primary text-primary">
-                        07.00 - 08.00
+                <td> <span class="badge {{ $index % 2 == 0 ? 'bg-light-warning text-warning' : 'bg-light-primary text-primary' }}">
+                        {{ date('H:i', strtotime($lessonHour->start)) }} - {{ date('H:i', strtotime($lessonHour->end)) }}
                     </span></td>
-                <td>Masuk</td>
+                <td>{{ $lessonHour->name }}</td>
                 <td>
                     <div class="gap-3">
                         <button class="btn btn-light-primary text-primary me-2 btn-edit" data-bs-toggle="modal" data-bs-target="#modal-update">Edit</button>
@@ -38,7 +30,7 @@
                     <div class="d-flex flex-column justify-content-center align-items-center">
                         <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt="" width="300px">
                         <p class="fs-5 text-dark text-center mt-2">
-                            RFID belum ditambahkan
+                            Jam Pelajaran belum ditambahkan
                         </p>
                     </div>
                 </td>
@@ -66,7 +58,7 @@
                         </svg>
                     </button>
                     </div>
-                    
+
                 </td>
             </tr>
         </tfoot>

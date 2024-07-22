@@ -25,7 +25,7 @@ class LessonHourController extends Controller
      */
     public function index(Request $request)
     {
-        $lessonHours = $this->lessonHour->search($request)->paginate(10);
+        $lessonHours = $this->lessonHour->search($request);
         return view('school.pages.subjects.lesson-hours', compact('lessonHours'));
     }
 
