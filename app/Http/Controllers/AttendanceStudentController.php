@@ -64,8 +64,6 @@ class AttendanceStudentController extends Controller
     {
 
         // dd($request->attendances);
-
-
         $time = now();
         $day = strtolower($time->format('l'));
         $rule = $this->attendanceRule->showByDay($day, RoleEnum::STUDENT->value);
@@ -74,61 +72,6 @@ class AttendanceStudentController extends Controller
 
         $data = $this->service->insert($request->attendances, $rule, $day);
         $this->attendance->insert($data);
-
-        // $data = $request->validated();
-
-        // $rfid = $this->modelHasRfid->where($data['rfid']);
-        // if (!$rfid) return ResponseHelper::jsonResponse('error', 'Rfid belum terdaftarkan', null, 400);
-
-        // $user = $this->modelHasRfid->whereRfid($data['rfid']);
-        // if (!$user) return ResponseHelper::jsonResponse('warning', 'Rfid belum terdaftar di sekolah', null, 404);
-        // if ($user->model_type === null) return ResponseHelper::jsonResponse('error', 'Data tidak tersedia', null, 400);
-        // if ($user->model_type != 'App\Models\Student') return ResponseHelper::jsonResponse('error', 'Rfid bukan siswa/i', null, 400);
-
-        // $time = now();
-        // $day = strtolower($time->format('l'));
-        // $clock = $time->format('H:i:s');
-
-        // $this->student->show($user->model_id);
-
-        // $rule = $this->attendanceRule->showByDay($day, RoleEnum::STUDENT->value);
-        // if (!$rule) return ResponseHelper::jsonResponse('warning', 'Tidak ada jadwal absensi', null, 404);
-
-        // $presence = $this->attendance->checkPresence($user->model_id, AttendanceEnum::PRESENT->value);
-
-        // if ($clock >= $rule->checkin_start && $clock <= $rule->checkin_end) {
-        //     if ($rule->is_holiday == true) return ResponseHelper::jsonResponse('warning', 'Hari ini libur ', null, 404);
-        //     if ($presence) return ResponseHelper::jsonResponse('warning', 'Sudah absen', null, 404);
-
-        //     $classroomStudent = $this->classroomStudent->whereStudent($user->model_id);
-        //     if (!$classroomStudent) return ResponseHelper::jsonResponse('warning', 'Siswa belum memiliki kelas');
-
-
-        //     if ($clock > $rule->checkin_end) {
-        //         $data = $this->service->storeByStudent($clock, $classroomStudent->id, AttendanceEnum::PRESENT->value);
-        //         $attendace = $this->attendance->store($data);
-        //         return ResponseHelper::jsonResponse('warning', 'Absen sudah melebihi jamnya', null, 200);
-        //     }
-        //     $data = $this->service->storeByStudent($clock, $classroomStudent->id, AttendanceEnum::PRESENT->value);
-        //     $attendace = $this->attendance->store($data);
-
-        //     return ResponseHelper::jsonResponse('success', 'Berhasil Absen');
-        // } else if ($clock >= $rule->checkout_start && $clock <= $rule->checkout_end) {
-        //     if (!$presence) return ResponseHelper::jsonResponse('warning', 'Anda belum absen pagi', null, 404);
-        //     if ($presence->checkout != null) return ResponseHelper::jsonResponse('warning', 'Anda sudah absen pulang', null, 404);
-
-        //     $this->attendance->updateCheckOut($user->model_id, ['checkout' => $clock]);
-        //     $attendace = $this->attendance->getStudent($user->model_id);
-        //     return ResponseHelper::jsonResponse('success', 'Berhasil absen keluar', [$attendace], 200);
-        // } else {
-        //     $classroomStudent = $this->classroomStudent->whereStudent($user->model_id);
-        //     if (!$classroomStudent) return ResponseHelper::jsonResponse('warning', 'Siswa belum memiliki kelas');
-
-        //     $data = $this->service->storeByStudent($clock, $classroomStudent->id, AttendanceEnum::PRESENT->value);
-        //     $attendace = $this->attendance->store($data);
-
-        //     return ResponseHelper::jsonResponse('error', 'Waktu absen sudah melebihi batas waktu', null, 400);
-        // }
     }
 
 

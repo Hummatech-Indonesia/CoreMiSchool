@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\Api\RfidApiController;
 use App\Http\Controllers\ModelHasRfidController;
 use App\Http\Controllers\AttendanceMasterController;
@@ -23,9 +24,9 @@ use App\Http\Controllers\Api\AttendanceRuleApiController;
 Route::post('attendance-test', [AttendanceMasterController::class, 'check'])->name('attendance-test.check');
 
 // Route::middleware(['auth:sanctum'])->group(function () {
-    Route::post('add-list-attendance', [AttendanceStudentController::class, 'store'])->name('add-list-attendance.index');
+    Route::post('add-list-attendance', [AttendanceController::class, 'store'])->name('add-list-attendance.index');
     // Route::post('add-list-attendance/', [AttendanceStudentController::class, 'store'])->name('add-list-attendance.index');
-    Route::get('students', [RfidApiController::class, 'index'])->name('rfid.student');
+    Route::get('students', [RfidApiController::class, 'index'])->name('rfid.account');
     Route::get('attendance-hours', [AttendanceRuleApiController::class, 'index'])->name('attendance.hour');
     Route::get('sync/attendance/teacher', [AttendanceTeacherController::class, 'syncData'])->name('sync.teacher');
 // });

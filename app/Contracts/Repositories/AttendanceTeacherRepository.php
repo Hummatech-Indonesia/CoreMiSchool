@@ -22,6 +22,15 @@ class AttendanceTeacherRepository extends BaseRepository implements AttendanceTe
     {
         return $this->model->query()->create($data);
     }
+    public function insert(array $data): mixed
+    {
+        return $this->model->query()->insert($data);
+    }
+
+    public function getCurrentDay(): mixed
+    {
+        return $this->model->query()->whereDay('checkin', now()->day)->get();
+    }
 
     public function show(mixed $id): mixed
     {

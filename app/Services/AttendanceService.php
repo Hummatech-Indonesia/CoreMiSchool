@@ -2,16 +2,20 @@
 
 namespace App\Services;
 
-use App\Contracts\Interfaces\AttendanceInterface;
-use App\Contracts\Interfaces\AttendanceRuleInterface;
-use App\Contracts\Interfaces\ModelHasRfidInterface;
-use App\Contracts\Interfaces\StudentInterface;
-use App\Enums\AttendanceEnum;
-use App\Http\Requests\StoreAttendanceRequest;
 use Carbon\Carbon;
+use App\Enums\RoleEnum;
+use App\Models\Student;
+use App\Models\Employee;
 use Illuminate\Http\Request;
-
+use App\Enums\AttendanceEnum;
 use function PHPSTORM_META\map;
+use App\Http\Requests\StoreAttendanceRequest;
+use App\Contracts\Interfaces\StudentInterface;
+use App\Contracts\Interfaces\AttendanceInterface;
+use App\Contracts\Interfaces\ModelHasRfidInterface;
+
+use App\Contracts\Interfaces\AttendanceRuleInterface;
+use App\Contracts\Interfaces\AttendanceTeacherInterface;
 
 class AttendanceService
 {
@@ -19,13 +23,15 @@ class AttendanceService
     private AttendanceRuleInterface $attendanceRule;
     private StudentInterface $student;
     private AttendanceInterface $attendance;
+    private AttendanceTeacherInterface $attendanceTeacher;
 
-    public function __construct(ModelHasRfidInterface $modelHasRfid, StudentInterface $student, AttendanceRuleInterface $attendanceRule, AttendanceInterface $attendance)
+    public function __construct(ModelHasRfidInterface $modelHasRfid, StudentInterface $student, AttendanceRuleInterface $attendanceRule, AttendanceInterface $attendance, AttendanceTeacherInterface $attendanceTeacher)
     {
         $this->modelHasRfid = $modelHasRfid;
         $this->student = $student;
         $this->attendance = $attendance;
         $this->attendanceRule = $attendanceRule;
+        $this->attendanceTeacher = $attendanceTeacher;
     }
 
     public function store(StoreAttendanceRequest $request): array|bool
@@ -35,9 +41,26 @@ class AttendanceService
     }
     public function insert(array $attendances, $rule, $day): mixed
     {
+        // Collect attendance IDs
+        $attendanceIds = collect($attendances)->pluck('id');
         $invalidAttendances = [];
-        $currentDayAttendance = $this->attendance->getCurrentDay();
-        $data = [];
+
+        // Get current day's attendance
+        $currentDayAttendanceStudent = $this->attendance->getCurrentDay();
+        $currentDayAttendanceTeacher = $this->attendance->getCurrentDay();
+
+        // Get student attendance based on RFID
+        $studentAttendance = Student::with('modelHasRfid')->whereHas('modelHasRfid', function ($q) use ($attendanceIds) {
+            $q->whereIn('id', $attendanceIds);
+        })->get()->pluck('id', 'modelHasRfid.id');
+
+        // Get teacher attendance based on RFID
+        $teacherAttendance = Employee::with('modelHasRfid')->where('status', RoleEnum::TEACHER->value)->whereHas('modelHasRfid', function ($q) use ($attendanceIds) {
+            $q->whereIn('id', $attendanceIds);
+        })->get()->pluck('id', 'modelHasRfid.id');
+
+        $students = [];
+        $teachers = [];
 
         foreach ($attendances as $attendance) {
             $time = Carbon::createFromFormat('H.i', $attendance['time']);
@@ -46,34 +69,56 @@ class AttendanceService
             $checkoutStart = Carbon::parse($rule->checkout_start);
             $checkoutEnd = Carbon::parse($rule->checkout_end);
 
-            // pulang
-            if ($time >= $rule->checkout_start && $time <= $rule->checkout_end) {
-                $checkin = $currentDayAttendance->where('classroom_student_id', $attendance['id'])->where('checkin', '<', $checkoutStart);
-                $alreadyAbsent = $currentDayAttendance->whereNotNull('checkout');
-                if(!$alreadyAbsent->isEmpty()) continue;
-                if ($time >= $checkoutStart && !$checkin) {
-                    $status = AttendanceEnum::ALPHA;
-                }
-                array_push($data, [
+            // Checkout
+            if ($time->between($checkoutStart, $checkoutEnd)) {
+                // Check if already checked in
+                $checkinStudent = $currentDayAttendanceStudent->where('classroom_student_id', $attendance['id'])->where('checkin', '<', $checkoutStart);
+                $checkinTeacher = $currentDayAttendanceTeacher->where('checkin', '<', $checkoutStart);
+                $alreadyAbsentStudent = $currentDayAttendanceStudent->whereNotNull('checkout');
+                $alreadyAbsentTeacher = $currentDayAttendanceTeacher->whereNotNull('checkout');
+
+                if (!$alreadyAbsentStudent->isEmpty() || !$alreadyAbsentTeacher->isEmpty()) continue;
+
+                $status = $time->greaterThanOrEqualTo($checkoutStart) && $checkinStudent->isEmpty() && $checkinTeacher->isEmpty() ? AttendanceEnum::ALPHA : AttendanceEnum::PRESENT;
+
+                $value = [
                     'checkout' => $time,
                     'status' => $status,
-                    'classroom_student_id' => $attendance['id'],
-                ]);
+                ];
+
+                if (in_array($attendance['id'], $studentAttendance->toArray())) {
+                    $value['classroom_student_id'] = $studentAttendance[$attendance['id']];
+                    array_push($students, $value);
+                } else {
+                    $value['employee_id'] = $teacherAttendance[$attendance['id']];
+                    array_push($teachers, $value);
+                }
             }
-            // masuk
-            else if ($time >= $rule->checkin_start) {
-                $alreadyAbsent = $currentDayAttendance->whereNotNull('checkin');
-                if(!$alreadyAbsent->isEmpty()) continue;
+            // Checkin
+            else if ($time->greaterThanOrEqualTo($checkinStart)) {
+                $alreadyAbsentStudent = $currentDayAttendanceStudent->whereNull('checkout');
+                $alreadyAbsentTeacher = $currentDayAttendanceTeacher->whereNull('checkout');
+
+                if (!$alreadyAbsentStudent->isEmpty() || !$alreadyAbsentTeacher->isEmpty()) continue;
+
                 $status = $time->greaterThan($checkinEnd) ? AttendanceEnum::LATE : AttendanceEnum::PRESENT;
-                array_push($data, [
+
+                $value = [
                     'checkin' => $time,
                     'status' => $status,
-                    'classroom_student_id' => $attendance['id'],
-                ]);
-            }
+                ];
 
+                if (in_array($attendance['id'], $studentAttendance->toArray())) {
+                    $value['classroom_student_id'] = $studentAttendance[$attendance['id']];
+                    array_push($students, $value);
+                } else {
+                    $value['employee_id'] = $teacherAttendance[$attendance['id']];
+                    array_push($teachers, $value);
+                }
+            }
         }
-        return $data;
+
+        return ['students' => $students,'teachers' => $teachers];
     }
 
     public function storeByStudent($time, $classroom_student_id, $status): array|bool
