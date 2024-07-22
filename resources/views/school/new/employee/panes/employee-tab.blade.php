@@ -83,9 +83,17 @@
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
                                         <li>
-                                            <button type="button" data-id="1dbf93d1-4e70-37ec-abda-b496e6a3c177" data-bs-toggle="modal" data-bs-target="#modal-detail"
-                                                class="btn-detail dropdown-item d-flex align-items-center gap-3"><i
-                                                    class="fs-4 ti ti-eye"></i>Detail</button>
+                                            <button type="button" class="dropdown-item d-flex align-items-center gap-3 btn-detail-employee"
+                                                data-image="{{ asset('storage/'. $staff->image) }}"
+                                                data-name="{{ $staff->user->name }}"
+                                                data-email="{{ $staff->user->email }}"
+                                                data-phone="{{ $staff->phone_number }}"
+                                                data-gender="{{ $staff->gender->label() }}"
+                                                data-nip="{{ $staff->nip }}"
+                                                data-rfid="{{ $staff->modelHasRfid ? $staff->modelHasRfid->rfid : 'Belum memiliki rfid' }}"
+                                                data-address="{{ $staff->address }}">
+                                                <i class="fs-4 ti ti-eye"></i>Detail
+                                            </button>
                                         </li>
 
                                         <li>
