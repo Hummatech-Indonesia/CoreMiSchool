@@ -18,8 +18,8 @@
                             <div class="form-floating mb-3">
                                 <div class="form-group">
                                     <label for="formFile" class="mb-2">Foto Siswa <span class="text-danger">(ekstensi png, jpg, jpeg)</span></label>
-                                    <input class="form-control mb-3" name="image" type="file" id="studentImageInput" onchange="previewStudentImage(event)">
-                                    @error('image')
+                                    <input class="form-control mb-3" name="image" type="file"
+                                    id="studentImageInput" onchange="previewStudentImage(event)">                                    @error('image')
                                     <strong class="text-danger">{{ $message }}</strong>
                                     @enderror
                                 </div>
