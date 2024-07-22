@@ -31,8 +31,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('school')->name('school.')->group(function() {
     Route::resource('employees', EmployeeController::class);
-    Route::resource('teacher', TeacherController::class);
-    Route::resource('staff', StaffController::class);
+    Route::post('teacher', [TeacherController::class, 'store'])->name('teacher.store');
+    Route::put('teacher/{employee}', [TeacherController::class, 'update'])->name('teacher.update');
+    Route::delete('teacher/{employee}', [TeacherController::class, 'destroy'])->name('teacher.destroy');
+    Route::post('staff', [StaffController::class, 'store'])->name('staff.store');
+    Route::put('staff/{employee}', [StaffController::class, 'update'])->name('staff.update');
+    Route::delete('staff/{employee}', [StaffController::class, 'destroy'])->name('staff.destroy');
     Route::resource('students', StudentController::class);
     Route::resource('subject', SubjectController::class);
     Route::resource('school-years', SchoolYearController::class);

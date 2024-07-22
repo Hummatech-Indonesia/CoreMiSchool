@@ -83,18 +83,9 @@ class StaffController extends Controller
      */
     public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
-        try {
-            $data = $this->service->update($employee, $request);
-            $this->employee->update($employee->id, $data);
-            return redirect()->back()->with('success', 'Berhasil memperbaiki staff');
-        } catch (\Throwable $th) {
-            $data = $this->user->showEmail($request->email);
-            if ($data) {
-                return redirect()->back()->with('warning', 'Data staff sudah tersedia');
-            } else {
-                return redirect()->back()->with('error', 'Kesalahan menambahkan data staff');
-            }
-        }
+        $data = $this->service->update($employee, $request);
+        $this->employee->update($employee->id, $data);
+        return redirect()->back()->with('success', 'Berhasil memperbaiki data staff');
     }
 
     /**
