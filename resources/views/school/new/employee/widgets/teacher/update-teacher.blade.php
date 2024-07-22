@@ -42,9 +42,9 @@
                                         <label for="">Agama</label>
                                         <select name="religion_id" id="religion-edit" class="form-select">
                                             <option>Pilih agama..</option>
-                                            {{-- @foreach ($religions as $religion)
+                                            @foreach ($religions as $religion)
                                             <option value="{{ $religion->id }}">{{ $religion->name }}</option>
-                                            @endforeach --}}
+                                            @endforeach
                                         </select>
                                         @error('religion_id')
                                         <strong class="text-danger">{{ $message }}</strong>
