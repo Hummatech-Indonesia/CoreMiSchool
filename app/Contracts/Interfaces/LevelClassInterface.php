@@ -14,6 +14,6 @@ use Illuminate\Http\Request;
 
 interface LevelClassInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, WhereInterface
 {
-    public function whereSchool(mixed $id, Request $request): mixed;
+    public function search(Request $request): mixed;
 
 }

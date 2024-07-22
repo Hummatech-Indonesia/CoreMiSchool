@@ -25,7 +25,7 @@ class LevelClassController extends Controller
      */
     public function index(Request $request)
     {
-        $levelClasses = $this->levelClass->whereSchool(auth()->user()->school->id, $request);
+        $levelClasses = $this->levelClass->search($request);
         return view('school.pages.class-level.index', compact('levelClasses'));
     }
 
@@ -42,8 +42,7 @@ class LevelClassController extends Controller
      */
     public function store(StoreLevelClassRequest $request)
     {
-        $data = $this->service->store($request);
-        $this->levelClass->store($data);
+        $this->levelClass->store($request->validated());
         return redirect()->back()->with('success', 'Berhasil menambahkan tingkatan kelas');
     }
 
