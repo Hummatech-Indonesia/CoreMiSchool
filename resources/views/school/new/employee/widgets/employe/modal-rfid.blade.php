@@ -1,5 +1,5 @@
 <!-- tambah rfid -->
-<div class="modal fade" id="modal-rfid" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
+<div class="modal fade" id="modal-rfid-staff" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -18,6 +18,7 @@
                         </div>
                         <div class="form-group">
                             <h6 for="" class="mb-2">RFID :</h6>
+                            <p class="ms-3" id="detail-rfid"></p>
                             <p>Lakukan tab pada rfid reader untuk menginputkan rfid</p>
                             <input type="text" name="rfid" id="rfid" class="form-control" placeholder="Masukkan RFID">
                         </div>
