@@ -12,6 +12,7 @@ use App\Http\Requests\UpdateStudentRequest;
 use App\Contracts\Interfaces\StudentInterface;
 use App\Contracts\Interfaces\ReligionInterface;
 use App\Http\Controllers\Controller;
+use App\Imports\StudentImport;
 use App\Services\ClassroomStudentService;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -128,10 +129,10 @@ class StudentController extends Controller
         return response()->download($template, 'format-excel-import-student.xlsx');
     }
 
-    public function import(Request $request)
+    public function import(Request $request, string $classroom)
     {
         $file = $request->file('file');
-        Excel::import(new EmployeeImport, $file);
-        return to_route('school.employees.index')->with('success', "Berhasil Mengimport Data!");
+        Excel::import(new StudentImport($classroom), $file);
+        return redirect()->back()->with('success', "Berhasil Mengimport Data!");
     }
 }

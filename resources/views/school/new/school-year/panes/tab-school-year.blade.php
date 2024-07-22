@@ -18,7 +18,11 @@
                         <h5>Tahun Ajaran</h5>
                         <div class="btn-group">
                             <div class="mb-2 me-2">
-                                <span class="badge bg-light-success text-success">Aktif</span>
+                                @if ($schoolYear->active)
+                                    <span class="badge bg-light-success text-success">Aktif</span>
+                                    @else
+                                    <span class="badge bg-light-danger text-danger">Nonaktif</span>
+                                @endif
                             </div>
                             <a class="nav-link label-group p-0 mt-1" data-bs-toggle="dropdown" href="#" role="button"
                                 aria-haspopup="true" aria-expanded="true">
@@ -29,7 +33,7 @@
                                 </div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" data-popper-placement="bottom-end">
-                                <button type="button" data-id="{{ $schoolYear->id }}" data-name="{{ $schoolYear->school_year }}" data-status="{{ $schoolYear->active }}" class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3" data-bs-toggle="modal" data-bs-target="#modal-confirm-active">
+                                <button type="button" data-id="{{ $schoolYear->id }}" data-name="{{ $schoolYear->school_year }}" data-status="{{ $schoolYear->active }}" class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3 activated-btn" data-bs-toggle="modal" data-bs-target="#modal-confirm-active">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"><path fill="currentColor" d="m9.55 18l-5.7-5.7l1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"/></svg>
                                     Aktifkan
                                 </button>

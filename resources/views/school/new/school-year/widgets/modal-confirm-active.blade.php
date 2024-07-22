@@ -1,7 +1,8 @@
 <div class="modal fade" id="modal-confirm-active" tabindex="-1" aria-labelledby="tambahdataLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
-        <form class="modal-content" method="post">
+        <form class="modal-content" method="post" id="active-school-year-form" method="POST">
             @csrf
+            @method('PATCH')
             <div class="modal-header d-flex align-items-center">
                 <h4 class="modal-title" id="myModalLabel">
                     Aktifkan tahun ajaran
