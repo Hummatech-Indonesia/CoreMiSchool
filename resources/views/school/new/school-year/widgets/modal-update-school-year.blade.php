@@ -16,16 +16,6 @@
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror
                     </div>
-                    <div class="mb-3">
-                        <label for="">Status</label>
-                        <select name="active" id="status-update" class="form-control">
-                            <option value="1">Aktif</option>
-                            <option value="0">Tidak Aktif</option>
-                        </select>
-                        @error('active')
-                            <strong class="text-danger">{{ $message }}</strong>
-                        @enderror
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-rounded btn-primary">Simpan</button>

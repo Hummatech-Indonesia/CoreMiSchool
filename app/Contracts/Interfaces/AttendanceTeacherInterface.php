@@ -10,12 +10,13 @@ use App\Contracts\Interfaces\Eloquent\StoreInterface;
 use App\Contracts\Interfaces\Eloquent\UpdateInterface;
 use Illuminate\Http\Request;
 
-interface AttendanceTeacherInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface
+interface AttendanceTeacherInterface extends GetInterface, StoreInterface,UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface
 {
     public function getSchool(mixed $id, mixed $query): mixed;
     public function checkPresence(mixed $id, mixed $status) : mixed;
     public function updateCheckOut(mixed $id, array $data) : mixed;
     public function whereSchool(mixed $id, Request $request): mixed;
     public function whereBetween(Request $request): mixed;
-
+    public function insert(array $data) :mixed;
+    public function getCurrentDay(): mixed;
 }
