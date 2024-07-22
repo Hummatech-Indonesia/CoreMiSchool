@@ -7,28 +7,31 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <div class="modal-body">
-                <form id="edit-class-form">
+            <form id="edit-class-form" method="POST" enctype="multipart/form-data">
+                @method('put')
+                @csrf
+                <div class="modal-body">
                     <div class="mb-3">
                         <label for="class-name" class="form-label">Nama Kelas</label>
-                        <input type="text" class="form-control" id="class-name" name="class_name" placeholder="Masukkan nama kelas">
+                        <input type="text" class="form-control" id="name-edit" name="name" placeholder="Masukkan nama kelas">
                     </div>
                     <div class="mb-3">
                         <label for="class-teacher" class="form-label">Wali Kelas</label>
-                        <select class="form-control" id="class-teacher" name="class_teacher">
+                        <select class="form-control" id="employee-edit" name="employee_id">
                             <option value="">Pilih wali kelas</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                            <option value="3">Option 3</option>
+                            @forelse ($teachers as $teacher)
+                                <option value="{{ $teacher->id }}">{{ $teacher->user->name }}</option>
+                            @empty
+                            @endforelse
                         </select>
                     </div>
-                </form>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn mb-1 waves-effect waves-light btn-light" data-bs-dismiss="modal">Tutup</button>
-                <button type="submit" class="btn btn-rounded btn-primary" form="edit-class-form">Simpan</button>
-            </div>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn mb-1 waves-effect waves-light btn-light" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-rounded btn-primary" form="edit-class-form">Simpan</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

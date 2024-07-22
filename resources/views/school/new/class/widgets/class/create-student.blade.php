@@ -6,7 +6,7 @@
                     <h5 class="modal-title" id="importPegawai">Tambah Siswa</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('school-student.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('school.students.store', ['classroom' => $classroom]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body mx-3" style="max-height: 70vh; overflow-y: auto;">
                         <div class="row">
@@ -64,11 +64,11 @@
                                         <label for="" class="mb-2 ">Agama <span class="text-danger" style="font-size: larger;">*</span></label>
                                         <select id="religion" name="religion_id" class="form-select">
                                             <option selected>Pilih...</option>
-                                            {{-- @forelse ($religions as $religion)
+                                            @forelse ($religions as $religion)
                                                 <option value="{{ $religion->id }}">{{ $religion->name }}</option>
                                             @empty
                                                 <option disabled>Tidak ditemukan</option>
-                                            @endforelse --}}
+                                            @endforelse
                                         </select>
                                         @error('religion_id')
                                             <strong class="text-danger">{{ $message }}</strong>

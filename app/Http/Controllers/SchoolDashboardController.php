@@ -32,10 +32,11 @@ class SchoolDashboardController extends Controller
     private EmployeeInterface $employee;
     private SchoolChartService $schoolChart;
     private SubjectInterface $subjects;
+    private ModelHasRfidInterface $modelHasRfid;
 
     public function __construct(SchoolInterface $school, SchoolYearInterface $schoolYear,
     RfidInterface $rfid, ClassroomInterface $classroom, SemesterInterface $semester,
-    SchoolChartService $schoolChart, AttendanceInterface $attendance, StudentInterface $student, EmployeeInterface $employee, SubjectInterface $subjects)
+    SchoolChartService $schoolChart, AttendanceInterface $attendance, StudentInterface $student, EmployeeInterface $employee, SubjectInterface $subjects, ModelHasRfidInterface $modelHasRfid)
     {
         $this->employee = $employee;
         $this->school = $school;
@@ -47,6 +48,7 @@ class SchoolDashboardController extends Controller
         $this->schoolChart = $schoolChart;
         $this->student = $student;
         $this->subjects = $subjects;
+        $this->modelHasRfid = $modelHasRfid;
     }
 
     public function index()
@@ -66,7 +68,7 @@ class SchoolDashboardController extends Controller
 
     public function show(Request $request)
     {
-        $rfids = $this->rfid->search($request);
+        $rfids = $this->modelHasRfid->searchMaster($request);
         $school = $this->school->showWithSlug(auth()->user()->slug);
         $schoolYear = $this->schoolYear->active($school->id);
         return view('school.pages.settings.information', compact('school', 'schoolYear', 'rfids'));

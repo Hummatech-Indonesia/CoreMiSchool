@@ -95,8 +95,7 @@ class ClassroomController extends Controller
      */
     public function update(UpdateClassroomRequest $request, Classroom $classroom)
     {
-        $data = $request->validated();
-        $this->classroom->update($classroom->id, $data);
+        $this->classroom->update($classroom->id, $request->validated());
         return redirect()->back()->with('success', 'Berhasil memperbarui kelas');
     }
 

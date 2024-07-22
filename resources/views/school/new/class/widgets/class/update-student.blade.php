@@ -30,8 +30,7 @@
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
                                 <div class="form-group">
-                                    <label for="name-edit" class="mb-2">Nama<span
-                                            class="text-danger">*</span></label>
+                                    <label for="name-edit" class="mb-2">Nama<span class="text-danger">*</span></label>
                                     <input type="text" name="name" id="name-edit" class="form-control mb-3" placeholder="Masukkan nama" value="{{ old('name') }}">
                                     @error('name')
                                         <strong class="text-danger">{{ $message }}</strong>
@@ -69,11 +68,11 @@
                                     <label for="religion-edit" class="mb-2">Agama<span
                                             class="text-danger">*</span></label>
                                     <select id="religion-edit" name="religion_id" class="form-select">
-                                        {{-- @forelse ($religions as $religion)
+                                        @forelse ($religions as $religion)
                                             <option value="{{ $religion->id }}">{{ $religion->name }}</option>
                                         @empty
                                             <option disabled>Tidak ditemukan</option>
-                                        @endforelse --}}
+                                        @endforelse
                                     </select>
                                     @error('religion_id')
                                         <strong class="text-danger">{{ $message }}</strong>

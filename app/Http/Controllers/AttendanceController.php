@@ -2,45 +2,79 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\Interfaces\AttendanceInterface;
-use App\Contracts\Interfaces\AttendanceRuleInterface;
-use App\Contracts\Interfaces\AttendanceTeacherInterface;
-use App\Contracts\Interfaces\ClassroomInterface;
-use App\Contracts\Interfaces\ClassroomStudentInterface;
-use App\Contracts\Interfaces\ModelHasRfidInterface;
-use App\Contracts\Interfaces\SchoolYearInterface;
-use App\Contracts\Interfaces\StudentInterface;
+use Carbon\Carbon;
+use App\Models\School;
+use App\Enums\RoleEnum;
+use App\Models\Classroom;
+use App\Models\Attendance;
+use Illuminate\Http\Request;
+use App\Helpers\ResponseHelper;
 use App\Exports\AttendanceExport;
+use App\Services\AttendanceService;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\StudentAttendanceExport;
 use App\Exports\TeacherAttendanceExport;
 use App\Http\Requests\StoreAttendanceRequest;
+use App\Contracts\Interfaces\StudentInterface;
 use App\Http\Requests\UpdateAttendanceRequest;
-use App\Models\Attendance;
-use App\Models\Classroom;
-use App\Models\School;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
+use App\Contracts\Interfaces\ClassroomInterface;
+use App\Contracts\Interfaces\AttendanceInterface;
+use App\Contracts\Interfaces\SchoolYearInterface;
+use App\Contracts\Interfaces\ModelHasRfidInterface;
+use App\Contracts\Interfaces\AttendanceRuleInterface;
+use App\Contracts\Interfaces\ClassroomStudentInterface;
+use App\Contracts\Interfaces\AttendanceTeacherInterface;
+use App\Contracts\Repositories\AttendanceTeacherRepository;
 
 class AttendanceController extends Controller
 {
     private AttendanceInterface $attendance;
     private AttendanceTeacherInterface $attendanceTeacher;
+    private AttendanceTeacherRepository $attendanceTeacherRepository;
     private ModelHasRfidInterface $modelHasRfid;
     private AttendanceRuleInterface $attendanceRule;
     private ClassroomStudentInterface $classroomStudent;
     private StudentInterface $student;
     private SchoolYearInterface $schoolYear;
     private ClassroomInterface $classroom;
+    private AttendanceService $service;
 
-    public function __construct(AttendanceInterface $attendance, AttendanceTeacherInterface $attendanceTeacher, StudentInterface $student, AttendanceRuleInterface $attendanceRule, SchoolYearInterface $schoolYear, ClassroomInterface $classroom)
+    public function __construct(AttendanceInterface $attendance, AttendanceTeacherInterface $attendanceTeacher, AttendanceTeacherRepository $attendanceTeacherRepository, StudentInterface $student, AttendanceRuleInterface $attendanceRule, SchoolYearInterface $schoolYear, ClassroomInterface $classroom, AttendanceService $service)
     {
         $this->attendance = $attendance;
         $this->attendanceTeacher = $attendanceTeacher;
+        $this->attendanceTeacherRepository = $attendanceTeacherRepository;
         $this->student = $student;
         $this->attendanceRule = $attendanceRule;
         $this->schoolYear = $schoolYear;
         $this->classroom = $classroom;
+        $this->service = $service;
+    }
+
+    public function store(Request $request)
+    {
+
+        // dd($request->attendances);
+        $time = now();
+        $day = strtolower($time->format('l'));
+        $rule = $this->attendanceRule->showByDay($day, RoleEnum::STUDENT->value);
+
+        if (!$rule) return ResponseHelper::jsonResponse('warning', 'Tidak ada jadwal absensi', null, 404);
+
+        $data = $this->service->insert($request->attendances, $rule, $day);
+        try {
+            if(!empty($data['students'])) {
+                $this->attendance->insert($data['students']);
+            }
+
+            if(!empty($data['teachers'])) {
+                $this->attendanceTeacher->insert($data['teachers']);
+            }
+            return response()->json(['status' => 'sukses', 'pesan' => 'Data kehadiran berhasil dimasukkan'], 200);
+        } catch (\Exception $e) {
+            // Log::error('AttendanceController: Error inserting attendance data', ['error' => $e->getMessage()]);
+            return response()->json(['status' => 'error', 'pesan' => 'Gagal memasukkan data kehadiran', 'error' => $e->getMessage()], 500);
+        }
     }
     /**
      * Display a listing of the resource.
