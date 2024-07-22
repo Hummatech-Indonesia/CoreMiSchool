@@ -45,7 +45,7 @@ Route::prefix('school')->name('school.')->group(function() {
     Route::post('import-staff/', [StaffController::class, 'import'])->name('staff.import');
     Route::get('download-template-staff/', [StaffController::class, 'downloadTemplate'])->name('staff.download-template');
 
-    Route::post('import-student', [StudentController::class, 'import'])->name('student.import');
+    Route::post('import-student/{classroom}', [StudentController::class, 'import'])->name('student.import');
     Route::get('download-template-student/', [StudentController::class, 'downloadTemplate'])->name('student.download-template');
 
     Route::resource('students', StudentController::class)->except(['store']);

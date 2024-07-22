@@ -2,23 +2,29 @@
 
 namespace App\Imports;
 
-use App\Enums\RoleEnum;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
+use Maatwebsite\Excel\Concerns\ToModel;
+use App\Models\ClassroomStudent;
+use Illuminate\Support\Str;
 use App\Models\Religion;
 use App\Models\Student;
+use App\Enums\RoleEnum;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Support\Str;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Hash;
-use PhpOffice\PhpSpreadsheet\Shared\Date;
-use Maatwebsite\Excel\Concerns\ToCollection;
-use Maatwebsite\Excel\Concerns\ToModel;
 
 class StudentImport implements ToModel
-{
+{   
+    private $classroom;
+
+    public function __construct($classroom)
+    {
+        $this->classroom = $classroom;       
+    }
+
     public function model(array $row)
     {
-        if ($row[0] == 'NAMA' || $row[0] == null || $row[0] == 'Contoh Format (Jangan Dihapus)') {
+        if (in_array($row[0], ['NAMA', 'Contoh Format(Jangan Dihapus)']) || $row[0] == null) {
             return null;
         }
 
@@ -26,25 +32,25 @@ class StudentImport implements ToModel
             'name' => $row[0] ?? null,
             'email' => $row[1],
             'slug' => Str::slug($row[0]),
-            'password' => Hash::make('password')
+            'password' => $row[2]
         ]);
 
-        $user->assignRole(RoleEnum::STAFF->value);
-
-        $birthDate = $row[4] ? Carbon::instance(Date::excelToDateTimeObject($row[4])) : null;
+        $user->assignRole(RoleEnum::STUDENT->value);
+        $birthDate = $row[3] ? Carbon::instance(Date::excelToDateTimeObject($row[3])) : null;
 
         $data = [
-            'nip'        => $row[2],
-            'birth_date' => $birthDate,
-            'birth_place' => $row[3],
+            'user_id' => $user->id,
+            'nisn'        => $row[2],
+            'religion_id' => Religion::where('name', $row[12])->first()->id,
             'gender' => $row[5] == 'Laki-laki' ? 'male' : 'female',
-            'nik' => $row[6],
-            'phone_number' => $row[8],
+            'birth_date' => $birthDate,
+            'birth_place' => $row[4],
             'address' => $row[9],
-            'status' => RoleEnum::STAFF->value,
-            'school_id' => auth_school()->id,
-            'religion_id' => Religion::where('name', $row[7])->first()->id,
-            'user_id' => $user->id
+            'nik' => $row[6],
+            'number_kk' => $row[7],
+            'number_akta' => $row[8],
+            'order_child' => $row[10],
+            'count_siblings' => $row[11]
         ];
 
         if (in_array(null, $data)) {
@@ -52,6 +58,11 @@ class StudentImport implements ToModel
             return null;
         }
 
-        Student::create($data);
+        $student_id = Student::create($data)->id;
+
+        ClassroomStudent::create([
+            'student_id' => $student_id,
+            'classroom_id' => $this->classroom,
+        ]);
     }
 }
