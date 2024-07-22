@@ -60,6 +60,10 @@ class ClassroomStudentRepository extends BaseRepository implements ClassroomStud
         return $this->model->query()->where('student_id', $id)->first();
     }
 
+    public function whereClassroom(mixed $id): mixed
+    {
+        return $this->model->query()->where('classroom_id', $id)->get();
+    }
 
     public function activeStudents(): mixed
     {
