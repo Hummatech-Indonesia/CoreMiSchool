@@ -18,7 +18,8 @@
             <div class="d-flex gap-2">
                 <form class="flex-grow-1">
                     <div class="position-relative">
-                        <input type="text" name="name" value="{{ old('name', request('name')) }}" class="form-control search-chat py-2 px-4 ps-5" id="search-name" placeholder="Cari">
+                        <input type="text" name="name" value="{{ old('name', request('name')) }}"
+                            class="form-control search-chat py-2 px-4 ps-5" id="search-name" placeholder="Cari">
                         <i class="ti ti-search position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
                     </div>
                 </form>
@@ -37,24 +38,67 @@
 
     <div class="row">
         @forelse ($subjects as $subject)
-            <div class="col-lg-3">
-                <div class="card card-body bg-transparent border-2 shadow-none">
-                    <div class="text-center">
-                        <h5>{{ $subject->name }}</h5>
-                        <div class="mt-4">
-                            <button type="button" class="btn btn-edit mb-1 btn-primary px-4 me-2"
-                                data-id="{{ $subject->id }}" data-name="{{ $subject->name }}"
-                                data-religion="{{ $subject->religion_id }}">
-                                Edit
-                            </button>
-                            <button type="button" class="btn btn-delete mb-1 btn-light-danger text-danger px-4"
-                                data-id="{{ $subject->id }}">
-                                Hapus
-                            </button>
+            <div class="col-lg-4">
+                <div class="card position-relative">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <h4 class="mb-0">{{ $subject->name }}</h4>
+                            <div class="btn-group">
+                                <a class="nav-link label-group p-0" data-bs-toggle="dropdown" href="#" role="button"
+                                    aria-haspopup="true" aria-expanded="true">
+                                    <div>
+                                        <span class="more-options text-dark">
+                                            <i class="ti ti-dots-vertical fs-5"></i>
+                                        </span>
+                                    </div>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" data-popper-placement="bottom-end">
+                                    <button type="button"
+                                        class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-edit gap-3"
+                                        data-id="{{ $subject->id }}" data-name="{{ $subject->name }}"
+                                        data-religion="{{ $subject->religion_id }}">
+                                        <i class="fs-4 ti ti-edit"></i>
+                                        Edit
+                                    </button>
+
+                                    <button
+                                        class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-delete gap-3"
+                                        data-id="{{ $subject->id }}">
+                                        <i class="fs-4 ti ti-trash"></i>
+                                        Hapus
+                                    </button>
+                                </div>
+                            </div>
                         </div>
+
+                        <div class="align-items-center pt-3">
+                            <h6 class="mb-3">Jenis Pelajaran :</h6>
+                            <div class="d-flex align-items-center">
+                                @if ($subject->religion)
+                                    <span class="mb-1 badge font-medium fs-5 bg-light-warning text-warning">
+                                        Keagamaan
+                                    </span>
+                                    <span class="mb-1 badge font-medium ms-2 fs-5 bg-light-primary text-primary">
+                                        {{ $subject->religion->name }}
+                                    </span>
+                                @else
+                                    <span class="mb-1 badge font-medium fs-5 bg-light-primary text-primary">
+                                        Umum
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Image Container -->
+                    <div class="position-absolute bottom-0 end-0" style="padding: 0px;">
+                        <img src="{{ asset('assets/images/background/buble.png') }}" alt="Description" class="img-fluid"
+                            style="max-width: 100px; height: auto;">
                     </div>
                 </div>
             </div>
+
         @empty
             <div class="d-flex flex-column justify-content-center align-items-center">
                 <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt="" width="300px">
@@ -68,81 +112,10 @@
         <x-paginate-component :paginator="$subjects" />
     </div>
 
-    <div class="modal fade" id="modal-create" tabindex="-1" aria-labelledby="tambahPelajaran" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="tambahPelajaran">Tambah Pelajaran</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="{{ route('school.subject.store') }}" method="POST" enctype="multipart/form-data">
-                    @method('post')
-                    @csrf
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="">Mata Pelajaran <span class="text-danger">*</span></label>
-                            <input type="text" name="name" class="form-control" placeholder="Masukan nama mata pelajaran">
-                        </div>
-                        <div class="mb-3">
-                            <label for="">Kagamaan</label>
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <select id="keagamaan" name="religion_id" class="form-select form-select mb-3">
-                                <option value="">Pilih agama <span class="text-danger">*</span></option>
-                                @foreach ($religions as $religion)
-                                    <option value="{{ $religion->id }}">{{ $religion->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 
-    <div class="modal fade" id="modal-edit" tabindex="-1" aria-labelledby="tambahPelajaran" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="tambahPelajaran">Edit Pelajaran</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form id="form-edit" method="POST" enctype="multipart/form-data">
-                    @method('put')
-                    @csrf
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="">Mata Pelajaran <span class="text-danger">*</span></label>
-                            <input type="text" id="name-edit" name="name" class="form-control" placeholder="Masukan nama mata pelajaran">
-                        </div>
-                        <div class="mb-3">
-                            <label for="">Kagamaan</label>
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" role="switch" id="check">
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <select id="religion-edit" name="religion_id" class="form-select form-select mb-3">
-                                <option value="">Pilih agama <span class="text-danger">*</span></option>
-                                @foreach ($religions as $religion)
-                                    <option value="{{ $religion->id }}">{{ $religion->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-rounded btn-primary">Edit</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    @include('school.pages.subjects.widgets.modal-create-subject')
+    @include('school.pages.subjects.widgets.modal-update-subject')
+
 
     <x-delete-modal-component />
 @endsection
