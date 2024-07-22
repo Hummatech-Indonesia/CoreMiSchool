@@ -5,19 +5,21 @@
                 <h5 class="modal-title" id="importPegawai">Tambah RFID</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form id="form-rfid" method="POST" enctype="multipart/form-data">
+            <form id="form-rfid-staff" method="POST" enctype="multipart/form-data">
                 @method('put')
                 @csrf
-                <input type="hidden" name="old_rfid" id="old_rfid_input">
+                <input type="hidden" name="old_rfid" id="old_rfid_input_staff">
                 <div class="modal-body">
                     <div class="mb-3">
                         <div class="form-group d-flex">
                             <h6 class="mb-2">Nama :</h6>
-                            <p class="ms-3" id="name-detail-rfid"></p>
+                            <p class="ms-3" id="name-staff-rfid"></p>
                         </div>
                         <div class="form-group">
+                           <div class="d-flex">
                             <h6 class="mb-2">RFID :</h6>
-                            <p class="ms-3" id="detail-rfid"></p>
+                            <p class="ms-3" id="detail-staff-rfid"></p>
+                           </div>
                             <p>Lakukan tab pada rfid reader untuk menginputkan rfid</p>
                             <input type="text" name="rfid" id="rfid" class="form-control" placeholder="Masukkan RFID">
                         </div>

@@ -38,7 +38,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>
                             <div class="d-flex align-items-center">
-                                <img src="{{ $student->image ? asset('storage/' . $student->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}" class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40" height="40" alt="" />
+                                <img src="{{ $student->image ? asset('storage/' . $student->image) : asset('assets/images/default-user.jpeg') }}" class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40" height="40" alt="" />
                                 <div class="ms-3">
                                     <h6 class="fs-4 fw-semibold mb-0 text-start">{{ $student->user->name }}</h6>
                                     <span class="fw-normal">{{ $student->classroomStudents ? $student->classroomStudents[0]->classroom->name : 'Tidak dalam kelas' }}</span>
