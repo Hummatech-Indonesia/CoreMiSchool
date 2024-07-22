@@ -62,12 +62,7 @@ Route::prefix('school')->group(function () {
     Route::put('update-maple-teacher/{teacherMaple}', [TeacherSubjectController::class, 'update'])->name('maple-teacher.update');
     Route::delete('delete-maple-teacher/{teacherMaple}', [TeacherSubjectController::class, 'destroy'])->name('maple-teacher.delete');
 
-
-    // student
-    Route::get('students', [StudentController::class, 'index'])->name('student.index');
-
     //siswa
-    Route::get('old-student', [StudentController::class, 'index'])->name('school-student.index');
     Route::post('student', [StudentController::class, 'store'])->name('school-student.store');
     Route::put('student/{student}', [StudentController::class, 'update'])->name('school-student.update');
     Route::delete('student/{student}', [StudentController::class, 'destroy'])->name('school-student.destroy');
