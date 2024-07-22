@@ -23,7 +23,7 @@ class RfidApiController extends Controller
      */
     public function index() : mixed
     {
-        $cards = $this->rfid->getByActiveStudent();
+        $cards = $this->rfid->getRfid();
         return RfidResource::collection($cards);
     }
 }
