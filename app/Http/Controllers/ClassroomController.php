@@ -42,13 +42,10 @@ class ClassroomController extends Controller
      */
     public function index(Request $request)
     {
-        $school = $this->school->whereUserId(auth()->user()->id);
-        $levelClasses = $this->levelClass->where($school->id);
-        $schoolYears = $this->schoolYear->where($school->id);
-        $schoolYearActive = $this->schoolYear->whereActive();
         $classrooms = $this->classroom->search($request)->paginate(10);
-        $teachers = $this->employee->getTeacherBySchool();
-        return view('school.pages.class.index', compact('classrooms', 'levelClasses', 'schoolYears', 'teachers', 'schoolYearActive'));
+        $levelClasses = $this->levelClass->search($request);
+
+        return view('school.new.class.index', compact('classrooms', 'levelClasses'));
     }
 
     /**

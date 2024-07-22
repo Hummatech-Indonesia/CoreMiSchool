@@ -23,7 +23,6 @@ class LevelClassSeeder extends Seeder
         foreach ($class as $index => $data) {
             LevelClass::create([
                 'name' => $data,
-                'school_id' => '1',
             ]);
         };
     }

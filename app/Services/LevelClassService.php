@@ -11,7 +11,6 @@ class LevelClassService
     public function store(StoreLevelClassRequest $request): array|bool
     {
         $data = $request->validated();
-        $data['school_id'] = auth()->user()->school->id;
         return $data;
     }
 

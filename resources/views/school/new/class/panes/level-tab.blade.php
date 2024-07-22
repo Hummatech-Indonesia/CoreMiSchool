@@ -7,13 +7,12 @@
 </div>
 
 <div class="row">
-    @foreach (range(1, 3) as $item)
+    @forelse ($levelClasses as $levelClass)
         <div class="col-lg-4">
             <div class="card position-relative">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-1">
                         <h2 class="fs-4 mb-0">Tingkatan Kelas</h2>
-                        {{-- <span class="fs-2">2023/2024</span> --}}
                         <div class="btn-group">
                             <a class="nav-link label-group p-0" data-bs-toggle="dropdown"
                                 href="#" role="button" aria-haspopup="true" aria-expanded="true">
@@ -43,7 +42,7 @@
 
                     <div class="d-flex align-items-center pt-3">
                         <span class="mb-1 badge font-medium fs-5 bg-light-primary text-primary">
-                            Kelas 10
+                            {{ $levelClass->name }}
                         </span>
                     </div>
                 </div>
@@ -55,7 +54,8 @@
                 </div>
             </div>
         </div>
-    @endforeach
+    @empty
+    @endforelse
 </div>
 
 @include('school.new.class.widgets.class-level.update-level')
