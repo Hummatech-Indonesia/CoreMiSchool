@@ -22,7 +22,7 @@ class ClassroomStudentController extends Controller
      */
     public function index(string $classroom)
     {
-        $classroomStudents = $this->classroomStudent->get();
+        $classroomStudents = $this->classroomStudent->whereClassroom($classroom);
         return view('school.new.class.detail', compact('classroomStudents', 'classroom'));
     }
 

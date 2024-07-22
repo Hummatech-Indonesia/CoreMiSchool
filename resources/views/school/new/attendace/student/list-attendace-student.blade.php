@@ -68,8 +68,8 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>suyadi</td>
-                <td>masuk</td>
-                <td>20 juli 2024</td>
+                <td>07.00</td>
+                <td>16.00</td>
                 <td>1</td>
                 <td>masuk</td>
                 <td>
@@ -80,7 +80,14 @@
             </tr>
             @empty
             <tr>
-                <td colspan="7">Data kosong</td>
+                <td colspan="7" class="text-center align-middle">
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+                        <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt="" width="300px">
+                        <p class="fs-5 text-dark text-center mt-2">
+                            Siswa belum ditambahkan
+                        </p>
+                    </div>
+                </td>
             </tr>
             @endforelse
         </tbody>
