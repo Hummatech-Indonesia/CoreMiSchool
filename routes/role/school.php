@@ -62,7 +62,15 @@ Route::prefix('school')->name('school.')->group(function() {
     Route::put('update-classroom/{classroom}', [ClassroomStudentController::class, 'update'])->name('student-classroom.update');
 
     Route::patch('school-years/{schoolYear}/active', [SchoolYearController::class, 'setActive'])->name('school-year.setActive');
+
+    Route::prefix('semesters')->name('semesters.')->group(function () {
+        Route::get('/', [SemesterController::class, 'index'])->name('index');
+        Route::post('/', [SemesterController::class, 'store'])->name('store');
+    });
 });
+
+
+
 
 Route::prefix('school')->group(function () {
     Route::get('', [SchoolDashboardController::class, 'index'])->name('school.index');
@@ -137,11 +145,6 @@ Route::prefix('school')->group(function () {
     // rfid aktif
     Route::get('rfid-active', [ModelHasRfidController::class, 'showActive'])->name('rfid-active.index');
 
-    //semeter
-    Route::prefix('semesters')->name('semesters.')->group(function () {
-        Route::get('/', [SemesterController::class, 'index'])->name('index');
-        Route::post('/', [SemesterController::class, 'store'])->name('store');
-    });
 });
 
 

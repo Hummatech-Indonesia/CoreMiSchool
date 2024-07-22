@@ -1,3 +1,7 @@
+@php
+    use App\Enums\SemesterEnum;
+    use Carbon\Carbon;
+@endphp
 @extends('school.layouts.app')
 
 @section('content')
@@ -88,10 +92,83 @@
         $('#modal-confirm-active').modal('show');
     });
 
-        $('.btn-delete-year').click(function() {
-            var id = $(this).data('id');
-            $('#form-delete').attr('action', '{{ route('school.school-years.destroy', '') }}/' + id);
-            $('#modal-delete').modal('show');
+    $('.btn-delete-year').click(function() {
+        var id = $(this).data('id');
+        $('#form-delete').attr('action', '{{ route('school.school-years.destroy', '') }}/' + id);
+        $('#modal-delete').modal('show');
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('.toggle-btn').click(function() {
+            $(this).toggleClass('active');
+            $('.toggle-btn').not(this).removeClass('active');
+            $(this).attr('aria-pressed', $(this).hasClass('active'));
+            $('.toggle-btn').not(this).attr('aria-pressed', false);
         });
-    </script>
+
+        function appendRow(type, createdAt) {
+            var formattedDate = new Date(createdAt).toLocaleDateString('id-ID', {
+                day: '2-digit',
+                month: 'long',
+                year: 'numeric'
+            });
+
+            var newRow = `
+            <tr>
+                <td>
+                    <div class="d-flex justify-content-center">
+                        <p>${type.charAt(0).toUpperCase() + type.slice(1)}</p>
+                    </div>
+                </td>
+                <td>${formattedDate}</td>
+            </tr>
+        `;
+            $('#tbody').append(newRow);
+        }
+
+        $('.btn-ganjil').click(function() {
+            $.ajax({
+                type: "POST",
+                url: "{{ route('school.semesters.store') }}",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr("content")
+                },
+                data: {
+                    school_id: {{ auth()->user()->school->id }},
+                    type: '{{ SemesterEnum::GANJIL->value }}'
+                },
+                success: function(res) {
+                    location.reload()
+                    // appendRow('ganjil', res.created_at);
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+        });
+
+        $('.btn-genap').click(function() {
+            $.ajax({
+                type: "POST",
+                url: "{{ route('school.semesters.store') }}",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr("content")
+                },
+                data: {
+                    school_id: {{ auth()->user()->school->id }},
+                    type: '{{ SemesterEnum::GENAP->value }}'
+                },
+                success: function(res) {
+                    location.reload()
+                    // appendRow('genap', res.created_at);
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+        });
+    });
+</script>
 @endsection
