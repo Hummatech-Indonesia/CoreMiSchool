@@ -40,7 +40,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="">Agama</label>
-                                        <select name="religion_id" id="religion-edit" class="form-select">
+                                        <select name="religion_id" id="edit-religion-teacher" class="form-select">
                                             <option>Pilih agama..</option>
                                             @foreach ($religions as $religion)
                                             <option value="{{ $religion->id }}">{{ $religion->name }}</option>
@@ -54,7 +54,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="">Tanggal Lahir <span class="text-danger" style="font-size: larger;">*</span></label>
-                                        <input type="date" name="birth_date" id="birth_date-edit" class="form-control mb-3" value="{{ old('birth_date') }}">
+                                        <input type="date" name="birth_date" id="birth_date-edit-teacher" class="form-control mb-3" value="{{ old('birth_date') }}">
                                         @error('birth_date')
                                         <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -63,7 +63,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="">Tempat Lahir <span class="text-danger" style="font-size: larger;">*</span></label>
-                                        <input type="text" placeholder="Masukkan tempat lahir" class="form-control" id="birth_place-edit" name="birth_place" value="{{ old('birth_place') }}">
+                                        <input type="text" placeholder="Masukkan tempat lahir" class="form-control" id="birth_place-edit-teacher" name="birth_place" value="{{ old('birth_place') }}">
                                         @error('birth_place')
                                         <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
