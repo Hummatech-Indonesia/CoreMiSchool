@@ -55,7 +55,7 @@
                                 </div>
                             </td>
                             <td>
-                                <span class="badge bg-light-{{ $teacher->active == 1 ? 'primary' : 'danger' }} text-{{ $teacher->active == 1 ? 'primary' : 'danger' }}">{{ $teacher->active == 1 ? 'Aktif' : 'Tidak aktif' }}</span>
+                                <span class="badge bg-light-primary text-primary">{{ $teacher->teacherSubjects->count() }}</span>
                             </td>
                             <td>{{ $teacher->user->email }}</td>
                             <td>{{ $teacher->nip }}</td>
