@@ -29,12 +29,22 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('school')->name('school.')->group(function() {
     Route::resource('employees', EmployeeController::class);
+
+    // cud and import teacher
     Route::post('teacher', [TeacherController::class, 'store'])->name('teacher.store');
+    Route::get('teacher/{slug}', [TeacherController::class, 'show'])->name('teacher.show');
     Route::put('teacher/{employee}', [TeacherController::class, 'update'])->name('teacher.update');
     Route::delete('teacher/{employee}', [TeacherController::class, 'destroy'])->name('teacher.destroy');
+    Route::post('import-teacher/', [TeacherController::class, 'import'])->name('teacher.import');
+    Route::get('download-template-teacher/', [TeacherController::class, 'downloadTemplateTeacher'])->name('teacher.download-template');
+
+    // cud and import staff
     Route::post('staff', [StaffController::class, 'store'])->name('staff.store');
     Route::put('staff/{employee}', [StaffController::class, 'update'])->name('staff.update');
     Route::delete('staff/{employee}', [StaffController::class, 'destroy'])->name('staff.destroy');
+    Route::post('import-staff/', [StaffController::class, 'import'])->name('staff.import');
+    Route::get('download-template-staff/', [StaffController::class, 'downloadTemplate'])->name('staff.download-template');
+
     Route::resource('students', StudentController::class);
     Route::resource('subject', SubjectController::class);
     Route::resource('school-years', SchoolYearController::class);
@@ -47,20 +57,6 @@ Route::prefix('school')->name('school.')->group(function() {
 
 Route::prefix('school')->group(function () {
     Route::get('', [SchoolDashboardController::class, 'index'])->name('school.index');
-
-    // pegawai
-    // Route::get('employe', [StaffController::class, 'index'])->name('school.employee.index');
-    // Route::post('add-employee', [StaffController::class, 'store'])->name('employe.store');
-    // Route::put('update-employee/{employee}', [StaffController::class, 'update'])->name('employe.update');
-    // Route::delete('delete-employee/{employee}', [StaffController::class, 'destroy'])->name('employe.delete');
-    Route::post('import-employee/', [StaffController::class, 'import'])->name('employe.import');
-    Route::get('download-template-employee/', [StaffController::class, 'downloadTemplate'])->name('employe.download-template');
-
-    // guru
-    // Route::get('teacher', [TeacherController::class, 'index'])->name('teacher.index');
-    // Route::post('add-teacher', [TeacherController::class, 'store'])->name('teacher.store');
-    // Route::put('update-teacher/{employee}', [TeacherController::class, 'update'])->name('teacher.update');
-    // Route::delete('delete-teacher/{employee}', [TeacherController::class, 'destroy'])->name('teacher.delete');
 
     Route::get('detail-teacher/{employee}', [TeacherSubjectController::class, 'index'])->name('detail-teacher.index');
     Route::post('add-maple-teacher/{employee}', [TeacherSubjectController::class, 'store'])->name('maple-teacher.store');
@@ -175,13 +171,6 @@ Route::post('attendance-test-teacher', [AttendanceMasterController::class, 'chec
 
 
 // route baru
-//pegawai
-Route::get('school/employee', function(){
-    return view('school.new.employee.index');
-})->name('new.employee.index');
-Route::get('new/school/teacher/detail', function(){
-    return view('school.new.employee.teacher-detail');
-})->name('new.teacher.detail.index');
 
 //kelas
 Route::get('new/school/class', function(){

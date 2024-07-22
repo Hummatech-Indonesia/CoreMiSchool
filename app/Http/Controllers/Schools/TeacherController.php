@@ -5,13 +5,16 @@ namespace App\Http\Controllers\Schools;
 use App\Http\Controllers\Controller;
 use App\Contracts\Interfaces\EmployeeInterface;
 use App\Contracts\Interfaces\ReligionInterface;
+use App\Contracts\Interfaces\TeacherSubjectInterface;
 use App\Contracts\Interfaces\UserInterface;
 use App\Enums\RoleEnum;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
+use App\Imports\TeacherImport;
 use App\Models\Employee;
 use App\Services\TeacherService;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TeacherController extends Controller
 {
@@ -19,13 +22,15 @@ class TeacherController extends Controller
     private EmployeeInterface $employee;
     private TeacherService $service;
     private UserInterface $user;
+    private TeacherSubjectInterface $teacherSubject;
 
-    public function __construct(UserInterface $user, EmployeeInterface $employee, TeacherService $service, ReligionInterface $religion)
+    public function __construct(UserInterface $user, EmployeeInterface $employee, TeacherService $service, ReligionInterface $religion, TeacherSubjectInterface $teacherSubject)
     {
         $this->user = $user;
         $this->employee = $employee;
         $this->service = $service;
         $this->religion = $religion;
+        $this->teacherSubject = $teacherSubject;
     }
 
     /**
@@ -63,9 +68,11 @@ class TeacherController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
-        //
+        $teacher = $this->employee->showWithSlug($slug);
+        $teacher_subjects = $this->teacherSubject->where($teacher->id);
+        return view('school.new.employee.teacher-detail', compact('teacher', 'teacher_subjects'));
     }
 
     /**
@@ -95,5 +102,19 @@ class TeacherController extends Controller
         $this->employee->delete($employee->id);
         $employee->user->delete();
         return redirect()->back()->with('success', 'Data guru berhasil dihapus');
+    }
+
+    public function downloadTemplateTeacher()
+    {
+        $templatee = public_path('file/format-excel-import-teacher.xlsx');
+        // dd($templatee);
+        return response()->download($templatee, 'format-excel-import-guru.xlsx');
+    }
+
+    public function import(Request $request)
+    {
+        $file = $request->file('file');
+        Excel::import(new TeacherImport, $file);
+        return to_route('school.employees.index')->with('success', "Berhasil Mengimport Data!");
     }
 }

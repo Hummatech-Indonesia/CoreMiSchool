@@ -2,14 +2,14 @@
 
 namespace App\Contracts\Repositories;
 
-use App\Contracts\Interfaces\TeacherMapleInterface;
-use App\Models\TeacherMaple;
+use App\Contracts\Interfaces\TeacherSubjectInterface;
+use App\Models\TeacherSubject;
 
-class TeacherMapleRepository extends BaseRepository implements TeacherMapleInterface
+class TeacherSubjectRepository extends BaseRepository implements TeacherSubjectInterface
 {
-    public function __construct(TeacherMaple $teacherMaple)
+    public function __construct(TeacherSubject $teacherSubject)
     {
-        $this->model = $teacherMaple;
+        $this->model = $teacherSubject;
     }
 
     public function get(): mixed
@@ -44,6 +44,6 @@ class TeacherMapleRepository extends BaseRepository implements TeacherMapleInter
 
     public function where(mixed $data): mixed
     {
-        return $this->model->query()->whereIn('employee_id', $data)->latest()->paginate(10);
+        return $this->model->query()->where('employee_id', $data)->latest()->paginate(10);
     }
 }

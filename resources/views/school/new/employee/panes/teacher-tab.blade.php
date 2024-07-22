@@ -31,13 +31,13 @@
             <table class="table border text-nowrap customize-table mb-0 align-middle">
                 <thead class="text-dark fs-4">
                     <tr>
-                        <th>No</th>
-                        <th>Nama Pegawai</th>
-                        <th>Jumlah Mapel</th>
-                        <th>Email</th>
-                        <th>NIP</th>
-                        <th>RFID</th>
-                        <th>Aksi</th>
+                        <th class="text-white" style="background-color: #5D87FF;">No</th>
+                        <th class="text-white" style="background-color: #5D87FF;">Nama Pegawai</th>
+                        <th class="text-white" style="background-color: #5D87FF;">Jumlah Mapel</th>
+                        <th class="text-white" style="background-color: #5D87FF;">Email</th>
+                        <th class="text-white" style="background-color: #5D87FF;">NIP</th>
+                        <th class="text-white" style="background-color: #5D87FF;">RFID</th>
+                        <th class="text-white" style="background-color: #5D87FF;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,16 +46,17 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ asset('storage/'. $teacher->image) }}"
+                                    <img src="{{ $teacher->image ? asset('storage/' . $teacher->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}"
                                         class="rounded-circle" width="40" height="40">
                                     <div class="ms-3">
                                         <h6 class="fs-4 fw-semibold mb-0">{{ $teacher->user->name }}</h6>
                                         <span class="fw-normal">{{ $teacher->gender->label() }}</span>
                                     </div>
                                 </div>
+
                             </td>
                             <td>
-                                <span class="badge bg-light-{{ $teacher->active == 1 ? 'primary' : 'danger' }} text-{{ $teacher->active == 1 ? 'primary' : 'danger' }}">{{ $teacher->active == 1 ? 'Aktif' : 'Tidak aktif' }}</span>
+                                <span class="badge bg-light-primary text-primary">{{ $teacher->teacherSubjects->count() }} Mapel</span>
                             </td>
                             <td>{{ $teacher->user->email }}</td>
                             <td>{{ $teacher->nip }}</td>
@@ -82,7 +83,7 @@
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
                                         <li>
-                                            <a href="/new/school/teacher/detail" type="button" data-id="1dbf93d1-4e70-37ec-abda-b496e6a3c177"
+                                            <a href="{{ route('school.teacher.show', $teacher->user->slug) }}" type="button"
                                                 class="btn-detail dropdown-item d-flex align-items-center gap-3"><i
                                                     class="fs-4 ti ti-eye"></i>Detail</a>
                                         </li>

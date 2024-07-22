@@ -24,12 +24,12 @@
         <table class="table border text-nowrap customize-table mb-0 align-middle">
             <thead class="text-dark fs-4">
                 <tr class="">
-                    <th class="fs-4 fw-semibold mb-0">No</th>
-                    <th class="fs-4 fw-semibold mb-0">Nama</th>
-                    <th class="fs-4 fw-semibold mb-0">Jenis Kelamin</th>
-                    <th class="fs-4 fw-semibold mb-0">NISN</th>
-                    <th class="fs-4 fw-semibold mb-0">RFID</th>
-                    <th class="fs-4 fw-semibold mb-0">Aksi</th>
+                    <th class="text-white" style="background-color: #5D87FF;">No</th>
+                    <th class="text-white" style="background-color: #5D87FF;">Nama</th>
+                    <th class="text-white" style="background-color: #5D87FF;">Jenis Kelamin</th>
+                    <th class="text-white" style="background-color: #5D87FF;">NISN</th>
+                    <th class="text-white" style="background-color: #5D87FF;">RFID</th>
+                    <th class="text-white" style="background-color: #5D87FF;">Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,7 +38,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>
                             <div class="d-flex align-items-center">
-                                <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}" class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40" height="40" alt="" />
+                                <img src="{{ $student->image ? asset('storage/' . $student->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}" class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40" height="40" alt="" />
                                 <div class="ms-3">
                                     <h6 class="fs-4 fw-semibold mb-0 text-start">{{ $student->user->name }}</h6>
                                     <span class="fw-normal">{{ $student->classroomStudents ? $student->classroomStudents[0]->classroom->name : 'Tidak dalam kelas' }}</span>

@@ -31,13 +31,13 @@
             <table class="table border text-nowrap customize-table mb-0 align-middle">
                 <thead class="text-dark fs-4">
                     <tr>
-                        <th>No</th>
-                        <th>Nama Pegawai</th>
-                        <th>Status</th>
-                        <th>Email</th>
-                        <th>NIP</th>
-                        <th>RFID</th>
-                        <th>Aksi</th>
+                        <th class="text-white" style="background-color: #5D87FF;">No</th>
+                        <th class="text-white" style="background-color: #5D87FF;">Nama Pegawai</th>
+                        <th class="text-white" style="background-color: #5D87FF;">Status</th>
+                        <th class="text-white" style="background-color: #5D87FF;">Email</th>
+                        <th class="text-white" style="background-color: #5D87FF;">NIP</th>
+                        <th class="text-white" style="background-color: #5D87FF;">RFID</th>
+                        <th class="text-white" style="background-color: #5D87FF;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,7 +46,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ asset('storage/'. $staff->image) }}"
+                                    <img src="{{ $staff->image ? asset('storage/' . $staff->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}"
                                         class="rounded-circle" width="40" height="40">
                                     <div class="ms-3">
                                         <h6 class="fs-4 fw-semibold mb-0">{{ $staff->user->name }}</h6>
@@ -83,9 +83,17 @@
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
                                         <li>
-                                            <button type="button" data-id="1dbf93d1-4e70-37ec-abda-b496e6a3c177" data-bs-toggle="modal" data-bs-target="#modal-detail"
-                                                class="btn-detail dropdown-item d-flex align-items-center gap-3"><i
-                                                    class="fs-4 ti ti-eye"></i>Detail</button>
+                                            <button type="button" class="dropdown-item d-flex align-items-center gap-3 btn-detail-employee"
+                                                data-image="{{ asset('storage/'. $staff->image) }}"
+                                                data-name="{{ $staff->user->name }}"
+                                                data-email="{{ $staff->user->email }}"
+                                                data-phone="{{ $staff->phone_number }}"
+                                                data-gender="{{ $staff->gender->label() }}"
+                                                data-nip="{{ $staff->nip }}"
+                                                data-rfid="{{ $staff->modelHasRfid ? $staff->modelHasRfid->rfid : 'Belum memiliki rfid' }}"
+                                                data-address="{{ $staff->address }}">
+                                                <i class="fs-4 ti ti-eye"></i>Detail
+                                            </button>
                                         </li>
 
                                         <li>
