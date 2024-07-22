@@ -14,6 +14,8 @@ use App\Models\Classroom;
 use App\Http\Requests\StoreClassroomRequest;
 use App\Http\Requests\UpdateClassroomRequest;
 use App\Models\ClassroomStudent;
+use App\Models\LevelClass;
+use App\Services\School\ClassroomService;
 use Illuminate\Http\Request;
 
 class ClassroomController extends Controller
@@ -25,8 +27,9 @@ class ClassroomController extends Controller
     private SchoolInterface $school;
     private StudentInterface $student;
     private ClassroomStudentInterface $classroomStudent;
+    private ClassroomService $service;
 
-    public function __construct(ClassroomInterface $classroom, LevelClassInterface $levelClass, SchoolYearInterface $schoolYear, EmployeeInterface $employee, SchoolInterface $school, StudentInterface $student, ClassroomStudentInterface $classroomStudent)
+    public function __construct(ClassroomService $service, ClassroomInterface $classroom, LevelClassInterface $levelClass, SchoolYearInterface $schoolYear, EmployeeInterface $employee, SchoolInterface $school, StudentInterface $student, ClassroomStudentInterface $classroomStudent)
     {
         $this->classroom = $classroom;
         $this->levelClass = $levelClass;
@@ -35,6 +38,7 @@ class ClassroomController extends Controller
         $this->school = $school;
         $this->student = $student;
         $this->classroomStudent = $classroomStudent;
+        $this->service = $service;
     }
 
     /**
@@ -44,8 +48,10 @@ class ClassroomController extends Controller
     {
         $classrooms = $this->classroom->search($request)->paginate(10);
         $levelClasses = $this->levelClass->search($request);
+        $teachers = $this->employee->getTeacher();
+        $classLevel = $this->levelClass->get();
 
-        return view('school.new.class.index', compact('classrooms', 'levelClasses'));
+        return view('school.new.class.index', compact('classrooms', 'levelClasses', 'teachers', 'classLevel'));
     }
 
     /**
@@ -61,8 +67,7 @@ class ClassroomController extends Controller
      */
     public function store(StoreClassroomRequest $request)
     {
-        $data = $request->validated();
-        $this->classroom->store($data);
+        $this->service->store($request);
         return redirect()->back()->with('success', 'Berhasil menambahkan kelas');
     }
 
@@ -71,7 +76,7 @@ class ClassroomController extends Controller
      */
     public function show(Classroom $classroom, Request $request)
     {
-        $schoolYears = $this->schoolYear->whereSchool(auth()->user()->school->id, $request);
+        $schoolYears = $this->schoolYear->search($request);
         $students = $this->student->doesntHaveClassroom($request);
         $classroomStudents = $this->classroomStudent->where($classroom->id, $request);
         return view('school.pages.class.detail-class', compact('classroom', 'schoolYears', 'students', 'classroomStudents'));

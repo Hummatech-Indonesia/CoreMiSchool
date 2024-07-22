@@ -106,12 +106,12 @@
 </div>
 
 <!-- Hidden fields to store changes -->
-<form id="save-form" action="{{ route('classroom.update', $classroom->id) }}" method="POST">
+{{-- <form id="save-form" action="{{ route('classroom.update', $classroom->id) }}" method="POST">
     @csrf
     @method('PUT')
     <input type="hidden" name="add_students" id="add-students">
     <input type="hidden" name="remove_students" id="remove-students">
-</form>
+</form> --}}
 
 
 <div class="table-responsive rounded-2">

@@ -20,10 +20,10 @@ class ClassroomStudentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index($classroom)
+    public function index(string $classroom)
     {
         $classroomStudents = $this->classroomStudent->get();
-        return view('', compact('classroomStudents', 'classroom'));
+        return view('school.new.class.detail', compact('classroomStudents', 'classroom'));
     }
 
     /**

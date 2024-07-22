@@ -2,22 +2,23 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="tambahTahunAjaran">Tambah Tahun Ajaran</h5>
+                <h5 class="modal-title" id="tambahTahunAjaran">Edit Tahun Ajaran</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('school.school-years.store') }}" enctype="multipart/form-data" method="POST">
+            <form id="form-update" enctype="multipart/form-data" method="POST">
+                @method('put')
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="">Tahun Ajaran <span class="text-danger" style="font-size: larger;">*</span></label>
-                        <input type="text" name="school_year" class="form-control" placeholder="Masukkan tahun ajaran">
+                        <input type="text" id="name-update" name="school_year" class="form-control" placeholder="Masukkan tahun ajaran">
                         @error('school_year')
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="">Status</label>
-                        <select name="active" class="form-control">
+                        <select name="active" id="status-update" class="form-control">
                             <option value="1">Aktif</option>
                             <option value="0">Tidak Aktif</option>
                         </select>
@@ -27,7 +28,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
+                    <button type="submit" class="btn btn-rounded btn-primary">Simpan</button>
                 </div>
             </form>
         </div>
