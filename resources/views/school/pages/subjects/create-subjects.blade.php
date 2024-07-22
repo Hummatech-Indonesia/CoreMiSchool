@@ -29,7 +29,7 @@
 
         <div class="col-lg-10 mb-3">
             <div class="d-flex gap-2 justify-content-end">
-                <button class="btn btn-success px-4" data-bs-toggle="modal" data-bs-target="#modal-create">
+                <button class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#modal-create">
                     Tambah Pelajaran
                 </button>
             </div>
