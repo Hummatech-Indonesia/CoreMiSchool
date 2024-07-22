@@ -106,14 +106,14 @@
             $('#detail-rfid').text(rfid);
             $('#old_rfid_input').val(oldRfid);
             $('#form-rfid').attr('action', '/school/add-to-rfid/' + role + '/' + id);
-            $('#modal-rfid-staff').modal('show');
-            $('#modal-rfid-staff').val(rfid);
+            $('#rfid-teacher').modal('show');
+            $('#rfid-teacher').val(rfid);
         });
     </script>
 
     {{-- handle detail staff --}}
     <script>
-        $('.btn-detail-employee').click(function() {    
+        $('.btn-detail-employee').click(function() {
             let image = $(this).data('image');
             let name = $(this).data('name');
             let email = $(this).data('email');
