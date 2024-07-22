@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\ClassroomStudentInterface;
+use App\Contracts\Interfaces\ReligionInterface;
 use App\Models\ClassroomStudent;
 use App\Http\Requests\StoreClassroomStudentRequest;
 use App\Http\Requests\UpdateClassroomStudentRequest;
@@ -11,10 +12,12 @@ use App\Models\Classroom;
 class ClassroomStudentController extends Controller
 {
     private ClassroomStudentInterface $classroomStudent;
+    private ReligionInterface $religion;
 
-    public function __construct(ClassroomStudentInterface $classroomStudent)
+    public function __construct(ClassroomStudentInterface $classroomStudent, ReligionInterface $religion)
     {
         $this->classroomStudent = $classroomStudent;
+        $this->religion = $religion;
     }
 
     /**
@@ -23,7 +26,8 @@ class ClassroomStudentController extends Controller
     public function index(string $classroom)
     {
         $classroomStudents = $this->classroomStudent->whereClassroom($classroom);
-        return view('school.new.class.detail', compact('classroomStudents', 'classroom'));
+        $religions = $this->religion->get();
+        return view('school.new.class.detail', compact('classroomStudents', 'classroom', 'religions'));
     }
 
     /**
