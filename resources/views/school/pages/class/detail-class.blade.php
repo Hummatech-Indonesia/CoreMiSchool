@@ -1,19 +1,6 @@
 @extends('school.layouts.app')
 
 @section('content')
-{{-- <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
-    <div class="d-flex flex-wrap">
-        <select id="tahun-ajaran" class="form-select">
-            <option value="">Tahun Ajaran</option>
-            @forelse ($schoolYears as $schoolYear)
-                <option value="{{ $schoolYear->id }}">{{ $schoolYear->school_year }}</option>
-            @empty
-                <option>Belum ada tahun ajaran</option>
-            @endforelse
-        </select>
-    </div>
-</div> --}}
-
 <div class="card card-body">
     <div class="d-flex justify-content-between">
         <div>
