@@ -60,8 +60,13 @@
                             </td>
                             <td>{{ $staff->user->email }}</td>
                             <td>{{ $staff->nip }}</td>
-                            <td>-
-                                <button type="submit" class="btn btn-rounded btn-warning p-1 ms-2 btn-rfid">
+                            <td>{{ $staff->modelHasRfid ? $staff->modelHasRfid->rfid : '-' }}
+                                <button type="button" class="btn btn-rounded btn-warning p-1 ms-2 btn-rfid"
+                                data-name="{{ $staff->user->name }}"
+                                    data-id="{{ $staff->id }}"
+                                    data-rfid="{{ $staff->modelHasRfid ? $staff->modelHasRfid->rfid : 'Kosong' }}"
+                                    data-old-rfid="{{ $staff->modelHasRfid ? $staff->modelHasRfid->rfid : 'Kosong' }}"
+                                    data-role="Employee">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                         viewBox="0 0 24 24">
                                         <path fill="currentColor"
