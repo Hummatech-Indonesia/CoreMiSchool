@@ -48,27 +48,27 @@
                         </thead>
                         <tbody>
                             @forelse ($students as $student)
-                            <tr data-id="{{ $student->id }}">
-                                <td>{{ $student->user->name }}</td>
-                                <td>{{ $student->nisn }}</td>
-                                <td class="d-flex justify-content-center">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox">
-                                    </div>
-                                </td>
-                            </tr>
+                                <tr data-id="{{ $student->id }}">
+                                    <td>{{ $student->user->name }}</td>
+                                    <td>{{ $student->nisn }}</td>
+                                    <td class="d-flex justify-content-center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox">
+                                        </div>
+                                    </td>
+                                </tr>
                             @empty
-                            <tr class="empty-tr">
-                                <td colspan="3" class="text-center align-middle">
-                                    <div class="d-flex flex-column justify-content-center align-items-center">
-                                        <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt=""
-                                            width="200px">
-                                        <p class="fs-5 text-dark text-center mt-2">
-                                            Siswa belum ditambahkan
-                                        </p>
-                                    </div>
-                                </td>
-                            </tr>
+                                <tr class="empty-tr">
+                                    <td colspan="3" class="text-center align-middle">
+                                        <div class="d-flex flex-column justify-content-center align-items-center">
+                                            <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}"
+                                                alt="" width="200px">
+                                            <p class="fs-5 text-dark text-center mt-2">
+                                                Siswa belum ditambahkan
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
                             @endforelse
                         </tbody>
                     </table>
@@ -99,27 +99,27 @@
                         </thead>
                         <tbody>
                             @forelse ($classroomStudents as $classroomStudent)
-                            <tr data-id="{{ $classroomStudent->student->id }}">
-                                <td>{{ $classroomStudent->student->user->name }}</td>
-                                <td>{{ $classroomStudent->student->nisn }}</td>
-                                <td class="d-flex justify-content-center">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox">
-                                    </div>
-                                </td>
-                            </tr>
+                                <tr data-id="{{ $classroomStudent->student->id }}">
+                                    <td>{{ $classroomStudent->student->user->name }}</td>
+                                    <td>{{ $classroomStudent->student->nisn }}</td>
+                                    <td class="d-flex justify-content-center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox">
+                                        </div>
+                                    </td>
+                                </tr>
                             @empty
-                            <tr class="empty-tr">
-                                <td colspan="3" class="text-center align-middle">
-                                    <div class="d-flex flex-column justify-content-center align-items-center">
-                                        <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt=""
-                                            width="200px">
-                                        <p class="fs-5 text-dark text-center mt-2">
-                                            Siswa belum ditambahkan
-                                        </p>
-                                    </div>
-                                </td>
-                            </tr>
+                                <tr class="empty-tr">
+                                    <td colspan="3" class="text-center align-middle">
+                                        <div class="d-flex flex-column justify-content-center align-items-center">
+                                            <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}"
+                                                alt="" width="200px">
+                                            <p class="fs-5 text-dark text-center mt-2">
+                                                Siswa belum ditambahkan
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
                             @endforelse
                         </tbody>
                     </table>
@@ -134,7 +134,8 @@
     </div>
 
     <!-- Hidden fields to store changes -->
-    <form id="save-form" action="{{ route('school.student-classroom.update', ['classroom' => $classroom]) }}" method="POST">
+    <form id="save-form" action="{{ route('school.student-classroom.update', ['classroom' => $classroom]) }}"
+        method="POST">
         @csrf
         @method('PUT')
         <input type="hidden" name="add_students" id="add-students">
@@ -158,7 +159,7 @@
 
 
 
-    <div class="table-responsive rounded-2">
+    <div class="table-responsive rounded-2 mb-3">
         <table class="table border text-nowrap customize-table mb-0 align-middle">
             <thead>
                 <tr>
@@ -176,8 +177,8 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>
                             <div class="d-flex align-items-center">
-                                <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}" class="rounded-circle"
-                                    width="40" height="40">
+                                <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}"
+                                    class="rounded-circle" width="40" height="40">
                                 <div class="ms-3">
                                     <h6 class="fs-4 fw-semibold mb-0">{{ $student->student->user->name }}</h6>
                                     <span class="fw-normal">{{ $student->classroom->name }}</span>
@@ -186,10 +187,11 @@
                         </td>
                         <td>{{ $student->student->gender == 'male' ? 'Laki Laki' : 'Perempuan' }}</td>
                         <td>{{ $student->student->nisn }}</td>
-                        <td>{{ $student->student->modelHasRfid ? $student->student->modelHasRfid->rfid : '-'}}
-                            <button type="button" class="btn btn-rounded btn-warning p-1 ms-2 btn-rfid" data-bs-toggle="modal"
-                                data-bs-target="#rfid-teacher">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                        <td>{{ $student->student->modelHasRfid ? $student->student->modelHasRfid->rfid : '-' }}
+                            <button type="button" class="btn btn-rounded btn-warning p-1 ms-2 btn-rfid"
+                                data-bs-toggle="modal" data-bs-target="#rfid-teacher">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                    viewBox="0 0 24 24">
                                     <path fill="currentColor"
                                         d="M21 12a1 1 0 0 0-1 1v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h6a1 1 0 0 0 0-2H5a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-6a1 1 0 0 0-1-1m-15 .76V17a1 1 0 0 0 1 1h4.24a1 1 0 0 0 .71-.29l6.92-6.93L21.71 8a1 1 0 0 0 0-1.42l-4.24-4.29a1 1 0 0 0-1.42 0l-2.82 2.83l-6.94 6.93a1 1 0 0 0-.29.71m10.76-8.35l2.83 2.83l-1.42 1.42l-2.83-2.83ZM8 13.17l5.93-5.93l2.83 2.83L10.83 16H8Z" />
                                 </svg>
@@ -209,19 +211,23 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
                                     <li>
-                                        <button type="button" class="dropdown-item d-flex align-items-center gap-3 btn-edit"
-                                            data-id="{{ $student->student->id }}" data-name="{{ $student->student->user->name }}"
-                                            data-email="{{ $student->student->user->email }}" data-nisn="{{ $student->student->nisn }}"
+                                        <button type="button"
+                                            class="dropdown-item d-flex align-items-center gap-3 btn-edit"
+                                            data-id="{{ $student->student->id }}"
+                                            data-name="{{ $student->student->user->name }}"
+                                            data-email="{{ $student->student->user->email }}"
+                                            data-nisn="{{ $student->student->nisn }}"
                                             data-religion_id="{{ $student->student->religion_id }}"
                                             data-gender="{{ $student->student->gender }}"
                                             data-birth_place="{{ $student->student->birth_place }}"
-                                            data-birth_date="{{ $student->student->birth_date }}" data-nik="{{ $student->student->nik }}"
+                                            data-birth_date="{{ $student->student->birth_date }}"
+                                            data-nik="{{ $student->student->nik }}"
                                             data-number_kk="{{ $student->student->number_kk }}"
                                             data-number_akta="{{ $student->student->number_akta }}"
                                             data-order_child="{{ $student->student->order_child }}"
                                             data-count_siblings="{{ $student->student->count_siblings }}"
-                                            data-address="{{ $student->student->address }}"
-                                        ><i class="fs-4 ti ti-edit"></i>Edit
+                                            data-address="{{ $student->student->address }}"><i
+                                                class="fs-4 ti ti-edit"></i>Edit
                                         </button>
                                     </li>
                                     <li>
@@ -236,6 +242,17 @@
                         </td>
                     </tr>
                 @empty
+                    <tr>
+                        <td colspan="7" class="text-center align-middle">
+                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt=""
+                                    width="300px">
+                                <p class="fs-5 text-dark text-center mt-2">
+                                    Belum ada siswa
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
                 @endforelse
             </tbody>
         </table>
@@ -255,50 +272,48 @@
 @endsection
 
 @section('script')
-
     <script>
         $(document).ready(function() {
-        // Handle move to right
-        $('#move-to-right').click(function() {
-            $('#left-table tbody tr').each(function() {
-                if ($(this).find('.form-check-input').is(':checked')) {
-                    $(this).find('.form-check-input').prop('checked', false);
-                    $('#right-table tbody').append($(this));
-                }
+            // Handle move to right
+            $('#move-to-right').click(function() {
+                $('#left-table tbody tr').each(function() {
+                    if ($(this).find('.form-check-input').is(':checked')) {
+                        $(this).find('.form-check-input').prop('checked', false);
+                        $('#right-table tbody').append($(this));
+                    }
+                });
+            });
+
+            // Handle move to left
+            $('#move-to-left').click(function() {
+                $('#right-table tbody tr').each(function() {
+                    if ($(this).find('.form-check-input').is(':checked')) {
+                        $(this).find('.form-check-input').prop('checked', false);
+                        $('#left-table tbody').append($(this));
+                    }
+                });
+            });
+
+            // Handle save button
+            $('#save-button').click(function() {
+                var addStudents = [];
+                var removeStudents = [];
+
+                $('.empty-tr').remove();
+                $('#right-table tbody tr').each(function() {
+                    addStudents.push($(this).data('id'));
+                });
+
+                $('#left-table tbody tr').each(function() {
+                    removeStudents.push($(this).data('id'));
+                });
+
+                $('#add-students').val(addStudents.join(','));
+                $('#remove-students').val(removeStudents.join(','));
+
+                $('#save-form').submit();
             });
         });
-
-        // Handle move to left
-        $('#move-to-left').click(function() {
-            $('#right-table tbody tr').each(function() {
-                if ($(this).find('.form-check-input').is(':checked')) {
-                    $(this).find('.form-check-input').prop('checked', false);
-                    $('#left-table tbody').append($(this));
-                }
-            });
-        });
-
-        // Handle save button
-        $('#save-button').click(function() {
-            var addStudents = [];
-            var removeStudents = [];
-
-            $('.empty-tr').remove();
-            $('#right-table tbody tr').each(function() {
-                addStudents.push($(this).data('id'));
-            });
-
-            $('#left-table tbody tr').each(function() {
-                removeStudents.push($(this).data('id'));
-            });
-
-            $('#add-students').val(addStudents.join(','));
-            $('#remove-students').val(removeStudents.join(','));
-
-            $('#save-form').submit();
-            });
-        });
-
     </script>
 
     <script>
