@@ -4,30 +4,35 @@ namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\ClassroomStudentInterface;
 use App\Contracts\Interfaces\ReligionInterface;
+use App\Contracts\Interfaces\StudentInterface;
 use App\Models\ClassroomStudent;
 use App\Http\Requests\StoreClassroomStudentRequest;
 use App\Http\Requests\UpdateClassroomStudentRequest;
 use App\Models\Classroom;
+use Illuminate\Http\Request;
 
 class ClassroomStudentController extends Controller
 {
     private ClassroomStudentInterface $classroomStudent;
+    private StudentInterface $student;
     private ReligionInterface $religion;
 
-    public function __construct(ClassroomStudentInterface $classroomStudent, ReligionInterface $religion)
+    public function __construct(ClassroomStudentInterface $classroomStudent, ReligionInterface $religion, StudentInterface $student)
     {
         $this->classroomStudent = $classroomStudent;
+        $this->student = $student;
         $this->religion = $religion;
     }
 
     /**
      * Display a listing of the resource.
      */
-    public function index(string $classroom)
+    public function index(string $classroom, Request $request)
     {
         $classroomStudents = $this->classroomStudent->whereClassroom($classroom);
         $religions = $this->religion->get();
-        return view('school.new.class.detail', compact('classroomStudents', 'classroom', 'religions'));
+        $students = $this->student->doesntHaveClassroom($request);
+        return view('school.new.class.detail', compact('classroomStudents', 'classroom', 'religions', 'students'));
     }
 
     /**
@@ -92,7 +97,7 @@ class ClassroomStudentController extends Controller
                 ->delete();
         }
 
-        return to_route('class.show', $classroom->id)->with('success', 'Berhasil meyimpan perubahan siswa');
+        return to_route('school.class-student.index', $classroom->id)->with('success', 'Berhasil meyimpan perubahan siswa');
     }
 
     /**

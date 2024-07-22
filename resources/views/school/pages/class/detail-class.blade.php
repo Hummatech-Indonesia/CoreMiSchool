@@ -106,12 +106,12 @@
 </div>
 
 <!-- Hidden fields to store changes -->
-{{-- <form id="save-form" action="{{ route('classroom.update', $classroom->id) }}" method="POST">
+<form id="save-form" action="{{ route('classroom.update', $classroom->id) }}" method="POST">
     @csrf
     @method('PUT')
     <input type="hidden" name="add_students" id="add-students">
     <input type="hidden" name="remove_students" id="remove-students">
-</form> --}}
+</form>
 
 
 <div class="table-responsive rounded-2">
@@ -153,46 +153,46 @@
 @section('script')
     <script>
         $(document).ready(function() {
-    // Handle move to right
-    $('#move-to-right').click(function() {
-        $('#left-table tbody tr').each(function() {
-            if ($(this).find('.form-check-input').is(':checked')) {
-                $(this).find('.form-check-input').prop('checked', false);
-                $('#right-table tbody').append($(this));
-            }
-        });
-    });
-
-    // Handle move to left
-    $('#move-to-left').click(function() {
-        $('#right-table tbody tr').each(function() {
-            if ($(this).find('.form-check-input').is(':checked')) {
-                $(this).find('.form-check-input').prop('checked', false);
-                $('#left-table tbody').append($(this));
-            }
-        });
-    });
-
-    // Handle save button
-    $('#save-button').click(function() {
-        var addStudents = [];
-        var removeStudents = [];
-
-        $('.empty-tr').remove();
-        $('#right-table tbody tr').each(function() {
-            addStudents.push($(this).data('id'));
+        // Handle move to right
+        $('#move-to-right').click(function() {
+            $('#left-table tbody tr').each(function() {
+                if ($(this).find('.form-check-input').is(':checked')) {
+                    $(this).find('.form-check-input').prop('checked', false);
+                    $('#right-table tbody').append($(this));
+                }
+            });
         });
 
-        $('#left-table tbody tr').each(function() {
-            removeStudents.push($(this).data('id'));
+        // Handle move to left
+        $('#move-to-left').click(function() {
+            $('#right-table tbody tr').each(function() {
+                if ($(this).find('.form-check-input').is(':checked')) {
+                    $(this).find('.form-check-input').prop('checked', false);
+                    $('#left-table tbody').append($(this));
+                }
+            });
         });
 
-        $('#add-students').val(addStudents.join(','));
-        $('#remove-students').val(removeStudents.join(','));
+            // Handle save button
+        $('#save-button').click(function() {
+                var addStudents = [];
+                var removeStudents = [];
 
-        $('#save-form').submit();
-    });
-});
+                $('.empty-tr').remove();
+                $('#right-table tbody tr').each(function() {
+                    addStudents.push($(this).data('id'));
+                });
+
+                $('#left-table tbody tr').each(function() {
+                    removeStudents.push($(this).data('id'));
+                });
+
+                $('#add-students').val(addStudents.join(','));
+                $('#remove-students').val(removeStudents.join(','));
+
+                $('#save-form').submit();
+            });
+        });
 
     </script>
 @endsection

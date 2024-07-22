@@ -59,6 +59,8 @@ Route::prefix('school')->name('school.')->group(function() {
     Route::resource('level-class', LevelClassController::class);
     Route::get('class-detail/{classroom}', [ClassroomStudentController::class, 'index'])->name('class-student.index');
 
+    Route::put('update-classroom/{classroom}', [ClassroomStudentController::class, 'update'])->name('student-classroom.update');
+
     Route::patch('school-years/{schoolYear}/active', [SchoolYearController::class, 'setActive'])->name('school-year.setActive');
 });
 
@@ -149,8 +151,6 @@ Route::put('school/update-class/{classroom}', [ClassroomController::class, 'upda
 Route::delete('school/delete-class/{classroom}', [ClassroomController::class, 'destroy'])->name('class.delete');
 // detail kelas
 Route::get('school/{classroom}', [ClassroomController::class, 'show'])->name('class.show');
-
-Route::put('school/{classroom}', [ClassroomStudentController::class, 'update'])->name('classroom.update');
 
 //tes absensi
 Route::post('attendance-create/{school_id}', [AttendanceStudentController::class, 'store'])->name('attendance.store');

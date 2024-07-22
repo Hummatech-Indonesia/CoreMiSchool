@@ -47,17 +47,29 @@
                             </tr>
                         </thead>
                         <tbody>
-
-                            <tr data-id="">
-                                <td>nama user</td>
-                                <td>9738</td>
+                            @forelse ($students as $student)
+                            <tr data-id="{{ $student->id }}">
+                                <td>{{ $student->user->name }}</td>
+                                <td>{{ $student->nisn }}</td>
                                 <td class="d-flex justify-content-center">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox">
                                     </div>
                                 </td>
                             </tr>
-
+                            @empty
+                            <tr class="empty-tr">
+                                <td colspan="3" class="text-center align-middle">
+                                    <div class="d-flex flex-column justify-content-center align-items-center">
+                                        <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt=""
+                                            width="200px">
+                                        <p class="fs-5 text-dark text-center mt-2">
+                                            Siswa belum ditambahkan
+                                        </p>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                     <div class="text-end mt-3 mb-3">
@@ -86,16 +98,29 @@
                             </tr>
                         </thead>
                         <tbody>
-
-                            <tr data-id="">
-                                <td>user name</td>
-                                <td>97398</td>
+                            @forelse ($classroomStudents as $classroomStudent)
+                            <tr data-id="{{ $classroomStudent->student->id }}">
+                                <td>{{ $classroomStudent->student->user->name }}</td>
+                                <td>{{ $classroomStudent->student->nisn }}</td>
                                 <td class="d-flex justify-content-center">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox">
                                     </div>
                                 </td>
                             </tr>
+                            @empty
+                            <tr class="empty-tr">
+                                <td colspan="3" class="text-center align-middle">
+                                    <div class="d-flex flex-column justify-content-center align-items-center">
+                                        <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt=""
+                                            width="200px">
+                                        <p class="fs-5 text-dark text-center mt-2">
+                                            Siswa belum ditambahkan
+                                        </p>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                     <div class="text-end mt-3 mb-3">
@@ -109,7 +134,7 @@
     </div>
 
     <!-- Hidden fields to store changes -->
-    <form id="save-form" action="" method="POST">
+    <form id="save-form" action="{{ route('school.student-classroom.update', ['classroom' => $classroom]) }}" method="POST">
         @csrf
         @method('PUT')
         <input type="hidden" name="add_students" id="add-students">
@@ -230,6 +255,52 @@
 @endsection
 
 @section('script')
+
+    <script>
+        $(document).ready(function() {
+        // Handle move to right
+        $('#move-to-right').click(function() {
+            $('#left-table tbody tr').each(function() {
+                if ($(this).find('.form-check-input').is(':checked')) {
+                    $(this).find('.form-check-input').prop('checked', false);
+                    $('#right-table tbody').append($(this));
+                }
+            });
+        });
+
+        // Handle move to left
+        $('#move-to-left').click(function() {
+            $('#right-table tbody tr').each(function() {
+                if ($(this).find('.form-check-input').is(':checked')) {
+                    $(this).find('.form-check-input').prop('checked', false);
+                    $('#left-table tbody').append($(this));
+                }
+            });
+        });
+
+        // Handle save button
+        $('#save-button').click(function() {
+            var addStudents = [];
+            var removeStudents = [];
+
+            $('.empty-tr').remove();
+            $('#right-table tbody tr').each(function() {
+                addStudents.push($(this).data('id'));
+            });
+
+            $('#left-table tbody tr').each(function() {
+                removeStudents.push($(this).data('id'));
+            });
+
+            $('#add-students').val(addStudents.join(','));
+            $('#remove-students').val(removeStudents.join(','));
+
+            $('#save-form').submit();
+            });
+        });
+
+    </script>
+
     <script>
         $('.btn-edit').click(function() {
             var id = $(this).data('id');
