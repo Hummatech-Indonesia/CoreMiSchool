@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Schools;
 use App\Http\Controllers\Controller;
 use App\Contracts\Interfaces\EmployeeInterface;
 use App\Contracts\Interfaces\ReligionInterface;
+use App\Contracts\Interfaces\TeacherSubjectInterface;
 use App\Contracts\Interfaces\UserInterface;
 use App\Enums\RoleEnum;
 use App\Http\Requests\StoreEmployeeRequest;
@@ -21,13 +22,15 @@ class TeacherController extends Controller
     private EmployeeInterface $employee;
     private TeacherService $service;
     private UserInterface $user;
+    private TeacherSubjectInterface $teacherSubject;
 
-    public function __construct(UserInterface $user, EmployeeInterface $employee, TeacherService $service, ReligionInterface $religion)
+    public function __construct(UserInterface $user, EmployeeInterface $employee, TeacherService $service, ReligionInterface $religion, TeacherSubjectInterface $teacherSubject)
     {
         $this->user = $user;
         $this->employee = $employee;
         $this->service = $service;
         $this->religion = $religion;
+        $this->teacherSubject = $teacherSubject;
     }
 
     /**
@@ -68,8 +71,8 @@ class TeacherController extends Controller
     public function show(string $slug)
     {
         $teacher = $this->employee->showWithSlug($slug);
-
-        return view('school.new.employee.teacher-detail', compact('teacher'));
+        $teacher_subjects = $this->teacherSubject->where($teacher->id);
+        return view('school.new.employee.teacher-detail', compact('teacher', 'teacher_subjects'));
     }
 
     /**

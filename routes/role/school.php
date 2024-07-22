@@ -32,6 +32,7 @@ Route::prefix('school')->name('school.')->group(function() {
 
     // cud and import teacher
     Route::post('teacher', [TeacherController::class, 'store'])->name('teacher.store');
+    Route::get('teacher/{slug}', [TeacherController::class, 'show'])->name('teacher.show');
     Route::put('teacher/{employee}', [TeacherController::class, 'update'])->name('teacher.update');
     Route::delete('teacher/{employee}', [TeacherController::class, 'destroy'])->name('teacher.destroy');
     Route::post('import-teacher/', [TeacherController::class, 'import'])->name('teacher.import');
@@ -169,13 +170,6 @@ Route::post('attendance-test-teacher', [AttendanceMasterController::class, 'chec
 
 
 // route baru
-//pegawai
-Route::get('school/employee', function(){
-    return view('school.new.employee.index');
-})->name('new.employee.index');
-Route::get('new/school/teacher/detail', function(){
-    return view('school.new.employee.teacher-detail');
-})->name('new.teacher.detail.index');
 
 //kelas
 Route::get('new/school/class', function(){

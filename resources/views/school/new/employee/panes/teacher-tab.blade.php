@@ -83,7 +83,7 @@
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
                                         <li>
-                                            <a href="/new/school/teacher/detail" type="button" data-id="1dbf93d1-4e70-37ec-abda-b496e6a3c177"
+                                            <a href="{{ route('school.teacher.show', $teacher->user->slug) }}" type="button"
                                                 class="btn-detail dropdown-item d-flex align-items-center gap-3"><i
                                                     class="fs-4 ti ti-eye"></i>Detail</a>
                                         </li>

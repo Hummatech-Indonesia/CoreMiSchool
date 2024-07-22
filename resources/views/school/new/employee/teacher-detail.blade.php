@@ -4,14 +4,14 @@
         <div class="card-body px-4 py-3">
             <div class="row align-items-center">
                 <div class="col-auto">
-                    <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}" alt="Profile Image"
+                    <img src="{{ asset('storage/'. $teacher->image) }}" alt="Profile Image"
                         class="img-fluid rounded-circle" style="width: 84px; height: 84px;">
                 </div>
                 <div class="col">
-                    <h4 class="fw-semibold mb-2 text-light">Suyadi Oke</h4>
+                    <h4 class="fw-semibold mb-2 text-light">{{ $teacher->user->name }}</h4>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb bg-transparent p-0 m-0">
-                            <li class="breadcrumb-item" aria-current="page">suyadi@gmail.com</li>
+                            <li class="breadcrumb-item" aria-current="page">{{ $teacher->user->email }}</li>
                         </ol>
                     </nav>
                 </div>
@@ -30,55 +30,47 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-4">
-            <div class="card position-relative">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-1">
-                        <h4 class="mb-0">Matematika</h4>
-                    </div>
+        @forelse ($teacher_subjects as $teacher_subject)
+            <div class="col-lg-4">
+                <div class="card position-relative">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                        <h4 class="mb-0">{{ $teacher_subject->subject->name }}</h4>
+                        </div>
 
-                    <div class="align-items-center pt-3">
-                        <h6 class="mb-3">Jenis Pelajaran :</h6>
-                        <span class="mb-1 badge font-medium fs-5 bg-light-primary text-primary">
-                            Umum
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Image Container -->
-                <div class="position-absolute bottom-0 end-0" style="padding: 0px;">
-                    <img src="{{ asset('assets/images/background/buble.png') }}" alt="Description" class="img-fluid"
-                        style="max-width: 100px; height: auto;">
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-4">
-            <div class="card position-relative">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-1">
-                        <h4 class="mb-0">Pendidikan Agama Islam</h4>
-                    </div>
-
-                    <div class="align-items-center pt-3">
-                        <h6 class="mb-3">Jenis Pelajaran :</h6>
-                        <div class="d-flex align-items-center">
-                            <span class="mb-1 badge font-medium fs-5 bg-light-warning text-warning">
-                                Keagamaan
-                            </span>
-                            <span class="mb-1 badge font-medium ms-2 fs-5 bg-light-primary text-primary">
-                                Islam
-                            </span>
+                        <div class="align-items-center pt-3">
+                            <h6 class="mb-3">Jenis Pelajaran :</h6>
+                            @if ($teacher_subject->subject->religion_id != null)
+                                <div class="align-items-center pt-3">
+                                    <h6 class="mb-3">Jenis Pelajaran :</h6>
+                                    <div class="d-flex align-items-center">
+                                        <span class="mb-1 badge font-medium fs-5 bg-light-warning text-warning">
+                                            Keagamaan
+                                        </span>
+                                        <span class="mb-1 badge font-medium ms-2 fs-5 bg-light-primary text-primary">
+                                            {{ $teacher_subject->subject->religion->name }}
+                                        </span>
+                                    </div>
+                                </div>
+                            @else
+                                <span class="mb-1 badge font-medium fs-5 bg-light-primary text-primary">
+                                    Umum
+                                </span>
+                            @endif
                         </div>
                     </div>
-                </div>
 
-                <!-- Image Container -->
-                <div class="position-absolute bottom-0 end-0" style="padding: 0px;">
-                    <img src="{{ asset('assets/images/background/buble.png') }}" alt="Description" class="img-fluid"
-                        style="max-width: 100px; height: auto;">
+                    <!-- Image Container -->
+                    <div class="position-absolute bottom-0 end-0" style="padding: 0px;">
+                        <img src="{{ asset('assets/images/background/buble.png') }}" alt="Description" class="img-fluid"
+                            style="max-width: 100px; height: auto;">
+                    </div>
                 </div>
             </div>
-        </div>
+        @empty
+            <div class="text-center">
+                Kosong
+            </div>
+        @endforelse
     </div>
 @endsection
