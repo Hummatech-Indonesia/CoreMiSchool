@@ -27,7 +27,7 @@
                 <td>istirahat</td>
                 <td>
                     <div class="gap-3">
-                        <button class="btn btn-light-primary text-primary me-2 btn-edit" data-bs-toggle="modal">Edit</button>
+                        <button class="btn btn-light-primary text-primary me-2 btn-edit" data-bs-toggle="modal" data-bs-target="#modal-update">Edit</button>
                         <button class="btn btn-light-danger text-danger btn-delete">Hapus</button>
                     </div>
                 </td>
