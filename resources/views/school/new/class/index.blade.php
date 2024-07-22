@@ -93,6 +93,16 @@
             $('#update-level').modal('show');
         });
 
+        $('.btn-update-classroom').click(function() {
+            var id = $(this).data('id');
+            var name = $(this).data('name');
+            var employee = $(this).data('employee');
+            $('#name-edit').val(name);
+            $('#employee-edit').val(employee).trigger('change');
+            $('#edit-class-form').attr('action', '{{ route('school.classroom.update', '') }}/' + id);
+            $('#update-class').modal('show');
+        });
+
         $('.btn-delete-level').click(function() {
             var id = $(this).data('id');
             $('#form-delete').attr('action', '{{ route('school.level-class.destroy', '') }}/' + id);
