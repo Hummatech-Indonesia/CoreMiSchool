@@ -29,7 +29,7 @@
                                 </div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" data-popper-placement="bottom-end">
-                                <button type="button" data-id="{{ $schoolYear->id }}" data-name="{{ $schoolYear->school_year }}" data-status="{{ $schoolYear->active }}" class="btn-update-year note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3">
+                                <button type="button" data-id="{{ $schoolYear->id }}" data-name="{{ $schoolYear->school_year }}" data-status="{{ $schoolYear->active }}" class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3" data-bs-toggle="modal" data-bs-target="#modal-confirm-active">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"><path fill="currentColor" d="m9.55 18l-5.7-5.7l1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"/></svg>
                                     Aktifkan
                                 </button>

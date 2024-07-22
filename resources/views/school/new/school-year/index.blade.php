@@ -30,7 +30,6 @@
     </li>
     <li class="nav-item">
         <a class="nav-link" id="pills-semesters-tab" data-bs-toggle="pill" href="#pills-semesters" role="tab" aria-controls="pills-semesters" aria-selected="false">
-
             Semester
         </a>
     </li>
@@ -53,6 +52,7 @@
 {{-- modal --}}
 @include('school.new.school-year.widgets.modal-create-school-year')
 @include('school.new.school-year.widgets.modal-update-school-year')
+@include('school.new.school-year.widgets.modal-confirm-active')
 
 <x-delete-modal-component />
 
