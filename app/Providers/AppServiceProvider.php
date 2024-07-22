@@ -23,6 +23,7 @@ use App\Contracts\Interfaces\SchoolYearInterface;
 use App\Contracts\Interfaces\SemesterInterface;
 use App\Contracts\Interfaces\StudentInterface;
 use App\Contracts\Interfaces\SubDistrictInterface;
+use App\Contracts\Interfaces\TeacherSubjectInterface;
 use App\Contracts\Interfaces\UserInterface;
 use App\Contracts\Interfaces\VillageInterface;
 use App\Contracts\Repositories\AttendanceRepository;
@@ -46,6 +47,7 @@ use App\Contracts\Repositories\SchoolYearRepository;
 use App\Contracts\Repositories\SemesterRepository;
 use App\Contracts\Repositories\StudentRepository;
 use App\Contracts\Repositories\SubDistrictRepository;
+use App\Contracts\Repositories\TeacherSubjectRepository;
 use App\Contracts\Repositories\UserRepository;
 use App\Contracts\Repositories\VillageRepository;
 use Illuminate\Support\ServiceProvider;
@@ -75,7 +77,8 @@ class AppServiceProvider extends ServiceProvider
         LevelClassInterface::class => LevelClassRepository::class,
         AttendanceRuleInterface::class => AttendanceRuleRepository::class,
         ModelHasRfidInterface::class => ModelHasRfidRepository::class,
-        ExtracurricularInterface::class => ExtracurricularRepository::class
+        ExtracurricularInterface::class => ExtracurricularRepository::class,
+        TeacherSubjectInterface::class => TeacherSubjectRepository::class,
     ];
 
     /**
