@@ -33,7 +33,7 @@
                     <tr>
                         <th>No</th>
                         <th>Nama Pegawai</th>
-                        <th>Status</th>
+                        <th>Jumlah Mapel</th>
                         <th>Email</th>
                         <th>NIP</th>
                         <th>RFID</th>
@@ -82,13 +82,14 @@
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
                                         <li>
-                                            <button type="button" data-id="1dbf93d1-4e70-37ec-abda-b496e6a3c177"
+                                            <a href="/new/school/teacher/detail" type="button" data-id="1dbf93d1-4e70-37ec-abda-b496e6a3c177"
                                                 class="btn-detail dropdown-item d-flex align-items-center gap-3"><i
-                                                    class="fs-4 ti ti-eye"></i>Detail</button>
+                                                    class="fs-4 ti ti-eye"></i>Detail</a>
                                         </li>
                                         <li>
-                                            <button type="button" class="btn-update dropdown-item d-flex align-items-center gap-3 btn-edit"
+                                            <button type="button" class="dropdown-item d-flex align-items-center gap-3 btn-edit-teacher"
                                                 data-id="{{ $teacher->id }}"
+                                                data-image="{{ asset('storage/'. $teacher->image) }}"
                                                 data-name="{{ $teacher->user->name }}"
                                                 data-nip="{{ $teacher->nip }}"
                                                 data-religionId="{{ $teacher->religion_id }}"

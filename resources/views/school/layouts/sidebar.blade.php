@@ -75,7 +75,7 @@
                     </a>
                 </li> --}}
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('new.class.index') }}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('student.index') }}" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                 <path fill="none" stroke="currentColor" stroke-linecap="round"
@@ -115,7 +115,7 @@
                     <span class="hide-menu">Pengaturan</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('school.school-years.index') }}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('new.school-year.index') }}" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                 viewBox="0 0 24 24">
@@ -144,9 +144,7 @@
                     </a>
                 </li> --}}
                 <li class="sidebar-item">
-                    <a class="sidebar-link
-                        {{ request()->routeIs('class.index') ||
-                        request()->routeIs('class.show') ? 'active' : '' }}" href="/school/class" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('new.class.index') }}" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                 viewBox="0 0 256 256">
@@ -239,7 +237,7 @@
                             </a>
                             <ul aria-expanded="false" class="collapse second-level">
                                 <li class="sidebar-item">
-                                    <a href="{{ route('class-presence-student.index') }}" class="sidebar-link"
+                                    <a href="{{ route('new.class-attendace.index') }}" class="sidebar-link"
                                         style="display: flex; align-items: center; margin-left: 20px;">
                                         <div class="round-16 d-flex align-items-center justify-content-center ms-3">
                                             <i class="ti ti-circle"></i>

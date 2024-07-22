@@ -44,18 +44,18 @@ Route::prefix('school')->group(function () {
     Route::get('', [SchoolDashboardController::class, 'index'])->name('school.index');
 
     // pegawai
-    Route::get('employe', [StaffController::class, 'index'])->name('school.employee.index');
-    Route::post('add-employee', [StaffController::class, 'store'])->name('employe.store');
-    Route::put('update-employee/{employee}', [StaffController::class, 'update'])->name('employe.update');
-    Route::delete('delete-employee/{employee}', [StaffController::class, 'destroy'])->name('employe.delete');
+    // Route::get('employe', [StaffController::class, 'index'])->name('school.employee.index');
+    // Route::post('add-employee', [StaffController::class, 'store'])->name('employe.store');
+    // Route::put('update-employee/{employee}', [StaffController::class, 'update'])->name('employe.update');
+    // Route::delete('delete-employee/{employee}', [StaffController::class, 'destroy'])->name('employe.delete');
     Route::post('import-employee/', [StaffController::class, 'import'])->name('employe.import');
     Route::get('download-template-employee/', [StaffController::class, 'downloadTemplate'])->name('employe.download-template');
 
     // guru
-    Route::get('teacher', [TeacherController::class, 'index'])->name('teacher.index');
-    Route::post('add-teacher', [TeacherController::class, 'store'])->name('teacher.store');
-    Route::put('update-teacher/{employee}', [TeacherController::class, 'update'])->name('teacher.update');
-    Route::delete('delete-teacher/{employee}', [TeacherController::class, 'destroy'])->name('teacher.delete');
+    // Route::get('teacher', [TeacherController::class, 'index'])->name('teacher.index');
+    // Route::post('add-teacher', [TeacherController::class, 'store'])->name('teacher.store');
+    // Route::put('update-teacher/{employee}', [TeacherController::class, 'update'])->name('teacher.update');
+    // Route::delete('delete-teacher/{employee}', [TeacherController::class, 'destroy'])->name('teacher.delete');
 
     Route::get('detail-teacher/{employee}', [TeacherSubjectController::class, 'index'])->name('detail-teacher.index');
     Route::post('add-maple-teacher/{employee}', [TeacherSubjectController::class, 'store'])->name('maple-teacher.store');
@@ -176,12 +176,37 @@ Route::post('attendance-test-teacher', [AttendanceMasterController::class, 'chec
 Route::get('school/employee', function(){
     return view('school.new.employee.index');
 })->name('new.employee.index');
+Route::get('new/school/teacher/detail', function(){
+    return view('school.new.employee.teacher-detail');
+})->name('new.teacher.detail.index');
 
 //kelas
 Route::get('new/school/class', function(){
     return view('school.new.class.index');
 })->name('new.class.index');
+Route::get('new/school/class/detail', function(){
+    return view('school.new.class.detail');
+})->name('new.class.detail.index');
 
+// tahun ajaran
+Route::get('new/school/school-year', function(){
+    return view('school.new.school-year.index');
+})->name('new.school-year.index');
+
+// kehadiran siswa kelas
+Route::get('new/school/attendace-class', function(){
+    return view('school.new.attendace.student.class-attendace');
+})->name('new.class-attendace.index');
+
+// list kehadiran siswa
+Route::get('new/school/attendace-student', function(){
+    return view('school.new.attendace.student.list-attendace-student');
+})->name('new.attendace-student.index');
+
+//mata pelajaran
+Route::get('new/school/subject', function(){
+    return view('school.new.subject.index');
+})->name('new.subject.index');
 
 
 

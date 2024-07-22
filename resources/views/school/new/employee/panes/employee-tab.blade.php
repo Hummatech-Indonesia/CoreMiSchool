@@ -89,9 +89,20 @@
                                         </li>
 
                                         <li>
-                                            <button type="button" data-id="1dbf93d1-4e70-37ec-abda-b496e6a3c177"
-                                                class="btn-update dropdown-item d-flex align-items-center gap-3"
-                                                data-bs-toggle="modal" data-bs-target="#modal-update-employee">
+                                            <button type="button"  class="btn-update dropdown-item d-flex align-items-center gap-3 btn-edit-employee"
+                                                data-id="{{ $staff->id }}"
+                                                data-image="{{ asset('storage/'. $staff->image) }}"
+                                                data-name="{{ $staff->user->name }}"
+                                                data-nip="{{ $staff->nip }}"
+                                                data-religionId="{{ $staff->religion_id }}"
+                                                data-birthDate="{{ $staff->birth_date }}"
+                                                data-birthPlace="{{ $staff->birth_place }}"
+                                                data-gender="{{ $staff->gender->value }}"
+                                                data-nik="{{ $staff->nik }}"
+                                                data-phone="{{ $staff->phone_number }}"
+                                                data-email="{{ $staff->user->email }}"
+                                                data-active="{{ $staff->active }}"
+                                                data-address="{{ $staff->address }}">
                                                 <i class="fs-4 ti ti-edit"></i>Edit
                                             </button>
                                         </li>
