@@ -53,6 +53,7 @@
 
 {{-- modal --}}
 @include('school.new.school-year.widgets.modal-create-school-year')
+@include('school.new.school-year.widgets.modal-update-school-year')
 
 <x-delete-modal-component />
 
@@ -64,10 +65,10 @@
         var id = $(this).data('id');
         var name = $(this).data('name');
         var status = $(this).data('status');
-        $('#name-update').text(name);
-        $('#status-update').text(status);
+        $('#name-update').val(name);
+        $('#status-update').val(status).trigger('change');
         $('#form-update').attr('action', '{{ route('school.school-years.update', '') }}/' + id);
-        $('#modal-update-student').modal('show');
+        $('#modal-update-school-year').modal('show');
     });
 
     $('.btn-delete-year').click(function() {

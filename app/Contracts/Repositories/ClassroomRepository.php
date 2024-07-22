@@ -25,6 +25,11 @@ class ClassroomRepository extends BaseRepository implements ClassroomInterface
         return $this->model->query()->create($data);
     }
 
+    public function insert(array $data): mixed
+    {
+        return $this->model->query()->insert($data);
+    }
+
     public function show(mixed $id): mixed
     {
         return $this->model->query()->findOrFail($id);
