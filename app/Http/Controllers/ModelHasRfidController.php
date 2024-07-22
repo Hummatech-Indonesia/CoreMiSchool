@@ -4,17 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\ModelHasRfid;
 use Illuminate\Http\Request;
+use F9Web\ApiResponseHelpers;
+use App\Helpers\ResponseHelper;
 use Illuminate\Support\Facades\Http;
 use App\Services\ModelHasRfidService;
 use App\Contracts\Interfaces\SchoolInterface;
 use App\Http\Requests\StoreModelHasRfidRequest;
 use App\Http\Requests\UpdateModelHasRfidRequest;
 use App\Contracts\Interfaces\ModelHasRfidInterface;
-// use F9Web\ApiResponseHelpers;
 
 class ModelHasRfidController extends Controller
 {
-    // use ApiResponseHelpers;
+    use ApiResponseHelpers;
     private ModelHasRfidInterface $modelHasRfid;
     private ModelHasRfidService $service;
     private SchoolInterface $school;
@@ -31,7 +32,7 @@ class ModelHasRfidController extends Controller
      */
     public function index(Request $request)
     {
-        $rfids = $this->modelHasRfid->nonActiveRfid($request);
+        $rfids = $this->modelHasRfid->get();
         return view('school.pages.rfid.index', compact('rfids'));
     }
 
@@ -70,12 +71,22 @@ class ModelHasRfidController extends Controller
 
     public function storeMaster(StoreModelHasRfidRequest $request)
     {
-        $exist = $this->service->check($request);
-        if ($exist) {
+        try {
+            $response = Http::get('http://127.0.0.1:8001/api/rfid-check', [
+                'rfid' => $request->rfid
+            ]);
+
+            $data = $response->json();
+            $statusCode = $response->status();
+
+            if ($statusCode >= 400) return redirect()->back()->with('error', $data['error']);
+
+            if ($this->modelHasRfid->where((int)$request->rfid)) return redirect()->back()->with('error', 'RFID telah digunakan');
+
             $this->modelHasRfid->store(['rfid' => $request->rfid, 'model_type' => null, 'model_id' => null]);
-            return redirect()->back()->with('success', 'Berhasil menambahkan master key');
-        } else {
-            return redirect()->back()->with('error', 'Kartu tidak valid');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan pada server');
         }
     }
 
@@ -129,6 +140,6 @@ class ModelHasRfidController extends Controller
     public function getStudents(Request $request)
     {
         $students = $this->modelHasRfid->getByActiveStudent();
-        return ;
+        return;
     }
 }

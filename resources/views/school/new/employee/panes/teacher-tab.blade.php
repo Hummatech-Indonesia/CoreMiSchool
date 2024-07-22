@@ -60,8 +60,13 @@
                             </td>
                             <td>{{ $teacher->user->email }}</td>
                             <td>{{ $teacher->nip }}</td>
-                            <td>-
-                                <button type="button" class="btn btn-rounded btn-warning p-1 ms-2 btn-rfid"  data-bs-toggle="modal" data-bs-target="#rfid-teacher">
+                            <td>{{ $teacher->modelHasRfid ? $teacher->modelHasRfid->rfid : '-' }}
+                                <button type="button" class="btn btn-rounded btn-warning p-1 ms-2 btn-rfid"
+                                data-name="{{ $teacher->user->name }}"
+                                    data-id="{{ $teacher->id }}"
+                                    data-rfid="{{ $teacher->modelHasRfid ? $teacher->modelHasRfid->rfid : 'Kosong' }}"
+                                    data-old-rfid="{{ $teacher->modelHasRfid ? $teacher->modelHasRfid->rfid : 'Kosong' }}"
+                                    data-role="{{ $teacher->user->roles->pluck('name')[0] }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                         viewBox="0 0 24 24">
                                         <path fill="currentColor"

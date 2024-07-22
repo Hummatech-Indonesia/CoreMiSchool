@@ -46,7 +46,11 @@
                     <span class="hide-menu">Master</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->routeIs('school.employees.index' ? 'active' : '') }}" href="{{ route('school.employees.index') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ request()->routeIs('school.employees.index') ||
+                    request()->routeIs('school.teacher.show')
+                        ? 'active'
+                        : '' }}"
+                        href="{{ route('school.employees.index') }}" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 36 36">
                                 <path fill="currentColor"
@@ -58,6 +62,7 @@
                         <span class="hide-menu">Pegawai</span>
                     </a>
                 </li>
+
 
                 {{-- <li class="sidebar-item">
                     <a class="sidebar-link" href="/school/teacher" aria-expanded="false">
@@ -117,8 +122,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('school.school-years.index') }}" aria-expanded="false">
                         <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                viewBox="0 0 24 24">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                 <path fill="none" stroke="currentColor" stroke-linecap="round"
                                     stroke-linejoin="round" stroke-width="1.5"
                                     d="M15 4V2m0 2v2m0-2h-4.5M3 10v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-9zm0 0V6a2 2 0 0 1 2-2h2m0-2v4m14 4V6a2 2 0 0 0-2-2h-.5" />
@@ -146,8 +150,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('school.classroom.index') }}" aria-expanded="false">
                         <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                viewBox="0 0 256 256">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256">
                                 <path fill="currentColor"
                                     d="M232 212h-20V40a20 20 0 0 0-20-20H64a20 20 0 0 0-20 20v172H24a12 12 0 0 0 0 24h208a12 12 0 0 0 0-24M68 44h120v168H68Zm104 88a16 16 0 1 1-16-16a16 16 0 0 1 16 16" />
                             </svg>

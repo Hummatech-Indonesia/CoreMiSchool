@@ -13,9 +13,9 @@ class AttendanceMasterController extends Controller
 {
     private ModelHasRfidInterface $modelHasRfid;
     private AttendanceService $service;
-    private RfidInterface $rfid;
+    private ModelHasRfidInterface $rfid;
 
-    public function __construct(ModelHasRfidInterface $modelHasRfid, AttendanceService $service, RfidInterface $rfid)
+    public function __construct(ModelHasRfidInterface $modelHasRfid, AttendanceService $service, ModelHasRfidInterface $rfid)
     {
         $this->modelHasRfid = $modelHasRfid;
         $this->service = $service;

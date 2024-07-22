@@ -55,13 +55,13 @@
                                 </div>
                             </td>
                             <td>
-                                <span class="badge bg-light-{{ $staff->active == 1 ? 'primary' : 'danger' }} text-{{ $staff->active == 1 ? 'primary' : 'danger' }}">{{ $staff->active == 1 ? 'Aktif' : 'Tidak aktif' }}</span>
+                                <span
+                                    class="badge bg-light-{{ $staff->active == 1 ? 'primary' : 'danger' }} text-{{ $staff->active == 1 ? 'primary' : 'danger' }}">{{ $staff->active == 1 ? 'Aktif' : 'Tidak aktif' }}</span>
                             </td>
                             <td>{{ $staff->user->email }}</td>
                             <td>{{ $staff->nip }}</td>
                             <td>-
-                                <button type="submit" class="btn btn-rounded btn-warning p-1 ms-2 btn-rfid"
-                                    data-bs-toggle="modal" data-bs-target="#modal-rfid">
+                                <button type="submit" class="btn btn-rounded btn-warning p-1 ms-2 btn-rfid">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                         viewBox="0 0 24 24">
                                         <path fill="currentColor"
@@ -83,8 +83,9 @@
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
                                         <li>
-                                            <button type="button" class="dropdown-item d-flex align-items-center gap-3 btn-detail-employee"
-                                                data-image="{{ asset('storage/'. $staff->image) }}"
+                                            <button type="button"
+                                                class="dropdown-item d-flex align-items-center gap-3 btn-detail-employee"
+                                                data-image="{{ asset('storage/' . $staff->image) }}"
                                                 data-name="{{ $staff->user->name }}"
                                                 data-email="{{ $staff->user->email }}"
                                                 data-phone="{{ $staff->phone_number }}"
@@ -97,17 +98,16 @@
                                         </li>
 
                                         <li>
-                                            <button type="button"  class="btn-update dropdown-item d-flex align-items-center gap-3 btn-edit-employee"
+                                            <button type="button"
+                                                class="btn-update dropdown-item d-flex align-items-center gap-3 btn-edit-employee"
                                                 data-id="{{ $staff->id }}"
-                                                data-image="{{ asset('storage/'. $staff->image) }}"
-                                                data-name="{{ $staff->user->name }}"
-                                                data-nip="{{ $staff->nip }}"
+                                                data-image="{{ asset('storage/' . $staff->image) }}"
+                                                data-name="{{ $staff->user->name }}" data-nip="{{ $staff->nip }}"
                                                 data-religionId="{{ $staff->religion_id }}"
                                                 data-birthDate="{{ $staff->birth_date }}"
                                                 data-birthPlace="{{ $staff->birth_place }}"
                                                 data-gender="{{ $staff->gender->value }}"
-                                                data-nik="{{ $staff->nik }}"
-                                                data-phone="{{ $staff->phone_number }}"
+                                                data-nik="{{ $staff->nik }}" data-phone="{{ $staff->phone_number }}"
                                                 data-email="{{ $staff->user->email }}"
                                                 data-active="{{ $staff->active }}"
                                                 data-address="{{ $staff->address }}">
@@ -115,7 +115,9 @@
                                             </button>
                                         </li>
                                         <li>
-                                            <button class="btn-delete dropdown-item d-flex align-items-center gap-3 text-danger btn-delete-staff" data-id="{{ $staff->id }}">
+                                            <button
+                                                class="btn-delete dropdown-item d-flex align-items-center gap-3 text-danger btn-delete-staff"
+                                                data-id="{{ $staff->id }}">
                                                 <i class="fs-4 ti ti-trash"></i>Delete
                                             </button>
                                         </li>
