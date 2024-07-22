@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col-lg-6 mb-3">
                             <label for="">Jam Mulai<span class="text-danger">*</span></label>
-                            <input type="time" name="start" class="form-control @error('end') is-invalid @enderror" value="{{ $lastHour->end }}">
+                            <input type="time" name="start" class="form-control @error('end') is-invalid @enderror" value="">
                             @error('start')
                             <div class="invalid-feedback">
                                 <small>{{ $message }}</small>
@@ -21,7 +21,7 @@
                         {{-- @dd(Carbon\Carbon::create($lastHour->start)->addMinute(45)->format('H:i')) --}}
                         <div class="col-lg-6 mb-3">
                             <label for="">Jam Berakhir<span class="text-danger">*</span></label>
-                            <input type="time" name="end" value="{{ Carbon\Carbon::create($lastHour->start)->addMinutes(45 * 2)->format('H:i') }}" class="form-control @error('end') is-invalid @enderror">
+                            <input type="time" name="end" value="" class="form-control @error('end') is-invalid @enderror">
                             @error('end')
                             <div class="invalid-feedback">
                                 <small>{{ $message }}</small>
