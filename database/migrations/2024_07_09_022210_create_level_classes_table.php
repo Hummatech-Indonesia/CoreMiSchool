@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    use HasForeign;
-
     /**
      * Run the migrations.
      */
@@ -16,7 +14,6 @@ return new class extends Migration
     {
         Schema::create('level_classes', function (Blueprint $table) {
             $table->id();
-            $this->addForeignId($table, 'school_id');
             $table->string('name');
             $table->timestamps();
         });

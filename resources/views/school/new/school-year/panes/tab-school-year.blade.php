@@ -11,12 +11,12 @@
 @endsection
 
 <div class="row">
-    @forelse (range(1,5) as $item)
+    @forelse ($schoolYears as $schoolYear)
     <div class="col-lg-4 col-md-12">
         <div class="card position-relative">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
-                    <h5>Sepak Bola</h5>
+                    <h5>Tahun Ajaran</h5>
                     <div class="btn-group">
                         <a class="nav-link label-group p-0" data-bs-toggle="dropdown"
                             href="#" role="button" aria-haspopup="true" aria-expanded="true">
@@ -28,14 +28,12 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right"
                             data-popper-placement="bottom-end">
-                            <button type="button"
-                                class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-edit gap-3">
+                            <button type="button" data-status="{{ $schoolYear->active }}" data-id="{{ $schoolYear->id }}" data-name="{{ $schoolYear->school_year }}" class="btn-update-year note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3">
                                 <i class="fs-4 ti ti-edit"></i>
                                 Edit
                             </button>
 
-                            <button
-                                class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-delete gap-3"
+                            <button data-id="{{ $schoolYear->id }}" class="btn-delete-year note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3"
                                 data-id="">
                                 <i class="fs-4 ti ti-trash"></i>
                                 Hapus
@@ -44,7 +42,7 @@
                     </div>
                 </div>
                 <div class="mt-4">
-                    <span class="badge bg-light-primary fs-5 fw-semibold text-primary">2023/2024</span>
+                    <span class="badge bg-light-primary fs-5 fw-semibold text-primary">{{ $schoolYear->school_year }}</span>
                 </div>
             </div>
             <div class="position-absolute bottom-0 end-0" style="padding: 0px;">
@@ -53,7 +51,7 @@
         </div>
     </div>
     @empty
-        
+
     @endforelse
 
 </div>

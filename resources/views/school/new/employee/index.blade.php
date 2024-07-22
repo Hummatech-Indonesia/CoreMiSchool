@@ -90,9 +90,28 @@
     @include('school.new.employee.widgets.employe.import-employe')
     @include('school.new.employee.widgets.employe.add-employe')
     @include('school.new.employee.widgets.teacher.add-teacher')
+    <x-delete-modal-component />
 @endsection
 
 @section('script')
+    {{-- handle delete teacher --}}
+    <script>
+        $('.btn-delete-teacher').on('click', function() {
+            var id = $(this).data('id');
+            $('#form-delete').attr('action', '/school/teacher/' + id);
+            $('#modal-delete').modal('show');
+        });
+    </script>
+
+    {{-- handle delete staff --}}
+    <script>
+        $('.btn-delete-staff').on('click', function() {
+            var id = $(this).data('id');
+            $('#form-delete').attr('action', '/school/staff/' + id);
+            $('#modal-delete').modal('show');
+        });
+    </script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var tabs = document.querySelectorAll('#nav-tab a[data-bs-toggle="pill"]');

@@ -56,8 +56,6 @@ class TeacherService
     public function update(Employee $employee, UpdateEmployeeRequest $request): array|bool
     {
         $data = $request->validated();
-        $rules = $this->user->showEmail($data['email']);
-        if($rules) return redirect()->back()->with('warning', 'Data guru sudah tersedia');
 
         $dataUser = [
             'name' => $data['name'],

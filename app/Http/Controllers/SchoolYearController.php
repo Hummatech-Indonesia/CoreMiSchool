@@ -28,8 +28,8 @@ class SchoolYearController extends Controller
      */
     public function index(Request $request)
     {
-        $schoolYears = $this->schoolYear->whereSchool(auth()->user()->school->id, $request);
-        return view('school.pages.school-year.index', compact('schoolYears'));
+        $schoolYears = $this->schoolYear->search($request);
+        return view('school.new.school-year.index', compact('schoolYears'));
     }
 
     /**
@@ -45,7 +45,7 @@ class SchoolYearController extends Controller
      */
     public function store(StoreSchoolYearRequest $request)
     {
-        $this->schoolYear->store($request->validate());
+        $this->schoolYear->store($request->validated());
         return redirect()->back()->with('success', 'Berhasil menambahkan tahun ajaran');
     }
 

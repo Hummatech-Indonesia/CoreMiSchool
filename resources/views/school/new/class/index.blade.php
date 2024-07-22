@@ -75,10 +75,31 @@
     </div>
 
     @include('school.new.class.widgets.class.create-class')
-    @include('school.new.class.widgets.class-level.create-level')
-@endsection
+    @include('school.new.class.widgets.class-level.update-level')
 
+    @include('school.new.class.widgets.class-level.create-level')
+
+    <x-delete-modal-component />
+
+@endsection
 @section('script')
+    <script>
+        $('.btn-update-level').click(function() {
+            var id = $(this).data('id');
+            var name = $(this).data('name');
+            $('#name-edit').val(name);
+            $('#form-update-level').attr('action', '{{ route('school.level-class.update', '') }}/' + id);
+            $('#update-level').modal('show');
+        });
+
+        $('.btn-delete-level').click(function() {
+            var id = $(this).data('id');
+            $('#form-delete').attr('action', '{{ route('school.level-class.destroy', '') }}/' + id);
+            $('#modal-delete').modal('show');
+        });
+
+    </script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const tabs = document.querySelectorAll('#nav-tab a[data-bs-toggle="pill"]');

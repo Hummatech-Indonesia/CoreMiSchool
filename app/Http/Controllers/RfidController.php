@@ -52,6 +52,7 @@ class RfidController extends Controller
 
             if ($statusCode >= 400) return redirect()->back()->with('error', $data['error']);
             $this->rfid->store($request->validated());
+            
             return redirect()->back()->with('success', 'Berhasil mendaftarkan MasterKey');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Terjadi kesalahan pada server');

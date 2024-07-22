@@ -14,8 +14,7 @@
             </select>
         </form>
         <div class="text-end d-flex ">
-            <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#tambahPelajaranModal">Tambah Pelajaran</button>
-            <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#tambahPelajaranKeagamaanModal">Tambah Pelajaran Keagamaan</button>
+            <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#create">Tambah Pelajaran</button>
         </div>
     </div>
 

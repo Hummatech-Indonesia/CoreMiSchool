@@ -7,20 +7,22 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
-                <div class="modal-body">
-                    <form>
+                <form action="{{ route('school.level-class.store') }}" method="POST" enctype="multipart/form-data">
+                    @method('post')
+                    @csrf
+                    <div class="modal-body">
                         <div class="form-group">
                             <label for="" class="mb-3">Nama Tingkatan Kelas</label>
-                            <input type="text" class="form-control" placeholder="Masukkan nama tingkatan kelas">
+                            <input type="text" class="form-control" name="name" placeholder="Masukkan nama tingkatan kelas">
                         </div>
-                    </form>
-                </div>
+                    </div>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn mb-1 waves-effect waves-light btn-light"
+                    <div class="modal-footer">
+                        <button type="button" class="btn mb-1 waves-effect waves-light btn-light"
                         data-bs-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
-                </div>
+                        <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

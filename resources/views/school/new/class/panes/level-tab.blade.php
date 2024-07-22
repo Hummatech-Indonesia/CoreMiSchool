@@ -7,13 +7,12 @@
 </div>
 
 <div class="row">
-    @foreach (range(1, 3) as $item)
+    @forelse ($levelClasses as $levelClass)
         <div class="col-lg-4">
             <div class="card position-relative">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-1">
                         <h2 class="fs-4 mb-0">Tingkatan Kelas</h2>
-                        {{-- <span class="fs-2">2023/2024</span> --}}
                         <div class="btn-group">
                             <a class="nav-link label-group p-0" data-bs-toggle="dropdown"
                                 href="#" role="button" aria-haspopup="true" aria-expanded="true">
@@ -25,15 +24,13 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right"
                                 data-popper-placement="bottom-end">
-                                <button type="button"
-                                    class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-edit gap-3">
+                                <button type="button" data-id="{{ $levelClass->id }}" data-name="{{ $levelClass->name }}" class="btn-update-level note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3">
                                     <i class="fs-4 ti ti-edit"></i>
                                     Edit
                                 </button>
 
-                                <button
-                                    class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-delete gap-3"
-                                    data-id="">
+                                <button class="btn-delete-level note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center gap-3"
+                                    data-id="{{ $levelClass->id }}">
                                     <i class="fs-4 ti ti-trash"></i>
                                     Hapus
                                 </button>
@@ -43,7 +40,7 @@
 
                     <div class="d-flex align-items-center pt-3">
                         <span class="mb-1 badge font-medium fs-5 bg-light-primary text-primary">
-                            Kelas 10
+                            {{ $levelClass->name }}
                         </span>
                     </div>
                 </div>
@@ -55,7 +52,8 @@
                 </div>
             </div>
         </div>
-    @endforeach
+    @empty
+    @endforelse
 </div>
 
-@include('school.new.class.widgets.class-level.update-level')
+

@@ -22,22 +22,26 @@ use App\Http\Controllers\Schools\TeacherController;
 use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\SubjectController;
-use App\Http\Controllers\TeacherMapleController;
 use App\Http\Controllers\TeacherSubjectController;
-use Illuminate\Database\Query\IndexHint;
 use Illuminate\Support\Facades\Route;
 
 
 
 Route::prefix('school')->name('school.')->group(function() {
     Route::resource('employees', EmployeeController::class);
-    Route::resource('teacher', TeacherController::class);
-    Route::resource('staff', StaffController::class);
+    Route::post('teacher', [TeacherController::class, 'store'])->name('teacher.store');
+    Route::put('teacher/{employee}', [TeacherController::class, 'update'])->name('teacher.update');
+    Route::delete('teacher/{employee}', [TeacherController::class, 'destroy'])->name('teacher.destroy');
+    Route::post('staff', [StaffController::class, 'store'])->name('staff.store');
+    Route::put('staff/{employee}', [StaffController::class, 'update'])->name('staff.update');
+    Route::delete('staff/{employee}', [StaffController::class, 'destroy'])->name('staff.destroy');
     Route::resource('students', StudentController::class);
     Route::resource('subject', SubjectController::class);
     Route::resource('school-years', SchoolYearController::class);
     Route::resource('lesson-hours', LessonHourController::class);
     Route::resource('extracurricular', ExtracurricularController::class);
+    Route::resource('class', ClassroomController::class);
+    Route::resource('level-class', LevelClassController::class);
 });
 
 Route::prefix('school')->group(function () {
@@ -91,7 +95,6 @@ Route::prefix('school')->group(function () {
     Route::get('alumni/{classroom}', [ClassroomController::class, 'studentAlumni'])->name('alumni.index');
 
     //kelas
-    Route::get('class', [ClassroomController::class, 'index'])->name('class.index');
     Route::post('add-class', [ClassroomController::class, 'store'])->name('class.store');
     Route::put('update-class/{classroom}', [ClassroomController::class, 'update'])->name('class.update');
     Route::delete('delete-class/{classroom}', [ClassroomController::class, 'destroy'])->name('class.delete');
@@ -137,7 +140,6 @@ Route::prefix('school')->group(function () {
 
 
 //kelas
-Route::get('school/class', [ClassroomController::class, 'index'])->name('class.index');
 Route::post('school/add-class', [ClassroomController::class, 'store'])->name('class.store');
 Route::put('school/update-class/{classroom}', [ClassroomController::class, 'update'])->name('class.update');
 Route::delete('school/delete-class/{classroom}', [ClassroomController::class, 'destroy'])->name('class.delete');
@@ -184,6 +186,7 @@ Route::get('new/school/teacher/detail', function(){
 Route::get('new/school/class', function(){
     return view('school.new.class.index');
 })->name('new.class.index');
+
 Route::get('new/school/class/detail', function(){
     return view('school.new.class.detail');
 })->name('new.class.detail.index');
