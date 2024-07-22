@@ -67,8 +67,7 @@ class LevelClassController extends Controller
      */
     public function update(UpdateLevelClassRequest $request, LevelClass $levelClass)
     {
-        $data = $this->service->update($levelClass, $request);
-        $this->levelClass->update($levelClass->id, $data);
+        $this->levelClass->update($levelClass->id, $request->validated());
         return redirect()->back()->with('success', 'Berhasil mengperbarui tingkatan kelas');
     }
 
