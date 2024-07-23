@@ -46,10 +46,7 @@
                     <span class="hide-menu">Master</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->routeIs('school.employees.index') ||
-                    request()->routeIs('school.teacher.show')
-                        ? 'active'
-                        : '' }}"
+                    <a class="sidebar-link {{ request()->routeIs('school.employees.index') || request()->routeIs('school.teacher.show') ? 'active' : '' }}"
                         href="{{ route('school.employees.index') }}" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 36 36">
@@ -148,7 +145,7 @@
                     </a>
                 </li> --}}
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('school.classroom.index') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ request()->routeIs('school.classroom.index') || request()->routeIs('school.class.show') ? 'active' : '' }}" href="{{ route('school.classroom.index') }}" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256">
                                 <path fill="currentColor"
@@ -249,7 +246,7 @@
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
-                                    <a href="{{ route('school.teacher-attendance.index') }}" class="sidebar-link"   
+                                    <a href="{{ route('school.teacher-attendance.index') }}" class="sidebar-link"
                                         style="display: flex; align-items: center; margin-left: 20px;">
                                         <div class="round-16 d-flex align-items-center justify-content-center ms-3">
                                             <i class="ti ti-circle"></i>
@@ -271,7 +268,7 @@
 
                     </ul>
                 </li>
-                <li class="sidebar-item">
+                {{-- <li class="sidebar-item">
                     <a class="sidebar-link" href="/attendance-test" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -296,7 +293,7 @@
                         </span>
                         <span class="hide-menu">Test Absensi Guru</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="sidebar-item">
                     <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
                         <span class="d-flex">
