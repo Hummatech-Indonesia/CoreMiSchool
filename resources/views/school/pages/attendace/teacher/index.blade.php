@@ -12,22 +12,21 @@
                 </div>
 
                 <div class="d-flex gap-2">
-                    <select name="" class="form-select" id="search-status">
-                        <option value="">Tahun Ajaran</option>
-                        <option value="">2023/2024</option>
-                    </select>
-
                     <form class="mt-4">
                         <div class="form-group">
-                            <input type="date" class="form-control" value="2018-05-13">
+                            <input type="date" name="date" class="form-control" value="{{ request('date') }}">
                         </div>
                     </form>
+
+                    <div>
+                        <button type="submit" class="btn btn-primary btn-md">Filter</button>
+                    </div>
                 </div>
             </form>
         </div>
         <div class="col-lg-6 mb-3">
             <div class="d-flex gap-2 justify-content-end">
-                <a href="{{ route('presence-teacher.export-preview') }}" type="button" class="btn mb-1 btn-success">
+                <a href="{{ route('school.teacher-attendance.export') }}" type="button" class="btn mb-1 btn-success">
                     Export
                 </a>
             </div>
@@ -63,13 +62,23 @@
                         </td>
                     </tr>
                 @empty
+                <tr>
+                    <td colspan="7" class="text-center align-middle">
+                        <div class="d-flex flex-column justify-content-center align-items-center">
+                            <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt="" width="300px">
+                            <p class="fs-5 text-dark text-center mt-2">
+                                Siswa belum ditambahkan
+                            </p>
+                        </div>
+                    </td>
+                </tr>
                 @endforelse
             </tbody>
         </table>
     </div>
-    <div class="pagination justify-content-end mb-0">
+    {{-- <div class="pagination justify-content-end mb-0">
         <x-paginate-component :paginator="$attendanceTeachers" />
-    </div>
+    </div> --}}
 
     <!-- modal upload -->
     <div class="modal fade" id="modal-import" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
