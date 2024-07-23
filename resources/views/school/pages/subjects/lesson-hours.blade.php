@@ -92,9 +92,24 @@
 @include('school.pages.subjects.widgets.modal-update-lesson-hours')
 
 <x-delete-modal-component />
+
 @endsection
 @section('script')
+
 <script>
+    $('.btn-create').click(function() {
+        var id = $(this).data('id');
+        var start = $(this).data('start');
+        var day = $(this).data('day');
+        var name = $(this).data('name');
+        var extractedNumber = name.match(/\d+/)[0];
+
+        $('#store-start').val(start);
+        $('#store-name').val(extractedNumber).trigger('change');
+        $('#modal-create').modal('show');
+        $('#form-create').attr('action', `{{ route('school.lesson-hours.store', '') }}/${day}`);
+    })
+
     $('.btn-edit').click(function() {
         var id = $(this).data('id');
         var start = $(this).data('start');
@@ -111,6 +126,7 @@
         $('#modal-update').modal('show');
         $('#form-update').attr('action', `{{ route('school.lesson-hours.update', '') }}/${id}`);
     })
+
     $('.btn-delete').click(function() {
         var id = $(this).data('id');
         $('#modal-delete').modal('show');

@@ -8,10 +8,11 @@ use App\Contracts\Interfaces\Eloquent\PaginateInterface;
 use App\Contracts\Interfaces\Eloquent\ShowInterface;
 use App\Contracts\Interfaces\Eloquent\StoreInterface;
 use App\Contracts\Interfaces\Eloquent\UpdateInterface;
-use Illuminate\Http\Request;
 
 interface LessonHourInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface
 {
-    public function search(Request $request):mixed;
+    public function groupBy($query):mixed;
+    public function groupByLatest($query):mixed;
+    public function whereDay(mixed $day, mixed $name) : mixed;
 
 }
