@@ -13,7 +13,7 @@
         </div>
         <div class="row pb-4 mt-3 mx-3">
             <div class="d-flex align-items-center mb-5">
-                <img class="card-img-top img-responsive me-3" style="max-height:80px; width: auto;" src="{{ asset('admin_assets/dist/images/profile/smkn1kepanjen.png') }}" alt="Card image cap">
+                <img class="card-img-top img-responsive me-3" style="max-height:80px; width: auto;" src="{{ $school->image ? asset('storage/' . $school->image) : asset('assets/images/default-user.jpeg') }}" alt="{{ $school->user->name }}">
                 <div class="d-flex flex-column flex-sm-row justify-content-between w-100 ms-3">
                     <div>
                         <h3 class="mb-1">{{ $school->user->name }}</h3>
@@ -104,7 +104,14 @@
                             <td>{{ $rfid->rfid }}</td>
                         @empty
                         <tr>
-                            <td colspan="4">Belum ada RFID</td>
+                            <td colspan="7" class="text-center align-middle">
+                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                    <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt="" width="300px">
+                                    <p class="fs-5 text-dark text-center mt-2">
+                                        Belum ada data
+                                    </p>
+                                </div>
+                            </td>
                         </tr>
                         @endforelse
                     </tbody>
