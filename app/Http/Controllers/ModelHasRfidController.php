@@ -72,7 +72,7 @@ class ModelHasRfidController extends Controller
     public function storeMaster(StoreModelHasRfidRequest $request)
     {
         try {
-            $response = Http::get('http://127.0.0.1:8001/api/rfid-check', [
+            $response = Http::get(config('api.check_rfid'), [
                 'rfid' => $request->rfid
             ]);
 
