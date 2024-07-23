@@ -69,7 +69,7 @@ class SchoolYearRepository extends BaseRepository implements SchoolYearInterface
 
     public function whereActive(): mixed
     {
-        return $this->model->query()->where('active', true)->get();
+        return $this->model->query()->where('active', true)->first();
     }
 
     // public function setActive(SchoolYear $schoolYear): mixed {
