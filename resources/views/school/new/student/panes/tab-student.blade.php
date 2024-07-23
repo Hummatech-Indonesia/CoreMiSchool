@@ -4,20 +4,21 @@
         <div class="col-lg-8 col-md-12 mb-3">
             <form class="d-flex gap-2">
                 <div class="position-relative">
-                    <input type="text" name="search" class="form-control product-search ps-5" id="input-search" placeholder="Cari..." value="{{ old('name', request('name')) }}">
+                    <input type="text" name="name" class="form-control product-search ps-5" id="input-search" placeholder="Cari..." value="{{ old('name', request('name')) }}">
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                 </div>
                 <div class="d-flex gap-2">
-                    <select name="gender" class="form-select" id="">
+                    <select name="gender" class="form-select">
                         <option value="">Tampilkan semua</option>
-                        <option value="male">Laki-laki</option>
-                        <option value="famale">Perempuan</option>
+                        <option value="male" {{ request('gender') == 'male' ? 'selected' : '' }}>Laki-laki</option>
+                        <option value="female" {{ request('gender') == 'female' ? 'selected' : '' }}>Perempuan</option>
                     </select>
                     <div>
                         <button type="submit" class="btn btn-primary btn-md">Filter</button>
                     </div>
                 </div>
             </form>
+
         </div>
     </div>
     <div class="table-responsive rounded-2 mb-4">

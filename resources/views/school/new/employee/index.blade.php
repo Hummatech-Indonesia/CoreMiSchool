@@ -25,7 +25,7 @@
         <!-- Navigation Tabs -->
         <ul class="nav nav-pills p-3 mb-3 rounded align-items-center card flex-row flex-wrap" id="nav-tab" role="tablist">
             <li class="nav-item">
-                <a class="nav-link note-link d-flex align-items-center justify-content-center active px-3 text-body-color"
+                <a class="nav-link note-link d-flex align-items-center justify-content-center px-3 text-body-color"
                     id="teacher-tab" data-bs-toggle="pill" href="#teacher-content" role="tab"
                     aria-controls="teacher-content" aria-selected="true">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32"
@@ -74,10 +74,9 @@
             </li>
         </ul>
 
-
         <!-- Tab Content -->
         <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="teacher-content" role="tabpanel" aria-labelledby="teacher-tab">
+            <div class="tab-pane fade" id="teacher-content" role="tabpanel" aria-labelledby="teacher-tab">
                 @include('school.new.employee.panes.teacher-tab')
             </div>
             <div class="tab-pane fade" id="employee-content" role="tabpanel" aria-labelledby="employee-tab">
@@ -85,6 +84,7 @@
             </div>
         </div>
     </div>
+
 
     @include('school.new.employee.widgets.teacher.import-teacher')
     @include('school.new.employee.widgets.employe.import-employe')
@@ -94,6 +94,57 @@
 @endsection
 
 @section('script')
+    <script>
+        $(document).ready(function() {
+            function resetActiveTab() {
+                $('.nav-link').removeClass('active');
+                $('.tab-pane').removeClass('active show');
+            }
+
+            function changeTab() {
+                var hash = window.location.hash;
+                resetActiveTab();
+                var tab = null;
+                switch (hash) {
+                    case '#employee-content':
+                        tab = $('#employee-tab');
+                        break;
+                    case '#teacher-content':
+                        tab = $('#teacher-tab');
+                        break;
+                    default:
+                        tab = $('#teacher-tab');
+                        break;
+                }
+                tab.addClass('active');
+                $(tab.attr('href')).addClass('active show');
+            }
+
+            function storeActiveTab() {
+                var activeTab = $('.nav-link.active').attr('href');
+                localStorage.setItem('activeTab', activeTab);
+            }
+
+            $(window).on('hashchange', function() {
+                changeTab();
+                storeActiveTab();
+            });
+
+            $('.nav-link').on('shown.bs.tab', function() {
+                storeActiveTab();
+            });
+
+            var storedTab = localStorage.getItem('activeTab');
+            if (storedTab) {
+                window.location.hash = storedTab;
+            } else {
+                $('#teacher-tab').addClass('active');
+                $('#teacher-content').addClass('active show');
+            }
+
+            changeTab(); // Initialize the correct tab on page load
+        });
+    </script>
     {{-- handle rfid teacher --}}
     <script>
         $('.btn-rfid').on('click', function() {
@@ -138,7 +189,7 @@
             let rfid = $(this).data('rfid');
             let address = $(this).data('address');
 
-            $('#image-detail').attr('src',   image);
+            $('#image-detail').attr('src', image);
             $('#name-detail').text(name);
             $('#email-detail').text(email);
             $('#phone-detail').text(phone);
