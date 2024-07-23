@@ -37,10 +37,10 @@ class AttendanceController extends Controller
     {
         $activeYear = $this->schoolYear->active();
         $year = $activeYear->school_year;
-        
+
         if ($request->has('year')) {
             $year = $request->year;
-        } 
+        }
         $schoolYear = $this->schoolYear->whereSchoolYear($year);
         $classrooms = $this->classroom->whereSchoolYears($schoolYear->id, $request);
         $schoolYears = $this->schoolYear->get();

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Interfaces\TeacherSubjectInterface;
 use App\Models\TeacherSubject;
 use App\Http\Requests\StoreTeacherSubjectRequest;
 use App\Http\Requests\UpdateTeacherSubjectRequest;
@@ -10,10 +11,12 @@ use App\Services\TeacherSubjectService;
 class TeacherSubjectController extends Controller
 {
     private TeacherSubjectService $service;
+    private TeacherSubjectInterface $teacherSubject;
 
-    public function __construct(TeacherSubjectService $service)
+    public function __construct(TeacherSubjectService $service, TeacherSubjectInterface $teacherSubject)
     {
         $this->service = $service;
+        $this->teacherSubject = $teacherSubject;
     }
 
     /**
@@ -38,7 +41,7 @@ class TeacherSubjectController extends Controller
     public function store(StoreTeacherSubjectRequest $request, string $employee)
     {
         $this->service->store($request, $employee);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Berhail menambahkan mata pelajaran');
     }
 
     /**
@@ -70,6 +73,7 @@ class TeacherSubjectController extends Controller
      */
     public function destroy(TeacherSubject $teacherSubject)
     {
-        //
+        $this->teacherSubject->delete($teacherSubject->id);
+        return redirect()->back()->with('success', 'Berhail menghapus mata pelajaran');
     }
 }

@@ -143,56 +143,82 @@
                 });
 
                 var newRow = `
-            <tr>
-                <td>
-                    <div class="d-flex justify-content-center">
-                        <p>${type.charAt(0).toUpperCase() + type.slice(1)}</p>
-                    </div>
-                </td>
-                <td>${formattedDate}</td>
-            </tr>
-        `;
+                    <tr>
+                        <td>
+                            <div class="d-flex justify-content-center">
+                                <p>${type.charAt(0).toUpperCase() + type.slice(1)}</p>
+                            </div>
+                        </td>
+                        <td>${formattedDate}</td>
+                    </tr>
+                `;
                 $('#tbody').append(newRow);
             }
 
             $('.btn-ganjil').click(function() {
-                $.ajax({
-                    type: "POST",
-                    url: "{{ route('school.semesters.store') }}",
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr("content")
-                    },
-                    data: {
-                        school_id: {{ auth()->user()->school->id }},
-                        type: '{{ SemesterEnum::GANJIL->value }}'
-                    },
-                    success: function(res) {
-                        location.reload()
-                        // appendRow('ganjil', res.created_at);
-                    },
-                    error: function(err) {
-                        console.log(err);
+                Swal.fire({
+                    title: "Apa kamu yakin?",
+                    text: "Mengubah semester ke ganjil?",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya",
+                    cancelButtonText: "Tidak",
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            type: "POST",
+                            url: "{{ route('school.semesters.store') }}",
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr("content")
+                            },
+                            data: {
+                                school_id: {{ auth()->user()->school->id }},
+                                type: '{{ SemesterEnum::GANJIL->value }}'
+                            },
+                            success: function(res) {
+                                location.reload()
+                                // appendRow('ganjil', res.created_at);
+                            },
+                            error: function(err) {
+                                console.log(err);
+                            }
+                        });
                     }
                 });
             });
 
             $('.btn-genap').click(function() {
-                $.ajax({
-                    type: "POST",
-                    url: "{{ route('school.semesters.store') }}",
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr("content")
-                    },
-                    data: {
-                        school_id: {{ auth()->user()->school->id }},
-                        type: '{{ SemesterEnum::GENAP->value }}'
-                    },
-                    success: function(res) {
-                        location.reload()
-                        // appendRow('genap', res.created_at);
-                    },
-                    error: function(err) {
-                        console.log(err);
+                Swal.fire({
+                    title: "Apa kamu yakin?",
+                    text: "Mengubah semester ke genap?",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya",
+                    cancelButtonText: "Tidak",
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            type: "POST",
+                            url: "{{ route('school.semesters.store') }}",
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr("content")
+                            },
+                            data: {
+                                school_id: {{ auth()->user()->school->id }},
+                                type: '{{ SemesterEnum::GENAP->value }}'
+                            },
+                            success: function(res) {
+                                location.reload()
+                                // appendRow('genap', res.created_at);
+                            },
+                            error: function(err) {
+                                console.log(err);
+                            }
+                        });
                     }
                 });
             });

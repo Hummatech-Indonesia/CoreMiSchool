@@ -41,6 +41,7 @@ Route::prefix('school')->name('school.')->group(function() {
 
     //TeacherSubject
     Route::post('teacher-subject/{employee}', [TeacherSubjectController::class, 'store'])->name('teacher-subject.store');
+    Route::delete('delete-teacher-subject/{teacherSubject}', [TeacherSubjectController::class, 'destroy'])->name('teacher-subject.destroy');
 
     // cud and import staff
     Route::post('staff', [StaffController::class, 'store'])->name('staff.store');

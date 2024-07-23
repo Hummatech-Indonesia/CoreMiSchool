@@ -75,6 +75,7 @@
     </div>
 
     @include('school.new.employee.widgets.teacher.create-subject')
+    <x-delete-modal-component />
 
     <div class="row">
         @forelse ($teacher_subjects as $teacher_subject)
@@ -96,8 +97,7 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
                                     <li>
-                                        <button
-                                            class="btn-delete dropdown-item d-flex align-items-center gap-3 text-danger btn-delete-teacher"
+                                        <button data-id="{{ $teacher_subject->id }}" class="btn-delete dropdown-item d-flex align-items-center gap-3 text-danger"
                                             data-id="">
                                             <i class="fs-4 ti ti-trash"></i>Delete
                                         </button>
@@ -151,6 +151,12 @@
             $('.select2').select2({
                 dropdownParent: $('#subject-teacher')
             });
+        });
+
+        $('.btn-delete').on('click', function() {
+            var id = $(this).data('id');
+            $('#form-delete').attr('action', `{{ route('school.teacher-subject.destroy', '') }}/${id}`);
+            $('#modal-delete').modal('show');
         });
     </script>
 @endsection

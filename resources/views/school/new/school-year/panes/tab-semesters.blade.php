@@ -9,12 +9,12 @@
 
     <ul class="nav nav-pills p-3 mb-3 rounded align-items-center card flex-row" id="pills-tab" role="tablist">
         <li class="nav-item">
-            <button class="nav-link toggle-btn {{ $latestSemester->type == SemesterEnum::GANJIL->value ? 'active' : 'btn-ganjil' }}" id="pills-ganjil-tab" data-bs-toggle="pill" href="#pills-ganjil" role="tab" aria-controls="pills-ganjil" aria-selected="true">
+            <button class="nav-link {{ $latestSemester->type == SemesterEnum::GANJIL->value ? 'active' : 'btn-ganjil' }}">
                 Ganjil
             </button>
         </li>
         <li class="nav-item">
-            <button class="nav-link toggle-btn {{ $latestSemester->type == SemesterEnum::GENAP->value ? 'active' : 'btn-genap' }}" id="pills-genap-tab" data-bs-toggle="pill" href="#pills-genap" role="tab" aria-controls="pills-genap" aria-selected="false">
+            <button class="nav-link {{ $latestSemester->type == SemesterEnum::GENAP->value ? 'active' : 'btn-genap' }}">
                 Genap
             </button>
         </li>
