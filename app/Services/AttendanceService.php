@@ -86,7 +86,7 @@ class AttendanceService
                     'status' => $status,
                 ];
 
-                if (in_array($attendance['id'], $studentAttendance->toArray())) {
+                if (isset($studentAttendance[$attendance['id']])) {
                     $value['classroom_student_id'] = $studentAttendance[$attendance['id']];
                     array_push($students, $value);
                 } else {
@@ -108,7 +108,10 @@ class AttendanceService
                     'status' => $status,
                 ];
 
-                if (in_array($attendance['id'], $studentAttendance->toArray())) {
+                // dd(isset($studentAttendance[$attendance['id']]));
+                // dd($attendance['id'], $studentAttendance->toArray(), in_array($attendance['id'], $studentAttendance->toArray()));
+
+                if (isset($studentAttendance[$attendance['id']])) {
                     $value['classroom_student_id'] = $studentAttendance[$attendance['id']];
                     array_push($students, $value);
                 } else {
@@ -118,7 +121,7 @@ class AttendanceService
             }
         }
 
-        return ['students' => $students,'teachers' => $teachers];
+        return ['students' => $students, 'teachers' => $teachers];
     }
 
     public function storeByStudent($time, $classroom_student_id, $status): array|bool
