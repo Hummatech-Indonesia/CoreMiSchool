@@ -12,12 +12,12 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <div class="form-group d-flex">
-                            <h6 for="" class="mb-2">Nama : </h6>
+                            <h6 class="mb-2">Nama:</h6>
                             <p class="ms-3" id="name"></p>
                         </div>
                         <div class="form-group">
-                            <h6 for="" class="mb-2">RFID : <span id="rfid"></span></h6>
-                            <p>Lakukan tab pada rfid reader untuk menginputkan rfid</p>
+                            <h6 class="mb-2">RFID: <span id="rfid"></span></h6>
+                            <p>Lakukan tab pada RFID reader untuk menginputkan RFID</p>
                             <input type="text" id="rfid-input" name="rfid" class="form-control" placeholder="Masukkan RFID">
                         </div>
                     </div>
