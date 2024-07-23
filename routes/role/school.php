@@ -109,21 +109,10 @@ Route::prefix('school')->group(function () {
 
     Route::get('alumni/{classroom}', [ClassroomController::class, 'studentAlumni'])->name('alumni.index');
 
-    //kelas
-    Route::post('add-class', [ClassroomController::class, 'store'])->name('class.store');
-    Route::put('update-class/{classroom}', [ClassroomController::class, 'update'])->name('class.update');
-    Route::delete('delete-class/{classroom}', [ClassroomController::class, 'destroy'])->name('class.delete');
-
     // detail kelas
     Route::get('detail-class', function () {
         return view('school.pages.class.detail-class');
     })->name('detail-class.index');
-
-    // tingkatan kelas
-    Route::get('class-level', [LevelClassController::class, 'index'])->name('class-level.index');
-    Route::post('add-class-level', [LevelClassController::class, 'store'])->name('class-level.store');
-    Route::put('update-class-level/{levelClass}', [LevelClassController::class, 'update'])->name('class-level.update');
-    Route::delete('delete-class-level/{levelClass}', [LevelClassController::class, 'destroy'])->name('class-level.delete');
 
     // setting informasi
     Route::prefix('information')->group(function(){
@@ -183,36 +172,7 @@ Route::post('attendance-test-teacher', [AttendanceMasterController::class, 'chec
 
 // route baru
 
-//kelas
-Route::get('new/school/class', function(){
-    return view('school.new.class.index');
-})->name('new.class.index');
-
-
 // tahun ajaran
 Route::get('new/school/school-year', function(){
     return view('school.new.school-year.index');
 })->name('new.school-year.index');
-
-//mata pelajaran
-Route::get('new/school/subject', function(){
-    return view('school.new.subject.index');
-})->name('new.subject.index');
-
-
-
-
-
-
-
-
-
-
-// url yang berawalan school/ masukkan pada prefix school
-// Route::prefix('school')->group(function () {
-//     route.....
-// });
-
-//LONTONG YAA 1 BIJI SAJA
-//SAMA JANGAN LUPA MINTA LONTONG
-
