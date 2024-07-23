@@ -42,7 +42,7 @@ class StudentController extends Controller
     public function index(Request $request)
     {
         $students = $this->student->search($request);
-        $alumnus = $this->classroomStudent->getAlumnus();
+        $alumnus = $this->classroomStudent->getAlumnus($request);
         $religions = $this->religion->get();
 
         return view('school.new.student.index', compact('students', 'religions', 'alumnus'));
