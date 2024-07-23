@@ -25,8 +25,9 @@ class LessonHourController extends Controller
      */
     public function index(Request $request)
     {
-        $lessonHours = $this->lessonHour->search($request);
-        return view('school.pages.subjects.lesson-hours', compact('lessonHours'));
+        $lessonHours = $this->lessonHour->groupBy('day');
+        $latestHour = $this->service->get();
+        return view('school.pages.subjects.lesson-hours', compact('lessonHours', 'latestHour'));
     }
 
     /**
@@ -40,9 +41,14 @@ class LessonHourController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreLessonHourRequest $request)
+    public function store(StoreLessonHourRequest $request, string $day)
     {
-        $this->lessonHour->store($request->validated());
+        $data = $this->service->store($request, $day);
+        $rule_end = $data['end'] <= $data['start'];
+        if ($rule_end) return redirect()->back()->with('error', 'Jam selesai tidak boleh lebih kecil dari jam awal');
+        $rule = $this->lessonHour->whereDay($day, $data['name']);
+        if ($rule) return redirect()->back()->with('error', 'Jam pelajaran sudah tersedia');
+        $this->lessonHour->store($data);
         return redirect()->back()->with('success', 'Berhasil menambahkan jam pelajaran');
     }
 
