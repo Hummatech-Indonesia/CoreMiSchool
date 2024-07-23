@@ -4,7 +4,7 @@
         <div class="card-body px-4 py-3">
             <div class="row align-items-center">
                 <div class="col-auto">
-                    <img src="{{ $teacher->image ? asset('storage/' . $teacher->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}"
+                    <img src="{{ $teacher->image ? asset('storage/' . $teacher->image) : asset('assets/images/default-user.jpeg') }}"
                         alt="Profile Image" class="img-fluid rounded-circle" style="width: 84px; height: 84px;">
 
                 </div>
@@ -20,15 +20,30 @@
         </div>
     </div>
 
-    <div class="col-12 col-md-6 col-lg-12 mb-3 me-3 d-flex">
-        <span class="mb-1 badge bg-primary p-1">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                <path fill="currentColor"
-                    d="M12 7q-.825 0-1.412-.587T10 5t.588-1.412T12 3t1.413.588T14 5t-.587 1.413T12 7m0 14q-.625 0-1.062-.437T10.5 19.5v-9q0-.625.438-1.062T12 9t1.063.438t.437 1.062v9q0 .625-.437 1.063T12 21" />
-            </svg>
-        </span>
-        <h4 class="ms-3"> Daftar Mata Pelajaran Guru </h4>
+    <div class="col-12 col-md-6 col-lg-12 mb-3 me-3 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <span class="mb-1 badge bg-primary p-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                    <path fill="currentColor"
+                        d="M12 7q-.825 0-1.412-.587T10 5t.588-1.412T12 3t1.413.588T14 5t-.587 1.413T12 7m0 14q-.625 0-1.062-.437T10.5 19.5v-9q0-.625.438-1.062T12 9t1.063.438t.437 1.062v9q0 .625-.437 1.063T12 21" />
+                </svg>
+            </span>
+            <h4 class="ms-3 mb-0">Daftar Mata Pelajaran Guru</h4>
+        </div>
+        <div class="d-flex gap-2">
+            <a href="/school/employees" type="button" class="btn px-4" style="background-color: #E8E8E8">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M20 11v2H8l5.5 5.5l-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5L8 11z" />
+                </svg>
+                Kembali
+            </a>
+            <button type="button" class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#subject-teacher">
+                Tambah Mapel Guru
+            </button>
+        </div>
     </div>
+
+@include('school.new.employee.widgets.teacher.create-subject')
 
     <div class="row">
         @forelse ($teacher_subjects as $teacher_subject)
