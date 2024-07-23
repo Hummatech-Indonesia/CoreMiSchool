@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Schools;
 use App\Http\Controllers\Controller;
 use App\Contracts\Interfaces\EmployeeInterface;
 use App\Contracts\Interfaces\ReligionInterface;
+use App\Contracts\Interfaces\SubjectInterface;
 use App\Contracts\Interfaces\TeacherSubjectInterface;
 use App\Contracts\Interfaces\UserInterface;
 use App\Enums\RoleEnum;
@@ -23,14 +24,16 @@ class TeacherController extends Controller
     private TeacherService $service;
     private UserInterface $user;
     private TeacherSubjectInterface $teacherSubject;
+    private SubjectInterface $subjects;
 
-    public function __construct(UserInterface $user, EmployeeInterface $employee, TeacherService $service, ReligionInterface $religion, TeacherSubjectInterface $teacherSubject)
+    public function __construct(UserInterface $user, EmployeeInterface $employee, TeacherService $service, ReligionInterface $religion, TeacherSubjectInterface $teacherSubject, SubjectInterface $subjects)
     {
         $this->user = $user;
         $this->employee = $employee;
         $this->service = $service;
         $this->religion = $religion;
         $this->teacherSubject = $teacherSubject;
+        $this->subjects = $subjects;
     }
 
     /**
@@ -72,7 +75,8 @@ class TeacherController extends Controller
     {
         $teacher = $this->employee->showWithSlug($slug);
         $teacher_subjects = $this->teacherSubject->where($teacher->id);
-        return view('school.new.employee.teacher-detail', compact('teacher', 'teacher_subjects'));
+        $subjects = $this->subjects->get();
+        return view('school.new.employee.teacher-detail', compact('teacher', 'teacher_subjects', 'subjects'));
     }
 
     /**
@@ -106,9 +110,9 @@ class TeacherController extends Controller
 
     public function downloadTemplate()
     {
-        $template = public_path('file/new-format-excel-import-teacher.xlsx');
+        $template = public_path('file/excel-format-import-teacher.xlsx');
         // dd($template);
-        return response()->download($template, 'new-format-excel-import-teacher.xlsx');
+        return response()->download($template, 'excel-format-import-teacher.xlsx');
     }
 
     public function import(Request $request)

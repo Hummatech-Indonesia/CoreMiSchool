@@ -12,5 +12,5 @@ use App\Contracts\Interfaces\Eloquent\WhereInterface;
 
 interface TeacherSubjectInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface, WhereInterface
 {
-    //
+    public function insert(array $data): mixed;
 }

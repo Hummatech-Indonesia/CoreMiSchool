@@ -1,4 +1,35 @@
 @extends('school.layouts.app')
+
+@section('style')
+    <style>
+        .select2 {
+            width: 100% !important;
+        }
+
+        .select2-selection__rendered {
+            width: 100%;
+            height: 100px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .select2-selection {
+            height: fit-content !important;
+            color: #555 !important;
+            background-color: #fff !important;
+            background-image: none !important;
+            border: 1px solid #ccc !important;
+            border-radius: 4px !important;
+        }
+    </style>
+@endsection
+
 @section('content')
     <div class="card bg-primary shadow-none position-relative overflow-hidden text-light">
         <div class="card-body px-4 py-3">
@@ -43,7 +74,7 @@
         </div>
     </div>
 
-@include('school.new.employee.widgets.teacher.create-subject')
+    @include('school.new.employee.widgets.teacher.create-subject')
 
     <div class="row">
         @forelse ($teacher_subjects as $teacher_subject)
@@ -53,7 +84,6 @@
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <h4 class="mb-0">{{ $teacher_subject->subject->name }}</h4>
                         </div>
-
                         <div class="align-items-center pt-3">
                             <h6 class="mb-3">Jenis Pelajaran :</h6>
                             @if ($teacher_subject->subject->religion_id != null)
@@ -92,4 +122,15 @@
             </div>
         @endforelse
     </div>
+@endsection
+
+@section('script')
+
+<script>
+     $(document).ready(function() {
+            $('.select2').select2({
+                dropdownParent: $('#subject-teacher')
+            });
+        });
+</script>
 @endsection
