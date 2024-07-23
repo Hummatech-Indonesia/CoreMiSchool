@@ -63,14 +63,14 @@ class AttendanceController extends Controller
 
         $data = $this->service->insert($request->attendances, $rule, $day);
         try {
-            if(!empty($data['students'])) {
+            if (!empty($data['students'])) {
                 $this->attendance->insert($data['students']);
             }
 
-            if(!empty($data['teachers'])) {
+            if (!empty($data['teachers'])) {
                 $this->attendanceTeacher->insert($data['teachers']);
             }
-            return response()->json(['status' => 'sukses', 'pesan' => 'Data kehadiran berhasil dimasukkan'], 200);
+            return response()->json(['status' => 'sukses', 'pesan' => 'Data kehadiran berhasil dimasukkan', 'invalid' => empty($data['invalid']) ? null : $data['invalid']], 200);
         } catch (\Exception $e) {
             // Log::error('AttendanceController: Error inserting attendance data', ['error' => $e->getMessage()]);
             return response()->json(['status' => 'error', 'pesan' => 'Gagal memasukkan data kehadiran', 'error' => $e->getMessage()], 500);
@@ -123,7 +123,7 @@ class AttendanceController extends Controller
 
     public function export_student(Classroom $classroom, Request $request)
     {
-        return Excel::download(new StudentAttendanceExport($classroom->id, $request, $this->attendance), 'Kehadiran-siswa-'.$classroom->name.'.xlsx');
+        return Excel::download(new StudentAttendanceExport($classroom->id, $request, $this->attendance), 'Kehadiran-siswa-' . $classroom->name . '.xlsx');
     }
 
     /**

@@ -77,6 +77,8 @@ class AttendanceService
                 $alreadyAbsentStudent = $currentDayAttendanceStudent->whereNotNull('checkout');
                 $alreadyAbsentTeacher = $currentDayAttendanceTeacher->whereNotNull('checkout');
 
+                array_push($invalidAttendances, ['id' => $attendance['id']]);
+
                 if (!$alreadyAbsentStudent->isEmpty() || !$alreadyAbsentTeacher->isEmpty()) continue;
 
                 $status = $time->greaterThanOrEqualTo($checkoutStart) && $checkinStudent->isEmpty() && $checkinTeacher->isEmpty() ? AttendanceEnum::ALPHA : AttendanceEnum::PRESENT;
@@ -98,6 +100,8 @@ class AttendanceService
             else if ($time->greaterThanOrEqualTo($checkinStart)) {
                 $alreadyAbsentStudent = $currentDayAttendanceStudent->whereNull('checkout');
                 $alreadyAbsentTeacher = $currentDayAttendanceTeacher->whereNull('checkout');
+
+                array_push($invalidAttendances, ['id' => $attendance['id']]);
 
                 if (!$alreadyAbsentStudent->isEmpty() || !$alreadyAbsentTeacher->isEmpty()) continue;
 
@@ -121,7 +125,7 @@ class AttendanceService
             }
         }
 
-        return ['students' => $students, 'teachers' => $teachers];
+        return ['students' => $students, 'teachers' => $teachers, 'invalid' => $invalidAttendances];
     }
 
     public function storeByStudent($time, $classroom_student_id, $status): array|bool
