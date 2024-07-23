@@ -8,7 +8,6 @@ use App\Enums\RoleEnum;
 use App\Models\Employee;
 use App\Models\Religion;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToModel;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 
@@ -24,7 +23,7 @@ class EmployeeImport implements ToModel
             'name' => $row[0] ?? null,
             'email' => $row[1],
             'slug' => Str::slug($row[0]),
-            'password' => Hash::make('password')
+            'password' => $row[6]
         ]);
 
         $user->assignRole(RoleEnum::STAFF->value);
@@ -33,16 +32,15 @@ class EmployeeImport implements ToModel
 
         $data = [
             'nip'        => $row[2],
-            'birth_date' => $birthDate,
             'birth_place' => $row[3],
+            'birth_date' => $birthDate,
             'gender' => $row[5] == 'Laki-laki' ? 'male' : 'female',
             'nik' => $row[6],
-            'phone_number' => $row[8],
+            'phone_number' => $row[7],
+            'religion_id' => Religion::where('name', $row[8])->first()->id,
             'address' => $row[9],
+            'user_id' => $user->id,
             'status' => RoleEnum::STAFF->value,
-            'school_id' => auth_school()->id,
-            'religion_id' => Religion::where('name', $row[7])->first()->id,
-            'user_id' => $user->id
         ];
 
         if (in_array(null, $data)) {

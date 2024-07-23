@@ -28,8 +28,8 @@ return new class extends Migration
             $table->longText('address');
             $table->enum('status', [RoleEnum::ADMIN->value, RoleEnum::TEACHER->value, RoleEnum::STAFF->value]);
             $table->boolean('active')->default(true);
-            $this->addForeignId($table, 'user_id');
             $this->addForeignIdNull($table, 'religion_id');
+            $this->addForeignId($table, 'user_id');
             $table->timestamps();
         });
     }

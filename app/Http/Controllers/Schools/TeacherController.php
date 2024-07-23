@@ -106,9 +106,9 @@ class TeacherController extends Controller
 
     public function downloadTemplateTeacher()
     {
-        $templatee = public_path('file/format-excel-import-teacher.xlsx');
-        // dd($templatee);
-        return response()->download($templatee, 'format-excel-import-guru.xlsx');
+        $template = public_path('file/format-excel-import-teacher.xlsx');
+        // dd($template);
+        return response()->download($template, 'format-excel-import-teacher.xlsx');
     }
 
     public function import(Request $request)
