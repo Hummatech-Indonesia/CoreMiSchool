@@ -77,9 +77,11 @@ class AttendanceService
                 $alreadyAbsentStudent = $currentDayAttendanceStudent->whereNotNull('checkout');
                 $alreadyAbsentTeacher = $currentDayAttendanceTeacher->whereNotNull('checkout');
 
-                array_push($invalidAttendances, ['id' => $attendance['id']]);
 
-                if (!$alreadyAbsentStudent->isEmpty() || !$alreadyAbsentTeacher->isEmpty()) continue;
+                if (!$alreadyAbsentStudent->isEmpty() || !$alreadyAbsentTeacher->isEmpty()) {
+                    array_push($invalidAttendances, ['id' => $attendance['id']]);
+                    continue;
+                }
 
                 $status = $time->greaterThanOrEqualTo($checkoutStart) && $checkinStudent->isEmpty() && $checkinTeacher->isEmpty() ? AttendanceEnum::ALPHA : AttendanceEnum::PRESENT;
 
@@ -101,9 +103,11 @@ class AttendanceService
                 $alreadyAbsentStudent = $currentDayAttendanceStudent->whereNull('checkout');
                 $alreadyAbsentTeacher = $currentDayAttendanceTeacher->whereNull('checkout');
 
-                array_push($invalidAttendances, ['id' => $attendance['id']]);
 
-                if (!$alreadyAbsentStudent->isEmpty() || !$alreadyAbsentTeacher->isEmpty()) continue;
+                if (!$alreadyAbsentStudent->isEmpty() || !$alreadyAbsentTeacher->isEmpty()) {
+                    array_push($invalidAttendances, ['id' => $attendance['id']]);
+                    continue;
+                };
 
                 $status = $time->greaterThan($checkinEnd) ? AttendanceEnum::LATE : AttendanceEnum::PRESENT;
 
