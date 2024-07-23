@@ -123,7 +123,7 @@ class ModelHasRfidController extends Controller
             $this->service->update($request, $role, $id);
             return redirect()->back();
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Terjadi kesalahan pada server');
+            return redirect()->back()->with('error', 'Terjadi kesalahan pada server: ' . $e);
         }
     }
 
