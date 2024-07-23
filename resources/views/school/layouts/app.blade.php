@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="{{ asset('admin_assets/dist/css/style.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
     <link rel="stylesheet" href="{{ asset('admin_assets/dist/libs/select2/dist/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin_assets/dist/libs/sweetalert2/dist/sweetalert2.min.css') }}">
+
     @yield('style')
 
 </head>
