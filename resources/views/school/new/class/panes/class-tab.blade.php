@@ -15,7 +15,7 @@
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <h4 class="mb-2"><b>{{ $classroom->name }}</b></h4>
                             <div class="d-flex align-items-center">
-                                <span class="fs-3">{{ $classroom->schoolYear->school_year }}</span>
+                                <span class="mb-1 badge font-medium bg-light-primary text-primary fs-3">{{ $classroom->schoolYear->school_year }}</span>
                                 <div class="category-selector btn-group">
                                     <a class="nav-link category-dropdown label-group p-0" data-bs-toggle="dropdown"
                                         href="#" role="button" aria-haspopup="true" aria-expanded="true">
