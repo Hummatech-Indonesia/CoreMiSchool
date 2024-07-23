@@ -1,12 +1,12 @@
 <h4 class="mb-3">Jam Pelajaran</h4>
 <div class="table-responsive rounded-2">
-    <table class="table border text-nowrap customize-table mb-0 align-middle text-center">
+    <table class="table border text-nowrap customize-table mb-0 align-middle">
         <thead>
             <tr>
                 <th class="text-white" style="background-color: #5D87FF;">No</th>
                 <th class="text-white" style="background-color: #5D87FF;">Jam</th>
                 <th class="text-white" style="background-color: #5D87FF;">Penempatan</th>
-                <th class="text-white" style="background-color: #5D87FF;">Aksi</th>
+                {{-- <th class="text-white" style="background-color: #5D87FF;">Aksi</th> --}}
             </tr>
         </thead>
         <tbody>
@@ -17,12 +17,12 @@
                         {{ date('H:i', strtotime($lessonHour->start)) }} - {{ date('H:i', strtotime($lessonHour->end)) }}
                     </span></td>
                 <td>{{ $lessonHour->name }}</td>
-                <td>
+                {{-- <td>
                     <div class="gap-3">
                         <button class="btn btn-light-primary text-primary me-2 btn-edit" data-bs-toggle="modal" data-bs-target="#modal-update">Edit</button>
                         <button class="btn btn-light-danger text-danger btn-delete">Hapus</button>
                     </div>
-                </td>
+                </td> --}}
             </tr>
             @empty
             <tr>
@@ -49,7 +49,7 @@
                     </button>
                     </div>
                 </td>
-                <td colspan="2"></td>
+                <td colspan="1"></td>
                 <td>
                     <div class="mb-3">
                         <button data-id="{{ $latestHour[0][0]->id }}" class="btn-delete btn btn-danger btn-sm">
