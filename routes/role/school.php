@@ -15,6 +15,7 @@ use App\Http\Controllers\ModelHasRfidController;
 use App\Http\Controllers\RfidController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SchoolDashboardController;
+use App\Http\Controllers\Schools\AttendanceController as SchoolsAttendanceController;
 use App\Http\Controllers\Schools\EmployeeController;
 use App\Http\Controllers\Schools\StaffController;
 use App\Http\Controllers\Schools\StudentController;
@@ -68,6 +69,16 @@ Route::prefix('school')->name('school.')->group(function() {
         Route::get('/', [SemesterController::class, 'index'])->name('index');
         Route::post('/', [SemesterController::class, 'store'])->name('store');
     });
+
+    // kehadiran siswa
+    Route::get('student-attendance', [SchoolsAttendanceController::class, 'class'])->name('student-attendance.index');
+    Route::get('student-attendance/{classroom}', [SchoolsAttendanceController::class, 'student'])->name('student-attendance.show'); 
+    //export kehadiran siswa
+    Route::get('student-attendance/{classroom}/export', [SchoolsAttendanceController::class, 'export_student'])->name('student-attendance.export'); 
+    // kehadiran guru
+    Route::get('teacher-attendance', [SchoolsAttendanceController::class, 'teacher'])->name('teacher-attendance.index');
+    //export kehadiran guru
+    Route::get('teacher-attendance/export', [SchoolsAttendanceController::class, 'export_teacher'])->name('teacher-attendance.export');
 });
 
 
@@ -94,36 +105,15 @@ Route::prefix('school')->group(function () {
     Route::get('get-clock-settings', [AttendanceRuleController::class, 'index'])->name('clock-settings.get');
     Route::post('add-clock-settings/{day}/{role}', [AttendanceRuleController::class, 'store'])->name('clock-settings.store');
 
-    Route::get('class-presence-student', [AttendanceController::class, 'class'])->name('class-presence-student.index');
-
-    Route::get('presence-student/{classroom}', [AttendanceController::class, 'student'])->name('presence-student.index');
-    Route::get('presence-student/{classroom}/export', [AttendanceController::class, 'studentExportPreview'])->name('presence-student.export-preview');
-    Route::get('presence-student/{classroom}/export/excel', [AttendanceController::class, 'export_student'])->name('presence-student.export');
-
-    Route::get('presence-teacher', [AttendanceController::class, 'teacher'])->name('presence-teacher.index');
-    Route::get('presence-teacher/export', [AttendanceController::class, 'teacherExportPreview'])->name('presence-teacher.export-preview');
-    Route::get('presence-teacher/export/excel', [AttendanceController::class, 'export_teacher'])->name('presence-teacher.export');
-
     //alumni
     Route::get('class-alumni', [ClassroomController::class, 'classroomAlumni'])->name('class-alumni.index');
 
     Route::get('alumni/{classroom}', [ClassroomController::class, 'studentAlumni'])->name('alumni.index');
 
-    //kelas
-    Route::post('add-class', [ClassroomController::class, 'store'])->name('class.store');
-    Route::put('update-class/{classroom}', [ClassroomController::class, 'update'])->name('class.update');
-    Route::delete('delete-class/{classroom}', [ClassroomController::class, 'destroy'])->name('class.delete');
-
     // detail kelas
     Route::get('detail-class', function () {
         return view('school.pages.class.detail-class');
     })->name('detail-class.index');
-
-    // tingkatan kelas
-    Route::get('class-level', [LevelClassController::class, 'index'])->name('class-level.index');
-    Route::post('add-class-level', [LevelClassController::class, 'store'])->name('class-level.store');
-    Route::put('update-class-level/{levelClass}', [LevelClassController::class, 'update'])->name('class-level.update');
-    Route::delete('delete-class-level/{levelClass}', [LevelClassController::class, 'destroy'])->name('class-level.delete');
 
     // setting informasi
     Route::prefix('information')->group(function(){
@@ -183,46 +173,7 @@ Route::post('attendance-test-teacher', [AttendanceMasterController::class, 'chec
 
 // route baru
 
-//kelas
-Route::get('new/school/class', function(){
-    return view('school.new.class.index');
-})->name('new.class.index');
-
-
 // tahun ajaran
 Route::get('new/school/school-year', function(){
     return view('school.new.school-year.index');
 })->name('new.school-year.index');
-
-// kehadiran siswa kelas
-Route::get('new/school/attendace-class', function(){
-    return view('school.new.attendace.student.class-attendace');
-})->name('new.class-attendace.index');
-
-// list kehadiran siswa
-Route::get('new/school/attendace-student', function(){
-    return view('school.new.attendace.student.list-attendace-student');
-})->name('new.attendace-student.index');
-
-//mata pelajaran
-Route::get('new/school/subject', function(){
-    return view('school.new.subject.index');
-})->name('new.subject.index');
-
-
-
-
-
-
-
-
-
-
-// url yang berawalan school/ masukkan pada prefix school
-// Route::prefix('school')->group(function () {
-//     route.....
-// });
-
-//LONTONG YAA 1 BIJI SAJA
-//SAMA JANGAN LUPA MINTA LONTONG
-

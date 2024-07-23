@@ -240,7 +240,7 @@
                             </a>
                             <ul aria-expanded="false" class="collapse second-level">
                                 <li class="sidebar-item">
-                                    <a href="{{ route('new.class-attendace.index') }}" class="sidebar-link"
+                                    <a href="{{ route('school.student-attendance.index') }}" class="sidebar-link"
                                         style="display: flex; align-items: center; margin-left: 20px;">
                                         <div class="round-16 d-flex align-items-center justify-content-center ms-3">
                                             <i class="ti ti-circle"></i>
@@ -249,7 +249,7 @@
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
-                                    <a href="{{ route('presence-teacher.index') }}" class="sidebar-link"
+                                    <a href="{{ route('school.teacher-attendance.index') }}" class="sidebar-link"   
                                         style="display: flex; align-items: center; margin-left: 20px;">
                                         <div class="round-16 d-flex align-items-center justify-content-center ms-3">
                                             <i class="ti ti-circle"></i>
