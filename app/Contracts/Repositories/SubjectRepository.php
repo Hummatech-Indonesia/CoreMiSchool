@@ -54,6 +54,6 @@ class SubjectRepository extends BaseRepository implements SubjectInterface
         ->when($request->name, function ($query) use ($request) {
             $query->where('name', 'LIKE', '%' .  $request->name . '%');
         })
-        ->latest()->paginate(10);
+        ->latest()->paginate(9);
     }
 }
