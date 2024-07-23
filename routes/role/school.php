@@ -54,7 +54,8 @@ Route::prefix('school')->name('school.')->group(function() {
 
     Route::resource('subject', SubjectController::class);
     Route::resource('school-years', SchoolYearController::class);
-    Route::resource('lesson-hours', LessonHourController::class);
+    Route::resource('lesson-hours', LessonHourController::class)->except(['store']);
+    Route::post('lesson-hours/{day}', [LessonHourController::class, 'store'])->name('lesson-hours.store');
     Route::resource('extracurricular', ExtracurricularController::class);
     Route::resource('classroom', ClassroomController::class);
     Route::resource('level-class', LevelClassController::class);
