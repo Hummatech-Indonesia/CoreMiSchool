@@ -83,6 +83,27 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <h4 class="mb-0">{{ $teacher_subject->subject->name }}</h4>
+                            <div class="dropdown dropstart">
+                                <a href="#" class="text-muted" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <div class="category">
+                                        <div class="category-business"></div>
+                                        <div class="category-social"></div>
+                                        <span class="more-options text-dark">
+                                            <i class="ti ti-dots-vertical fs-5"></i>
+                                        </span>
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
+                                    <li>
+                                        <button
+                                            class="btn-delete dropdown-item d-flex align-items-center gap-3 text-danger btn-delete-teacher"
+                                            data-id="">
+                                            <i class="fs-4 ti ti-trash"></i>Delete
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="align-items-center pt-3">
                             <h6 class="mb-3">Jenis Pelajaran :</h6>
@@ -125,12 +146,11 @@
 @endsection
 
 @section('script')
-
-<script>
-     $(document).ready(function() {
+    <script>
+        $(document).ready(function() {
             $('.select2').select2({
                 dropdownParent: $('#subject-teacher')
             });
         });
-</script>
+    </script>
 @endsection
