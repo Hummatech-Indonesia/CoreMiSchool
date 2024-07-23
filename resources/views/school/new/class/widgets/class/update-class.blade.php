@@ -18,7 +18,7 @@
                     <div class="row">
                         <div class="mb-3 col-md-6">
                             <label for="class-teacher" class="form-label">Wali Kelas</label>
-                            <select class="form-control" id="class-teacher" name="employee_id">
+                            <select class="form-control" id="employee-edit" name="employee_id">
                                 <option value="">Pilih wali kelas</option>
                                 @forelse ($teachers as $teacher)
                                     <option value="{{ $teacher->id }}">{{ $teacher->user->name }}</option>
@@ -28,9 +28,12 @@
                         </div>
                         <div class="mb-3 col-md-6">
                             <label for="class-level" class="form-label">Tingkatan Kelas</label>
-                            <select class="form-control" id="class-level" name="class_level_id">
+                            <select class="form-control" id="class-level" name="level_class_id">
                                 <option value="">Pilih tingkatan kelas</option>
-                                {{-- Populate options for class levels here --}}
+                                @forelse ($selectLevel as $level)
+                                    <option value="{{ $level->id }}">{{ $level->name }}</option>
+                                @empty
+                                @endforelse
                             </select>
                         </div>
                     </div>

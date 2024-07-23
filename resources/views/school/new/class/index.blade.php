@@ -54,7 +54,7 @@
                     Tambah Kelas
                 </button>
             </li>
-    
+
             <li class="nav-item d-flex align-items-center ms-auto mt-2 mt-md-0 d-none" id="pegawai-buttons">
                 <button type="button" class="btn btn-primary px-4" data-bs-toggle="modal"
                     data-bs-target="#create-level">
@@ -62,7 +62,7 @@
                 </button>
             </li>
         </ul>
-    
+
         <!-- Tab Content -->
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade" id="teacher-content" role="tabpanel" aria-labelledby="teacher-tab">
@@ -97,8 +97,10 @@
             var id = $(this).data('id');
             var name = $(this).data('name');
             var employee = $(this).data('employee');
+            var level = $(this).data('level');
             $('#name-edit').val(name);
             $('#employee-edit').val(employee).trigger('change');
+            $('#class-level').val(level).trigger('change');
             $('#edit-class-form').attr('action', '{{ route('school.classroom.update', '') }}/' + id);
             $('#update-class').modal('show');
         });

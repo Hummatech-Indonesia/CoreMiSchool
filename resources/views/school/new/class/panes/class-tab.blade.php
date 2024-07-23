@@ -28,7 +28,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right category-menu"
                                     data-popper-placement="bottom-end">
-                                    <button type="button" data-id="{{ $classroom->id }}" data-name="{{ $classroom->name }}" data-employee="{{ $classroom->employee_id }}" class="btn-update-classroom note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-edit">
+                                    <button type="button" data-id="{{ $classroom->id }}" data-name="{{ $classroom->name }}" data-level="{{ $classroom->level_class_id }}" data-employee="{{ $classroom->employee_id }}" class="btn-update-classroom note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-edit">
                                         Edit
                                     </button>
                                     <button
