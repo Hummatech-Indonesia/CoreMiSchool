@@ -64,7 +64,7 @@
                 <td>{{ $attendance->checkin }}</td>
                 <td>{{ $attendance->checkout }}</td>
                 <td>{{ $attendance->point }}</td>
-                <td>{{ $attendance->status->label() }}</td>
+                <td>{{ $attendance->status == 'present' ? 'Masuk' : ($attendance->status == 'sick' ? 'Sakit' : ($attendance->status == 'alpha' ? 'Alpha' : ($attendance->status == 'permit' ? 'Izin' : ($attendance->status == 'late' ? 'Telat' : '')))) }}</td>
                 <td>
                     <button type="button" class="btn mb-1 btn-light-primary text-primary btn-sm px-4 fs-2 font-medium" data-bs-toggle="modal" data-bs-target="#modal-import">
                         Upload
