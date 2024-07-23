@@ -250,6 +250,7 @@
             $('.select2').select2({
                 dropdownParent: $('#modal-create')
             });
+            
             $('.category-dropdown').on('show.bs.dropdown', function() {
                 $(this).closest('.table-responsive').css('overflow', 'visible');
             });

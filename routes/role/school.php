@@ -39,6 +39,9 @@ Route::prefix('school')->name('school.')->group(function() {
     Route::post('import-teacher/', [TeacherController::class, 'import'])->name('teacher.import');
     Route::get('download-template-teacher/', [TeacherController::class, 'downloadTemplate'])->name('teacher.download-template');
 
+    //TeacherSubject
+    Route::post('teacher-subject/{employee}', [TeacherSubjectController::class, 'store'])->name('teacher-subject.store');
+
     // cud and import staff
     Route::post('staff', [StaffController::class, 'store'])->name('staff.store');
     Route::put('staff/{employee}', [StaffController::class, 'update'])->name('staff.update');
@@ -72,9 +75,9 @@ Route::prefix('school')->name('school.')->group(function() {
 
     // kehadiran siswa
     Route::get('student-attendance', [SchoolsAttendanceController::class, 'class'])->name('student-attendance.index');
-    Route::get('student-attendance/{classroom}', [SchoolsAttendanceController::class, 'student'])->name('student-attendance.show'); 
+    Route::get('student-attendance/{classroom}', [SchoolsAttendanceController::class, 'student'])->name('student-attendance.show');
     //export kehadiran siswa
-    Route::get('student-attendance/{classroom}/export', [SchoolsAttendanceController::class, 'export_student'])->name('student-attendance.export'); 
+    Route::get('student-attendance/{classroom}/export', [SchoolsAttendanceController::class, 'export_student'])->name('student-attendance.export');
     // kehadiran guru
     Route::get('teacher-attendance', [SchoolsAttendanceController::class, 'teacher'])->name('teacher-attendance.index');
     //export kehadiran guru

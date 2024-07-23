@@ -46,4 +46,10 @@ class TeacherSubjectRepository extends BaseRepository implements TeacherSubjectI
     {
         return $this->model->query()->where('employee_id', $data)->latest()->paginate(10);
     }
+
+    public function insert(array $data): mixed
+    {
+        return $this->model->query()->insert($data);
+    }
+
 }
