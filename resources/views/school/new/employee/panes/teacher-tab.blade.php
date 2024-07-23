@@ -138,6 +138,3 @@
         </div>
     </div>
 </div>
-
-@include('school.new.employee.widgets.teacher.update-teacher')
-@include('school.new.employee.widgets.teacher.modal-rfid')

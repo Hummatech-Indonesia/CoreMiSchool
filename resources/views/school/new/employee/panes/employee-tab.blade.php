@@ -148,7 +148,3 @@
         </div>
     </div>
 </div>
-
-@include('school.new.employee.widgets.employe.update-employe')
-@include('school.new.employee.widgets.employe.modal-rfid')
-@include('school.new.employee.widgets.employe.modal-detail')

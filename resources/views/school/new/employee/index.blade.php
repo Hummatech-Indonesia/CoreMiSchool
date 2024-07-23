@@ -85,6 +85,12 @@
         </div>
     </div>
 
+    @include('school.new.employee.widgets.employe.update-employe')
+    @include('school.new.employee.widgets.employe.modal-detail')
+    {{-- @include('school.new.employee.widgets.employe.modal-rfid') --}}
+
+    @include('school.new.employee.widgets.teacher.update-teacher')
+    @include('school.new.employee.widgets.teacher.modal-rfid')
 
     @include('school.new.employee.widgets.teacher.import-teacher')
     @include('school.new.employee.widgets.employe.import-employe')
