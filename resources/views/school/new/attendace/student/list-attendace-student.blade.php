@@ -7,7 +7,7 @@
                 <h4 class="fw-semibold mb-8 text-dark">Absensi Kehadiran</h4>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item text-dark fs-3" aria-current="page">XI RPL 1</li>
+                        <li class="breadcrumb-item text-dark fs-3" aria-current="page">{{ $classroom->name }}</li>
                     </ol>
                 </nav>
             </div>
@@ -25,15 +25,8 @@
             </div>
 
             <div class="d-flex gap-2">
-                {{-- <select name="year" class="form-select w-auto" id="search-status" style="width: 150px;">
-                        <option value="">Select Year</option>
-                        @foreach($schoolYears as $year)
-                            <option value="{{ $year->school_year }}">{{ $year->school_year }}</option>
-                @endforeach
-                </select> --}}
-
                 <div class="form-group">
-                    <input type="date" name="created_at" class="form-control" value="{{ request('created_at') }}">
+                    <input type="date" name="date" class="form-control" value="{{ request('date') }}">
                 </div>
                 <button type="submit" class="btn btn-primary">Filter</button>
 
@@ -42,7 +35,7 @@
     </div>
     <div class="col-lg-6 mb-3">
         <div class="d-flex gap-2 justify-content-end">
-            <a href="" type="button" class="btn mb-1 btn-success">
+            <a href="{{ route('school.student-attendance.export', $classroom->id) }}" type="button" class="btn mb-1 btn-success">
                 Export
             </a>
         </div>
@@ -64,14 +57,14 @@
             </tr>
         </thead>
         <tbody>
-            @forelse (range(1,5) as $attendance)
+            @forelse ($attendances as $attendance)
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>suyadi</td>
-                <td>07.00</td>
-                <td>16.00</td>
-                <td>1</td>
-                <td>masuk</td>
+                <td>{{ $attendance->classroomStudent->student->user->name }}</td>
+                <td>{{ $attendance->checkin }}</td>
+                <td>{{ $attendance->checkout }}</td>
+                <td>{{ $attendance->point }}</td>
+                <td>{{ $attendance->status->label() }}</td>
                 <td>
                     <button type="button" class="btn mb-1 btn-light-primary text-primary btn-sm px-4 fs-2 font-medium" data-bs-toggle="modal" data-bs-target="#modal-import">
                         Upload

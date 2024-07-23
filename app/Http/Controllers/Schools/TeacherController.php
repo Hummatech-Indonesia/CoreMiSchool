@@ -104,11 +104,11 @@ class TeacherController extends Controller
         return redirect()->back()->with('success', 'Data guru berhasil dihapus');
     }
 
-    public function downloadTemplateTeacher()
+    public function downloadTemplate()
     {
-        $templatee = public_path('file/format-excel-import-teacher.xlsx');
-        // dd($templatee);
-        return response()->download($templatee, 'format-excel-import-guru.xlsx');
+        $template = public_path('file/new-format-excel-import-teacher.xlsx');
+        // dd($template);
+        return response()->download($template, 'new-format-excel-import-teacher.xlsx');
     }
 
     public function import(Request $request)

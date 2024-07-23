@@ -101,9 +101,9 @@ class StaffController extends Controller
 
     public function downloadTemplate()
     {
-        $template = public_path('file/format-excel-import-staff.xlsx');
+        $template = public_path('file/new-format-excel-import-staff.xlsx');
         // dd($template);
-        return response()->download($template, 'format-excel-import-staff.xlsx');
+        return response()->download($template, 'new-format-excel-import-staff.xlsx');
     }
 
     public function import(Request $request)

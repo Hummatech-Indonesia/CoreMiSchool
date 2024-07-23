@@ -76,8 +76,21 @@ class ClassroomStudentRepository extends BaseRepository implements ClassroomStud
             ->get();
     }
 
-    public function getAlumnus(): mixed
+    public function getAlumnus(Request $request): mixed
     {
-        return $this->model->query()->whereRelation('classroom.schoolYear', 'active', false)->get();
+        return $this->model->query()
+        ->whereRelation('classroom.schoolYear', 'active', false)
+        ->when($request->name, function ($query) use ($request) {
+            $query->whereHas('student.user', function($q) use ($request) {
+                $q->where('name', 'LIKE', '%' .  $request->name . '%');
+            });
+        })
+        ->when($request->gender, function ($query) use ($request) {
+            $query->whereHas('student', function ($q) use ($request) {
+                $q->where('gender', $request->gender);
+            });
+        })
+        ->latest()
+        ->get();
     }
 }
