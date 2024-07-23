@@ -440,13 +440,14 @@
     </script>
 
 
+    {{-- tambah pegawai --}}
     <script>
         $(document).ready(function() {
             // Namespace the script
-            var teacherFormWizard = (function() {
+            var employeeFormWizard = (function() {
                 var currentStep = 0;
-                var steps = $("#form-edit > section");
-                var stepIndicators = $(".wizard-steps li");
+                var steps = $("#add-form > section");
+                var stepIndicators = $(".wizard-steps li"); // If you have step indicators
 
                 function showStep(stepIndex) {
                     steps.hide();
@@ -469,8 +470,9 @@
                     }
                 }
 
-                $(".next-step").click(nextStep);
-                $(".prev-step").click(prevStep);
+                // Ensure that the button selectors match those in your HTML
+                $(document).on('click', '.next-add-step', nextStep);
+                $(document).on('click', '.prev-add-step', prevStep);
 
                 // Initialize
                 showStep(currentStep);
@@ -481,18 +483,21 @@
                 };
             })();
 
-            function previewEmployeeImage(event) {
-                var reader = new FileReader();
-                reader.onload = function() {
-                    var output = document.getElementById('employeeImagePreview');
-                    output.src = reader.result;
-                    output.style.display = 'block';
+            function previewFile() {
+                var file = document.getElementById('imageInput').files[0];
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function(event) {
+                        var output = document.getElementById('previewImg');
+                        output.src = event.target.result;
+                        output.style.display = 'block';
+                    }
+                    reader.readAsDataURL(file);
                 }
-                reader.readAsDataURL(event.target.files[0]);
             }
 
             // Attach the preview function to the file input change event
-            $("#employeeImage").on('change', previewEmployeeImage);
+            $("#imageInput").on('change', previewFile);
         });
     </script>
 @endsection

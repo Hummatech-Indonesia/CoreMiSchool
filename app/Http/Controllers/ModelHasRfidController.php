@@ -72,7 +72,7 @@ class ModelHasRfidController extends Controller
     public function storeMaster(StoreModelHasRfidRequest $request)
     {
         try {
-            $response = Http::get('http://127.0.0.1:8001/api/rfid-check', [
+            $response = Http::get(config('api.check_rfid'), [
                 'rfid' => $request->rfid
             ]);
 
@@ -123,7 +123,7 @@ class ModelHasRfidController extends Controller
             $this->service->update($request, $role, $id);
             return redirect()->back();
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Terjadi kesalahan pada server');
+            return redirect()->back()->with('error', 'Terjadi kesalahan pada server: ' . $e);
         }
     }
 

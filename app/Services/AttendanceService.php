@@ -77,6 +77,8 @@ class AttendanceService
                 $alreadyAbsentStudent = $currentDayAttendanceStudent->whereNotNull('checkout');
                 $alreadyAbsentTeacher = $currentDayAttendanceTeacher->whereNotNull('checkout');
 
+                array_push($invalidAttendances, ['id' => $attendance['id']]);
+
                 if (!$alreadyAbsentStudent->isEmpty() || !$alreadyAbsentTeacher->isEmpty()) continue;
 
                 $status = $time->greaterThanOrEqualTo($checkoutStart) && $checkinStudent->isEmpty() && $checkinTeacher->isEmpty() ? AttendanceEnum::ALPHA : AttendanceEnum::PRESENT;
@@ -86,7 +88,7 @@ class AttendanceService
                     'status' => $status,
                 ];
 
-                if (in_array($attendance['id'], $studentAttendance->toArray())) {
+                if (isset($studentAttendance[$attendance['id']])) {
                     $value['classroom_student_id'] = $studentAttendance[$attendance['id']];
                     array_push($students, $value);
                 } else {
@@ -99,6 +101,8 @@ class AttendanceService
                 $alreadyAbsentStudent = $currentDayAttendanceStudent->whereNull('checkout');
                 $alreadyAbsentTeacher = $currentDayAttendanceTeacher->whereNull('checkout');
 
+                array_push($invalidAttendances, ['id' => $attendance['id']]);
+
                 if (!$alreadyAbsentStudent->isEmpty() || !$alreadyAbsentTeacher->isEmpty()) continue;
 
                 $status = $time->greaterThan($checkinEnd) ? AttendanceEnum::LATE : AttendanceEnum::PRESENT;
@@ -108,7 +112,10 @@ class AttendanceService
                     'status' => $status,
                 ];
 
-                if (in_array($attendance['id'], $studentAttendance->toArray())) {
+                // dd(isset($studentAttendance[$attendance['id']]));
+                // dd($attendance['id'], $studentAttendance->toArray(), in_array($attendance['id'], $studentAttendance->toArray()));
+
+                if (isset($studentAttendance[$attendance['id']])) {
                     $value['classroom_student_id'] = $studentAttendance[$attendance['id']];
                     array_push($students, $value);
                 } else {
@@ -118,7 +125,7 @@ class AttendanceService
             }
         }
 
-        return ['students' => $students,'teachers' => $teachers];
+        return ['students' => $students, 'teachers' => $teachers, 'invalid' => $invalidAttendances];
     }
 
     public function storeByStudent($time, $classroom_student_id, $status): array|bool

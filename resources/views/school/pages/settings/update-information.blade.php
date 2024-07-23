@@ -7,7 +7,7 @@
             <div class="row pb-4 mt-5 mx-3">
                 <h4>Edit Profil Sekolah</h4>
                 <div class="d-flex justify-content-center">
-                    <img id="preview-image" src="{{ asset('storage/'.$school->image) }}" width="180px" alt="Foto Profil Sekolah">
+                    <img id="preview-image" src="{{ $school->image ? asset('storage/' . $school->image) : asset('assets/images/default-user.jpeg') }}" width="180px" alt="Foto Profil Sekolah">
                 </div>
                 <div class="d-flex justify-content-center mt-4">
                     <button type="button" id="change-photo-button" class="btn btn-primary px-4">Ganti Foto</button>
