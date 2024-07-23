@@ -23,9 +23,9 @@
         <!-- Navigation Tabs -->
         <ul class="nav nav-pills p-3 mb-3 rounded align-items-center card flex-row flex-wrap" id="nav-tab" role="tablist">
             <li class="nav-item">
-                <a class="nav-link note-link d-flex align-items-center justify-content-center active px-3 text-body-color"
+                <a class="nav-link note-link d-flex align-items-center justify-content-center px-3 text-body-color"
                     id="teacher-tab" data-bs-toggle="pill" href="#teacher-content" role="tab"
-                    aria-controls="teacher-content" aria-selected="true">
+                    aria-controls="teacher-content">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256"
                         class="me-2">
                         <path fill="currentColor"
@@ -37,7 +37,7 @@
             <li class="nav-item">
                 <a class="nav-link note-link d-flex align-items-center justify-content-center px-3 text-body-color"
                     id="employee-tab" data-bs-toggle="pill" href="#employee-content" role="tab"
-                    aria-controls="employee-content" aria-selected="false">
+                    aria-controls="employee-content">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="me-2">
                         <g fill="none">
                             <path
@@ -54,7 +54,7 @@
                     Tambah Kelas
                 </button>
             </li>
-
+    
             <li class="nav-item d-flex align-items-center ms-auto mt-2 mt-md-0 d-none" id="pegawai-buttons">
                 <button type="button" class="btn btn-primary px-4" data-bs-toggle="modal"
                     data-bs-target="#create-level">
@@ -62,10 +62,10 @@
                 </button>
             </li>
         </ul>
-
+    
         <!-- Tab Content -->
         <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="teacher-content" role="tabpanel" aria-labelledby="teacher-tab">
+            <div class="tab-pane fade" id="teacher-content" role="tabpanel" aria-labelledby="teacher-tab">
                 @include('school.new.class.panes.class-tab')
             </div>
             <div class="tab-pane fade" id="employee-content" role="tabpanel" aria-labelledby="employee-tab">
@@ -137,4 +137,56 @@
             updateButtons();
         });
     </script>
+
+<script>
+    $(document).ready(function() {
+        function resetActiveTab() {
+            $('.nav-link').removeClass('active');
+            $('.tab-pane').removeClass('active show');
+        }
+
+        function changeTab() {
+            var hash = window.location.hash;
+            resetActiveTab();
+            var tab = null;
+            switch (hash) {
+                case '#employee-content':
+                    tab = $('#employee-tab');
+                    break;
+                case '#teacher-content':
+                    tab = $('#teacher-tab');
+                    break;
+                default:
+                    tab = $('#teacher-tab');
+                    break;
+            }
+            tab.addClass('active');
+            $(tab.attr('href')).addClass('active show');
+        }
+
+        function storeActiveTab() {
+            var activeTab = $('.nav-link.active').attr('href');
+            localStorage.setItem('activeTab', activeTab);
+        }
+
+        $(window).on('hashchange', function() {
+            changeTab();
+            storeActiveTab();
+        });
+
+        changeTab(); // Initialize the correct tab on page load
+
+        $('.nav-link').on('shown.bs.tab', function() {
+            storeActiveTab();
+        });
+
+        var storedTab = localStorage.getItem('activeTab');
+        if (storedTab) {
+            window.location.hash = storedTab;
+        } else {
+            $('#teacher-tab').addClass('active');
+            $('#teacher-content').addClass('active show');
+        }
+    });
+</script>
 @endsection

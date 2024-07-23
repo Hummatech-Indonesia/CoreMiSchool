@@ -1,5 +1,5 @@
 <div class="col-12 col-md-6 col-lg-2 mb-3 me-3">
-    <form action="/school/class" class="position-relative">
+    <form class="position-relative">
         <input type="text" class="form-control product-search ps-5" name="name"
             value="{{ old('name', request()->name) }}" id="input-search" placeholder="Cari...">
         <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
@@ -70,5 +70,8 @@
     @endforelse
 </div>
 
+<div class="pagination justify-content-center mb-0">
+    <x-paginate-component :paginator="$classrooms" />
+</div>
 
 
