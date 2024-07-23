@@ -51,17 +51,18 @@ class StudentRepository extends BaseRepository implements StudentInterface
     public function search(Request $request): mixed
     {
         return $this->model->query()
-            ->when($request->search, function ($query) use ($request) {
-                $query->whereHas('user', function($q) use ($request){
-                    $q->where('name', 'LIKE', '%' .  $request->search . '%');
+            ->when($request->name, function ($query) use ($request) {
+                $query->whereHas('user', function($q) use ($request) {
+                    $q->where('name', 'LIKE', '%' .  $request->name . '%');
                 });
             })
             ->when($request->gender, function ($query) use ($request) {
                 $query->where('gender', $request->gender);
             })
             ->latest()
-            ->paginate(1);
+            ->paginate(10);
     }
+
 
     public function doesntHaveClassroom(Request $request): mixed
     {
