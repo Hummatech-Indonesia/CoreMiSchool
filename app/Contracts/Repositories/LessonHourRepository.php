@@ -43,10 +43,26 @@ class LessonHourRepository extends BaseRepository implements LessonHourInterface
         return $this->model->query()->latest()->paginate(10);
     }
 
-    public function search(Request $request):mixed
+    public function groupBy($query):mixed
     {
         return $this->model->query()
             ->get()
-            ->groupBy('day');
+            ->groupBy($query);
+    }
+
+    public function groupByLatest($query):mixed
+    {
+        return $this->model->query()
+            ->where('day',$query)
+            ->latest()
+            ->first();
+    }
+
+    public function whereDay(mixed $day, mixed $name): mixed
+    {
+        return $this->model->query()
+            ->where('day', $day)
+            ->where('name', $name)
+            ->first();
     }
 }

@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'check_rfid' => 'http://127.0.0.1:8001/api/rfid-check',
+    'check_rfid' => 'https://mischool.mijurnal.com/api/rfid-check',
 ];

@@ -7,22 +7,6 @@ use App\Models\LessonHour;
 class LessonHourObserver
 {
     /**
-     * Handle the LessonHour "created" event.
-     */
-    public function creating(LessonHour $lessonHour): void
-    {
-        $lessonHour->name = "Jam ke " . $lessonHour->name;
-    }
-
-    /**
-     * Handle the LessonHour "updated" event.
-     */
-    public function updating(LessonHour $lessonHour): void
-    {
-        $lessonHour->name = "Jam ke " . $lessonHour->name;
-    }
-
-    /**
      * Handle the LessonHour "deleted" event.
      */
     public function deleted(LessonHour $lessonHour): void
