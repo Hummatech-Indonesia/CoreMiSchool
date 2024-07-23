@@ -48,10 +48,11 @@ class ClassroomController extends Controller
     {
         $classrooms = $this->classroom->search($request)->paginate(10);
         $levelClasses = $this->levelClass->search($request);
+        $selectLevel = $this->levelClass->get();
         $teachers = $this->employee->getTeacher();
         $classLevel = $this->levelClass->get();
 
-        return view('school.new.class.index', compact('classrooms', 'levelClasses', 'teachers', 'classLevel'));
+        return view('school.new.class.index', compact('classrooms', 'levelClasses', 'teachers', 'classLevel', 'selectLevel'));
     }
 
     /**
