@@ -36,7 +36,7 @@ Route::prefix('school')->name('school.')->group(function() {
     Route::put('teacher/{employee}', [TeacherController::class, 'update'])->name('teacher.update');
     Route::delete('teacher/{employee}', [TeacherController::class, 'destroy'])->name('teacher.destroy');
     Route::post('import-teacher/', [TeacherController::class, 'import'])->name('teacher.import');
-    Route::get('download-template-teacher/', [TeacherController::class, 'downloadTemplateTeacher'])->name('teacher.download-template');
+    Route::get('download-template-teacher/', [TeacherController::class, 'downloadTemplate'])->name('teacher.download-template');
 
     // cud and import staff
     Route::post('staff', [StaffController::class, 'store'])->name('staff.store');
