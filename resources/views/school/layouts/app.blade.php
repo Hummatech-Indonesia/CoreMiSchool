@@ -99,7 +99,8 @@
 
     <script src="{{ asset('admin_assets/dist/libs/jquery.repeater/jquery.repeater.min.js') }}"></script>
     <script src="{{ asset('admin_assets/dist/js/plugins/repeater-init.js') }}"></script>
-
+    <script src="{{ asset('admin_assets/dist/libs/sweetalert2/dist/sweetalert2.min.js') }}"></script>
+    <script src="{{ asset('admin_assets/dist/js/forms/sweet-alert.init.js') }}"></script>
 
 
     @yield('script')
