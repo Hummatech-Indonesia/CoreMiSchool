@@ -55,6 +55,23 @@ class Kernel extends ConsoleKernel
             Attendance::insert($attendanceData);
         })->dailyAt('01:00');
 
+        $schedule->call(function() {
+            $day = strtolower(now()->format('l'));
+            if(AttendanceRule::where('day', $day)->where('role', RoleEnum::STUDENT->value)->first()->is_holiday) {
+                Attendance::where('model_type', 'App/Models/ClassroomStudent')
+                ->where('status', AttendanceEnum::ALPHA->value)
+                ->where('created_at', now()->format('Y-m-d'))
+                ->delete();
+            }
+
+            if(AttendanceRule::where('day', $day)->where('role', RoleEnum::TEACHER->value)->first()->is_holiday) {
+                Attendance::where('model_type', 'App/Models/Employee')
+                ->where('status', AttendanceEnum::ALPHA->value)
+                ->where('created_at', now()->format('Y-m-d'))
+                ->delete();
+            }
+        })->dailyAt('23:00');
+
         // $schedule->call(function() {
 
         // })->when(function () {
