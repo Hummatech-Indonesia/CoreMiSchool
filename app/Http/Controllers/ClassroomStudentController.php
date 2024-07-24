@@ -27,9 +27,9 @@ class ClassroomStudentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(string $classroom, Request $request)
+    public function index(Classroom $classroom, Request $request)
     {
-        $classroomStudents = $this->classroomStudent->whereClassroom($classroom);
+        $classroomStudents = $this->classroomStudent->whereClassroom($classroom->id);
         $religions = $this->religion->get();
         $students = $this->student->doesntHaveClassroom($request);
         return view('school.new.class.detail', compact('classroomStudents', 'classroom', 'religions', 'students'));
