@@ -1,11 +1,11 @@
-<div class="card w-100 position-relative overflow-hidden">
-    <div class="px-4 py-3">
-        <h5 class="card-title fw-semibold mb-0 lh-sm">Daftar Staff</h5>
+<div class="card card-body">
+    <div class="">
+        <h4>Daftar Staff</h4>
     </div>
-    <div class="container-fluid px-4 py-3">
-        <div class="row gx-3">
-            <div class="col-12 mb-3">
-                <div class="d-flex justify-content-between col-md-5 align-items-center">
+    <div class="">
+        <div class="row">
+            <div class="col-12 mb-3 mt-3">
+                <div class="d-flex justify-content-between col-md-5 mb-3 align-items-center">
                     <form class="d-flex gap-2 align-items-center flex-grow-1">
                         <div class="position-relative flex-grow-1">
                             <input type="text" name="search" class="form-control search-chat py-2 px-4 ps-5"
@@ -26,7 +26,7 @@
     </div>
 
 
-    <div class="card-body p-4">
+    <div class="">
         <div class="table-responsive rounded-2 mb-4">
             <table class="table border text-nowrap customize-table mb-0 align-middle">
                 <thead class="text-dark fs-4">

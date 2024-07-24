@@ -75,7 +75,7 @@
         </ul>
 
         <!-- Tab Content -->
-        <div class="tab-content" id="nav-tabContent">
+        <div class="tab-content mt-4" id="nav-tabContent">
             <div class="tab-pane fade" id="teacher-content" role="tabpanel" aria-labelledby="teacher-tab">
                 @include('school.new.employee.panes.teacher-tab')
             </div>
