@@ -87,7 +87,7 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
     public function classAndDate(mixed $classroom_id, Request $request): mixed
     {
         return $this->model->query()
-        ->where('model', function($query) use ($classroom_id){
+        ->where('model_type', function($query) use ($classroom_id){
             $query->whereRelation('classroom', 'id', $classroom_id);
         })
         ->when($request->date, function ($query) use ($request) {
