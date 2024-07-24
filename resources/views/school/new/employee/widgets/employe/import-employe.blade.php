@@ -34,7 +34,7 @@
                     <div class="mb-3">
                         <label for="" class="form-label">File Excel</label>
                         <input type="file" class="form-control" name="file">
-                        @error('')
+                        @error('file')
                         <span class="invalid-feedback" role="alert" style="color: red;">
                             <strong>{{ $message }}</strong>
                         </span>
