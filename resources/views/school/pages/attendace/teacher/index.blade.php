@@ -12,11 +12,11 @@
                 </div>
 
                 <div class="d-flex gap-2">
-                    <form class="mt-4">
+                    {{-- <form class="mt-4"> --}}
                         <div class="form-group">
                             <input type="date" name="date" class="form-control" value="{{ request('date') }}">
                         </div>
-                    </form>
+                    {{-- </form> --}}
 
                     <div>
                         <button type="submit" class="btn btn-primary btn-md">Filter</button>
@@ -50,7 +50,7 @@
                 @forelse ($attendanceTeachers as $attendance)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $attendance->employee->user->name }}</td>
+                        <td>{{ $attendance->model->user->name }}</td>
                         <td>{{ $attendance->checkin }}</td>
                         <td>{{ $attendance->checkout }}</td>
                         <td>{{ $attendance->status == 'present' ? 'Masuk' : ($attendance->status == 'sick' ? 'Sakit' : ($attendance->status == 'alpha' ? 'Alpha' : ($attendance->status == 'permit' ? 'Izin' : ($attendance->status == 'late' ? 'Telat' : '')))) }}</td>

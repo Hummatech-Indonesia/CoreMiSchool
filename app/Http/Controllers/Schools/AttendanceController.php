@@ -64,7 +64,7 @@ class AttendanceController extends Controller
      */
     public function teacher(Request $request)
     {
-        $attendanceTeachers = $this->attendanceTeacher->get();
+        $attendanceTeachers = $this->attendance->attendanceGetTecaher($request);
         return view('school.pages.attendace.teacher.index', compact('attendanceTeachers'));
     }
 
