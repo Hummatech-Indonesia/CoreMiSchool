@@ -4,6 +4,7 @@ namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\ExtracurricularStudentInterface;
 use App\Models\ExtracurricularStudent;
+use Illuminate\Http\Request;
 
 class ExtracurricularStudentRepository extends BaseRepository implements ExtracurricularStudentInterface
 {
@@ -42,9 +43,14 @@ class ExtracurricularStudentRepository extends BaseRepository implements Extracu
         return $this->model->query()->latest()->paginate(10);
     }
 
-    public function where(mixed $data): mixed
+    public function where(mixed $data, Request $request): mixed
     {
-        return $this->model->query()->where('extracurricular_id', $data)->get();
+        return $this->model->query()->where('extracurricular_id', $data)
+        ->when($request->name, function ($query) use ($request) {
+            $query->whereHas('student.user', function ($query) use ($request) {
+                $query->where('name', 'LIKE', '%' . $request->name . '%');
+            });
+        })->paginate(10);
     }
 
     public function check(mixed $extracurricular_id, mixed $student_id): mixed

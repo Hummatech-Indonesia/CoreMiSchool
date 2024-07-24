@@ -108,6 +108,20 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
             ->get();
     }
 
+    public function exportClassAndDate(mixed $classroom_id, Request $request): mixed
+    {
+        return $this->student->query()
+            ->with(['student.user', 'attendances'])
+            ->whereHas('attendances')
+            ->where('classroom_id', $classroom_id)
+            ->when($request->start, function ($query) use ($request) {
+                $query->whereHas('attendances', function($query)use($request){
+                    $query->whereBetween('created_at', [$request->start, $request->end]);
+                });
+            })
+            ->get();
+    }
+
     public function attendanceGetTecaher(Request $request): mixed
     {
         return $this->employee->query()
