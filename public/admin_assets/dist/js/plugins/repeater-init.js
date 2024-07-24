@@ -1,21 +1,21 @@
-$(function () {
-    "use strict";
+// $(function () {
+//     "use strict";
 
-    // Default
-    $(".repeater-default").repeater();
+//     // Default
+//     $(".repeater-default").repeater();
 
-    // Custom Show / Hide Configurations
-    $(".file-repeater, .email-repeater").repeater({
-        show: function () {
-            $(this).slideDown();
-        },
-        hide: function (remove) {
-            if (confirm("anda yakin ingin menghapus data ini?")) {
-                $(this).slideUp(remove);
-            }
-        },
-    });
-});
+//     // Custom Show / Hide Configurations
+//     $(".file-repeater, .email-repeater").repeater({
+//         show: function () {
+//             $(this).slideDown();
+//         },
+//         hide: function (remove) {
+//             if (confirm("anda yakin ingin menghapus data ini?")) {
+//                 $(this).slideUp(remove);
+//             }
+//         },
+//     });
+// });
 
 
 var room = 1;
