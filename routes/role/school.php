@@ -17,6 +17,7 @@ use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SchoolDashboardController;
 use App\Http\Controllers\Schools\AttendanceController as SchoolsAttendanceController;
 use App\Http\Controllers\Schools\EmployeeController;
+use App\Http\Controllers\Schools\ExtracurricularController as SchoolsExtracurricularController;
 use App\Http\Controllers\Schools\StaffController;
 use App\Http\Controllers\Schools\StudentController;
 use App\Http\Controllers\Schools\TeacherController;
@@ -60,7 +61,7 @@ Route::prefix('school')->name('school.')->group(function() {
     Route::resource('school-years', SchoolYearController::class);
     Route::resource('lesson-hours', LessonHourController::class)->except(['store']);
     Route::post('lesson-hours/{day}', [LessonHourController::class, 'store'])->name('lesson-hours.store');
-    Route::resource('extracurricular', ExtracurricularController::class);
+    Route::resource('extracurricular', SchoolsExtracurricularController::class);
     Route::resource('classroom', ClassroomController::class);
     Route::resource('level-class', LevelClassController::class);
     Route::get('class-detail/{classroom}', [ClassroomStudentController::class, 'index'])->name('class-student.index');
