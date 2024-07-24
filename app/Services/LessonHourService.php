@@ -21,7 +21,12 @@ class LessonHourService
     {
         $data = $request->validated();
 
-        $name = 'Jam ke - '. $data['name'];
+        $name = "";
+        if ($request->has('rest')) {
+            $name = 'Istirahat';
+        } else {
+            $name = 'Jam ke - '. $data['name'];
+        }
 
         $data['name'] = $name;
         $data['day'] = $day;
