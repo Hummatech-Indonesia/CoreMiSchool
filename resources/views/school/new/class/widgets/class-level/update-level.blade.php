@@ -13,7 +13,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="" class="mb-3">Nama Tingkatan Kelas</label>
-                            <input type="text" name="name" id="name-edit" class="form-control" placeholder="Masukkan nama tingkatan kelas">
+                            <input type="text" name="name" id="name-level" class="form-control">
                         </div>
                     </div>
 
