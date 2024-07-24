@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Enums\GenderEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Traits\Models\HasManyAttendanceTeacher;
 use App\Traits\Models\HasManyExtracurricular;
 use App\Traits\Models\HasManyTeacherSubject;
 use App\Traits\Models\BelongsToReligion;

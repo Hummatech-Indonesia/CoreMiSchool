@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Traits\Models\BelongsToClassroomStudent;
 use App\Traits\Models\MorphTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
