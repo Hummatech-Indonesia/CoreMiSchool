@@ -10,6 +10,7 @@ use App\Contracts\Interfaces\ClassroomInterface;
 use App\Contracts\Interfaces\ClassroomStudentInterface;
 use App\Contracts\Interfaces\EmployeeInterface;
 use App\Contracts\Interfaces\ExtracurricularInterface;
+use App\Contracts\Interfaces\ExtracurricularStudentInterface;
 use App\Contracts\Interfaces\LessonHourInterface;
 use App\Contracts\Interfaces\LessonScheduleInterface;
 use App\Contracts\Interfaces\LevelClassInterface;
@@ -34,6 +35,7 @@ use App\Contracts\Repositories\ClassroomRepository;
 use App\Contracts\Repositories\ClassroomStudentRepository;
 use App\Contracts\Repositories\EmployeeRepository;
 use App\Contracts\Repositories\ExtracurricularRepository;
+use App\Contracts\Repositories\ExtracurricularStudentRepository;
 use App\Contracts\Repositories\LessonHourRepository;
 use App\Contracts\Repositories\LessonScheduleRepository;
 use App\Contracts\Repositories\LevelClassRepository;
@@ -79,6 +81,7 @@ class AppServiceProvider extends ServiceProvider
         ModelHasRfidInterface::class => ModelHasRfidRepository::class,
         ExtracurricularInterface::class => ExtracurricularRepository::class,
         TeacherSubjectInterface::class => TeacherSubjectRepository::class,
+        ExtracurricularStudentInterface::class => ExtracurricularStudentRepository::class,
     ];
 
     /**

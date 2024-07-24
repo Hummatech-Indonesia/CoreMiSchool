@@ -41,4 +41,9 @@ class ExtracurricularStudentRepository extends BaseRepository implements Extracu
     {
         return $this->model->query()->latest()->paginate(10);
     }
+
+    public function where(mixed $data): mixed
+    {
+        return $this->model->query()->where('extracurricular_id', $data)->get();
+    }
 }

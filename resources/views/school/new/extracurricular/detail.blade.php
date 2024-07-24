@@ -8,14 +8,14 @@
                         <div class="row align-items-center">
                             <h4 class="mb-3">Pengajar</h4>
                             <div class="col-auto">
-                                <img src="{{ asset('assets/images/default-user.jpeg') }}" alt="Profile Image"
+                                <img src="{{ $extracurricular->employee->image ? asset('storage/' . $extracurricular->employee->image) : asset('assets/images/default-user.jpeg') }}" alt="Profile Image"
                                     class="img-fluid rounded-circle" style="width: 84px; height: 84px;">
                             </div>
                             <div class="col">
-                                <h4 class="fw-semibold mb-2">Suyadi Oke</h4>
+                                <h4 class="fw-semibold mb-2">{{ $extracurricular->employee->user->name }}</h4>
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb bg-transparent p-0 m-0">
-                                        <li class="breadcrumb-item" aria-current="page">Tahun Ajaran 2023-2024</li>
+                                        <li class="breadcrumb-item" aria-current="page">Tahun Ajaran {{ $schoolYear->school_year }}</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -30,12 +30,12 @@
                     <div class="card-body px-4 py-3">
                         <div class="d-flex align-items-center">
                             <div class="flex-grow-1 me-3">
-                                <h4 class="mb-3">Ekstrakulikuler</h4>
-                                <h4 class="fw-semibold mb-2">Basket</h4>
+                                <h4 class="mb-3">Ekstrakurikuler</h4>
+                                <h4 class="fw-semibold mb-2">{{ $extracurricular->name }}</h4>
                                 <div class="mt-3">
-                                    <span class="mb-1 badge font-medium bg-light-secondary text-secondary">34 Total
+                                    <span class="mb-1 badge font-medium bg-light-secondary text-secondary">{{ $extracurricular->extracurricularStudents->count() }} Total
                                         Siswa</span>
-                                    <span class="mb-1 badge font-medium bg-light-success text-success">10 Pertemuan</span>
+                                    <span class="mb-1 badge font-medium bg-light-success text-success">0 Pertemuan</span>
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -60,7 +60,7 @@
                                 d="M12 7q-.825 0-1.412-.587T10 5t.588-1.412T12 3t1.413.588T14 5t-.587 1.413T12 7m0 14q-.625 0-1.062-.437T10.5 19.5v-9q0-.625.438-1.062T12 9t1.063.438t.437 1.062v9q0 .625-.437 1.063T12 21" />
                         </svg>
                     </span>
-                    <h4 class="ms-3 mb-0">Daftar Siswa Mengikuti Esktrakurikuler</h4>
+                    <h4 class="ms-3 mb-0">Daftar Siswa Mengikuti Ekstrakurikuler</h4>
                 </div>
             </div>
         </div>
@@ -100,36 +100,40 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>
-                            nama siswa
-                        </td>
-                        <td>
-                            Kelas
-                        </td>
-                        <td>
-                            Total hadir
-                        </td>
-                        <td>
-                            <div class="dropdown dropstart">
-                                <a href="#" class="text-muted" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <div class="category">
-                                        <div class="category-business"></div>
-                                        <div class="category-social"></div>
-                                        <span class="more-options text-dark">
-                                            <i class="ti ti-dots-vertical fs-5"></i>
-                                        </span>
-                                    </div>
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
-                                    <li>
-                                        <a class="btn-delete dropdown-item d-flex align-items-center text-danger gap-3" data-bs-toggle="modal" data-bs-target="#modal-delete"><i class="fs-4 ti ti-trash"></i>Hapus</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
+                    @forelse ($extracurricularStudents as $extracurricularStudent)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>
+                                {{ $extracurricularStudent->student->user->name }}
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                <div class="dropdown dropstart">
+                                    <a href="#" class="text-muted" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <div class="category">
+                                            <div class="category-business"></div>
+                                            <div class="category-social"></div>
+                                            <span class="more-options text-dark">
+                                                <i class="ti ti-dots-vertical fs-5"></i>
+                                            </span>
+                                        </div>
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
+                                        <li>
+                                            <a class="btn-delete dropdown-item d-flex align-items-center text-danger gap-3" data-bs-toggle="modal" data-bs-target="#modal-delete"><i class="fs-4 ti ti-trash"></i>Hapus</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    @empty
+                        
+                    @endforelse
                 </tbody>
             </table>
         </div>
