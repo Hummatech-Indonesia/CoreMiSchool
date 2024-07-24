@@ -22,8 +22,9 @@ interface ModelHasRfidInterface extends GetInterface, StoreInterface, UpdateOrCr
     public function whereSchool($id): mixed;
     public function whereNotNull(mixed $column):mixed;
     public function whereNull(mixed $column):mixed;
-    public function getRfid() : mixed;
+    public function getEmployeeRfid() : mixed;
     public function getByActiveStudent() : mixed;
     public function whereRfid(mixed $query) : mixed;
     public function searchMaster(Request $request): mixed;
+    public function getStudentRfid(): mixed;
 }
