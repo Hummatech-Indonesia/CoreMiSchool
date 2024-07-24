@@ -87,7 +87,6 @@ Route::prefix('school')->name('school.')->group(function() {
 
 
 
-
 Route::prefix('school')->group(function () {
     Route::get('', [SchoolDashboardController::class, 'index'])->name('school.index');
 
@@ -95,11 +94,6 @@ Route::prefix('school')->group(function () {
     Route::post('add-maple-teacher/{employee}', [TeacherSubjectController::class, 'store'])->name('maple-teacher.store');
     Route::put('update-maple-teacher/{teacherMaple}', [TeacherSubjectController::class, 'update'])->name('maple-teacher.update');
     Route::delete('delete-maple-teacher/{teacherMaple}', [TeacherSubjectController::class, 'destroy'])->name('maple-teacher.delete');
-
-    //siswa
-    Route::post('student', [StudentController::class, 'store'])->name('school-student.store');
-    Route::put('student/{student}', [StudentController::class, 'update'])->name('school-student.update');
-    Route::delete('student/{student}', [StudentController::class, 'destroy'])->name('school-student.destroy');
 
     // absen
     // Route::get('clock-settings', [AttendanceRuleController::class, 'index'])->name('clock-settings.index');
@@ -113,11 +107,6 @@ Route::prefix('school')->group(function () {
     Route::get('class-alumni', [ClassroomController::class, 'classroomAlumni'])->name('class-alumni.index');
 
     Route::get('alumni/{classroom}', [ClassroomController::class, 'studentAlumni'])->name('alumni.index');
-
-    // detail kelas
-    Route::get('detail-class', function () {
-        return view('school.pages.class.detail-class');
-    })->name('detail-class.index');
 
     // setting informasi
     Route::prefix('information')->group(function(){
@@ -142,14 +131,6 @@ Route::prefix('school')->group(function () {
 
 });
 
-
-//kelas
-Route::post('school/add-class', [ClassroomController::class, 'store'])->name('class.store');
-Route::put('school/update-class/{classroom}', [ClassroomController::class, 'update'])->name('class.update');
-Route::delete('school/delete-class/{classroom}', [ClassroomController::class, 'destroy'])->name('class.delete');
-// detail kelas
-Route::get('school/{classroom}', [ClassroomController::class, 'show'])->name('class.show');
-
 //tes absensi
 Route::post('attendance-create/{school_id}', [AttendanceStudentController::class, 'store'])->name('attendance.store');
 
@@ -170,14 +151,4 @@ Route::get('attendance-test-teacher', [AttendanceMasterController::class, 'index
 Route::post('attendance-test-teacher', [AttendanceMasterController::class, 'check_teacher'])->name('attendance-test-teacher.check');
 
 
-
-
-
-
-
 // route baru
-
-// tahun ajaran
-Route::get('new/school/school-year', function(){
-    return view('school.new.school-year.index');
-})->name('new.school-year.index');
