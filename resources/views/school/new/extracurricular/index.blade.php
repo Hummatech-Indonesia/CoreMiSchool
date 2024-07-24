@@ -1,4 +1,5 @@
 @extends('school.layouts.app')
+
 @section('style')
     <style>
         .category-selector .dropdown-menu {
@@ -34,6 +35,7 @@
         }
     </style>
 @endsection
+
 @section('content')
     <div class="d-flex flex-wrap justify-content-between align-items-center">
         <div class="d-flex flex-wrap">
@@ -123,6 +125,27 @@
 @endsection
 
 @section('script')
+
+    <script>
+        $(document).ready(function() {
+            $('.select2-create').select2({
+                dropdownParent: $('#modal-create')
+            });
+
+            $('.select2-edit').select2({
+                dropdownParent: $('#modal-edit')
+            });
+
+            $('.category-dropdown').on('show.bs.dropdown', function() {
+                $(this).closest('.table-responsive').css('overflow', 'visible');
+            });
+
+            $('.category-dropdown').on('hide.bs.dropdown', function() {
+                $(this).closest('.table-responsive').css('overflow', 'auto');
+            });
+        });
+    </script>
+
     <script>
         $('.btn-edit').click(function() {
             var id = $(this).data('id');
@@ -138,26 +161,6 @@
             var id = $(this).data('id');
             $('#form-delete').attr('action', `{{ route('school.extracurricular.destroy', '') }}/${id}`);
             $('#modal-delete').modal('show');
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            $('.select2').select2({
-                dropdownParent: $('#modal-create')
-            });
-
-            $('.select2').select2({
-                dropdownParent: $('#modal-edit')
-            });
-
-            $('.category-dropdown').on('show.bs.dropdown', function() {
-                $(this).closest('.table-responsive').css('overflow', 'visible');
-            });
-
-            $('.category-dropdown').on('hide.bs.dropdown', function() {
-                $(this).closest('.table-responsive').css('overflow', 'auto');
-            });
         });
     </script>
 @endsection
