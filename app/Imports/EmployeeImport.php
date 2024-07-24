@@ -52,6 +52,10 @@ class EmployeeImport implements ToModel
             return null;
         }
 
-        Employee::create($data);
+        $employee = Employee::where('user_id', $user->id)->first();
+
+        if (!$employee) {
+            Employee::create($data);
+        }
     }
 }

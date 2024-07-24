@@ -17,8 +17,10 @@
                                 <div class="form-floating mb-3">
                                     <div class="form-group">
                                         <label for="formFile" class="mb-1">Foto Siswa <span class="text-danger">(ekstensi png, jpg, jpeg)</span></label>
-                                        <input class="form-control" name="image" type="file" id="formFile"
-                                            onchange="previewImage(event)">
+                                        <div id="create-image-preview" class="mt-2 mb-2">
+                                            <img id="create-preview-img" alt="" style="display: none; width: 200px; height: auto; object-fit: cover;" />
+                                        </div>
+                                        <input class="form-control" name="image" type="file" id="formFile" onchange="previewImage(event)">
                                         @error('image')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -28,7 +30,7 @@
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
                                     <div class="form-group">
-                                        <label for="name" class="mb-2">Nama <span class="text-danger" style="font-size: larger;">*</span></label>
+                                        <label for="name" class="mb-1">Nama <span class="text-danger" style="font-size: larger;">*</span></label>
                                         <input type="text" name="name" class="form-control mb-3" placeholder="Masukkan nama" value="{{ old('name') }}">
                                         @error('name')
                                             <strong class="text-danger">{{ $message }}</strong>

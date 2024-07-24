@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Schools;
 
+use App\Http\Controllers\Controller;
 use App\Contracts\Interfaces\EmployeeInterface;
 use App\Contracts\Interfaces\ExtracurricularInterface;
 use App\Models\Extracurricular;
@@ -30,7 +31,7 @@ class ExtracurricularController extends Controller
     {
         $employees = $this->employee->get();
         $extracurriculars = $this->extracurricular->whereSchool(auth()->user()->school->id, $request);
-        return view('school.pages.extracurricular.index', compact('extracurriculars', 'employees'));
+        return view('school.new.extracurricular.index', compact('extracurriculars', 'employees'));
     }
 
     /**
