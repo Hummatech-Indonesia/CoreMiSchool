@@ -3,7 +3,7 @@
         <h4>Daftar Guru</h4>
     </div>
         <div class="row">
-            <div class="col-12 mt-3 mb-3">
+            <div class="col-lg-10 mt-3 mb-3">
                 <div class="d-flex justify-content-between mb-3 col-md-5 align-items-center">
                     <form class="d-flex gap-2 align-items-center flex-grow-1">
                         <div class="position-relative flex-grow-1">
@@ -14,8 +14,9 @@
                     </form>
                     <form class="d-flex gap-2 align-items-center ms-2">
                         <select name="gender" class="form-select" id="search-status">
-                            <option value="male">Laki-laki</option>
-                        <option value="female">Perempuan</option>
+                            <option value="" {{ old('gender', request('gender')) == '' ? 'selected' : '' }}>Semua</option>
+                            <option value="male" {{ old('gender', request('gender')) == 'male' ? 'selected' : '' }}>Laki-laki</option>
+                            <option value="female" {{ old('gender', request('gender')) == 'female' ? 'selected' : '' }}>Perempuan</option>
                         </select>
                         <button type="submit" class="btn btn-primary">Filter</button>
                     </form>
