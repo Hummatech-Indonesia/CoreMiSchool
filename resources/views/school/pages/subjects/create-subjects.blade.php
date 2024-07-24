@@ -157,6 +157,7 @@
                 keagamaanSelect.style.display = 'block';
             } else {
                 keagamaanSelect.style.display = 'none';
+                keagamaanSelect.innerHTML = '<option value="">Pilih agama <span class="text-danger">*</span></option>';
             }
         });
     </script>
@@ -168,6 +169,7 @@
                 editKeagamaanSelect.style.display = 'block';
             } else {
                 editKeagamaanSelect.style.display = 'none';
+                keagamaanSelect.innerHTML = '<option value="">Pilih agama <span class="text-danger">*</span></option>';
             }
         });
     </script>
