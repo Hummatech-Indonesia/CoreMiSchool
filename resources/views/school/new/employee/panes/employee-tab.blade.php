@@ -14,9 +14,9 @@
                         </div>
                     </form>
                     <form class="d-flex gap-2 align-items-center ms-3">
-                        <select name="filter" class="form-select" id="search-status">
-                            <option value="terbaru">Laki-Laki</option>
-                            <option value="terlama">Perempuan</option>
+                        <select name="gender" class="form-select" id="search-status">
+                            <option value="male">Laki-laki</option>
+                        <option value="female">Perempuan</option>
                         </select>
                         <button type="submit" class="btn btn-primary">Filter</button>
                     </form>
@@ -41,7 +41,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($staff as $staff)
+                    @forelse ($staffs as $staff)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>
@@ -145,6 +145,9 @@
                     @endforelse
                 </tbody>
             </table>
+        </div>
+        <div class="pagination justify-content-end mb-0">
+            <x-paginate-component :paginator="$staffs" />
         </div>
     </div>
 </div>
