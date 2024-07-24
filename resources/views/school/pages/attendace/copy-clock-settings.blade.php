@@ -178,7 +178,7 @@
 
         var activeTab = localStorage.getItem('activeTab') || 'monday';
         $('.nav-tabs a[data-bs-toggle="tab"][href="#' + activeTab + '"]').tab('show');
-        loadContent(activeTab, 'student')
+        loadContent(activeTab, 'student');
 
         $('.nav-tabs a[data-bs-toggle="tab"]').on('shown.bs.tab', function(e) {
             var day = $(this).data('day');
