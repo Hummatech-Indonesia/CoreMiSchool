@@ -81,7 +81,7 @@
                     data-bs-target="#modal-import">
                     Import Siswa
                 </button>
-                <button type="button" class="btn mb-1 btn-primary " data-bs-toggle="modal" data-bs-target="#modal-create">
+                <button type="button" class="btn mb-1 btn-primary " data-bs-toggle="modal" data-bs-target="#modal-create-student">
                     Tambah Siswa
                 </button>
             </div>
@@ -112,9 +112,8 @@
                             Total hadir
                         </td>
                         <td>
-                            <div class="category-selector btn-group">
-                                <a class="nav-link category-dropdown label-group p-0" data-bs-toggle="dropdown"
-                                    href="#" role="button" aria-haspopup="true" aria-expanded="true">
+                            <div class="dropdown dropstart">
+                                <a href="#" class="text-muted" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                     <div class="category">
                                         <div class="category-business"></div>
                                         <div class="category-social"></div>
@@ -123,17 +122,11 @@
                                         </span>
                                     </div>
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-right category-menu"
-                                    data-popper-placement="bottom-end">
-                                    <button type="button" data-bs-toggle="modal" data-bs-target="#create-student"
-                                        class="btn-update-classroom note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-edit">
-                                        Edit
-                                    </button>
-                                    <button
-                                        class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-delete-class">
-                                        Hapus
-                                    </button>
-                                </div>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
+                                    <li>
+                                        <a class="btn-delete dropdown-item d-flex align-items-center text-danger gap-3" data-bs-toggle="modal" data-bs-target="#modal-delete"><i class="fs-4 ti ti-trash"></i>Hapus</a>
+                                    </li>
+                                </ul>
                             </div>
                         </td>
                     </tr>
@@ -141,5 +134,8 @@
             </table>
         </div>
 
+        {{-- modal --}}
         @include('school.new.extracurricular.widgets.modal-import')
+        @include('school.new.extracurricular.widgets.modal-create-student')
+        <x-delete-modal-component />
     @endsection
