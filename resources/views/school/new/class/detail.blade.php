@@ -7,7 +7,7 @@
                     <h4 class="fw-semibold mb-2 text-dark">Daftar Siswa</h4>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item" aria-current="page">X RPL 1</li>
+                            <li class="breadcrumb-item" aria-current="page">{{ $classroom->name }}</li>
                         </ol>
                     </nav>
                 </div>
@@ -278,6 +278,16 @@
 @section('script')
 
     <script>
+        function previewEditStudentImage(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var output = document.getElementById('edit-preview-img');
+                output.src = reader.result;
+                output.style.display = 'block';
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
         function previewImage(event) {
             var reader = new FileReader();
             reader.onload = function() {
