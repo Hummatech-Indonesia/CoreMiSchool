@@ -16,7 +16,9 @@
                             <div class="row mx-3">
                                 <div class="col-md-12">
                                     <label for="" class="mb-2">Foto Guru (opsional)</label>
-                                    <img id="employeeImagePreview" alt="Preview" style="max-width: 200px; display: none; height: auto;">
+                                    <div>
+                                        <img id="employeeImagePreview" alt="Preview" style="max-width: 200px; display: none; height: auto;">
+                                    </div>
                                     <input type="file" name="image" id="employeeImage" class="form-control mt-2 mb-3" onchange="previewAddImage(event)">
                                 </div>
                                 <div class="col-md-6">

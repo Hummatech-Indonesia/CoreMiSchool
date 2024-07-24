@@ -176,8 +176,13 @@
             $('#form-store-' + day + '-' + role).attr('action', '/school/add-clock-settings/' + day + '/' + role);
         }
 
+        var activeTab = localStorage.getItem('activeTab') || 'monday';
+        $('.nav-tabs a[data-bs-toggle="tab"][href="#' + activeTab + '"]').tab('show');
+        loadContent(activeTab, 'student');
+
         $('.nav-tabs a[data-bs-toggle="tab"]').on('shown.bs.tab', function(e) {
             var day = $(this).data('day');
+            localStorage.setItem('activeTab', day);
             loadContent(day, 'student');
         });
 

@@ -87,7 +87,7 @@
         $('.btn-update-level').click(function() {
             var id = $(this).data('id');
             var name = $(this).data('name');
-            $('#name-edit').val(name);
+            $('#name-level').val(name);
             $('#form-update-level').attr('action', '{{ route('school.level-class.update', '') }}/' + id);
             $('#update-level').modal('show');
         });
