@@ -96,7 +96,7 @@
                                 2 Siswa
                             </span>
                         </div>
-                        <a href="javascript:void(0)" class="btn waves-effect waves-light btn-primary w-100">Detail</a>
+                        <a href="/new/school/extracurricular/detail" class="btn waves-effect waves-light btn-primary w-100">Detail</a>
                     </div>
                 </div>
             </div>
