@@ -189,7 +189,11 @@
                         <td>{{ $student->student->nisn }}</td>
                         <td>{{ $student->student->modelHasRfid ? $student->student->modelHasRfid->rfid : '-' }}
                             <button type="button" class="btn btn-rounded btn-warning p-1 ms-2 btn-rfid"
-                                data-bs-toggle="modal" data-bs-target="#rfid-student">
+                                data-name="{{ $student->student->user->name }}"
+                                data-id="{{ $student->student->id }}"
+                                data-rfid="{{ $student->student->modelHasRfid ? $student->student->modelHasRfid->rfid : 'Kosong' }}"
+                                data-old-rfid="{{ $student->student->modelHasRfid ? $student->student->modelHasRfid->rfid : 'Kosong' }}"
+                                data-role="{{ $student->student->user->roles->pluck('name')[0] }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                     viewBox="0 0 24 24">
                                     <path fill="currentColor"
@@ -273,6 +277,21 @@
 
 @section('script')
     <script>
+        $('.btn-rfid').on('click', function() {
+            var id = $(this).data('id');
+            var name = $(this).data('name');
+            var rfid = $(this).data('rfid');
+            var oldRfid = $(this).data('old-rfid');
+            var role = $(this).data('role');
+
+            $('#name').text(name);
+            $('#rfid').text(rfid);
+            $('#old_rfid_input').val(oldRfid);
+            $('#form-rfid').attr('action', '/school/add-to-rfid/' + role + '/' + id);
+
+            $('#rfid-student').modal('show');
+        });
+
         $(document).ready(function() {
             // Handle move to right
             $('#move-to-right').click(function() {
