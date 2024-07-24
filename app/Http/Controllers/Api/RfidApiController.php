@@ -23,7 +23,9 @@ class RfidApiController extends Controller
      */
     public function index() : mixed
     {
-        $cards = $this->rfid->getRfid();
-        return RfidResource::collection($cards);
+        $employee = $this->rfid->getEmployeeRfid();
+        $students = $this->rfid->getStudentRfid();
+        // return $students->merge($employee);
+        return RfidResource::collection($students->merge($employee));
     }
 }
