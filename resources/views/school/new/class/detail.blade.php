@@ -189,7 +189,7 @@
                         <td>{{ $student->student->nisn }}</td>
                         <td>{{ $student->student->modelHasRfid ? $student->student->modelHasRfid->rfid : '-' }}
                             <button type="button" class="btn btn-rounded btn-warning p-1 ms-2 btn-rfid"
-                                data-bs-toggle="modal" data-bs-target="#rfid-teacher">
+                                data-bs-toggle="modal" data-bs-target="#rfid-student">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                     viewBox="0 0 24 24">
                                     <path fill="currentColor"
@@ -397,6 +397,12 @@
 
                 $('#save-form').submit();
             });
+        });
+    </script>
+
+    <script>
+        $('#rfid-student').on('shown.bs.modal', function() {
+            $('#rfid-input').focus();
         });
     </script>
 @endsection
