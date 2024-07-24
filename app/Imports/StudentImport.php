@@ -28,12 +28,18 @@ class StudentImport implements ToModel
             return null;
         }
 
-        $user = User::create([
-            'name' => $row[0] ?? null,
-            'email' => $row[1],
-            'slug' => Str::slug($row[0]),
-            'password' => $row[2]
-        ]);
+        $user = User::where('email', $row[1])->first();
+
+        if ($user) {
+            return null;
+        } else {
+            $user = User::create([
+                'name' => $row[0] ?? null,
+                'email' => $row[1],
+                'slug' => Str::slug($row[0]),
+                'password' => $row[2]
+            ]);
+        }
 
         $user->assignRole(RoleEnum::STUDENT->value);
         $birthDate = $row[3] ? Carbon::instance(Date::excelToDateTimeObject($row[3])) : null;

@@ -29,7 +29,7 @@
                 <thead class="text-dark fs-4">
                     <tr>
                         <th class="text-white" style="background-color: #5D87FF;">No</th>
-                        <th class="text-white" style="background-color: #5D87FF;">Nama Pegawai</th>
+                        <th class="text-white" style="background-color: #5D87FF;">Nama Guru</th>
                         <th class="text-white" style="background-color: #5D87FF;">Jumlah Mapel</th>
                         <th class="text-white" style="background-color: #5D87FF;">Email</th>
                         <th class="text-white" style="background-color: #5D87FF;">NIP</th>
