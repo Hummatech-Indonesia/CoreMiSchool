@@ -5,6 +5,7 @@ namespace App\Contracts\Repositories;
 use App\Contracts\Interfaces\AttendanceInterface;
 use App\Enums\RoleEnum;
 use App\Models\Attendance;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AttendanceRepository extends BaseRepository implements AttendanceInterface
@@ -21,6 +22,10 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
     public function getCurrentDay(): mixed
     {
         return $this->model->query()->with('classroomStudent')->whereDay('checkin', now()->day)->get();
+    }
+    public function getByDate($date): mixed
+    {
+        return $this->model->query()->with('classroomStudent')->whereDay('checkin', Carbon::create($date)->day)->get();
     }
 
     public function store(array $data): mixed
@@ -41,6 +46,12 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
     public function update(mixed $id, array $data): mixed
     {
         return $this->model->query()->findOrFail($id)->update($data);
+    }
+
+    public function updateWithAttribute(array $attribute, array $data): mixed
+    {
+        // dd($this->model->query()->where('model_id', $attribute['model_id'])->get());
+        return $this->model->query()->where('model_type',$attribute['model_type'])->where('model_id', $attribute['model_id'])->update($data);
     }
 
     public function delete(mixed $id): mixed

@@ -16,6 +16,8 @@ use App\Contracts\Interfaces\ModelHasRfidInterface;
 
 use App\Contracts\Interfaces\AttendanceRuleInterface;
 use App\Contracts\Interfaces\AttendanceTeacherInterface;
+use App\Models\Attendance;
+use App\Models\ModelHasRfid;
 
 class AttendanceService
 {
@@ -39,97 +41,166 @@ class AttendanceService
         $data = $request->validated();
         return $data;
     }
-    public function insert(array $attendances, $rule, $day): mixed
+    public function insert($request, $rule): mixed
     {
-        // Collect attendance IDs
-        $attendanceIds = collect($attendances)->pluck('id');
-        $invalidAttendances = [];
-
-        // Get current day's attendance
-        $currentDayAttendanceStudent = $this->attendance->getCurrentDay();
-        $currentDayAttendanceTeacher = $this->attendance->getCurrentDay();
-
-        // Get student attendance based on RFID
-        $studentAttendance = Student::with('modelHasRfid')->whereHas('modelHasRfid', function ($q) use ($attendanceIds) {
-            $q->whereIn('id', $attendanceIds);
-        })->get()->pluck('id', 'modelHasRfid.id');
-
-        // Get teacher attendance based on RFID
-        $teacherAttendance = Employee::with('modelHasRfid')->where('status', RoleEnum::TEACHER->value)->whereHas('modelHasRfid', function ($q) use ($attendanceIds) {
-            $q->whereIn('id', $attendanceIds);
-        })->get()->pluck('id', 'modelHasRfid.id');
+        $attendances = collect($request->attendances);
 
         $students = [];
         $teachers = [];
+        $invalidAttendances = [];
 
-        foreach ($attendances as $attendance) {
+        $rfids = ModelHasRfid::with('model')->whereIn('id', $attendances->pluck('id'))->get();
+        // teacher attendance
+
+        $attendanceData = $attendances->map(function ($attendance) use ($rfids, $rule) {
+
             $time = Carbon::createFromFormat('H.i', $attendance['time']);
-            $checkinStart = Carbon::parse($rule->checkin_start);
-            $checkinEnd = Carbon::parse($rule->checkin_end);
-            $checkoutStart = Carbon::parse($rule->checkout_start);
-            $checkoutEnd = Carbon::parse($rule->checkout_end);
+            $checkinEnd = Carbon::create($rule['student'][0]->checkin_end);
+            $checkoutStart = Carbon::create($rule['student'][0]->checkout_start);
+            $checkoutEnd = Carbon::create($rule['student'][0]->checkout_end);
 
-            // Checkout
-            if ($time->between($checkoutStart, $checkoutEnd)) {
-                // Check if already checked in
-                $checkinStudent = $currentDayAttendanceStudent->where('classroom_student_id', $attendance['id'])->where('checkin', '<', $checkoutStart);
-                $checkinTeacher = $currentDayAttendanceTeacher->where('checkin', '<', $checkoutStart);
-                $alreadyAbsentStudent = $currentDayAttendanceStudent->whereNotNull('checkout');
-                $alreadyAbsentTeacher = $currentDayAttendanceTeacher->whereNotNull('checkout');
+            $rfid = $rfids->where('id', $attendance['id'])->first();
 
-
-                if (!$alreadyAbsentStudent->isEmpty() || !$alreadyAbsentTeacher->isEmpty()) {
-                    array_push($invalidAttendances, ['id' => $attendance['id']]);
-                    continue;
-                }
-
-                $status = $time->greaterThanOrEqualTo($checkoutStart) && $checkinStudent->isEmpty() && $checkinTeacher->isEmpty() ? AttendanceEnum::ALPHA : AttendanceEnum::PRESENT;
-
-                $value = [
-                    'checkout' => $time,
-                    'status' => $status,
-                ];
-
-                if (isset($studentAttendance[$attendance['id']])) {
-                    $value['classroom_student_id'] = $studentAttendance[$attendance['id']];
-                    array_push($students, $value);
+            if ($attendance['type'] == RoleEnum::STUDENT->value) {
+                if($time->greaterThan($checkinEnd) && $time->lessThan($checkoutStart)) {
+                    return [
+                        'model_id' => $rfid->model_id,
+                        'model_type' => "App/Models/ClassroomStudent",
+                        'status' => AttendanceEnum::LATE->value,
+                        'checkin' => $time->toDateTimeString(),
+                    ];
+                } else if($time->greaterThan($checkoutStart)) {
+                    return [
+                        'model_id' => $rfid->model_id,
+                        'model_type' => "App/Models/ClassroomStudent",
+                        // 'status' => Carbon::createFromFormat('H.i', $attendance['time'])->greaterThan($checkinEnd) ? AttendanceEnum::LATE->value : AttendanceEnum::PRESENT->value,
+                        'checkout' => $time->toDateTimeString(),
+                    ];
                 } else {
-                    $value['employee_id'] = $teacherAttendance[$attendance['id']];
-                    array_push($teachers, $value);
+                    return [
+                        'model_id' => $rfid->model_id,
+                        'model_type' => "App/Models/ClassroomStudent",
+                        'status' => AttendanceEnum::PRESENT->value,
+                        'checkin' => $time->toDateTimeString(),
+                    ];
+                }
+            } else if($attendance['type'] != RoleEnum::STUDENT->value) {
+                if($time->greaterThan($checkinEnd) && $time->lessThan($checkoutStart)) {
+                    return [
+                        'model_id' => $rfid->model_id,
+                        'model_type' => "App/Models/Employee",
+                        'status' => AttendanceEnum::LATE->value,
+                        'checkin' => $time->toDateTimeString(),
+                    ];
+                } else if($time->greaterThan($checkoutStart)) {
+                    return [
+                        'model_id' => $rfid->model_id,
+                        'model_type' => "App/Models/Employee",
+                        'checkout' => $time->toDateTimeString(),
+                    ];
+                } else {
+                    return [
+                        'model_id' => $rfid->model_id,
+                        'model_type' => "App/Models/Employee",
+                        'status' => AttendanceEnum::PRESENT->value,
+                        'checkin' => $time->toDateTimeString(),
+                    ];
                 }
             }
-            // Checkin
-            else if ($time->greaterThanOrEqualTo($checkinStart)) {
-                $alreadyAbsentStudent = $currentDayAttendanceStudent->whereNull('checkout');
-                $alreadyAbsentTeacher = $currentDayAttendanceTeacher->whereNull('checkout');
+        });
+        return $attendanceData;
+        // // Collect attendance IDs
+        // $attendanceIds = collect($attendances)->pluck('id');
+        // $invalidAttendances = [];
+
+        // // Get current day's attendance
+        // $currentDayAttendanceStudent = $this->attendance->getCurrentDay();
+        // $currentDayAttendanceTeacher = $this->attendance->getCurrentDay();
+
+        // // Get student attendance based on RFID
+        // $studentAttendance = Student::with('modelHasRfid')->whereHas('modelHasRfid', function ($q) use ($attendanceIds) {
+        //     $q->whereIn('id', $attendanceIds);
+        // })->get()->pluck('id', 'modelHasRfid.id');
+
+        // // Student::whereIn('id',[1,2,3])->whereDate('crea','')->update([]);
 
 
-                if (!$alreadyAbsentStudent->isEmpty() || !$alreadyAbsentTeacher->isEmpty()) {
-                    array_push($invalidAttendances, ['id' => $attendance['id']]);
-                    continue;
-                };
+        // // Get teacher attendance based on RFID
+        // $teacherAttendance = Employee::with('modelHasRfid')->where('status', RoleEnum::TEACHER->value)->whereHas('modelHasRfid', function ($q) use ($attendanceIds) {
+        //     $q->whereIn('id', $attendanceIds);
+        // })->get()->pluck('id', 'modelHasRfid.id');
 
-                $status = $time->greaterThan($checkinEnd) ? AttendanceEnum::LATE : AttendanceEnum::PRESENT;
+        // $students = [];
+        // $teachers = [];
 
-                $value = [
-                    'checkin' => $time,
-                    'status' => $status,
-                ];
+        // foreach ($attendances as $attendance) {
+        //     $time = Carbon::createFromFormat('H.i', $attendance['time']);
+        //     $checkinStart = Carbon::parse($rule->checkin_start);
+        //     $checkinEnd = Carbon::parse($rule->checkin_end);
+        //     $checkoutStart = Carbon::parse($rule->checkout_start);
+        //     $checkoutEnd = Carbon::parse($rule->checkout_end);
 
-                // dd(isset($studentAttendance[$attendance['id']]));
-                // dd($attendance['id'], $studentAttendance->toArray(), in_array($attendance['id'], $studentAttendance->toArray()));
+        //     // Checkout
+        //     if ($time->between($checkoutStart, $checkoutEnd)) {
+        //         // Check if already checked in
+        //         $checkinStudent = $currentDayAttendanceStudent->where('classroom_student_id', $attendance['id'])->where('checkin', '<', $checkoutStart);
+        //         $checkinTeacher = $currentDayAttendanceTeacher->where('checkin', '<', $checkoutStart);
+        //         $alreadyAbsentStudent = $currentDayAttendanceStudent->whereNotNull('checkout');
+        //         $alreadyAbsentTeacher = $currentDayAttendanceTeacher->whereNotNull('checkout');
 
-                if (isset($studentAttendance[$attendance['id']])) {
-                    $value['classroom_student_id'] = $studentAttendance[$attendance['id']];
-                    array_push($students, $value);
-                } else {
-                    $value['employee_id'] = $teacherAttendance[$attendance['id']];
-                    array_push($teachers, $value);
-                }
-            }
-        }
 
-        return ['students' => $students, 'teachers' => $teachers, 'invalid' => $invalidAttendances];
+        //         if (!$alreadyAbsentStudent->isEmpty() || !$alreadyAbsentTeacher->isEmpty()) {
+        //             array_push($invalidAttendances, ['id' => $attendance['id']]);
+        //             continue;
+        //         }
+
+        //         $status = $time->greaterThanOrEqualTo($checkoutStart) && $checkinStudent->isEmpty() && $checkinTeacher->isEmpty() ? AttendanceEnum::ALPHA : AttendanceEnum::PRESENT;
+
+        //         $value = [
+        //             'checkout' => $time,
+        //             'status' => $status,
+        //         ];
+
+        //         if (isset($studentAttendance[$attendance['id']])) {
+        //             $value['classroom_student_id'] = $studentAttendance[$attendance['id']];
+        //             array_push($students, $value);
+        //         } else {
+        //             $value['employee_id'] = $teacherAttendance[$attendance['id']];
+        //             array_push($teachers, $value);
+        //         }
+        //     }
+        //     // Checkin
+        //     else if ($time->greaterThanOrEqualTo($checkinStart)) {
+        //         $alreadyAbsentStudent = $currentDayAttendanceStudent->whereNull('checkout');
+        //         $alreadyAbsentTeacher = $currentDayAttendanceTeacher->whereNull('checkout');
+
+
+        //         if (!$alreadyAbsentStudent->isEmpty() || !$alreadyAbsentTeacher->isEmpty()) {
+        //             array_push($invalidAttendances, ['id' => $attendance['id']]);
+        //             continue;
+        //         };
+
+        //         $status = $time->greaterThan($checkinEnd) ? AttendanceEnum::LATE : AttendanceEnum::PRESENT;
+
+        //         $value = [
+        //             'checkin' => $time,
+        //             'status' => $status,
+        //         ];
+
+        //         // dd(isset($studentAttendance[$attendance['id']]));
+        //         // dd($attendance['id'], $studentAttendance->toArray(), in_array($attendance['id'], $studentAttendance->toArray()));
+
+        //         if (isset($studentAttendance[$attendance['id']])) {
+        //             $value['classroom_student_id'] = $studentAttendance[$attendance['id']];
+        //             array_push($students, $value);
+        //         } else {
+        //             $value['employee_id'] = $teacherAttendance[$attendance['id']];
+        //             array_push($teachers, $value);
+        //         }
+        //     }
+        // }
+
+        // return ['students' => $students, 'teachers' => $teachers, 'invalid' => $invalidAttendances];
     }
 
     public function storeByStudent($time, $classroom_student_id, $status): array|bool

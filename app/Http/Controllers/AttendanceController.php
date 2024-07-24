@@ -9,6 +9,7 @@ use App\Models\Classroom;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
 use App\Helpers\ResponseHelper;
+use App\Models\ClassroomStudent;
 use App\Exports\AttendanceExport;
 use App\Services\AttendanceService;
 use Maatwebsite\Excel\Facades\Excel;
@@ -25,6 +26,9 @@ use App\Contracts\Interfaces\AttendanceRuleInterface;
 use App\Contracts\Interfaces\ClassroomStudentInterface;
 use App\Contracts\Interfaces\AttendanceTeacherInterface;
 use App\Contracts\Repositories\AttendanceTeacherRepository;
+use App\Enums\AttendanceEnum;
+use App\Models\AttendanceTeacher;
+use App\Models\Employee;
 
 class AttendanceController extends Controller
 {
@@ -53,28 +57,24 @@ class AttendanceController extends Controller
 
     public function store(Request $request)
     {
-
-        // dd($request->attendances);
         $time = now();
         $day = strtolower($time->format('l'));
         $rule = $this->attendanceRule->showByDay($day, RoleEnum::STUDENT->value);
 
         if (!$rule) return ResponseHelper::jsonResponse('warning', 'Tidak ada jadwal absensi', null, 404);
 
-        $data = $this->service->insert($request->attendances, $rule, $day);
-        try {
-            if (!empty($data['students'])) {
-                $this->attendance->insert($data['students']);
+        $data = $this->service->insert($request, $rule, $day);
+        // try {
+            if (!empty($data)) {
+                foreach ($data->toArray() as $attendance) {
+                    $this->attendance->updateWithAttribute(['model_id' => $attendance['model_id'], 'model_type' => $attendance['model_type']], $attendance);
+                }
             }
-
-            if (!empty($data['teachers'])) {
-                $this->attendanceTeacher->insert($data['teachers']);
-            }
-            return response()->json(['status' => 'sukses', 'pesan' => 'Data kehadiran berhasil dimasukkan', 'invalid' => empty($data['invalid']) ? null : $data['invalid']], 200);
-        } catch (\Exception $e) {
-            // Log::error('AttendanceController: Error inserting attendance data', ['error' => $e->getMessage()]);
-            return response()->json(['status' => 'error', 'pesan' => 'Gagal memasukkan data kehadiran', 'error' => $e->getMessage()], 500);
-        }
+            return response()->json(['status' => 'sukses', 'message' => 'Data kehadiran berhasil dimasukkan', 'invalid' => empty($data['invalid']) ? null : null], 200);
+        // } catch (\Exception $e) {
+        //     // Log::error('AttendanceController: Error inserting attendance data', ['error' => $e->getMessage()]);
+        //     return response()->json(['status' => 'error', 'message' => 'Gagal memasukkan data kehadiran', 'error' => $e->getMessage()], 500);
+        // }
     }
     /**
      * Display a listing of the resource.
