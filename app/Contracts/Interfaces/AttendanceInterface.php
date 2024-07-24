@@ -23,4 +23,6 @@ interface AttendanceInterface extends GetInterface, StoreInterface, UpdateInterf
     public function classAndDate(mixed $classroom_id, Request $request): mixed;
     public function insert(array $data) :mixed;
     public function getCurrentDay() :mixed;
+    public function updateWithAttribute(array $attribute, array $data): mixed;
+
 }

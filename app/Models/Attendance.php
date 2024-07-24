@@ -13,7 +13,8 @@ class Attendance extends Model
     protected $guarded = ['id'];
 
     protected $fillable = [
-        'classroom_student_id',
+        'model_type',
+        'model_id',
         'point',
         'status',
         'proof',

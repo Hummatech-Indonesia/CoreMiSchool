@@ -18,6 +18,6 @@ interface ClassroomStudentInterface extends GetInterface, StoreInterface, Update
     public function activeStudents() : mixed;
     public function getAlumnus(Request $request): mixed;
 
-    public function whereClassroom(mixed $id): mixed;
+    public function whereClassroom(mixed $id, Request $request): mixed;
 
 }
