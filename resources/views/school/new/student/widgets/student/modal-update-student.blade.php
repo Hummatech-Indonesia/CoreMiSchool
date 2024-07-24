@@ -7,8 +7,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form id="form-update" method="post" enctype="multipart/form-data">
-                @csrf
                 @method('PUT')
+                @csrf
                 <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
                     <div class="row">
                         <div class="col-md-12 ">
