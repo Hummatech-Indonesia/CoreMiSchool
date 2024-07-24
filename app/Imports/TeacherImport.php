@@ -21,9 +21,7 @@ class TeacherImport implements ToModel
 
         $user = User::where('email', $row[1])->first();
 
-        if ($user) {
-            $user->assignRole(RoleEnum::TEACHER->value);
-        } else {
+        if (!$user) {
             $user = User::create([
                 'name' => $row[0] ?? null,
                 'email' => $row[1],
