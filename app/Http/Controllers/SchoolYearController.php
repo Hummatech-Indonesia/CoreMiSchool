@@ -49,6 +49,7 @@ class SchoolYearController extends Controller
      */
     public function store(StoreSchoolYearRequest $request)
     {
+        $this->schoolYear->setNonactive();
         $this->schoolYear->store($request->validated());
         return redirect()->back()->with('success', 'Berhasil menambahkan tahun ajaran');
     }
