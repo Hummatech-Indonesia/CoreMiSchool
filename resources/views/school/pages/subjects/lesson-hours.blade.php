@@ -102,10 +102,13 @@
         var start = $(this).data('start');
         var day = $(this).data('day');
         var name = $(this).data('name');
-        var extractedNumber = name.match(/\d+/)[0];
+
+        if (name != 'Istirahat') {
+            var extractedNumber = name.match(/\d+/)[0];
+            $('#store-name').val(extractedNumber).trigger('change');
+        }
 
         $('#store-start').val(start);
-        $('#store-name').val(extractedNumber).trigger('change');
         $('#modal-create').modal('show');
         $('#form-create').attr('action', `{{ route('school.lesson-hours.store', '') }}/${day}`);
     })
