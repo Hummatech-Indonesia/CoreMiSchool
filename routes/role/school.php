@@ -152,3 +152,6 @@ Route::post('attendance-test-teacher', [AttendanceMasterController::class, 'chec
 
 
 // route baru
+Route::get('new/school/extracurricular', function () {
+    return view('school.new.extracurricular.index');
+})->name('new.extracurricular.index');
