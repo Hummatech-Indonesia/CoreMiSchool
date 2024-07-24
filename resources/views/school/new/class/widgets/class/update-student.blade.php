@@ -16,10 +16,11 @@
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
                                 <div class="form-group">
-                                    <label for="formFile" class="mb-2">Foto Siswa <span
-                                            class="text-danger">(ekstensi png, jpg, jpeg)</span></label>
-                                    <input class="form-control mb-3" name="image" type="file"
-                                        id="studentImageInput" onchange="previewStudentImage(event)">
+                                    <label for="formFile" class="mb-2">Foto Siswa <span class="text-danger">(ekstensi png, jpg, jpeg)</span></label>
+                                    <div id="edit-image-preview" class="mt-2 mb-2">
+                                        <img id="edit-preview-img" alt="" style="display: none; width: 200px; height: auto; object-fit: cover;" />
+                                    </div>
+                                    <input class="form-control mb-3" name="image" type="file" id="studentImageInput" onchange="previewEditStudentImage(event)">
                                     @error('image')
                                         <strong class="text-danger">{{ $message }}</strong>
                                     @enderror
