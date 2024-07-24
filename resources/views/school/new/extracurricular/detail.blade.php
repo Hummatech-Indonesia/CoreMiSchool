@@ -123,16 +123,20 @@
                                             </span>
                                         </div>
                                     </a>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <li>
+                                            <a type="button" class="dropdown-item d-flex align-items-center gap-3" data-bs-toggle="modal" data-bs-target="#detail-student"><i class="fs-4 ti ti-eye"></i>Detail</a>
+                                        </li>
                                         <li>
                                             <a class="btn-delete dropdown-item d-flex align-items-center text-danger gap-3" data-bs-toggle="modal" data-bs-target="#modal-delete"><i class="fs-4 ti ti-trash"></i>Hapus</a>
                                         </li>
                                     </ul>
                                 </div>
+
                             </td>
                         </tr>
                     @empty
-                        
+
                     @endforelse
                 </tbody>
             </table>
@@ -141,5 +145,6 @@
         {{-- modal --}}
         @include('school.new.extracurricular.widgets.modal-import')
         @include('school.new.extracurricular.widgets.modal-create-student')
+        @include('school.new.extracurricular.widgets.detail-student')
         <x-delete-modal-component />
     @endsection
