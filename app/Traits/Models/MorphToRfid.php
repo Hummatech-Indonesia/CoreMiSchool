@@ -2,7 +2,7 @@
 
 namespace App\Traits\Models;
 
-trait MorphToRfid {
+trait MorphTo {
 
     public function model()
     {

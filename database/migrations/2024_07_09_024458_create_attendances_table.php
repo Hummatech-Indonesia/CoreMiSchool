@@ -17,7 +17,8 @@ return new class extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
-            $this->addForeignId($table, 'classroom_student_id');
+            $table->string('model_type')->nullable();
+            $table->unsignedBigInteger('model_id')->nullable();
             $table->integer('point')->default(10);
             $table->enum('status', [AttendanceEnum::PRESENT->value, AttendanceEnum::PERMIT->value, AttendanceEnum::SICK->value, AttendanceEnum::ALPHA->value]);
             $table->text('proof')->nullable();
