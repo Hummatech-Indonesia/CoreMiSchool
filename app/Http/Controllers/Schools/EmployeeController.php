@@ -31,12 +31,12 @@ class EmployeeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $teachers = $this->employee->getByRole(RoleEnum::TEACHER->value);
-        $staff = $this->employee->getByRole(RoleEnum::STAFF->value);
+        $teachers = $this->employee->getByRole(RoleEnum::TEACHER->value, $request);
+        $staffs = $this->employee->getByRole(RoleEnum::STAFF->value, $request);
         $religions = $this->religion->get();
-        return view('school.new.employee.index', compact('teachers', 'staff', 'religions'));
+        return view('school.new.employee.index', compact('teachers', 'staffs', 'religions'));
     }
 
     /**

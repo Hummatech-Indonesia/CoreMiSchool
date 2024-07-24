@@ -1,11 +1,10 @@
-<div class="card w-100 position-relative overflow-hidden">
-    <div class="px-4 py-3">
-        <h5 class="card-title fw-semibold mb-0 lh-sm">Daftar Guru</h5>
+<div class="card card-body">
+    <div class="">
+        <h4>Daftar Guru</h4>
     </div>
-    <div class="container-fluid px-4 py-3">
-        <div class="row gx-3">
-            <div class="col-12 mb-3">
-                <div class="d-flex justify-content-between col-md-5 align-items-center">
+        <div class="row">
+            <div class="col-12 mt-3 mb-3">
+                <div class="d-flex justify-content-between mb-3 col-md-5 align-items-center">
                     <form class="d-flex gap-2 align-items-center flex-grow-1">
                         <div class="position-relative flex-grow-1">
                             <input type="text" name="search" class="form-control search-chat py-2 px-4 ps-5"
@@ -13,20 +12,18 @@
                             <i class="ti ti-search position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
                         </div>
                     </form>
-                    <form class="d-flex gap-2 align-items-center ms-3">
-                        <select name="filter" class="form-select" id="search-status">
-                            <option value="terbaru">Laki-Laki</option>
-                            <option value="terlama">Perempuan</option>
+                    <form class="d-flex gap-2 align-items-center ms-2">
+                        <select name="gender" class="form-select" id="search-status">
+                            <option value="male">Laki-laki</option>
+                        <option value="female">Perempuan</option>
                         </select>
                         <button type="submit" class="btn btn-primary">Filter</button>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
 
-
-    <div class="card-body p-4">
+    <div class="">
         <div class="table-responsive rounded-2 mb-4">
             <table class="table border text-nowrap customize-table mb-0 align-middle">
                 <thead class="text-dark fs-4">
@@ -135,6 +132,9 @@
                     @endforelse
                 </tbody>
             </table>
+        </div>
+        <div class="pagination justify-content-end mt-2 mb-0">
+            <x-paginate-component :paginator="$teachers" />
         </div>
     </div>
 </div>
