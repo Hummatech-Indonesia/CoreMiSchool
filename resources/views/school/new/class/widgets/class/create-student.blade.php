@@ -28,7 +28,7 @@
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
                                     <div class="form-group">
-                                        <label for="name" class="mb-2">Nama <span class="text-danger" style="font-size: larger;">*</span></label>
+                                        <label for="name" class="mb-1">Nama <span class="text-danger" style="font-size: larger;">*</span></label>
                                         <input type="text" name="name" class="form-control mb-3" placeholder="Masukkan nama" value="{{ old('name') }}">
                                         @error('name')
                                             <strong class="text-danger">{{ $message }}</strong>
