@@ -52,7 +52,9 @@ class TeacherImport implements ToModel
             return null;
         }
 
-        if (!$user) {
+        $employee = Employee::where('user_id', $user->id)->first();
+
+        if (!$employee) {
             Employee::create($data);
         }
     }
