@@ -30,7 +30,7 @@ class ExtracurricularController extends Controller
     {
         $employees = $this->employee->get();
         $extracurriculars = $this->extracurricular->whereSchool(auth()->user()->school->id, $request);
-        return view('school.pages.extracurricular.index', compact('extracurriculars', 'employees'));
+        return view('school.new.extracurricular.index', compact('extracurriculars', 'employees'));
     }
 
     /**
