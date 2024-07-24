@@ -150,3 +150,8 @@ Route::get('attendance-test', [AttendanceMasterController::class, 'index'])->nam
 Route::get('attendance-test-teacher', [AttendanceMasterController::class, 'index_teacher'])->name('attendance-test-teacher.index');
 Route::post('attendance-test-teacher', [AttendanceMasterController::class, 'check_teacher'])->name('attendance-test-teacher.check');
 
+// route baru
+Route::get('new/school/extracurricular/detail', function () {
+    return view('school.new.extracurricular.detail');
+})->name('new.extracurricular.detail');
+
