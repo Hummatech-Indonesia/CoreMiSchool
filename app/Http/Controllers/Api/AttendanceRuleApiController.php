@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\AttendanceRuleResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\ResourceResponse;
 
 class AttendanceRuleApiController extends Controller
 {
@@ -21,9 +22,10 @@ class AttendanceRuleApiController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): JsonResponse
+    public function index(): mixed
     {
         $attendanceRules = $this->attendanceRule->get();
-        return ResponseHelper::success(AttendanceRuleResource::collection($attendanceRules), 'Berhasil mengirim jadwal waktu');
+        
+        return response()->json(['status'=> 'success', 'code'=>200, 'data' => AttendanceRuleResource::collection($attendanceRules)]);
     }
 }
