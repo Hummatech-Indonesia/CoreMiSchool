@@ -35,7 +35,7 @@
                         <a class="nav-link pe-0" href="javascript:void(0)" id="drop1" data-bs-toggle="dropdown" aria-expanded="false">
                             <div class="d-flex align-items-center">
                                 <div class="">
-                                    <img src="{{ Auth::user()->image ? asset('storage/' . Auth::user()->image) : asset('assets/images/default-user.jpeg') }}" class="rounded-circle user-profile" style="object-fit: cover" width="35" height="35" alt="User Profile Image" />
+                                    <img src="{{ Auth::user()->image ? asset('storage/' . Auth::user()->image) : asset('assets/images/default-user.jpeg') }}" class="rounded-circle user-profile" style="object-fit: cover" width="35" height="35"/>
                                 </div>
                             </div>
                         </a>
