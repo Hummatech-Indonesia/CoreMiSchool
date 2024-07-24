@@ -52,6 +52,8 @@ class EmployeeImport implements ToModel
             return null;
         }
 
-        Employee::create($data);
+        if (!$user) {
+            Employee::create($data);
+        }
     }
 }
