@@ -38,7 +38,7 @@
                         </div>
                         <div class="col-lg-12 mb-3">
                             <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" role="switch">
+                                <input class="form-check-input" name="rest" type="checkbox" role="switch">
                                 Istirahat
                             </div>
                         </div>

@@ -61,8 +61,14 @@ class LessonHourRepository extends BaseRepository implements LessonHourInterface
     public function whereDay(mixed $day, mixed $name): mixed
     {
         return $this->model->query()
-            ->where('day', $day)
-            ->where('name', $name)
+            ->when($name != 'Istirahat', function($query) use ($name, $day){
+                $query->where('day', $day);
+                $query->where('name', $name);
+            })
+            ->when($name == 'Istirahat', function($query){
+                $query->where('day', '');
+                $query->where('name', '');
+            })
             ->first();
     }
 }
