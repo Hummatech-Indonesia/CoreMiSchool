@@ -8,6 +8,7 @@ use App\Http\Controllers\AttendanceTeacherController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\ClassroomStudentController;
 use App\Http\Controllers\ExtracurricularController;
+use App\Http\Controllers\ExtracurricularStudentController;
 use App\Http\Controllers\LessonHourController;
 use App\Http\Controllers\LevelClassController;
 use App\Http\Controllers\MapleController;
@@ -62,6 +63,7 @@ Route::prefix('school')->name('school.')->group(function() {
     Route::resource('lesson-hours', LessonHourController::class)->except(['store']);
     Route::post('lesson-hours/{day}', [LessonHourController::class, 'store'])->name('lesson-hours.store');
     Route::resource('extracurricular', SchoolsExtracurricularController::class);
+    Route::resource('extracurricular-students', ExtracurricularStudentController::class);
     Route::resource('classroom', ClassroomController::class);
     Route::resource('level-class', LevelClassController::class);
     Route::get('class-detail/{classroom}', [ClassroomStudentController::class, 'index'])->name('class-student.index');
