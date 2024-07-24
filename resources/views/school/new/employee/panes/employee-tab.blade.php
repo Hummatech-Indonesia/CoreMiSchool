@@ -4,7 +4,7 @@
     </div>
     <div class="">
         <div class="row">
-            <div class="col-12 mb-3 mt-3">
+            <div class="col-10 mb-3 mt-3">
                 <div class="d-flex justify-content-between col-md-5 mb-3 align-items-center">
                     <form class="d-flex gap-2 align-items-center flex-grow-1">
                         <div class="position-relative flex-grow-1">
@@ -15,8 +15,12 @@
                     </form>
                     <form class="d-flex gap-2 align-items-center ms-3">
                         <select name="gender" class="form-select" id="search-status">
-                            <option value="male">Laki-laki</option>
-                        <option value="female">Perempuan</option>
+                            <option value="" {{ old('gender', request('gender')) == '' ? 'selected' : '' }}>Semua
+                            </option>
+                            <option value="male" {{ old('gender', request('gender')) == 'male' ? 'selected' : '' }}>
+                                Laki-laki</option>
+                            <option value="female" {{ old('gender', request('gender')) == 'female' ? 'selected' : '' }}>
+                                Perempuan</option>
                         </select>
                         <button type="submit" class="btn btn-primary">Filter</button>
                     </form>
@@ -32,7 +36,7 @@
                 <thead class="text-dark fs-4">
                     <tr>
                         <th class="text-white" style="background-color: #5D87FF;">No</th>
-                        <th class="text-white" style="background-color: #5D87FF;">Nama Pegawai</th>
+                        <th class="text-white" style="background-color: #5D87FF;">Nama Staff</th>
                         <th class="text-white" style="background-color: #5D87FF;">Status</th>
                         <th class="text-white" style="background-color: #5D87FF;">Email</th>
                         <th class="text-white" style="background-color: #5D87FF;">NIP</th>
@@ -62,8 +66,7 @@
                             <td>{{ $staff->nip }}</td>
                             <td>{{ $staff->modelHasRfid ? $staff->modelHasRfid->rfid : '-' }}
                                 <button type="button" class="btn btn-rounded btn-warning p-1 ms-2 btn-rfid"
-                                data-name="{{ $staff->user->name }}"
-                                    data-id="{{ $staff->id }}"
+                                    data-name="{{ $staff->user->name }}" data-id="{{ $staff->id }}"
                                     data-rfid="{{ $staff->modelHasRfid ? $staff->modelHasRfid->rfid : 'Kosong' }}"
                                     data-old-rfid="{{ $staff->modelHasRfid ? $staff->modelHasRfid->rfid : 'Kosong' }}"
                                     data-role="Employee">
@@ -131,17 +134,17 @@
                             </td>
                         </tr>
                     @empty
-                    <tr>
-                        <td colspan="7" class="text-center align-middle">
-                            <div class="d-flex flex-column justify-content-center align-items-center">
-                                <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt=""
-                                    width="300px">
-                                <p class="fs-5 text-dark text-center mt-2">
-                                    Belum ada data
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td colspan="7" class="text-center align-middle">
+                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                    <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}"
+                                        alt="" width="300px">
+                                    <p class="fs-5 text-dark text-center mt-2">
+                                        Belum ada data
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
                     @endforelse
                 </tbody>
             </table>

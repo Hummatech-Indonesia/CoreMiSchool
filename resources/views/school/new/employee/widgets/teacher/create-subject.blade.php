@@ -14,12 +14,14 @@
                     <div class="mb-3">
                         <div class="form-group">
                             <label for="subject" class="form-label">Pilih Mata Pelajaran</label>
-                            <select id="subject" name="subject[]" multiple class="select2" aria-label="Pilih Mata Pelajaran">
-                                @forelse ($subjects as $subject)
-                                    <option value="{{ $subject->id }}">{{ $subject->name }}</option>
-                                @empty
-                                @endforelse
-                            </select>
+                            <div>
+                                <select id="subject" name="subject[]" multiple class="select2" aria-label="Pilih Mata Pelajaran">
+                                    @forelse ($subjects as $subject)
+                                        <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                                    @empty
+                                    @endforelse
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
