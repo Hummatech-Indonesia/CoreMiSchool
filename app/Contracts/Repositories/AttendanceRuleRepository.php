@@ -50,6 +50,6 @@ class AttendanceRuleRepository extends BaseRepository implements AttendanceRuleI
 
     public function showByDay(string $day, string $roles): mixed
     {
-        return $this->model->query()->where(['day' => $day, 'role' => $roles])->first();
+        return $this->model->query()->where('day', $day)->get()->groupBy('role');
     }
 }
