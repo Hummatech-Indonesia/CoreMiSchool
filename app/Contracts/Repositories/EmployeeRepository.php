@@ -98,8 +98,16 @@ class EmployeeRepository extends BaseRepository implements EmployeeInterface
      * @param mixed $role role yang ingin dicari.
      * @return mixed mengembalikan koleksi data pegawai yang rolenya sesuai.
      */
-    public function getByRole(mixed $role): mixed
+    public function getByRole(mixed $role, Request $request): mixed
     {
-        return $this->model->query()->whereRelation('user.roles', 'name', $role)->get();
+        return $this->model->query()->whereRelation('user.roles', 'name', $role)
+        ->when($request->search, function ($query) use ($request) {
+            $query->whereHas('user', function($q) use ($request){
+                $q->where('name', 'LIKE', '%' .  $request->search . '%');
+            });
+        })->when($request->gender, function ($query) use ($request) {
+            $query->where('gender', $request->gender);
+        })->latest()
+        ->paginate(10);
     }
 }
