@@ -145,7 +145,7 @@
                     </a>
                 </li> --}}
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->routeIs('school.classroom.index') || request()->routeIs('school.class.show') ? 'active' : '' }}" href="{{ route('school.classroom.index') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ request()->routeIs('school.classroom.index') || request()->routeIs('school.class-student.index') ? 'active' : '' }}" href="{{ route('school.classroom.index') }}" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256">
                                 <path fill="currentColor"
