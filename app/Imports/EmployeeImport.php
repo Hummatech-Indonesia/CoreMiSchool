@@ -21,9 +21,7 @@ class EmployeeImport implements ToModel
 
         $user = User::where('email', $row[1])->first();
 
-        if ($user) {
-            $user->assignRole(RoleEnum::STAFF->value);
-        } else {
+        if (!$user) {
             $user = User::create([
                 'name' => $row[0] ?? null,
                 'email' => $row[1],
@@ -54,6 +52,8 @@ class EmployeeImport implements ToModel
             return null;
         }
 
-        Employee::create($data);
+        if (!$user) {
+            Employee::create($data);
+        }
     }
 }

@@ -56,4 +56,14 @@ class SubjectRepository extends BaseRepository implements SubjectInterface
         })
         ->latest()->paginate(9);
     }
+
+    public function whereTeacher(mixed $employee): mixed
+    {
+        return $this->model->query()
+            ->whereHas('teacherSubjects' , function($q) use ($employee) {
+                $q->where('employee_id', '!=', $employee);
+            })
+            ->orWhereDoesntHave('teacherSubjects')
+            ->get();
+    }
 }

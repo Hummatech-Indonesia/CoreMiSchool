@@ -13,5 +13,6 @@ use Illuminate\Http\Request;
 interface SubjectInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface
 {
     public function whereSchool(Request $request): mixed;
+    public function whereTeacher(mixed $employee) : mixed;
     public function count() : mixed;
 }
