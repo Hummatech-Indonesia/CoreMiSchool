@@ -19,12 +19,18 @@ class EmployeeImport implements ToModel
             return null;
         }
 
-        $user = User::create([
-            'name' => $row[0] ?? null,
-            'email' => $row[1],
-            'slug' => Str::slug($row[0]),
-            'password' => $row[6]
-        ]);
+        $user = User::where('email', $row[1])->first();
+
+        if ($user) {
+            $user->assignRole(RoleEnum::STAFF->value);
+        } else {
+            $user = User::create([
+                'name' => $row[0] ?? null,
+                'email' => $row[1],
+                'slug' => Str::slug($row[0]),
+                'password' => $row[6]
+            ]);
+        }
 
         $user->assignRole(RoleEnum::STAFF->value);
 

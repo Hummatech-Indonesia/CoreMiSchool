@@ -107,7 +107,8 @@ class EmployeeRepository extends BaseRepository implements EmployeeInterface
             });
         })->when($request->gender, function ($query) use ($request) {
             $query->where('gender', $request->gender);
-        })->latest()
+        })
+        ->latest()
         ->paginate(10);
     }
 }
