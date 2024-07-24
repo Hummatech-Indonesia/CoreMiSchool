@@ -75,7 +75,7 @@
         </ul>
 
         <!-- Tab Content -->
-        <div class="tab-content" id="nav-tabContent">
+        <div class="tab-content mt-4" id="nav-tabContent">
             <div class="tab-pane fade" id="teacher-content" role="tabpanel" aria-labelledby="teacher-tab">
                 @include('school.new.employee.panes.teacher-tab')
             </div>
@@ -87,7 +87,6 @@
 
     @include('school.new.employee.widgets.employe.update-employe')
     @include('school.new.employee.widgets.employe.modal-detail')
-    {{-- @include('school.new.employee.widgets.employe.modal-rfid') --}}
 
     @include('school.new.employee.widgets.teacher.update-teacher')
     @include('school.new.employee.widgets.teacher.modal-rfid')
