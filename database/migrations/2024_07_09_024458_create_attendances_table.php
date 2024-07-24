@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('model_type');
             $table->unsignedBigInteger('model_id');
             $table->integer('point')->default(10);
-            $table->enum('status', [AttendanceEnum::PRESENT->value, AttendanceEnum::PERMIT->value, AttendanceEnum::SICK->value, AttendanceEnum::ALPHA->value]);
+            $table->enum('status', [AttendanceEnum::PRESENT->value, AttendanceEnum::PERMIT->value, AttendanceEnum::SICK->value, AttendanceEnum::ALPHA->value, AttendanceEnum::LATE->value]);
             $table->text('proof')->nullable();
             $table->time('checkin');
             $table->time('checkout')->nullable();
