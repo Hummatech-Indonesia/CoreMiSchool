@@ -170,3 +170,11 @@ Route::post('attendance-test-teacher', [AttendanceMasterController::class, 'chec
 Route::get('new/school/extracurricular/detail', function () {
     return view('school.new.extracurricular.detail');
 })->name('new.extracurricular.detail');
+
+Route::get('new/school/lesson-schedule', function () {
+    return view('school.new.lesson-schedule.index');
+})->name('new.lesson-schedule.index');
+
+Route::get('new/school/lesson-schedule/detail', function () {
+    return view('school.new.lesson-schedule.detail');
+})->name('new.lesson-schedule.detail');

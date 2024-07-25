@@ -71,7 +71,7 @@
         <div class="d-flex flex-wrap">
             <!-- Search Form -->
             <div class="col-12 col-md-6 col-lg-12 mb-3 me-3">
-                <form class="position-relative" action="/school/extracurricular">
+                <form class="position-relative">
                     <input type="text" name="name" class="form-control product-search ps-5" id="input-search"
                         placeholder="Cari..." value="{{ old('name', request()->name) }}">
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
@@ -171,6 +171,10 @@
                 @endforelse
             </tbody>
         </table>
+    </div>
+
+    <div class="pagination justify-content-end mb-0">
+        <x-paginate-component :paginator="$extracurricularStudents" />
     </div>
 
     {{-- modal --}}

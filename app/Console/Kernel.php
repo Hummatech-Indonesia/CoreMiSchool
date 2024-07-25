@@ -33,7 +33,7 @@ class Kernel extends ConsoleKernel
                     ];
                 })->toArray();
             }
-            
+
             if(!AttendanceRule::where('day', $day)->where('role', RoleEnum::TEACHER->value)->first()->is_holiday) {
                 $teachers = Employee::whereHas('modelHasRfid')
                 ->where('status', RoleEnum::TEACHER->value)
@@ -53,7 +53,7 @@ class Kernel extends ConsoleKernel
 
             info($attendanceData);
             Attendance::insert($attendanceData);
-        });
+        })->dailyAt('01:00');
 
         // $schedule->call(function() {
 

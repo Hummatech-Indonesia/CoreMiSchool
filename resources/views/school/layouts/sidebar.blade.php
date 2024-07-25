@@ -197,6 +197,14 @@
                                 <span class="hide-menu">Jam Pelajaran</span>
                             </a>
                         </li>
+                        <li class="sidebar-item">
+                            <a href="/new/school/lesson-schedule" class="sidebar-link">
+                                <div class="round-16 d-flex align-items-center justify-content-center">
+                                    <i class="ti ti-circle"></i>
+                                </div>
+                                <span class="hide-menu">Jadwal Pelajaran</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="sidebar-item">
