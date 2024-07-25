@@ -64,9 +64,9 @@ Route::prefix('school')->name('school.')->group(function() {
     Route::resource('lesson-hours', LessonHourController::class)->except(['store']);
     Route::post('lesson-hours/{day}', [LessonHourController::class, 'store'])->name('lesson-hours.store');
     Route::resource('extracurricular', SchoolsExtracurricularController::class);
-    
+
     // siswa ekstrakurikuler
-    Route::post('extracurricular-students/{extracurricular}', [ExtracurricularStudentController::class, 'store'])->name('extracurricular-students.store');  
+    Route::post('extracurricular-students/{extracurricular}', [ExtracurricularStudentController::class, 'store'])->name('extracurricular-students.store');
     Route::delete('extracurricular-students/{extracurricularStudent}', [ExtracurricularStudentController::class, 'destroy'])->name('extracurricular-students.destroy');
     // import siswa ekstrakurikuler
     Route::post('import-extracurricular-student/{extracurricular}', [ExtracurricularStudentController::class, 'import'])->name('extracurricular-students.import');
@@ -168,6 +168,14 @@ Route::post('attendance-test-teacher', [AttendanceMasterController::class, 'chec
 Route::get('new/school/extracurricular/detail', function () {
     return view('school.new.extracurricular.detail');
 })->name('new.extracurricular.detail');
+
+Route::get('new/school/lesson-schedule', function () {
+    return view('school.new.lesson-schedule.index');
+})->name('new.lesson-schedule.index');
+
+Route::get('new/school/lesson-schedule/detail', function () {
+    return view('school.new.lesson-schedule.detail');
+})->name('new.lesson-schedule.detail');
 
 Route::get('new/school/export', function(){
     return view('school.new.attendace.student.export');
