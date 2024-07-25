@@ -51,12 +51,13 @@
 
             </a>
         </li>
-        <li class="nav-item ms-auto">
-            <a href="javascript:void(0)" class="btn btn-primary d-flex align-items-center px-3 d-none"
-                id="btn-create-school-year" data-bs-toggle="modal" data-bs-target="#modal-create-school-year">
-                <span class="d-none d-md-block font-weight-medium fs-3">Tambah tahun ajaran</span>
+        <li class="nav-item ms-auto pt-3 pt-md-0">
+            <a href="javascript:void(0)" class="btn btn-primary d-flex align-items-center px-3"
+               id="btn-create-school-year" data-bs-toggle="modal" data-bs-target="#modal-create-school-year">
+                <span class="d-block font-weight-medium fs-3">Tambah tahun ajaran</span>
             </a>
         </li>
+
     </ul>
 
 
