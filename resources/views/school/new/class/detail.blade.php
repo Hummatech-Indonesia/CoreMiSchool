@@ -15,123 +15,158 @@
         </div>
     </div>
 
-    <div class="card card-body">
-        <div class="d-flex justify-content-between">
-            <div>
-                <h4>Rolling Siswa</h4>
-                <div>
-                    <p>Pilih siswa di sebelah kiri untuk memasukkan siswa ke dalam Kelas</p>
-                </div>
-            </div>
-            <div>
-                <button id="save-button" class="btn btn-primary px-4">Simpan</button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="d-flex flex-wrap mb-3">
-                    <form class="position-relative">
-                        <input type="text" name="name" class="form-control product-search ps-5" id="input-search-left"
-                            placeholder="Cari...">
-                        <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
-                    </form>
-                </div>
+    <style>
+        #inimize {
+            scale: 1;
+            position: absolute;
+            transition: all ease 0.3s;
+        }
+        .minimize {
+            scale: 0.1;
+            position: absolute;
+            box-sizing: border-box;
+            bottom: 0;
+            left: 0;
+        }
 
-                <div class="table-responsive rounded-2">
-                    <table id="left-table" class="table border text-nowrap customize-table mb-0 align-middle text-center">
-                        <thead>
-                            <tr>
-                                <th class="text-white" style="background-color: #5D87FF;">Siswa</th>
-                                <th class="text-white" style="background-color: #5D87FF;">NISN</th>
-                                <th class="text-white" style="background-color: #5D87FF;">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($students as $student)
-                                <tr data-id="{{ $student->id }}">
-                                    <td>{{ $student->user->name }}</td>
-                                    <td>{{ $student->nisn }}</td>
-                                    <td class="d-flex justify-content-center">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox">
-                                        </div>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr class="empty-tr">
-                                    <td colspan="3" class="text-center align-middle">
-                                        <div class="d-flex flex-column justify-content-center align-items-center">
-                                            <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}"
-                                                alt="" width="200px">
-                                            <p class="fs-5 text-dark text-center mt-2">
-                                                Siswa belum ditambahkan
-                                            </p>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                    <div class="text-end mt-3 mb-3">
-                        <button id="move-to-right" class="btn btn-success">
-                            Masukan
-                        </button>
+        .rolling-flex {
+            display: flex;
+            position: relative;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+
+    <div class="rolling-flex flex-column mb-4">
+        <button class="toggle-rolling btn btn-primary">Rolling Siswa</button>
+
+        <div class="card card-body w-100 minimize" id="minimize">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <h4>Rolling Siswa</h4>
+                    <div>
+                        <p>Pilih siswa di sebelah kiri untuk memasukkan siswa ke dalam Kelas</p>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="d-flex flex-wrap mb-3">
-                    <form class="position-relative">
-                        <input type="text" name="search" class="form-control product-search ps-5"
-                            id="input-search-right" placeholder="Cari...">
-                        <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
-                    </form>
+                <div>
+                    <button id="save-button" class="btn btn-primary px-4">Simpan</button>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="d-flex flex-wrap mb-3">
+                        <form class="position-relative">
+                            <input type="text" name="name" class="form-control product-search ps-5"
+                                id="input-search-left" placeholder="Cari...">
+                            <i
+                                class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
+                        </form>
+                    </div>
 
-                <div class="table-responsive rounded-2">
-                    <table id="right-table" class="table border text-nowrap customize-table mb-0 align-middle text-center">
-                        <thead>
-                            <tr>
-                                <th class="text-white" style="background-color: #5D87FF;">Siswa</th>
-                                <th class="text-white" style="background-color: #5D87FF;">NISN</th>
-                                <th class="text-white" style="background-color: #5D87FF;">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($classroomStudents as $classroomStudent)
-                                <tr data-id="{{ $classroomStudent->student->id }}">
-                                    <td>{{ $classroomStudent->student->user->name }}</td>
-                                    <td>{{ $classroomStudent->student->nisn }}</td>
-                                    <td class="d-flex justify-content-center">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox">
-                                        </div>
-                                    </td>
+                    <div class="table-responsive rounded-2">
+                        <table id="left-table"
+                            class="table border text-nowrap customize-table mb-0 align-middle text-center">
+                            <thead>
+                                <tr>
+                                    <th class="text-white" style="background-color: #5D87FF;">Siswa</th>
+                                    <th class="text-white" style="background-color: #5D87FF;">NISN</th>
+                                    <th class="text-white" style="background-color: #5D87FF;">Action</th>
                                 </tr>
-                            @empty
-                                <tr class="empty-tr">
-                                    <td colspan="3" class="text-center align-middle">
-                                        <div class="d-flex flex-column justify-content-center align-items-center">
-                                            <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}"
-                                                alt="" width="200px">
-                                            <p class="fs-5 text-dark text-center mt-2">
-                                                Siswa belum ditambahkan
-                                            </p>
-                                        </div>
-                                    </td>
+                            </thead>
+                            <tbody>
+                                @forelse ($students as $student)
+                                    <tr data-id="{{ $student->id }}">
+                                        <td>{{ $student->user->name }}</td>
+                                        <td>{{ $student->nisn }}</td>
+                                        <td class="d-flex justify-content-center">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr class="empty-tr">
+                                        <td colspan="3" class="text-center align-middle">
+                                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                                <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}"
+                                                    alt="" width="200px">
+                                                <p class="fs-5 text-dark text-center mt-2">
+                                                    Siswa belum ditambahkan
+                                                </p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                        <div class="text-end mt-3 mb-3">
+                            <button id="move-to-right" class="btn btn-success">
+                                Masukan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex flex-wrap mb-3">
+                        <form class="position-relative">
+                            <input type="text" name="search" class="form-control product-search ps-5"
+                                id="input-search-right" placeholder="Cari...">
+                            <i
+                                class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
+                        </form>
+                    </div>
+
+                    <div class="table-responsive rounded-2">
+                        <table id="right-table"
+                            class="table border text-nowrap customize-table mb-0 align-middle text-center">
+                            <thead>
+                                <tr>
+                                    <th class="text-white" style="background-color: #5D87FF;">Siswa</th>
+                                    <th class="text-white" style="background-color: #5D87FF;">NISN</th>
+                                    <th class="text-white" style="background-color: #5D87FF;">Action</th>
                                 </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                    <div class="text-end mt-3 mb-3">
-                        <button id="move-to-left" class="btn btn-danger">
-                            Keluarkan
-                        </button>
+                            </thead>
+                            <tbody>
+                                @forelse ($classroomStudents as $classroomStudent)
+                                    <tr data-id="{{ $classroomStudent->student->id }}">
+                                        <td>{{ $classroomStudent->student->user->name }}</td>
+                                        <td>{{ $classroomStudent->student->nisn }}</td>
+                                        <td class="d-flex justify-content-center">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr class="empty-tr">
+                                        <td colspan="3" class="text-center align-middle">
+                                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                                <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}"
+                                                    alt="" width="200px">
+                                                <p class="fs-5 text-dark text-center mt-2">
+                                                    Siswa belum ditambahkan
+                                                </p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                        <div class="text-end mt-3 mb-3">
+                            <button id="move-to-left" class="btn btn-danger">
+                                Keluarkan
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 
     <!-- Hidden fields to store changes -->
     <form id="save-form" action="{{ route('school.student-classroom.update', ['classroom' => $classroom]) }}"
@@ -177,7 +212,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>
                             <div class="d-flex align-items-center">
-                                <img src="{{ $student->student->image ? asset('storage/'. $student->student->image) : asset('assets/images/default-user.jpeg') }}"
+                                <img src="{{ $student->student->image ? asset('storage/' . $student->student->image) : asset('assets/images/default-user.jpeg') }}"
                                     class="rounded-circle" width="40" height="40" style="object-fit: cover">
                                 <div class="ms-3">
                                     <h6 class="fs-4 fw-semibold mb-0">{{ $student->student->user->name }}</h6>
@@ -189,8 +224,7 @@
                         <td>{{ $student->student->nisn }}</td>
                         <td>{{ $student->student->modelHasRfid ? $student->student->modelHasRfid->rfid : '-' }}
                             <button type="button" class="btn btn-rounded btn-warning p-1 ms-2 btn-rfid"
-                                data-name="{{ $student->student->user->name }}"
-                                data-id="{{ $student->student->id }}"
+                                data-name="{{ $student->student->user->name }}" data-id="{{ $student->student->id }}"
                                 data-rfid="{{ $student->student->modelHasRfid ? $student->student->modelHasRfid->rfid : 'Kosong' }}"
                                 data-old-rfid="{{ $student->student->modelHasRfid ? $student->student->modelHasRfid->rfid : 'Kosong' }}"
                                 data-role="{{ $student->student->user->roles->pluck('name')[0] }}">
@@ -277,6 +311,7 @@
 
 @section('script')
     @include('school.new.class.script.script-preview')
+    @include('school.new.class.script.script-toggle-rolling')
     @include('school.new.class.script.script-create-rfid')
     @include('school.new.class.script.script-rolling-student')
     @include('school.new.class.script.script-update-student')

@@ -44,11 +44,17 @@ class ExtracurricularStudentController extends Controller
      */
     public function store(StoreExtracurricularStudentRequest $request, Extracurricular $extracurricular)
     {
-        $this->extracurricularStudent->store([
-            'student_id' => $request->student_id,
-            'extracurricular_id' => $extracurricular->id,
-        ]);
-        return redirect()->back()->with('success', 'Berhasil menambahkan siswa ke ekstrakurikuler');
+        $exists = $this->extracurricularStudent->check($extracurricular->id, $request->student_id);
+
+        if (!$exists) {
+            $this->extracurricularStudent->store([
+                'student_id' => $request->student_id,
+                'extracurricular_id' => $extracurricular->id,
+            ]);
+            return redirect()->back()->with('success', 'Berhasil menambahkan siswa ke ekstrakurikuler');
+        } else {
+            return redirect()->back()->with('warning', 'Siswa sudah ada di dalam ekstrakurikuler');
+        }
     }
 
     /**

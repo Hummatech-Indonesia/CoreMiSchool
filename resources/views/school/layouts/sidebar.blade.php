@@ -208,7 +208,7 @@
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link has-arrow {{ request()->routeIs('school.student-attendance.index') || request()->routeIs('school.student-attendance.show') ? 'active' : '' }}" href="javascript:void(0)" aria-expanded="false">
+                    <a class="sidebar-link has-arrow {{ request()->routeIs('school.student-attendance.show') ? 'active' : '' }}" href="javascript:void(0)" aria-expanded="false">
                         <span class="d-flex">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                 viewBox="0 0 24 24">
@@ -223,7 +223,7 @@
                         </span>
                         <span class="hide-menu">Absensi</span>
                     </a>
-                    <ul aria-expanded="false" class="collapse first-level">
+                    <ul aria-expanded="false" class="collapse first-level {{ request()->routeIs('school.student-attendance.show') ? 'in' : '' }}">
                         <li class="sidebar-item">
                             <a href="{{ route('clock-settings.index') }}" class="sidebar-link">
                                 <div class="round-16 d-flex align-items-center justify-content-center">
@@ -233,7 +233,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="javascript:void(0)" class="sidebar-link has-arrow  {{ request()->routeIs('school.student-attendance.index') || request()->routeIs('school.student-attendance.show') ? 'active' : '' }}" aria-expanded="false"
+                            <a href="javascript:void(0)" class="sidebar-link has-arrowiojui  {{ request()->routeIs('school.student-attendance.show') ? 'active' : '' }}" aria-expanded="false"
                                 style="display: flex; align-items: center;">
                                 <div class="d-flex">
                                     <div class="round-16 d-flex align-items-center justify-content-center">
@@ -243,9 +243,9 @@
                                 </div>
                                 <i class="ti ti-angle-down" style="margin-left: auto;"></i>
                             </a>
-                            <ul aria-expanded="false" class="collapse second-level">
+                            <ul aria-expanded="false" class="collapse second-level {{ request()->routeIs('school.student-attendance.show') ? 'active in' : '' }}">
                                 <li class="sidebar-item">
-                                    <a href="{{ route('school.student-attendance.index') }}" class="sidebar-link  {{ request()->routeIs('school.student-attendance.index') || request()->routeIs('school.student-attendance.show') ? 'active' : '' }}"
+                                    <a href="{{ route('school.student-attendance.index') }}" class="sidebar-link  {{ request()->routeIs('school.student-attendance.show') ? 'active' : '' }}"
                                         style="display: flex; align-items: center; margin-left: 20px;">
                                         <div class="round-16 d-flex align-items-center justify-content-center ms-3">
                                             <i class="ti ti-circle"></i>
@@ -262,14 +262,6 @@
                                         <span class="hide-menu ">Guru</span>
                                     </a>
                                 </li>
-                                {{-- <li class="sidebar-item">
-                                    <a href="javascript:void(0)" class="sidebar-link" style="display: flex; align-items: center; margin-left: 20px;">
-                                        <div class="round-16 d-flex align-items-center justify-content-center ms-3">
-                                            <i class="ti ti-circle"></i>
-                                        </div>
-                                        <span class="hide-menu ">Bulanan</span>
-                                    </a>
-                                </li> --}}
                             </ul>
                         </li>
 

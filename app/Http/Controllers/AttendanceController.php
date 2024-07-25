@@ -64,17 +64,17 @@ class AttendanceController extends Controller
         if (!$rule) return ResponseHelper::jsonResponse('warning', 'Tidak ada jadwal absensi', null, 404);
 
         $data = $this->service->insert($request, $rule, $day);
-        // try {
+        try {
             if (!empty($data)) {
                 foreach ($data->toArray() as $attendance) {
                     $this->attendance->updateWithAttribute(['model_id' => $attendance['model_id'], 'model_type' => $attendance['model_type']], $attendance);
                 }
             }
-            return response()->json(['status' => 'sukses', 'message' => 'Data kehadiran berhasil dimasukkan', 'invalid' => empty($data['invalid']) ? null : null], 200);
-        // } catch (\Exception $e) {
-        //     // Log::error('AttendanceController: Error inserting attendance data', ['error' => $e->getMessage()]);
-        //     return response()->json(['status' => 'error', 'message' => 'Gagal memasukkan data kehadiran', 'error' => $e->getMessage()], 500);
-        // }
+            return response()->json(['status' => 'sukses', 'message' => 'Data kehadiran berhasil dimasukkan', 'invalid' => empty($data['invalid']) ? null : null, 'code' => 200], 200);
+        } catch (\Exception $e) {
+            // Log::error('AttendanceController: Error inserting attendance data', ['error' => $e->getMessage()]);
+            return response()->json(['status' => 'error', 'message' => 'Gagal memasukkan data kehadiran', 'error' => $e->getMessage(), 'code' => 500], 500);
+        }
     }
     /**
      * Display a listing of the resource.
@@ -132,7 +132,7 @@ class AttendanceController extends Controller
     public function studentExportPreview(Classroom $classroom, Request $request)
     {
         $attendances = $this->attendance->classAndDate($classroom->id, $request);
-        return view('school.pages.attendace.student.export', compact('attendances', 'classroom'));
+        return view('school.new.attendace.student.export', compact('attendances', 'classroom'));
     }
 
     /**

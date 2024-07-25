@@ -177,3 +177,6 @@ Route::get('new/school/lesson-schedule/detail', function () {
     return view('school.new.lesson-schedule.detail');
 })->name('new.lesson-schedule.detail');
 
+Route::get('new/school/export', function(){
+    return view('school.new.attendace.student.export');
+})->name('attendace-student-export');
