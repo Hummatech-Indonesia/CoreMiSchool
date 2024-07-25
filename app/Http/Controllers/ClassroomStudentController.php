@@ -61,9 +61,11 @@ class ClassroomStudentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ClassroomStudent $classroomStudent)
+    public function show(Request $request)
     {
-        //
+        $classroomId = $request->classroom_id;
+        $students = $this->classroomStudent->where($classroomId, $request);
+        return response()->json(['data' => $students]);
     }
 
     /**
