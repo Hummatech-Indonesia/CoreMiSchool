@@ -11,7 +11,8 @@
                     <div class="mb-3">
                         <div class="form-group">
                             <label for="" class="mb-2">Kelas</label>
-                            <select id="pengajar" class="form-select" name="class">
+                            <select class="form-select classroom" name="classroom_id">
+                                <option selected>Pilih kelas</option>
                                 @forelse ($classrooms as $classroom)
                                     <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>                                    
                                 @empty
@@ -21,9 +22,7 @@
                         </div>
                         <div class="form-group">
                             <label for="" class="mb-2 pt-3">Nama Siswa</label>
-                            <select id="pengajar" class="form-select" name="student">
-                                <option value="">oke</option>
-                                <option value="">Suyadi</option>
+                            <select class="form-select student" name="student_id">
                             </select>
                         </div>
                     </div>

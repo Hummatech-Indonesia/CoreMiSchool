@@ -52,6 +52,7 @@ Route::prefix('school')->name('school.')->group(function() {
     Route::post('import-staff/', [StaffController::class, 'import'])->name('staff.import');
     Route::get('download-template-staff/', [StaffController::class, 'downloadTemplate'])->name('staff.download-template');
 
+    //import student
     Route::post('import-student/{classroom}', [StudentController::class, 'import'])->name('student.import');
     Route::get('download-template-student/', [StudentController::class, 'downloadTemplate'])->name('student.download-template');
 
@@ -86,6 +87,9 @@ Route::prefix('school')->name('school.')->group(function() {
     Route::get('teacher-attendance', [SchoolsAttendanceController::class, 'teacher'])->name('teacher-attendance.index');
     //export kehadiran guru
     Route::get('teacher-attendance/export', [SchoolsAttendanceController::class, 'export_teacher'])->name('teacher-attendance.export');
+
+    // get classroom students by classroom id
+    Route::get('classroom-students', [ClassroomStudentController::class, 'show'])->name('classroom-students.show');
 });
 
 
