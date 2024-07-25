@@ -19,7 +19,7 @@
                                 <li>Jika siswa tidak terimport maka kemungkinan email siswa tersebut telah digunakan.
                                 </li>
                                 <li>File yang dapat diunggah berupa file excel berekstensi xls, xlsx.</li>
-                                <li>Password siswa secara default adalah NIK.</li>
+                                <li>Password siswa secara default adalah NISN.</li>
                                 <li>Format pengisian file excel seperti dibawah ini.</li>
                             </ul>
                         </div>
