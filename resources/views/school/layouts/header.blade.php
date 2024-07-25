@@ -104,7 +104,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="message-body">
+                    {{-- <div class="message-body">
                         <a class="py-8 px-7 mt-8 d-flex align-items-center" href="#">
                             <span class="d-flex align-items-center justify-content-center bg-light rounded-1 p-6">
                                 <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-account.svg" alt="" width="24" height="24">
@@ -114,7 +114,7 @@
                                 <span class="d-block text-dark">Setting Akun</span>
                             </div>
                         </a>
-                    </div>
+                    </div> --}}
                     <form id="logout-form" action="{{ route('logout') }}" method="POST">
                         @csrf
                         <div class="d-grid py-4 px-7 pt-8">
