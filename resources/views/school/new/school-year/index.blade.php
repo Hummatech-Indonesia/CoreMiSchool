@@ -51,12 +51,13 @@
 
             </a>
         </li>
-        <li class="nav-item ms-auto">
-            <a href="javascript:void(0)" class="btn btn-primary d-flex align-items-center px-3 d-none"
-                id="btn-create-school-year" data-bs-toggle="modal" data-bs-target="#modal-create-school-year">
-                <span class="d-none d-md-block font-weight-medium fs-3">Tambah tahun ajaran</span>
+        <li class="nav-item ms-auto pt-3 pt-md-0">
+            <a href="javascript:void(0)" class="btn btn-primary d-flex align-items-center px-3"
+               id="btn-create-school-year" data-bs-toggle="modal" data-bs-target="#modal-create-school-year">
+                <span class="d-block font-weight-medium fs-3">Tambah tahun ajaran</span>
             </a>
         </li>
+
     </ul>
 
 
@@ -86,6 +87,9 @@
 
             tabs.forEach(function(tab) {
                 tab.addEventListener('shown.bs.tab', function(event) {
+
+                    localStorage.setItem('activeTab', event.target.getAttribute('href'));
+
                     if (event.target.getAttribute('href') === '#pills-schoolYears') {
                         button.classList.remove('d-none');
                     } else {
@@ -93,6 +97,14 @@
                     }
                 });
             });
+
+            var activeTab = localStorage.getItem('activeTab');
+            if (activeTab) {
+                var tabToActivate = document.querySelector(`a[href="${activeTab}"]`);
+                if (tabToActivate) {
+                    tabToActivate.click();
+                }
+            }
 
             // Initial check in case the page loads with the "Tahun Ajaran" tab already active
             if (document.querySelector('#pills-tab .nav-link.active').getAttribute('href') ===

@@ -140,7 +140,6 @@
                                     </li>
                                 </ul>
                             </div>
-
                         </td>
                     </tr>
                 @empty
@@ -153,6 +152,7 @@
                             </p>
                         </div>
                     </td>
+
                 @endforelse
             </tbody>
         </table>
