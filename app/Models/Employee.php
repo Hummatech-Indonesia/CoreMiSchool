@@ -19,7 +19,7 @@ class Employee extends Model
     use HasFactory, BelongsToUser,
     BelongsToReligion,HasManyClassroom,
     HasManyTeacherSubject, HasManyExtracurricular,
-    MorphManyAttendance;
+    MorphManyAttendance, MorphManyRfid;
 
     protected $guarded = ['id'];
     protected $casts = [
