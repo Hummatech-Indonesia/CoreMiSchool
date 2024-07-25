@@ -50,10 +50,10 @@
                 @forelse ($attendanceTeachers as $attendance)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $attendance->model->user->name }}</td>
-                        <td>{{ $attendance->checkin }}</td>
-                        <td>{{ $attendance->checkout }}</td>
-                        <td>{{ $attendance->status == 'present' ? 'Masuk' : ($attendance->status == 'sick' ? 'Sakit' : ($attendance->status == 'alpha' ? 'Alpha' : ($attendance->status == 'permit' ? 'Izin' : ($attendance->status == 'late' ? 'Telat' : '')))) }}</td>
+                        <td>{{ $attendance->user->name }}</td>
+                        <td>{{ $attendance->attendances->first()->checkin }}</td>
+                        <td>{{ $attendance->attendances->first()->checkout }}</td>
+                        <td>{{ $attendance->attendances->first()->status == 'present' ? 'Masuk' : ($attendance->attendances->first()->status == 'sick' ? 'Sakit' : ($attendance->attendances->first()->status == 'alpha' ? 'Alpha' : ($attendance->attendances->first()->status == 'permit' ? 'Izin' : ($attendance->attendances->first()->status == 'late' ? 'Telat' : '')))) }}</td>
                         <td>
                             <button type="button" class="btn mb-1 btn-light-primary text-primary btn-sm px-4 fs-2 font-medium"
                                 data-bs-toggle="modal" data-bs-target="#modal-import">
