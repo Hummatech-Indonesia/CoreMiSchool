@@ -80,7 +80,8 @@ class ExtracurricularStudentController extends Controller
      */
     public function destroy(ExtracurricularStudent $extracurricularStudent)
     {
-        //
+        $this->extracurricularStudent->delete($extracurricularStudent->id);
+        return redirect()->back()->with('success', 'Berhasil menghapus siswa dari ekstrakurikuler');
     }
 
     public function downloadTemplate()

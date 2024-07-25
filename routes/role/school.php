@@ -67,6 +67,7 @@ Route::prefix('school')->name('school.')->group(function() {
     
     // siswa ekstrakurikuler
     Route::post('extracurricular-students/{extracurricular}', [ExtracurricularStudentController::class, 'store'])->name('extracurricular-students.store');  
+    Route::delete('extracurricular-students/{extracurricularStudent}', [ExtracurricularStudentController::class, 'destroy'])->name('extracurricular-students.destroy');
     // import siswa ekstrakurikuler
     Route::post('import-extracurricular-student/{extracurricular}', [ExtracurricularStudentController::class, 'import'])->name('extracurricular-students.import');
     Route::get('download-template-extracurricular-student/', [ExtracurricularStudentController::class, 'downloadTemplate'])->name('extracurricular-students.download-template');

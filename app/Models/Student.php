@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\GenderEnum;
 use App\Traits\Models\BelongsToReligion;
 use App\Traits\Models\BelongsToSchool;
 use App\Traits\Models\BelongsToUser;
@@ -18,4 +19,7 @@ class Student extends Model
     HasManyExtracurricularStudent, MorphManyRfid;
 
     protected $guarded = ['id'];
+    protected $casts = [
+        'gender' => GenderEnum::class
+    ];
 }

@@ -129,13 +129,28 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <li>
-                                        <a type="button" class="dropdown-item d-flex align-items-center gap-3"
-                                            data-bs-toggle="modal" data-bs-target="#detail-student"><i
-                                                class="fs-4 ti ti-eye"></i>Detail</a>
+                                        <a type="button" class="dropdown-item d-flex align-items-center gap-3 btn-detail"
+                                            data-image="{{ $extracurricularStudent->student->image ? asset('storage/' . $extracurricularStudent->student->image) : asset('assets/images/default-user.jpeg') }}"
+                                            data-name="{{ $extracurricularStudent->student->user->name }}"
+                                            data-email="{{ $extracurricularStudent->student->user->email }}"
+                                            data-nisn="{{ $extracurricularStudent->student->nisn }}"
+                                            data-classroom="{{ $extracurricularStudent->student->classroomStudents->isNotEmpty() ? $extracurricularStudent->student->classroomStudents->first()->classroom->name : '-' }}"
+                                            data-gender="{{ $extracurricularStudent->student->gender->label() }}"
+                                            data-religion="{{ $extracurricularStudent->student->religion->name }}"
+                                            data-birthdate="{{ $extracurricularStudent->student->birth_date }}"
+                                            data-birthplace="{{ $extracurricularStudent->student->birth_place }}"
+                                            data-number_kk="{{ $extracurricularStudent->student->number_kk }}"
+                                            data-nik="{{ $extracurricularStudent->student->nik }}"
+                                            data-order_child="{{ $extracurricularStudent->student->order_child }}"
+                                            data-number_akta="{{ $extracurricularStudent->student->number_akta }}"
+                                            data-count_sibling="{{ $extracurricularStudent->student->count_siblings }}"
+                                            data-address="{{ $extracurricularStudent->student->address }}"
+                                            >
+                                            <i class="fs-4 ti ti-eye"></i>Detail
+                                        </a>
                                     </li>
                                     <li>
-                                        <a class="btn-delete dropdown-item d-flex align-items-center text-danger gap-3"
-                                            data-bs-toggle="modal" data-bs-target="#modal-delete"><i
+                                        <a class="btn-delete-student dropdown-item d-flex align-items-center text-danger gap-3" data-id="{{ $extracurricularStudent->id }}"><i
                                                 class="fs-4 ti ti-trash"></i>Hapus</a>
                                     </li>
                                 </ul>
