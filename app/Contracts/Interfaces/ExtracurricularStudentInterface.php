@@ -12,5 +12,5 @@ use App\Contracts\Interfaces\Eloquent\WhereInterface;
 
 interface ExtracurricularStudentInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface, WhereInterface
 {
-    //
+    public function check(mixed $extracurricular_id, mixed $student_id): mixed;
 }
