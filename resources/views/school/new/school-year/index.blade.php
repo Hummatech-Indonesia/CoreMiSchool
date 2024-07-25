@@ -87,6 +87,9 @@
 
             tabs.forEach(function(tab) {
                 tab.addEventListener('shown.bs.tab', function(event) {
+
+                    localStorage.setItem('activeTab', event.target.getAttribute('href'));
+
                     if (event.target.getAttribute('href') === '#pills-schoolYears') {
                         button.classList.remove('d-none');
                     } else {
@@ -94,6 +97,14 @@
                     }
                 });
             });
+
+            var activeTab = localStorage.getItem('activeTab');
+            if (activeTab) {
+                var tabToActivate = document.querySelector(`a[href="${activeTab}"]`);
+                if (tabToActivate) {
+                    tabToActivate.click();
+                }
+            }
 
             // Initial check in case the page loads with the "Tahun Ajaran" tab already active
             if (document.querySelector('#pills-tab .nav-link.active').getAttribute('href') ===

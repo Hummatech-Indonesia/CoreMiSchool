@@ -46,4 +46,9 @@ class ExtracurricularStudentRepository extends BaseRepository implements Extracu
     {
         return $this->model->query()->where('extracurricular_id', $data)->get();
     }
+
+    public function check(mixed $extracurricular_id, mixed $student_id): mixed
+    {
+        return $this->model->query()->where('extracurricular_id', $extracurricular_id)->where('student_id', $student_id)->exists();
+    }
 }
