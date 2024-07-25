@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Schools;
 
+use App\Contracts\Interfaces\ClassroomInterface;
 use App\Http\Controllers\Controller;
 use App\Contracts\Interfaces\EmployeeInterface;
 use App\Contracts\Interfaces\ExtracurricularInterface;
@@ -20,14 +21,16 @@ class ExtracurricularController extends Controller
     private EmployeeInterface $employee;
     private SchoolYearInterface $schoolYear;
     private ExtracurricularStudentInterface $extracurricularStudent;
+    private ClassroomInterface $classroom;
 
-    public function __construct(ExtracurricularInterface $extracurricular, ExtracurricularService $service, EmployeeInterface $employee, SchoolYearInterface $schoolYear, ExtracurricularStudentInterface $extracurricularStudent)
+    public function __construct(ExtracurricularInterface $extracurricular, ExtracurricularService $service, EmployeeInterface $employee, SchoolYearInterface $schoolYear, ExtracurricularStudentInterface $extracurricularStudent, ClassroomInterface $classroom)
     {
         $this->extracurricular = $extracurricular;
         $this->service = $service;
         $this->employee = $employee;
         $this->schoolYear = $schoolYear;
         $this->extracurricularStudent = $extracurricularStudent;
+        $this->classroom = $classroom;
     }
 
     /**
@@ -64,7 +67,8 @@ class ExtracurricularController extends Controller
     {
         $schoolYear = $this->schoolYear->active();
         $extracurricularStudents = $this->extracurricularStudent->where($extracurricular->id);
-        return view('school.new.extracurricular.detail', compact('extracurricular', 'schoolYear', 'extracurricularStudents'));
+        $classrooms = $this->classroom->where($schoolYear->id);
+        return view('school.new.extracurricular.detail', compact('extracurricular', 'schoolYear', 'extracurricularStudents', 'classrooms'));
     }
 
     /**

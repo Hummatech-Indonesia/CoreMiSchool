@@ -5,16 +5,18 @@
                 <h5 class="modal-title" id="importPegawai">Tambah Siswa</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="" method="POST" enctype="multipart/form-data">
-                {{-- @method('post') --}}
+            <form action="{{ route('school.extracurricular-students.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
                         <div class="form-group">
                             <label for="" class="mb-2">Kelas</label>
                             <select id="pengajar" class="form-select" name="class">
-                                <option value="">X rpl</option>
-                                <option value="">XI RPL 1</option>
+                                @forelse ($classrooms as $classroom)
+                                    <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>                                    
+                                @empty
+                                    <option>Tidak ada data</option>
+                                @endforelse
                             </select>
                         </div>
                         <div class="form-group">

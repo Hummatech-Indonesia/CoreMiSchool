@@ -11,7 +11,7 @@ class StoreExtracurricularStudentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,18 @@ class StoreExtracurricularStudentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'classroom_id' => 'required|exists:classrooms,id',
+            'student_id' => 'required|exists:students,id',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'classroom_id.required' => 'Kelas harus diisi',
+            'classroom_id.exists' => 'Kelas tidak ditemukan',
+            'student_id.required' => 'Siswa harus diisi',
+            'student_id.exists' => 'Siswa tidak ditemukan',
         ];
     }
 }
