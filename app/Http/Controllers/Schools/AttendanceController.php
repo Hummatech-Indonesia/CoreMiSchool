@@ -43,6 +43,7 @@ class AttendanceController extends Controller
         return view('school.new.attendace.student.class-attendace', compact('classrooms', 'schoolYears'));
     }
 
+
     /**
      * menampilkan kehadiran siswa di classroom yang diberikan
      * @param Classroom $classroom classroom yang diberikan
@@ -54,6 +55,11 @@ class AttendanceController extends Controller
         return view('school.new.attendace.student.list-attendace-student', compact('attendances', 'classroom'));
     }
 
+    public function expotStudent(Request $request, Classroom $classroom)
+    {
+        $attendances = $this->attendance->exportClassAndDate($classroom->id, $request);
+        return view('school.new.attendace.student.export', compact('attendances', 'classroom'));
+    }
     /**
      * menampilkan kehadiran guru
      * @param Request $request untuk menampilkan data berdasarkan tanggal
