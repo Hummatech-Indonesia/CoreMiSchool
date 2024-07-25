@@ -75,4 +75,10 @@ class ExtracurricularStudentController extends Controller
     {
         //
     }
+
+    public function downloadTemplate()
+    {
+        $template = public_path('file/excel-format-import-extracurricular-student.xlsx');
+        return response()->download($template, 'excel-format-import-extracurricular-student.xlsx');
+    }
 }
