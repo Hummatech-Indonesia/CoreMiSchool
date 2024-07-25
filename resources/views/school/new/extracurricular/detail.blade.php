@@ -110,7 +110,7 @@
                             {{ $extracurricularStudent->student->user->name }}
                         </td>
                         <td>
-                            -
+                            {{ $extracurricularStudent->student->classroomStudents->isNotEmpty() ? $extracurricularStudent->student->classroomStudents->first()->classroom->name : '-' }}
                         </td>
                         <td>
                             -
