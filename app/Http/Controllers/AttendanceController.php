@@ -132,7 +132,7 @@ class AttendanceController extends Controller
     public function studentExportPreview(Classroom $classroom, Request $request)
     {
         $attendances = $this->attendance->classAndDate($classroom->id, $request);
-        return view('school.pages.attendace.student.export', compact('attendances', 'classroom'));
+        return view('school.new.attendace.student.export', compact('attendances', 'classroom'));
     }
 
     /**
