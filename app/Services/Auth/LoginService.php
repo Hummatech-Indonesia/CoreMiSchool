@@ -45,7 +45,7 @@ class LoginService
                     break;
             }
         } else {
-            return redirect()->back()->withErrors(trans('auth.login_failed'))->withInput();
+            return redirect()->back()->withErrors(['password' => 'Password salah'])->withInput();
         }
     }
 }
