@@ -8,14 +8,15 @@
                     <div class="row align-items-center">
                         <h4 class="mb-3">Pengajar</h4>
                         <div class="col-auto">
-                            <img src="{{ $extracurricular->employee->image ? asset('storage/' . $extracurricular->employee->image) : asset('assets/images/default-user.jpeg') }}" alt="Profile Image"
-                                class="img-fluid rounded-circle" style="width: 84px; height: 84px;">
+                            <img src="{{ $extracurricular->employee->image ? asset('storage/' . $extracurricular->employee->image) : asset('assets/images/default-user.jpeg') }}"
+                                alt="Profile Image" class="img-fluid rounded-circle" style="width: 84px; height: 84px;">
                         </div>
                         <div class="col">
                             <h4 class="fw-semibold mb-2">{{ $extracurricular->employee->user->name }}</h4>
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb bg-transparent p-0 m-0">
-                                    <li class="breadcrumb-item" aria-current="page">Tahun Ajaran {{ $schoolYear->school_year }}</li>
+                                    <li class="breadcrumb-item" aria-current="page">Tahun Ajaran
+                                        {{ $schoolYear->school_year }}</li>
                                 </ol>
                             </nav>
                         </div>
@@ -33,7 +34,9 @@
                             <h4 class="mb-3">Ekstrakurikuler</h4>
                             <h4 class="fw-semibold mb-2">{{ $extracurricular->name }}</h4>
                             <div class="mt-3">
-                                <span class="mb-1 badge font-medium bg-light-secondary text-secondary">{{ $extracurricular->extracurricularStudents->count() }} Total
+                                <span
+                                    class="mb-1 badge font-medium bg-light-secondary text-secondary">{{ $extracurricular->extracurricularStudents->count() }}
+                                    Total
                                     Siswa</span>
                                 <span class="mb-1 badge font-medium bg-light-success text-success">0 Pertemuan</span>
                             </div>
@@ -77,11 +80,11 @@
         </div>
         <!-- Action Buttons -->
         <div class="d-flex flex-wrap align-items-center">
-            <button type="button" class="btn mb-1 btn-success me-2" data-bs-toggle="modal"
-                data-bs-target="#modal-import">
+            <button type="button" class="btn mb-1 btn-success me-2" data-bs-toggle="modal" data-bs-target="#modal-import">
                 Import Siswa
             </button>
-            <button type="button" class="btn mb-1 btn-primary " data-bs-toggle="modal" data-bs-target="#modal-create-student">
+            <button type="button" class="btn mb-1 btn-primary " data-bs-toggle="modal"
+                data-bs-target="#modal-create-student">
                 Tambah Siswa
             </button>
         </div>
@@ -114,7 +117,8 @@
                         </td>
                         <td>
                             <div class="dropdown dropstart">
-                                <a href="#" class="text-muted" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a href="#" class="text-muted" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
                                     <div class="category">
                                         <div class="category-business"></div>
                                         <div class="category-social"></div>
@@ -125,10 +129,14 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <li>
-                                        <a type="button" class="dropdown-item d-flex align-items-center gap-3" data-bs-toggle="modal" data-bs-target="#detail-student"><i class="fs-4 ti ti-eye"></i>Detail</a>
+                                        <a type="button" class="dropdown-item d-flex align-items-center gap-3"
+                                            data-bs-toggle="modal" data-bs-target="#detail-student"><i
+                                                class="fs-4 ti ti-eye"></i>Detail</a>
                                     </li>
                                     <li>
-                                        <a class="btn-delete dropdown-item d-flex align-items-center text-danger gap-3" data-bs-toggle="modal" data-bs-target="#modal-delete"><i class="fs-4 ti ti-trash"></i>Hapus</a>
+                                        <a class="btn-delete dropdown-item d-flex align-items-center text-danger gap-3"
+                                            data-bs-toggle="modal" data-bs-target="#modal-delete"><i
+                                                class="fs-4 ti ti-trash"></i>Hapus</a>
                                     </li>
                                 </ul>
                             </div>
@@ -136,7 +144,15 @@
                         </td>
                     </tr>
                 @empty
-
+                    <td colspan="7" class="text-center align-middle">
+                        <div class="d-flex flex-column justify-content-center align-items-center">
+                            <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt=""
+                                width="300px">
+                            <p class="fs-5 text-dark text-center mt-2">
+                                Belum ada data
+                            </p>
+                        </div>
+                    </td>
                 @endforelse
             </tbody>
         </table>
