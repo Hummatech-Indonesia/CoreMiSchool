@@ -27,9 +27,7 @@
         $('#address-edit').val(address);
         $('#religion-edit').val(religion_id).trigger('change');
         $('#gender-edit').val(gender).trigger('change');
-        $('#form-update').attr('action', '{{ route('
-            school.students.update ', '
-            ') }}/' + id);
+        $('#form-update').attr('action', '{{ route('school.students.update', '') }}/' + id);
         $('#update-student').modal('show');
     });
 
