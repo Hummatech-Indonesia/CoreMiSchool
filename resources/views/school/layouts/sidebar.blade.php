@@ -215,7 +215,7 @@
                         </span>
                         <span class="hide-menu">Absensi</span>
                     </a>
-                    <ul aria-expanded="false" class="collapse first-level">
+                    <ul aria-expanded="false" class="collapse first-level {{ request()->routeIs('school.student-attendance.show') ? 'in' : '' }}">
                         <li class="sidebar-item">
                             <a href="{{ route('clock-settings.index') }}" class="sidebar-link">
                                 <div class="round-16 d-flex align-items-center justify-content-center">
@@ -235,7 +235,7 @@
                                 </div>
                                 <i class="ti ti-angle-down" style="margin-left: auto;"></i>
                             </a>
-                            <ul aria-expanded="false" class="collapse second-level">
+                            <ul aria-expanded="false" class="collapse second-level {{ request()->routeIs('school.student-attendance.show') ? 'active in' : '' }}">
                                 <li class="sidebar-item">
                                     <a href="{{ route('school.student-attendance.index') }}" class="sidebar-link  {{ request()->routeIs('school.student-attendance.index') || request()->routeIs('school.student-attendance.show') ? 'active' : '' }}"
                                         style="display: flex; align-items: center; margin-left: 20px;">
