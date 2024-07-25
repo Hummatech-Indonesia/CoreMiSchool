@@ -5,14 +5,18 @@ namespace App\Contracts\Repositories;
 use App\Contracts\Interfaces\AttendanceInterface;
 use App\Enums\RoleEnum;
 use App\Models\Attendance;
+use App\Models\ClassroomStudent;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AttendanceRepository extends BaseRepository implements AttendanceInterface
 {
-    public function __construct(Attendance $attendance)
+    private $student;
+
+    public function __construct(Attendance $attendance, ClassroomStudent $student)
     {
         $this->model = $attendance;
+        $this->student = $student;
     }
 
     public function get(): mixed
@@ -86,18 +90,42 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
 
     public function classAndDate(mixed $classroom_id, Request $request): mixed
     {
-        return $this->model->query()
-        ->where('model_type', 'App\Models\ClassroomStudent', function ($query) use ($classroom_id) {
-            $query->whereHas('model', function ($query) use ($classroom_id) {
-                $query->whereHas('classroom', function ($query) use ($classroom_id) {
-                    $query->where('id', $classroom_id);
+        // return $this->model->query()
+        // ->where('model_type', 'App\Models\ClassroomStudent', function ($query) use ($classroom_id) {
+        //     $query->whereHas('model', function ($query) use ($classroom_id) {
+        //         $query->whereHas('classroom', function ($query) use ($classroom_id) {
+        //             $query->where('id', $classroom_id);
+        //         });
+        //     });
+        // })
+        // ->where('model_type', 'App\Models\ClassroomStudent', function($query) use ($request) {
+        //     ->when($request->name, function ($query) use ($request){
+        //         $query->whereHas('model', function ($query) use($request){
+        //             $query->whereHas('student', function($query)use($request){
+        //                 $query->whereHas('user', function($query)use($request){
+        //                     $query->where('name', 'LIKE', '%' . $request->name . '%');
+        //                 });
+        //             });
+        //         });
+        //     });
+        // })
+        // ->when($request->date, function ($query) use ($request) {
+        //     $query->where('created_at', $request->date);
+        // })
+        // ->get();
+
+        return $this->student->query()
+            ->with(['student.user', 'attendances'])
+            ->where('classroom_id', $classroom_id)
+            ->when($request->name, function($query)use($request){
+                $query->whereRelation('student.user', 'name', 'LIKE', '%' . $request->name . '%');
+            })
+            ->when($request->date, function ($query) use ($request) {
+                $query->whereHas('attendances', function($query)use($request){
+                    $query->whereDate('created_at', $request->date);
                 });
-            });
-        })
-        ->when($request->date, function ($query) use ($request) {
-            $query->where('created_at', $request->date);
-        })
-        ->get();
+            })
+            ->get();
     }
 
     public function attendanceGetTecaher(Request $request): mixed
