@@ -177,7 +177,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>
                             <div class="d-flex align-items-center">
-                                <img src="{{ $student->student->image ? asset('storage/'. $student->student->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}"
+                                <img src="{{ $student->student->image ? asset('storage/'. $student->student->image) : asset('assets/images/default-user.jpeg') }}"
                                     class="rounded-circle" width="40" height="40" style="object-fit: cover">
                                 <div class="ms-3">
                                     <h6 class="fs-4 fw-semibold mb-0">{{ $student->student->user->name }}</h6>
