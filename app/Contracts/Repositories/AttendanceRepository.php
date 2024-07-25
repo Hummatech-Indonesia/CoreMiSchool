@@ -110,20 +110,6 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
 
     public function attendanceGetTecaher(Request $request): mixed
     {
-        // return $this->model->query()
-        //     ->where('model_type', 'App\Models\Employee')
-        //     ->when($request->search, function ($query) use ($request) {
-        //         $query->whereHas('model', function ($query) use ($request) {
-        //             $query->whereHas('user', function ($query) use ($request) {
-        //                 $query->where('name', $request->search);
-        //             });
-        //         });
-        //     })
-        //     ->when($request->date, function ($query) use ($request) {
-        //         $query->where('created_at', $request->date);
-        //     })
-        //     ->get();
-
         return $this->employee->query()
             ->with('attendances')
             ->whereHas('attendances')
