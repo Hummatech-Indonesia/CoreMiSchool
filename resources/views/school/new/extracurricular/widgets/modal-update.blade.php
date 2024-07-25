@@ -12,11 +12,11 @@
                     <div class="mb-3">
                         <div class="form-group">
                             <label for="" class="mb-2">Nama Extracurricular</label>
-                            <input type="text" id="name-update" class="form-control" name="name">
+                            <input type="text" class="form-control" id="name-update" name="name">
                         </div>
                         <div class="form-group">
                             <label for="" class="mb-2 pt-3">Pengajar</label>
-                            <select id="employee-update" class="select2" name="employee_id">
+                            <select id="employee-update" class="form-control form-select select2 select2-edit" name="employee_id">
                                 <option value="">Pilih Pengajar</option>
                                 @forelse ($employees as $employee)
                                     <option value="{{ $employee->id }}">{{ $employee->user->name }}</option>
@@ -28,7 +28,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-rounded btn-light" data-bs-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-rounded btn-primary">Simpan</button>
+                    <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
                 </div>
             </form>
         </div>

@@ -1,4 +1,5 @@
 @extends('school.layouts.app')
+
 @section('style')
     <style>
         .category-selector .dropdown-menu {
@@ -33,7 +34,75 @@
             border-radius: 4px !important;
         }
     </style>
+
+<style>
+    .category-selector .dropdown-menu {
+        position: absolute;
+        z-index: 1050;
+        transform: translate3d(0, 0, 0);
+    }
+
+    .select2-custom {
+        width: 100% !important;
+    }
+
+    .select2-custom-selection__rendered {
+        width: 100%;
+        height: 36px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .select2-custom-selection {
+        height: fit-content !important;
+        color: #555 !important;
+        background-color: #fff !important;
+        background-image: none !important;
+        border: 1px solid #ccc !important;
+        border-radius: 4px !important;
+    }
+</style>
+{{-- <style>
+    .category-selector .dropdown-menu {
+        position: absolute;
+        z-index: 1050;
+        transform: translate3d(0, 0, 0);
+    }
+
+    .select2-custom {
+        width: 100% !important;
+    }
+
+    .select2-custom .select2-selection__rendered {
+        width: 100%;
+        height: 36px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .select2-custom .select2-selection {
+        height: fit-content !important;
+        color: #555 !important;
+        background-color: #fff !important;
+        background-image: none !important;
+        border: 1px solid #ccc !important;
+        border-radius: 4px !important;
+    }
+</style> --}}
 @endsection
+
 @section('content')
     <div class="d-flex flex-wrap justify-content-between align-items-center">
         <div class="d-flex flex-wrap">
@@ -123,6 +192,27 @@
 @endsection
 
 @section('script')
+
+    <script>
+        $(document).ready(function() {
+            $('.select2-create').select2({
+                dropdownParent: $('#modal-create')
+            });
+
+            $('.select2-edit').select2({
+                dropdownParent: $('#modal-edit')
+            });
+
+            $('.category-dropdown').on('show.bs.dropdown', function() {
+                $(this).closest('.table-responsive').css('overflow', 'visible');
+            });
+
+            $('.category-dropdown').on('hide.bs.dropdown', function() {
+                $(this).closest('.table-responsive').css('overflow', 'auto');
+            });
+        });
+    </script>
+
     <script>
         $('.btn-edit').click(function() {
             var id = $(this).data('id');
@@ -138,26 +228,6 @@
             var id = $(this).data('id');
             $('#form-delete').attr('action', `{{ route('school.extracurricular.destroy', '') }}/${id}`);
             $('#modal-delete').modal('show');
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            $('.select2').select2({
-                dropdownParent: $('#modal-create')
-            });
-
-            $('.select2').select2({
-                dropdownParent: $('#modal-edit')
-            });
-
-            $('.category-dropdown').on('show.bs.dropdown', function() {
-                $(this).closest('.table-responsive').css('overflow', 'visible');
-            });
-
-            $('.category-dropdown').on('hide.bs.dropdown', function() {
-                $(this).closest('.table-responsive').css('overflow', 'auto');
-            });
         });
     </script>
 @endsection

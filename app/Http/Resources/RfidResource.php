@@ -17,7 +17,7 @@ class RfidResource extends JsonResource
         return [
             'id' => $this->id,
             'rfid' => $this->rfid,
-            'classroom' => $this->model_type == 'App\Models\Student' ? $this->model->classroomStudents->sortByDesc('school_year_id')->first()->classroom->name : null,
+            'classroom' => $this->model_type == 'App\Models\Student' ? $this->model->classroomStudents->sortByDesc('school_year_id')->first()?->classroom->name : null,
             'name' => $this->model_type ? $this->model->user->name : null,
             'type' => $this->model_type == 'App\Models\Student' ? 'student' : ($this->model_type == 'App\Models\Employee' ? 'teacher' : 'mastercard')
         ];

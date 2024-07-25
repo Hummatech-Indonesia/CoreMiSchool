@@ -60,7 +60,7 @@
             @forelse ($attendances as $attendance)
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $attendance->classroomStudent->student->user->name }}</td>
+                <td>{{ $attendance->model->student->user->name }}</td>
                 <td>{{ $attendance->checkin }}</td>
                 <td>{{ $attendance->checkout }}</td>
                 <td>{{ $attendance->point }}</td>

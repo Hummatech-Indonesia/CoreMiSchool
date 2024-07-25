@@ -123,15 +123,28 @@ class ModelHasRfidRepository extends BaseRepository implements ModelHasRfidInter
         return $this->model->query()->where('rfid', $query)->first();
     }
 
-    public function getRfid(): mixed
+    public function getEmployeeRfid(): mixed
     {
         return $this->model->query()
             ->where(function ($query) {
                 $query->whereHas('model', function ($query) {
                     $query->whereHas('user.roles', function ($query) {
-                        $query->whereNot('name', RoleEnum::STAFF->value);
+                        $query->whereNot('name', RoleEnum::STUDENT->value);
                     });
                 })->orWhereNull('model_type');
+            })
+            ->get();
+    }
+    public function getStudentRfid(): mixed
+    {
+        return $this->model->query()
+        ->with('model.classroomStudents.classroom')
+            ->where(function ($query) {
+                $query->whereHas('model', function ($query) {
+                    $query->whereHas('user.roles', function ($query) {
+                        $query->where('name', RoleEnum::STUDENT->value);
+                    });
+                });
             })
             ->get();
     }

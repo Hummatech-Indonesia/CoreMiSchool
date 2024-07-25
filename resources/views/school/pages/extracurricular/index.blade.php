@@ -71,7 +71,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="" class="mb-2 pt-3">Pengajar</label>
-                                <select id="pengajar" class="select2" name="employee_id">
+                                <select id="pengajar" class="select2 select2-create" name="employee_id">
                                     <option value="">Pilih Pengajar</option>
                                     @forelse ($employees as $employee)
                                         <option value="{{ $employee->id }}">{{ $employee->user->name }}</option>
@@ -191,7 +191,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="" class="mb-2 pt-3">Pengajar</label>
-                                <select id="employee-update" class="form-control form-select select2" name="employee_id">
+                                <select id="employee-update" class="form-control form-select select2 select2-edit" name="employee_id">
                                     <option value="">Pilih Pengajar</option>
                                     @forelse ($employees as $employee)
                                         <option value="{{ $employee->id }}">{{ $employee->user->name }}</option>
@@ -247,10 +247,14 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $('.select2').select2({
+            $('.select2-create').select2({
                 dropdownParent: $('#modal-create')
             });
-            
+
+            $('.select2-edit').select2({
+                dropdownParent: $('#modal-edit')
+            });
+
             $('.category-dropdown').on('show.bs.dropdown', function() {
                 $(this).closest('.table-responsive').css('overflow', 'visible');
             });
