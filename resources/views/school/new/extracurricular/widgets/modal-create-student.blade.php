@@ -12,9 +12,9 @@
                         <div class="form-group">
                             <label for="" class="mb-2">Kelas</label>
                             <select class="form-select classroom" name="classroom_id">
-                                <option selected>Pilih kelas</option>
+                                <option>Pilih kelas</option>
                                 @forelse ($classrooms as $classroom)
-                                    <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>                                    
+                                    <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
                                 @empty
                                     <option>Tidak ada data</option>
                                 @endforelse
