@@ -169,3 +169,6 @@ Route::get('new/school/extracurricular/detail', function () {
     return view('school.new.extracurricular.detail');
 })->name('new.extracurricular.detail');
 
+Route::get('new/school/export', function(){
+    return view('school.new.attendace.student.export');
+})->name('attendace-student-export');
