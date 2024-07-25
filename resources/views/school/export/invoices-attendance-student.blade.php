@@ -17,8 +17,8 @@
         <tr>
             <td>{{ $loop->iteration }}</td>
             <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d-m-y') }}</td>
-            <td>{{ $item->classroomStudent->student->user->name }}</td>
-            <td>{{ $item->classroomStudent->classroom->name }}</td>
+            <td>{{ $item->student->user->name }}</td>
+            <td>{{ $item->classroom->name }}</td>
             <td>{{ $item->status == 'present' ? 'Masuk' : ($item->status == 'sick' ? 'Sakit' : ($item->status == 'alpha' ? 'Alpha' : ($item->status == 'permit' ? 'Izin' : ''))) }}</td>
             <td>{{ \Carbon\Carbon::parse($item->checkin)->format('H:i') }}</td>
             <td>{{ \Carbon\Carbon::parse($item->checkout)->format('H:i') }}</td>
