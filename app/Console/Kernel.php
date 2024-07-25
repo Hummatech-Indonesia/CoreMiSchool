@@ -6,6 +6,7 @@ use App\Enums\RoleEnum;
 use App\Models\Employee;
 use App\Models\Attendance;
 use App\Enums\AttendanceEnum;
+use App\Models\AttendanceRule;
 use App\Models\ClassroomStudent;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -18,35 +19,47 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->call(function() {
-            $classroomStudents = ClassroomStudent::whereRelation('classroom.schoolYear', function ($query) {
-                $query->where('active', 1);
-            })->whereHas('student.modelHasRfid')->get();
+            $day = strtolower(now()->format('l'));
+            if(!AttendanceRule::where('day', $day)->where('role', RoleEnum::STUDENT->value)->first()->is_holiday) {
+                $classroomStudents = ClassroomStudent::whereRelation('classroom.schoolYear', function ($query) {
+                    $query->where('active', 1);
+                })->whereHas('student.modelHasRfid')->get();
 
-            $teachers = Employee::whereHas('modelHasRfid')
+                $attendanceStudent = $classroomStudents->map(function ($student) {
+                    return [
+                        'model_type' => "App/Models/ClassroomStudent",
+                        'model_id' => $student->student->id,
+                        'status' => AttendanceEnum::ALPHA->value
+                    ];
+                })->toArray();
+            }
+            
+            if(!AttendanceRule::where('day', $day)->where('role', RoleEnum::TEACHER->value)->first()->is_holiday) {
+                $teachers = Employee::whereHas('modelHasRfid')
                 ->where('status', RoleEnum::TEACHER->value)
                 ->get();
 
-            $attendanceStudent = $classroomStudents->map(function ($student) {
-                return [
-                    'model_type' => "App/Models/ClassroomStudent",
-                    'model_id' => $student->student->id,
-                    'status' => AttendanceEnum::ALPHA->value
-                ];
-            })->toArray();
-
-            $attendanceTeacher = $teachers->map(function ($teacher) {
-                return [
-                    'model_type' => "App/Models/Employee",
-                    'model_id' => $teacher->id,
-                    'status' => AttendanceEnum::ALPHA->value
-                ];
-            })->toArray();
+                $attendanceTeacher = $teachers->map(function ($teacher) {
+                    return [
+                        'model_type' => "App/Models/Employee",
+                        'model_id' => $teacher->id,
+                        'status' => AttendanceEnum::ALPHA->value
+                    ];
+                })->toArray();
+            }
 
             // $stored = $classroomStudents->attendance()->insert(['status' => 'alpha']);
-            $attendanceData = array_merge($attendanceTeacher, $attendanceStudent);
+            $attendanceData = array_merge($attendanceTeacher ?? [], $attendanceStudent ?? []);
 
-            $stored = Attendance::insert($attendanceData);
+            info($attendanceData);
+            Attendance::insert($attendanceData);
         });
+
+        // $schedule->call(function() {
+
+        // })->when(function () {
+        //     return !AttendanceRule::whereDay(now())->isHoliday;
+        // });
     }
 
     /**
