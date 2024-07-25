@@ -68,39 +68,6 @@
             border-radius: 4px !important;
         }
     </style>
-    {{-- <style>
-    .category-selector .dropdown-menu {
-        position: absolute;
-        z-index: 1050;
-        transform: translate3d(0, 0, 0);
-    }
-
-    .select2-custom {
-        width: 100% !important;
-    }
-
-    .select2-custom .select2-selection__rendered {
-        width: 100%;
-        height: 36px;
-        padding: 6px 12px;
-        font-size: 14px;
-        line-height: 1.42857143;
-        color: #555;
-        background-color: #fff;
-        background-image: none;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
-
-    .select2-custom .select2-selection {
-        height: fit-content !important;
-        color: #555 !important;
-        background-color: #fff !important;
-        background-image: none !important;
-        border: 1px solid #ccc !important;
-        border-radius: 4px !important;
-    }
-</style> --}}
 @endsection
 
 @section('content')
@@ -138,15 +105,6 @@
                                             </span>
                                         </div>
                                     </a>
-                                    {{-- <ul class="dropdown-menu"
-                                        aria-labelledby="dropdownMenuButton{{ $extracurricular->id }}">
-                                        <li>
-                                            <button
-                                                class="btn-delete dropdown-item d-flex align-items-center text-danger gap-3"
-                                                data-bs-toggle="modal" data-bs-target="#modal-delete"><i
-                                                    class="fs-4 ti ti-trash"></i>Hapus</button>
-                                        </li>
-                                    </ul> --}}
                                     <div class="dropdown-menu dropdown-menu-right category-menu"
                                         data-popper-placement="bottom-end">
                                         <button type="button" data-id="{{ $extracurricular->id }}"
@@ -197,41 +155,8 @@
 @endsection
 
 @section('script')
-    <script>
-        $(document).ready(function() {
-            $('.select2-create').select2({
-                dropdownParent: $('#modal-create')
-            });
-
-            $('.select2-edit').select2({
-                dropdownParent: $('#modal-edit')
-            });
-
-            $('.category-dropdown').on('show.bs.dropdown', function() {
-                $(this).closest('.table-responsive').css('overflow', 'visible');
-            });
-
-            $('.category-dropdown').on('hide.bs.dropdown', function() {
-                $(this).closest('.table-responsive').css('overflow', 'auto');
-            });
-        });
-    </script>
-
-    <script>
-        $('.btn-edit').click(function() {
-            var id = $(this).data('id');
-            var name = $(this).data('name');
-            var employee = $(this).data('employee');
-            $('#name-update').val(name);
-            $('#employee-update').val(employee).trigger('change');
-            $('#form-update').attr('action', `{{ route('school.extracurricular.update', '') }}/${id}`);
-            $('#modal-edit').modal('show');
-        });
-
-        $('.btn-delete').on('click', function() {
-            var id = $(this).data('id');
-            $('#form-delete').attr('action', `{{ route('school.extracurricular.destroy', '') }}/${id}`);
-            $('#modal-delete').modal('show');
-        });
-    </script>
+    @include('school.new.extracurricular.scripts.delete')
+    @include('school.new.extracurricular.scripts.detail')
+    @include('school.new.extracurricular.scripts.select2')
+    @include('school.new.extracurricular.scripts.update')
 @endsection
