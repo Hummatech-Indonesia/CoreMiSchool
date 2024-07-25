@@ -65,6 +65,7 @@ Route::prefix('school')->name('school.')->group(function() {
     Route::post('lesson-hours/{day}', [LessonHourController::class, 'store'])->name('lesson-hours.store');
     Route::resource('extracurricular', SchoolsExtracurricularController::class);
     Route::post('extracurricular-students/{extracurricular}', [ExtracurricularStudentController::class, 'store'])->name('extracurricular-students.store');  
+    Route::get('download-template-extracurricular-student/', [ExtracurricularStudentController::class, 'downloadTemplate'])->name('extracurricular-students.download-template');
     Route::resource('classroom', ClassroomController::class);
     Route::resource('level-class', LevelClassController::class);
     Route::get('class-detail/{classroom}', [ClassroomStudentController::class, 'index'])->name('class-student.index');
