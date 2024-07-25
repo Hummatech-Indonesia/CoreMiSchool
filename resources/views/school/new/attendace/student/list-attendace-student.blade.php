@@ -23,13 +23,11 @@
                     <i class="ti ti-search position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
                 </div>
             </div>
-
             <div class="d-flex gap-2">
                 <div class="form-group">
                     <input type="date" name="date" class="form-control" value="{{ request('date') }}">
                 </div>
                 <button type="submit" class="btn btn-primary">Filter</button>
-
             </div>
         </form>
     </div>
@@ -60,11 +58,11 @@
             @forelse ($attendances as $attendance)
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $attendance->model->student->user->name }}</td>
-                <td>{{ $attendance->checkin }}</td>
-                <td>{{ $attendance->checkout }}</td>
-                <td>{{ $attendance->point }}</td>
-                <td>{{ $attendance->status == 'present' ? 'Masuk' : ($attendance->status == 'sick' ? 'Sakit' : ($attendance->status == 'alpha' ? 'Alpha' : ($attendance->status == 'permit' ? 'Izin' : ($attendance->status == 'late' ? 'Telat' : '')))) }}</td>
+                <td>{{ $attendance->student->user->name }}</td>
+                <td>{{ $attendance->attendances->first()->checkin }}</td>
+                <td>{{ $attendance->attendances->first()->checkout }}</td>
+                <td>{{ $attendance->attendances->first()->point }}</td>
+                <td>{{ $attendance->attendances->first()->status == 'present' ? 'Masuk' : ($attendance->attendances->first()->status == 'sick' ? 'Sakit' : ($attendance->attendances->first()->status == 'alpha' ? 'Alpha' : ($attendance->attendances->first()->status == 'permit' ? 'Izin' : ($attendance->attendances->first()->status == 'late' ? 'Telat' : '')))) }}</td>
                 <td>
                     <button type="button" class="btn mb-1 btn-light-primary text-primary btn-sm px-4 fs-2 font-medium" data-bs-toggle="modal" data-bs-target="#modal-import">
                         Upload

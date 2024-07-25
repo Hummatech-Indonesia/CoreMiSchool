@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Interfaces\ExtracurricularStudentInterface;
 use App\Models\ExtracurricularStudent;
 use App\Http\Requests\StoreExtracurricularStudentRequest;
 use App\Http\Requests\UpdateExtracurricularStudentRequest;
 
 class ExtracurricularStudentController extends Controller
 {
+    private ExtracurricularStudentInterface $extracurricularStudent;
+
+    public function __construct(ExtracurricularStudentInterface $extracurricularStudent) {
+        $this->extracurricularStudent = $extracurricularStudent;
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -29,7 +36,8 @@ class ExtracurricularStudentController extends Controller
      */
     public function store(StoreExtracurricularStudentRequest $request)
     {
-        //
+        $this->extracurricularStudent->store($request->validated());
+        return redirect()->back()->with('success', 'Berhasil menambahkan siswa ke ekstrakurikuler');
     }
 
     /**
