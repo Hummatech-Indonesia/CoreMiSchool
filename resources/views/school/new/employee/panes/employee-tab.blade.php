@@ -93,7 +93,8 @@
                                         <li>
                                             <button type="button"
                                                 class="dropdown-item d-flex align-items-center gap-3 btn-detail-employee"
-                                                data-image="{{ asset('storage/' . $staff->image) }}"
+                                                {{-- data-image="{{ asset('storage/' . $staff->image) }}" --}}
+                                                data-image="{{ $staff->image ? asset('storage/' . $staff->image) : asset('assets/images/default-user.jpeg') }}"
                                                 data-name="{{ $staff->user->name }}"
                                                 data-email="{{ $staff->user->email }}"
                                                 data-phone="{{ $staff->phone_number }}"

@@ -105,5 +105,5 @@
 </div>
 @endsection
 @section('script')
-    {{-- @include('school.pages.settings.update-information') --}}
+    @include('school.pages.settings.scripts.script-update-information')
 @endsection
