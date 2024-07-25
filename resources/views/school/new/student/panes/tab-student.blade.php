@@ -90,7 +90,7 @@
                                         data-count_siblings="{{ $student->count_siblings }}"
                                         data-address="{{ $student->address }}"
                                         data-rfid="{{ $student->modelHasRfid ? $student->modelHasRfid->rfid : 'Kosong' }}"
-                                        data-image="{{ $student->image ? asset('storage/' . $student->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}"
+                                        data-image="{{ $student->image ? asset('storage/' . $student->image) : asset('assets/images/default-user.jpeg') }}"
                                     ><i class="fs-4 ti ti-eye"></i>Detail</button>
                                 </li>
                                 <li>

@@ -106,4 +106,9 @@ class ClassroomStudentRepository extends BaseRepository implements ClassroomStud
         ->with('student.user')
         ->get();
     }
+
+    public function check(mixed $classroomId, mixed $studentId): mixed
+    {
+        return $this->model->query()->where('classroom_id', $classroomId)->where('student_id', $studentId)->first();
+    }
 }
