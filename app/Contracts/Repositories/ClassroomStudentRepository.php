@@ -98,4 +98,12 @@ class ClassroomStudentRepository extends BaseRepository implements ClassroomStud
         ->latest()
         ->get();
     }
+
+    public function getByClassId(mixed $id): mixed
+    {
+        return $this->model->query()
+        ->where('classroom_id', $id)
+        ->with('student.user')
+        ->get();
+    }
 }

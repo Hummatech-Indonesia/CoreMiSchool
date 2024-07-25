@@ -35,40 +35,40 @@
         }
     </style>
 
-<style>
-    .category-selector .dropdown-menu {
-        position: absolute;
-        z-index: 1050;
-        transform: translate3d(0, 0, 0);
-    }
+    <style>
+        .category-selector .dropdown-menu {
+            position: absolute;
+            z-index: 1050;
+            transform: translate3d(0, 0, 0);
+        }
 
-    .select2-custom {
-        width: 100% !important;
-    }
+        .select2-custom {
+            width: 100% !important;
+        }
 
-    .select2-custom-selection__rendered {
-        width: 100%;
-        height: 36px;
-        padding: 6px 12px;
-        font-size: 14px;
-        line-height: 1.42857143;
-        color: #555;
-        background-color: #fff;
-        background-image: none;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
+        .select2-custom-selection__rendered {
+            width: 100%;
+            height: 36px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
 
-    .select2-custom-selection {
-        height: fit-content !important;
-        color: #555 !important;
-        background-color: #fff !important;
-        background-image: none !important;
-        border: 1px solid #ccc !important;
-        border-radius: 4px !important;
-    }
-</style>
-{{-- <style>
+        .select2-custom-selection {
+            height: fit-content !important;
+            color: #555 !important;
+            background-color: #fff !important;
+            background-image: none !important;
+            border: 1px solid #ccc !important;
+            border-radius: 4px !important;
+        }
+    </style>
+    {{-- <style>
     .category-selector .dropdown-menu {
         position: absolute;
         z-index: 1050;
@@ -148,17 +148,19 @@
                                         </li>
                                     </ul> --}}
                                     <div class="dropdown-menu dropdown-menu-right category-menu"
-                                            data-popper-placement="bottom-end">
-                                            <button type="button" data-id="{{ $extracurricular->id }}" data-name="{{ $extracurricular->name }}" data-employee="{{ $extracurricular->employee_id }}"
-                                                class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-edit">
-                                                Edit
-                                            </button>
-                                            <button
-                                                class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-delete"
-                                                data-id="{{ $extracurricular->id }}">
-                                                Hapus
-                                            </button>
-                                        </div>
+                                        data-popper-placement="bottom-end">
+                                        <button type="button" data-id="{{ $extracurricular->id }}"
+                                            data-name="{{ $extracurricular->name }}"
+                                            data-employee="{{ $extracurricular->employee_id }}"
+                                            class="note-business badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-edit">
+                                            Edit
+                                        </button>
+                                        <button
+                                            class="note-business text-danger badge-group-item badge-business dropdown-item position-relative category-business d-flex align-items-center btn-delete"
+                                            data-id="{{ $extracurricular->id }}">
+                                            Hapus
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -179,8 +181,11 @@
                 </div>
             </div>
         @empty
-            <div class="col-12">
-                <p class="text-center">No extracurriculars found.</p>
+            <div class="d-flex flex-column justify-content-center align-items-center">
+                <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt="" width="300px">
+                <p class="fs-5 text-dark text-center mt-2">
+                    Ekstrakurikuler belum ditambahkan
+                </p>
             </div>
         @endforelse
     </div>
@@ -192,7 +197,6 @@
 @endsection
 
 @section('script')
-
     <script>
         $(document).ready(function() {
             $('.select2-create').select2({
