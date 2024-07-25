@@ -64,7 +64,7 @@ class ClassroomStudentController extends Controller
     public function show(Request $request)
     {
         $classroomId = $request->classroom_id;
-        $students = $this->classroomStudent->where($classroomId, $request);
+        $students = $this->classroomStudent->getByClassId($classroomId);
         return response()->json(['data' => $students]);
     }
 
