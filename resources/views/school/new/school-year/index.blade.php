@@ -80,160 +80,109 @@
 @endsection
 
 @section('script')
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var tabs = document.querySelectorAll('#pills-tab .nav-link');
-            var button = document.getElementById('btn-create-school-year');
+@include('school.new.school-year.scripts.active-year')
+@include('school.new.school-year.scripts.delete-year')
+@include('school.new.school-year.scripts.tab')
+@include('school.new.school-year.scripts.update-year')
 
-            tabs.forEach(function(tab) {
-                tab.addEventListener('shown.bs.tab', function(event) {
+<script>
+    $(document).ready(function() {
+        $('.toggle-btn').click(function() {
+            $(this).toggleClass('active');
+            $('.toggle-btn').not(this).removeClass('active');
+            $(this).attr('aria-pressed', $(this).hasClass('active'));
+            $('.toggle-btn').not(this).attr('aria-pressed', false);
+        });
 
-                    localStorage.setItem('activeTab', event.target.getAttribute('href'));
-
-                    if (event.target.getAttribute('href') === '#pills-schoolYears') {
-                        button.classList.remove('d-none');
-                    } else {
-                        button.classList.add('d-none');
-                    }
-                });
+        function appendRow(type, createdAt) {
+            var formattedDate = new Date(createdAt).toLocaleDateString('id-ID', {
+                day: '2-digit',
+                month: 'long',
+                year: 'numeric'
             });
 
-            var activeTab = localStorage.getItem('activeTab');
-            if (activeTab) {
-                var tabToActivate = document.querySelector(`a[href="${activeTab}"]`);
-                if (tabToActivate) {
-                    tabToActivate.click();
+            var newRow = `
+                <tr>
+                    <td>
+                        <div class="d-flex justify-content-center">
+                            <p>${type.charAt(0).toUpperCase() + type.slice(1)}</p>
+                        </div>
+                    </td>
+                    <td>${formattedDate}</td>
+                </tr>
+            `;
+            $('#tbody').append(newRow);
+        }
+
+        $('.btn-ganjil').click(function() {
+            Swal.fire({
+                title: "Apa kamu yakin?",
+                text: "Mengubah semester ke ganjil?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya",
+                cancelButtonText: "Tidak",
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ route('school.semesters.store') }}",
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr("content")
+                        },
+                        data: {
+                            school_id: {{ auth()->user()->school->id }},
+                            type: '{{ SemesterEnum::GANJIL->value }}'
+                        },
+                        success: function(res) {
+                            location.reload()
+                            // appendRow('ganjil', res.created_at);
+                        },
+                        error: function(err) {
+                            console.log(err);
+                        }
+                    });
                 }
-            }
-
-            // Initial check in case the page loads with the "Tahun Ajaran" tab already active
-            if (document.querySelector('#pills-tab .nav-link.active').getAttribute('href') ===
-                '#pills-schoolYears') {
-                button.classList.remove('d-none');
-            }
-        });
-    </script>
-    <script>
-        $('.btn-update-year').click(function() {
-            var id = $(this).data('id');
-            var name = $(this).data('name');
-            var status = $(this).data('status');
-            $('#name-update').val(name);
-            $('#status-update').val(status).trigger('change');
-            $('#form-update').attr('action', '{{ route('school.school-years.update', '') }}/' + id);
-            $('#modal-update-school-year').modal('show');
-        });
-
-        $('.activated-btn').click(function() {
-            var id = $(this).data('id');
-            $('#active-school-year-form').attr('action', '{{ route('school.school-year.setActive', ':id') }}'
-                .replace(':id', id));
-            $('#modal-confirm-active').modal('show');
-        });
-
-        $('.btn-delete-year').click(function() {
-            var id = $(this).data('id');
-            $('#form-delete').attr('action', '{{ route('school.school-years.destroy', '') }}/' + id);
-            $('#modal-delete').modal('show');
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            $('.toggle-btn').click(function() {
-                $(this).toggleClass('active');
-                $('.toggle-btn').not(this).removeClass('active');
-                $(this).attr('aria-pressed', $(this).hasClass('active'));
-                $('.toggle-btn').not(this).attr('aria-pressed', false);
-            });
-
-            function appendRow(type, createdAt) {
-                var formattedDate = new Date(createdAt).toLocaleDateString('id-ID', {
-                    day: '2-digit',
-                    month: 'long',
-                    year: 'numeric'
-                });
-
-                var newRow = `
-                    <tr>
-                        <td>
-                            <div class="d-flex justify-content-center">
-                                <p>${type.charAt(0).toUpperCase() + type.slice(1)}</p>
-                            </div>
-                        </td>
-                        <td>${formattedDate}</td>
-                    </tr>
-                `;
-                $('#tbody').append(newRow);
-            }
-
-            $('.btn-ganjil').click(function() {
-                Swal.fire({
-                    title: "Apa kamu yakin?",
-                    text: "Mengubah semester ke ganjil?",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Ya",
-                    cancelButtonText: "Tidak",
-                }).then((result) => {
-                    if (result.value) {
-                        $.ajax({
-                            type: "POST",
-                            url: "{{ route('school.semesters.store') }}",
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr("content")
-                            },
-                            data: {
-                                school_id: {{ auth()->user()->school->id }},
-                                type: '{{ SemesterEnum::GANJIL->value }}'
-                            },
-                            success: function(res) {
-                                location.reload()
-                                // appendRow('ganjil', res.created_at);
-                            },
-                            error: function(err) {
-                                console.log(err);
-                            }
-                        });
-                    }
-                });
-            });
-
-            $('.btn-genap').click(function() {
-                Swal.fire({
-                    title: "Apa kamu yakin?",
-                    text: "Mengubah semester ke genap?",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Ya",
-                    cancelButtonText: "Tidak",
-                }).then((result) => {
-                    if (result.value) {
-                        $.ajax({
-                            type: "POST",
-                            url: "{{ route('school.semesters.store') }}",
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr("content")
-                            },
-                            data: {
-                                school_id: {{ auth()->user()->school->id }},
-                                type: '{{ SemesterEnum::GENAP->value }}'
-                            },
-                            success: function(res) {
-                                location.reload()
-                                // appendRow('genap', res.created_at);
-                            },
-                            error: function(err) {
-                                console.log(err);
-                            }
-                        });
-                    }
-                });
             });
         });
-    </script>
+
+        $('.btn-genap').click(function() {
+            Swal.fire({
+                title: "Apa kamu yakin?",
+                text: "Mengubah semester ke genap?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya",
+                cancelButtonText: "Tidak",
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ route('school.semesters.store') }}",
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr("content")
+                        },
+                        data: {
+                            school_id: {{ auth()->user()->school->id }},
+                            type: '{{ SemesterEnum::GENAP->value }}'
+                        },
+                        success: function(res) {
+                            location.reload()
+                            // appendRow('genap', res.created_at);
+                        },
+                        error: function(err) {
+                            console.log(err);
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>
+
+
 @endsection
