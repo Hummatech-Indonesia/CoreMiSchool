@@ -85,11 +85,11 @@
                                             <i class="fs-4 ti ti-eye"></i>Detail
                                         </a>
                                     </li>
-                                    <li>
+                                    {{-- <li>
                                         <a type="button" class="dropdown-item d-flex align-items-center gap-3 btn-confirm-alumnus">
                                             <i class="fs-4 ti ti-user"></i>Jadikan siswa
                                         </a>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </div>
                         </td>
