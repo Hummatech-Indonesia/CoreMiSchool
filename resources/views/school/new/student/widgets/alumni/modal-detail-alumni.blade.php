@@ -30,7 +30,7 @@
                     <div class="col-12 col-md-6">
                         <div class="d-flex" style="margin-bottom: 0.5rem;">
                             <h6 style="margin-bottom: 0;">Jenis Kelamin:</h6>
-                            <p class="ms-2" style="margin-bottom: 0;">Laki - laki</p>
+                            <p class="ms-2" style="margin-bottom: 0;" id="gender-detail"></p>
                         </div>
                         <hr>
                     </div>
