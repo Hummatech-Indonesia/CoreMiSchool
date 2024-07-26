@@ -41,7 +41,7 @@ class AttendanceService
         $data = $request->validated();
         return $data;
     }
-    public function insert($request, $rule): mixed
+    public function insert($request, $rule, $date): mixed
     {
         $attendances = collect($request->attendances);
 
@@ -52,29 +52,35 @@ class AttendanceService
         $rfids = ModelHasRfid::with('model')->whereIn('id', $attendances->pluck('id'))->get();
         // teacher attendance
 
-        $attendanceData = $attendances->map(function ($attendance) use ($rfids, $rule) {
+        $attendanceData = $attendances->map(function ($attendance) use ($rfids, $rule, $date) {
+
+            // Extract rules for students and teachers
+            $studentRule = $rule['student'][0];
+            $teacherRule = $rule['teacher'][0];
 
             $time = Carbon::createFromFormat('H.i', $attendance['time']);
-            $checkinEnd = Carbon::create($rule['student'][0]->checkin_end);
-            $checkoutStart = Carbon::create($rule['student'][0]->checkout_start);
-            $checkoutEnd = Carbon::create($rule['student'][0]->checkout_end);
-
             $rfid = $rfids->where('id', $attendance['id'])->first();
 
             if ($attendance['type'] == RoleEnum::STUDENT->value) {
-                if($time->greaterThan($checkinEnd) && $time->lessThan($checkoutStart)) {
+                // Student rules
+                $checkinEnd = Carbon::create($studentRule->checkin_end);
+                $checkoutStart = Carbon::create($studentRule->checkout_start);
+                $checkoutEnd = Carbon::create($studentRule->checkout_end);
+
+                if ($time->greaterThan($checkinEnd) && $time->lessThan($checkoutStart)) {
                     return [
                         'model_id' => $rfid->model_id,
                         'model_type' => "App/Models/ClassroomStudent",
                         'status' => AttendanceEnum::LATE->value,
                         'checkin' => $time->toDateTimeString(),
+                        'created_at' => $date->toDateTimeString()
                     ];
-                } else if($time->greaterThan($checkoutStart)) {
+                } elseif ($time->greaterThan($checkoutStart)) {
                     return [
                         'model_id' => $rfid->model_id,
                         'model_type' => "App/Models/ClassroomStudent",
-                        // 'status' => Carbon::createFromFormat('H.i', $attendance['time'])->greaterThan($checkinEnd) ? AttendanceEnum::LATE->value : AttendanceEnum::PRESENT->value,
                         'checkout' => $time->toDateTimeString(),
+                        'created_at' => $date->toDateTimeString()
                     ];
                 } else {
                     return [
@@ -82,21 +88,30 @@ class AttendanceService
                         'model_type' => "App/Models/ClassroomStudent",
                         'status' => AttendanceEnum::PRESENT->value,
                         'checkin' => $time->toDateTimeString(),
+                        'created_at' => $date->toDateTimeString()
                     ];
                 }
-            } else if($attendance['type'] != RoleEnum::STUDENT->value) {
-                if($time->greaterThan($checkinEnd) && $time->lessThan($checkoutStart)) {
+
+            } else {
+                // Teacher rules
+                $checkinEnd = Carbon::create($teacherRule->checkin_end);
+                $checkoutStart = Carbon::create($teacherRule->checkout_start);
+                $checkoutEnd = Carbon::create($teacherRule->checkout_end);
+
+                if ($time->greaterThan($checkinEnd) && $time->lessThan($checkoutStart)) {
                     return [
                         'model_id' => $rfid->model_id,
                         'model_type' => "App/Models/Employee",
                         'status' => AttendanceEnum::LATE->value,
                         'checkin' => $time->toDateTimeString(),
+                        'created_at' => $date->toDateTimeString()
                     ];
-                } else if($time->greaterThan($checkoutStart)) {
+                } elseif ($time->greaterThan($checkoutStart)) {
                     return [
                         'model_id' => $rfid->model_id,
                         'model_type' => "App/Models/Employee",
                         'checkout' => $time->toDateTimeString(),
+                        'created_at' => $date->toDateTimeString()
                     ];
                 } else {
                     return [
@@ -104,11 +119,14 @@ class AttendanceService
                         'model_type' => "App/Models/Employee",
                         'status' => AttendanceEnum::PRESENT->value,
                         'checkin' => $time->toDateTimeString(),
+                        'created_at' => $date->toDateTimeString()
                     ];
                 }
             }
         });
+
         return $attendanceData;
+
         // // Collect attendance IDs
         // $attendanceIds = collect($attendances)->pluck('id');
         // $invalidAttendances = [];
