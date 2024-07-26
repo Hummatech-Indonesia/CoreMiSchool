@@ -26,7 +26,7 @@ class LessonScheduleRepository extends BaseRepository implements LessonScheduleI
     {
         return $this->model->query()->findOrFail($id);
     }
-    
+
     public function update(mixed $id, array $data): mixed
     {
         return $this->model->query()->findOrFail($id)->update($data);
@@ -40,5 +40,13 @@ class LessonScheduleRepository extends BaseRepository implements LessonScheduleI
     public function paginate() : mixed
     {
         return $this->model->query()->latest()->paginate(10);
+    }
+
+    public function whereClassroom(mixed $id, string $query): mixed
+    {
+        return $this->model->query()
+            ->whereRelation('classroom', 'id', $id)
+            ->get()
+            ->groupBy($query);
     }
 }

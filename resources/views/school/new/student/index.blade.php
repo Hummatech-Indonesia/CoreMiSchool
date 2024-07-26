@@ -64,6 +64,7 @@
     {{-- modal alumni --}}
     @include('school.new.student.widgets.alumni.modal-detail-alumni')
     @include('school.new.student.widgets.alumni.modal-update-alumni')
+    @include('school.new.student.widgets.alumni.modal-confirm-alumnus')
 
     <x-delete-modal-component />
 @endsection
@@ -76,5 +77,6 @@
 @include('school.new.student.scripts.preview')
 @include('school.new.student.scripts.tab')
 @include('school.new.student.scripts.update')
+@include('school.new.student.scripts.confirm-alumnus')
 
 @endsection

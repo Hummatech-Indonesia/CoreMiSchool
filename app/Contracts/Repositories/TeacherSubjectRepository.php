@@ -52,4 +52,8 @@ class TeacherSubjectRepository extends BaseRepository implements TeacherSubjectI
         return $this->model->query()->insert($data);
     }
 
+    public function whereTeacher(mixed $subject_id, mixed $employee_id): mixed
+    {
+        return $this->model->query()->where('employee_id', $employee_id)->where('subject_id', $subject_id)->first();
+    }
 }

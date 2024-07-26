@@ -18,7 +18,7 @@
                     <div class="row">
                         <div class="mb-3 col-md-6">
                             <label for="class-teacher" class="form-label">Wali Kelas</label>
-                            <select class="form-control" id="employee-edit" name="employee_id">
+                            <select class="form-control select2-walikelas" id="employee-edit" name="employee_id">
                                 <option value="">Pilih wali kelas</option>
                                 @forelse ($teachers as $teacher)
                                     <option value="{{ $teacher->id }}">{{ $teacher->user->name }}</option>

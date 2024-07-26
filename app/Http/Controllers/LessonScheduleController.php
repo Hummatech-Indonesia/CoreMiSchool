@@ -2,18 +2,34 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Interfaces\ClassroomInterface;
+use App\Contracts\Interfaces\EmployeeInterface;
+use App\Contracts\Interfaces\LessonHourInterface;
 use App\Contracts\Interfaces\LessonScheduleInterface;
+use App\Contracts\Interfaces\SubjectInterface;
 use App\Models\LessonSchedule;
 use App\Http\Requests\StoreLessonScheduleRequest;
 use App\Http\Requests\UpdateLessonScheduleRequest;
+use App\Models\Classroom;
+use App\Services\LessonScheduleService;
 
 class LessonScheduleController extends Controller
 {
     private LessonScheduleInterface $lessonSchedule;
+    private ClassroomInterface $classroom;
+    private EmployeeInterface $employee;
+    private SubjectInterface $subjects;
+    private LessonHourInterface $lessonHour;
+    private LessonScheduleService $service;
 
-    public function __construct(LessonScheduleInterface $lessonSchedule)
+    public function __construct(LessonScheduleInterface $lessonSchedule, ClassroomInterface $classroom, EmployeeInterface $employee, SubjectInterface $subjects, LessonHourInterface $lessonHour, LessonScheduleService $service)
     {
         $this->lessonSchedule = $lessonSchedule;
+        $this->classroom = $classroom;
+        $this->employee = $employee;
+        $this->subjects = $subjects;
+        $this->lessonHour = $lessonHour;
+        $this->service = $service;
     }
 
     /**
@@ -22,7 +38,8 @@ class LessonScheduleController extends Controller
     public function index()
     {
         $lessonSchedules = $this->lessonSchedule->get();
-        return view('', compact('lessonSchedules'));
+        $classrooms = $this->classroom->get();
+        return view('school.new.lesson-schedule.index', compact('lessonSchedules', 'classrooms'));
     }
 
     /**
@@ -36,19 +53,22 @@ class LessonScheduleController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreLessonScheduleRequest $request)
+    public function store(StoreLessonScheduleRequest $request, Classroom $classroom, string $day)
     {
-        $data = $request->validated();
-        $this->lessonSchedule->store($data);
+        $this->service->store($request, $classroom, $day);
         return redirect()->back()->with('success', 'Berhasil menambahkan jadwal pelajaran');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(LessonSchedule $lessonSchedule)
+    public function show(LessonSchedule $lessonSchedule, Classroom $classroom)
     {
-        //
+        $teachers = $this->employee->getTeacher();
+        $subjects = $this->subjects->get();
+        $lessonHours = $this->lessonHour->groupBy('day');
+        $lessonSchedules = $this->lessonSchedule->whereClassroom($classroom->id, 'day');
+        return view('school.new.lesson-schedule.detail', compact('lessonSchedules', 'classroom', 'teachers', 'subjects', 'lessonHours'));
     }
 
     /**

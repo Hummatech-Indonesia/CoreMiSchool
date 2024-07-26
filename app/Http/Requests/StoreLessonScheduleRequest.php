@@ -22,12 +22,10 @@ class StoreLessonScheduleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'classroom_id' => 'required',
-            'lesson_hour_start' => 'required',
+            'employee_id' => 'required',
+            'subject_id' => 'required',
             'lesson_hour_end' => 'required',
-            'teacher_maple_id' => 'required',
-            'school_year_id' => 'required',
-            'day' => 'required',
+            'lesson_hour_start' => 'required'
         ];
     }
 
@@ -39,12 +37,10 @@ class StoreLessonScheduleRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'classroom_id.required' => 'ID Kelas wajib diisi.',
+            'subject_id.required' => 'Mapel pelajaran wajib diisi.',
             'lesson_hour_start.required' => 'Jam mulai pelajaran wajib diisi.',
             'lesson_hour_end.required' => 'Jam selesai pelajaran wajib diisi.',
-            'teacher_maple_id.required' => 'ID Guru Maple wajib diisi.',
-            'school_year_id.required' => 'ID Tahun Ajaran wajib diisi.',
-            'day.required' => 'Hari wajib diisi.',
+            'employee_id.required' => 'Guru Maple wajib diisi.',
         ];
     }
 }

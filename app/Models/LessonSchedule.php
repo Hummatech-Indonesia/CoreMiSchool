@@ -2,24 +2,17 @@
 
 namespace App\Models;
 
+use App\Traits\Models\BelongsToClassroom;
 use App\Traits\Models\BelongsToLessonHour;
 use App\Traits\Models\BelongsToSchoolYear;
-use App\Traits\Models\BelongsToTeacherMaple;
+
+use App\Traits\Models\BelongsToTeacherSubject;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class LessonSchedule extends Model
 {
-    use HasFactory, BelongsToLessonHour, BelongsToSchoolYear, BelongsToTeacherMaple;
+    use HasFactory, BelongsToLessonHour, BelongsToSchoolYear, BelongsToTeacherSubject, BelongsToClassroom;
 
     protected $guarded = ['id'];
-
-    protected $fillable = [
-        'classroom_id',
-        'lesson_hour_start',
-        'lesson_hour_end',
-        'teacher_maple_id',
-        'school_year_id',
-        'day'
-    ];
 }

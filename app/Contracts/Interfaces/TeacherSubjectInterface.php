@@ -9,8 +9,10 @@ use App\Contracts\Interfaces\Eloquent\ShowInterface;
 use App\Contracts\Interfaces\Eloquent\StoreInterface;
 use App\Contracts\Interfaces\Eloquent\UpdateInterface;
 use App\Contracts\Interfaces\Eloquent\WhereInterface;
+use PhpParser\Node\Expr\FuncCall;
 
 interface TeacherSubjectInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface, WhereInterface
 {
     public function insert(array $data): mixed;
+    public function whereTeacher(mixed $subject_id, mixed $employee_id): mixed;
 }

@@ -1,4 +1,75 @@
 @extends('school.layouts.app')
+
+@section('style')
+<style>
+    .category-selector .dropdown-menu {
+        position: absolute;
+        z-index: 1050;
+        transform: translate3d(0, 0, 0);
+    }
+
+    .select2 {
+        width: 100% !important;
+    }
+
+    .select2-selection__rendered {
+        width: 100%;
+        height: 36px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .select2-selection {
+        height: fit-content !important;
+        color: #555 !important;
+        background-color: #fff !important;
+        background-image: none !important;
+        border: 1px solid #ccc !important;
+        border-radius: 4px !important;
+    }
+</style>
+
+<style>
+    .category-selector .dropdown-menu {
+        position: absolute;
+        z-index: 1050;
+        transform: translate3d(0, 0, 0);
+    }
+
+    .select2-custom {
+        width: 100% !important;
+    }
+
+    .select2-custom-selection__rendered {
+        width: 100%;
+        height: 36px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .select2-custom-selection {
+        height: fit-content !important;
+        color: #555 !important;
+        background-color: #fff !important;
+        background-image: none !important;
+        border: 1px solid #ccc !important;
+        border-radius: 4px !important;
+    }
+</style>
+@endsection
+
 @section('content')
     <div class="card bg-light-primary shadow-none position-relative overflow-hidden border border-primary">
         <div class="card-body px-4 py-4">
@@ -65,8 +136,6 @@
         </div>
     </div>
 
-
-
     <div class="mt-2 card card-body shadow">
         <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-senin" role="tabpanel" aria-labelledby="pills-senin-tab">
@@ -93,4 +162,78 @@
         </div>
     </div>
 
+    @include('components.delete-modal-component')
+    @include('school.new.lesson-schedule.widgets.create')
+    @include('school.new.lesson-schedule.widgets.update')
+    @include('school.new.lesson-schedule.widgets.import')
+
+@endsection
+
+@section('script')
+    <script>
+        $('.btn-create').click(function() {
+            var classroom = $(this).data('classroom');
+            var day = $(this).data('day');
+            $('#modal-create').modal('show');
+            $('#form-create').attr('action', `{{ route('school.lesson-schedule.store', ['classroom' => ':classroom', 'day' => ':day']) }}`.replace(':classroom', classroom).replace(':day', day));
+
+            var lessonHours = @json($lessonHours);
+            var options = '<option value="" selected disabled>Pilih Jam Mulai</option>';
+            var optionsEnd = '<option value="" selected disabled>Pilih Jam Berakhir</option>';
+
+            if (lessonHours[day]) {
+                lessonHours[day].forEach(function(lessonHour) {
+                    options += `<option value="${lessonHour.id}">${lessonHour.name}</option>`;
+                });
+            }
+
+            if (lessonHours[day]) {
+                lessonHours[day].forEach(function(lessonHour) {
+                    optionsEnd += `<option value="${lessonHour.id}">${lessonHour.name}</option>`;
+                });
+            }
+
+            $('#jamStart').html(options);
+            $('#jamEnd').html(optionsEnd);
+        })
+
+        $(document).ready(function() {
+            $('.select2-create').select2({
+                dropdownParent: $('#modal-create')
+            });
+
+            $('.category-dropdown').on('show.bs.dropdown', function() {
+                $(this).closest('.table-responsive').css('overflow', 'visible');
+            });
+
+            $('.category-dropdown').on('hide.bs.dropdown', function() {
+                $(this).closest('.table-responsive').css('overflow', 'auto');
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var tabs = document.querySelectorAll('#pills-tab .nav-link');
+
+            tabs.forEach(function(tab) {
+                tab.addEventListener('shown.bs.tab', function(event) {
+                    localStorage.setItem('activeTab', event.target.getAttribute('href'));
+                    updateButtonVisibility();
+                });
+            });
+
+            var activeTab = localStorage.getItem('activeTab');
+            if (activeTab) {
+                var tabToActivate = document.querySelector(`a[href="${activeTab}"]`);
+                if (tabToActivate) {
+                    tabToActivate.click();
+                }
+            } else {
+                tabs[0].click();
+            }
+
+            updateButtonVisibility();
+        });
+    </script>
 @endsection
