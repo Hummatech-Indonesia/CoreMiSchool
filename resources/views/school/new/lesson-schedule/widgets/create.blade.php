@@ -29,9 +29,16 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="jamKe" class="form-label">Jam Ke -</label>
-                        <select class="form-select" id="jamKe" name="lesson_hour_id" required>
-                            <option value="" selected disabled>Pilih Jam Ke</option>
+                        <label for="jamKe" class="form-label">Jam Mulai</label>
+                        <select class="form-select" id="jamStart" name="lesson_hour_start" required>
+                            <option value="" selected disabled>Pilih Jam Mulai</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="jamKe" class="form-label">Jam Berakhir</label>
+                        <select class="form-select" id="jamEnd" name="lesson_hour_end" required>
+                            <option value="" selected disabled>Pilih Jam Berakhir</option>
                         </select>
                     </div>
                 </div>

@@ -1,33 +1,3 @@
-<script>
-    $('.classroom').change(function () {
-        var id = $(this).val();
-        console.log(id);
-        getStudents(id);
-    })
-
-    function getStudents(id) {
-        $.ajax({
-            url: "/school/classroom-students",
-            method: "GET",
-            data: {
-                classroom_id: id
-            },
-            dataType: "JSON",
-            beforeSend: function () {
-                $('.student').html('')
-            },
-            success: function (response) {
-                $.each(response.data, function (index, data) {
-                    $('.student').append('<option value="' + data.student_id + '">' + data.student.user.name + '</option>')
-                });
-            },
-            error: function (error) {
-                console.log(error);
-            }
-        })
-    }
-</script>
-
 {{-- handle delete student from extracurricular --}}
 <script>
     $('.btn-delete-student').on('click', function() {
@@ -63,13 +33,13 @@
         $('#class-detail').text(classroom);
         $('#gender-detail').text(gender);
         $('#religion-detail').text(religion);
-        $('#birthdate-detail').text(birthdate);   
-        $('#birthplace-detail').text(birthplace);   
-        $('#number_kk-detail').text(number_kk);   
-        $('#nik-detail').text(nik);   
-        $('#order_child-detail').text(order_child);   
-        $('#number_akta-detail').text(number_akta);   
-        $('#count_sibling-detail').text(count_sibling); 
+        $('#birthdate-detail').text(birthdate);
+        $('#birthplace-detail').text(birthplace);
+        $('#number_kk-detail').text(number_kk);
+        $('#nik-detail').text(nik);
+        $('#order_child-detail').text(order_child);
+        $('#number_akta-detail').text(number_akta);
+        $('#count_sibling-detail').text(count_sibling);
         $('#address-detail').text(address);
         $('#detail-student').modal('show');
     });
