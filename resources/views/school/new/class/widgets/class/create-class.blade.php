@@ -36,7 +36,7 @@
                                     <div class="col-md-5">
                                         <div class="custom-file">
                                             <label for="" class="mb-2">Wali Kelas</label>
-                                            <select class="form-control" name="employee_id">
+                                            <select class="form-control select2 select2-wali-kelas" name="employee_id">
                                                 <option value="">Pilih wali kelas</option>
                                                 @forelse ($teachers as $teacher)
                                                     <option value="{{ $teacher->id }}">{{ $teacher->user->name }}</option>

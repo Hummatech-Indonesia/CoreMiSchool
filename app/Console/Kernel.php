@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
 
             $attendanceStudent = $classroomStudents->map(function ($student) {
                 return [
-                    'model_type' => "App/Models/ClassroomStudent",
+                    'model_type' => "App\Models\ClassroomStudent",
                     'model_id' => $student->student->id,
                     'status' => AttendanceEnum::ALPHA->value
                 ];
@@ -39,7 +39,7 @@ class Kernel extends ConsoleKernel
 
             $attendanceTeacher = $teachers->map(function ($teacher) {
                 return [
-                    'model_type' => "App/Models/Employee",
+                    'model_type' => "App\Models\Employee",
                     'model_id' => $teacher->id,
                     'status' => AttendanceEnum::ALPHA->value
                 ];
@@ -55,12 +55,12 @@ class Kernel extends ConsoleKernel
         $schedule->call(function() {
             $day = strtolower(now()->format('l'));
             if(AttendanceRule::where('day', $day)->where('role', RoleEnum::STUDENT->value)->first()->is_holiday) {
-                Attendance::where('model_type', 'App/Models/ClassroomStudent')
+                Attendance::where('model_type', 'App\Models\ClassroomStudent')
                 ->delete();
             }
 
             if(AttendanceRule::where('day', $day)->where('role', RoleEnum::TEACHER->value)->first()->is_holiday) {
-                Attendance::where('model_type', 'App/Models/Employee')
+                Attendance::where('model_type', 'App\Models\Employee')
                 ->delete();
             }
 
