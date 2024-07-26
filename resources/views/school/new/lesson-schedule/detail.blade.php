@@ -178,7 +178,8 @@
             $('#form-create').attr('action', `{{ route('school.lesson-schedule.store', ['classroom' => ':classroom', 'day' => ':day']) }}`.replace(':classroom', classroom).replace(':day', day));
 
             var lessonHours = @json($lessonHours);
-            var options = '<option value="" selected disabled>Pilih Jam Ke</option>';
+            var options = '<option value="" selected disabled>Pilih Jam Mulai</option>';
+            var optionsEnd = '<option value="" selected disabled>Pilih Jam Berakhir</option>';
 
             if (lessonHours[day]) {
                 lessonHours[day].forEach(function(lessonHour) {
@@ -186,7 +187,14 @@
                 });
             }
 
-            $('#jamKe').html(options);
+            if (lessonHours[day]) {
+                lessonHours[day].forEach(function(lessonHour) {
+                    optionsEnd += `<option value="${lessonHour.id}">${lessonHour.name}</option>`;
+                });
+            }
+
+            $('#jamStart').html(options);
+            $('#jamEnd').html(optionsEnd);
         })
 
         $(document).ready(function() {
@@ -201,6 +209,31 @@
             $('.category-dropdown').on('hide.bs.dropdown', function() {
                 $(this).closest('.table-responsive').css('overflow', 'auto');
             });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var tabs = document.querySelectorAll('#pills-tab .nav-link');
+
+            tabs.forEach(function(tab) {
+                tab.addEventListener('shown.bs.tab', function(event) {
+                    localStorage.setItem('activeTab', event.target.getAttribute('href'));
+                    updateButtonVisibility();
+                });
+            });
+
+            var activeTab = localStorage.getItem('activeTab');
+            if (activeTab) {
+                var tabToActivate = document.querySelector(`a[href="${activeTab}"]`);
+                if (tabToActivate) {
+                    tabToActivate.click();
+                }
+            } else {
+                tabs[0].click();
+            }
+
+            updateButtonVisibility();
         });
     </script>
 @endsection

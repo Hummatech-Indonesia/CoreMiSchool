@@ -22,7 +22,7 @@
                     <td>{{ $lessonSchedule->start->name }}</td>
                     <td>
                         <span class="badge bg-light-primary text-primary">
-                            {{ \Carbon\Carbon::parse($lessonSchedule->start->start)->format('H:i:s') }} - {{ \Carbon\Carbon::parse($lessonSchedule->end->end)->format('H:i:s') }}
+                            {{ \Carbon\Carbon::parse($lessonSchedule->start->start)->format('H:i:s') }} - {{ \Carbon\Carbon::parse( $lessonSchedule->end->end )->format('H:i:s') }}
                         </span>
                     </td>
                     <td>{{ $lessonSchedule->teacherSubject->subject->name }}</td>

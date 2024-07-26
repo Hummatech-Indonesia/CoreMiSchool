@@ -55,7 +55,7 @@ class LessonScheduleController extends Controller
      */
     public function store(StoreLessonScheduleRequest $request, Classroom $classroom, string $day)
     {
-        $data = $this->service->store($request, $classroom, $day);
+        $this->service->store($request, $classroom, $day);
         return redirect()->back()->with('success', 'Berhasil menambahkan jadwal pelajaran');
     }
 

@@ -29,18 +29,19 @@ class LessonScheduleService
         $rules = $request->validated();
 
         $subject = $this->teacherSuject->whereTeacher($rules['subject_id'], $rules['employee_id']);
-        $hour = $this->lessonHour->show($rules['lesson_hour_id']);
         $year = $this->schoolYear->active();
 
-        $data = [
-            'classroom_id' => $classroom->id,
-            'lesson_hour_start' => $hour->id,
-            'lesson_hour_end' => $hour->id,
-            'teacher_subject_id' => $subject->id,
-            'school_year_id' => $year->id,
-            'day' => $day
-        ];
+        $rest = $this->lessonHour->whereRest($day, $rules['lesson_hour_start'], $rules['lesson_hour_end']);
 
-        $this->lessonSchedule->store($data);
+        foreach ($rest as $item) {
+            $this->lessonSchedule->store([
+                'classroom_id' => $classroom->id,
+                'lesson_hour_start' => $item->id,
+                'lesson_hour_end' => $item->id,
+                'teacher_subject_id' => $subject->id,
+                'school_year_id' => $year->id,
+                'day' => $day
+            ]);
+        }
     }
 }

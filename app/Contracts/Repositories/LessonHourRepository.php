@@ -71,4 +71,9 @@ class LessonHourRepository extends BaseRepository implements LessonHourInterface
             })
             ->first();
     }
+
+    public function whereRest(mixed $day, mixed $start, mixed $end): mixed
+    {
+        return $this->model->query()->where('day', $day)->whereBetween('id', [$start, $end])->get();
+    }
 }
