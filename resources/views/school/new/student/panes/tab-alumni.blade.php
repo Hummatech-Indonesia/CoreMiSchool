@@ -67,10 +67,10 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
                                 <li>
-                                    <a data-id="1dbf93d1-4e70-37ec-abda-b496e6a3c177" class="btn-detail dropdown-item d-flex align-items-center gap-3" data-bs-toggle="modal" data-bs-target="#modal-detail-alumni"><i class="fs-4 ti ti-eye"></i>Detail</a>
+                                    <a data-id="1dbf93d1-4e70-37ec-abda-b496e6a3c177" class="dropdown-item d-flex align-items-center gap-3" data-bs-toggle="modal" data-bs-target="#modal-detail-alumni"><i class="fs-4 ti ti-eye"></i>Detail</a>
                                 </li>
                                 <li>
-                                    <a data-id="1dbf93d1-4e70-37ec-abda-b496e6a3c177" class="btn-update dropdown-item d-flex align-items-center gap-3" data-bs-toggle="modal" data-bs-target="#modal-update-alumni"><i class="fs-4 ti ti-user"></i>Jadikan siswa</a>
+                                    <a type="button" class="dropdown-item d-flex align-items-center gap-3"><i class="fs-4 ti ti-user"></i>Jadikan siswa</a>
                                 </li>
                                 <li>
                                     <a data-id="1dbf93d1-4e70-37ec-abda-b496e6a3c177" class="btn-delete dropdown-item d-flex align-items-center text-danger gap-3"><i class="fs-4 ti ti-trash"></i>Delete</a>
