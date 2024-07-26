@@ -4,7 +4,7 @@
         dropdownParent: $('#update-class')
     });
 
-    $('.select2-create-walikelas').select2({
-        dropdownParent: $('#create-class')
-    });
+    // $('.select2-create-walikelas').select2({
+    //     dropdownParent: $('#create-class')
+    // });
 </script>
