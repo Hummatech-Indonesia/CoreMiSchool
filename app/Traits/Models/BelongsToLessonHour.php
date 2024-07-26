@@ -11,8 +11,18 @@ trait BelongsToLessonHour {
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function lessonHour(): BelongsTo
+    public function start(): BelongsTo
     {
-        return $this->belongsTo(LessonHour::class);
+        return $this->belongsTo(LessonHour::class,'lesson_hour_start');
+    }
+
+        /**
+     * Get the user that owns the HasUser
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function end(): BelongsTo
+    {
+        return $this->belongsTo(LessonHour::class, 'lesson_hour_end');
     }
 }

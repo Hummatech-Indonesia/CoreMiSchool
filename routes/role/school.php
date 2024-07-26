@@ -10,6 +10,7 @@ use App\Http\Controllers\ClassroomStudentController;
 use App\Http\Controllers\ExtracurricularController;
 use App\Http\Controllers\ExtracurricularStudentController;
 use App\Http\Controllers\LessonHourController;
+use App\Http\Controllers\LessonScheduleController;
 use App\Http\Controllers\LevelClassController;
 use App\Http\Controllers\MapleController;
 use App\Http\Controllers\ModelHasRfidController;
@@ -99,6 +100,12 @@ Route::prefix('school')->name('school.')->group(function() {
 
     // get classroom students by classroom id
     Route::get('classroom-students', [ClassroomStudentController::class, 'show'])->name('classroom-students.show');
+
+    Route::resource('lesson-schedule', LessonScheduleController::class)->except(['show', 'store']);
+    Route::post('lesson-schedule/{classroom}/{day}', [LessonScheduleController::class, 'store'])->name('lesson-schedule.store');
+    Route::get('lesson-schedule/detail/{classroom}', [LessonScheduleController::class, 'show'])->name('lesson-schedule.detail');
+
+    // Route::get('lesson-schedule', [LessonScheduleController::class, 'index'])->name('lesson-schedule.index');
 });
 
 
@@ -170,11 +177,3 @@ Route::post('attendance-test-teacher', [AttendanceMasterController::class, 'chec
 Route::get('new/school/extracurricular/detail', function () {
     return view('school.new.extracurricular.detail');
 })->name('new.extracurricular.detail');
-
-Route::get('new/school/lesson-schedule', function () {
-    return view('school.new.lesson-schedule.index');
-})->name('new.lesson-schedule.index');
-
-Route::get('new/school/lesson-schedule/detail', function () {
-    return view('school.new.lesson-schedule.detail');
-})->name('new.lesson-schedule.detail');

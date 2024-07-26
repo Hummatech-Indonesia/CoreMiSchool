@@ -22,12 +22,9 @@ class StoreLessonScheduleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'classroom_id' => 'required',
-            'lesson_hour_start' => 'required',
-            'lesson_hour_end' => 'required',
-            'teacher_maple_id' => 'required',
-            'school_year_id' => 'required',
-            'day' => 'required',
+            'employee_id' => 'required',
+            'subject_id' => 'required',
+            'lesson_hour_id' => 'required',
         ];
     }
 

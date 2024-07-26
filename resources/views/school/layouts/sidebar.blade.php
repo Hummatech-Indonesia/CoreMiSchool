@@ -198,7 +198,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="/new/school/lesson-schedule" class="sidebar-link">
+                            <a href="{{ route('school.lesson-schedule.index') }}" class="sidebar-link">
                                 <div class="round-16 d-flex align-items-center justify-content-center">
                                     <i class="ti ti-circle"></i>
                                 </div>
