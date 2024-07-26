@@ -22,8 +22,8 @@
         </div>
     </div>
 
-    @forelse ($classrooms as $classroom)
-        <div class="row">
+    <div class="row">
+        @forelse ($classrooms as $classroom)
             <div class="col-lg-3">
                 <div class="card">
                     <div class="position-relative">
@@ -31,7 +31,8 @@
                             <div class="d-flex justify-content-between align-items-center mb-1">
                                 <h4 class="mb-2"><b>{{ $classroom->name }}</b></h4>
                                 <div class="d-flex align-items-center">
-                                    <span class="mb-1 badge font-medium bg-light-primary text-primary fs-3">{{ $classroom->schoolYear->school_year }}</span>
+                                    <span
+                                        class="mb-1 badge font-medium bg-light-primary text-primary fs-3">{{ $classroom->schoolYear->school_year }}</span>
                                 </div>
                             </div>
                             <span class="fs-4">{{ $classroom->employee->user->name }}</span>
@@ -44,12 +45,19 @@
                                     {{ $classroom->classroomStudents->count() }} Siswa
                                 </span>
                             </div>
-                            <a href="{{ route('school.lesson-schedule.detail', ['classroom' => $classroom->id]) }}" class="btn waves-effect waves-light btn-primary w-100">Masuk Kelas</a>
+                            <a href="{{ route('school.lesson-schedule.detail', ['classroom' => $classroom->id]) }}"
+                                class="btn waves-effect waves-light btn-primary w-100">Masuk Kelas</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    @empty
-    @endforelse
+        @empty
+            <div class="d-flex flex-column justify-content-center align-items-center">
+                <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt="" width="300px">
+                <p class="fs-5 text-dark text-center mt-2">
+                    Belum ada data
+                </p>
+            </div>
+        @endforelse
+    </div>
 @endsection
