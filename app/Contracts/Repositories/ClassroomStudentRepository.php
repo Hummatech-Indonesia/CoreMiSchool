@@ -63,17 +63,17 @@ class ClassroomStudentRepository extends BaseRepository implements ClassroomStud
     public function whereClassroom(mixed $id, Request $request): mixed
     {
         return $this->model->query()->where('classroom_id', $id)
-        ->when($request->search, function ($query) use ($request) {
-            $query->whereHas('student.user', function ($query) use ($request) {
-                $query->where('name', 'LIKE', '%' . $request->search . '%');
-            });
-        })->get();
+            ->when($request->search, function ($query) use ($request) {
+                $query->whereHas('student.user', function ($query) use ($request) {
+                    $query->where('name', 'LIKE', '%' . $request->search . '%');
+                });
+            })->get();
     }
 
     public function activeStudents(): mixed
     {
         return $this->model->query()
-        ->with('student.modelHasRfid')
+            ->with('student.modelHasRfid')
             ->whereHas('classroom.schoolYear', function ($q) {
                 $q->where('active', 1);
             })
@@ -84,27 +84,27 @@ class ClassroomStudentRepository extends BaseRepository implements ClassroomStud
     public function getAlumnus(Request $request): mixed
     {
         return $this->model->query()
-        // ->whereRelation('classroom.schoolYear', 'active', false)
-        ->when($request->name, function ($query) use ($request) {
-            $query->whereHas('student.user', function($q) use ($request) {
-                $q->where('name', 'LIKE', '%' .  $request->name . '%');
-            });
-        })
-        ->when($request->gender, function ($query) use ($request) {
-            $query->whereHas('student', function ($q) use ($request) {
-                $q->where('gender', $request->gender);
-            });
-        })->whereRelation('classroom.levelClass', 'name', 'Alumni')
-        ->latest()
-        ->get();
+            ->when($request->name, function ($query) use ($request) {
+                $query->whereHas('student.user', function ($q) use ($request) {
+                    $q->where('name', 'LIKE', '%' . $request->name . '%');
+                });
+            })
+            ->when($request->gender, function ($query) use ($request) {
+                $query->whereHas('student', function ($q) use ($request) {
+                    $q->where('gender', $request->gender);
+                });
+            })
+            ->whereRelation('classroom.levelClass', 'name', 'Alumni')
+            ->latest()
+            ->get();
     }
 
     public function getByClassId(mixed $id): mixed
     {
         return $this->model->query()
-        ->where('classroom_id', $id)
-        ->with('student.user')
-        ->get();
+            ->where('classroom_id', $id)
+            ->with('student.user')
+            ->get();
     }
 
     public function check(mixed $classroomId, mixed $studentId): mixed
