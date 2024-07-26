@@ -3,7 +3,7 @@
     <div class="d-flex flex-wrap justify-content-between align-items-center">
         <div class="d-flex flex-wrap align-items-center">
             <div class="col-12 col-md-6 col-lg-12 mb-3 me-3">
-                <form class="d-flex align-items-center position-relative" action="/school/extracurricular">
+                <form class="d-flex align-items-center position-relative" action="">
                     <input type="text" name="name" class="form-control product-search ps-5 me-2" id="input-search"
                         placeholder="Cari..." value="{{ old('name', request()->name) }}">
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
