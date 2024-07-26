@@ -1,4 +1,75 @@
 @extends('school.layouts.app')
+
+@section('style')
+<style>
+    .category-selector .dropdown-menu {
+        position: absolute;
+        z-index: 1050;
+        transform: translate3d(0, 0, 0);
+    }
+
+    .select2 {
+        width: 100% !important;
+    }
+
+    .select2-selection__rendered {
+        width: 100%;
+        height: 36px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .select2-selection {
+        height: fit-content !important;
+        color: #555 !important;
+        background-color: #fff !important;
+        background-image: none !important;
+        border: 1px solid #ccc !important;
+        border-radius: 4px !important;
+    }
+</style>
+
+<style>
+    .category-selector .dropdown-menu {
+        position: absolute;
+        z-index: 1050;
+        transform: translate3d(0, 0, 0);
+    }
+
+    .select2-create-walikelas {
+        width: 100% !important;
+    }
+
+    .select2-create-walikelas-selection__rendered {
+        width: 100%;
+        height: 36px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .select2-create-walikelas-selection {
+        height: fit-content !important;
+        color: #555 !important;
+        background-color: #fff !important;
+        background-image: none !important;
+        border: 1px solid #ccc !important;
+        border-radius: 4px !important;
+    }
+</style>
+@endsection
+
 @section('content')
     <div class="card bg-primary shadow-none position-relative overflow-hidden text-light">
         <div class="card-body px-4 py-3">
@@ -85,4 +156,5 @@
 @section('script')
     @include('school.new.class.script.script-class-level')
     @include('school.new.class.script.script-class-level-class')
+    @include('school.new.class.script.script-select2')
 @endsection
