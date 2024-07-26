@@ -86,13 +86,9 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a type="button" class="dropdown-item d-flex align-items-center gap-3"><i
-                                                class="fs-4 ti ti-user"></i>Jadikan siswa</a>
-                                    </li>
-                                    <li>
-                                        <a data-id="1dbf93d1-4e70-37ec-abda-b496e6a3c177"
-                                            class="btn-delete dropdown-item d-flex align-items-center text-danger gap-3"><i
-                                                class="fs-4 ti ti-trash"></i>Delete</a>
+                                        <a type="button" class="dropdown-item d-flex align-items-center gap-3 btn-confirm-alumnus">
+                                            <i class="fs-4 ti ti-user"></i>Jadikan siswa
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
