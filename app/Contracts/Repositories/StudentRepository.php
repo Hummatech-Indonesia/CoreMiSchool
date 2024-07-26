@@ -59,6 +59,10 @@ class StudentRepository extends BaseRepository implements StudentInterface
             ->when($request->gender, function ($query) use ($request) {
                 $query->where('gender', $request->gender);
             })
+            ->whereDoesntHave('classroomStudents.classroom.levelClass', function($query) {
+                $query->where('name', 'Alumni');
+            })
+
             ->latest()
             ->paginate(10);
     }

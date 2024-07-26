@@ -94,7 +94,7 @@ class ClassroomStudentRepository extends BaseRepository implements ClassroomStud
             $query->whereHas('student', function ($q) use ($request) {
                 $q->where('gender', $request->gender);
             });
-        })
+        })->whereRelation('classroom.levelClass', 'name', 'Alumni')
         ->latest()
         ->get();
     }
