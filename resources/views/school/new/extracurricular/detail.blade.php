@@ -1,4 +1,39 @@
 @extends('school.layouts.app')
+@section('style')
+    <style>
+        .category-selector .dropdown-menu {
+            position: absolute;
+            z-index: 1050;
+            transform: translate3d(0, 0, 0);
+        }
+
+        .select2 {
+            width: 100% !important;
+        }
+
+        .select2-selection__rendered {
+            width: 100%;
+            height: 36px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .select2-selection {
+            height: fit-content !important;
+            color: #555 !important;
+            background-color: #fff !important;
+            background-image: none !important;
+            border: 1px solid #ccc !important;
+            border-radius: 4px !important;
+        }
+    </style>
+@endsection
 @section('content')
     <div class="row">
         <!-- Card 1: Pengajar -->
@@ -144,13 +179,13 @@
                                             data-order_child="{{ $extracurricularStudent->student->order_child }}"
                                             data-number_akta="{{ $extracurricularStudent->student->number_akta }}"
                                             data-count_sibling="{{ $extracurricularStudent->student->count_siblings }}"
-                                            data-address="{{ $extracurricularStudent->student->address }}"
-                                            >
+                                            data-address="{{ $extracurricularStudent->student->address }}">
                                             <i class="fs-4 ti ti-eye"></i>Detail
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="btn-delete-student dropdown-item d-flex align-items-center text-danger gap-3" data-id="{{ $extracurricularStudent->id }}"><i
+                                        <a class="btn-delete-student dropdown-item d-flex align-items-center text-danger gap-3"
+                                            data-id="{{ $extracurricularStudent->id }}"><i
                                                 class="fs-4 ti ti-trash"></i>Hapus</a>
                                     </li>
                                 </ul>
@@ -167,7 +202,6 @@
                             </p>
                         </div>
                     </td>
-
                 @endforelse
             </tbody>
         </table>
@@ -185,4 +219,5 @@
 @endsection
 @section('script')
     @include('school.new.extracurricular.scripts.detail')
+    @include('school.new.extracurricular.scripts.select2')
 @endsection
