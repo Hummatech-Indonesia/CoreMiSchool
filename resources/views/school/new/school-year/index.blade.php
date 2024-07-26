@@ -29,18 +29,7 @@
 
     <ul class="nav nav-pills p-3 mb-3 rounded align-items-center card flex-row" id="pills-tab" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" id="pills-student-tab" data-bs-toggle="pill" href="#pills-semesters" role="tab"
-                aria-controls="pills-student" aria-selected="true">
-                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" class="mb-1 me-1">
-                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M2 5a2 2 0 0 1 2-2h6v18H4a2 2 0 0 1-2-2zm12-2h6a2 2 0 0 1 2 2v5h-8zm0 11h8v5a2 2 0 0 1-2 2h-6z" />
-                </svg>
-                Semester
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="pills-semesters-tab" data-bs-toggle="pill" href="#pills-schoolYears" role="tab"
+            <a class="nav-link active" id="pills-semesters-tab" data-bs-toggle="pill" href="#pills-schoolYears" role="tab"
                 aria-controls="pills-semesters" aria-selected="false">
                 <svg xmlns="http://www.w3.org/2000/svg" class="mb-1 me-1" width="17" height="17" viewBox="0 0 24 24">
                     <path fill="currentColor"
@@ -49,6 +38,17 @@
 
                 Tahun Ajaran
 
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pills-student-tab" data-bs-toggle="pill" href="#pills-semesters" role="tab"
+                aria-controls="pills-student" aria-selected="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" class="mb-1 me-1">
+                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M2 5a2 2 0 0 1 2-2h6v18H4a2 2 0 0 1-2-2zm12-2h6a2 2 0 0 1 2 2v5h-8zm0 11h8v5a2 2 0 0 1-2 2h-6z" />
+                </svg>
+                Semester
             </a>
         </li>
         <li class="nav-item ms-auto pt-3 pt-md-0">
@@ -62,11 +62,11 @@
 
 
     <div class="tab-content mt-4" id="pills-tabContent">
-        <div class="tab-pane fade show active" id="pills-semesters" role="tabpanel" aria-labelledby="pills-student-tab">
+        <div class="tab-pane fade" id="pills-semesters" role="tabpanel" aria-labelledby="pills-student-tab">
             @include('school.new.school-year.panes.tab-semesters')
 
         </div>
-        <div class="tab-pane fade" id="pills-schoolYears" role="tabpanel" aria-labelledby="pills-semesters-tab">
+        <div class="tab-pane fade show active" id="pills-schoolYears" role="tabpanel" aria-labelledby="pills-semesters-tab">
             @include('school.new.school-year.panes.tab-school-year')
         </div>
     </div>
