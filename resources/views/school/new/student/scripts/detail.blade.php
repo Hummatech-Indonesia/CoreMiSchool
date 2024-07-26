@@ -30,4 +30,23 @@
         $('#image-detail').attr('src', image);
         $('#modal-detail-student').modal('show');
     });
+
+    $('.btn-detail-alumni').click(function() {
+        var id = $(this).data('id');
+        var name = $(this).data('name');
+        var email = $(this).data('email');
+        var gender = $(this).data('gender');
+        var nik = $(this).data('nik');
+        var rfid = $(this).data('rfid');
+        var address = $(this).data('address');
+        var image = $(this).data('image');
+        $('#name-detail-alumni').text(name);
+        $('#email-detail-alumni').text(email);
+        $('#gender-detail-alumni').text(gender);
+        $('#nik-detail-alumni').text(nik);
+        $('#rfid-detail-alumni').text(rfid);
+        $('#address-detail-alumni').text(address);
+        $('#image-detail-alumni').attr('src', image);
+        $('#modal-detail-alumni').modal('show');
+    });
 </script>

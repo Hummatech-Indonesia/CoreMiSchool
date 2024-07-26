@@ -67,10 +67,23 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
                                     <li>
-                                        <a data-id="1dbf93d1-4e70-37ec-abda-b496e6a3c177"
-                                            class="dropdown-item d-flex align-items-center gap-3" data-bs-toggle="modal"
-                                            data-bs-target="#modal-detail-alumni"><i
-                                                class="fs-4 ti ti-eye"></i>Detail</a>
+                                        <a class="dropdown-item d-flex align-items-center gap-3 btn-detail-alumni" type="button"
+                                            data-id="{{ $student->student->id }}" data-name="{{ $student->student->user->name }}"
+                                            data-email="{{ $student->student->user->email }}" data-nisn="{{ $student->student->nisn }}"
+                                            data-religion_id="{{ $student->student->religion_id }}"
+                                            data-gender="{{ $student->student->gender }}"
+                                            data-birth_place="{{ $student->student->birth_place }}"
+                                            data-birth_date="{{ $student->student->birth_date }}" data-nik="{{ $student->student->nik }}"
+                                            data-number_kk="{{ $student->student->number_kk }}"
+                                            data-number_akta="{{ $student->student->number_akta }}"
+                                            data-order_child="{{ $student->student->order_child }}"
+                                            data-count_siblings="{{ $student->student->count_siblings }}"
+                                            data-address="{{ $student->student->address }}"
+                                            data-rfid="{{ $student->student->modelHasRfid ? $student->student->modelHasRfid->rfid : 'Kosong' }}"
+                                            data-image="{{ $student->student->image ? asset('storage/' . $student->student->image) : asset('assets/images/default-user.jpeg') }}"
+                                            >
+                                            <i class="fs-4 ti ti-eye"></i>Detail
+                                        </a>
                                     </li>
                                     <li>
                                         <a type="button" class="dropdown-item d-flex align-items-center gap-3"><i

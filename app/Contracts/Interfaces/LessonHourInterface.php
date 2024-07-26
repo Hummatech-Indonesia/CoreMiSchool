@@ -14,5 +14,6 @@ interface LessonHourInterface extends GetInterface, StoreInterface, UpdateInterf
     public function groupBy($query):mixed;
     public function groupByLatest($query):mixed;
     public function whereDay(mixed $day, mixed $name) : mixed;
+    public function whereRest(mixed $day, mixed $start, mixed $end) : mixed;
 
 }
