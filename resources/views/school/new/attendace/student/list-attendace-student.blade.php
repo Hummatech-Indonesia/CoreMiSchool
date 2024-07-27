@@ -55,12 +55,13 @@
             </tr>
         </thead>
         <tbody>
+            {{-- @dd($attendances) --}}
             @forelse ($attendances as $attendance)
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $attendance->student->user->name }}</td>
                 <td>{{ Carbon\Carbon::parse($attendance->attendances->first()->checkin)->format('H.i') }}</td>
-                <td>{{ Carbon\Carbon::parse($attendance->attendances->first()->checkout)->format('H.i') }}</td>
+                <td>{{ $attendance->attendances->first()->checkout ? Carbon\Carbon::parse($attendance->attendances->first()->checkout)->format('H.i') : '-' }}</td>
                 <td>{{ $attendance->attendances->first()->point }}</td>
                 <td>{{ $attendance->attendances->first()->status == 'present' ? 'Masuk' : ($attendance->attendances->first()->status == 'sick' ? 'Sakit' : ($attendance->attendances->first()->status == 'alpha' ? 'Alpha' : ($attendance->attendances->first()->status == 'permit' ? 'Izin' : ($attendance->attendances->first()->status == 'late' ? 'Telat' : '')))) }}</td>
                 <td>

@@ -3,6 +3,7 @@
 namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\AttendanceInterface;
+use App\Enums\AttendanceEnum;
 use App\Enums\RoleEnum;
 use App\Models\Attendance;
 use App\Models\ClassroomStudent;
@@ -58,7 +59,7 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
     public function updateWithAttribute(array $attribute, array $data): mixed
     {
         // dd($this->model->query()->where('model_id', $attribute['model_id'])->get());
-        return $this->model->query()->where('model_type',$attribute['model_type'])->where('model_id', $attribute['model_id'])->update($data);
+        return $this->model->query()->where('model_type', $attribute['model_type'])->where('model_id', $attribute['model_id'])->update($data);
     }
 
     public function delete(mixed $id): mixed
@@ -66,7 +67,7 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
         return $this->model->query()->findOrFail($id)->delete();
     }
 
-    public function paginate() : mixed
+    public function paginate(): mixed
     {
         return $this->model->query()->latest()->paginate(10);
     }
@@ -74,16 +75,16 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
     public function whereSchool(mixed $id, Request $request): mixed
     {
         return $this->model->query()->whereRelation('classroomStudent.classroom.schoolYear.school', 'id', $id)
-        ->when($request->name, function ($query) use ($request) {
-            $query->whereRelation('classroomStudent.student.user', 'name', 'LIKE', '%' . $request->name . '%');
-        })
-        ->when($request->created_at, function ($query) use ($request) {
-            $query->whereDate('created_at', $request->created_at);
-        })
-        ->when($request->year, function ($query) use ($request) {
-            $query->whereRelation('classroomStudent.classroom.schoolYear', 'school_year', $request->year);
-        })
-        ->latest()->paginate(10);
+            ->when($request->name, function ($query) use ($request) {
+                $query->whereRelation('classroomStudent.student.user', 'name', 'LIKE', '%' . $request->name . '%');
+            })
+            ->when($request->created_at, function ($query) use ($request) {
+                $query->whereDate('created_at', $request->created_at);
+            })
+            ->when($request->year, function ($query) use ($request) {
+                $query->whereRelation('classroomStudent.classroom.schoolYear', 'school_year', $request->year);
+            })
+            ->latest()->paginate(10);
     }
 
     public function whereClassroom(mixed $id): mixed
@@ -93,17 +94,19 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
 
     public function classAndDate(mixed $classroom_id, Request $request): mixed
     {
+        $date = $request->date ?? Carbon::today()->toDateString();
+
         return $this->student->query()
-            ->whereHas('attendances')
-            ->with(['student.user', 'attendances'])
-            ->where('classroom_id', $classroom_id)
-            ->when($request->name, function($query)use($request){
-                $query->whereRelation('student.user', 'name', 'LIKE', '%' . $request->name . '%');
+            ->whereHas('attendances', function ($query) use ($date) {
+                $query->whereDate('created_at', $date)
+                    ->whereNotNull('checkin');
             })
-            ->when($request->date, function ($query) use ($request) {
-                $query->whereHas('attendances', function($query)use($request){
-                    $query->whereDate('created_at', $request->date);
-                });
+            ->with(['student.user', 'attendances' => function ($query) use ($date) {
+                $query->whereDate('created_at', $date);
+            }])
+            ->where('classroom_id', $classroom_id)
+            ->when($request->name, function ($query) use ($request) {
+                $query->whereRelation('student.user', 'name', 'LIKE', '%' . $request->name . '%');
             })
             ->get();
     }
@@ -115,7 +118,7 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
             ->whereHas('attendances')
             ->where('classroom_id', $classroom_id)
             ->when($request->start, function ($query) use ($request) {
-                $query->whereHas('attendances', function($query)use($request){
+                $query->whereHas('attendances', function ($query) use ($request) {
                     $query->whereBetween('created_at', [$request->start, $request->end]);
                 });
             })
@@ -127,11 +130,11 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
         return $this->employee->query()
             ->with('attendances')
             ->whereHas('attendances')
-            ->when($request->search, function($query)use($request){
+            ->when($request->search, function ($query) use ($request) {
                 $query->whereRelation('user', 'name', 'LIKE', '%' . $request->search . '%');
             })
             ->when($request->date, function ($query) use ($request) {
-                $query->whereHas('attendances', function($query)use($request){
+                $query->whereHas('attendances', function ($query) use ($request) {
                     $query->whereDate('created_at', $request->date);
                 });
             })
@@ -174,19 +177,21 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
         return $this->model->query()->whereRelation('classroomStudent.classroom', 'student_id', $id)->update($data);
     }
 
-    public function listAttendance($date) {
+    public function listAttendance($date)
+    {
         return $this->model->query()
-        ->when($date, function ($query) use ($date) {
-            $query->whereDate('created_at', $date);
-        })
-        ->get();
+            ->when($date, function ($query) use ($date) {
+                $query->whereDate('created_at', $date);
+            })
+            ->get();
     }
 
-    public function reset($date) {
+    public function reset($date)
+    {
         return $this->model->query()
-        ->when($date, function ($query) use ($date) {
-            $query->whereDate('created_at', $date);
-        })
-        ->delete();
+            ->when($date, function ($query) use ($date) {
+                $query->whereDate('created_at', $date);
+            })
+            ->delete();
     }
 }
