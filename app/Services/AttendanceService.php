@@ -58,7 +58,7 @@ class AttendanceService
             $studentRule = $rule['student'][0];
             $teacherRule = $rule['teacher'][0];
 
-            $time = Carbon::createFromFormat('H.i', $attendance['time']);
+            $time = Carbon::createFromFormat('H:i:s', $attendance['time']);
             $rfid = $rfids->where('id', $attendance['id'])->first();
 
             if ($attendance['type'] == RoleEnum::STUDENT->value) {
