@@ -173,4 +173,20 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
     {
         return $this->model->query()->whereRelation('classroomStudent.classroom', 'student_id', $id)->update($data);
     }
+
+    public function listAttendance($date) {
+        return $this->model->query()
+        ->when($date, function ($query) use ($date) {
+            $query->whereDate('created_at', $date);
+        })
+        ->get();
+    }
+
+    public function reset($date) {
+        return $this->model->query()
+        ->when($date, function ($query) use ($date) {
+            $query->whereDate('created_at', $date);
+        })
+        ->delete();
+    }
 }

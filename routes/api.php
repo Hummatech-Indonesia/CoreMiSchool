@@ -28,5 +28,7 @@ Route::post('attendace/masterkey-check', [AttendanceMasterController::class, 'ch
     // Route::post('add-list-attendance/', [AttendanceStudentController::class, 'store'])->name('add-list-attendance.index');
     Route::get('attendance/rfids', [RfidApiController::class, 'index'])->name('rfid.account');
     Route::get('attendance/hours', [AttendanceRuleApiController::class, 'index'])->name('attendance.hour');
+    Route::get('attendance/list', [AttendanceController::class, 'listAttendance']);
+    Route::get('attendance/reset', [AttendanceController::class, 'reset']);
     // });
     // Route::get('sync/attendance/teacher', [AttendanceTeacherController::class, 'syncData'])->name('sync.teacher');
