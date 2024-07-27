@@ -51,7 +51,7 @@ class AttendanceController extends Controller
      */
     public function student(Classroom $classroom, Request $request)
     {
-        $attendances = $this->attendance->whereClassroom($classroom->id, $request);
+        $attendances = $this->attendance->classAndDate($classroom->id, $request);
         return view('school.new.attendace.student.list-attendace-student', compact('attendances', 'classroom'));
     }
 
