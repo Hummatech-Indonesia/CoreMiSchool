@@ -59,8 +59,8 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $attendance->student->user->name }}</td>
-                <td>{{ $attendance->attendances->first()->checkin }}</td>
-                <td>{{ $attendance->attendances->first()->checkout }}</td>
+                <td>{{ Carbon\Carbon::parse($attendance->attendances->first()->checkin)->format('H.i') }}</td>
+                <td>{{ Carbon\Carbon::parse($attendance->attendances->first()->checkout)->format('H.i') }}</td>
                 <td>{{ $attendance->attendances->first()->point }}</td>
                 <td>{{ $attendance->attendances->first()->status == 'present' ? 'Masuk' : ($attendance->attendances->first()->status == 'sick' ? 'Sakit' : ($attendance->attendances->first()->status == 'alpha' ? 'Alpha' : ($attendance->attendances->first()->status == 'permit' ? 'Izin' : ($attendance->attendances->first()->status == 'late' ? 'Telat' : '')))) }}</td>
                 <td>
