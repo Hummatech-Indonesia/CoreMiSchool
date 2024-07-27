@@ -144,4 +144,11 @@ class AttendanceController extends Controller
         $schoolYears = $this->schoolYear->get();
         return view('school.pages.attendace.teacher.export', compact('attendances', 'schoolYears'));
     }
+
+    public function listAttendance(Request $request) {
+        return $this->attendance->listAttendance($request->date);
+    }
+    public function reset(Request $request) {
+        return $this->attendance->reset($request->date);
+    }
 }

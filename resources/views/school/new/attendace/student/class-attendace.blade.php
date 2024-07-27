@@ -9,7 +9,6 @@
         </div>
         <div class="d-flex gap-2">
             <select name="year" class="form-select" id="">
-                <option value="" selected>Tampilkan semua</option>
                 @foreach ($schoolYears as $schoolYear)
                     <option value="{{ $schoolYear->school_year }}" {{ $schoolYear->school_year == old('year', request('year')) ? 'selected' : '' }}>{{ $schoolYear->school_year }}</option>
                 @endforeach

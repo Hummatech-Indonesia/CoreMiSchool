@@ -26,5 +26,7 @@ interface AttendanceInterface extends GetInterface, StoreInterface, UpdateInterf
     public function insert(array $data) :mixed;
     public function getCurrentDay() :mixed;
     public function updateWithAttribute(array $attribute, array $data): mixed;
+    public function listAttendance($date);
+    public function reset($date);
 
 }
