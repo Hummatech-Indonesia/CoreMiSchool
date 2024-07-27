@@ -31,7 +31,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::prefix('school')->name('school.')->group(function() {
+Route::middleware('auth')->prefix('school')->name('school.')->group(function() {
     Route::resource('employees', EmployeeController::class);
 
     // cud and import teacher

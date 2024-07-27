@@ -8,6 +8,6 @@ trait MorphManyAttendance {
 
     public function attendances()
     {
-        return $this->morphMany(Attendance::class, 'model');
+        return $this->morphOne(Attendance::class, 'model');
     }
 }

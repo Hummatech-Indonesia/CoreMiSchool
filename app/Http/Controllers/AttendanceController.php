@@ -57,13 +57,13 @@ class AttendanceController extends Controller
 
     public function store(Request $request)
     {
-        $time = now();
-        $day = strtolower($time->format('l'));
+        $date = Carbon::create($request->date);
+        $day = strtolower($date->format('l'));
         $rule = $this->attendanceRule->showByDay($day, RoleEnum::STUDENT->value);
 
         if (!$rule) return ResponseHelper::jsonResponse('warning', 'Tidak ada jadwal absensi', null, 404);
 
-        $data = $this->service->insert($request, $rule, $day);
+        $data = $this->service->insert($request, $rule, $date);
         try {
             if (!empty($data)) {
                 foreach ($data->toArray() as $attendance) {
