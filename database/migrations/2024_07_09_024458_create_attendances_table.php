@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('point')->default(10);
             $table->enum('status', [AttendanceEnum::PRESENT->value, AttendanceEnum::PERMIT->value, AttendanceEnum::SICK->value, AttendanceEnum::ALPHA->value, AttendanceEnum::LATE->value]);
             $table->text('proof')->nullable();
-            $table->time('checkin');
+            $table->time('checkin')->nullable();
             $table->time('checkout')->nullable();
             $table->timestamps();
         });
