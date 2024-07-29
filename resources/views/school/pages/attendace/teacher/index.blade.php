@@ -1,5 +1,19 @@
 @extends('school.layouts.app')
 @section('content')
+<div class="card bg-light-primary border-1 border-primary shadow-none position-relative overflow-hidden text-light">
+    <div class="card-body px-4 py-4">
+        <div class="row align-items-center">
+            <div class="col-12">
+                <h4 class="fw-semibold mb-8 text-dark">Absensi Kehadiran</h4>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item text-dark fs-3" aria-current="page">Guru</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
     <div class="row">
         <div class="col-lg-6 mb-3">
             <form class="d-flex gap-2">
