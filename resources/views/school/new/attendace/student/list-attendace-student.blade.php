@@ -1,6 +1,6 @@
 @extends('school.layouts.app')
 @section('content')
-<div class="card bg-light-primary shadow-none position-relative overflow-hidden text-light">
+<div class="card bg-light-primary shadow-none position-relative overflow-hidden border border-primary">
     <div class="card-body px-4 py-4">
         <div class="row align-items-center">
             <div class="col-12">
