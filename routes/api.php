@@ -9,6 +9,7 @@ use App\Http\Controllers\AttendanceMasterController;
 use App\Http\Controllers\AttendanceStudentController;
 use App\Http\Controllers\AttendanceTeacherController;
 use App\Http\Controllers\Api\AttendanceRuleApiController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,9 @@ Route::post('attendace/masterkey-check', [AttendanceMasterController::class, 'ch
     Route::get('attendance/reset', [AttendanceController::class, 'reset']);
     // });
     // Route::get('sync/attendance/teacher', [AttendanceTeacherController::class, 'syncData'])->name('sync.teacher');
+
+
+    Route::get('users-all', function () {
+        $users = User::all();
+        return response()->json($users);
+    });
