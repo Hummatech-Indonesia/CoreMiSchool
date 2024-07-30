@@ -8,7 +8,7 @@
 
 <div class="row">
     @forelse ($classrooms as $classroom)
-    <div class="col-lg-4">
+    <div class="col-lg-4 mb-3">
         <div class="card d-flex flex-column h-100">
             <div class="card-body d-flex flex-column">
                 <div class="d-flex justify-content-between align-items-center mb-1">
@@ -51,7 +51,6 @@
                     </span>
                 </div>
 
-                <!-- Spacer to push the button to the bottom -->
                 <div class="mt-auto"></div>
 
                 <a href="{{ route('school.class-student.index', ['classroom' => $classroom->id ]) }}" class="btn waves-effect waves-light btn-primary w-100">Masuk Kelas</a>
