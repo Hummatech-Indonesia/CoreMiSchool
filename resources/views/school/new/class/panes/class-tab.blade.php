@@ -8,7 +8,7 @@
 
 <div class="row">
     @forelse ($classrooms as $classroom)
-        <div class="col-lg-3">
+        <div class="col-lg-4">
             <div class="card">
                 <div class="position-relative">
                     <div class="card-body">
