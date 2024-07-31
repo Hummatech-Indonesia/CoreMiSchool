@@ -23,7 +23,7 @@
                 <!-- navigation bar -->
                 <nav class="navbar navbar-expand-lg">
                     <a class="navbar-brand" href="index.html">
-                        <img src="{{ asset('landing_assets/images/new/logo_white.png') }}" alt="image">
+                        <img src="{{ asset('assets/images/logo/logo-miscool.png') }}" alt="image">
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon">
