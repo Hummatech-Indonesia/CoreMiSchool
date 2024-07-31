@@ -47,6 +47,60 @@
 @include('landing.fiturs')
 <!-- Unique features End -->
 
+<!-- Interface overview-Section start -->
+<section class="row_am interface_section">
+    <div class="section_title" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
+        <h2>Preview Fitur MISCHOOL</h2>
+        <p>
+            Lorem Ipsum is simply dummy text of the printing and typese tting indus
+            orem Ipsum has beenthe standard dummy text ever since.
+        </p>
+    </div>
+    <!-- screen slider start -->
+    <div class="screen_slider" data-aos="fade-in" data-aos-duration="1500" data-aos-delay="100">
+        <div id="screen_slider" class="owl-carousel owl-theme">
+            <div class="item">
+                <div class="screen_frame_img">
+                    <img src="{{ asset('landing_assets/images/new/Interface-overview-01.png') }}" alt="image">
+                    <h3 class="caption">Report Page</h3>
+                </div>
+            </div>
+            <div class="item">
+                <div class="screen_frame_img">
+                    <img src="{{ asset('landing_assets/images/new/Interface-overview-02.png') }}" alt="image">
+                    <h3 class="caption">Dashboard</h3>
+                </div>
+            </div>
+            <div class="item">
+                <div class="screen_frame_img">
+                    <img src="{{ asset('landing_assets/images/new/Interface-overview-03.png') }}" alt="image">
+                    <h3 class="caption">Report Page</h3>
+                </div>
+            </div>
+            <div class="item">
+                <div class="screen_frame_img">
+                    <img src="{{ asset('landing_assets/images/new/Interface-overview-02.png') }}" alt="image">
+                    <h3 class="caption">Dashboard</h3>
+                </div>
+            </div>
+            <div class="item">
+                <div class="screen_frame_img">
+                    <img src="{{ asset('landing_assets/images/new/Interface-overview-01.png') }}" alt="image">
+                    <h3 class="caption">Report Page</h3>
+                </div>
+            </div>
+            <div class="item">
+                <div class="screen_frame_img">
+                    <img src="{{ asset('landing_assets/images/new/Interface-overview-02.png') }}" alt="image">
+                    <h3 class="caption">Report Page</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- screen slider end -->
+</section>
+<!-- Interface overview-Section end -->
+
 <!-- Analyze Section Strat -->
 <section class="row_am analyze_section">
     <div class="container">
@@ -1022,59 +1076,7 @@
 <!-- FAQ-Section end -->
 
 
-<!-- Interface overview-Section start -->
-<section class="row_am interface_section">
-    <div class="section_title" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
-        <h2>Interface overview</h2>
-        <p>
-            Lorem Ipsum is simply dummy text of the printing and typese tting indus orem Ipsum has beenthe standard
-            dummy text ever since.
-        </p>
-    </div>
-    <!-- screen slider start -->
-    <div class="screen_slider" data-aos="fade-in" data-aos-duration="1500" data-aos-delay="100">
-        <div id="screen_slider" class="owl-carousel owl-theme">
-            <div class="item">
-                <div class="screen_frame_img">
-                    <img src="images/new/Interface-overview-01.png" alt="image">
-                    <h3 class="caption">Report Page</h3>
-                </div>
-            </div>
-            <div class="item">
-                <div class="screen_frame_img">
-                    <img src="images/new/Interface-overview-02.png" alt="image">
-                    <h3 class="caption">Dashboard</h3>
-                </div>
-            </div>
-            <div class="item">
-                <div class="screen_frame_img">
-                    <img src="images/new/Interface-overview-03.png" alt="image">
-                    <h3 class="caption">Report Page</h3>
-                </div>
-            </div>
-            <div class="item">
-                <div class="screen_frame_img">
-                    <img src="images/new/Interface-overview-02.png" alt="image">
-                    <h3 class="caption">Dashboard</h3>
-                </div>
-            </div>
-            <div class="item">
-                <div class="screen_frame_img">
-                    <img src="images/new/Interface-overview-01.png" alt="image">
-                    <h3 class="caption">Report Page</h3>
-                </div>
-            </div>
-            <div class="item">
-                <div class="screen_frame_img">
-                    <img src="images/new/Interface-overview-03.png" alt="image">
-                    <h3 class="caption">Report Page</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- screen slider end -->
-</section>
-<!-- Interface overview-Section end -->
+
 
 <!-- Start Your Free Trial Section Start -->
 <section class="free_trial_section" data-aos="fade-in" data-aos-duration="1500">
