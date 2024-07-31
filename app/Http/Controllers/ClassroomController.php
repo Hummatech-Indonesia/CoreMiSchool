@@ -46,7 +46,7 @@ class ClassroomController extends Controller
      */
     public function index(Request $request)
     {
-        $classrooms = $this->classroom->search($request)->paginate(10);
+        $classrooms = $this->classroom->search($request)->paginate(12);
         $levelClasses = $this->levelClass->search($request);
         $selectLevel = $this->levelClass->get();
         $teachers = $this->employee->getTeacher();
