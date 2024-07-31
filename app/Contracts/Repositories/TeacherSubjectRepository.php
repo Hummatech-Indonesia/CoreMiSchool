@@ -56,4 +56,9 @@ class TeacherSubjectRepository extends BaseRepository implements TeacherSubjectI
     {
         return $this->model->query()->where('employee_id', $employee_id)->where('subject_id', $subject_id)->first();
     }
+
+    public function getBySubjectId(mixed $subject_id): mixed
+    {
+        return $this->model->query()->where('subject_id', $subject_id)->with('employee.user')->get();
+    }
 }

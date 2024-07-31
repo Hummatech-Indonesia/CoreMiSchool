@@ -106,6 +106,9 @@ Route::middleware('auth')->prefix('school')->name('school.')->group(function() {
     Route::get('lesson-schedule/detail/{classroom}', [LessonScheduleController::class, 'show'])->name('lesson-schedule.detail');
 
     // Route::get('lesson-schedule', [LessonScheduleController::class, 'index'])->name('lesson-schedule.index');
+
+    // get teacher subject by subject id
+    Route::get('teacher-subject', [TeacherSubjectController::class, 'show'])->name('teacher-subject.show');
 });
 
 
