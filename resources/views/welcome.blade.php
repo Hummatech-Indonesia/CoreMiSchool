@@ -39,6 +39,12 @@
         /* Ubah gradasi saat hover */
     }
 
+    .analyze_section .analyze_image img {
+        box-shadow: none;
+        max-width: 100%;
+        border-radius: none;
+    }
+
 </style>
 @endsection
 
@@ -46,6 +52,28 @@
 <!-- Unique features Start -->
 @include('landing.fiturs')
 <!-- Unique features End -->
+
+<!-- Analyze Section Strat -->
+<section class="row_am analyze_section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="analyze_image" data-aos="fade-in" data-aos-duration="1000">
+                    <img data-aos="fade-in" data-aos-duration="2000" data-aos-delay="100" class="" src="{{ asset('landing_assets/images/landing/about.png') }}" width="300px" alt="image">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="analyze_text" data-aos="fade-in" data-aos-duration="2000" data-aos-delay="100">
+                    <div class="section_title align-center">
+                        <h2>Tentang Mischool</h2>
+                        <p>Mischool merupakan website untuk mempermudahkan berbagai Sekolah-sekolah. Mischool adalah web management sekolah yang menyediakan Fitur Absensi, Pelanggaran, E-learning, Raport, Ujian, Buku Tamu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Analyze Section End -->
 
 <!-- Interface overview-Section start -->
 <section class="row_am interface_section">
@@ -101,45 +129,6 @@
 </section>
 <!-- Interface overview-Section end -->
 
-<!-- Analyze Section Strat -->
-<section class="row_am analyze_section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="analyze_text" data-aos="fade-in" data-aos-duration="2000" data-aos-delay="100">
-                    <span class="icon"><img src="{{ asset('landing_assets/images/new/Analyze_Icon.svg') }}" alt="image"></span>
-                    <div class="section_title">
-                        <h2>Analyze your data with powerful tool</h2>
-                        <p>Lorem Ipsum is simply dummy text of the printing and types
-                            etting industry lorem Ipsum has been the industrys standard dummy text ever since the when
-                            an unknown
-                            printer took a galley of type and.</p>
-                    </div>
-                    <ul>
-                        <li data-aos="fade-up" data-aos-duration="2000">
-                            <h3>Carefully designed</h3>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typ esetting industry lorem Ipsum
-                                has.</p>
-                        </li>
-                        <li data-aos="fade-up" data-aos-duration="2000">
-                            <h3>Seamless Sync</h3>
-                            <p>Simply dummy text of the printing and typesetting inustry lorem Ipsum has Lorem dollar
-                                summit.</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="analyze_image" data-aos="fade-in" data-aos-duration="1000">
-                    <img data-aos="fade-in" data-aos-duration="2000" data-aos-delay="100" class="moving_animation" src="images/new/analyze-data-01.png" alt="image">
-                    <img data-aos="fade-in" data-aos-duration="2000" data-aos-delay="100" class="moving_animation" src="images/new/analyze-data-02.png" alt="image">
-                    <img data-aos="fade-in" data-aos-duration="2000" data-aos-delay="100" class="" src="images/new/analyze-data-03.png" alt="image">
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Analyze Section End -->
 
 <!-- Collaborate Section Strat -->
 <section class="row_am collaborate_section">
