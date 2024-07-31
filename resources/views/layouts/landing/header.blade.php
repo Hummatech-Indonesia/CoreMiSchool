@@ -101,38 +101,33 @@
         <!-- Banner-Section-Start -->
         <section class="banner_section">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-12">
-                        <div class="banner_text">
+                <div class="d-flex justify-content-center">
+                    <div class="">
+                        <div class="banner_text mb-5">
                             <div class="ban_inner_text" data-aos="fade-up" data-aos-duration="1500">
-                                <span><i class="icofont-rocket-alt-2"></i> Powerful, easier and faster</span>
-                                <h1>Build your network <br> <span>faster with apper</span></h1>
-                                <p>The World's simplest and fast platform that brings everything together</p>
+                                <span><i class="icofont-rocket-alt-2 text-primary"></i> Website Management Sekolah</span>
+                                <h1 class="text-primary"><span>Selamat Datang di</span><br>MISCHOOL</h1>
+                                <p style="padding: 0 170px;">Mischool merupakan website untuk mempermudahkan berbagai Sekolah-sekolah. Mischool adalah web management sekolah yang menyediakan Fitur Absensi, Pelanggaran,
+                                    E-learning, Raport, Ujian, Buku Tamu</p>
                             </div>
 
                             <form action="https://kalanidhithemes.com/live-preview/landing-page/codely/all-demo/06-codely-landing-page-get-started-hero/submit" data-aos="fade-up" data-aos-duration="1500">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Enter your email">
-                                    <button class="btn btn_main">GET STARTED <i class="icofont-arrow-right"></i></button>
+                                <div>
+                                    <button class="btn btn_main">Daftar Sekarang <i class="icofont-arrow-right"></i></button>
                                 </div>
                             </form>
-
-                            <div class="offers" data-aos="fade-up" data-aos-duration="1500">
-                                <span><i class="icofont-check-circled"></i> Free trial 14 days</span>
-                                <span><i class="icofont-check-circled"></i> No credit card require</span>
-                            </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-6 col-md-12">
+                    {{-- <div class="col-lg-6 col-md-12">
                         <div class="banner_image" data-aos="fade-up" data-aos-duration="1500">
                             <img src="{{ asset('landing_assets/images/new/hero_image.png') }}" alt="image">
-                        </div>
-                    </div>
                 </div>
+            </div> --}}
+    </div>
 
-            </div>
-        </section>
+    </div>
+    </section>
 
     </div>
     <!-- Top Banner End-->
