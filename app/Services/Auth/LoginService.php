@@ -32,7 +32,7 @@ class LoginService
                     return to_route('student.dashboard');
                     break;
                 case "teacher":
-                    return redirect('home');
+                    return to_route('teacher.dashboard');
                     break;
                 case "school":
                     return to_route('school.index');

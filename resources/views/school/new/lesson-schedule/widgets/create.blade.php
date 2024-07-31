@@ -10,8 +10,8 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="mataPelajaran" class="form-label">Mata Pelajaran</label>
-                        <select class="form-select" id="mataPelajaran" name="subject_id" required>
-                            <option value="" selected disabled>Pilih Mata Pelajaran</option>
+                        <select class="form-select subject" id="mataPelajaran" name="subject_id" required>
+                            <option selected disabled>Pilih Mata Pelajaran</option>
                             @foreach ($subjects as $subject)
                                 <option value="{{ $subject->id }}">{{ $subject->name }}</option>
                             @endforeach
@@ -20,11 +20,7 @@
 
                     <div class="mb-3">
                         <label for="pengajar" class="form-label">Pengajar</label>
-                        <select class="form-select" id="pengajar" name="employee_id" required>
-                            <option value="" selected disabled>Pilih Pengajar</option>
-                            @foreach ($teachers as $teacher)
-                                <option value="{{ $teacher->id }}">{{ $teacher->user->name }}</option>
-                            @endforeach
+                        <select class="form-select teacher" id="pengajar" name="employee_id" required>
                         </select>
                     </div>
 

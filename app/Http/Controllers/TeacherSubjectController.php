@@ -7,6 +7,7 @@ use App\Models\TeacherSubject;
 use App\Http\Requests\StoreTeacherSubjectRequest;
 use App\Http\Requests\UpdateTeacherSubjectRequest;
 use App\Services\TeacherSubjectService;
+use Illuminate\Http\Request;
 
 class TeacherSubjectController extends Controller
 {
@@ -47,9 +48,11 @@ class TeacherSubjectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(TeacherSubject $teacherSubject)
+    public function show(Request $request)
     {
-        //
+        $subjectId = $request->subject_id;
+        $teachers = $this->teacherSubject->getBySubjectId($subjectId);
+        return response()->json(['data' => $teachers]);
     }
 
     /**
