@@ -1,4 +1,14 @@
 @extends('layouts.landing.layouts-landing')
+@section('style')
+<style>
+    .banner_section .banner_text {
+        color: var(--text-white);
+        text-align: center;
+        padding: 250px 100px 0 0;
+    }
+
+</style>
+@endsection
 
 @section('content')
 
