@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Contracts\Interfaces\AttendanceInterface;
+use App\Contracts\Interfaces\AttendanceJournalInterface;
 use App\Contracts\Interfaces\AttendanceRuleInterface;
 use App\Contracts\Interfaces\AttendanceTeacherInterface;
 use App\Contracts\Interfaces\CityInterface;
@@ -27,6 +28,7 @@ use App\Contracts\Interfaces\SubDistrictInterface;
 use App\Contracts\Interfaces\TeacherSubjectInterface;
 use App\Contracts\Interfaces\UserInterface;
 use App\Contracts\Interfaces\VillageInterface;
+use App\Contracts\Repositories\AttendanceJournalRepository;
 use App\Contracts\Repositories\AttendanceRepository;
 use App\Contracts\Repositories\AttendanceRuleRepository;
 use App\Contracts\Repositories\AttendanceTeacherRepository;
@@ -82,6 +84,7 @@ class AppServiceProvider extends ServiceProvider
         ExtracurricularInterface::class => ExtracurricularRepository::class,
         TeacherSubjectInterface::class => TeacherSubjectRepository::class,
         ExtracurricularStudentInterface::class => ExtracurricularStudentRepository::class,
+        AttendanceJournalInterface::class => AttendanceJournalRepository::class,
     ];
 
     /**

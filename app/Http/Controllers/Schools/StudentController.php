@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Schools;
 
 use App\Contracts\Interfaces\ClassroomStudentInterface;
+use App\Contracts\Interfaces\ModelHasRfidInterface;
 use App\Models\Student;
 use Illuminate\Support\Str;
 use App\Services\StudentService;
@@ -25,8 +26,9 @@ class StudentController extends Controller
     private ReligionInterface $religion;
     private ClassroomStudentInterface $classroomStudent;
     private ClassroomStudentService $classroomService;
+    private ModelHasRfidInterface $modelHasRfid;
 
-    public function __construct(UserInterface $user, StudentInterface $student, StudentService $service, ReligionInterface $religion, ClassroomStudentInterface $classroomStudent, ClassroomStudentService $classroomService)
+    public function __construct(UserInterface $user, StudentInterface $student, StudentService $service, ReligionInterface $religion, ClassroomStudentInterface $classroomStudent, ClassroomStudentService $classroomService, ModelHasRfidInterface $modelHasRfid)
     {
         $this->user = $user;
         $this->student = $student;
@@ -34,6 +36,7 @@ class StudentController extends Controller
         $this->religion = $religion;
         $this->classroomStudent = $classroomStudent;
         $this->classroomService = $classroomService;
+        $this->modelHasRfid = $modelHasRfid;
     }
 
     /**
@@ -119,6 +122,8 @@ class StudentController extends Controller
         $this->service->delete($student);
         $this->student->delete($student->id);
         $student->user->delete();
+        $this->modelHasRfid->delete('App\Models\Student', $student->id);
+
         return redirect()->back()->with('success', 'Siswa berhasil dihapus');
     }
 

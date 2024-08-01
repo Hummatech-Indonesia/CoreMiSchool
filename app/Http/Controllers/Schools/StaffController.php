@@ -10,6 +10,7 @@ use App\Contracts\Interfaces\UserInterface;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
 use App\Contracts\Interfaces\EmployeeInterface;
+use App\Contracts\Interfaces\ModelHasRfidInterface;
 use App\Contracts\Interfaces\ReligionInterface;
 use App\Imports\EmployeeImport;
 use Illuminate\Http\Request;
@@ -21,13 +22,15 @@ class StaffController extends Controller
     private EmployeeInterface $employee;
     private StaffService $service;
     private ReligionInterface $religion;
+    private ModelHasRfidInterface $modelHasRfid;
 
-    public function __construct(UserInterface $user, EmployeeInterface $employee, StaffService $service, ReligionInterface $religion)
+    public function __construct(UserInterface $user, EmployeeInterface $employee, StaffService $service, ReligionInterface $religion, ModelHasRfidInterface $modelHasRfid)
     {
         $this->user = $user;
         $this->employee = $employee;
         $this->service = $service;
         $this->religion = $religion;
+        $this->modelHasRfid = $modelHasRfid;
     }
 
     /**
@@ -96,6 +99,7 @@ class StaffController extends Controller
         $this->service->delete($employee);
         $this->employee->delete($employee->id);
         $employee->user->delete();
+        $this->modelHasRfid->delete('App\Models\Employee', $employee->id);
         return redirect()->back()->with('success', 'Data staff berhasil dihapus');
     }
 
