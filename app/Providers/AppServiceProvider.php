@@ -25,6 +25,7 @@ use App\Contracts\Interfaces\SchoolYearInterface;
 use App\Contracts\Interfaces\SemesterInterface;
 use App\Contracts\Interfaces\StudentInterface;
 use App\Contracts\Interfaces\SubDistrictInterface;
+use App\Contracts\Interfaces\Teachers\TeacherJournalInterface;
 use App\Contracts\Interfaces\TeacherSubjectInterface;
 use App\Contracts\Interfaces\UserInterface;
 use App\Contracts\Interfaces\VillageInterface;
@@ -51,6 +52,7 @@ use App\Contracts\Repositories\SchoolYearRepository;
 use App\Contracts\Repositories\SemesterRepository;
 use App\Contracts\Repositories\StudentRepository;
 use App\Contracts\Repositories\SubDistrictRepository;
+use App\Contracts\Repositories\Teachers\TeacherJournalRepository;
 use App\Contracts\Repositories\TeacherSubjectRepository;
 use App\Contracts\Repositories\UserRepository;
 use App\Contracts\Repositories\VillageRepository;
@@ -84,6 +86,7 @@ class AppServiceProvider extends ServiceProvider
         ExtracurricularInterface::class => ExtracurricularRepository::class,
         TeacherSubjectInterface::class => TeacherSubjectRepository::class,
         ExtracurricularStudentInterface::class => ExtracurricularStudentRepository::class,
+        TeacherJournalInterface::class => TeacherJournalRepository::class,
         AttendanceJournalInterface::class => AttendanceJournalRepository::class,
     ];
 
