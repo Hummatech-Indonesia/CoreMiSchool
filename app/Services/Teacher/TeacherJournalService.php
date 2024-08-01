@@ -13,7 +13,6 @@ class TeacherJournalService
         return [
             'lesson_schedule_id' => $lessonSchedule->id,
             'description' => $data['description'],
-            'proof' => $data['proof'],
             'date' => now(),
         ];
     }

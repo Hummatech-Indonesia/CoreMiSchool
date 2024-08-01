@@ -11,7 +11,7 @@ class StoreTeacherJournalRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class StoreTeacherJournalRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'description' => 'required',
+            'date' => 'required',
+            'student*' => 'array|nullable',
+            'student' => 'nullable'
         ];
     }
 }
