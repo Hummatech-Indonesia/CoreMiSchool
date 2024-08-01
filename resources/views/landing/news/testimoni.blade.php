@@ -1,19 +1,22 @@
 @extends('layouts.landing.layouts.app')
 
 @section('style')
-    <style>
-            .company_logos .logo img {
+<style>
+    .company_logos .logo img {
         display: block;
         margin: 0 auto;
         width: 100%;
         transition: transform 0.3s ease-in-out;
         filter: none;
         opacity: 1;
+        max-width: 200px;
     }
+
     .what_coustomer_says .coustomer_slide_box .avtar_profil {
         margin-top: 0px;
     }
-    </style>
+
+</style>
 @endsection
 
 @section('banner')
@@ -47,7 +50,7 @@
 @endsection
 
 @section('content')
-    <!-- Trusted Section start -->
+<!-- Trusted Section start -->
 <section class="row_am trusted_section">
     <!-- container start -->
     <div class="container">
