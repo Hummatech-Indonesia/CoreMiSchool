@@ -2,18 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Interfaces\AttendanceJournalInterface;
 use App\Models\AttendanceJournal;
 use App\Http\Requests\StoreAttendanceJournalRequest;
 use App\Http\Requests\UpdateAttendanceJournalRequest;
+use App\Services\AttendanceJournalService;
 
 class AttendanceJournalController extends Controller
 {
+    private AttendanceJournalInterface $attendanceJournal;
+    private AttendanceJournalService $attendanceJournalService;
+
+    public function __construct(AttendanceJournalInterface $attendanceJournal, AttendanceJournalService $attendanceJournalService)
+    {
+        $this->attendanceJournal = $attendanceJournal;
+        $this->attendanceJournalService = $attendanceJournalService;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $attendanceJournals = $this->attendanceJournal->get();
+        return view('', compact('attendanceJournals'));
     }
 
     /**
@@ -29,7 +41,9 @@ class AttendanceJournalController extends Controller
      */
     public function store(StoreAttendanceJournalRequest $request)
     {
-        //
+        $data = $this->attendanceJournalService->store($request);
+        $this->attendanceJournal->store($data);
+        return redirect()->back()->with('success', 'Berhasil menyimpan data');
     }
 
     /**
@@ -53,7 +67,8 @@ class AttendanceJournalController extends Controller
      */
     public function update(UpdateAttendanceJournalRequest $request, AttendanceJournal $attendanceJournal)
     {
-        //
+        $this->attendanceJournal->update($attendanceJournal, $request->validated());
+        return redirect()->back()->with('success', 'Berhasil memperbarui data');
     }
 
     /**
@@ -61,6 +76,7 @@ class AttendanceJournalController extends Controller
      */
     public function destroy(AttendanceJournal $attendanceJournal)
     {
-        //
+        $this->attendanceJournal->delete($attendanceJournal);
+        return redirect()->back()->with('success', 'Berhasil menghapus data');
     }
 }

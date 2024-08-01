@@ -2,8 +2,7 @@
     <footer>
         <div class="top_footer" id="contact" style="background-color: #5A6A85;">
 
-            <div class="container">
-                <!-- vertical line animation -->
+            {{-- <div class="container">
                 <div class="anim_line dark_bg">
                     <span><img src="{{ asset('landing_assets/images/anim_line_2.png') }}" alt="anim_line"></span>
                     <span><img src="{{ asset('landing_assets/images/anim_line_2.png') }}" alt="anim_line"></span>
@@ -15,7 +14,7 @@
                     <span><img src="{{ asset('landing_assets/images/anim_line_2.png') }}" alt="anim_line"></span>
                     <span><img src="{{ asset('landing_assets/images/anim_line_2.png') }}" alt="anim_line"></span>
                 </div>
-            </div>
+            </div> --}}
 
             <!-- container start -->
             <div class="container">
@@ -110,7 +109,7 @@
                 <!-- row start -->
                 <div class="row">
                     <div class="col-md-4">
-                        <p>© Copyrights 2023. All rights reserved.</p>
+                        <p>© Copyrights 2024. All rights reserved.</p>
                     </div>
                     <div class="col-md-4">
                         <ul class="social_media">
@@ -119,6 +118,11 @@
                             <li><a href="#"><i class="icofont-instagram"></i></a></li>
                             <li><a href="#"><i class="icofont-pinterest"></i></a></li>
                         </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="developer_text">Design & developed by <a
+                                href="javascript:void(0)">Hummatech</a>
+                        </p>
                     </div>
                 </div>
                 <!-- row end -->

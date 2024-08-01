@@ -26,6 +26,8 @@ class StoreAttendanceJournalRequest extends FormRequest
             'classroom_student_id' => 'required|exists:classroom_students,id',
             'lesson_hour_id' => 'required|exists:lesson_hours,id',
             'status' => 'required|exists:attendance_enum,value',
+            'proof' => 'nullable',
+            'description' => 'nullable',
         ];
     }
 
