@@ -2,23 +2,26 @@
 
 namespace App\Http\Controllers\Teacher;
 
-use App\Contracts\Interfaces\Teachers\TeacherJournalInterface;
-use App\Http\Controllers\Controller;
+use App\Models\LessonSchedule;
 use App\Models\TeacherJournal;
+use App\Http\Controllers\Controller;
+use App\Services\Teacher\TeacherJournalService;
 use App\Http\Requests\StoreTeacherJournalRequest;
 use App\Http\Requests\UpdateTeacherJournalRequest;
-use App\Models\LessonSchedule;
-use App\Services\TeacherJournalService;
+use App\Contracts\Interfaces\Teachers\TeacherJournalInterface;
+use App\Contracts\Interfaces\LessonScheduleInterface;
 
 class TeacherJournalController extends Controller
 {
     private TeacherJournalInterface $teacherJournal;
     private TeacherJournalService $service;
+    private LessonScheduleInterface $lessonSchedule;
 
-    public function __construct(TeacherJournalInterface $teacherJournal, TeacherJournalService $service)
+    public function __construct(TeacherJournalInterface $teacherJournal, TeacherJournalService $service, LessonScheduleInterface $lessonSchedule)
     {
         $this->teacherJournal = $teacherJournal;
         $this->service = $service;
+        $this->lessonSchedule = $lessonSchedule;
     }
 
     /**
@@ -26,7 +29,8 @@ class TeacherJournalController extends Controller
      */
     public function index()
     {
-        //
+        $teacherSchedules = $this->lessonSchedule->whereTeacher(auth()->user()->id, now()->format('l'));
+        return view('teacher.pages.journals.index', compact('teacherSchedules'));
     }
 
     /**
@@ -34,7 +38,7 @@ class TeacherJournalController extends Controller
      */
     public function create()
     {
-        //
+        return view('teacher.pages.journals.create');
     }
 
     /**
