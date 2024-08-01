@@ -8,4 +8,5 @@ enum UploadDiskEnum: string
     case TEACHER = "teacher";
     case STAFF = "staff";
     case STUDENT = "student";
+    case ATTENDANCE_JOURNAL = "attendance_journal";
 }
