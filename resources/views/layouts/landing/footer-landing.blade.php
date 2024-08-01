@@ -1,19 +1,19 @@
     <!-- Footer-Section start -->
-    <footer>
+    <footer style="background-color: #5A6A85;">
         <div class="top_footer" id="contact">
   
           <div class="container">
             <!-- vertical line animation -->
             <div class="anim_line dark_bg">
-              <span><img src="images/anim_line_2.png" alt="anim_line"></span>
-              <span><img src="images/anim_line_2.png" alt="anim_line"></span>
-              <span><img src="images/anim_line_2.png" alt="anim_line"></span>
-              <span><img src="images/anim_line_2.png" alt="anim_line"></span>
-              <span><img src="images/anim_line_2.png" alt="anim_line"></span>
-              <span><img src="images/anim_line_2.png" alt="anim_line"></span>
-              <span><img src="images/anim_line_2.png" alt="anim_line"></span>
-              <span><img src="images/anim_line_2.png" alt="anim_line"></span>
-              <span><img src="images/anim_line_2.png" alt="anim_line"></span>
+              <span><img src="{{ asset('landing_assets/images/anim_line_2.png') }}" alt="anim_line"></span>
+              <span><img src="{{ asset('landing_assets/images/anim_line_2.png') }}" alt="anim_line"></span>
+              <span><img src="{{ asset('landing_assets/images/anim_line_2.png') }}" alt="anim_line"></span>
+              <span><img src="{{ asset('landing_assets/images/anim_line_2.png') }}" alt="anim_line"></span>
+              <span><img src="{{ asset('landing_assets/images/anim_line_2.png') }}" alt="anim_line"></span>
+              <span><img src="{{ asset('landing_assets/images/anim_line_2.png') }}" alt="anim_line"></span>
+              <span><img src="{{ asset('landing_assets/images/anim_line_2.png') }}" alt="anim_line"></span>
+              <span><img src="{{ asset('landing_assets/images/anim_line_2.png') }}" alt="anim_line"></span>
+              <span><img src="{{ asset('landing_assets/images/anim_line_2.png') }}" alt="anim_line"></span>
             </div>
         </div>
   
@@ -24,7 +24,7 @@
               <!-- footer link 1 -->
               <div class="col-lg-4 col-md-6 col-12">
                 <div class="abt_side">
-                  <div class="logo"> <img src="images/new/Logo.png" alt="image"></div>
+                  <div class="logo"> <img src="{{ asset('assets/images/logo/logo-miscool.png') }}" alt="image"></div>
                   <p>Lorem Ipsum is simply dummy text of the printing and type setting industry ype setting industry lorem
                     Ipsum has been the industrys standard dummy. </p>
                   <div class="news_letter_block">
@@ -73,7 +73,7 @@
                   <ul>
                     <li>
                       <span class="icon">
-                        <img src="images/new/contact_01.png" alt="image">
+                        <img src="{{ asset('landing_assets/images/new/contact_01.png') }}" alt="image">
                       </span>
                       <div class="text">
                         <p>Reach us <br> 599, Vilium Crossing, NJ</p>
@@ -81,7 +81,7 @@
                     </li>
                     <li>
                       <span class="icon">
-                        <img src="images/new/contact_02.png" alt="image">
+                        <img src="{{ asset('landing_assets/images/new/contact_02.png') }}" alt="image">
                       </span>
                       <div class="text">
                         <p>Call us <a href="tel:+1-900-1234567">+1-900-123 4567</a></p>
@@ -89,7 +89,7 @@
                     </li>
                     <li>
                       <span class="icon">
-                        <img src="images/new/contact_03.png" alt="image">
+                        <img src="{{ asset('landing_assets/images/new/contact_03.png') }}" alt="image">
                       </span>
                       <div class="text">
                         <p>Email us <a href="mailto:support@example.com">support@example.com</a></p>
