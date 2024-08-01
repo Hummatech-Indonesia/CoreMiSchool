@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Schools;
 
 use App\Http\Controllers\Controller;
 use App\Contracts\Interfaces\EmployeeInterface;
+use App\Contracts\Interfaces\ModelHasRfidInterface;
 use App\Contracts\Interfaces\ReligionInterface;
 use App\Contracts\Interfaces\SubjectInterface;
 use App\Contracts\Interfaces\TeacherSubjectInterface;
@@ -25,8 +26,9 @@ class TeacherController extends Controller
     private UserInterface $user;
     private TeacherSubjectInterface $teacherSubject;
     private SubjectInterface $subjects;
+    private ModelHasRfidInterface $modelHasRfid;
 
-    public function __construct(UserInterface $user, EmployeeInterface $employee, TeacherService $service, ReligionInterface $religion, TeacherSubjectInterface $teacherSubject, SubjectInterface $subjects)
+    public function __construct(UserInterface $user, EmployeeInterface $employee, TeacherService $service, ReligionInterface $religion, TeacherSubjectInterface $teacherSubject, SubjectInterface $subjects, ModelHasRfidInterface $modelHasRfid)
     {
         $this->user = $user;
         $this->employee = $employee;
@@ -34,6 +36,7 @@ class TeacherController extends Controller
         $this->religion = $religion;
         $this->teacherSubject = $teacherSubject;
         $this->subjects = $subjects;
+        $this->modelHasRfid = $modelHasRfid;
     }
 
     /**
@@ -105,6 +108,7 @@ class TeacherController extends Controller
         $this->service->delete($employee);
         $this->employee->delete($employee->id);
         $employee->user->delete();
+        $this->modelHasRfid->delete('App\Models\Employee', $employee->id);
         return redirect()->back()->with('success', 'Data guru berhasil dihapus');
     }
 

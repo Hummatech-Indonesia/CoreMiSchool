@@ -83,9 +83,9 @@ class ModelHasRfidRepository extends BaseRepository implements ModelHasRfidInter
         return $this->model->query()->updateOrCreate($match, $data);
     }
 
-    public function delete(mixed $id): mixed
+    public function delete(string $model_type, mixed $model_id): mixed
     {
-        return $this->model->query()->findOrFail($id)->delete();
+        return $this->model->query()->where('model_type', $model_type)->where('model_id', $model_id)->delete();
     }
 
     public function paginate(): mixed
