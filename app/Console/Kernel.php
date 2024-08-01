@@ -8,6 +8,7 @@ use App\Models\Attendance;
 use App\Enums\AttendanceEnum;
 use App\Models\AttendanceRule;
 use App\Models\ClassroomStudent;
+use App\Models\LessonSchedule;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -21,12 +22,16 @@ class Kernel extends ConsoleKernel
         $schedule->call(function() {
             $day = strtolower(now()->format('l'));
 
-            $classroomStudents = ClassroomStudent::whereRelation('classroom.schoolYear', function ($query) {
+            $classroomStudents = ClassroomStudent::with(['classroom.lessonSchedule' => function($query) use ($day) {
+                $query->where('day', $day);
+            }])
+            ->whereRelation('classroom.schoolYear', function ($query) {
                 $query->where('active', 1);
             })->whereHas('student.modelHasRfid')->get();
 
             $attendanceStudent = $classroomStudents->map(function ($student) {
                 return [
+                    'point' => $student->classroom->lessonSchedule->count(),
                     'model_type' => "App\Models\ClassroomStudent",
                     'model_id' => $student->student->id,
                     'status' => AttendanceEnum::ALPHA->value
@@ -39,6 +44,7 @@ class Kernel extends ConsoleKernel
 
             $attendanceTeacher = $teachers->map(function ($teacher) {
                 return [
+                    'point' => 10,
                     'model_type' => "App\Models\Employee",
                     'model_id' => $teacher->id,
                     'status' => AttendanceEnum::ALPHA->value
