@@ -22,7 +22,25 @@ class UpdateTeacherJournalRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'description' => 'required',
+            'date' => 'required',
+            'student*' => 'array|nullable',
+            'student' => 'nullable'
+        ];
+    }
 
+        /**
+     * Custom validation messages.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'description.required' => 'Deskripsi harus diisi.',
+            'date.required' => 'Tanggal harus diisi.',
+            'student*.required' => 'Siswa harus diisi.',
+            'student.required' => 'Siswa harus diisi.',
         ];
     }
 }
