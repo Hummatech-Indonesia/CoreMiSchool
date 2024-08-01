@@ -417,7 +417,7 @@
             </div>
             <div class="item">
                 <div class="coustomer_slide_box">
-                    <div class="row">
+                    <div class="row pb-4">
                         <div class="col-lg-8">
                             <div class="avtar_profil">
                                 <div class="avatr">
