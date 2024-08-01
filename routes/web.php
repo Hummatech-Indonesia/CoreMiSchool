@@ -29,5 +29,7 @@ require_once __DIR__ . '/role/school.php';
 require_once __DIR__ . '/role/staff.php';
 require_once __DIR__ . '/role/teacher.php';
 require_once __DIR__ . '/role/student.php';
+require_once __DIR__ . '/role/landing.php';
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
