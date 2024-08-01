@@ -66,9 +66,10 @@ class TeacherJournalController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTeacherJournalRequest $request, TeacherJournal $teacherJournal)
+    public function update(UpdateTeacherJournalRequest $request, TeacherJournal $teacherJournal, LessonSchedule $lessonSchedule)
     {
-        //
+        $this->teacherJournal->updateWithLesson($lessonSchedule->id, $request->validated());
+        return redirect()->back()->with('success', 'Berhasil mengupdate jurnal');
     }
 
     /**

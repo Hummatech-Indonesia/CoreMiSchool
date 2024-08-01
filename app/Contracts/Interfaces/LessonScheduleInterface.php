@@ -12,4 +12,5 @@ use App\Contracts\Interfaces\Eloquent\UpdateInterface;
 interface LessonScheduleInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface
 {
     public function whereClassroom(mixed $id, string $query): mixed;
+    public function whereTeacher(mixed $id, string $day): mixed;
 }
