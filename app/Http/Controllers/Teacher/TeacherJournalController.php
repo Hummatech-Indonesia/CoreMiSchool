@@ -8,9 +8,11 @@ use App\Http\Controllers\Controller;
 use App\Services\Teacher\TeacherJournalService;
 use App\Http\Requests\StoreTeacherJournalRequest;
 use App\Http\Requests\UpdateTeacherJournalRequest;
-use App\Contracts\Interfaces\Teachers\TeacherJournalInterface;
 use App\Contracts\Interfaces\LessonScheduleInterface;
+use App\Contracts\Interfaces\ClassroomStudentInterface;
+use App\Contracts\Interfaces\Teachers\TeacherJournalInterface;
 use App\Services\AttendanceJournalService;
+use App\Contracts\Interfaces\LessonHourInterface; // Added LessonHourInterface
 
 class TeacherJournalController extends Controller
 {
@@ -18,13 +20,17 @@ class TeacherJournalController extends Controller
     private TeacherJournalInterface $teacherJournal;
     private LessonScheduleInterface $lessonSchedule;
     private TeacherJournalService $service;
+    private ClassroomStudentInterface $classroomStudent;
+    private LessonHourInterface $lessonHour; // Added property for LessonHourInterface
 
-    public function __construct(TeacherJournalInterface $teacherJournal, TeacherJournalService $service, LessonScheduleInterface $lessonSchedule, AttendanceJournalService $serviceAttendance)
+    public function __construct(TeacherJournalInterface $teacherJournal, TeacherJournalService $service, LessonScheduleInterface $lessonSchedule, ClassroomStudentInterface $classroomStudent, AttendanceJournalService $serviceAttendance, LessonHourInterface $lessonHour)
     {
         $this->serviceAttendance = $serviceAttendance;
         $this->teacherJournal = $teacherJournal;
         $this->lessonSchedule = $lessonSchedule;
         $this->service = $service;
+        $this->classroomStudent = $classroomStudent;
+        $this->lessonHour = $lessonHour; // Initialize the LessonHourInterface property
     }
 
     /**
@@ -39,9 +45,11 @@ class TeacherJournalController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(LessonSchedule $lessonSchedule)
     {
-        return view('teacher.pages.journals.create');
+        $students = $this->classroomStudent->getByClassId($lessonSchedule->classroom->id);
+        $lessonHours = $this->lessonHour->whereTeacherSchedule($lessonSchedule, now());
+        return view('teacher.pages.journals.create', compact('students', 'lessonHours'));
     }
 
     /**
@@ -49,11 +57,11 @@ class TeacherJournalController extends Controller
      */
     public function store(StoreTeacherJournalRequest $request, LessonSchedule $lessonSchedule)
     {
-        if($this->service->checkDuplicatedStudent($request)) return redirect()->back()->with('error', 'Satu Siswa Hanya Dapat Mempunyai 1 Status Izin');
+        if($this->service->checkDuplicatedStudent($request)) return response()->json('error', 'Satu Siswa Hanya Dapat Mempunyai 1 Status Izin');
         $data = $this->service->store($request, $lessonSchedule);
         $teacherJournal_id = $this->teacherJournal->store($data)->id;
         $this->serviceAttendance->storeJournal($request, $teacherJournal_id);
-        return redirect()->back()->with('success', 'Berhasil mengirim jurnal');
+        return response()->json('success', 'Berhasil mengirim jurnal');
     }
 
     /**
