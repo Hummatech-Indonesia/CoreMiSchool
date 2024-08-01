@@ -33,6 +33,11 @@ class TeacherJournalRepository extends BaseRepository implements TeacherJournalI
         return $this->model->query()->findOrFail($id)->update($data);
     }
 
+    public function updateWithLesson(array $data, mixed $id): mixed
+    {
+        return $this->model->query()->where('lesson_schedule_id')->update($data);
+    }
+
     public function delete(mixed $id): mixed
     {
         return $this->model->query()->findOrFail($id)->delete();

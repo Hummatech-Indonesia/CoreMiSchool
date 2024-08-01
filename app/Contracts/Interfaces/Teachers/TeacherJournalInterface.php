@@ -11,5 +11,5 @@ use App\Contracts\Interfaces\Eloquent\UpdateInterface;
 
 interface TeacherJournalInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface
 {
-    //
+    public function updateWithLesson(array $data, mixed $id): mixed;
 }
