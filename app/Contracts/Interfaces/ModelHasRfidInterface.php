@@ -2,7 +2,6 @@
 
 namespace App\Contracts\Interfaces;
 
-use App\Contracts\Interfaces\Eloquent\DeleteInterface;
 use App\Contracts\Interfaces\Eloquent\GetInterface;
 use App\Contracts\Interfaces\Eloquent\PaginateInterface;
 use App\Contracts\Interfaces\Eloquent\ShowInterface;
@@ -12,7 +11,7 @@ use App\Contracts\Interfaces\Eloquent\UpdateOrCreateInterface;
 use App\Contracts\Interfaces\Eloquent\WhereInterface;
 use Illuminate\Http\Request;
 
-interface ModelHasRfidInterface extends GetInterface, StoreInterface, UpdateOrCreateInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface, WhereInterface
+interface ModelHasRfidInterface extends GetInterface, StoreInterface, UpdateOrCreateInterface, UpdateInterface, ShowInterface, PaginateInterface, WhereInterface
 {
     public function exists(mixed $rfid): mixed;
 
@@ -27,4 +26,5 @@ interface ModelHasRfidInterface extends GetInterface, StoreInterface, UpdateOrCr
     public function whereRfid(mixed $query) : mixed;
     public function searchMaster(Request $request): mixed;
     public function getStudentRfid(): mixed;
+    public function delete(string $model_type, mixed $model_id) : mixed;
 }
