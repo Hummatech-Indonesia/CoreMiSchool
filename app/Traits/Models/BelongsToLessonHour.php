@@ -25,4 +25,9 @@ trait BelongsToLessonHour {
     {
         return $this->belongsTo(LessonHour::class, 'lesson_hour_end');
     }
+
+    public function lessonHour(): BelongsTo
+    {
+        return $this->belongsTo(LessonHour::class);
+    }
 }
