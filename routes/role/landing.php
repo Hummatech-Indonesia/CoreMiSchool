@@ -10,5 +10,5 @@ Route::get('news-detail', function(){
 })->name('news-detail');
 
 Route::get('news', function(){
-    return view('landing.news');
+    return view('landing.news.news');
 })->name('news');
