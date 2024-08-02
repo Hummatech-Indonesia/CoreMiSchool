@@ -6,7 +6,7 @@
                     <div class="ban_inner_text" data-aos="fade-up" data-aos-duration="1500">
                         <span><i class="icofont-rocket-alt-2 text-primary"></i> Website Management Sekolah</span>
                         <h1 class="text-primary"><span>Selamat Datang di</span><br>MISCHOOL</h1>
-                        <p style="padding: 0 170px;">Mischool merupakan website untuk mempermudahkan berbagai Sekolah-sekolah. Mischool adalah web management sekolah yang menyediakan Fitur Absensi, Pelanggaran,
+                        <p>Mischool merupakan website untuk mempermudahkan berbagai Sekolah-sekolah. <br> Mischool adalah web management sekolah yang menyediakan Fitur Absensi, Pelanggaran, <br>
                             E-learning, Raport, Ujian, Buku Tamu</p>
                     </div>
 
