@@ -9,7 +9,7 @@
         transition: transform 0.3s ease-in-out;
         filter: none;
         opacity: 1;
-        max-width: 180px;
+        max-width: 150px;
     }
 
     .what_coustomer_says .coustomer_slide_box .avtar_profil {
