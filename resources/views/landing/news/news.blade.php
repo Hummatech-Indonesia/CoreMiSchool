@@ -44,11 +44,11 @@
 
         <div class="container">
             <div class="bred_text">
-                <h1>Blog list classic</h1>
+                <h1 class="text-primary">Berita</h1>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="/">Beranda</a></li>
                     <li><span>»</span></li>
-                    <li><a href="blog-list.html">Blog list</a></li>
+                    <li><a href="news">Berita</a></li>
                 </ul>
             </div>
         </div>
