@@ -248,7 +248,7 @@
         <div class="section_title px-5 text-center" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
             <div>
                 <h2>Paket Fitur MISCHOOL</h2>
-                <p class="px-5 mx-5">Lihat berbagai paket harga yang ditawarkan oleh Mischool dan temukan yang
+                <p>Lihat berbagai paket harga yang ditawarkan oleh Mischool dan temukan yang <br>
                     paling sesuai dengan kebutuhan sekolah Anda di bagian Pricing List.
                 </p>
             </div>
