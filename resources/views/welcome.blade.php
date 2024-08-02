@@ -253,7 +253,7 @@
                         <div class="col-md-4">
                             <div class="pricing_block blockwhite" style="padding: 40px 30px">
                                 <div class="pkg_name text-primary">
-                                    <h3 class="mb-3">E_Learning</h3>
+                                    <h3 class="mb-3">E-Learning</h3>
                                     <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vehicula lacus massa, a finibus urna hendrerit fringilla.</span>
                                 </div>
                                 <span class="price mt-1" style="font-size: 32px">Rp. 450.000<span>/bulan</span></span>
@@ -292,118 +292,41 @@
             <!-- pricing box yearly start -->
             <div class="pricing_pannel yearly_plan" data-aos="fade-up" data-aos-duration="1500">
                 <div class="row">
-
-                    <!-- pricing box 1 -->
-                    <div class="col-md-4">
-                        <div class="pricing_block">
-                            <div class="icon">
-                                <img src="images/new/Free-Trial-01.svg" alt="image">
-                                <div class="dot_block">
-                                    <span class="dot_anim"></span>
-                                    <span class="dot_anim"></span>
-                                    <span class="dot_anim"></span>
+                    @forelse (range(1, 3) as $item)
+                        <div class="col-md-4">
+                            <div class="pricing_block blockwhite" style="padding: 40px 30px">
+                                <div class="pkg_name text-primary">
+                                    <h3 class="mb-3">E-Learning</h3>
+                                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vehicula lacus massa, a finibus urna hendrerit fringilla.</span>
                                 </div>
+                                <span class="price mt-1" style="font-size: 32px">Rp. 3.000.000<span>/tahun</span></span>
+                                <a href="#" class="w-100 btn btn-stroke-gradient mb-4">Beli Sekarang</a>
+                                <h5 class="fw-bold mb-4">Daftar Fitur paket</h5>
+                                <ul>
+                                    <li class="border-bottom mb-3 pb-2">
+                                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M10.5 0C4.71036 0 0 4.71036 0 10.5C0 16.2896 4.71036 21 10.5 21C16.2896 21 21 16.2896 21 10.5C21 4.71036 16.2896 0 10.5 0ZM15.9645 6.98099L9.17993 15.0579C9.1055 15.1466 9.0129 15.2182 8.90838 15.2679C8.80387 15.3176 8.68989 15.3443 8.57416 15.3462H8.56053C8.44732 15.3461 8.33538 15.3223 8.23198 15.2762C8.12858 15.2301 8.03602 15.1628 7.96031 15.0786L5.05262 11.8478C4.97878 11.7695 4.92133 11.6772 4.88366 11.5764C4.846 11.4755 4.82887 11.3682 4.83328 11.2606C4.8377 11.1531 4.86357 11.0475 4.90937 10.9501C4.95518 10.8527 5.01999 10.7654 5.10001 10.6934C5.18002 10.6214 5.27362 10.5661 5.37531 10.5308C5.477 10.4955 5.58472 10.4808 5.69214 10.4877C5.79957 10.4946 5.90452 10.523 6.00085 10.571C6.09717 10.6191 6.18292 10.6859 6.25305 10.7675L8.53933 13.3077L14.7278 5.94209C14.8666 5.7816 15.063 5.68219 15.2745 5.66533C15.486 5.64848 15.6957 5.71554 15.8582 5.85202C16.0206 5.9885 16.1229 6.18343 16.1428 6.39469C16.1627 6.60595 16.0987 6.81655 15.9645 6.98099Z" fill="#1EBB9E"/>
+                                        </svg>
+                                        <span class="ps-5">Classroom</span>    
+                                    </li>
+                                    <li class="border-bottom mb-3 pb-2">
+                                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M10.5 0C4.71036 0 0 4.71036 0 10.5C0 16.2896 4.71036 21 10.5 21C16.2896 21 21 16.2896 21 10.5C21 4.71036 16.2896 0 10.5 0ZM15.9645 6.98099L9.17993 15.0579C9.1055 15.1466 9.0129 15.2182 8.90838 15.2679C8.80387 15.3176 8.68989 15.3443 8.57416 15.3462H8.56053C8.44732 15.3461 8.33538 15.3223 8.23198 15.2762C8.12858 15.2301 8.03602 15.1628 7.96031 15.0786L5.05262 11.8478C4.97878 11.7695 4.92133 11.6772 4.88366 11.5764C4.846 11.4755 4.82887 11.3682 4.83328 11.2606C4.8377 11.1531 4.86357 11.0475 4.90937 10.9501C4.95518 10.8527 5.01999 10.7654 5.10001 10.6934C5.18002 10.6214 5.27362 10.5661 5.37531 10.5308C5.477 10.4955 5.58472 10.4808 5.69214 10.4877C5.79957 10.4946 5.90452 10.523 6.00085 10.571C6.09717 10.6191 6.18292 10.6859 6.25305 10.7675L8.53933 13.3077L14.7278 5.94209C14.8666 5.7816 15.063 5.68219 15.2745 5.66533C15.486 5.64848 15.6957 5.71554 15.8582 5.85202C16.0206 5.9885 16.1229 6.18343 16.1428 6.39469C16.1627 6.60595 16.0987 6.81655 15.9645 6.98099Z" fill="#1EBB9E"/>
+                                        </svg>
+                                        <span class="ps-5">Daftar Tugas</span>    
+                                    </li>
+                                    <li class="border-bottom mb-3 pb-2">
+                                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M10.5 0C4.71036 0 0 4.71036 0 10.5C0 16.2896 4.71036 21 10.5 21C16.2896 21 21 16.2896 21 10.5C21 4.71036 16.2896 0 10.5 0ZM15.9645 6.98099L9.17993 15.0579C9.1055 15.1466 9.0129 15.2182 8.90838 15.2679C8.80387 15.3176 8.68989 15.3443 8.57416 15.3462H8.56053C8.44732 15.3461 8.33538 15.3223 8.23198 15.2762C8.12858 15.2301 8.03602 15.1628 7.96031 15.0786L5.05262 11.8478C4.97878 11.7695 4.92133 11.6772 4.88366 11.5764C4.846 11.4755 4.82887 11.3682 4.83328 11.2606C4.8377 11.1531 4.86357 11.0475 4.90937 10.9501C4.95518 10.8527 5.01999 10.7654 5.10001 10.6934C5.18002 10.6214 5.27362 10.5661 5.37531 10.5308C5.477 10.4955 5.58472 10.4808 5.69214 10.4877C5.79957 10.4946 5.90452 10.523 6.00085 10.571C6.09717 10.6191 6.18292 10.6859 6.25305 10.7675L8.53933 13.3077L14.7278 5.94209C14.8666 5.7816 15.063 5.68219 15.2745 5.66533C15.486 5.64848 15.6957 5.71554 15.8582 5.85202C16.0206 5.9885 16.1229 6.18343 16.1428 6.39469C16.1627 6.60595 16.0987 6.81655 15.9645 6.98099Z" fill="#1EBB9E"/>
+                                        </svg>
+                                        <span class="ps-5">Bisa menambahkan Materi dan Tugas Lorem Ipsum dolor sit ahmet</span>    
+                                    </li>
+                                </ul>
                             </div>
-                            <div class="pkg_name">
-                                <h3>Free Trial</h3>
-                                <span>For the basics</span>
-                            </div>
-                            <span class="price">$0<span>/Year</span></span>
-                            <ul class="benifits">
-                                <li class="include">
-                                    <p><i class="icofont-check-circled"></i>7 Days free trial</p>
-                                </li>
-                                <li class="include">
-                                    <p><i class="icofont-check-circled"></i>2 platform of your choice</p>
-                                </li>
-                                <li class="include">
-                                    <p><i class="icofont-check-circled"></i>10 GB Dedicated Hosting free</p>
-                                </li>
-                                <li class="exclude">
-                                    <p><i class="icofont-close-circled"></i>Unlimited updates</p>
-                                </li>
-                                <li class="exclude">
-                                    <p><i class="icofont-close-circled"></i>Live support</p>
-                                </li>
-                            </ul>
-                            <a href="#" class="btn btn_main">BUY NOW <i class="icofont-arrow-right"></i></a>
                         </div>
-                    </div>
-
-                    <!-- pricing box 2 -->
-                    <div class="col-md-4">
-                        <div class="pricing_block highlited_block">
-                            <div class="icon">
-                                <img src="images/new/unlimited.png" alt="image">
-                                <div class="dot_block">
-                                    <span class="dot_anim"></span>
-                                    <span class="dot_anim"></span>
-                                    <span class="dot_anim"></span>
-                                </div>
-                            </div>
-                            <div class="pkg_name">
-                                <h3>Unlimited</h3>
-                                <span>For the professionals</span>
-                            </div>
-                            <span class="price">$999<span>/Year</span></span>
-                            <ul class="benifits">
-                                <li class="include">
-                                    <p><i class="icofont-check-circled"></i>7 Days free trial</p>
-                                </li>
-                                <li class="include">
-                                    <p><i class="icofont-check-circled"></i>2 platform of your choice</p>
-                                </li>
-                                <li class="include">
-                                    <p><i class="icofont-check-circled"></i>10 GB Dedicated Hosting free</p>
-                                </li>
-                                <li class="include">
-                                    <p><i class="icofont-check-circled"></i>Unlimited updates</p>
-                                </li>
-                                <li class="include">
-                                    <p><i class="icofont-check-circled"></i>Live support</p>
-                                </li>
-                            </ul>
-                            <a href="#" class="btn btn_main">BUY NOW <i class="icofont-arrow-right"></i></a>
-                        </div>
-                    </div>
-
-                    <!-- pricing box 3 -->
-                    <div class="col-md-4">
-                        <div class="pricing_block">
-                            <div class="icon">
-                                <img src="images/new/Premium.svg" alt="image">
-                                <div class="dot_block">
-                                    <span class="dot_anim"></span>
-                                    <span class="dot_anim"></span>
-                                    <span class="dot_anim"></span>
-                                </div>
-                            </div>
-                            <div class="pkg_name">
-                                <h3>Premium</h3>
-                                <span>For small team</span>
-                            </div>
-                            <span class="price">$555<span>/Year</span></span>
-                            <ul class="benifits">
-                                <li class="include">
-                                    <p><i class="icofont-check-circled"></i>7 Days free trial</p>
-                                </li>
-                                <li class="include">
-                                    <p><i class="icofont-check-circled"></i>2 platform of your choice</p>
-                                </li>
-                                <li class="include">
-                                    <p><i class="icofont-check-circled"></i>10 GB Dedicated Hosting free</p>
-                                </li>
-                                <li class="include">
-                                    <p><i class="icofont-check-circled"></i>Unlimited updates</p>
-                                </li>
-                                <li class="exclude">
-                                    <p><i class="icofont-close-circled"></i>Live support</p>
-                                </li>
-                            </ul>
-                            <a href="#" class="btn btn_main">BUY NOW <i class="icofont-arrow-right"></i></a>
-                        </div>
-                    </div>
-
+                    @empty
+                        
+                    @endforelse
                 </div>
             </div>
         </div>
