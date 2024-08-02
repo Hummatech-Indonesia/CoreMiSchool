@@ -4,12 +4,16 @@
             dropdownParent: $('#modal-create')
         });
 
-        $('.category-dropdown').on('show.bs.dropdown', function() {
-            $(this).closest('.table-responsive').css('overflow', 'visible');
+        $('.select2-teacher').select2({
+            dropdownParent: $('#modal-create')
         });
 
-        $('.category-dropdown').on('hide.bs.dropdown', function() {
-            $(this).closest('.table-responsive').css('overflow', 'auto');
+        $('.select2-start').select2({
+            dropdownParent: $('#modal-create')
+        });
+
+        $('.select2-end').select2({
+            dropdownParent: $('#modal-create')
         });
     });
 </script>

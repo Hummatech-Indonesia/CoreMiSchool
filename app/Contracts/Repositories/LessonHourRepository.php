@@ -47,8 +47,18 @@ class LessonHourRepository extends BaseRepository implements LessonHourInterface
     {
         return $this->model->query()
             ->get()
+            ->sortBy('start')
             ->groupBy($query);
     }
+
+    public function groupByNot($query):mixed
+    {
+        return $this->model->query()
+            ->whereNot('name', 'Istirahat')
+            ->get()
+            ->groupBy($query);
+    }
+
 
     public function groupByLatest($query):mixed
     {
