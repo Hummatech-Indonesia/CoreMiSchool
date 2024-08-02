@@ -4,6 +4,7 @@ namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\LessonHourInterface;
 use App\Models\LessonHour;
+use App\Models\LessonSchedule;
 use Illuminate\Http\Request;
 
 class LessonHourRepository extends BaseRepository implements LessonHourInterface
@@ -52,6 +53,24 @@ class LessonHourRepository extends BaseRepository implements LessonHourInterface
     }
 
     public function groupByNot($query): mixed
+    {
+        $excludedIds = LessonSchedule::query()
+        ->select('lesson_hour_start', 'lesson_hour_end')
+        ->get()
+        ->flatMap(function ($schedule) {
+            return range($schedule->lesson_hour_start, $schedule->lesson_hour_end);
+        })
+        ->unique()
+        ->all();
+
+        return $this->model->query()
+            ->whereNot('name', 'Istirahat')
+            ->whereNotIn('id', $excludedIds)
+            ->get()
+            ->groupBy($query);
+    }
+
+    public function groupByNotUpdate($query): mixed
     {
         return $this->model->query()
             ->whereNot('name', 'Istirahat')

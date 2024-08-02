@@ -67,8 +67,10 @@ class LessonScheduleController extends Controller
         $teachers = $this->employee->getTeacher();
         $subjects = $this->subjects->get();
         $lessonHours = $this->lessonHour->groupByNot('day');
+        $lessonHourUpdates = $this->lessonHour->groupByNotUpdate('day');
         $lessonSchedules = $this->lessonSchedule->whereClassroom($classroom->id, 'day');
-        return view('school.new.lesson-schedule.detail', compact('lessonSchedules', 'classroom', 'teachers', 'subjects', 'lessonHours'));
+        $latestSchedule = $this->service->get();
+        return view('school.new.lesson-schedule.detail', compact('lessonSchedules', 'classroom', 'teachers', 'subjects', 'lessonHours', 'lessonHourUpdates', 'latestSchedule'));
     }
 
     /**
@@ -84,8 +86,7 @@ class LessonScheduleController extends Controller
      */
     public function update(UpdateLessonScheduleRequest $request, LessonSchedule $lessonSchedule)
     {
-        $data = $request->validated();
-        $this->lessonSchedule->update($lessonSchedule->id, $data);
+        $this->service->update($request,$lessonSchedule);
         return redirect()->back()->with('success', 'Berhasil memperbaiki jadwal pelajaran');
     }
 

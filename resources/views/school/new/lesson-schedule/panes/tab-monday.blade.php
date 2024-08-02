@@ -12,7 +12,7 @@
                 <th class="text-white" style="background-color: #5D87FF;">Jam</th>
                 <th class="text-white" style="background-color: #5D87FF;">Mata Pelajaran</th>
                 <th class="text-white" style="background-color: #5D87FF;">Pengajar</th>
-                <th class="text-white" style="background-color: #5D87FF;">Aksi</th>
+                {{-- <th class="text-white" style="background-color: #5D87FF;">Aksi</th> --}}
             </tr>
         </thead>
         <tbody>
@@ -39,24 +39,6 @@
                     </td>
                     <td>{{ $lessonSchedule->teacherSubject->subject->name }}</td>
                     <td>{{ $lessonSchedule->teacherSubject->employee->user->name }}</td>
-                    <td>
-                        <div class="gap-3">
-                            <button class="btn btn-light-warning text-warning me-2 btn-edit" data-bs-toggle="modal"
-                                data-bs-target="#modal-update">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                                    <path fill="currentColor"
-                                        d="M21 12a1 1 0 0 0-1 1v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h6a1 1 0 0 0 0-2H5a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-6a1 1 0 0 0-1-1m-15 .76V17a1 1 0 0 0 1 1h4.24a1 1 0 0 0 .71-.29l6.92-6.93L21.71 8a1 1 0 0 0 0-1.42l-4.24-4.29a1 1 0 0 0-1.42 0l-2.82 2.83l-6.94 6.93a1 1 0 0 0-.29.71m10.76-8.35l2.83 2.83l-1.42 1.42l-2.83-2.83ZM8 13.17l5.93-5.93l2.83 2.83L10.83 16H8Z" />
-                                </svg>
-                            </button>
-                            <button class="btn btn-light-danger text-danger btn-delete" data-bs-toggle="modal"
-                                data-bs-target="#modal-delete">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                    <path fill="currentColor"
-                                        d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6zM8 9h8v10H8zm7.5-5l-1-1h-5l-1 1H5v2h14V4z" />
-                                </svg>
-                            </button>
-                        </div>
-                    </td>
                 </tr>
             @empty
             @endforelse
@@ -74,6 +56,28 @@
                     </div>
                 </td>
                 <td colspan="1"></td>
+                <td colspan="4" class="text-end px-5">
+                    <div class="gap-3 px-5">
+                        <button class="btn btn-light-warning text-warning me-2 btn-edit"
+                            data-id="{{ $latestSchedule[0][0] ? $latestSchedule[0][0]->id : '' }}"
+                            data-subject="{{ $latestSchedule[0][0] ? $latestSchedule[0][0]->teacherSubject->subject->id : '' }}"
+                            data-teacher="{{ $latestSchedule[0][0] ? $latestSchedule[0][0]->teacherSubject->employee->id : '' }}"
+                            data-start="{{ $latestSchedule[0][0] ? $latestSchedule[0][0]->lesson_hour_start : '' }}"
+                            data-end="{{ $latestSchedule[0][0] ? $latestSchedule[0][0]->lesson_hour_end : '' }}"
+                            data-day="monday">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                    d="M21 12a1 1 0 0 0-1 1v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h6a1 1 0 0 0 0-2H5a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-6a1 1 0 0 0-1-1m-15 .76V17a1 1 0 0 0 1 1h4.24a1 1 0 0 0 .71-.29l6.92-6.93L21.71 8a1 1 0 0 0 0-1.42l-4.24-4.29a1 1 0 0 0-1.42 0l-2.82 2.83l-6.94 6.93a1 1 0 0 0-.29.71m10.76-8.35l2.83 2.83l-1.42 1.42l-2.83-2.83ZM8 13.17l5.93-5.93l2.83 2.83L10.83 16H8Z" />
+                            </svg>
+                        </button>
+                        <button class="btn btn-light-danger text-danger btn-delete" data-id="{{ $latestSchedule[0][0] ? $latestSchedule[0][0]->id : '' }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                    d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6zM8 9h8v10H8zm7.5-5l-1-1h-5l-1 1H5v2h14V4z" />
+                            </svg>
+                        </button>
+                    </div>
+                </td>
             </tr>
         </tfoot>
     </table>
