@@ -35,10 +35,10 @@
 
     $('.subject-update').change(function() {
         var id = $(this).val();
-        getTeacher(id);
+        getTeacherUpdate(id);
     })
 
-    function getTeacher(id) {
+    function getTeacherUpdate(id) {
         $.ajax({
             url: "/school/teacher-subject/" + id,
             method: "GET",
