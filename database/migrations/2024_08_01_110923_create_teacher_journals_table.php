@@ -19,7 +19,6 @@ return new class extends Migration
             $this->addForeignId($table, 'lesson_schedule_id');
             $table->longText('description');
             $table->text('proof')->nullable();
-            $table->date('date');
             $table->timestamps();
         });
     }

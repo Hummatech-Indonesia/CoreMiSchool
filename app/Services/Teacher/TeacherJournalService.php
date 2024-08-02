@@ -2,6 +2,7 @@
 
 namespace App\Services\Teacher;
 
+use App\Contracts\Interfaces\Teachers\TeacherJournalInterface;
 use App\Http\Requests\StoreTeacherJournalRequest;
 use App\Models\LessonSchedule;
 
@@ -13,7 +14,6 @@ class TeacherJournalService
         return [
             'lesson_schedule_id' => $lessonSchedule->id,
             'description' => $data['description'],
-            'date' => now(),
         ];
     }
 
