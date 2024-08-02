@@ -14,5 +14,9 @@ Route::get('news', function(){
 })->name('news');
 
 Route::get('testimoni', function(){
-    return view('landing.news.testimoni');
+    return view('landing.testimoni');
 })->name('testimoni');
+
+Route::get('contact-us', function(){
+    return view('landing.contact-us');
+})->name('contact-us');
