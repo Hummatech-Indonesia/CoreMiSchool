@@ -76,7 +76,7 @@
                         <a class="nav-link" href="/about-us">Tentang Kami</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0)">Paket</a>
+                        <a class="nav-link" href="/package">Paket</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/contact-us">Kontak</a>

@@ -20,3 +20,7 @@ Route::get('testimoni', function(){
 Route::get('contact-us', function(){
     return view('landing.contact-us');
 })->name('contact-us');
+
+Route::get('package', function(){
+    return view('landing.package');
+})->name('package');
