@@ -343,7 +343,7 @@ header.fix_style .navbar {
 
 .navbar-expand-lg .navbar-nav .nav-link.dark_btn {
   color: var(--text-white);
-  background-image: var(--bg-orange-gradiunt);
+  background-image: var(#5D87FF);
   font-size: 15px;
   padding: 9px 38px;
   border-radius: 25px;
@@ -1025,7 +1025,7 @@ header.fix_style .navbar-expand-lg .navbar-nav .nav-link.dark_btn {
 
 .analyze_section .analyze_text .icon img{
   border-radius: 200px;
-  
+
 }
 
 
@@ -1522,7 +1522,7 @@ header.fix_style .navbar-expand-lg .navbar-nav .nav-link.dark_btn {
   top: -2px;
 }
 
-.customer_section .review_summery p  , 
+.customer_section .review_summery p  ,
 .customer_section .review_summery p a {
   font-weight: 700;
   color: var(--main_purple);
@@ -2162,7 +2162,7 @@ iframe#youtubevideo {
 .advance_feature_section .container .advance_feature_inner .row {
   position: relative;
   z-index: 1000;
-  
+
 }
 
 .advance_feature_section .container .advance_feature_inner {
@@ -2458,7 +2458,7 @@ iframe#youtubevideo {
 
 /* latest story wraper */
 .latest_story {
-  
+
 }
 
 .latest_story .section_title {
@@ -2514,7 +2514,7 @@ iframe#youtubevideo {
   display: flex;
   align-items: center;
   margin-bottom: 12px;
-} 
+}
 
 .latest_story .story_box .story_text .statstic span {
   font-size: 13px;
@@ -3192,7 +3192,7 @@ footer .top_footer .anim_line span:nth-child(2) {
 }
 
 .about_us_page_section .dotes_anim_bloack .dotes_1::before ,
-.about_us_page_section .dotes_anim_bloack .dotes_3::before , 
+.about_us_page_section .dotes_anim_bloack .dotes_3::before ,
 .about_us_page_section .dotes_anim_bloack .dotes_7::before ,
 .about_us_page_section .dotes_anim_bloack .dotes_8::before {
   width: 5px;
@@ -3609,7 +3609,7 @@ footer .top_footer .anim_line span:nth-child(2) {
 }
 
 
-/* Pricing table */ 
+/* Pricing table */
 .pricing_section.service_list_ps {
   background: #f6f4fe;
   margin-top: 0;
@@ -3850,7 +3850,7 @@ footer .top_footer .anim_line span:nth-child(2) {
   font-weight: 600;
 }
 
-.service_detail_section .service_right_side .service_list_panel ul li a.active , 
+.service_detail_section .service_right_side .service_list_panel ul li a.active ,
 .service_detail_section .service_right_side .service_list_panel ul li a:hover {
   color: var(--main_purple);
 }
@@ -4255,7 +4255,7 @@ footer .top_footer .anim_line span:nth-child(2) {
 .pagination_block ul li a:hover,
 .pagination_block ul li a.active {
   background-color: var(--main_purple);
-  color: var(--text-white); 
+  color: var(--text-white);
   border-color: var(--main_purple);
 }
 
@@ -5187,7 +5187,7 @@ footer .top_footer .anim_line span:nth-child(2) {
   color: var(--body-text-purple);
 }
 
-.white_option .navbar-expand-lg .navbar-nav .has_dropdown:hover > a, 
+.white_option .navbar-expand-lg .navbar-nav .has_dropdown:hover > a,
 .white_option .navbar-expand-lg .navbar-nav .has_dropdown:hover > .drp_btn ,
 .white_option .navbar-expand-lg .navbar-nav .has_dropdown .sub_menu ul li a:hover{
   color: var(--main_purple);
@@ -5270,12 +5270,12 @@ footer .top_footer .anim_line span:nth-child(2) {
   top: 470px;
   right: 260px;
   animation: moving_waves 12s infinite linear;
-} 
+}
 
 /* Wave Animation */
 
 @keyframes fade_in_out {
-  
+
   0% {
     opacity: 1;
   }

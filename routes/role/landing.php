@@ -10,5 +10,13 @@ Route::get('news-detail', function(){
 })->name('news-detail');
 
 Route::get('news', function(){
-    return view('landing.news');
+    return view('landing.news.news');
 })->name('news');
+
+Route::get('testimoni', function(){
+    return view('landing.testimoni');
+})->name('testimoni');
+
+Route::get('contact-us', function(){
+    return view('landing.contact-us');
+})->name('contact-us');

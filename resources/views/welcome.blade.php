@@ -51,6 +51,7 @@
         transition: transform 0.3s ease-in-out;
         filter: none;
         opacity: 1;
+        max-width: 180px;
     }
 
     .what_coustomer_says .coustomer_slide_box .avtar_profil {
@@ -417,7 +418,7 @@
             </div>
             <div class="item">
                 <div class="coustomer_slide_box">
-                    <div class="row">
+                    <div class="row pb-4">
                         <div class="col-lg-8">
                             <div class="avtar_profil">
                                 <div class="avatr">

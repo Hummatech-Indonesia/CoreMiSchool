@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Teacher\TeacherJournalController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -12,4 +13,6 @@ Route::middleware('auth')->prefix('teacher')->name('teacher.')->group(function()
     Route::get('extracurricular', function(){
         return view('teacher.pages.ekstrakulikuler.index');
     })->name('extracurricular.index');
+
+    Route::resource('journals', TeacherJournalController::class);
 });
