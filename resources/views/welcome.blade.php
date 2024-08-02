@@ -84,6 +84,10 @@
         .faq_section .faq_panel .card-header .btn.active {
             color: var(--primary);
         }
+
+        .text-primary {
+            color: #0042FF;
+        }
     </style>
 @endsection
 
@@ -252,11 +256,11 @@
                     @forelse (range(1, 3) as $item)
                         <div class="col-md-4">
                             <div class="pricing_block blockwhite" style="padding: 40px 30px">
-                                <div class="pkg_name text-primary">
-                                    <h3 class="mb-3">E-Learning</h3>
+                                <div class="pkg_name">
+                                    <h3 class="mb-3 text-primary">E-Learning</h3>
                                     <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vehicula lacus massa, a finibus urna hendrerit fringilla.</span>
                                 </div>
-                                <span class="price mt-1" style="font-size: 32px">Rp. 450.000<span>/bulan</span></span>
+                                <span class="price mt-1 text-primary" style="font-size: 32px">Rp. 450.000<span>/bulan</span></span>
                                 <a href="#" class="w-100 btn btn-stroke-gradient mb-4">Beli Sekarang</a>
                                 <h5 class="fw-bold mb-4">Daftar Fitur paket</h5>
                                 <ul>
@@ -295,11 +299,11 @@
                     @forelse (range(1, 3) as $item)
                         <div class="col-md-4">
                             <div class="pricing_block blockwhite" style="padding: 40px 30px">
-                                <div class="pkg_name text-primary">
-                                    <h3 class="mb-3">E-Learning</h3>
+                                <div class="pkg_name">
+                                    <h3 class="mb-3 text-primary">E-Learning</h3>
                                     <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vehicula lacus massa, a finibus urna hendrerit fringilla.</span>
                                 </div>
-                                <span class="price mt-1" style="font-size: 32px">Rp. 3.000.000<span>/tahun</span></span>
+                                <span class="price mt-1 text-primary" style="font-size: 32px">Rp. 3.000.000<span>/tahun</span></span>
                                 <a href="#" class="w-100 btn btn-stroke-gradient mb-4">Beli Sekarang</a>
                                 <h5 class="fw-bold mb-4">Daftar Fitur paket</h5>
                                 <ul>
