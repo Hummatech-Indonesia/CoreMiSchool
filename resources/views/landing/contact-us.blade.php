@@ -11,7 +11,7 @@
     }
 
     .contact_list_section .contact_list_inner .c_list_card:nth-child(3) .dot_anim {
-        background-color: #6a49f2;
+        background-color: #007bff;
     }
 
 
