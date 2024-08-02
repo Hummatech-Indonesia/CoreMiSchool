@@ -23,7 +23,7 @@ return new class extends Migration
             $table->longText('proof')->nullable();
             $table->longText('description')->nullable();
             $table->timestamps();
-        }); 
+        });
     }
 
     /**

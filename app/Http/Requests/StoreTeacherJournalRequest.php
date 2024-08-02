@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreTeacherJournalRequest extends FormRequest
@@ -24,8 +25,19 @@ class StoreTeacherJournalRequest extends FormRequest
         return [
             'description' => 'required',
             'date' => 'required',
-            'student*' => 'array|nullable',
-            'student' => 'nullable'
+            'sick' => [
+                'classroom_student_id' => 'nullable',
+                'lesson_hour_id' => 'nullable',
+            ],
+            'alpha' => [
+                'classroom_student_id' => 'nullable',
+                'lesson_hour_id' => 'nullable',
+            ],
+            'permission' => [
+                'classroom_student_id' => 'nullable',
+                'lesson_hour_id' => 'nullable',
+                'description' => 'nullable',
+            ]
         ];
     }
 

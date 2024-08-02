@@ -10,18 +10,21 @@ use App\Http\Requests\StoreTeacherJournalRequest;
 use App\Http\Requests\UpdateTeacherJournalRequest;
 use App\Contracts\Interfaces\Teachers\TeacherJournalInterface;
 use App\Contracts\Interfaces\LessonScheduleInterface;
+use App\Services\AttendanceJournalService;
 
 class TeacherJournalController extends Controller
 {
+    private AttendanceJournalService $serviceAttendance;
     private TeacherJournalInterface $teacherJournal;
-    private TeacherJournalService $service;
     private LessonScheduleInterface $lessonSchedule;
+    private TeacherJournalService $service;
 
-    public function __construct(TeacherJournalInterface $teacherJournal, TeacherJournalService $service, LessonScheduleInterface $lessonSchedule)
+    public function __construct(TeacherJournalInterface $teacherJournal, TeacherJournalService $service, LessonScheduleInterface $lessonSchedule, AttendanceJournalService $serviceAttendance)
     {
+        $this->serviceAttendance = $serviceAttendance;
         $this->teacherJournal = $teacherJournal;
-        $this->service = $service;
         $this->lessonSchedule = $lessonSchedule;
+        $this->service = $service;
     }
 
     /**
@@ -46,8 +49,10 @@ class TeacherJournalController extends Controller
      */
     public function store(StoreTeacherJournalRequest $request, LessonSchedule $lessonSchedule)
     {
+        if($this->service->checkDuplicatedStudent($request)) return redirect()->back()->with('error', 'Satu Siswa Hanya Dapat Mempunyai 1 Status Izin');
         $data = $this->service->store($request, $lessonSchedule);
-        $this->teacherJournal->store($data);
+        $teacherJournal_id = $this->teacherJournal->store($data)->id;
+        $this->serviceAttendance->storeJournal($request, $teacherJournal_id);
         return redirect()->back()->with('success', 'Berhasil mengirim jurnal');
     }
 

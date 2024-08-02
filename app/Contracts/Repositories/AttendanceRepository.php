@@ -194,4 +194,12 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
             })
             ->delete();
     }
+
+    public function getClassroomStudent(string $id) : mixed
+    {
+        return $this->model->query()
+            ->where('model_type', '\App\Models\ClassroomStudent')
+            ->where('model_id', $id)
+            ->first();
+    }
 }
