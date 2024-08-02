@@ -51,7 +51,7 @@ class LessonHourRepository extends BaseRepository implements LessonHourInterface
             ->groupBy($query);
     }
 
-    public function groupByNot($query):mixed
+    public function groupByNot($query): mixed
     {
         return $this->model->query()
             ->whereNot('name', 'Istirahat')

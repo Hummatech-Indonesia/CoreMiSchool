@@ -25,19 +25,12 @@ class StoreTeacherJournalRequest extends FormRequest
         return [
             'description' => 'required',
             'date' => 'required',
-            'sick' => [
+            'student' => [
                 'classroom_student_id' => 'nullable',
                 'lesson_hour_id' => 'nullable',
-            ],
-            'alpha' => [
-                'classroom_student_id' => 'nullable',
-                'lesson_hour_id' => 'nullable',
-            ],
-            'permission' => [
-                'classroom_student_id' => 'nullable',
-                'lesson_hour_id' => 'nullable',
+                'status' => 'nullable',
                 'description' => 'nullable',
-            ]
+            ],
         ];
     }
 

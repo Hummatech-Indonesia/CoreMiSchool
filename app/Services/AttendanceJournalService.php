@@ -35,25 +35,39 @@ class AttendanceJournalService
     {
         $data = $request->validated();
 
-        $statuses = [
-            'sick' => AttendanceEnum::SICK->value,
-            'alpha' => AttendanceEnum::ALPHA->value,
-            'permission' => AttendanceEnum::PERMIT->value,
-        ];
-
-        foreach ($statuses as $type => $statusValue) {
-            foreach ($data[$type] as $item) {
-                $rule = $this->attendance->getClassroomStudent($item['classroom_student_id']);
-                $this->attendance->update($rule->id, ['point' => $rule->point - 1]);
-                $this->attendanceJournal->store([
-                    'teacher_journal_id' => $id,
-                    'classroom_student_id' => $item['classroom_student_id'],
-                    'lesson_hour_id' => $item['lesson_hour_id'],
-                    'status' => $statusValue,
-                ]);
-            }
+        // Terbaru 2
+        foreach ($data['student'] as $item) {
+            $rule = $this->attendance->getClassroomStudent($item['classroom_student_id']);
+            $this->attendance->update($rule->id, ['point' => $rule->point - 1]);
+            $this->attendanceJournal->store([
+                'teacher_journal_id' => $id,
+                'classroom_student_id' => $item['classroom_student_id'],
+                'lesson_hour_id' => $item['lesson_hour_id'],
+                'status' => $item['status'] == 'present' ? AttendanceEnum::PRESENT->value : ($item['status'] == 'permit' ? AttendanceEnum::PERMIT->value : ($item['status'] == 'sick' ? AttendanceEnum::SICK->value : ($item['status'] == 'alpha' ? AttendanceEnum::ALPHA->value : ''))),
+            ]);
         }
 
+        // Terbaru 1
+        // $statuses = [
+        //     'sick' => AttendanceEnum::SICK->value,
+        //     'alpha' => AttendanceEnum::ALPHA->value,
+        //     'permission' => AttendanceEnum::PERMIT->value,
+        // ];
+
+        // foreach ($statuses as $type => $statusValue) {
+        //     foreach ($data[$type] as $item) {
+        //         $rule = $this->attendance->getClassroomStudent($item['classroom_student_id']);
+        //         $this->attendance->update($rule->id, ['point' => $rule->point - 1]);
+        //         $this->attendanceJournal->store([
+        //             'teacher_journal_id' => $id,
+        //             'classroom_student_id' => $item['classroom_student_id'],
+        //             'lesson_hour_id' => $item['lesson_hour_id'],
+        //             'status' => $statusValue,
+        //         ]);
+        //     }
+        // }
+
+        // Terlama
         // foreach ($data['sick'] as $key => $sick) {
         //     $rule = $this->attendance->getClassroomStudent($sick['classroom_student_id']);
         //     $this->attendance->update($rule->id, ['point' => $rule->point - 1]);
