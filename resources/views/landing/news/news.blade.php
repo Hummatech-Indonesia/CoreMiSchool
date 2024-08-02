@@ -1,22 +1,22 @@
 @extends('layouts.landing.layouts.app')
 @section('style')
     <style>
-        .recent_post_block .img img {
+        .custom_recent_post_block .custom_img img {
             width: 100%;
             height: auto;
             object-fit: cover;
         }
 
         @media (min-width: 768px) {
-            .recent_post_block .d-flex {
+            .custom_recent_post_block .custom_d-flex {
                 flex-direction: row;
             }
 
-            .recent_post_block .text {
+            .custom_recent_post_block .custom_text {
                 margin-left: 20px;
             }
 
-            .recent_post_block .img img {
+            .custom_recent_post_block .custom_img img {
                 width: 350px;
                 height: 145px;
                 object-fit: cover;
@@ -74,12 +74,12 @@
                     <div class="blog_left_side">
                         <div class="blog_panel" data-aos="fade-up" data-aos-duration="1500">
                             <div class="main_img">
-                                <a href="blog-detail.html"><img
-                                        src="{{ asset('landing_assets/images/new/blog-list_01.png') }}" alt="image"></a>
+                                <a href="/news-detail"><img src="{{ asset('landing_assets/images/new/blog-list_01.png') }}"
+                                        alt="image"></a>
                             </div>
                             <div class="blog_info">
                                 <span class="date">12 Dec, 2022</span>
-                                <h2><a href="blog-detail.html">Providing IT solution that diverse business verticals lorem
+                                <h2><a href="/news-detail">Providing IT solution that diverse business verticals lorem
                                         ipsum</a></h2>
                                 <p>Lorem Ipsum is simply dummy text of the printing and types etting industry lorem Ipsum
                                     has been the
@@ -99,29 +99,25 @@
                     </div>
 
                     @foreach (range(1, 3) as $item)
-                        <div class="recent_post_block bg_box mb-3" data-aos="fade-up" data-aos-duration="1500">
-                            <ul class="recent_blog_list">
-                                <li>
-                                    <a href="blog-detail.html">
-                                        <div class="d-flex flex-column flex-md-row">
-                                            <div class="img">
-                                                <img src="{{ asset('landing_assets/images/new/error-bg.png') }}"
-                                                    alt="image" class="img-fluid" />
-                                            </div>
-                                            <div class="text mt-3 mt-md-0 ms-md-3">
-                                                <span class="text-muted" style="font-size: 12px;">12 Desember 2024</span>
-                                                <h4 style="font-size: 18px;">Questions business owner must be able to
-                                                    answer.</h4>
-                                                <p style="font-size: 13px;">Lorem Ipsum is simply dummy text of the printing
-                                                    and typesetting industry lorem Ipsum has been the industry's standard
-                                                    dummy text ever since the when an unknown printer took a galley of type
-                                                    and.</p>
-                                            </div>
+                    <div class="custom_recent_post_block bg_box mb-3" data-aos="fade-up" data-aos-duration="1500">
+                        <ul class="recent_blog_list">
+                            <li>
+                                <a href="/news-detail">
+                                    <div class="custom_d-flex flex-column flex-md-row d-flex">
+                                        <div class="custom_img">
+                                            <img src="{{ asset('landing_assets/images/new/error-bg.png') }}"
+                                                alt="image" class="img-fluid" />
                                         </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                                        <div class="custom_text mt-3 mt-md-0 ms-md-3">
+                                            <span class="text-muted" style="font-size: 12px;">12 Desember 2024</span>
+                                            <h4 style="font-size: 18px;">Questions business owner must be able to answer.</h4>
+                                            <p style="font-size: 13px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry lorem Ipsum has been the industry's standard dummy text ever since the when an unknown printer took a galley of type and.</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                     @endforeach
 
                 </div>

@@ -75,6 +75,8 @@
                             <ul>
                                 <li><a href="javascript:void(0)">Dokumentasi</a></li>
                                 <li><a href="/testimoni">Testimonial</a></li>
+                                <li><a href="/news">Berita</a></li>
+
                             </ul>
                         </div>
                     </li>
