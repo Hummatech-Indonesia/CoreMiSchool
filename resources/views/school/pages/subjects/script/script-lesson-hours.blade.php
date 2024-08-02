@@ -6,14 +6,21 @@
         var day = $(this).data('day');
         var name = $(this).data('name');
 
-        if (name != 'Istirahat') {
-            var extractedNumber = name.match(/\d+/)[0];
-            $('#store-name').val(extractedNumber).trigger('change');
-        }
+        if (!id || !start || !day || !name) {
+            $('#store-name').val('');
+            $('#store-start').val('07:00');
+            $('#modal-create').modal('show');
+            $('#form-create').attr('action', `{{ route('school.lesson-hours.store', '') }}/${day}`);
+        } else {
+            if (name != 'Istirahat') {
+                var extractedNumber = name.match(/\d+/)[0];
+                $('#store-name').val(extractedNumber).trigger('change');
+            }
 
-        $('#store-start').val(start);
-        $('#modal-create').modal('show');
-        $('#form-create').attr('action', `{{ route('school.lesson-hours.store', '') }}/${day}`);
+            $('#store-start').val(start);
+            $('#modal-create').modal('show');
+            $('#form-create').attr('action', `{{ route('school.lesson-hours.store', '') }}/${day}`);
+        }
     })
 
     $('.btn-edit').click(function() {

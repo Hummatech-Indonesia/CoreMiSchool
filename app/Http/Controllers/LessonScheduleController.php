@@ -66,7 +66,7 @@ class LessonScheduleController extends Controller
     {
         $teachers = $this->employee->getTeacher();
         $subjects = $this->subjects->get();
-        $lessonHours = $this->lessonHour->groupBy('day');
+        $lessonHours = $this->lessonHour->groupByNot('day');
         $lessonSchedules = $this->lessonSchedule->whereClassroom($classroom->id, 'day');
         return view('school.new.lesson-schedule.detail', compact('lessonSchedules', 'classroom', 'teachers', 'subjects', 'lessonHours'));
     }
