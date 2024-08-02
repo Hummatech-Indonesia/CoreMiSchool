@@ -42,7 +42,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item ">
-                    <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('teacher.journals.index') }}" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 16">
                                 <g fill="currentColor">
