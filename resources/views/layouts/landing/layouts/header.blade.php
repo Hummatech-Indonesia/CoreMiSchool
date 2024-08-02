@@ -26,7 +26,7 @@
                   <a class="nav-link" href="/about-us">About us</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="testimonial.html">Testimonial</a>
+                  <a class="nav-link" href="/testimoni">Testimonial</a>
                 </li>
                 <!-- secondery menu start -->
                 <li class="nav-item has_dropdown">
@@ -68,7 +68,7 @@
 
                 <!-- secondery menu end -->
                 <li class="nav-item">
-                  <a class="nav-link" href="contact-us.html">Contact</a>
+                  <a class="nav-link" href="/contact-us">Contact</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link dark_btn" href="contact-us.html">Daftar<i class="icofont-arrow-right"></i></a>
