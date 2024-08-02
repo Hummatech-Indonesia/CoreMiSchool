@@ -59,11 +59,11 @@
                 <td colspan="4" class="text-end px-5">
                     <div class="gap-3 px-5">
                         <button class="btn btn-light-warning text-warning me-2 btn-edit"
-                            data-id="{{ $latestSchedule[5][0] ? $latestSchedule[0][0]->id : '' }}"
-                            data-subject="{{ $latestSchedule[5][0] ? $latestSchedule[0][0]->teacherSubject->subject->id : '' }}"
-                            data-teacher="{{ $latestSchedule[5][0] ? $latestSchedule[0][0]->teacherSubject->employee->id : '' }}"
-                            data-start="{{ $latestSchedule[5][0] ? $latestSchedule[0][0]->lesson_hour_start : '' }}"
-                            data-end="{{ $latestSchedule[5][0] ? $latestSchedule[0][0]->lesson_hour_end : '' }}"
+                            data-id="{{ $latestSchedule[5][0] ? $latestSchedule[5][0]->id : '' }}"
+                            data-subject="{{ $latestSchedule[5][0] ? $latestSchedule[5][0]->teacherSubject->subject->id : '' }}"
+                            data-teacher="{{ $latestSchedule[5][0] ? $latestSchedule[5][0]->teacherSubject->employee->id : '' }}"
+                            data-start="{{ $latestSchedule[5][0] ? $latestSchedule[5][0]->lesson_hour_start : '' }}"
+                            data-end="{{ $latestSchedule[5][0] ? $latestSchedule[5][0]->lesson_hour_end : '' }}"
                             data-day="saturday">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                 <path fill="currentColor"
