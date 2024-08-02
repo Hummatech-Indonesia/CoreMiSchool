@@ -16,4 +16,22 @@ class TeacherJournalService
             'date' => now(),
         ];
     }
+
+        /**
+     * checkDuplicatedStudent
+     *
+     * @param  TeacherJournalRequest $request
+     * @return array
+     */
+    public function checkDuplicatedStudent(StoreTeacherJournalRequest $request) : array|bool
+    {
+        $data = $request->validated();
+        $students = [];
+        if($request->sick) $students = array_merge($students,$data['sick']);
+        if($request->alpha) $students = array_merge($students,$data['alpha']);
+        if($request->permission) $students = array_merge($students,$data['permission']);
+        $uniqueStudents = array_unique($students);
+        $duplicates = array_diff_assoc($students, $uniqueStudents);
+        return $duplicates;
+    }
 }
