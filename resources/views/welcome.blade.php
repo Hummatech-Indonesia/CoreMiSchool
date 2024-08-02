@@ -109,50 +109,69 @@
 <section class="row_am unique_section">
     <div class="container">
         <div class="section_title" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
-            <!-- h2 -->
             <h2>Fitur - Fitur </h2>
-            <!-- p -->
             <p>Mischool dilengkapi dengan fitur - fitur penting untuk management sekolah, dibawah ini adalah fitur -
                 fitur dari Mischool</p>
         </div>
-        <div class="features_inner" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="100">
-            <!-- card -->
-            <div class="feature_card">
-                <div style="text-align: start">
-                    <img src="{{ asset('landing_assets/images/new/Secure-data.svg') }}" alt="image">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="feature_card bg-light p-5 text-start">
+                        <img src="{{ asset('landing_assets/images/landing/feature-1.png') }}" style="width: 70px"
+                            alt="image" class="img-fluid">
+                        <h3 class="pt-3 text-primary">E - Learning</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus felis non odio
+                            convallis interdum. Cras id diam rhoncus,</p>
+                    </div>
                 </div>
-                <div class="inner_text">
-                    <h3 class="pt-3" style="text-align: start">E - Learning</h3>
-                    <p style="text-align: start">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus
-                        felis non odio convallis
-                        interdum. Cras id diam rhoncus,
-                    </p>
+                <div class="col-md-4 mb-4">
+                    <div class="feature_card bg-light p-5 text-start">
+                        <!-- Repeat card content -->
+                        <img src="{{ asset('landing_assets/images/landing/feature-2.png') }}" style="width: 70px"
+                            alt="image" class="img-fluid">
+                        <h3 class="pt-3 text-primary">Pelanggaran</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus felis non odio
+                            convallis interdum. Cras id diam rhoncus,</p>
+                    </div>
                 </div>
-            </div>
-            <!-- card -->
-            <div class="feature_card">
-                <div style="text-align: start">
-                    <img src="{{ asset('landing_assets/images/new/Secure-data.svg') }}" alt="image">
+                <div class="col-md-4 mb-4">
+                    <div class="feature_card bg-light p-5 text-start">
+                        <!-- Repeat card content -->
+                        <img src="{{ asset('landing_assets/images/landing/feature-3.png') }}" style="width: 70px"
+                            alt="image" class="img-fluid">
+                        <h3 class="pt-3 text-primary">Absensi</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus felis non odio
+                            convallis interdum. Cras id diam rhoncus,</p>
+                    </div>
                 </div>
-                <div class="inner_text">
-                    <h3 class="pt-3" style="text-align: start">E - Learning</h3>
-                    <p style="text-align: start">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus
-                        felis non odio convallis
-                        interdum. Cras id diam rhoncus,
-                    </p>
+                <div class="col-md-4 mb-4">
+                    <div class="feature_card bg-light p-5 text-start">
+                        <img src="{{ asset('landing_assets/images/landing/feature-4.png') }}" style="width: 70px"
+                            alt="image" class="img-fluid">
+                        <h3 class="pt-3 text-primary">Rapot</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus felis non odio
+                            convallis interdum. Cras id diam rhoncus,</p>
+                    </div>
                 </div>
-            </div>
-            <!-- card -->
-            <div class="feature_card">
-                <div style="text-align: start">
-                    <img src="{{ asset('landing_assets/images/new/Secure-data.svg') }}" alt="image">
+                <div class="col-md-4 mb-4">
+                    <div class="feature_card bg-light p-5 text-start">
+                        <!-- Repeat card content -->
+                        <img src="{{ asset('landing_assets/images/landing/feature-5.png') }}" style="width: 70px"
+                            alt="image" class="img-fluid">
+                        <h3 class="pt-3 text-primary">Ujian</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus felis non odio
+                            convallis interdum. Cras id diam rhoncus,</p>
+                    </div>
                 </div>
-                <div class="inner_text">
-                    <h3 class="pt-3" style="text-align: start">E - Learning</h3>
-                    <p style="text-align: start">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus
-                        felis non odio convallis
-                        interdum. Cras id diam rhoncus,
-                    </p>
+                <div class="col-md-4 mb-4">
+                    <div class="feature_card bg-light p-5 text-start">
+                        <!-- Repeat card content -->
+                        <img src="{{ asset('landing_assets/images/landing/feature-6.png') }}" style="width: 70px"
+                            alt="image" class="img-fluid">
+                        <h3 class="pt-3 text-primary">Buku Tamu</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus felis non odio
+                            convallis interdum. Cras id diam rhoncus,</p>
+                    </div>
                 </div>
             </div>
         </div>
