@@ -36,7 +36,7 @@ class AttendanceJournalService
         $data = $request->validated();
 
         // Terbaru 2
-        foreach ($data['student'] as $item) {
+        foreach ($data['students'] as $item) {
             $rule = $this->attendance->getClassroomStudent($item['classroom_student_id']);
             $this->attendance->update($rule->id, ['point' => $rule->point - 1]);
             $this->attendanceJournal->store([
