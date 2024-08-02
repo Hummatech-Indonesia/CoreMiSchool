@@ -29,13 +29,12 @@
 
     $('.subject').change(function() {
         var id = $(this).val();
-        console.log(id);
         getTeacher(id);
     })
 
     function getTeacher(id) {
         $.ajax({
-            url: "/school/teacher-subject",
+            url: "/school/teacher-subject/" + id,
             method: "GET",
             data: {
                 subject_id: id

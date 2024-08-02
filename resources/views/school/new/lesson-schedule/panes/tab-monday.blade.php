@@ -16,14 +16,26 @@
             </tr>
         </thead>
         <tbody>
-            @forelse (isset($lessonSchedules['monday']) ? $lessonSchedules['monday'] : [] as $lessonSchedule)
+            @forelse (isset($lessonSchedules['monday']) ? $lessonSchedules['monday'] : [] as $index => $lessonSchedule)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $lessonSchedule->start->name }}</td>
+                    <td>Jam ke {{ explode(' - ', $lessonSchedule->start->name)[1] }} - {{ explode(' - ', $lessonSchedule->end->name)[1]}}</td>
                     <td>
                         <span class="badge bg-light-primary text-primary">
                             {{ \Carbon\Carbon::parse($lessonSchedule->start->start)->format('H:i:s') }} - {{ \Carbon\Carbon::parse( $lessonSchedule->end->end )->format('H:i:s') }}
                         </span>
+                        @php
+                            $lessonHours = App\Models\LessonHour::whereBetween('start', [$lessonSchedule->start->start, $lessonSchedule->end->start])
+                                ->where('day', 'monday')
+                                ->where('name', 'Istirahat')
+                                ->get();
+                        @endphp
+                        @foreach ( $lessonHours as $lessonHour )
+                            <br>
+                            <span class="badge bg-light-warning text-warning mt-1">
+                                {{ $lessonHour->name }} : {{ $lessonHour->start }} - {{ $lessonHour->end }}
+                            </span>
+                        @endforeach
                     </td>
                     <td>{{ $lessonSchedule->teacherSubject->subject->name }}</td>
                     <td>{{ $lessonSchedule->teacherSubject->employee->user->name }}</td>
@@ -53,7 +65,7 @@
             <tr>
                 <td>
                     <div>
-                        <button type="button" class="btn-create btn btn-info btn-rounded m-t-10 mb-3" data-classroom="{{ $classroom->id }}" data-day="{{ isset($lessonHours['monday']) ? $lessonHours['monday']->first()->day : '' }}">
+                        <button type="button" class="btn-create btn btn-info btn-rounded m-t-10 mb-3" data-classroom="{{ $classroom->id }}" data-day="monday">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                 <path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z"></path>
                             </svg>

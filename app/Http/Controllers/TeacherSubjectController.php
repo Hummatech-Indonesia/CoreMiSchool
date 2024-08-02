@@ -48,10 +48,9 @@ class TeacherSubjectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Request $request)
+    public function show(Request $request, string $subject)
     {
-        $subjectId = $request->subject_id;
-        $teachers = $this->teacherSubject->getBySubjectId($subjectId);
+        $teachers = $this->teacherSubject->getBySubjectId($subject);
         return response()->json(['data' => $teachers]);
     }
 
