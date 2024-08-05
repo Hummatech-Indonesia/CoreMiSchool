@@ -11,5 +11,6 @@ use App\Contracts\Interfaces\Eloquent\WhereInterface;
 
 interface AttendanceJournalInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, WhereInterface
 {
-    //
+    public function deleteByJournalTeacher(mixed $id) : mixed;
+    public function whereLessonSchedule(mixed $id) : mixed;
 }

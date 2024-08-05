@@ -12,4 +12,5 @@ class TeacherJournal extends Model
     use HasFactory, BelongsToLessonSchedule, HasManyAttendanceJournal;
 
     protected $guarded = ['id'];
+
 }

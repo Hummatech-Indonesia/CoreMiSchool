@@ -108,10 +108,11 @@
                             <h4 class="bg-primary text-white fs-8 p-3 rounded">Isi Laporan Kegiatan</h4>
                         </div>
                         <div class="card-body d-flex flex-column justify-content-center">
-                        <div class="form-group">
-                            <label for="description" class="form-label">Tuliskan laporan di sini</label>
-                            <textarea class="form-control" id="description" name="description" rows="5" placeholder="Tuliskan deskripsi kegiatan di sini..."></textarea>
-                        </div>
+                            <div class="form-group">
+                                <label for="description" class="form-label">Tuliskan laporan di sini</label>
+                                <textarea class="form-control" id="description" name="description" rows="5"
+                                    placeholder="Tuliskan deskripsi kegiatan di sini...">{{ $teacherJournal->description ?? '' }}</textarea>
+                            </div>
                         </div>
                     </div>
                 </div>

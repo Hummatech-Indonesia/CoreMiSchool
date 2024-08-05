@@ -3,49 +3,96 @@
 @endphp
 @section('script')
     <script>
-        // const status = @json(AttendanceEnum::cases());
+        const attendance = {{count($attendanceJournals)}};
+        console.log(attendance);
+
         // console.log(status);
         $(document).ready(function() {
 
             let students = {}
 
-            $element = `
-        <tr>
-            <td>
-                <select class="form-select select2 w-100" name="siswa">
-                    <option value="" selected disabled>Pilih Siswa</option>
-                    @foreach ($students as $student)
-                        <option value="{{ $student->id }}">{{ $student->student->user->name }}</option>
-                    @endforeach
-                    </select>
-            </td>
-            <td>
-                <select class="form-select select2 w-100" name="jam">
-                        <option value="" selected disabled>Pilih Jam</option>
-                    @foreach ($lessonHours as $lessonHour)
-                        <option value="{{ $lessonHour->id }}">{{ $lessonHour->name }}</option>
-                    @endforeach
-                </select>
-            </td>
-            <td>
-                <select class="form-select select2 w-100" name="status">
-                    <option value="" selected disabled>Pilih Status</option>
-                    @foreach (AttendanceEnum::cases() as $status)
-                        @if ($status->value !== 'present')
-                            <option value="{{ $status->value }}" {{ $status->value === 'alpha' ? 'selected' : '' }}>{{ ucfirst($status->label()) }}</option>
-                        @endif
-                    @endforeach
-                </select>
-            </td>
-            <td class="text-center delete-btn">
-                <button type="button" class="btn btn-rounded btn-danger p-1 ms-2 btn-rfid">
-                    <!-- SVG Icon -->
-                    Batalkan
-                </button>
-            </td>
-        </tr>
-        `;
+            if(attendance) {
+                $attendanceElement = `
+                    @forelse ($attendanceJournals as $attendanceJournal)
+                        <tr>
+                            <td>
+                                <select class="form-select select2 w-100" name="siswa">
+                                    <option value="" selected disabled>Pilih Siswa</option>
+                                    @foreach ($students as $student)
+                                        <option value="{{ $student->id }}" {{ $attendanceJournal->classroomStudent->student_id == $student->id ? 'selected' : '' }}>{{ $student->student->user->name }}</option>
+                                    @endforeach
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-select select2 w-100" name="jam">
+                                        <option value="" selected disabled>Pilih Jam</option>
+                                    @foreach ($lessonHours as $lessonHour)
+                                        <option value="{{ $lessonHour->id }}" {{ $attendanceJournal->lesson_hour_id == $lessonHour->id ? 'selected' : '' }}>{{ $lessonHour->name }}</option>
+                                    @endforeach
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-select select2 w-100" name="status">
+                                    <option value="" selected disabled>Pilih Status</option>
+                                    @foreach (AttendanceEnum::cases() as $status)
+                                        <option value="{{ $status->value }}" {{ $status->value === $attendanceJournal->status->value ? 'selected' : '' }}>{{ ucfirst($status->label()) }}</option>
+                                    @endforeach
+                                </select>
+                            </td>
+                            <td class="text-center">
+                                <button type="button" class="delete-btn btn btn-rounded btn-danger p-1 ms-2 btn-rfid">
+                                    <!-- SVG Icon -->
+                                    Batalkan
+                                </button>
+                            </td>
+                        </tr>
+                    @empty
+                    @endforelse
+                `;
 
+                $('#student-table tbody').append($attendanceElement);
+
+                $('.delete-btn').click(function() {
+                    $(this).closest('tr').remove();
+                });
+            }
+
+                $element = `
+                    <tr>
+                        <td>
+                            <select class="form-select select2 w-100" name="siswa">
+                                <option value="" selected disabled>Pilih Siswa</option>
+                                @foreach ($students as $student)
+                                    <option value="{{ $student->id }}">{{ $student->student->user->name }}</option>
+                                @endforeach
+                                </select>
+                        </td>
+                        <td>
+                            <select class="form-select select2 w-100" name="jam">
+                                    <option value="" selected disabled>Pilih Jam</option>
+                                @foreach ($lessonHours as $lessonHour)
+                                    <option value="{{ $lessonHour->id }}">{{ $lessonHour->name }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>
+                            <select class="form-select select2 w-100" name="status">
+                                <option value="" selected disabled>Pilih Status</option>
+                                @foreach (AttendanceEnum::cases() as $status)
+                                    @if ($status->value !== 'present')
+                                        <option value="{{ $status->value }}" {{ $status->value === 'alpha' ? 'selected' : '' }}>{{ ucfirst($status->label()) }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </td>
+                        <td class="text-center">
+                            <button type="button"delete-btn class="delete-btn btn btn-rounded btn-danger p-1 ms-2 btn-rfid">
+                                <!-- SVG Icon -->
+                                Batalkan
+                            </button>
+                        </td>
+                    </tr>
+                `;
 
             $('#student-add-btn').click(function() {
                 $('#student-table tbody').append($element);
@@ -54,7 +101,6 @@
                 });
 
                 $('.delete-btn').click(function() {
-                    console.log('fnnashfksfdasgfjsgdfkgwsdhfsghfdhaSGFDG');
                     $(this).closest('tr').remove();
                 });
             });
@@ -84,9 +130,21 @@
                     row.remove();
                 });
 
+                var urls;
+                var method;
+
+
+                if (attendance) {
+                    urls = `{{ route('teacher.journals.update', request()->lessonSchedule->id) }}`;
+                    method = `PUT`;
+                } else {
+                    urls = `{{ route('teacher.journals.store', request()->lessonSchedule->id) }}`;
+                    method = `POSt`;
+                }
+
                 $.ajax({
-                    url: '{{ route('teacher.journals.store', request()->lessonSchedule->id) }}',
-                    method: 'POST',
+                    url: urls,
+                    method: method,
                     data: {
                         _token: '{{ csrf_token() }}',
                         description: $('#description').val(),

@@ -9,6 +9,7 @@ use App\Enums\UploadDiskEnum;
 use App\Http\Requests\StoreAttendanceJournalRequest;
 use App\Http\Requests\StoreTeacherJournalRequest;
 use App\Http\Requests\UpdateAttendanceJournalRequest;
+use App\Http\Requests\UpdateTeacherJournalRequest;
 use App\Models\AttendanceJournal;
 use App\Traits\UploadTrait;
 
@@ -35,7 +36,6 @@ class AttendanceJournalService
     {
         $data = $request->validated();
 
-        // Terbaru 2
         foreach ($data['students'] as $item) {
             $rule = $this->attendance->getClassroomStudent($item['classroom_student_id']);
             $this->attendance->update($rule->id, ['point' => $rule->point - 1]);
@@ -46,60 +46,26 @@ class AttendanceJournalService
                 'status' => $item['status'] == 'present' ? AttendanceEnum::PRESENT->value : ($item['status'] == 'permit' ? AttendanceEnum::PERMIT->value : ($item['status'] == 'sick' ? AttendanceEnum::SICK->value : ($item['status'] == 'alpha' ? AttendanceEnum::ALPHA->value : ''))),
             ]);
         }
+    }
 
-        // Terbaru 1
-        // $statuses = [
-        //     'sick' => AttendanceEnum::SICK->value,
-        //     'alpha' => AttendanceEnum::ALPHA->value,
-        //     'permission' => AttendanceEnum::PERMIT->value,
-        // ];
+    public function updateJournal(UpdateTeacherJournalRequest $request, string $id) : void
+    {
+        $data = $request->validated();
 
-        // foreach ($statuses as $type => $statusValue) {
-        //     foreach ($data[$type] as $item) {
-        //         $rule = $this->attendance->getClassroomStudent($item['classroom_student_id']);
-        //         $this->attendance->update($rule->id, ['point' => $rule->point - 1]);
-        //         $this->attendanceJournal->store([
-        //             'teacher_journal_id' => $id,
-        //             'classroom_student_id' => $item['classroom_student_id'],
-        //             'lesson_hour_id' => $item['lesson_hour_id'],
-        //             'status' => $statusValue,
-        //         ]);
-        //     }
-        // }
+        foreach ($data['students'] as $item) {
+            $rule = $this->attendance->getClassroomStudent($item['classroom_student_id']);
+            // $this->attendance->update($rule->id, ['point' => $rule->point + 1]);/
+            // $this->attendanceJournal->deleteByJournalTeacher($id);
 
-        // Terlama
-        // foreach ($data['sick'] as $key => $sick) {
-        //     $rule = $this->attendance->getClassroomStudent($sick['classroom_student_id']);
-        //     $this->attendance->update($rule->id, ['point' => $rule->point - 1]);
-        //     $this->attendanceJournal->store([
-        //         'teacher_journal_id' => $id,
-        //         'classroom_student_id' => $sick['classroom_student_id'],
-        //         'lesson_hour_id' => $sick['lesson_hour_id'],
-        //         'status' => AttendanceEnum::SICK->value,
-        //     ]);
-        // }
+            $this->attendanceJournal->store([
+                'teacher_journal_id' => $id,
+                'classroom_student_id' => $item['classroom_student_id'],
+                'lesson_hour_id' => $item['lesson_hour_id'],
+                'status' => $item['status'] == 'present' ? AttendanceEnum::PRESENT->value : ($item['status'] == 'permit' ? AttendanceEnum::PERMIT->value : ($item['status'] == 'sick' ? AttendanceEnum::SICK->value : ($item['status'] == 'alpha' ? AttendanceEnum::ALPHA->value : ''))),
+            ]);
 
-        // foreach ($data['alpha'] as $key => $alpha) {
-        //     $rule = $this->attendance->getClassroomStudent($alpha['classroom_student_id']);
-        //     $this->attendance->update($rule->id, ['point' => $rule->point - 1]);
-        //     $this->attendanceJournal->store([
-        //         'teacher_journal_id' => $id,
-        //         'classroom_student_id' => $alpha['classroom_student_id'],
-        //         'lesson_hour_id' => $alpha['lesson_hour_id'],
-        //         'status' => AttendanceEnum::ALPHA->value,
-        //     ]);
-        // }
-
-        // foreach ($data['permission'] as $key => $permission) {
-        //     $rule = $this->attendance->getClassroomStudent($permission['classroom_student_id']);
-        //     $this->attendance->update($rule->id, ['point' => $rule->point - 1]);
-        //     $this->attendanceJournal->store([
-        //         'teacher_journal_id' => $id,
-        //         'classroom_student_id' => $permission['classroom_student_id'],
-        //         'lesson_hour_id' => $permission['lesson_hour_id'],
-        //         'status' => AttendanceEnum::PERMIT->value,
-        //     ]);
-        // }
+            $this->attendance->update($rule->id, ['point' => $rule->point - 1]);
+        }
     }
 
     public function store(StoreAttendanceJournalRequest $request)
