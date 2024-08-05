@@ -66,7 +66,7 @@ class TeacherJournalController extends Controller
      */
     public function store(StoreTeacherJournalRequest $request, LessonSchedule $lessonSchedule)
     {
-        // dd($request);
+        // dd($request->validated());
         if ($this->service->checkDuplicatedStudent($request)) return response()->json('error', 'Satu Siswa Hanya Dapat Mempunyai 1 Status Izin');
         $data = $this->service->store($request, $lessonSchedule);
         $teacherJournal = $this->teacherJournal->store($data);

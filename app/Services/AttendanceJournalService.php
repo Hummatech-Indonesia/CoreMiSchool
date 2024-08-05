@@ -41,7 +41,7 @@ class AttendanceJournalService
     public function storeJournal($attendance, TeacherJournal $teacherJournal): void
     {
         $rules = $this->lessonSchedule->show($teacherJournal->lesson_schedule_id);
-        $min = $this->lessonHour->whereBetween($rules->start->start, $rules->end->start);
+        $min = $this->lessonHour->whereBetween($rules->start->start, $rules->end->start, $rules->day);
 
         // dd($attendance);
         foreach ($attendance as $key => $value) {
@@ -50,6 +50,7 @@ class AttendanceJournalService
             $data['status'] = $value == 'present' ? AttendanceEnum::PRESENT->value : ($value == 'permit' ? AttendanceEnum::PERMIT->value : ($value == 'sick' ? AttendanceEnum::SICK->value : ($value == 'alpha' ? AttendanceEnum::ALPHA->value : '')));
             $this->attendanceJournal->store($data);
 
+            // dd($key);
             $rule = $this->attendance->getClassroomStudent($key);
             // dd($rule->id);
             $this->attendance->update($rule->id, ['point' => $rule->point - $min]);
