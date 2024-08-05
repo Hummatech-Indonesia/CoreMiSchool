@@ -77,9 +77,8 @@
                     <li class="nav-item {{ request()->routeIS('contact-us') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('contact-us') }}">Kontak</a>
                     </li>
-                    <li class="nav-item has_dropdown">
-                        <a class="nav-link {{ request()->routeIS('testimoni') ? 'active' : '' }} || {{ request()->routeIS('news') ? 'active' : '' }}"
-                            href="#">Lainnya</a>
+                    <li class="nav-item has_dropdown {{ request()->routeIs('testimoni') || request()->routeIs('news') ? 'active' : '' }}">
+                        <a class="nav-link" href="#">Lainnya</a>
                         <span class="drp_btn"><i class="icofont-rounded-down"></i></span>
                         <div class="sub_menu">
                             <ul>
@@ -89,6 +88,7 @@
                             </ul>
                         </div>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link dark_btn" href="/login">Masuk<i class="icofont-arrow-right"></i></a>
                     </li>
