@@ -47,6 +47,8 @@ class TeacherJournalController extends Controller
      */
     public function create(LessonSchedule $lessonSchedule)
     {
+        dd($lessonSchedule->query()->with('journals')->first());
+
         $students = $this->classroomStudent->getByClassId($lessonSchedule->classroom->id);
         $lessonHours = $this->lessonHour->whereTeacherSchedule($lessonSchedule, now());
         return view('teacher.pages.journals.create', compact('students', 'lessonHours'));
@@ -57,11 +59,11 @@ class TeacherJournalController extends Controller
      */
     public function store(StoreTeacherJournalRequest $request, LessonSchedule $lessonSchedule)
     {
-        if($this->service->checkDuplicatedStudent($request)) return response()->json('error', 'Satu Siswa Hanya Dapat Mempunyai 1 Status Izin');
+        if ($this->service->checkDuplicatedStudent($request)) return response()->json('error', 'Satu Siswa Hanya Dapat Mempunyai 1 Status Izin');
         $data = $this->service->store($request, $lessonSchedule);
         $teacherJournal_id = $this->teacherJournal->store($data)->id;
         $this->serviceAttendance->storeJournal($request, $teacherJournal_id);
-        return response()->json('success', 'Berhasil mengirim jurnal');
+        return response()->json(['success' => 'Berhasil mengirim jurnal']);
     }
 
     /**
