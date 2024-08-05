@@ -90,8 +90,14 @@
     }
 
     .analyze_section .analyze_image {
-    background-position: center;
-}
+        background-position: center;
+    }
+
+    .analyze_section .analyze_text .section_title {
+        text-align: left;
+        margin: 15px 0 40px 30px;
+    }
+
 </style>
 
 <style>
@@ -117,8 +123,7 @@
             <div class="row">
                 <div class="col-md-4 mb-4">
                     <div class="feature_card bg-light p-5 text-start">
-                        <img src="{{ asset('landing_assets/images/landing/feature-1.png') }}" style="width: 70px"
-                            alt="image" class="img-fluid">
+                        <img src="{{ asset('landing_assets/images/landing/feature-1.png') }}" style="width: 70px" alt="image" class="img-fluid">
                         <h3 class="pt-3 text-primary">E - Learning</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus felis non odio
                             convallis interdum. Cras id diam rhoncus,</p>
@@ -127,8 +132,7 @@
                 <div class="col-md-4 mb-4">
                     <div class="feature_card bg-light p-5 text-start">
                         <!-- Repeat card content -->
-                        <img src="{{ asset('landing_assets/images/landing/feature-2.png') }}" style="width: 70px"
-                            alt="image" class="img-fluid">
+                        <img src="{{ asset('landing_assets/images/landing/feature-2.png') }}" style="width: 70px" alt="image" class="img-fluid">
                         <h3 class="pt-3 text-primary">Pelanggaran</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus felis non odio
                             convallis interdum. Cras id diam rhoncus,</p>
@@ -137,8 +141,7 @@
                 <div class="col-md-4 mb-4">
                     <div class="feature_card bg-light p-5 text-start">
                         <!-- Repeat card content -->
-                        <img src="{{ asset('landing_assets/images/landing/feature-3.png') }}" style="width: 70px"
-                            alt="image" class="img-fluid">
+                        <img src="{{ asset('landing_assets/images/landing/feature-3.png') }}" style="width: 70px" alt="image" class="img-fluid">
                         <h3 class="pt-3 text-primary">Absensi</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus felis non odio
                             convallis interdum. Cras id diam rhoncus,</p>
@@ -146,8 +149,7 @@
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="feature_card bg-light p-5 text-start">
-                        <img src="{{ asset('landing_assets/images/landing/feature-4.png') }}" style="width: 70px"
-                            alt="image" class="img-fluid">
+                        <img src="{{ asset('landing_assets/images/landing/feature-4.png') }}" style="width: 70px" alt="image" class="img-fluid">
                         <h3 class="pt-3 text-primary">Rapot</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus felis non odio
                             convallis interdum. Cras id diam rhoncus,</p>
@@ -156,8 +158,7 @@
                 <div class="col-md-4 mb-4">
                     <div class="feature_card bg-light p-5 text-start">
                         <!-- Repeat card content -->
-                        <img src="{{ asset('landing_assets/images/landing/feature-5.png') }}" style="width: 70px"
-                            alt="image" class="img-fluid">
+                        <img src="{{ asset('landing_assets/images/landing/feature-5.png') }}" style="width: 70px" alt="image" class="img-fluid">
                         <h3 class="pt-3 text-primary">Ujian</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus felis non odio
                             convallis interdum. Cras id diam rhoncus,</p>
@@ -166,8 +167,7 @@
                 <div class="col-md-4 mb-4">
                     <div class="feature_card bg-light p-5 text-start">
                         <!-- Repeat card content -->
-                        <img src="{{ asset('landing_assets/images/landing/feature-6.png') }}" style="width: 70px"
-                            alt="image" class="img-fluid">
+                        <img src="{{ asset('landing_assets/images/landing/feature-6.png') }}" style="width: 70px" alt="image" class="img-fluid">
                         <h3 class="pt-3 text-primary">Buku Tamu</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus felis non odio
                             convallis interdum. Cras id diam rhoncus,</p>

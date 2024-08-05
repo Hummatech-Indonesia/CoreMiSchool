@@ -94,7 +94,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dark_btn" href="contact-us.html">Daftar<i
+                        <a class="nav-link dark_btn" href="/login">Masuk<i
                                 class="icofont-arrow-right"></i></a>
                     </li>
                 </ul>
