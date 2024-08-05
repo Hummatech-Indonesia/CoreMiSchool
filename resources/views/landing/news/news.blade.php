@@ -99,25 +99,29 @@
                     </div>
 
                     @foreach (range(1, 3) as $item)
-                    <div class="custom_recent_post_block bg_box mb-3" data-aos="fade-up" data-aos-duration="1500">
-                        <ul class="recent_blog_list">
-                            <li>
-                                <a href="/news-detail">
-                                    <div class="custom_d-flex flex-column flex-md-row d-flex">
-                                        <div class="custom_img">
-                                            <img src="{{ asset('landing_assets/images/new/error-bg.png') }}"
-                                                alt="image" class="img-fluid" />
+                        <div class="custom_recent_post_block bg_box mb-3" data-aos="fade-up" data-aos-duration="1500">
+                            <ul class="recent_blog_list">
+                                <li>
+                                    <a href="/news-detail">
+                                        <div class="custom_d-flex flex-column flex-md-row d-flex">
+                                            <div class="custom_img">
+                                                <img src="{{ asset('landing_assets/images/new/error-bg.png') }}"
+                                                    alt="image" class="img-fluid" />
+                                            </div>
+                                            <div class="custom_text mt-3 mt-md-0 ms-md-3">
+                                                <span class="text-muted" style="font-size: 12px;">12 Desember 2024</span>
+                                                <h4 style="font-size: 18px;">Questions business owner must be able to
+                                                    answer.</h4>
+                                                <p style="font-size: 13px;">Lorem Ipsum is simply dummy text of the printing
+                                                    and typesetting industry lorem Ipsum has been the industry's standard
+                                                    dummy text ever since the when an unknown printer took a galley of type
+                                                    and.</p>
+                                            </div>
                                         </div>
-                                        <div class="custom_text mt-3 mt-md-0 ms-md-3">
-                                            <span class="text-muted" style="font-size: 12px;">12 Desember 2024</span>
-                                            <h4 style="font-size: 18px;">Questions business owner must be able to answer.</h4>
-                                            <p style="font-size: 13px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry lorem Ipsum has been the industry's standard dummy text ever since the when an unknown printer took a galley of type and.</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     @endforeach
 
                 </div>
@@ -227,7 +231,7 @@
                             </ul>
                         </div>
                         <!-- Tags Block -->
-                        <div class="tags_block bg_box" data-aos="fade-up" data-aos-duration="1500">
+                        {{-- <div class="tags_block bg_box" data-aos="fade-up" data-aos-duration="1500">
                             <h3>Tags</h3>
                             <ul>
                                 <li><a href="#">Software</a></li>
@@ -238,7 +242,7 @@
                                 <li><a href="#">iOS</a></li>
                                 <li><a href="#">Watch</a></li>
                             </ul>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
