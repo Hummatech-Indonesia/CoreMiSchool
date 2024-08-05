@@ -32,13 +32,13 @@
             </div>
         </form> --}}
         </div>
-        <div class="col-lg-6 mb-3">
+        {{-- <div class="col-lg-6 mb-3">
             <div class="d-flex gap-2 justify-content-end">
                 <a href="{{ route('teacher.journals.create') }}" type="button" class="btn mb-1 btn-success">
                     Tambah Jurnal
                 </a>
             </div>
-        </div>
+        </div> --}}
     </div>
 
     <div class="card shadow">
@@ -69,7 +69,7 @@
                                         {{ explode(' - ', $lessonSchedule->end->name)[1] }}</td>
                                 @endif
                                 <td>{{ $lessonSchedule->classroom->name }}</td>
-                                <td class="text-center"><a href="{{ route('teacher.journals.create') }}"
+                                <td class="text-center"><a href="{{ route('teacher.journals.create', $lessonSchedule->id) }}"
                                         class="btn btn-md btn-primary">Isi Jurnal</a></td>
                             </tr>
                         @empty

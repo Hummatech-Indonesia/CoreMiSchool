@@ -4,6 +4,7 @@ namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\LessonHourInterface;
 use App\Models\LessonHour;
+use App\Models\LessonSchedule;
 use Illuminate\Http\Request;
 
 class LessonHourRepository extends BaseRepository implements LessonHourInterface
@@ -38,12 +39,12 @@ class LessonHourRepository extends BaseRepository implements LessonHourInterface
         return $this->model->query()->findOrFail($id)->delete();
     }
 
-    public function paginate() : mixed
+    public function paginate(): mixed
     {
         return $this->model->query()->latest()->paginate(10);
     }
 
-    public function groupBy($query):mixed
+    public function groupBy($query): mixed
     {
         return $this->model->query()
             ->get()
@@ -53,6 +54,24 @@ class LessonHourRepository extends BaseRepository implements LessonHourInterface
 
     public function groupByNot($query): mixed
     {
+        $excludedIds = LessonSchedule::query()
+        ->select('lesson_hour_start', 'lesson_hour_end')
+        ->get()
+        ->flatMap(function ($schedule) {
+            return range($schedule->lesson_hour_start, $schedule->lesson_hour_end);
+        })
+        ->unique()
+        ->all();
+
+        return $this->model->query()
+            ->whereNot('name', 'Istirahat')
+            ->whereNotIn('id', $excludedIds)
+            ->get()
+            ->groupBy($query);
+    }
+
+    public function groupByNotUpdate($query): mixed
+    {
         return $this->model->query()
             ->whereNot('name', 'Istirahat')
             ->get()
@@ -60,10 +79,10 @@ class LessonHourRepository extends BaseRepository implements LessonHourInterface
     }
 
 
-    public function groupByLatest($query):mixed
+    public function groupByLatest($query): mixed
     {
         return $this->model->query()
-            ->where('day',$query)
+            ->where('day', $query)
             ->latest()
             ->first();
     }
@@ -71,11 +90,11 @@ class LessonHourRepository extends BaseRepository implements LessonHourInterface
     public function whereDay(mixed $day, mixed $name): mixed
     {
         return $this->model->query()
-            ->when($name != 'Istirahat', function($query) use ($name, $day){
+            ->when($name != 'Istirahat', function ($query) use ($name, $day) {
                 $query->where('day', $day);
                 $query->where('name', $name);
             })
-            ->when($name == 'Istirahat', function($query){
+            ->when($name == 'Istirahat', function ($query) {
                 $query->where('day', '');
                 $query->where('name', '');
             })
@@ -85,5 +104,14 @@ class LessonHourRepository extends BaseRepository implements LessonHourInterface
     public function whereRest(mixed $day, mixed $start, mixed $end): mixed
     {
         return $this->model->query()->where('day', $day)->whereBetween('id', [$start, $end])->get();
+    }
+
+    public function whereTeacherSchedule($lessonSchedule, $day): mixed
+    {
+        $day = strtolower($day->format('l'));
+        return $this->model->query()
+            ->whereBetween('start', [$lessonSchedule->start->start, $lessonSchedule->end->start])
+            ->where('day', $day)
+            ->get();
     }
 }

@@ -171,6 +171,8 @@
 
 @section('script')
     @include('school.new.lesson-schedule.scripts.create')
+    @include('school.new.lesson-schedule.scripts.update')
+    @include('school.new.lesson-schedule.scripts.delete')
     @include('school.new.lesson-schedule.scripts.select2')
     @include('school.new.lesson-schedule.scripts.tab')
 @endsection
