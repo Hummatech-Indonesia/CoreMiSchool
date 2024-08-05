@@ -46,4 +46,9 @@ class AttendanceJournalRepository extends BaseRepository implements AttendanceJo
     {
         return $this->model->query()->where('province_id', $data)->get();
     }
+
+    public function whereLessonSchedule(mixed $id): mixed
+    {
+        return $this->model->query()->whereRelation('teacherJournal.lessonSchedule', 'id', $id)->get();
+    }
 }

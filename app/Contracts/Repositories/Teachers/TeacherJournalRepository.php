@@ -47,4 +47,9 @@ class TeacherJournalRepository extends BaseRepository implements TeacherJournalI
     {
         //
     }
+
+    public function getLessonSchedule(mixed $id): mixed
+    {
+        return $this->model->query()->where('lesson_schedule_id', $id)->first();
+    }
 }
