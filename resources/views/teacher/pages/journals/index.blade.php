@@ -69,10 +69,22 @@
                                         {{ explode(' - ', $lessonSchedule->end->name)[1] }}</td>
                                 @endif
                                 <td>{{ $lessonSchedule->classroom->name }}</td>
-                                <td class="text-center"><a href="{{ route('teacher.journals.create', $lessonSchedule->id) }}"
+                                <td class="text-center"><a
+                                        href="{{ route('teacher.journals.create', $lessonSchedule->id) }}"
                                         class="btn btn-md btn-primary">Isi Jurnal</a></td>
                             </tr>
                         @empty
+                            <tr>
+                                <td colspan="7" class="text-center align-middle">
+                                    <div class="d-flex flex-column justify-content-center align-items-center">
+                                        <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt=""
+                                            width="300px">
+                                        <p class="fs-5 text-dark text-center mt-2">
+                                            Belum ada data
+                                        </p>
+                                    </div>
+                                </td>
+                            </tr>
                         @endforelse
                     </tbody>
                 </table>
@@ -81,8 +93,63 @@
     </div>
     {{-- <div class="pagination justify-content-end mt-2 mb-0">
     </div> --}}
+    <div class="row me-3 mb-3">
+        <div class="col-lg-6 col-md-12 mb-3">
+            <div class="d-flex align-items-center">
+                <span class="mb-1 badge bg-primary p-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                            d="M12 7q-.825 0-1.412-.587T10 5t.588-1.412T12 3t1.413.588T14 5t-.587 1.413T12 7m0 14q-.625 0-1.062-.437T10.5 19.5v-9q0-.625.438-1.062T12 9t1.063.438t.437 1.062v9q0 .625-.437 1.063T12 21" />
+                    </svg>
+                </span>
+                <h4 class="ms-3 mb-0">Riwayat Jurnal</h4>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        @foreach (range(1, 3) as $item)
+            <div class="col-md-12 d-flex align-items-stretch">
+                <div class="card w-100">
+                    <div class="card-header bg-primary" style="border-radius: 0.50rem;">
+                        <h4 class="mb-0 text-white card-title">
+                            20 Mei 2023
+                        </h4>
+                    </div>
+
+                    <div class="card-body">
+                        <h3 class="card-title mb-4">Total keseluruhan siswa tidak mengikuti pelajaran:</h3>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <div class="d-flex">
+                                <div class="text-center me-4">
+                                    <div class="bg-light-info text-info d-inline-block px-3 py-2 rounded">
+                                        <b class="fs-7">12</b>
+                                    </div>
+                                    <p class="fs-5">Izin</p>
+                                </div>
+                                <div class="text-center me-4">
+                                    <div class="bg-light-warning text-warning d-inline-block px-3 py-2 rounded">
+                                        <b class="fs-7">12</b>
+                                    </div>
+                                    <p class="fs-5">Sakit</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="bg-light-danger text-danger d-inline-block px-3 py-2 rounded">
+                                        <b class="fs-7">12</b>
+                                    </div>
+                                    <p class="fs-5">Alfa</p>
+                                </div>
+                            </div>
+                            <a href="javascript:void(0)" class="btn btn-primary">Detail</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        @endforeach
     </div>
     </div>
+    </div>
+
 
     {{-- <div class="pagination justify-content-end mb-0">
         <x-paginate-component :paginator="$attendances" />
