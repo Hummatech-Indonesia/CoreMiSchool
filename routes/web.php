@@ -20,7 +20,7 @@ Route::get('/login', function () {
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('beranda');
 
 Auth::routes();
 

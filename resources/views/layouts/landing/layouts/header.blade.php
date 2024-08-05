@@ -36,15 +36,11 @@
 
     .navbar-expand-lg .navbar-nav .nav-link.dark_btn {
         color: var(--text-white);
-        background-image: var(#5D87FF);
-        font-size: 15px;
-        padding: 9px 38px;
-        border-radius: 25px;
-        margin-left: 20px;
-        position: relative;
-        overflow: hidden;
-        transition: 0.4s all;
-        font-weight: 700;
+        background-image: var(--primary);
+    }
+
+    .nav-item.active .nav-link {
+        color: #007bff !important;
     }
 </style>
 
@@ -69,33 +65,32 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/">Beranda</a>
+                    <li class="nav-item {{ request()->routeIs('beranda') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('beranda') }}">Beranda</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/about-us">Tentang Kami</a>
+                    <li class="nav-item {{ request()->routeIs('about-us') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('about-us') }}">Tentang Kami</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/package">Paket</a>
+                    <li class="nav-item {{ request()->routeIS('package') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('package') }}">Paket</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/contact-us">Kontak</a>
+                    <li class="nav-item {{ request()->routeIS('contact-us') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('contact-us') }}">Kontak</a>
                     </li>
-                    <li class="nav-item has_dropdown">
+                    <li class="nav-item has_dropdown {{ request()->routeIs('testimoni') || request()->routeIs('news') ? 'active' : '' }}">
                         <a class="nav-link" href="#">Lainnya</a>
                         <span class="drp_btn"><i class="icofont-rounded-down"></i></span>
                         <div class="sub_menu">
                             <ul>
                                 <li><a href="javascript:void(0)">Dokumentasi</a></li>
-                                <li><a href="/testimoni">Testimonial</a></li>
-                                <li><a href="/news">Berita</a></li>
-
+                                <li><a href="{{ route('testimoni') }}">Testimonial</a></li>
+                                <li><a href="{{ route('news') }}">Berita</a></li>
                             </ul>
                         </div>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link dark_btn" href="/login">Masuk<i
-                                class="icofont-arrow-right"></i></a>
+                        <a class="nav-link dark_btn" href="/login">Masuk<i class="icofont-arrow-right"></i></a>
                     </li>
                 </ul>
             </div>
