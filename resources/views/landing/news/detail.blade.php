@@ -17,7 +17,7 @@
 
         <div class="container">
             <div class="bred_text">
-                <h1>Detail Berita</h1>
+                <h1 class="text-primary">Detail Berita</h1>
                 <ul>
                     <li><a href="/">Beranda</a></li>
                     <li><span>»</span></li>

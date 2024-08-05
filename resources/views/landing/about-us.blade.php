@@ -20,7 +20,7 @@
 
 
             <div class="bred_text">
-                <h1 style="color: #5D87FF">About us</h1>
+                <h1 class="text-primary">About us</h1>
                 <ul>
                     <li><a href="/">Home</a></li>
                     <li><span>»</span></li>
