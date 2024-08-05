@@ -53,18 +53,30 @@ class AttendanceJournalService
         $data = $request->validated();
 
         foreach ($data['students'] as $item) {
-            $rule = $this->attendance->getClassroomStudent($item['classroom_student_id']);
-            // $this->attendance->update($rule->id, ['point' => $rule->point + 1]);/
-            // $this->attendanceJournal->deleteByJournalTeacher($id);
 
-            $this->attendanceJournal->store([
-                'teacher_journal_id' => $id,
-                'classroom_student_id' => $item['classroom_student_id'],
-                'lesson_hour_id' => $item['lesson_hour_id'],
-                'status' => $item['status'] == 'present' ? AttendanceEnum::PRESENT->value : ($item['status'] == 'permit' ? AttendanceEnum::PERMIT->value : ($item['status'] == 'sick' ? AttendanceEnum::SICK->value : ($item['status'] == 'alpha' ? AttendanceEnum::ALPHA->value : ''))),
-            ]);
+            if ($item['action'] == 'update') {
+                $this->attendance->update($item['id'], ['point' => 14]);
+                $this->attendanceJournal->update($item['id'], [
+                    'classroom_student_id' => $item['classroom_student_id'],
+                    'lesson_hour_id' => $item['lesson_hour_id'],
+                    'status' => $item['status'] == 'present' ? AttendanceEnum::PRESENT->value : ($item['status'] == 'permit' ? AttendanceEnum::PERMIT->value : ($item['status'] == 'sick' ? AttendanceEnum::SICK->value : ($item['status'] == 'alpha' ? AttendanceEnum::ALPHA->value : ''))),
+                ]);
+            } else if ($item['action'] == 'delete') {
+                $this->attendance->update($item['id'], ['point' => 14]);
+                $this->attendanceJournal->delete($item['id']);
+            } else {
+                $attendance = $this->attendance->getClassroomStudent($item['classroom_student_id']);
+                $this->attendanceJournal->store([
+                    'teacher_journal_id' => $id,
+                    'classroom_student_id' => $item['classroom_student_id'],
+                    'lesson_hour_id' => $item['lesson_hour_id'],
+                    'status' => $item['status'] == 'present' ? AttendanceEnum::PRESENT->value : ($item['status'] == 'permit' ? AttendanceEnum::PERMIT->value : ($item['status'] == 'sick' ? AttendanceEnum::SICK->value : ($item['status'] == 'alpha' ? AttendanceEnum::ALPHA->value : ''))),
+                ]);
 
-            $this->attendance->update($rule->id, ['point' => $rule->point - 1]);
+                $this->attendance->update($attendance->id, ['point' => $attendance->point - 1]);
+            }
+
+
         }
     }
 
