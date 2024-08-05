@@ -26,7 +26,7 @@ class AttendanceJournalRepository extends BaseRepository implements AttendanceJo
     {
         return $this->model->query()->findOrFail($id);
     }
-    
+
     public function update(mixed $id, array $data): mixed
     {
         return $this->model->query()->findOrFail($id)->update($data);
@@ -35,6 +35,11 @@ class AttendanceJournalRepository extends BaseRepository implements AttendanceJo
     public function delete(mixed $id): mixed
     {
         return $this->model->query()->findOrFail($id)->delete();
+    }
+
+    public function deleteByJournalTeacher(mixed $id): mixed
+    {
+        return $this->model->query()->whereRelation('teacherJournal', 'id', $id)->delete();
     }
 
     public function where(mixed $data): mixed

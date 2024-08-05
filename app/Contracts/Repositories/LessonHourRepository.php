@@ -114,4 +114,4 @@ class LessonHourRepository extends BaseRepository implements LessonHourInterface
             ->where('day', $day)
             ->get();
     }
-}
+}   
