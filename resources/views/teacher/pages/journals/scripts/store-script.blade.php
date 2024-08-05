@@ -3,6 +3,26 @@
 @endphp
 @section('script')
     <script>
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+
+
+
         const attendance = {{ count($attendanceJournals) }};
         const journal = @json($teacherJournal);
         console.log(attendance);
@@ -59,7 +79,7 @@
                         let exist = students.length === 0 ? false : students.find(student => student.id ===
                             attendanceId);
 
-                            console.log(exist);
+                        console.log(exist);
 
                         if (exist === false || exist == undefined) {
                             students.push({
@@ -237,12 +257,14 @@
                     },
                     success: function(response) {
                         console.log(response);
-                        // alert('Data berhasil dikirim');
-                        // location.reload();
+                        toastr["success"](response.success)
                     },
-                    error: function(xhr) {
-                        // alert('Terjadi kesalahan saat mengirim data');
-                        // console.log(xhr);
+                    error: function(xhr, message, error) {
+                        let errorMessage = 'Terjadi kesalahan saat mengirim data';
+                        if (xhr.responseJSON && xhr.responseJSON.error) {
+                            errorMessage = xhr.responseJSON.error;
+                        }
+                        toastr["error"](message);
                     }
                 })
 
