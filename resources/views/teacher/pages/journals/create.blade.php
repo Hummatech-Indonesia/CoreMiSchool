@@ -79,6 +79,16 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($attendanceStudents as $student)
+                            <tr>
+                                <td>{{ $student->name }}</td>
+                                <td>{{ $student->pivot->time }}</td>
+                                <td>{{ $student->pivot->status }}</td>
+                                <td class="text-center">
+                                    <button type="button" class="btn btn-sm btn-danger">Hapus</button>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -108,10 +118,11 @@
                             <h4 class="bg-primary text-white fs-8 p-3 rounded">Isi Laporan Kegiatan</h4>
                         </div>
                         <div class="card-body d-flex flex-column justify-content-center">
-                        <div class="form-group">
-                            <label for="description" class="form-label">Tuliskan laporan di sini</label>
-                            <textarea class="form-control" id="description" name="description" rows="5" placeholder="Tuliskan deskripsi kegiatan di sini..."></textarea>
-                        </div>
+                            <div class="form-group">
+                                <label for="description" class="form-label">Tuliskan laporan di sini</label>
+                                <textarea class="form-control" id="description" name="description" rows="5"
+                                    placeholder="Tuliskan deskripsi kegiatan di sini...">{{ $journal->description ?? '' }}</textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
