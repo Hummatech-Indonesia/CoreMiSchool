@@ -23,13 +23,15 @@ class UpdateTeacherJournalRequest extends FormRequest
     {
         return [
             'description' => 'required',
-            'date' => 'required',
-            'student*' => 'array|nullable',
-            'student' => 'nullable'
+            'students' => 'nullable',
+            'students.*.classroom_student_id' => 'nullable',
+            'students.*.lesson_hour_id' => 'nullable',
+            'students.*.status' => 'nullable',
+            'students.*.description' => 'nullable',
         ];
     }
 
-        /**
+    /**
      * Custom validation messages.
      *
      * @return array<string, string>

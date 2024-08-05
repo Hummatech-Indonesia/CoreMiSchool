@@ -62,7 +62,7 @@ class TeacherJournalController extends Controller
         if ($this->service->checkDuplicatedStudent($request)) return response()->json('error', 'Satu Siswa Hanya Dapat Mempunyai 1 Status Izin');
         $data = $this->service->store($request, $lessonSchedule);
         $teacherJournal_id = $this->teacherJournal->store($data)->id;
-        $this->serviceAttendance->storeJournal($request, $teacherJournal_id);
+        if ($request['students'] != null) $this->serviceAttendance->storeJournal($request, $teacherJournal_id);
         return response()->json(['success' => 'Berhasil mengirim jurnal']);
     }
 
@@ -87,8 +87,11 @@ class TeacherJournalController extends Controller
      */
     public function update(UpdateTeacherJournalRequest $request, TeacherJournal $teacherJournal, LessonSchedule $lessonSchedule)
     {
-        $this->teacherJournal->updateWithLesson($lessonSchedule->id, $request->validated());
-        return redirect()->back()->with('success', 'Berhasil mengupdate jurnal');
+        if ($this->service->checkDuplicatedStudentUpdate($request)) return response()->json('error', 'Satu Siswa Hanya Dapat Mempunyai 1 Status Izin');
+        $data = $this->service->update($request, $lessonSchedule);
+        $this->teacherJournal->update($teacherJournal->id, $data);
+        if ($request['students'] != null) $this->serviceAttendance->updateJournal($request, $teacherJournal->id);
+        return response()->json(['success' => 'Berhasil mengupdate jurnal']);
     }
 
     /**
