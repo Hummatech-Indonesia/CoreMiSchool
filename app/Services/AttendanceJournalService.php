@@ -53,9 +53,9 @@ class AttendanceJournalService
         $data = $request->validated();
 
         foreach ($data['students'] as $item) {
-            $this->attendanceJournal->deleteByJournalTeacher($id);
             $rule = $this->attendance->getClassroomStudent($item['classroom_student_id']);
-            $this->attendance->update($rule->id, ['point' => $rule->point + 1]);
+            // $this->attendance->update($rule->id, ['point' => $rule->point + 1]);/
+            // $this->attendanceJournal->deleteByJournalTeacher($id);
 
             $this->attendanceJournal->store([
                 'teacher_journal_id' => $id,
