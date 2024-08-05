@@ -43,7 +43,7 @@ class AttendanceJournalService
         $rules = $this->lessonSchedule->show($teacherJournal->lesson_schedule_id);
         $min = $this->lessonHour->whereBetween($rules->start->start, $rules->end->start);
 
-        dd($attendance);
+        // dd($attendance);
         foreach ($attendance as $key => $value) {
             $data['teacher_journal_id'] = $teacherJournal->id;
             $data['classroom_student_id'] = $key;
