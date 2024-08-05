@@ -36,21 +36,12 @@
 
     .navbar-expand-lg .navbar-nav .nav-link.dark_btn {
         color: var(--text-white);
-        background-image: var(#5D87FF);
-        font-size: 15px;
-        padding: 9px 38px;
-        border-radius: 25px;
-        margin-left: 20px;
-        position: relative;
-        overflow: hidden;
-        transition: 0.4s all;
-        font-weight: 700;
+        background-image: var(--primary);
     }
 
     .nav-item.active .nav-link {
         color: #007bff !important;
     }
-
 </style>
 
 
@@ -63,7 +54,8 @@
             <a class="navbar-brand" href="index.html">
                 <img src="{{ asset('assets/images/logo/logo-miscool.png') }}" alt="image">
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon">
                     <div class="toggle-wrap">
                         <span class="toggle-bar"></span>
@@ -86,7 +78,8 @@
                         <a class="nav-link" href="{{ route('contact-us') }}">Kontak</a>
                     </li>
                     <li class="nav-item has_dropdown">
-                        <a class="nav-link {{ request()->routeIS('testimoni') ? 'active' : '' }} || {{ request()->routeIS('news') ? 'active' : '' }}" href="#">Lainnya</a>
+                        <a class="nav-link {{ request()->routeIS('testimoni') ? 'active' : '' }} || {{ request()->routeIS('news') ? 'active' : '' }}"
+                            href="#">Lainnya</a>
                         <span class="drp_btn"><i class="icofont-rounded-down"></i></span>
                         <div class="sub_menu">
                             <ul>
