@@ -29,6 +29,8 @@ class StoreTeacherJournalRequest extends FormRequest
             'students.*.lesson_hour_id' => 'nullable',
             'students.*.status' => 'nullable',
             'students.*.description' => 'nullable',
+            'students.*.id' => 'nullable',
+            'students.*.action' => 'nullable',
         ];
     }
 
