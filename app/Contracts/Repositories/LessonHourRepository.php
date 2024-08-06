@@ -114,4 +114,11 @@ class LessonHourRepository extends BaseRepository implements LessonHourInterface
             ->where('day', $day)
             ->get();
     }
-}   
+
+    public function whereBetween(mixed $start, mixed $end): mixed
+    {
+        return $this->model->query()
+            ->whereBetween('start', [$start, $end])
+            ->count();
+    }
+}

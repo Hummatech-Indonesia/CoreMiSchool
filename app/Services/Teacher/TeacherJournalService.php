@@ -13,8 +13,10 @@ class TeacherJournalService
     {
         $data = $request->validated();
         return [
+            'title' => $data['title'],
             'lesson_schedule_id' => $lessonSchedule->id,
             'description' => $data['description'],
+            'date' => now(),
         ];
     }
 
@@ -22,8 +24,10 @@ class TeacherJournalService
     {
         $data = $request->validated();
         return [
+            'title' => $data['title'],
             'lesson_schedule_id' => $lessonSchedule->id,
             'description' => $data['description'],
+            'date' => $data['date'],
         ];
     }
 
