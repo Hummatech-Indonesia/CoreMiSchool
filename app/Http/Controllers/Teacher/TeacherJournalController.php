@@ -92,6 +92,7 @@ class TeacherJournalController extends Controller
      */
     public function update(UpdateTeacherJournalRequest $request, LessonSchedule $lessonSchedule)
     {
+        return response()->json(['error', "Error"], 401);
         $teacherJournal = $this->teacherJournal->getLessonSchedule($lessonSchedule->id);
         if ($this->service->checkDuplicatedStudentUpdate($request)) return response()->json('error', 'Satu Siswa Hanya Dapat Mempunyai 1 Status Izin');
         $data = $this->service->update($request, $lessonSchedule);
