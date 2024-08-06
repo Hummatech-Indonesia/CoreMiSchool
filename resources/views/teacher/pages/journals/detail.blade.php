@@ -1,4 +1,9 @@
+@php
+    use Carbon\Carbon;
+    use App\Enums\AttendanceEnum;
+@endphp
 @extends('teacher.layouts.app')
+
 @section('content')
     <div class="card bg-light-primary shadow-none position-relative overflow-hidden border border-primary">
         <div class="card-body px-4 py-4">
@@ -15,8 +20,8 @@
                 </div>
                 <div class="bg-primary text-light d-flex flex-column align-items-center justify-content-center px-4 py-3 rounded"
                     style="width: 75px; height: 75px;">
-                    <b class="fs-8">12</b>
-                    <p class="mb-0 fs-3">Mei</p>
+                    <b class="fs-8">{{ Carbon::parse($journal->date)->isoFormat('DD') }}</b>
+                    <p class="mb-0 fs-3">{{ Carbon::parse($journal->date)->isoFormat('MMM') }}</p>
                 </div>
 
             </div>
@@ -28,13 +33,13 @@
             <div class="form-group">
                 <h6 class="mt-4">Judul</h6>
                 <input type="text" class="form-control" id="nametext" aria-describedby="name"
-                    placeholder="Maling Rambutan">
+                    placeholder="Maling Rambutan" value="{{ $journal->title }}">
             </div>
             <div class="form-group">
                 <h6 class="mt-4">Isi Laporan</h6>
                 <textarea class="form-control" rows="8"
                     placeholder="Pada pertemuan kali ini, ekstrakurikuler band berjalan dengan lancar. Latihan rutin diadakan setiap Selasa dan Kamis sore, dengan fokus pada teknik bermain musik dan kerjasama tim.
-Kegiatan ini memberikan banyak manfaat, termasuk peningkatan bakat musik, rasa percaya diri, disiplin, dan kerjasama. Kami optimis ekstrakurikuler band akan terus berkembang dan meraih prestasi di masa depan."></textarea>
+Kegiatan ini memberikan banyak manfaat, termasuk peningkatan bakat musik, rasa percaya diri, disiplin, dan kerjasama. Kami optimis ekstrakurikuler band akan terus berkembang dan meraih prestasi di masa depan.">{{ $journal->description }}</textarea>
 
             </div>
         </div>
@@ -55,61 +60,74 @@ Kegiatan ini memberikan banyak manfaat, termasuk peningkatan bakat musik, rasa p
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Ahmad Lukman Hakim</td>
+                        @forelse ($attendanceJournals as $attendance)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $attendance->classroomStudent->student->user->name }}</td>
 
-                            <td>X RPL 1</td>
-                            <td class="text-center">
-                                <span class="mb-1 badge font-medium bg-light-primary text-primary w-25">Izin</span>
-                            </td>
-                            <td class="text-center">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#modal-detail">Detail</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Ahmad Lukman Hakim</td>
+                                <td>{{ $attendance->classroomStudent->classroom->name }}</td>
+                                <td class="text-center">
+                                    @switch($attendance->status)
+                                        @case(AttendanceEnum::SICK)
+                                            <span class="mb-1 badge font-medium bg-light-warning text-warning w-25">Sakit</span>
+                                        @break
 
-                            <td>X RPL 1</td>
-                            <td class="text-center">
-                                <span class="mb-1 badge font-medium bg-light-success text-success w-25">Masuk</span>
-                            </td>
-                            <td class="text-center">
-                                <button type="button" class="btn btn-primary">Detail</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Ahmad Lukman Hakim</td>
+                                        @case(AttendanceEnum::PERMIT)
+                                            <span class="mb-1 badge font-medium bg-light-primary text-primary w-25">Izin</span>
+                                        @break
 
-                            <td>X RPL 1</td>
-                            <td class="text-center">
-                                <span class="mb-1 badge font-medium bg-light-warning text-warning w-25">Sakit</span>
-                            </td>
-                            <td class="text-center">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#modal-detail">Detail</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Ahmad Lukman Hakim</td>
+                                        @case(AttendanceEnum::ALPHA)
+                                            <span class="mb-1 badge font-medium bg-light-danger text-danger w-25">Alfa</span>
+                                        @break
 
-                            <td>X RPL 1</td>
-                            <td class="text-center">
-                                <span class="mb-1 badge font-medium bg-light-danger text-danger w-25">Alfa</span>
-                            </td>
-                            <td class="text-center">
-                                <button type="button" class="btn btn-primary">Detail</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                                        @default
+                                            <span class="mb-1 badge font-medium bg-light-success text-success w-25">Masuk</span>
+                                    @endswitch
+                                </td>
+
+                                <td class="text-center">
+                                    <button type="button" class="btn btn-primary btn-detail" data-bs-toggle="modal"
+                                        data-bs-target="#modal-detail" data-attendance="{{ $attendance->id }}">Detail</button>
+                                </td>
+                            </tr>
+                            @empty
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
 
-    @include('teacher.pages.journals.wigets.detail')
-@endsection
+        @include('teacher.pages.journals.wigets.detail')
+    @endsection
+
+    @section('script')
+        <script>
+            const attendanceStudents = @json($attendanceJournals);
+
+
+            $('.btn-detail').click(function () {
+                let classroomStudent = attendanceStudents.find(attendanceStudent => attendanceStudent.id == $(this).data('attendance')).classroom_student
+
+                $('#name-detail').text(classroomStudent.student.user.name)
+                $('#email-detail').text(classroomStudent.student.user.email)
+                $('#phone-detail').text(classroomStudent.student.phone)
+                $('#gender-detail').text(classroomStudent.student.gender)
+                $('#birth-date-detail').text(classroomStudent.student.birth_date)
+                $('#birth-place-detail').text(classroomStudent.student.birth_place)
+                $('#number-kk-detail').text(classroomStudent.student.number_kk)
+                $('#nik-detail').text(classroomStudent.student.nik)
+                $('#order-child-detail').text(classroomStudent.student.order_child)
+                $('#number-akta-detail').text(classroomStudent.student.number_akta)
+                $('#count-siblings-detail').text(classroomStudent.student.count_siblings)
+                $('#address-detail').text(classroomStudent.student.address)
+                $('#classroom-detail').text(classroomStudent.classroom.name)
+                $('#religion-detail').text(classroomStudent.student.religion_id)
+                $('#nisn-detail').text(classroomStudent.student.nisn)
+
+                $('#modal-detail').show('modal')
+            });
+
+
+        </script>
+    @endsection

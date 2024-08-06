@@ -42,7 +42,8 @@ class TeacherJournalController extends Controller
      */
     public function index()
     {
-        $teacherSchedules = $this->lessonSchedule->whereTeacher(auth()->user()->id, now()->format('l'));
+        $teacherSchedules = $this->lessonSchedule->whereTeacher(auth()->user()->id, now());
+        // dd($teacherSchedules);
         return view('teacher.pages.journals.index', compact('teacherSchedules'));
     }
 
@@ -67,19 +68,20 @@ class TeacherJournalController extends Controller
     public function store(StoreTeacherJournalRequest $request, LessonSchedule $lessonSchedule)
     {
         // dd($request->validated());
-        if ($this->service->checkDuplicatedStudent($request)) return response()->json('error', 'Satu Siswa Hanya Dapat Mempunyai 1 Status Izin');
+        if ($this->service->checkDuplicatedStudent($request)) return back()->with('error', 'Satu Siswa Hanya Dapat Mempunyai 1 Status Izin');
         $data = $this->service->store($request, $lessonSchedule);
         $teacherJournal = $this->teacherJournal->store($data);
         $this->serviceAttendance->storeJournal($request['attendance'], $teacherJournal);
-        return response()->json(['success' => 'Berhasil mengirim jurnal']);
+        return back()->with('success', 'Berhasil mengirim jurnal');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(TeacherJournal $teacherJournal)
+    public function show(TeacherJournal $journal)
     {
-        //
+        $attendanceJournals = $journal->attendanceJournals;
+        return view('teacher.pages.journals.detail', compact('journal', 'attendanceJournals'));
     }
 
     /**

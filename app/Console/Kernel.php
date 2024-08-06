@@ -56,7 +56,8 @@ class Kernel extends ConsoleKernel
 
             info($attendanceData);
             Attendance::insert($attendanceData);
-        });
+        // });
+        })->dailyAt('01:00');
 
         $schedule->call(function() {
             $day = strtolower(now()->format('l'));

@@ -1,4 +1,5 @@
 @php
+use Carbon\Carbon;
     use App\Enums\AttendanceEnum;
 @endphp
 @extends('teacher.layouts.app')
@@ -13,22 +14,23 @@
 @section('content')
     <div class="card bg-light-primary shadow-none position-relative overflow-hidden border border-primary">
         <div class="card-body px-4 py-4">
-            <div class="d-flex align-items-center justify-content-between">
-                <div>
-                    <h4 class="fw-semibold mb-8 text-dark">Pengisian Jurnal</h4>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item text-dark fs-3" aria-current="page">
-                                {{ $lessonSchedule->teacherSubject->subject->name . ' - ' . $lessonSchedule->classroom->name }}
-                            </li>
-                        </ol>
-                    </nav>
+            <div class="d-flex justify-content-between">
+                <div class="row align-items-center">
+                    <div class="col-12">
+                        <h4 class="fw-semibold mb-8 text-dark">Pengisian Jurnal</h4>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item text-dark fs-3" aria-current="page">{{ $lessonSchedule->teacherSubject->subject->name }} - {{ $lessonSchedule->classroom->name }}</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <div class="bg-primary text-light d-flex flex-column align-items-center justify-content-center px-4 py-3 rounded"
+                    style="width: 75px; height: 75px;">
+                    <b class="fs-8">{{ now()->isoFormat('DD') }}</b>
+                    <p class="mb-0 fs-3">{{ now()->isoFormat('MMM') }}</p>
                 </div>
 
-                <div class="d-flex flex-column justify-content-center align-items-center bg-primary text-white rounded p-3" style="width: 50px; height: 50px;">
-                    <div class="text-white fw-bolder h3 m-0 p-0">{{ now()->day }}</div>
-                    <span class="month p-0">{{ now()->isoFormat('MMM') }}</span>
-                </div>
             </div>
         </div>
     </div>

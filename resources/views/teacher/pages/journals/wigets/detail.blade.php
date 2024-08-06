@@ -30,77 +30,77 @@
                     <div class="col-12 col-md-6">
                         <div class="d-flex" style="margin-bottom: 0.5rem;">
                             <h6 style="margin-bottom: 0;">NISN:</h6>
-                            <p class="ms-2" style="margin-bottom: 0;" id="phone-detail"></p>
+                            <p class="ms-2" style="margin-bottom: 0;" id="nisn-detail"></p>
                         </div>
                         <hr>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="d-flex" style="margin-bottom: 0.5rem;">
                             <h6 style="margin-bottom: 0;">Kelas:</h6>
-                            <p class="ms-2" style="margin-bottom: 0;" id="gender-detail"></p>
+                            <p class="ms-2" style="margin-bottom: 0;" id="classroom-detail"></p>
                         </div>
                         <hr>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="d-flex" style="margin-bottom: 0.5rem;">
                             <h6 style="margin-bottom: 0;">Jenis Kelamin:</h6>
-                            <p class="ms-2" style="margin-bottom: 0;" id="nip-detail"></p>
+                            <p class="ms-2" style="margin-bottom: 0;" id="gender-detail"></p>
                         </div>
                         <hr>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="d-flex" style="margin-bottom: 0.5rem;">
                             <h6 style="margin-bottom: 0;">Agama:</h6>
-                            <p class="ms-2" style="margin-bottom: 0;" id="rfid-detail"></p>
+                            <p class="ms-2" style="margin-bottom: 0;" id="religion-detail"></p>
                         </div>
                         <hr>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="d-flex text-start">
                             <h6 style="margin-bottom: 0;">Tanggal Lahir:</h6>
-                            <p class="ms-2 text-muted text-break" style="margin-bottom: 0;" id="address-detail"></p>
+                            <p class="ms-2 text-muted text-break" style="margin-bottom: 0;" id="birth-date-detail"></p>
                         </div>
                         <hr>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="d-flex text-start">
                             <h6 style="margin-bottom: 0;">Tempat Lahir:</h6>
-                            <p class="ms-2 text-muted text-break" style="margin-bottom: 0;" id="address-detail"></p>
+                            <p class="ms-2 text-muted text-break" style="margin-bottom: 0;" id="birth-place-detail"></p>
                         </div>
                         <hr>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="d-flex text-start">
                             <h6 style="margin-bottom: 0;">Nomor KK:</h6>
-                            <p class="ms-2 text-muted text-break" style="margin-bottom: 0;" id="address-detail"></p>
+                            <p class="ms-2 text-muted text-break" style="margin-bottom: 0;" id="number-kk-detail"></p>
                         </div>
                         <hr>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="d-flex text-start">
                             <h6 style="margin-bottom: 0;">NIK:</h6>
-                            <p class="ms-2 text-muted text-break" style="margin-bottom: 0;" id="address-detail"></p>
+                            <p class="ms-2 text-muted text-break" style="margin-bottom: 0;" id="nik-detail"></p>
                         </div>
                         <hr>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="d-flex text-start">
                             <h6 style="margin-bottom: 0;">Anak Ke-:</h6>
-                            <p class="ms-2 text-muted text-break" style="margin-bottom: 0;" id="address-detail"></p>
+                            <p class="ms-2 text-muted text-break" style="margin-bottom: 0;" id="order-child-detail"></p>
                         </div>
                         <hr>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="d-flex text-start">
                             <h6 style="margin-bottom: 0;">Nomor Akta:</h6>
-                            <p class="ms-2 text-muted text-break" style="margin-bottom: 0;" id="address-detail"></p>
+                            <p class="ms-2 text-muted text-break" style="margin-bottom: 0;" id="number-akta-detail"></p>
                         </div>
                         <hr>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="d-flex text-start">
                             <h6 style="margin-bottom: 0;">Jumlah Saudara:</h6>
-                            <p class="ms-2 text-muted text-break" style="margin-bottom: 0;" id="address-detail"></p>
+                            <p class="ms-2 text-muted text-break" style="margin-bottom: 0;" id="count-siblings-detail"></p>
                         </div>
                         <hr>
                     </div>

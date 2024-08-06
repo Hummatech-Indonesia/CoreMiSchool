@@ -69,9 +69,18 @@
                                         {{ explode(' - ', $lessonSchedule->end->name)[1] }}</td>
                                 @endif
                                 <td>{{ $lessonSchedule->classroom->name }}</td>
-                                <td class="text-center"><a
-                                        href="{{ route('teacher.journals.create', $lessonSchedule->id) }}"
-                                        class="btn btn-md btn-primary">Isi Jurnal</a></td>
+                                @if ($lessonSchedule->teacherJournals->count() > 0)
+                                    <td class="text-center">
+                                        <a href="{{ route('teacher.journals.show', $lessonSchedule->teacherJournals->first()->id) }}"
+                                            class="btn btn-primary">Detail</a>
+                                        <a href="{{ route('teacher.journals.create', $lessonSchedule->teacherJournals->first()->id) }}"
+                                            class="btn btn-warning">Edit Jurnal</a>
+                                    </td>
+                                @else
+                                    <td class="text-center"><a
+                                            href="{{ route('teacher.journals.create', $lessonSchedule->id) }}"
+                                            class="btn btn-primary">Isi Jurnal</a></td>
+                                @endif
                             </tr>
                         @empty
                             <tr>

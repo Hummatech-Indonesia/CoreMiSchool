@@ -18,9 +18,9 @@ Route::middleware('auth')->prefix('teacher')->name('teacher.')->group(function (
     Route::get('journals/create/{lessonSchedule}', [TeacherJournalController::class, 'create'])->name('journals.create');
     Route::post('journals/create/{lessonSchedule}', [TeacherJournalController::class, 'store'])->name('journals.store');
     Route::put('journals/update/{lessonSchedule}', [TeacherJournalController::class, 'update'])->name('journals.update');
+    // Route::get('journals/detail', function () {
+    //     return view('teacher.pages.journals.detail');
+    // })->name('journals.detail');
 });
 
-Route::get('journals/detail', function () {
-    return view('teacher.pages.journals.detail');
-})->name('journals.detail');
 
