@@ -18,5 +18,5 @@ interface LessonHourInterface extends GetInterface, StoreInterface, UpdateInterf
     public function whereDay(mixed $day, mixed $name) : mixed;
     public function whereRest(mixed $day, mixed $start, mixed $end) : mixed;
     public function whereTeacherSchedule($lessonSchedule, $day) : mixed;
-
+    public function whereBetween(mixed $start, mixed $end, mixed $day): mixed;
 }

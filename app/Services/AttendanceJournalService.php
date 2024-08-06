@@ -4,15 +4,16 @@ namespace App\Services;
 
 use App\Contracts\Interfaces\AttendanceInterface;
 use App\Contracts\Interfaces\AttendanceJournalInterface;
+use App\Contracts\Interfaces\LessonHourInterface;
+use App\Contracts\Interfaces\LessonScheduleInterface;
 use App\Enums\AttendanceEnum;
 use App\Enums\UploadDiskEnum;
 use App\Http\Requests\StoreAttendanceJournalRequest;
-use App\Http\Requests\StoreTeacherJournalRequest;
 use App\Http\Requests\UpdateAttendanceJournalRequest;
 use App\Http\Requests\UpdateTeacherJournalRequest;
 use App\Models\AttendanceJournal;
+use App\Models\TeacherJournal;
 use App\Traits\UploadTrait;
-use Mockery\Undefined;
 
 class AttendanceJournalService
 {
@@ -20,11 +21,15 @@ class AttendanceJournalService
 
     private AttendanceInterface $attendance;
     private AttendanceJournalInterface $attendanceJournal;
+    private LessonScheduleInterface $lessonSchedule;
+    private LessonHourInterface $lessonHour;
 
-    public function __construct(AttendanceInterface $attendance, AttendanceJournalInterface $attendanceJournal)
+    public function __construct(AttendanceInterface $attendance, AttendanceJournalInterface $attendanceJournal, LessonScheduleInterface $lessonSchedule, LessonHourInterface $lessonHour)
     {
         $this->attendance = $attendance;
         $this->attendanceJournal = $attendanceJournal;
+        $this->lessonSchedule = $lessonSchedule;
+        $this->lessonHour = $lessonHour;
     }
 
     public function validateAndUpload(string $disk, object $file, string $old_file = null): string
@@ -33,19 +38,23 @@ class AttendanceJournalService
         return $this->upload($disk, $file);
     }
 
-    public function storeJournal(StoreTeacherJournalRequest $request, string $id): void
+    public function storeJournal($attendance, TeacherJournal $teacherJournal): void
     {
-        $data = $request->validated();
+        $rules = $this->lessonSchedule->show($teacherJournal->lesson_schedule_id);
+        $min = $this->lessonHour->whereBetween($rules->start->start, $rules->end->start, $rules->day);
 
-        foreach ($data['students'] as $item) {
-            $rule = $this->attendance->getClassroomStudent($item['classroom_student_id']);
-            $this->attendance->update($rule->id, ['point' => $rule->point - 1]);
-            $this->attendanceJournal->store([
-                'teacher_journal_id' => $id,
-                'classroom_student_id' => $item['classroom_student_id'],
-                'lesson_hour_id' => $item['lesson_hour_id'],
-                'status' => $item['status'] == 'present' ? AttendanceEnum::PRESENT->value : ($item['status'] == 'permit' ? AttendanceEnum::PERMIT->value : ($item['status'] == 'sick' ? AttendanceEnum::SICK->value : ($item['status'] == 'alpha' ? AttendanceEnum::ALPHA->value : ''))),
-            ]);
+        // dd($attendance);
+        foreach ($attendance as $key => $value) {
+            $data['teacher_journal_id'] = $teacherJournal->id;
+            $data['classroom_student_id'] = $key;
+            $data['status'] = $value == 'present' ? AttendanceEnum::PRESENT->value : ($value == 'permit' ? AttendanceEnum::PERMIT->value : ($value == 'sick' ? AttendanceEnum::SICK->value : ($value == 'alpha' ? AttendanceEnum::ALPHA->value : '')));
+            $this->attendanceJournal->store($data);
+
+            // dd($key);
+            $rule = $this->attendance->getClassroomStudent($key);
+            // dd($rule->id);
+            $this->attendance->update($rule->id, ['point' => $rule->point - $min]);
+
         }
     }
 
