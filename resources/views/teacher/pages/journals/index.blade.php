@@ -139,7 +139,7 @@
                                     <p class="fs-5">Alfa</p>
                                 </div>
                             </div>
-                            <a href="javascript:void(0)" class="btn btn-primary">Detail</a>
+                            <a href="/journals/detail" class="btn btn-primary">Detail</a>
                         </div>
 
                     </div>
