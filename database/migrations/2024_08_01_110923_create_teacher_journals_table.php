@@ -17,8 +17,9 @@ return new class extends Migration
         Schema::create('teacher_journals', function (Blueprint $table) {
             $table->id();
             $this->addForeignId($table, 'lesson_schedule_id');
+            $table->text('title');
             $table->longText('description');
-            $table->text('proof')->nullable();
+            $table->date('date');
             $table->timestamps();
         });
     }
