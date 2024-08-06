@@ -6,7 +6,7 @@ use App\Http\Requests\LoginRequest;
 use Illuminate\Validation\ValidationException;
 use SebastianBergmann\Type\VoidType;
 
-class LoginService
+class   LoginService
 {
     /**
      * Handle a login request to the application.

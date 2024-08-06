@@ -23,6 +23,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        if (auth()->user()->roles->pluck('name')[0] == 'admin') {
+            return to_route('teacher.dashboard');
+        } else if (auth()->user()->roles->pluck('name')[0] == 'student') {
+            return to_route('student.dashboard');
+        } else if (auth()->user()->roles->pluck('name')[0] == 'teacher') {
+            return to_route('teacher.dashboard');
+        } else {
+            return to_route('beranda');
+        }
     }
 }
