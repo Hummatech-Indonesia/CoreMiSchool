@@ -71,6 +71,11 @@ class AttendanceJournalService
 
             if ($attendanceJournal->status != $value) {
                 if ($value == 'present') {
+                    $data['teacher_journal_id'] = $teacherJournal->id;
+                    $data['classroom_student_id'] = $key;
+                    $data['status'] = $value == 'present' ? AttendanceEnum::PRESENT->value : ($value == 'permit' ? AttendanceEnum::PERMIT->value : ($value == 'sick' ? AttendanceEnum::SICK->value : ($value == 'alpha' ? AttendanceEnum::ALPHA->value : '')));
+                    $this->attendanceJournal->updateByJournalTeacher($teacherJournal->id, $data);
+
                     $rule = $this->attendance->getClassroomStudent($key);
                     $this->attendance->update($rule->id, ['point' => $rule->point + $min]);
                 } else {
@@ -81,9 +86,7 @@ class AttendanceJournalService
 
                     $rule = $this->attendance->getClassroomStudent($key);
 
-                    if ($value != 'present') {
-                        $this->attendance->update($rule->id, ['point' => $rule->point - $min]);
-                    }
+                    $this->attendance->update($rule->id, ['point' => $rule->point - $min]);
                 }
 
             }
