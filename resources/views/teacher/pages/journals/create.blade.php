@@ -13,14 +13,21 @@
 @section('content')
     <div class="card bg-light-primary shadow-none position-relative overflow-hidden border border-primary">
         <div class="card-body px-4 py-4">
-            <div class="row align-items-center">
-                <div class="col-12">
-                    <h4 class="fw-semibold mb-8 text-dark">Jurnal dan Absensi</h4>
+            <div class="d-flex align-items-center justify-content-between">
+                <div>
+                    <h4 class="fw-semibold mb-8 text-dark">Pengisian Jurnal</h4>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item text-dark fs-3" aria-current="page">{{ auth_user()->name }}</li>
+                            <li class="breadcrumb-item text-dark fs-3" aria-current="page">
+                                {{ $lessonSchedule->teacherSubject->subject->name . ' - ' . $lessonSchedule->classroom->name }}
+                            </li>
                         </ol>
                     </nav>
+                </div>
+
+                <div class="d-flex flex-column justify-content-center align-items-center bg-primary text-white rounded p-3" style="width: 50px; height: 50px;">
+                    <div class="text-white fw-bolder h3 m-0 p-0">{{ now()->day }}</div>
+                    <span class="month p-0">{{ now()->isoFormat('MMM') }}</span>
                 </div>
             </div>
         </div>
@@ -31,16 +38,6 @@
         <div class="row">
             <div class="col-lg-6 mb-3">
                 <h4>Tambah Jurnal</h4>
-            </div>
-            <div class="col-lg-6 mb-3">
-                <div class="d-flex gap-2 justify-content-end">
-                    <a href="{{ route('teacher.journals.index') }}" type="button" class="btn mb-1 btn-light-secondary">
-                        Kembali
-                    </a>
-                    <button type="submit" class="btn mb-1 btn-success" id="submit-btn">
-                        Simpan Laporan
-                    </button>
-                </div>
             </div>
         </div>
 
@@ -128,6 +125,14 @@
                     </table>
                 </div>
             </div>
+        </div>
+        <div class="d-flex gap-2 justify-content-end mb-5">
+            <a href="{{ route('teacher.journals.index') }}" type="button" class="btn mb-1 btn-light-secondary">
+                Kembali
+            </a>
+            <button type="submit" class="btn mb-1 btn-success" id="submit-btn">
+                Simpan Laporan
+            </button>
         </div>
     </form>
 @endsection
