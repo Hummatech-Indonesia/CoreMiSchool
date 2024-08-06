@@ -68,8 +68,12 @@ class ClassroomController extends Controller
      */
     public function store(StoreClassroomRequest $request)
     {
-        $this->service->store($request);
-        return redirect()->back()->with('success', 'Berhasil menambahkan kelas');
+        try {
+            $this->service->store($request);
+            return redirect()->back()->with('success', 'Berhasil menambahkan kelas');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 
     /**
@@ -96,8 +100,12 @@ class ClassroomController extends Controller
      */
     public function update(UpdateClassroomRequest $request, Classroom $classroom)
     {
-        $this->classroom->update($classroom->id, $request->validated());
-        return redirect()->back()->with('success', 'Berhasil memperbarui kelas');
+        try {
+            $this->classroom->update($classroom->id, $request->validated());
+            return redirect()->back()->with('success', 'Berhasil memperbarui kelas');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 
     /**
@@ -105,11 +113,16 @@ class ClassroomController extends Controller
      */
     public function destroy(Classroom $classroom)
     {
-        $this->classroom->delete($classroom->id);
-        return redirect()->back()->with('success', 'Berhasil menghapus kelas');
+        try {
+            $this->classroom->delete($classroom->id);
+            return redirect()->back()->with('success', 'Berhasil menghapus kelas');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 
-    public function classroomAlumni(Request $request): mixed {
+    public function classroomAlumni(Request $request): mixed
+    {
         $classrooms = $this->classroom->getAlumni($request);
         $schoolYears = $this->schoolYear->get();
         return view('school.pages.alumni.class', compact('classrooms', 'schoolYears'));

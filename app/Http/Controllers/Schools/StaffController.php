@@ -61,7 +61,7 @@ class StaffController extends Controller
             $this->employee->store($data);
             return redirect()->back()->with('success', 'Berhasil menambahkan data staff');
         } catch (\Throwable $th) {
-            return redirect()->back()->with('error', 'Kesalahan menambahkan data staff \n'. $th->getMessage());
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
         }
     }
 
@@ -86,9 +86,13 @@ class StaffController extends Controller
      */
     public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
-        $data = $this->service->update($employee, $request);
-        $this->employee->update($employee->id, $data);
-        return redirect()->back()->with('success', 'Berhasil memperbaiki data staff');
+        try {
+            $data = $this->service->update($employee, $request);
+            $this->employee->update($employee->id, $data);
+            return redirect()->back()->with('success', 'Berhasil memperbaiki data staff');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 
     /**
@@ -96,24 +100,35 @@ class StaffController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        $this->service->delete($employee);
-        $this->employee->delete($employee->id);
-        $employee->user->delete();
-        $this->modelHasRfid->delete('App\Models\Employee', $employee->id);
-        return redirect()->back()->with('success', 'Data staff berhasil dihapus');
+        try {
+            $this->service->delete($employee);
+            $this->employee->delete($employee->id);
+            $employee->user->delete();
+            $this->modelHasRfid->delete('App\Models\Employee', $employee->id);
+            return redirect()->back()->with('success', 'Data staff berhasil dihapus');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 
     public function downloadTemplate()
     {
-        $template = public_path('file/excel-format-import-staff.xlsx');
-        // dd($template);
-        return response()->download($template, 'excel-format-import-staff.xlsx');
+        try {
+            $template = public_path('file/excel-format-import-staff.xlsx');
+            return response()->download($template, 'excel-format-import-staff.xlsx');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 
     public function import(Request $request)
     {
-        $file = $request->file('file');
-        Excel::import(new EmployeeImport, $file);
-        return to_route('school.employees.index')->with('success', "Berhasil Mengimport Data!");
+        try {
+            $file = $request->file('file');
+            Excel::import(new EmployeeImport, $file);
+            return to_route('school.employees.index')->with('success', "Berhasil Mengimport Data!");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 }
