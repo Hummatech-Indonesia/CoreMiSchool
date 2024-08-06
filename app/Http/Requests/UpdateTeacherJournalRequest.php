@@ -22,14 +22,10 @@ class UpdateTeacherJournalRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'title' => 'required',
             'description' => 'required',
-            'students' => 'nullable',
-            'students.*.classroom_student_id' => 'nullable',
-            'students.*.lesson_hour_id' => 'nullable',
-            'students.*.status' => 'nullable',
-            'students.*.description' => 'nullable',
-            'students.*.id' => 'nullable',
-            'students.*.action' => 'nullable',
+            'attendance' => 'required|array',
+            'attendance.*' => 'required|string|in:alpha,permit,sick,present'
         ];
     }
 
@@ -38,13 +34,14 @@ class UpdateTeacherJournalRequest extends FormRequest
      *
      * @return array<string, string>
      */
-    public function messages(): array
+    public function messages()
     {
         return [
+            'title.required' => 'Judul harus diisi.',
             'description.required' => 'Deskripsi harus diisi.',
-            'date.required' => 'Tanggal harus diisi.',
-            'student*.required' => 'Siswa harus diisi.',
-            'student.required' => 'Siswa harus diisi.',
+            'attendance.required' => 'Kehadiran harus diisi.',
+            'attendance.*.required' => 'Status kehadiran harus diisi.',
+            'attendance.*.in' => 'Status kehadiran harus salah satu dari masuk, alpha, permit, atau sakit.',
         ];
     }
 }

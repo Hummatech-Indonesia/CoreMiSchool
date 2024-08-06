@@ -43,13 +43,17 @@ class LessonHourController extends Controller
      */
     public function store(StoreLessonHourRequest $request, string $day)
     {
-        $data = $this->service->store($request, $day);
-        $rule_end = $data['end'] <= $data['start'];
-        if ($rule_end) return redirect()->back()->with('error', 'Jam selesai tidak boleh lebih kecil dari jam awal');
-        $rule = $this->lessonHour->whereDay($day, $data['name']);
-        if ($rule) return redirect()->back()->with('error', 'Jam pelajaran sudah tersedia');
-        $this->lessonHour->store($data);
-        return redirect()->back()->with('success', 'Berhasil menambahkan jam pelajaran');
+        try {
+            $data = $this->service->store($request, $day);
+            $rule_end = $data['end'] <= $data['start'];
+            if ($rule_end) return redirect()->back()->with('error', 'Jam selesai tidak boleh lebih kecil dari jam awal');
+            $rule = $this->lessonHour->whereDay($day, $data['name']);
+            if ($rule) return redirect()->back()->with('error', 'Jam pelajaran sudah tersedia');
+            $this->lessonHour->store($data);
+            return redirect()->back()->with('success', 'Berhasil menambahkan jam pelajaran');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 
     /**
@@ -73,8 +77,12 @@ class LessonHourController extends Controller
      */
     public function update(UpdateLessonHourRequest $request, LessonHour $lessonHour)
     {
-        $this->lessonHour->update($lessonHour->id ,$request->validated());
-        return redirect()->back()->with('success', 'Berhasil memperbarui jam pelajaran');
+        try {
+            $this->lessonHour->update($lessonHour->id ,$request->validated());
+            return redirect()->back()->with('success', 'Berhasil memperbarui jam pelajaran');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());//throw $th;
+        }
     }
 
     /**
@@ -82,7 +90,11 @@ class LessonHourController extends Controller
      */
     public function destroy(LessonHour $lessonHour)
     {
-        $this->lessonHour->delete($lessonHour->id);
-        return redirect()->back()->with('success', 'Berhasil menghapus jam pelajaran');
+        try {
+            $this->lessonHour->delete($lessonHour->id);
+            return redirect()->back()->with('success', 'Berhasil menghapus jam pelajaran');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 }

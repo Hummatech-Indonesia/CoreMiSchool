@@ -41,8 +41,12 @@ class TeacherSubjectController extends Controller
      */
     public function store(StoreTeacherSubjectRequest $request, string $employee)
     {
-        $this->service->store($request, $employee);
-        return redirect()->back()->with('success', 'Berhail menambahkan mata pelajaran');
+        try {
+            $this->service->store($request, $employee);
+            return redirect()->back()->with('success', 'Berhail menambahkan mata pelajaran');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 
     /**
@@ -75,7 +79,11 @@ class TeacherSubjectController extends Controller
      */
     public function destroy(TeacherSubject $teacherSubject)
     {
-        $this->teacherSubject->delete($teacherSubject->id);
-        return redirect()->back()->with('success', 'Berhail menghapus mata pelajaran');
+        try {
+            $this->teacherSubject->delete($teacherSubject->id);
+            return redirect()->back()->with('success', 'Berhail menghapus mata pelajaran');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 }

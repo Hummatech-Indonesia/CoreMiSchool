@@ -42,8 +42,12 @@ class LevelClassController extends Controller
      */
     public function store(StoreLevelClassRequest $request)
     {
-        $this->levelClass->store($request->validated());
-        return redirect()->back()->with('success', 'Berhasil menambahkan tingkatan kelas');
+        try {
+            $this->levelClass->store($request->validated());
+            return redirect()->back()->with('success', 'Berhasil menambahkan tingkatan kelas');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 
     /**
@@ -67,8 +71,12 @@ class LevelClassController extends Controller
      */
     public function update(UpdateLevelClassRequest $request, LevelClass $levelClass)
     {
-        $this->levelClass->update($levelClass->id, $request->validated());
-        return redirect()->back()->with('success', 'Berhasil mengperbarui tingkatan kelas');
+        try {
+            $this->levelClass->update($levelClass->id, $request->validated());
+            return redirect()->back()->with('success', 'Berhasil mengperbarui tingkatan kelas');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 
     /**
@@ -76,7 +84,11 @@ class LevelClassController extends Controller
      */
     public function destroy(LevelClass $levelClass)
     {
-        $this->levelClass->delete($levelClass->id);
-        return redirect()->back()->with('success', 'Berhasil menghapus tingkatan kelas');
+        try {
+            $this->levelClass->delete($levelClass->id);
+            return redirect()->back()->with('success', 'Berhasil menghapus tingkatan kelas');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 }

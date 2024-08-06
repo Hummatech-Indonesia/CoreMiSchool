@@ -17,6 +17,11 @@ class AttendanceJournalRepository extends BaseRepository implements AttendanceJo
         return $this->model->query()->get();
     }
 
+    public function getByClassroomStudent(mixed $id): mixed
+    {
+        return $this->model->query()->where('classroom_student_id', $id)->first();
+    }
+
     public function store(array $data): mixed
     {
         return $this->model->query()->create($data);
@@ -30,6 +35,11 @@ class AttendanceJournalRepository extends BaseRepository implements AttendanceJo
     public function update(mixed $id, array $data): mixed
     {
         return $this->model->query()->findOrFail($id)->update($data);
+    }
+
+    public function updateByJournalTeacher(mixed $id, array $data): mixed
+    {
+        return $this->model->query()->whereRelation('teacherJournal', 'id', $id)->update($data);
     }
 
     public function delete(mixed $id): mixed

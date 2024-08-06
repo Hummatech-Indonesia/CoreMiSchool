@@ -58,14 +58,18 @@ class ModelHasRfidController extends Controller
      */
     public function store(StoreModelHasRfidRequest $request)
     {
-        $exist = $this->service->check($request);
-        $data = $request->validated();
+        try {
+            $exist = $this->service->check($request);
+            $data = $request->validated();
 
-        if ($exist) {
-            $this->modelHasRfid->store($data);
-            return redirect()->back()->with('success', 'Berhasil menambahkan kartu rfid');
-        } else {
-            return redirect()->back()->with('error', 'Kartu rfid tidak valid');
+            if ($exist) {
+                $this->modelHasRfid->store($data);
+                return redirect()->back()->with('success', 'Berhasil menambahkan kartu rfid');
+            } else {
+                return redirect()->back()->with('error', 'Kartu rfid tidak valid');
+            }
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
         }
     }
 
@@ -86,7 +90,7 @@ class ModelHasRfidController extends Controller
             $this->modelHasRfid->store(['rfid' => $request->rfid, 'model_type' => null, 'model_id' => null]);
             return redirect()->back();
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Terjadi kesalahan pada server');
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
         }
     }
 
@@ -132,8 +136,12 @@ class ModelHasRfidController extends Controller
      */
     public function destroy(ModelHasRfid $modelHasRfid)
     {
-        $this->modelHasRfid->delete($modelHasRfid->id);
-        return redirect()->back()->with('success', 'Kartu rfid berhasil dihapus');
+        try {
+            $this->modelHasRfid->delete($modelHasRfid->id);
+            return redirect()->back()->with('success', 'Kartu rfid berhasil dihapus');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 
 
