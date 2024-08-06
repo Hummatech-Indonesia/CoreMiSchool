@@ -1,3 +1,7 @@
+@php
+use Carbon\Carbon;
+use App\Enums\AttendanceEnum;
+@endphp
 @extends('teacher.layouts.app')
 @section('content')
     <div class="card bg-light-primary shadow-none position-relative overflow-hidden border border-primary">
@@ -62,8 +66,8 @@
                             @endphp --}}
                             <tr>
                                 <td>{{ $lessonSchedule->teacherSubject->subject->name }}</td>
-                                <td>{{ Carbon\Carbon::parse($lessonSchedule->start->start)->format('H:i') }} -
-                                    {{ Carbon\Carbon::parse($lessonSchedule->end->end)->format('H:i') }}</td>
+                                <td>{{ Carbon::parse($lessonSchedule->start->start)->format('H:i') }} -
+                                    {{ Carbon::parse($lessonSchedule->end->end)->format('H:i') }}</td>
                                 @if ($lessonSchedule->start->name != 'Istirahat')
                                     <td>Jam ke {{ explode(' - ', $lessonSchedule->start->name)[1] }} -
                                         {{ explode(' - ', $lessonSchedule->end->name)[1] }}</td>
@@ -116,12 +120,12 @@
         </div>
     </div>
     <div class="row">
-        @foreach (range(1, 3) as $item)
+        @foreach ($histories as $journal)
             <div class="col-md-12 d-flex align-items-stretch">
                 <div class="card w-100">
                     <div class="card-header bg-primary" style="border-radius: 0.50rem;">
                         <h4 class="mb-0 text-white card-title">
-                            20 Mei 2023
+                            {{ Carbon::parse($journal->date)->isoFormat('DD MMMM YYYY') }}
                         </h4>
                     </div>
 
@@ -131,24 +135,24 @@
                             <div class="d-flex">
                                 <div class="text-center me-4">
                                     <div class="bg-light-info text-info d-inline-block px-3 py-2 rounded">
-                                        <b class="fs-7">12</b>
+                                        <b class="fs-7">{{ $journal->attendanceJournals->where('status', AttendanceEnum::PERMIT)->count() }}</b>
                                     </div>
                                     <p class="fs-5">Izin</p>
                                 </div>
                                 <div class="text-center me-4">
                                     <div class="bg-light-warning text-warning d-inline-block px-3 py-2 rounded">
-                                        <b class="fs-7">12</b>
+                                        <b class="fs-7">{{ $journal->attendanceJournals->where('status', AttendanceEnum::SICK)->count() }}</b>
                                     </div>
                                     <p class="fs-5">Sakit</p>
                                 </div>
                                 <div class="text-center">
                                     <div class="bg-light-danger text-danger d-inline-block px-3 py-2 rounded">
-                                        <b class="fs-7">12</b>
+                                        <b class="fs-7">{{ $journal->attendanceJournals->where('status', AttendanceEnum::ALPHA)->count() }}</b>
                                     </div>
                                     <p class="fs-5">Alfa</p>
                                 </div>
                             </div>
-                            <a href="/journals/detail" class="btn btn-primary">Detail</a>
+                            <a href="{{ route('teacher.journals.show', $journal->id) }}" class="btn btn-primary">Detail</a>
                         </div>
 
                     </div>
