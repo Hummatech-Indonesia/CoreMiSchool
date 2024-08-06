@@ -12,6 +12,7 @@ use App\Http\Requests\UpdateAttendanceJournalRequest;
 use App\Http\Requests\UpdateTeacherJournalRequest;
 use App\Models\AttendanceJournal;
 use App\Traits\UploadTrait;
+use Mockery\Undefined;
 
 class AttendanceJournalService
 {
@@ -32,7 +33,7 @@ class AttendanceJournalService
         return $this->upload($disk, $file);
     }
 
-    public function storeJournal(StoreTeacherJournalRequest $request, string $id) : void
+    public function storeJournal(StoreTeacherJournalRequest $request, string $id): void
     {
         $data = $request->validated();
 
@@ -48,22 +49,39 @@ class AttendanceJournalService
         }
     }
 
-    public function updateJournal(UpdateTeacherJournalRequest $request, string $id) : void
+    public function updateJournal(UpdateTeacherJournalRequest $request, string $id): void
     {
         $data = $request->validated();
 
         foreach ($data['students'] as $item) {
 
-            if ($item['action'] == 'update') {
-                $this->attendance->update($item['id'], ['point' => 14]);
-                $this->attendanceJournal->update($item['id'], [
-                    'classroom_student_id' => $item['classroom_student_id'],
-                    'lesson_hour_id' => $item['lesson_hour_id'],
-                    'status' => $item['status'] == 'present' ? AttendanceEnum::PRESENT->value : ($item['status'] == 'permit' ? AttendanceEnum::PERMIT->value : ($item['status'] == 'sick' ? AttendanceEnum::SICK->value : ($item['status'] == 'alpha' ? AttendanceEnum::ALPHA->value : ''))),
-                ]);
-            } else if ($item['action'] == 'delete') {
-                $this->attendance->update($item['id'], ['point' => 14]);
-                $this->attendanceJournal->delete($item['id']);
+            // dd($item);
+            if (isset($item['action'])) {
+                if ($item["action"] == 'update' && isset($item['classroom_student_id'])) {
+
+                    $this->attendance->updateWithAttribute(
+                        [
+                            'model_type' => 'App\Models\ClassroomStudent',
+                            'model_id' => $item['classroom_student_id'],
+                        ],
+                        ['point' => 14]
+                    );
+                    $this->attendanceJournal->update($item['id'], [
+                        'classroom_student_id' => $item['classroom_student_id'],
+                        'lesson_hour_id' => $item['lesson_hour_id'],
+                        'status' => $item['status'] == 'present' ? AttendanceEnum::PRESENT->value : ($item['status'] == 'permit' ? AttendanceEnum::PERMIT->value : ($item['status'] == 'sick' ? AttendanceEnum::SICK->value : ($item['status'] == 'alpha' ? AttendanceEnum::ALPHA->value : ''))),
+                    ]);
+                } else if ($item["action"] == 'delete' && $item['classroom_student_id'] != 'undefined') {
+                    $this->attendance->updateWithAttribute(
+                        [
+                            'model_type' => 'App\Models\ClassroomStudent',
+                            'model_id' => $item['classroom_student_id'],
+                        ],
+                        ['point' => 14]
+                    );
+
+                    $this->attendanceJournal->delete($item['id']);
+                }
             } else {
                 $attendance = $this->attendance->getClassroomStudent($item['classroom_student_id']);
                 $this->attendanceJournal->store([
@@ -75,8 +93,6 @@ class AttendanceJournalService
 
                 $this->attendance->update($attendance->id, ['point' => $attendance->point - 1]);
             }
-
-
         }
     }
 
