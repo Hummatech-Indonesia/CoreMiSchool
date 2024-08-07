@@ -5,6 +5,7 @@ namespace App\Contracts\Repositories\Teachers;
 use App\Contracts\Interfaces\Teachers\TeacherJournalInterface;
 use App\Contracts\Repositories\BaseRepository;
 use App\Models\TeacherJournal;
+use Carbon\Carbon;
 
 class TeacherJournalRepository extends BaseRepository implements TeacherJournalInterface
 {
@@ -51,5 +52,13 @@ class TeacherJournalRepository extends BaseRepository implements TeacherJournalI
     public function getLessonSchedule(mixed $id): mixed
     {
         return $this->model->query()->where('lesson_schedule_id', $id)->first();
+    }
+
+    public function histories(): mixed
+    {
+        return $this->model->query()
+        ->with('attendanceJournals')
+            // ->where('date', '<', Carbon::now()->day)
+            ->paginate();
     }
 }
