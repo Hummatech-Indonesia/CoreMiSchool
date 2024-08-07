@@ -14,6 +14,12 @@
                         <option value="male" {{ request('gender') == 'male' ? 'selected' : '' }}>Laki-laki</option>
                         <option value="female" {{ request('gender') == 'female' ? 'selected' : '' }}>Perempuan</option>
                     </select>
+                    <select name="class" class="form-select">
+                        <option value="">Pilih Kelas</option>
+                        @foreach ($classrooms as $classroom)
+                        <option value="{{ $classroom->classroom->name }}">{{ $classroom->classroom->name }}</option>
+                        @endforeach
+                    </select>
                     <div>
                         <button type="submit" class="btn btn-primary btn-md">Filter</button>
                     </div>
