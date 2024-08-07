@@ -13,7 +13,10 @@ interface AttendanceJournalInterface extends GetInterface, StoreInterface, Updat
 {
     public function getByClassroomStudent(mixed $id): mixed;
     public function deleteByJournalTeacher(mixed $id) : mixed;
-    public function updateByJournalTeacher(mixed $id, array $data) : mixed;
+    public function updateByClassroomStudent(mixed $id, array $data) : mixed;
     public function whereLessonSchedule(mixed $id) : mixed;
     public function whereClassroomStudent(mixed $id, mixed $classroom): mixed;
+    public function getByTeacherJournal(mixed $id): mixed;
 }
+
+

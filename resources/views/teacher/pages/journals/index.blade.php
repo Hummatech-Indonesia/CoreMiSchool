@@ -73,7 +73,7 @@
                                     <td class="text-center">
                                         <a href="{{ route('teacher.journals.show', $lessonSchedule->teacherJournals->first()->id) }}"
                                             class="btn btn-primary">Detail</a>
-                                        <a href="{{ route('teacher.journals.create', $lessonSchedule->teacherJournals->first()->id) }}"
+                                        <a href="{{ route('teacher.journals.edit', $lessonSchedule->teacherJournals->first()->id) }}"
                                             class="btn btn-warning">Edit Jurnal</a>
                                     </td>
                                 @else
