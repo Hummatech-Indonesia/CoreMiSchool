@@ -47,8 +47,9 @@ class StudentController extends Controller
         $students = $this->student->search($request);
         $alumnus = $this->classroomStudent->getAlumnus($request);
         $religions = $this->religion->get();
+        $classrooms = $this->classroomStudent->get();
 
-        return view('school.new.student.index', compact('students', 'religions', 'alumnus'));
+        return view('school.new.student.index', compact('students', 'religions', 'alumnus', 'classrooms'));
     }
 
     /**

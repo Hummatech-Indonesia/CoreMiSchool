@@ -2,7 +2,7 @@
     <h4>Daftar Alumni</h4>
     <div class="row mb-3 mt-3">
         <div class="col-lg-8 col-md-12 mb-3">
-            <form class="d-flex gap-2">
+            <form class="d-flex gap-2" action="/school/students">
                 <div class="position-relative">
                     <input type="text" name="name" class="form-control product-search ps-5" id="input-search"
                         placeholder="Cari..." value="{{ old('name', request('name')) }}">
@@ -13,6 +13,12 @@
                         <option value="">Tampilkan semua</option>
                         <option value="male" {{ request('gender') == 'male' ? 'selected' : '' }}>Laki-laki</option>
                         <option value="female" {{ request('gender') == 'female' ? 'selected' : '' }}>Perempuan</option>
+                    </select>
+                    <select name="class" class="form-select">
+                        <option value="">Pilih Kelas</option>
+                        @foreach ($classrooms as $classroom)
+                        <option value="{{ $classroom->classroom->name }}">{{ $classroom->classroom->name }}</option>
+                        @endforeach
                     </select>
                     <div>
                         <button type="submit" class="btn btn-primary btn-md">Filter</button>
