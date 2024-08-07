@@ -95,6 +95,11 @@ class ClassroomStudentRepository extends BaseRepository implements ClassroomStud
                 });
             })
             ->whereRelation('classroom.levelClass', 'name', 'Alumni')
+            ->when($request->class, function ($query) use ($request) {
+                $query->whereHas('classroom', function ($query) use ($request) {
+                    $query->where('name', 'LIKE', '%' . $request->class . '%');
+                });
+            })
             ->latest()
             ->get();
     }
