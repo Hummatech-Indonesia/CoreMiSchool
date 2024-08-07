@@ -70,7 +70,11 @@ use Carbon\Carbon;
                     <table class="table text-nowrap customize-table mb-0 align-middle" id="student-table">
                         <thead class="text-dark fs-4">
                             <tr>
-                                <th class="text-white rounded-start" style="background-color: #5D87FF;">Siswa</th>
+                                <th class="text-white rounded-start" style="background-color: #5D87FF;">No</th>
+                                <th class="text-white" style="background-color: #5D87FF;">Siswa</th>
+                                <th class="text-white" style="background-color: #5D87FF;">Jenis Kelamin</th>
+                                <th class="text-white" style="background-color: #5D87FF;">NISN</th>
+                                <th class="text-white" style="background-color: #5D87FF;">NIK</th>
                                 <th class="text-white" style="background-color: #5D87FF;">Status</th>
                             </tr>
                         </thead>
@@ -78,7 +82,11 @@ use Carbon\Carbon;
                             {{-- @dd($classroomStudents->attendanceJournals) --}}
                             @foreach ($classroomStudents as $classroomStudent)
                                 <tr>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $classroomStudent->classroomStudent->student->user->name }}</td>
+                                    <td>{{ $classroomStudent->classroomStudent->student->gender->label() }}</td>
+                                    <td>{{ $classroomStudent->classroomStudent->student->nisn }}</td>
+                                    <td>{{ $classroomStudent->classroomStudent->student->nik }}</td>
                                     <td>
                                         <div class="d-flex gap-5 align-items-center">
                                             <div class="form-check">

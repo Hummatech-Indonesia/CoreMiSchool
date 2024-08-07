@@ -57,8 +57,8 @@ class TeacherJournalRepository extends BaseRepository implements TeacherJournalI
     public function histories(): mixed
     {
         return $this->model->query()
-        ->with('attendanceJournals')
-            // ->where('date', '<', Carbon::now()->day)
+            ->with('attendanceJournals')
+            ->where('date', '<', now()->format('Y-m-d'))
             ->paginate();
     }
 }

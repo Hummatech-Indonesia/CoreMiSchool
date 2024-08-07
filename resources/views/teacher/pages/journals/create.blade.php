@@ -70,6 +70,9 @@ use Carbon\Carbon;
                         <thead class="text-dark fs-4">
                             <tr>
                                 <th class="text-white rounded-start" style="background-color: #5D87FF;">Siswa</th>
+                                <th class="text-white" style="background-color: #5D87FF;">Jenis Kelamin</th>
+                                <th class="text-white" style="background-color: #5D87FF;">NISN</th>
+                                <th class="text-white" style="background-color: #5D87FF;">NIK</th>
                                 <th class="text-white" style="background-color: #5D87FF;">Status</th>
                             </tr>
                         </thead>
@@ -77,6 +80,9 @@ use Carbon\Carbon;
                             @foreach ($classroomStudents as $classroomStudent)
                                 <tr>
                                     <td>{{ $classroomStudent->student->user->name }}</td>
+                                    <td>{{ $classroomStudent->student->gender->label() }}</td>
+                                    <td>{{ $classroomStudent->student->nisn }}</td>
+                                    <td>{{ $classroomStudent->student->nik }}</td>
                                     <td>
                                         <div class="d-flex gap-5 align-items-center">
                                             <div class="form-check">

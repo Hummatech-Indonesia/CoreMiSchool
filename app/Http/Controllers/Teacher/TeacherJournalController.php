@@ -44,6 +44,7 @@ class TeacherJournalController extends Controller
     {
         $teacherSchedules = $this->lessonSchedule->whereTeacher(auth()->user()->id, now());
         $histories = $this->teacherJournal->histories();
+        // dd($teacherSchedules);
         return view('teacher.pages.journals.index', compact('teacherSchedules', 'histories'));
     }
 
@@ -65,7 +66,7 @@ class TeacherJournalController extends Controller
             $data = $this->service->store($request, $lessonSchedule);
             $teacherJournal = $this->teacherJournal->store($data);
             $this->serviceAttendance->storeJournal($request['attendance'], $teacherJournal);
-            return redirect()->back()->with('success', 'Berhasil mengirim jurnal');
+            return to_route('teacher.journals.index')->with('success', 'Berhasil mengirim jurnal');
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
         }
@@ -98,7 +99,7 @@ class TeacherJournalController extends Controller
             $data = $this->service->update($request, $teacherJournal->lesson_schedule_id);
             $this->teacherJournal->update($teacherJournal->id, $data);
             $this->serviceAttendance->updateJournal($request['attendance'], $teacherJournal);
-            return redirect()->back()->with('success', 'Berhasil mengupdate jurnal');
+            return to_route('teacher.journals.index')->with('success', 'Berhasil mengupdate jurnal');
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
         }
