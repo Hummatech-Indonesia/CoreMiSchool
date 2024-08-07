@@ -25,9 +25,6 @@ class   LoginService
 
         $role = auth()->user()->roles->pluck('name')[0];
             switch ($role) {
-                case "admin":
-                    return to_route('admin.dashboard');
-                    break;
                 case "student":
                     return to_route('student.dashboard');
                     break;
