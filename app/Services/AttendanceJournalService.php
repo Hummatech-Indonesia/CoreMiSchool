@@ -43,66 +43,92 @@ class AttendanceJournalService
         $rules = $this->lessonSchedule->show($teacherJournal->lesson_schedule_id);
         $min = $this->lessonHour->whereBetween($rules->start->start, $rules->end->start, $rules->day);
 
-        // dd($attendance);
         foreach ($attendance as $key => $value) {
             $data['teacher_journal_id'] = $teacherJournal->id;
             $data['classroom_student_id'] = $key;
             $data['status'] = $value == 'present' ? AttendanceEnum::PRESENT->value : ($value == 'permit' ? AttendanceEnum::PERMIT->value : ($value == 'sick' ? AttendanceEnum::SICK->value : ($value == 'alpha' ? AttendanceEnum::ALPHA->value : '')));
             $this->attendanceJournal->store($data);
 
-            // dd($key);
             $rule = $this->attendance->getClassroomStudent($key);
-            // dd($rule->id);
-            $this->attendance->update($rule->id, ['point' => $rule->point - $min]);
 
+            if ($value != 'present') {
+                $this->attendance->update($rule->id, ['point' => $rule->point - $min]);
+            }
         }
     }
 
-    public function updateJournal(UpdateTeacherJournalRequest $request, string $id): void
+    public function updateJournal($attendance, TeacherJournal $teacherJournal): void
     {
-        $data = $request->validated();
+        $rules = $this->lessonSchedule->show($teacherJournal->lesson_schedule_id);
+        $min = $this->lessonHour->whereBetween($rules->start->start, $rules->end->start, $rules->day);
 
-        foreach ($data['students'] as $item) {
+        foreach ($attendance as $key => $value) {
+            $attendanceJournal = $this->attendanceJournal->getByClassroomStudent($key);
 
-            // dd($item);
-            if (isset($item['action'])) {
-                if ($item["action"] == 'update' && isset($item['classroom_student_id'])) {
+            if ($attendanceJournal->status->value != $value) {
+                if ($value == 'present') {
+                    $data['status'] = $value == 'present' ? AttendanceEnum::PRESENT->value : ($value == 'permit' ? AttendanceEnum::PERMIT->value : ($value == 'sick' ? AttendanceEnum::SICK->value : ($value == 'alpha' ? AttendanceEnum::ALPHA->value : '')));
+                    $this->attendanceJournal->updateByClassroomStudent($key, $data);
 
-                    $this->attendance->updateWithAttribute(
-                        [
-                            'model_type' => 'App\Models\ClassroomStudent',
-                            'model_id' => $item['classroom_student_id'],
-                        ],
-                        ['point' => 14]
-                    );
-                    $this->attendanceJournal->update($item['id'], [
-                        'classroom_student_id' => $item['classroom_student_id'],
-                        'lesson_hour_id' => $item['lesson_hour_id'],
-                        'status' => $item['status'] == 'present' ? AttendanceEnum::PRESENT->value : ($item['status'] == 'permit' ? AttendanceEnum::PERMIT->value : ($item['status'] == 'sick' ? AttendanceEnum::SICK->value : ($item['status'] == 'alpha' ? AttendanceEnum::ALPHA->value : ''))),
-                    ]);
-                } else if ($item["action"] == 'delete' && $item['classroom_student_id'] != 'undefined') {
-                    $this->attendance->updateWithAttribute(
-                        [
-                            'model_type' => 'App\Models\ClassroomStudent',
-                            'model_id' => $item['classroom_student_id'],
-                        ],
-                        ['point' => 14]
-                    );
+                    $rule = $this->attendance->getClassroomStudent($key);
+                    $this->attendance->update($rule->id, ['point' => $rule->point + $min]);
+                } else {
+                    $data['status'] = $value == 'present' ? AttendanceEnum::PRESENT->value : ($value == 'permit' ? AttendanceEnum::PERMIT->value : ($value == 'sick' ? AttendanceEnum::SICK->value : ($value == 'alpha' ? AttendanceEnum::ALPHA->value : '')));
+                    $this->attendanceJournal->updateByClassroomStudent($key, $data);
 
-                    $this->attendanceJournal->delete($item['id']);
+                    $rule = $this->attendance->getClassroomStudent($key);
+
+                    if ($attendanceJournal->status->value == 'present') {
+                        $this->attendance->update($rule->id, ['point' => $rule->point - $min]);
+                    }
+
                 }
-            } else {
-                $attendance = $this->attendance->getClassroomStudent($item['classroom_student_id']);
-                $this->attendanceJournal->store([
-                    'teacher_journal_id' => $id,
-                    'classroom_student_id' => $item['classroom_student_id'],
-                    'lesson_hour_id' => $item['lesson_hour_id'],
-                    'status' => $item['status'] == 'present' ? AttendanceEnum::PRESENT->value : ($item['status'] == 'permit' ? AttendanceEnum::PERMIT->value : ($item['status'] == 'sick' ? AttendanceEnum::SICK->value : ($item['status'] == 'alpha' ? AttendanceEnum::ALPHA->value : ''))),
-                ]);
-
-                $this->attendance->update($attendance->id, ['point' => $attendance->point - 1]);
             }
         }
+
+        // $data = $request->validated();
+
+        // foreach ($data['students'] as $item) {
+
+        //     // dd($item);
+        //     if (isset($item['action'])) {
+        //         if ($item["action"] == 'update' && isset($item['classroom_student_id'])) {
+
+        //             $this->attendance->updateWithAttribute(
+        //                 [
+        //                     'model_type' => 'App\Models\ClassroomStudent',
+        //                     'model_id' => $item['classroom_student_id'],
+        //                 ],
+        //                 ['point' => 14]
+        //             );
+        //             $this->attendanceJournal->update($item['id'], [
+        //                 'classroom_student_id' => $item['classroom_student_id'],
+        //                 'lesson_hour_id' => $item['lesson_hour_id'],
+        //                 'status' => $item['status'] == 'present' ? AttendanceEnum::PRESENT->value : ($item['status'] == 'permit' ? AttendanceEnum::PERMIT->value : ($item['status'] == 'sick' ? AttendanceEnum::SICK->value : ($item['status'] == 'alpha' ? AttendanceEnum::ALPHA->value : ''))),
+        //             ]);
+        //         } else if ($item["action"] == 'delete' && $item['classroom_student_id'] != 'undefined') {
+        //             $this->attendance->updateWithAttribute(
+        //                 [
+        //                     'model_type' => 'App\Models\ClassroomStudent',
+        //                     'model_id' => $item['classroom_student_id'],
+        //                 ],
+        //                 ['point' => 14]
+        //             );
+
+        //             $this->attendanceJournal->delete($item['id']);
+        //         }
+        //     } else {
+        //         $attendance = $this->attendance->getClassroomStudent($item['classroom_student_id']);
+        //         $this->attendanceJournal->store([
+        //             'teacher_journal_id' => $id,
+        //             'classroom_student_id' => $item['classroom_student_id'],
+        //             'lesson_hour_id' => $item['lesson_hour_id'],
+        //             'status' => $item['status'] == 'present' ? AttendanceEnum::PRESENT->value : ($item['status'] == 'permit' ? AttendanceEnum::PERMIT->value : ($item['status'] == 'sick' ? AttendanceEnum::SICK->value : ($item['status'] == 'alpha' ? AttendanceEnum::ALPHA->value : ''))),
+        //         ]);
+
+        //         $this->attendance->update($attendance->id, ['point' => $attendance->point - 1]);
+        //     }
+        // }
     }
 
     public function store(StoreAttendanceJournalRequest $request)

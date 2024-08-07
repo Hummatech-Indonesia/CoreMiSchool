@@ -120,25 +120,36 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        $this->service->delete($student);
-        $this->student->delete($student->id);
-        $student->user->delete();
-        $this->modelHasRfid->delete('App\Models\Student', $student->id);
+        try {
+            $this->service->delete($student);
+            $this->student->delete($student->id);
+            $student->user->delete();
+            $this->modelHasRfid->delete('App\Models\Student', $student->id);
 
-        return redirect()->back()->with('success', 'Siswa berhasil dihapus');
+            return redirect()->back()->with('success', 'Siswa berhasil dihapus');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 
     public function downloadTemplate()
     {
-        $template = public_path('file/format-excel-import-student.xlsx');
-        // dd($template);
-        return response()->download($template, 'format-excel-import-student.xlsx');
+        try {
+            $template = public_path('file/format-excel-import-student.xlsx');
+            return response()->download($template, 'format-excel-import-student.xlsx');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 
     public function import(Request $request, string $classroom)
     {
-        $file = $request->file('file');
-        Excel::import(new StudentImport($classroom), $file);
-        return redirect()->back()->with('success', "Berhasil Mengimport Data!");
+        try {
+            $file = $request->file('file');
+            Excel::import(new StudentImport($classroom), $file);
+            return redirect()->back()->with('success', "Berhasil Mengimport Data!");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 }

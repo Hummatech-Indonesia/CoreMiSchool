@@ -20,7 +20,7 @@ use Carbon\Carbon;
                         <h4 class="fw-semibold mb-8 text-dark">Pengisian Jurnal</h4>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item text-dark fs-3" aria-current="page">{{ $lessonSchedule->teacherSubject->subject->name }} - {{ $lessonSchedule->classroom->name }}</li>
+                                <li class="breadcrumb-item text-dark fs-3" aria-current="page">{{ $teacherJournal->lessonSchedule->teacherSubject->subject->name }} - {{ $teacherJournal->lessonSchedule->classroom->name }}</li>
                             </ol>
                         </nav>
                     </div>
@@ -34,7 +34,8 @@ use Carbon\Carbon;
             </div>
         </div>
     </div>
-    <form action="{{ route('teacher.journals.store', $lessonSchedule->id) }}" method="POST">
+    <form action="{{ route('teacher.journals.update', $teacherJournal->id) }}" method="POST">
+        @method('put')
         @csrf
 
         <div class="row">
@@ -49,7 +50,7 @@ use Carbon\Carbon;
                 <h5 class="fw-bold pb-3">Laporan Kegiatan</h5>
                 <div class="form-group mb-3">
                     <label for="title" class="form-label">Judul</label>
-                    <input type="text" class="form-control" name="title" id="title">
+                    <input type="text" class="form-control" name="title" id="title" value="{{ $teacherJournal->title ?? '' }}">
                 </div>
                 <div class="form-group">
                     <label for="description" class="form-label">Tuliskan laporan di sini</label>
@@ -69,7 +70,8 @@ use Carbon\Carbon;
                     <table class="table text-nowrap customize-table mb-0 align-middle" id="student-table">
                         <thead class="text-dark fs-4">
                             <tr>
-                                <th class="text-white rounded-start" style="background-color: #5D87FF;">Siswa</th>
+                                <th class="text-white rounded-start" style="background-color: #5D87FF;">No</th>
+                                <th class="text-white" style="background-color: #5D87FF;">Siswa</th>
                                 <th class="text-white" style="background-color: #5D87FF;">Jenis Kelamin</th>
                                 <th class="text-white" style="background-color: #5D87FF;">NISN</th>
                                 <th class="text-white" style="background-color: #5D87FF;">NIK</th>
@@ -77,51 +79,53 @@ use Carbon\Carbon;
                             </tr>
                         </thead>
                         <tbody>
+                            {{-- @dd($classroomStudents->attendanceJournals) --}}
                             @foreach ($classroomStudents as $classroomStudent)
                                 <tr>
-                                    <td>{{ $classroomStudent->student->user->name }}</td>
-                                    <td>{{ $classroomStudent->student->gender->label() }}</td>
-                                    <td>{{ $classroomStudent->student->nisn }}</td>
-                                    <td>{{ $classroomStudent->student->nik }}</td>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $classroomStudent->classroomStudent->student->user->name }}</td>
+                                    <td>{{ $classroomStudent->classroomStudent->student->gender->label() }}</td>
+                                    <td>{{ $classroomStudent->classroomStudent->student->nisn }}</td>
+                                    <td>{{ $classroomStudent->classroomStudent->student->nik }}</td>
                                     <td>
                                         <div class="d-flex gap-5 align-items-center">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio"
-                                                    name="attendance[{{ $classroomStudent->id }}]"
-                                                    id="attendance-{{ $classroomStudent->id . '-' . AttendanceEnum::PRESENT->value }}"
-                                                    value="{{ AttendanceEnum::PRESENT->value }}" checked>
+                                                <input class="form-check-input" {{ $classroomStudent->status == AttendanceEnum::PRESENT ? 'checked' : '' }} type="radio"
+                                                    name="attendance[{{ $classroomStudent->classroom_student_id }}]"
+                                                    id="attendance-{{ $classroomStudent->classroom_student_id . '-' . AttendanceEnum::PRESENT->value }}"
+                                                    value="{{ AttendanceEnum::PRESENT->value }}">
                                                 <label class="form-check-label"
-                                                    for="attendance-{{ $classroomStudent->id . '-' . AttendanceEnum::PRESENT->value }}">
+                                                    for="attendance-{{ $classroomStudent->classroom_student_id . '-' . AttendanceEnum::PRESENT->value }}">
                                                     Masuk
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio"
-                                                    name="attendance[{{ $classroomStudent->id }}]"
-                                                    id="attendance-{{ $classroomStudent->id . '-' . AttendanceEnum::PERMIT->value }}"
+                                                <input class="form-check-input" {{ $classroomStudent->status == AttendanceEnum::PERMIT ? 'checked' : '' }} type="radio"
+                                                    name="attendance[{{ $classroomStudent->classroom_student_id }}]"
+                                                    id="attendance-{{ $classroomStudent->classroom_student_id . '-' . AttendanceEnum::PERMIT->value }}"
                                                     value="{{ AttendanceEnum::PERMIT->value }}">
                                                 <label class="form-check-label"
-                                                    for="attendance-{{ $classroomStudent->id . '-' . AttendanceEnum::PERMIT->value }}">
+                                                    for="attendance-{{ $classroomStudent->classroom_student_id . '-' . AttendanceEnum::PERMIT->value }}">
                                                     Izin
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio"
-                                                    name="attendance[{{ $classroomStudent->id }}]"
-                                                    id="attendance-{{ $classroomStudent->id . '-' . AttendanceEnum::SICK->value }}"
+                                                <input class="form-check-input" {{ $classroomStudent->status == AttendanceEnum::SICK ? 'checked' : '' }} type="radio"
+                                                    name="attendance[{{ $classroomStudent->classroom_student_id }}]"
+                                                    id="attendance-{{ $classroomStudent->classroom_student_id . '-' . AttendanceEnum::SICK->value }}"
                                                     value="{{ AttendanceEnum::SICK->value }}">
                                                 <label class="form-check-label"
-                                                    for="attendance-{{ $classroomStudent->id . '-' . AttendanceEnum::SICK->value }}">
+                                                    for="attendance-{{ $classroomStudent->classroom_student_id . '-' . AttendanceEnum::SICK->value }}">
                                                     Sakit
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio"
-                                                    name="attendance[{{ $classroomStudent->id }}]"
-                                                    id="attendance-{{ $classroomStudent->id . '-' . AttendanceEnum::ALPHA->value }}"
+                                                <input class="form-check-input" {{ $classroomStudent->status == AttendanceEnum::ALPHA ? 'checked' : '' }} type="radio"
+                                                    name="attendance[{{ $classroomStudent->classroom_student_id }}]"
+                                                    id="attendance-{{ $classroomStudent->classroom_student_id . '-' . AttendanceEnum::ALPHA->value }}"
                                                     value="{{ AttendanceEnum::ALPHA->value }}">
                                                 <label class="form-check-label"
-                                                    for="attendance-{{ $classroomStudent->id . '-' . AttendanceEnum::ALPHA->value }}">
+                                                    for="attendance-{{ $classroomStudent->classroom_student_id . '-' . AttendanceEnum::ALPHA->value }}">
                                                     Alpha
                                                 </label>
                                             </div>

@@ -42,8 +42,10 @@ class TeacherJournalController extends Controller
      */
     public function index()
     {
-        $teacherSchedules = $this->lessonSchedule->whereTeacher(auth()->user()->id, now()->format('l'));
-        return view('teacher.pages.journals.index', compact('teacherSchedules'));
+        $teacherSchedules = $this->lessonSchedule->whereTeacher(auth()->user()->id, now());
+        $histories = $this->teacherJournal->histories();
+        // dd($teacherSchedules);
+        return view('teacher.pages.journals.index', compact('teacherSchedules', 'histories'));
     }
 
     /**
@@ -51,12 +53,6 @@ class TeacherJournalController extends Controller
      */
     public function create(LessonSchedule $lessonSchedule)
     {
-        // dd($lessonSchedule->query()->with('journals')->first());
-
-        // $attendanceJournals = $this->attendanceJournal->whereLessonSchedule($lessonSchedule->id);
-        // $teacherJournal = $this->teacherJournal->getLessonSchedule($lessonSchedule->id);
-        // $lessonHours = $this->lessonHour->whereTeacherSchedule($lessonSchedule, now());
-
         $classroomStudents = $this->classroomStudent->getByClassId($lessonSchedule->classroom->id);
         return view('teacher.pages.journals.create', compact('classroomStudents', 'lessonSchedule'));
     }
@@ -66,20 +62,23 @@ class TeacherJournalController extends Controller
      */
     public function store(StoreTeacherJournalRequest $request, LessonSchedule $lessonSchedule)
     {
-        // dd($request->validated());
-        if ($this->service->checkDuplicatedStudent($request)) return response()->json('error', 'Satu Siswa Hanya Dapat Mempunyai 1 Status Izin');
-        $data = $this->service->store($request, $lessonSchedule);
-        $teacherJournal = $this->teacherJournal->store($data);
-        $this->serviceAttendance->storeJournal($request['attendance'], $teacherJournal);
-        return response()->json(['success' => 'Berhasil mengirim jurnal']);
+        try {
+            $data = $this->service->store($request, $lessonSchedule);
+            $teacherJournal = $this->teacherJournal->store($data);
+            $this->serviceAttendance->storeJournal($request['attendance'], $teacherJournal);
+            return to_route('teacher.journals.index')->with('success', 'Berhasil mengirim jurnal');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(TeacherJournal $teacherJournal)
+    public function show(TeacherJournal $journal)
     {
-        //
+        $attendanceJournals = $journal->attendanceJournals;
+        return view('teacher.pages.journals.detail', compact('journal', 'attendanceJournals'));
     }
 
     /**
@@ -87,20 +86,23 @@ class TeacherJournalController extends Controller
      */
     public function edit(TeacherJournal $teacherJournal)
     {
-        //
+        $classroomStudents = $this->attendanceJournal->getByTeacherJournal($teacherJournal->id);
+        return view('teacher.pages.journals.update', compact('teacherJournal', 'classroomStudents'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTeacherJournalRequest $request, LessonSchedule $lessonSchedule)
+    public function update(UpdateTeacherJournalRequest $request, TeacherJournal $teacherJournal)
     {
-        $teacherJournal = $this->teacherJournal->getLessonSchedule($lessonSchedule->id);
-        if ($this->service->checkDuplicatedStudentUpdate($request)) return response()->json('error', 'Satu Siswa Hanya Dapat Mempunyai 1 Status Izin');
-        $data = $this->service->update($request, $lessonSchedule);
-        $this->teacherJournal->update($teacherJournal->id, $data);
-        if ($request['students'] != null) $this->serviceAttendance->updateJournal($request, $teacherJournal->id);
-        return response()->json(['success' => 'Berhasil mengupdate jurnal']);
+        try {
+            $data = $this->service->update($request, $teacherJournal->lesson_schedule_id);
+            $this->teacherJournal->update($teacherJournal->id, $data);
+            $this->serviceAttendance->updateJournal($request['attendance'], $teacherJournal);
+            return to_route('teacher.journals.index')->with('success', 'Berhasil mengupdate jurnal');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 
     /**
@@ -108,7 +110,11 @@ class TeacherJournalController extends Controller
      */
     public function destroy(TeacherJournal $teacherJournal)
     {
-        $this->teacherJournal->delete($teacherJournal->id);
-        return redirect()->back()->with('success', 'Berhasi menghapus jurnal');
+        try {
+            $this->teacherJournal->delete($teacherJournal->id);
+            return redirect()->back()->with('success', 'Berhasi menghapus jurnal');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 }

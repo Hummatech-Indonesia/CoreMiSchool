@@ -43,8 +43,12 @@ class SubjectController extends Controller
      */
     public function store(StoreSubjectRequest $request)
     {
-        $this->subject->store($request->validated());
-        return redirect()->back()->with('success', 'Berhasil menambahkan mata pelajaran');
+        try {
+            $this->subject->store($request->validated());
+            return redirect()->back()->with('success', 'Berhasil menambahkan mata pelajaran');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 
     /**
@@ -68,8 +72,12 @@ class SubjectController extends Controller
      */
     public function update(UpdateSubjectRequest $request, Subject $subject)
     {
-        $this->subject->update($subject->id, $request->validated());
-        return redirect()->back()->with('success', 'Berhasil memperbarui mata pelajaran');
+        try {
+            $this->subject->update($subject->id, $request->validated());
+            return redirect()->back()->with('success', 'Berhasil memperbarui mata pelajaran');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 
     /**
@@ -77,7 +85,11 @@ class SubjectController extends Controller
      */
     public function destroy(Subject $subject)
     {
-        $this->subject->delete($subject->id);
-        return redirect()->back()->with('success', 'Berhasil menghapus mata pelajaran');
+        try {
+            $this->subject->delete($subject->id);
+            return redirect()->back()->with('success', 'Berhasil menghapus mata pelajaran');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 }

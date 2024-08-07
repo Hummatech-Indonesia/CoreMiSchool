@@ -56,7 +56,10 @@ class Kernel extends ConsoleKernel
 
             info($attendanceData);
             Attendance::insert($attendanceData);
-        });
+        // });
+        })
+        // ->everyMinute();
+        ->dailyAt('01:00');
 
         $schedule->call(function() {
             $day = strtolower(now()->format('l'));
@@ -70,7 +73,9 @@ class Kernel extends ConsoleKernel
                 ->delete();
             }
 
-        })->dailyAt('23:00');
+        })
+        // ->everyMinute();
+        ->dailyAt('23:00');
 
         // $schedule->call(function() {
 

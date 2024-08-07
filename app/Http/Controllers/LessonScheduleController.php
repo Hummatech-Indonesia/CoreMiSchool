@@ -55,8 +55,12 @@ class LessonScheduleController extends Controller
      */
     public function store(StoreLessonScheduleRequest $request, Classroom $classroom, string $day)
     {
-        $this->service->store($request, $classroom, $day);
-        return redirect()->back()->with('success', 'Berhasil menambahkan jadwal pelajaran');
+        try {
+            $this->service->store($request, $classroom, $day);
+            return redirect()->back()->with('success', 'Berhasil menambahkan jadwal pelajaran');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 
     /**
@@ -86,8 +90,12 @@ class LessonScheduleController extends Controller
      */
     public function update(UpdateLessonScheduleRequest $request, LessonSchedule $lessonSchedule)
     {
-        $this->service->update($request,$lessonSchedule);
-        return redirect()->back()->with('success', 'Berhasil memperbaiki jadwal pelajaran');
+        try {
+            $this->service->update($request,$lessonSchedule);
+            return redirect()->back()->with('success', 'Berhasil memperbaiki jadwal pelajaran');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 
     /**
@@ -95,7 +103,11 @@ class LessonScheduleController extends Controller
      */
     public function destroy(LessonSchedule $lessonSchedule)
     {
-        $this->lessonSchedule->delete($lessonSchedule->id);
-        return redirect()->back()->with('success', 'Berhasil menghapus jadwal pelajaran');
+        try {
+            $this->lessonSchedule->delete($lessonSchedule->id);
+            return redirect()->back()->with('success', 'Berhasil menghapus jadwal pelajaran');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 }

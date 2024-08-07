@@ -87,9 +87,13 @@ class EmployeeController extends Controller
      */
     public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
-        $data = $this->service->update($employee, $request);
-        $this->employee->update($employee->id, $data);
-        return redirect();
+        try {
+            $data = $this->service->update($employee, $request);
+            $this->employee->update($employee->id, $data);
+            return redirect();
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 
     /**
@@ -97,7 +101,11 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        $this->employee->delete($employee->id);
-        return redirect();
+        try {
+            $this->employee->delete($employee->id);
+            return redirect();
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 }
