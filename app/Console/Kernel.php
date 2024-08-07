@@ -19,7 +19,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command('app:create-attendance-command')->dailyAt('01:00');
+        $schedule->command('command:create-attendance')->dailyAt('01:00');
         $schedule->command('command:delete-attendance')->dailyAt('23:00');
     }
 
