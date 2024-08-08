@@ -1,4 +1,12 @@
 @extends('layouts.landing.layouts.app')
+@section('style')
+    <style>
+        .sl_two_colom_image {
+            margin-bottom: 50px;
+            margin-right: 100px;
+        }
+    </style>
+@endsection
 @section('banner')
     <!-- Bread Crumb -->
     <div class="bread_crumb" data-aos="fade-in" data-aos-duration="2000" data-aos-delay="100">
@@ -105,17 +113,17 @@
         </div>
     </section>
 
-    <section class="row_am service_list_two_colom" style="margin-bottom: 200px">
+    <section class="row_am service_list_two_colom">
         <div class="container">
             <div class="row">
 
-                <div class="col-md-6">
+                <div class="col-md-6 mb-5">
                     <div class="sl_two_colom_image" data-aos="fade-in" data-aos-duration="1000">
-                        <img src="{{ asset('landing_assets/images/landing/about-3.png') }}" alt="image" style="width: 450px; height: auto;">
+                        <img src="{{ asset('landing_assets/images/landing/about-3.png') }}" alt="image">
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-6 mt-5">
                     <div class="sl_two_colom_text" data-aos="fade-in" data-aos-duration="2000" data-aos-delay="100">
                         <div class="section_title">
                             <h2>Kenapa Memilih Mischool </h2>
@@ -129,10 +137,16 @@
 
                         <div class="service_list_point">
                             <ul data-aos="fade-up" data-aos-duration="2000">
-                                <li> <i class="icofont-check-circled" style="color: #13DEB9; font-size: 23px; margin-right: 10px"></i> Kemudahan Pengelolaan </li>
-                                <li> <i class="icofont-check-circled" style="color: #13DEB9; font-size: 23px; margin-right: 10px"></i> Pemantauan Akademis yang Akurat dan Komprehensif
+                                <li> <i class="icofont-check-circled"
+                                        style="color: #13DEB9; font-size: 23px; margin-right: 10px"></i> Kemudahan
+                                    Pengelolaan </li>
+                                <li> <i class="icofont-check-circled"
+                                        style="color: #13DEB9; font-size: 23px; margin-right: 10px"></i> Pemantauan
+                                    Akademis yang Akurat dan Komprehensif
                                 </li>
-                                <li> <i class="icofont-check-circled" style="color: #13DEB9; font-size: 23px; margin-right: 10px"></i>Keamanan Data Terdepan </li>
+                                <li> <i class="icofont-check-circled"
+                                        style="color: #13DEB9; font-size: 23px; margin-right: 10px"></i>Keamanan Data
+                                    Terdepan </li>
                             </ul>
                         </div>
                     </div>
@@ -140,5 +154,6 @@
 
             </div>
         </div>
+
     </section>
 @endsection
