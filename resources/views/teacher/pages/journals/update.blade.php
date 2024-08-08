@@ -12,37 +12,57 @@ use Carbon\Carbon;
     </style>
 @endsection
 @section('content')
-    <div class="card bg-light-primary shadow-none position-relative overflow-hidden border border-primary">
+    <div class="card bg-primary shadow-none position-relative overflow-hidden mb-4">
         <div class="card-body px-4 py-4">
             <div class="d-flex justify-content-between">
                 <div class="row align-items-center">
                     <div class="col-12">
-                        <h4 class="fw-semibold mb-8 text-dark">Pengisian Jurnal</h4>
+                        <h4 class="fw-semibold mb-8 text-white">Pengisian Jurnal</h4>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item text-dark fs-3" aria-current="page">{{ $teacherJournal->lessonSchedule->teacherSubject->subject->name }} - {{ $teacherJournal->lessonSchedule->classroom->name }}</li>
+                                <li class="breadcrumb-item text-white fs-3" aria-current="page">{{ $teacherJournal->lessonSchedule->teacherSubject->subject->name }} - {{ $teacherJournal->lessonSchedule->classroom->name }}</li>
                             </ol>
                         </nav>
                     </div>
                 </div>
-                <div class="bg-primary text-light d-flex flex-column align-items-center justify-content-center px-4 py-3 rounded"
-                    style="width: 75px; height: 75px;">
-                    <b class="fs-8">{{ now()->isoFormat('DD') }}</b>
-                    <p class="mb-0 fs-3">{{ now()->isoFormat('MMM') }}</p>
+                <div class="col-3">
+                    <div class="text-center mb-n5">
+                        <img src="{{ asset('admin_assets/dist/images/breadcrumb/ChatBc.png') }}" alt=""
+                            class="img-fluid mb-n4">
+                    </div>
                 </div>
-
             </div>
         </div>
     </div>
+
+    <div class="d-flex row me-0 mb-2 align-items-center">
+        <div class="col-lg-6 col-md-12 mb-3">
+            <div class="d-flex align-items-center">
+                <span class="mb-1 badge bg-primary p-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                            d="M12 7q-.825 0-1.412-.587T10 5t.588-1.412T12 3t1.413.588T14 5t-.587 1.413T12 7m0 14q-.625 0-1.062-.437T10.5 19.5v-9q0-.625.438-1.062T12 9t1.063.438t.437 1.062v9q0 .625-.437 1.063T12 21" />
+                    </svg>
+                </span>
+                <h4 class="ms-3 mb-0">Edit Jurnal</h4>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12 mb-3 p-0">
+            <div class="d-flex align-items-center justify-content-end">
+                <h4 class="ms-3 mb-0">Tanggal saat ini : </h4>
+                <div class="badge bg-light-primary ms-3">
+                    <div class="d-flex align-items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" class="text-primary"><path fill="currentColor" d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 16H5V10h14zm0-12H5V6h14zm-7 5h5v5h-5z"/></svg>
+                        <h6 class="mt-2 ms-3 me-2 text-primary">{{ Carbon::now()->isoFormat('DD MMM YYYY') }}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <form action="{{ route('teacher.journals.update', $teacherJournal->id) }}" method="POST">
         @method('put')
         @csrf
-
-        <div class="row">
-            <div class="col-lg-6 mb-3">
-                <h4>Tambah Jurnal</h4>
-            </div>
-        </div>
 
         {{-- description --}}
         <div class="card shadow">
@@ -63,8 +83,60 @@ use Carbon\Carbon;
         {{-- attendance --}}
         <div class="card shadow">
             <div class="card-body pt-3">
-                <div class="d-flex flex-direction-row justify-content-between">
-                    <h5 class="pb-3">Presensi Siswa</h5>
+                <h4 class="pb-3 mt-3">Presensi Siswa</h4>
+                <div class="row g-2">
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body py-3">
+                                <div class="d-flex">
+                                    <div class="border border-success"></div>
+                                    <div class="ms-3">
+                                        <h4>Jumlah Siswa Masuk</h4>
+                                        <h4 class="text-success"><b>{{ $teacherJournal->attendanceJournals->where('status', AttendanceEnum::PRESENT)->count() }}</b></h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body py-3">
+                                <div class="d-flex">
+                                    <div class="border border-primary"></div>
+                                    <div class="ms-3">
+                                        <h4>Jumlah Siswa Izin</h4>
+                                        <h4 class="text-primary"><b>{{ $teacherJournal->attendanceJournals->where('status', AttendanceEnum::PERMIT)->count() }}</b></h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body py-3">
+                                <div class="d-flex">
+                                    <div class="border border-warning"></div>
+                                    <div class="ms-3">
+                                        <h4>Jumlah Siswa Sakit</h4>
+                                        <h4 class="text-warning"><b>{{ $teacherJournal->attendanceJournals->where('status', AttendanceEnum::SICK)->count() }}</b></h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body py-3">
+                                <div class="d-flex">
+                                    <div class="border border-danger"></div>
+                                    <div class="ms-3">
+                                        <h4>Jumlah Siswa Alpha</h4>
+                                        <h4 class="text-danger"><b>{{ $teacherJournal->attendanceJournals->where('status', AttendanceEnum::ALPHA)->count() }}</b></h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="table-responsive rounded-2 mb-4">
                     <table class="table text-nowrap customize-table mb-0 align-middle" id="student-table">
