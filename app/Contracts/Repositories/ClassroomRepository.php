@@ -57,9 +57,13 @@ class ClassroomRepository extends BaseRepository implements ClassroomInterface
         return $this->model->query()->whereIn('school_year_id', $schoolYears)->get();
     }
 
-    public function where(mixed $data): mixed
+    public function where(Request $request, mixed $data): mixed
     {
-        return $this->model->query()->where('school_year_id', $data)->get();
+        return $this->model->query()
+            ->when($request->search, function($query) use ($request) {
+                $query->where('name', 'LIKE', '%' . $request->search . '%');
+            })
+            ->where('school_year_id', $data)->get();
     }
 
     public function whereSchoolYears(Request $request)

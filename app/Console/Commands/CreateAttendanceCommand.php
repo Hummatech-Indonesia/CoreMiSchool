@@ -17,7 +17,7 @@ class CreateAttendanceCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'app:create-attendance-command';
+    protected $signature = 'command:create-attendance';
 
     /**
      * The console command description.
@@ -45,19 +45,21 @@ class CreateAttendanceCommand extends Command
                 'point' => LessonHour::query()->where('day', $day)->count(),
                 'model_type' => "App\Models\ClassroomStudent",
                 'model_id' => $student->student->id,
+                'created_at' => now(),
                 'status' => AttendanceEnum::ALPHA->value
             ];
         })->toArray();
 
         $teachers = Employee::whereHas('modelHasRfid')
-            ->where('status', RoleEnum::TEACHER->value)
-            ->get();
+        ->where('status', RoleEnum::TEACHER->value)
+        ->get();
 
         $attendanceTeacher = $teachers->map(function ($teacher) {
             return [
                 'point' => 10,
                 'model_type' => "App\Models\Employee",
                 'model_id' => $teacher->id,
+                'created_at' => now(),
                 'status' => AttendanceEnum::ALPHA->value
             ];
         })->toArray();

@@ -43,7 +43,7 @@ class AttendanceController extends Controller
         }else{
             $yearId = $activeYear->id;
         }
-        $classrooms = $this->classroom->where($yearId);
+        $classrooms = $this->classroom->where($request, $yearId);
         // dd($classrooms);
         $schoolYears = $this->schoolYear->get();
         return view('school.new.attendace.student.class-attendace', compact('classrooms', 'schoolYears'));

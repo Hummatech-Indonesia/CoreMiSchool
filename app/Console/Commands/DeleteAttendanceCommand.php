@@ -30,12 +30,14 @@ class DeleteAttendanceCommand extends Command
     {
         $day = strtolower(now()->format('l'));
         if (AttendanceRule::where('day', $day)->where('role', RoleEnum::STUDENT->value)->first()->is_holiday) {
-            Attendance::where('model_type', 'App\Models\ClassroomStudent')
+            Attendance::where('model_type', 'App\Models\ClassroomStudent')->where('model_type', 'App\Models\ClassroomStudent')
+                ->whereDay('created_at', now()->day)->whereYear('created_at', now()->year)->whereMonth('created_at', now()->month)
                 ->delete();
         }
 
         if (AttendanceRule::where('day', $day)->where('role', RoleEnum::TEACHER->value)->first()->is_holiday) {
             Attendance::where('model_type', 'App\Models\Employee')
+                ->whereDay('created_at', now()->day)->whereYear('created_at', now()->year)->whereMonth('created_at', now()->month)
                 ->delete();
         }
     }

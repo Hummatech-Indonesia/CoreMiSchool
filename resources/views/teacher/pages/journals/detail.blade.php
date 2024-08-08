@@ -5,15 +5,15 @@
 @extends('teacher.layouts.app')
 
 @section('content')
-    <div class="card bg-light-primary shadow-none position-relative overflow-hidden border border-primary">
+    <div class="card bg-primary shadow-none position-relative overflow-hidden mb-0 rounded-bottom-0">
         <div class="card-body px-4 py-4">
             <div class="d-flex justify-content-between">
                 <div class="row align-items-center">
                     <div class="col-12">
-                        <h4 class="fw-semibold mb-8 text-dark">Pengisian Jurnal</h4>
+                        <h4 class="fw-semibold mb-8 text-white">Pengisian Jurnal</h4>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item text-dark fs-3" aria-current="page">Bahasa Indonesia - X RPL 1</li>
+                                <li class="breadcrumb-item text-white fs-3" aria-current="page">Bahasa Indonesia - X RPL 1</li>
                             </ol>
                         </nav>
                     </div>
@@ -23,7 +23,34 @@
                     <b class="fs-8">{{ Carbon::parse($journal->date)->isoFormat('DD') }}</b>
                     <p class="mb-0 fs-3">{{ Carbon::parse($journal->date)->isoFormat('MMM') }}</p>
                 </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="card bg-light-primary shadow-none position-relative overflow-hidden rounded-top-0">
+        <div class="card-body px-1 py-0">
+            <div class="card-body py-3">
+                <div class="d-flex gap-4">
+                    <div>
+                        <h4><b>Siswa Masuk</b></h4>
+                        <h5>89 Masuk</h5>
+                    </div>
+                    <div class="border-end border-dark"></div>
+                    <div>
+                        <h4><b>Siswa Izin</b></h4>
+                        <h5>89 Masuk</h5>
+                    </div>
+                    <div class="border-end border-dark"></div>
+                    <div>
+                        <h4><b>Siswa Sakit</b></h4>
+                        <h5>89 Masuk</h5>
+                    </div>
+                    <div class="border-end border-dark"></div>
+                    <div>
+                        <h4><b>Siswa Alpha</b></h4>
+                        <h5>89 Masuk</h5>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -48,7 +75,43 @@ Kegiatan ini memberikan banyak manfaat, termasuk peningkatan bakat musik, rasa p
     <div class="card shadow">
         <div class="card-body pt-3">
             <h4 class="pb-3">Presensi Siswa</h4>
-            <div class="table-responsive rounded-2 mb-4">
+
+            <div class="row g-2">
+                <div class="col-md-3">
+                    <div class="card bg-light-success">
+                        <div class="card-body py-3">
+                            <h4>Jumlah Siswa Masuk</h4>
+                            <h4 class="text-success"><b>89</b></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-light-primary">
+                        <div class="card-body py-3">
+                            <h4>Jumlah Siswa Izin</h4>
+                            <h4 class="text-primary"><b>89</b></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-light-warning">
+                        <div class="card-body py-3">
+                            <h4>Jumlah Siswa Sakit</h4>
+                            <h4 class="text-warning"><b>89</b></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-light-danger">
+                        <div class="card-body py-3">
+                            <h4>Jumlah Siswa Alpha</h4>
+                            <h4 class="text-danger"><b>89</b></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive rounded-2 mb-4 mt-4">
                 <table class="table text-nowrap customize-table mb-0 align-middle">
                     <thead class="text-dark fs-4">
                         <tr>
