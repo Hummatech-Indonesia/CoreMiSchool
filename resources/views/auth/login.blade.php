@@ -1,42 +1,26 @@
     <!DOCTYPE html>
 <html lang="id">
+    
 <head>
     <!--  Title -->
     <title>Mischool | Login</title>
+    <!--  Required Meta Tag -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="handheldfriendly" content="true">
+    <meta name="MobileOptimized" content="width">
+    <meta name="description" content="Mordenize">
+    <meta name="author" content="">
+    <meta name="keywords" content="Mordenize">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!--  Favicon -->
     <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logo/logo-M.png') }}">
     <!-- Core Css -->
-    <link rel="stylesheet" href="https://school.mischool.id/assets/dist/css/app.css">
-    <link id="themeColors" rel="stylesheet" href="https://school.mischool.id/assets/dist/css/style.min.css">
     <style>
-        .authentication-login {
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        @media (min-width: 576px) {
-            .authentication-login {
-                height: 80vh; /* Example for small screens */
-            }
-        }
-        @media (min-width: 768px) {
-            .authentication-login {
-                height: 70vh; /* Example for medium screens */
-            }
-        }
-        @media (min-width: 992px) {
-            .authentication-login {
-                height: 80vh; /* Example for large screens */
-            }
-        }
-        @media (min-width: 1200px) {
-            .authentication-login {
-                height: 100vh; /* Example for extra large screens */
-            }
-        }
+
     </style>
+    <link rel="stylesheet" href="https://school.mischool.id/assets/dist/css/app.css">
+    <link id="themeColors" rel="stylesheet" href="{{ asset('admin_assets/dist/css/style.min.css') }}">
 </head>
 <body>
     <!--  Body Wrapper -->
@@ -53,7 +37,7 @@
                         </div>
                     </div>
                     <div class="col-xl-5 col-xxl-4">
-                        <div class="authentication-login row bg-body p-2">
+                        <div class="authentication-login min-vh-100 bg-body row justify-content-center align-items-center p-4">
                             <div class="col-sm-8 col-md-6 col-xl-9">
                                 <h2 class="mb-3 fs-7 fw-bolder">Selamat Datang di Mischool</h2>
                                 <form method="POST" action="{{ route('login') }}">
