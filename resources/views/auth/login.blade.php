@@ -1,6 +1,6 @@
     <!DOCTYPE html>
 <html lang="id">
-    
+
 <head>
     <!--  Title -->
     <title>Mischool | Login</title>
@@ -41,6 +41,7 @@
                             <div class="col-sm-8 col-md-6 col-xl-9">
                                 <h2 class="mb-3 fs-7 fw-bolder">Selamat Datang di Mischool</h2>
                                 <form method="POST" action="{{ route('login') }}">
+                                    @method('post')
                                     @csrf
                                     <div class="mb-3">
                                         <label for="email" class="form-label">Email</label>
