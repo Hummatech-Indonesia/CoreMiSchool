@@ -63,14 +63,28 @@ class AttendanceController extends Controller
 
         if (!$rule) return ResponseHelper::jsonResponse('warning', 'Tidak ada jadwal absensi', null, 404);
 
+        $failedStore = [];
+        $updatedCount = 0;
         $data = $this->service->insert($request, $rule, $date);
+        // dd($data);
         try {
             if (!empty($data)) {
                 foreach ($data->toArray() as $attendance) {
-                    $this->attendance->updateWithAttribute(['model_id' => $attendance['model_id'], 'model_type' => $attendance['model_type']], $attendance);
+                    if (isset($attendance['invalid'])) {
+                        if ($attendance['invalid']) {
+                            $failedStore[] = $attendance['model_id'];
+                        }
+                    } else {
+                        $updated = $this->attendance->updateWithAttribute(['model_id' => $attendance['model_id'], 'model_type' => $attendance['model_type']], $attendance);
+                        if (!$updated) {
+                            $failedStore[] = $attendance['model_id'];
+                        } else {
+                            $updatedCount += 1;
+                        }
+                    }
                 }
             }
-            return response()->json(['status' => 'sukses', 'message' => 'Data kehadiran berhasil dimasukkan', 'invalid' => empty($data['invalid']) ? null : null, 'code' => 200], 200);
+            return response()->json(['status' => 'sukses', 'message' => 'Data kehadiran berhasil dimasukkan. ' . $updatedCount . ' Berhasil, ' . count($failedStore) . ' Gagal', 'invalid' => empty($failedStore) ? null : $failedStore, 'code' => 200], 200);
         } catch (\Exception $e) {
             // Log::error('AttendanceController: Error inserting attendance data', ['error' => $e->getMessage()]);
             return response()->json(['status' => 'error', 'message' => 'Gagal memasukkan data kehadiran', 'error' => $e->getMessage(), 'code' => 500], 500);
@@ -145,10 +159,12 @@ class AttendanceController extends Controller
         return view('school.pages.attendace.teacher.export', compact('attendances', 'schoolYears'));
     }
 
-    public function listAttendance(Request $request) {
+    public function listAttendance(Request $request)
+    {
         return $this->attendance->listAttendance($request->date);
     }
-    public function reset(Request $request) {
+    public function reset(Request $request)
+    {
         return $this->attendance->reset($request->date);
     }
 }
