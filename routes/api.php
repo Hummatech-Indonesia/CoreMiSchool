@@ -39,3 +39,8 @@ Route::post('attendace/masterkey-check', [AttendanceMasterController::class, 'ch
         $users = User::all();
         return response()->json($users);
     });
+
+Route::get('test-day-attendance', function () {
+        $attendances = App\Models\Attendance:whereDay(now()->day)->whereMonth(now()->month)->whereYear(now()->year)->get();
+        return response()->json($attendances);
+    });
