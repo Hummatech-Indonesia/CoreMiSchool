@@ -105,13 +105,13 @@
         </div>
     </section>
 
-    <section class="row_am service_list_two_colom">
+    <section class="row_am service_list_two_colom" style="margin-bottom: 200px">
         <div class="container">
             <div class="row">
 
                 <div class="col-md-6">
                     <div class="sl_two_colom_image" data-aos="fade-in" data-aos-duration="1000">
-                        <img src="{{ asset('landing_assets/images/landing/about-3.png') }}" alt="image">
+                        <img src="{{ asset('landing_assets/images/landing/about-3.png') }}" alt="image" style="width: 450px; height: auto;">
                     </div>
                 </div>
 
