@@ -155,6 +155,22 @@
 @endsection
 
 @section('script')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        @if ($errors->any() || session('showModal'))
+            var modalElement = new bootstrap.Modal(document.getElementById('modal-create'));
+            modalElement.show();
+        @endif
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        @if ($errors->any() || session('showModal'))
+            var modalElement = new bootstrap.Modal(document.getElementById('modal-edit'));
+            modalElement.show();
+        @endif
+        });
+    </script>
     @include('school.new.extracurricular.scripts.delete')
     @include('school.new.extracurricular.scripts.detail')
     @include('school.new.extracurricular.scripts.select2')
