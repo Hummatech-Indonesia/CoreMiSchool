@@ -133,4 +133,19 @@ class ClassroomRepository extends BaseRepository implements ClassroomInterface
     {
         return $this->model->query()->where('name', 'LIKE', '%' . $query . '%')->first();
     }
+
+    public function whereLessonSchedule(Request $request): mixed
+    {
+        return $this->model->query()
+            ->whereRelation('levelClass', 'name', '!=', 'Alumni')
+            ->when($request->name, function ($query) use ($request) {
+                $query->where('name', 'LIKE', '%' . $request->name . '%');
+            })
+            ->when($request->school_year, function ($query) use ($request) {
+                $query->whereHas('schoolYear', function ($query) use ($request) {
+                    $query->where('school_year', 'LIKE', '%' . $request->school_year . '%');
+                });
+            })
+            ->get();
+    }
 }
