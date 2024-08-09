@@ -43,6 +43,7 @@ class LevelClassController extends Controller
     public function store(StoreLevelClassRequest $request)
     {
         try {
+            if ($this->levelClass->duplicate($request->name)) return redirect()->back()->with('error', 'Data sudah tersedia');  
             $this->levelClass->store($request->validated());
             return redirect()->back()->with('success', 'Berhasil menambahkan tingkatan kelas');
         } catch (\Throwable $th) {

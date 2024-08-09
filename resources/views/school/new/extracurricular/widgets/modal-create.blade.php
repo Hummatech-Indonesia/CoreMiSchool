@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="importPegawai">Tambah Extracurricular</h5>
+                <h5 class="modal-title" id="importPegawai">Tambah Ekstrakurikuler</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="{{ route('school.extracurricular.store') }}" method="POST" enctype="multipart/form-data">
@@ -11,8 +11,11 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <div class="form-group">
-                            <label for="" class="mb-2">Nama Extracurricular</label>
+                            <label for="" class="mb-2">Nama Ekstrakurikuler</label>
                             <input type="text" class="form-control" name="name">
+                            @error('name')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="" class="mb-2 pt-3">Pengajar</label>
@@ -23,6 +26,9 @@
                                 @empty
                                 @endforelse
                             </select>
+                            @error('employee_id')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                 </div>

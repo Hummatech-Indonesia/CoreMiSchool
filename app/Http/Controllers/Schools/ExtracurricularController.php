@@ -56,12 +56,8 @@ class ExtracurricularController extends Controller
      */
     public function store(StoreExtracurricularRequest $request)
     {
-        try {
-            $this->extracurricular->store($request->validated());
-            return redirect()->back()->with('success', 'Berhasil menambahkan ekstrakulikuler');
-        } catch (\Throwable $th) {
-            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
-        }
+        $this->extracurricular->store($request->validated());
+        return redirect()->back()->with('success', 'Berhasil menambahkan ekstrakulikuler');
     }
 
     /**
@@ -70,8 +66,8 @@ class ExtracurricularController extends Controller
     public function show(Extracurricular $extracurricular, Request $request)
     {
         $schoolYear = $this->schoolYear->active();
-        $extracurricularStudents = $this->extracurricularStudent->where($request, $extracurricular->id);
-        $classrooms = $this->classroom->where($schoolYear->id);
+        $extracurricularStudents = $this->extracurricularStudent->where($extracurricular->id, $request);
+        $classrooms = $this->classroom->where($request, $schoolYear->id);
         return view('school.new.extracurricular.detail', compact('extracurricular', 'schoolYear', 'extracurricularStudents', 'classrooms'));
     }
 
@@ -88,12 +84,8 @@ class ExtracurricularController extends Controller
      */
     public function update(UpdateExtracurricularRequest $request, Extracurricular $extracurricular)
     {
-        try {
-            $this->extracurricular->update($extracurricular->id, $request->validated());
-            return redirect()->back()->with('success', 'Berhasil memperbarui ekstrakulikuler');
-        } catch (\Throwable $th) {
-            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
-        }
+        $this->extracurricular->update($extracurricular->id, $request->validated());
+        return redirect()->back()->with('success', 'Berhasil memperbarui ekstrakulikuler');
     }
 
     /**
@@ -101,11 +93,7 @@ class ExtracurricularController extends Controller
      */
     public function destroy(Extracurricular $extracurricular)
     {
-        try {
-            $this->extracurricular->delete($extracurricular->id);
-            return redirect()->back()->with('success', 'Berhasil menghapus ekstrakulikuler');
-        } catch (\Throwable $th) {
-            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
-        }
+        $this->extracurricular->delete($extracurricular->id);
+        return redirect()->back()->with('success', 'Berhasil menghapus ekstrakulikuler');
     }
 }

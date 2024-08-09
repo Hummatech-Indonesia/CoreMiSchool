@@ -15,5 +15,5 @@ use Illuminate\Http\Request;
 interface LevelClassInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, WhereInterface
 {
     public function search(Request $request): mixed;
-
+    public function duplicate(mixed $query): mixed;
 }
