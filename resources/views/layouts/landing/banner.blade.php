@@ -10,7 +10,7 @@
                             E-learning, Raport, Ujian, Buku Tamu</p>
                     </div>
 
-                    <form action="https://kalanidhithemes.com/live-preview/landing-page/codely/all-demo/06-codely-landing-page-get-started-hero/submit" data-aos="fade-up" data-aos-duration="1500">
+                    <form action="{{ route('login') }}" data-aos="fade-up" data-aos-duration="1500">
                         <div>
                             <button class="btn btn_main">Masuk Sekarang <i class="icofont-arrow-right"></i></button>
                         </div>
