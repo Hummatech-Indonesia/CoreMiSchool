@@ -40,4 +40,10 @@ class UpdateExtracurricularRequest extends FormRequest
             'employee_id.required' => 'Pengajar harus diisi.',
         ];
     }
+
+    protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
+    {
+        session()->flash('showEditModal', true);
+        throw new \Illuminate\Validation\ValidationException($validator, redirect()->back()->withErrors($validator, 'edit'));
+    }
 }
