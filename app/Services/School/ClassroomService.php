@@ -19,22 +19,28 @@ class ClassroomService
         $this->schoolYear = $schoolYear;
     }
 
-    public function store(StoreClassroomRequest $request): void
+    public function store(StoreClassroomRequest $request): mixed
     {
         $school_year_id = $this->schoolYear->active();
         $data = $request->validated();
         $values = [];
-        
+
         foreach ($data['store-class'] as $item) {
-            array_push($values, [
-                'id' => Uuid::uuid(),
-                'name' => $item['name'],
-                'level_class_id' => $item['level_class_id'],
-                'employee_id' => $item['employee_id'],
-                'school_year_id' => $school_year_id->id,
-            ]);
+
+            if ($this->classroom->duplicate($item['name'])) {
+                return redirect()->back()->with('error', 'Data sudah tersedia');
+            } else {
+                array_push($values, [
+                    'id' => Uuid::uuid(),
+                    'name' => $item['name'],
+                    'level_class_id' => $item['level_class_id'],
+                    'employee_id' => $item['employee_id'],
+                    'school_year_id' => $school_year_id->id,
+                ]);
+            }
         }
 
         $this->classroom->insert($values);
+        return redirect()->back()->with('success', 'Berhasil menambahkan kelas');
     }
 }
