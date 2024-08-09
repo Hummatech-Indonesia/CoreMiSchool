@@ -26,7 +26,7 @@
             </form>
         </div>
         <div class="col-lg-4 col-md-12 mb-3 d-flex justify-content-end">
-            <a class="btn btn-primary" href="#">
+            <a class="btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#import-student">
                 Import Siswa
             </a>
         </div>
@@ -144,3 +144,5 @@
         <x-paginate-component :paginator="$students" />
     </div>
 </div>
+
+@include('school.new.student.widgets.student.import')
