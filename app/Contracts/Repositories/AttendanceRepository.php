@@ -36,6 +36,10 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
         return $this->model->query()->with('classroomStudent')->whereDay('checkin', Carbon::create($date)->day)->get();
     }
 
+    public function nowAttendance(): mixed {
+        return $this->model->whereDate('created_at', now())->get();
+    }
+
     public function store(array $data): mixed
     {
         return $this->model->query()->create($data);

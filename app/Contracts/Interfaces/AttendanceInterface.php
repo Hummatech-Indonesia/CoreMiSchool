@@ -28,5 +28,6 @@ interface AttendanceInterface extends GetInterface, StoreInterface, UpdateInterf
     public function updateWithAttribute(array $attribute, array $data): mixed;
     public function listAttendance($date);
     public function reset($date);
+    public function nowAttendance(): mixed;
     public function getClassroomStudent(string $id) : mixed;
 }

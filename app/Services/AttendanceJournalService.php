@@ -12,8 +12,11 @@ use App\Http\Requests\StoreAttendanceJournalRequest;
 use App\Http\Requests\UpdateAttendanceJournalRequest;
 use App\Http\Requests\UpdateTeacherJournalRequest;
 use App\Models\AttendanceJournal;
+use App\Models\LessonHour;
+use App\Models\LessonSchedule;
 use App\Models\TeacherJournal;
 use App\Traits\UploadTrait;
+use Carbon\Carbon;
 
 class AttendanceJournalService
 {
@@ -40,8 +43,13 @@ class AttendanceJournalService
 
     public function storeJournal($attendance, TeacherJournal $teacherJournal): void
     {
+        $lessonToday = LessonSchedule::where('day', strtolower(Carbon::today()->format('l')))->orderBy('created_at', 'desc')->get();
+        $start = $lessonToday->sortBy('created_at')->first()->start->end;
+        $end = $lessonToday->first()->start->end;
+
         $rules = $this->lessonSchedule->show($teacherJournal->lesson_schedule_id);
         $min = $this->lessonHour->whereBetween($rules->start->start, $rules->end->start, $rules->day);
+        $totalHour = $this->lessonHour->whereBetween($start, $end, $rules->day);
 
         foreach ($attendance as $key => $value) {
             $data['teacher_journal_id'] = $teacherJournal->id;
@@ -51,8 +59,8 @@ class AttendanceJournalService
 
             $rule = $this->attendance->getClassroomStudent($key);
 
-            if ($value != 'present') {
-                $this->attendance->update($rule->id, ['point' => $rule->point - $min]);
+            if ($value == 'alpha') {
+                $this->attendance->update($rule->id, ['point' => $rule->point - 10 / $totalHour * $min]);
             }
         }
     }
@@ -81,7 +89,6 @@ class AttendanceJournalService
                     if ($attendanceJournal->status->value == 'present') {
                         $this->attendance->update($rule->id, ['point' => $rule->point - $min]);
                     }
-
                 }
             }
         }
