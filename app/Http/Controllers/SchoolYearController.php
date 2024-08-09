@@ -81,7 +81,7 @@ class SchoolYearController extends Controller
     {
         try {
             $this->schoolYear->update($schoolYear->id, $request->validated());
-            return redirect()->back()->with('success', 'Berhasil memperbaiki tahun ajaran');
+            return redirect()->back()->with('success', 'Berhasil memperbarui tahun ajaran');
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
         }

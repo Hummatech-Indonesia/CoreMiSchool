@@ -6,12 +6,14 @@ use App\Contracts\Interfaces\ClassroomInterface;
 use App\Contracts\Interfaces\EmployeeInterface;
 use App\Contracts\Interfaces\LessonHourInterface;
 use App\Contracts\Interfaces\LessonScheduleInterface;
+use App\Contracts\Interfaces\SchoolYearInterface;
 use App\Contracts\Interfaces\SubjectInterface;
 use App\Models\LessonSchedule;
 use App\Http\Requests\StoreLessonScheduleRequest;
 use App\Http\Requests\UpdateLessonScheduleRequest;
 use App\Models\Classroom;
 use App\Services\LessonScheduleService;
+use Illuminate\Http\Request;
 
 class LessonScheduleController extends Controller
 {
@@ -21,8 +23,9 @@ class LessonScheduleController extends Controller
     private SubjectInterface $subjects;
     private LessonHourInterface $lessonHour;
     private LessonScheduleService $service;
+    private SchoolYearInterface $schoolYear;
 
-    public function __construct(LessonScheduleInterface $lessonSchedule, ClassroomInterface $classroom, EmployeeInterface $employee, SubjectInterface $subjects, LessonHourInterface $lessonHour, LessonScheduleService $service)
+    public function __construct(LessonScheduleInterface $lessonSchedule, ClassroomInterface $classroom, EmployeeInterface $employee, SubjectInterface $subjects, LessonHourInterface $lessonHour, LessonScheduleService $service, SchoolYearInterface $schoolYear)
     {
         $this->lessonSchedule = $lessonSchedule;
         $this->classroom = $classroom;
@@ -30,16 +33,18 @@ class LessonScheduleController extends Controller
         $this->subjects = $subjects;
         $this->lessonHour = $lessonHour;
         $this->service = $service;
+        $this->schoolYear = $schoolYear;
     }
 
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $lessonSchedules = $this->lessonSchedule->get();
-        $classrooms = $this->classroom->get();
-        return view('school.new.lesson-schedule.index', compact('lessonSchedules', 'classrooms'));
+        $classrooms = $this->classroom->whereLessonSchedule($request);
+        $schoolYears = $this->schoolYear->get();
+        return view('school.new.lesson-schedule.index', compact('lessonSchedules', 'classrooms', 'schoolYears'));
     }
 
     /**
@@ -109,5 +114,17 @@ class LessonScheduleController extends Controller
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
         }
+    }
+
+    public function export_pdf(Classroom $classroom)
+    {
+        $data = $this->lessonSchedule->whereClassroomId($classroom->id);
+
+        $pdf = app('dompdf.wrapper');
+        $pdf->setPaper('a4', 'landscape');
+        $pdf->setPaper([0, 0, 841.89, 595.28]);
+
+        $pdf->loadView('export-pdf.export-lesson-schedule', ['lessonSchedule' => $data, 'classroom' => $classroom]);
+        return $pdf->download('jadwal.pdf');
     }
 }

@@ -104,6 +104,7 @@ Route::middleware('auth')->prefix('school')->name('school.')->group(function() {
     Route::resource('lesson-schedule', LessonScheduleController::class)->except(['show', 'store']);
     Route::post('lesson-schedule/{classroom}/{day}', [LessonScheduleController::class, 'store'])->name('lesson-schedule.store');
     Route::get('lesson-schedule/detail/{classroom}', [LessonScheduleController::class, 'show'])->name('lesson-schedule.detail');
+    Route::get('lesson-schedule/export/{classroom}', [LessonScheduleController::class, 'export_pdf'])->name('lesson-schedule.export');
 
     // Route::get('lesson-schedule', [LessonScheduleController::class, 'index'])->name('lesson-schedule.index');
 
