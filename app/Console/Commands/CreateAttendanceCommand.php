@@ -42,7 +42,7 @@ class CreateAttendanceCommand extends Command
 
         $attendanceStudent = $classroomStudents->map(function ($student) use ($day) {
             return [
-                'point' => 10,
+                'point' => 13,
                 'model_type' => "App\Models\ClassroomStudent",
                 'model_id' => $student->student->id,
                 'created_at' => now(),
@@ -56,7 +56,7 @@ class CreateAttendanceCommand extends Command
 
         $attendanceTeacher = $teachers->map(function ($teacher) {
             return [
-                'point' => 10,
+                'point' => 13,
                 'model_type' => "App\Models\Employee",
                 'model_id' => $teacher->id,
                 'created_at' => now(),

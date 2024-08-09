@@ -128,4 +128,9 @@ class ClassroomRepository extends BaseRepository implements ClassroomInterface
 
         return $query;
     }
+
+    public function duplicate(mixed $query): mixed
+    {
+        return $this->model->query()->where('name', 'LIKE', '%' . $query . '%')->first();
+    }
 }
