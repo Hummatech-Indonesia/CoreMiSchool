@@ -1,6 +1,6 @@
 <div class="card card-body">
     <h4>Daftar Siswa</h4>
-    <div class="row mb-3 mt-3">
+    <div class="row mb-3 mt-3 d-flex justify-content-between">
         <div class="col-lg-8 col-md-12 mb-3">
             <form class="d-flex gap-2" action="/school/students">
                 <div class="position-relative">
@@ -24,7 +24,11 @@
                     </div>
                 </div>
             </form>
-
+        </div>
+        <div class="col-lg-4 col-md-12 mb-3 d-flex justify-content-end">
+            <a class="btn btn-primary" href="#">
+                Import Siswa
+            </a>
         </div>
     </div>
     <div class="table-responsive rounded-2 mb-4">

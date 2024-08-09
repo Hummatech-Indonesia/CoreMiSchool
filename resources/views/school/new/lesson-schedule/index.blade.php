@@ -8,7 +8,7 @@
                         placeholder="Cari..." value="{{ old('name', request()->name) }}">
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
 
-                    <select name="school_year" class="form-select" id="select-school-year">
+                    <select name="school_year" class="form-select me-2" id="select-school-year">
                         <option value="" disabled selected>Pilih Tahun Ajaran</option>
                         <option value="1" {{ old('school_year', request()->school_year) == '1' ? 'selected' : '' }}>
                             2024/2025</option>
@@ -17,6 +17,10 @@
                         <option value="3" {{ old('school_year', request()->school_year) == '3' ? 'selected' : '' }}>
                             2022/2023</option>
                     </select>
+
+                    <button class="btn btn-primary" type="submit">
+                        Filter
+                    </button>
                 </form>
             </div>
         </div>
