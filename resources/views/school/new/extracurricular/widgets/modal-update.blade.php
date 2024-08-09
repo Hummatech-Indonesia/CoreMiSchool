@@ -12,7 +12,7 @@
                     <div class="mb-3">
                         <div class="form-group">
                             <label for="" class="mb-2">Nama Ekstrakurikuler</label>
-                            <input type="text" class="form-control" id="name-update" name="name">
+                            <input type="text" class="form-control" id="name-update" name="name" value="{{ old('name', 'edit') }}">
                             @error('name', 'edit')
                                 <span class="text-danger error-edit">{{ $message }}</span>
                             @enderror
