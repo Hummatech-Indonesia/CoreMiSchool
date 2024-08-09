@@ -15,4 +15,5 @@ interface SubjectInterface extends GetInterface, StoreInterface, UpdateInterface
     public function whereSchool(Request $request): mixed;
     public function whereTeacher(mixed $employee) : mixed;
     public function count() : mixed;
+    public function duplicate(mixed $query): mixed;
 }

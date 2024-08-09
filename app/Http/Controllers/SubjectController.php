@@ -44,6 +44,8 @@ class SubjectController extends Controller
     public function store(StoreSubjectRequest $request)
     {
         try {
+            // dd($request->name);
+            if ($this->subject->duplicate($request->name)) return redirect()->back()->with('error', 'Data sudah tersedia');
             $this->subject->store($request->validated());
             return redirect()->back()->with('success', 'Berhasil menambahkan mata pelajaran');
         } catch (\Throwable $th) {
