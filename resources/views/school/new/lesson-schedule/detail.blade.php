@@ -133,6 +133,10 @@
                     </a>
                 </li>
             </ul>
+            {{-- Export Jadwal Kelas --}}
+            {{-- <a class="btn btn-primary" href="{{ route('school.lesson-schedule.export', ['classroom' => $classroom->id]) }}">
+                Export Jadwal Kelas
+            </a> --}}
         </div>
     </div>
 

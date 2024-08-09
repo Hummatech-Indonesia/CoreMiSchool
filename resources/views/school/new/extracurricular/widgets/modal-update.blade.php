@@ -12,9 +12,9 @@
                     <div class="mb-3">
                         <div class="form-group">
                             <label for="" class="mb-2">Nama Ekstrakurikuler</label>
-                            <input type="text" class="form-control" id="name-update" name="name">
-                            @error('name')
-                                <span class="text-danger">{{ $message }}</span>
+                            <input type="text" class="form-control" id="name-update" name="name" value="{{ old('name', 'edit') }}">
+                            @error('name', 'edit')
+                                <span class="text-danger error-edit">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
@@ -27,8 +27,8 @@
                                 @empty
                                 @endforelse
                             </select>
-                            @error('employee_id')
-                                <span class="text-danger">{{ $message }}</span>
+                            @error('employee_id', 'edit')
+                                <span class="text-danger error-edit">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>

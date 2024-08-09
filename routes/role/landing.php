@@ -24,3 +24,7 @@ Route::get('contact-us', function(){
 Route::get('package', function(){
     return view('landing.package');
 })->name('package');
+
+Route::get('view-pdf', function(){
+    return view('export-pdf.export-lesson-schedule');
+})->name('export-pdf');

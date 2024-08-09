@@ -25,7 +25,7 @@ class EmployeeSeeder extends Seeder
             'address' => 'Permata Regency',
             'status' => RoleEnum::TEACHER->value,
             'active' => '1',
-            'user_id' => '3',
+            'user_id' => '2',
             'religion_id' => '1',
         ]);
 
@@ -40,7 +40,7 @@ class EmployeeSeeder extends Seeder
             'address' => 'Permata Regency',
             'status' => RoleEnum::STAFF->value,
             'active' => '1',
-            'user_id' => '5',
+            'user_id' => '4',
             'religion_id' => '1',
         ]);
     }

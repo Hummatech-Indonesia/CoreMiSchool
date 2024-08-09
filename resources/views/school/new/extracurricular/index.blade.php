@@ -157,20 +157,29 @@
 @section('script')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-        @if ($errors->any() || session('showModal'))
-            var modalElement = new bootstrap.Modal(document.getElementById('modal-create'));
-            modalElement.show();
-        @endif
+            // Cek session flash dan kesalahan untuk modal create
+            const showCreateModal = @json(session('showCreateModal'));
+            const showEditModal = @json(session('showEditModal'));
+
+            if (showCreateModal) {
+                var createModalErrors = document.querySelectorAll('.error-create');
+                if (createModalErrors.length > 0) {
+                    var createModalElement = new bootstrap.Modal(document.getElementById('modal-create'));
+                    createModalElement.show();
+                }
+            }
+
+            // Cek session flash dan kesalahan untuk modal edit
+            if (showEditModal) {
+                var editModalErrors = document.querySelectorAll('.error-edit');
+                if (editModalErrors.length > 0) {
+                    var editModalElement = new bootstrap.Modal(document.getElementById('modal-edit'));
+                    editModalElement.show();
+                }
+            }
         });
     </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-        @if ($errors->any() || session('showModal'))
-            var modalElement = new bootstrap.Modal(document.getElementById('modal-edit'));
-            modalElement.show();
-        @endif
-        });
-    </script>
+
     @include('school.new.extracurricular.scripts.delete')
     @include('school.new.extracurricular.scripts.detail')
     @include('school.new.extracurricular.scripts.select2')

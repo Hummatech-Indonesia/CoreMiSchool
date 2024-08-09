@@ -115,4 +115,16 @@ class LessonScheduleController extends Controller
             return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
         }
     }
+
+    public function export_pdf(Classroom $classroom)
+    {
+        $data = $this->lessonSchedule->whereClassroomId($classroom->id);
+
+        $pdf = app('dompdf.wrapper');
+        $pdf->setPaper('a4', 'landscape');
+        $pdf->setPaper([0, 0, 841.89, 595.28]);
+
+        $pdf->loadView('export-pdf.export-lesson-schedule', ['lessonSchedule' => $data, 'classroom' => $classroom]);
+        return $pdf->download('jadwal.pdf');
+    }
 }

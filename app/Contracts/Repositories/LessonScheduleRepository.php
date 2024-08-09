@@ -3,6 +3,7 @@
 namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\LessonScheduleInterface;
+use App\Enums\DayEnum;
 use App\Models\LessonSchedule;
 
 class LessonScheduleRepository extends BaseRepository implements LessonScheduleInterface
@@ -49,6 +50,15 @@ class LessonScheduleRepository extends BaseRepository implements LessonScheduleI
             ->get()
             // ->orderBy('LessonHour')
             ->groupBy($query);
+    }
+
+    public function whereClassroomId(mixed $id): mixed
+    {
+        return $this->model->query()
+            ->where('classroom_id', $id)
+            ->whereNot('day', DayEnum::SUNDAY->value)
+            ->get()
+            ->groupBy('day');
     }
 
     public function whereTeacher(mixed $id, mixed $day): mixed

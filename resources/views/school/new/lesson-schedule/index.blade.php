@@ -6,18 +6,11 @@
             <form class="d-flex align-items-center position-relative" action="">
                 <input type="text" name="name" class="form-control product-search ps-5 me-2" id="input-search" placeholder="Cari..." value="{{ old('name', request()->name) }}">
                 <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
-
                 <select name="school_year" class="form-select me-2" id="select-school-year">
                     <option value="" disabled selected>Pilih Tahun Ajaran</option>
                     @foreach ($schoolYears as $schoolYear)
                     <option value="{{ $schoolYear->school_year }}">{{ $schoolYear->school_year }}</option>
                     @endforeach
-                    {{-- <option value="1" {{ old('school_year', request()->school_year) == '1' ? 'selected' : '' }}>
-                    2024/2025</option>
-                    <option value="2" {{ old('school_year', request()->school_year) == '2' ? 'selected' : '' }}>
-                        2023/2024</option>
-                    <option value="3" {{ old('school_year', request()->school_year) == '3' ? 'selected' : '' }}>
-                        2022/2023</option> --}}
                 </select>
                 <button type="submit" class="btn btn-primary">Filter</button>
             </form>
