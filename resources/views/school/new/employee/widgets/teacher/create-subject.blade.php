@@ -15,12 +15,15 @@
                         <div class="form-group">
                             <label for="subject" class="form-label">Pilih Mata Pelajaran</label>
                             <div>
-                                <select id="subject" name="subject[]" multiple class="select2" aria-label="Pilih Mata Pelajaran">
+                                <select id="subject" name="subject[]" multiple class="select2 @error('subject') is-invalid @enderror" aria-label="Pilih Mata Pelajaran">
                                     @forelse ($subjects as $subject)
-                                        <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                                    <option value="{{ $subject->id }}">{{ $subject->name }}</option>
                                     @empty
                                     @endforelse
                                 </select>
+                                @error('subject')
+                                <strong class="text-danger">{{ $message }}</strong>
+                                @enderror
                             </div>
                         </div>
                     </div>

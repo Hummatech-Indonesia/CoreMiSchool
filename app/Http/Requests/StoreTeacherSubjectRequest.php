@@ -22,8 +22,21 @@ class StoreTeacherSubjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'subject' => 'array|required',
+            'subject' => 'array|required|unique:teacher_subjects,subject_id,except,id',
             'subject.*' => 'required',
+        ];
+    }
+
+    /**
+     * Pesan kesalahan yang berlaku untuk permintaan ini.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'subject.required' => 'Nama mapel wajib diisi.',
+            'subject.unique' => 'Mata pelajaran guru sudah ada'
         ];
     }
 }
