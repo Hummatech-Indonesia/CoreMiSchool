@@ -12,7 +12,7 @@
                     <div class="mb-3">
                         <div class="form-group">
                             <label for="" class="mb-2">Nama Ekstrakurikuler</label>
-                            <input type="text" class="form-control" name="name" value="{{ old('name', 'create') }}">
+                            <input type="text" class="form-control" name="name" value="{{ old('name') }}">
                             @error('name', 'create')
                                 <span class="text-danger error-create">{{ $message }}</span>
                             @enderror
