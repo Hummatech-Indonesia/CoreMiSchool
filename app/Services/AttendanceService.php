@@ -43,6 +43,7 @@ class AttendanceService
     }
     public function insert($request, $rule, $date): mixed
     {
+        // dd($date);
         $attendances = collect($request->attendances);
 
         $students = [];
@@ -74,14 +75,14 @@ class AttendanceService
                             'model_type' => "App\Models\ClassroomStudent",
                             'status' => AttendanceEnum::LATE->value,
                             'checkin' => $time->toDateTimeString(),
-                            'created_at' => $date->toDateTimeString()
+                            'created_at' => $date
                         ];
                     } elseif ($time->greaterThan($checkoutStart)) {
                         return [
                             'model_id' => $rfid->model_id,
                             'model_type' => "App\Models\ClassroomStudent",
                             'checkout' => $time->toDateTimeString(),
-                            'created_at' => $date->toDateTimeString()
+                            'created_at' => $date
                         ];
                     } else {
                         return [
@@ -89,7 +90,7 @@ class AttendanceService
                             'model_type' => "App\Models\ClassroomStudent",
                             'status' => AttendanceEnum::PRESENT->value,
                             'checkin' => $time->toDateTimeString(),
-                            'created_at' => $date->toDateTimeString()
+                            'created_at' => $date
                         ];
                     }
                 } else {
@@ -104,14 +105,14 @@ class AttendanceService
                             'model_type' => "App\Models\Employee",
                             'status' => AttendanceEnum::LATE->value,
                             'checkin' => $time->toDateTimeString(),
-                            'created_at' => $date->toDateTimeString()
+                            'created_at' => $date
                         ];
                     } elseif ($time->greaterThan($checkoutStart)) {
                         return [
                             'model_id' => $rfid->model_id,
                             'model_type' => "App\Models\Employee",
                             'checkout' => $time->toDateTimeString(),
-                            'created_at' => $date->toDateTimeString()
+                            'created_at' => $date
                         ];
                     } else {
                         return [
@@ -119,7 +120,7 @@ class AttendanceService
                             'model_type' => "App\Models\Employee",
                             'status' => AttendanceEnum::PRESENT->value,
                             'checkin' => $time->toDateTimeString(),
-                            'created_at' => $date->toDateTimeString()
+                            'created_at' => $date
                         ];
                     }
                 }

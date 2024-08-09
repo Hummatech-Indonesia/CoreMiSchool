@@ -66,4 +66,9 @@ class SubjectRepository extends BaseRepository implements SubjectInterface
             ->orWhereDoesntHave('teacherSubjects')
             ->get();
     }
+
+    public function duplicate(mixed $query): mixed
+    {
+        return $this->model->query()->where('name', 'LIKE', '%' . $query . '%')->first();
+    }
 }

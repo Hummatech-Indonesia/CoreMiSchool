@@ -148,7 +148,7 @@
             </div>
         </div>
     </section>
-    <section class="row_am pricing_section" style="margin-bottom: 100px;" id="pricing" data-aos="fade-in" data-aos-duration="1000">
+    <section class="row_am pricing_section" style="margin-bottom: 200px;" id="pricing" data-aos="fade-in" data-aos-duration="1000">
         <!-- container start -->
         <div class="container">
             <div class="section_title px-5 text-center" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
