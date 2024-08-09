@@ -26,7 +26,7 @@ return new class extends Migration
             $table->char('nik', 16);
             $table->char('phone_number', 13);
             $table->longText('address');
-            $table->enum('status', [RoleEnum::ADMIN->value, RoleEnum::TEACHER->value, RoleEnum::STAFF->value]);
+            $table->enum('status', [RoleEnum::TEACHER->value, RoleEnum::STAFF->value]);
             $table->boolean('active')->default(true);
             $this->addForeignIdNull($table, 'religion_id');
             $this->addForeignId($table, 'user_id');

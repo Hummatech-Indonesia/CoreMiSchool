@@ -21,4 +21,5 @@ interface ClassroomInterface extends GetInterface, StoreInterface, UpdateInterfa
     public function search(Request $request): mixed;
     public function insert(array $data): mixed;
     public function duplicate(mixed $query) : mixed;
+    public function whereLessonSchedule(Request $request): mixed;
 }
