@@ -62,7 +62,11 @@ class StudentRepository extends BaseRepository implements StudentInterface
             ->whereDoesntHave('classroomStudents.classroom.levelClass', function($query) {
                 $query->where('name', 'Alumni');
             })
-
+            ->when($request->class, function ($query) use ($request) {
+                $query->whereHas('classroomStudents.classroom', function ($query) use ($request) {
+                    $query->where('name', 'LIKE', '%' . $request->class . '%');
+                });
+            })
             ->latest()
             ->paginate(10);
     }

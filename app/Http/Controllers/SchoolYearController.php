@@ -49,9 +49,13 @@ class SchoolYearController extends Controller
      */
     public function store(StoreSchoolYearRequest $request)
     {
-        $this->schoolYear->setNonactive();
-        $this->schoolYear->store($request->validated());
-        return redirect()->back()->with('success', 'Berhasil menambahkan tahun ajaran');
+        try {
+            $this->schoolYear->setNonactive();
+            $this->schoolYear->store($request->validated());
+            return redirect()->back()->with('success', 'Berhasil menambahkan tahun ajaran');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 
     /**
@@ -75,8 +79,12 @@ class SchoolYearController extends Controller
      */
     public function update(UpdateSchoolYearRequest $request, SchoolYear $schoolYear)
     {
-        $this->schoolYear->update($schoolYear->id, $request->validated());
-        return redirect()->back()->with('success', 'Berhasil memperbaiki tahun ajaran');
+        try {
+            $this->schoolYear->update($schoolYear->id, $request->validated());
+            return redirect()->back()->with('success', 'Berhasil memperbaiki tahun ajaran');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 
     /**
@@ -84,14 +92,23 @@ class SchoolYearController extends Controller
      */
     public function destroy(SchoolYear $schoolYear)
     {
-        $this->schoolYear->delete($schoolYear->id);
-        return redirect()->back()->with('success', 'Berhasil menghapus tahun ajaran');
+        try {
+            $this->schoolYear->delete($schoolYear->id);
+            return redirect()->back()->with('success', 'Berhasil menghapus tahun ajaran');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 
 
-    public function setActive(SchoolYear $schoolYear) {
-        $this->schoolYear->setNonactive();
-        $schoolYear->update(['active' => 1]);
-        return back()->with('success', 'Berhasil');
+    public function setActive(SchoolYear $schoolYear)
+    {
+        try {
+            $this->schoolYear->setNonactive();
+            $schoolYear->update(['active' => 1]);
+            return back()->with('success', 'Berhasil');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 }

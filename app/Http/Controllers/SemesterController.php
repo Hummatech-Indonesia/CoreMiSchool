@@ -37,8 +37,12 @@ class SemesterController extends Controller
      */
     public function store(StoreSemesterRequest $request)
     {
-        $semester = $this->semester->store($request->validated());
-        return response()->json(['semester' => $semester], 200);
+        try {
+            $semester = $this->semester->store($request->validated());
+            return response()->json(['semester' => $semester], 200);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 
     /**

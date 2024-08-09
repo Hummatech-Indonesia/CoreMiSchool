@@ -44,16 +44,20 @@ class ExtracurricularStudentController extends Controller
      */
     public function store(StoreExtracurricularStudentRequest $request, Extracurricular $extracurricular)
     {
-        $exists = $this->extracurricularStudent->check($extracurricular->id, $request->student_id);
+        try {
+            $exists = $this->extracurricularStudent->check($extracurricular->id, $request->student_id);
 
-        if (!$exists) {
-            $this->extracurricularStudent->store([
-                'student_id' => $request->student_id,
-                'extracurricular_id' => $extracurricular->id,
-            ]);
-            return redirect()->back()->with('success', 'Berhasil menambahkan siswa ke ekstrakurikuler');
-        } else {
-            return redirect()->back()->with('warning', 'Siswa sudah ada di dalam ekstrakurikuler');
+            if (!$exists) {
+                $this->extracurricularStudent->store([
+                    'student_id' => $request->student_id,
+                    'extracurricular_id' => $extracurricular->id,
+                ]);
+                return redirect()->back()->with('success', 'Berhasil menambahkan siswa ke ekstrakurikuler');
+            } else {
+                return redirect()->back()->with('warning', 'Siswa sudah ada di dalam ekstrakurikuler');
+            }
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
         }
     }
 
@@ -86,14 +90,22 @@ class ExtracurricularStudentController extends Controller
      */
     public function destroy(ExtracurricularStudent $extracurricularStudent)
     {
-        $this->extracurricularStudent->delete($extracurricularStudent->id);
-        return redirect()->back()->with('success', 'Berhasil menghapus siswa dari ekstrakurikuler');
+        try {
+            $this->extracurricularStudent->delete($extracurricularStudent->id);
+            return redirect()->back()->with('success', 'Berhasil menghapus siswa dari ekstrakurikuler');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 
     public function downloadTemplate()
     {
-        $template = public_path('file/excel-format-import-extracurricular-student.xlsx');
-        return response()->download($template, 'excel-format-import-extracurricular-student.xlsx');
+        try {
+            $template = public_path('file/excel-format-import-extracurricular-student.xlsx');
+            return response()->download($template, 'excel-format-import-extracurricular-student.xlsx');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 
     public function import(Request $request, Extracurricular $extracurricular)

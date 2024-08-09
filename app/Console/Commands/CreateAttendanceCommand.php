@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Enums\RoleEnum;
 use App\Models\Employee;
 use App\Models\Attendance;
+use App\Models\LessonHour;
 use App\Enums\AttendanceEnum;
 use Illuminate\Console\Command;
 use App\Models\ClassroomStudent;
@@ -16,7 +17,7 @@ class CreateAttendanceCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'app:create-attendance-command';
+    protected $signature = 'command:create-attendance';
 
     /**
      * The console command description.
@@ -30,33 +31,43 @@ class CreateAttendanceCommand extends Command
      */
     public function handle()
     {
-        $classroomStudents = ClassroomStudent::whereRelation('classroom.schoolYear', function ($query) {
-            $query->where('active', 1);
-        })->whereHas('student.modelHasRfid')->get();
+        $day = strtolower(now()->format('l'));
 
-        $teachers = Employee::whereHas('modelHasRfid')
-            ->where('status', RoleEnum::TEACHER->value)
-            ->get();
+        $classroomStudents = ClassroomStudent::with(['classroom.lessonSchedule' => function ($query) use ($day) {
+            $query->where('day', $day);
+        }])
+            ->whereRelation('classroom.schoolYear', function ($query) {
+                $query->where('active', 1);
+            })->whereHas('student.modelHasRfid')->get();
 
-        $attendanceStudent = $classroomStudents->map(function ($student) {
+        $attendanceStudent = $classroomStudents->map(function ($student) use ($day) {
             return [
-                'model_type' => "App/Models/ClassroomStudent",
+                'point' => 10,
+                'model_type' => "App\Models\ClassroomStudent",
                 'model_id' => $student->student->id,
+                'created_at' => now(),
                 'status' => AttendanceEnum::ALPHA->value
             ];
         })->toArray();
 
+        $teachers = Employee::whereHas('modelHasRfid')
+        ->where('status', RoleEnum::TEACHER->value)
+        ->get();
+
         $attendanceTeacher = $teachers->map(function ($teacher) {
             return [
-                'model_type' => "App/Models/Employee",
+                'point' => 10,
+                'model_type' => "App\Models\Employee",
                 'model_id' => $teacher->id,
+                'created_at' => now(),
                 'status' => AttendanceEnum::ALPHA->value
             ];
         })->toArray();
 
         // $stored = $classroomStudents->attendance()->insert(['status' => 'alpha']);
-        $attendanceData = array_merge($attendanceTeacher, $attendanceStudent);
+        $attendanceData = array_merge($attendanceTeacher ?? [], $attendanceStudent ?? []);
 
-        $stored = Attendance::insert($attendanceData);
+        info($attendanceData);
+        Attendance::insert($attendanceData);
     }
 }
