@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="importPegawai">Edit Extracurricular</h5>
+                <h5 class="modal-title" id="importPegawai">Edit Ekstrakurikuler</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form id="form-update" method="POST" enctype="multipart/form-data">
@@ -11,18 +11,25 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <div class="form-group">
-                            <label for="" class="mb-2">Nama Extracurricular</label>
+                            <label for="" class="mb-2">Nama Ekstrakurikuler</label>
                             <input type="text" class="form-control" id="name-update" name="name">
+                            @error('name')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="" class="mb-2 pt-3">Pengajar</label>
-                            <select id="employee-update" class="form-control form-select select2 select2-edit" name="employee_id">
+                            <select id="employee-update" class="form-control form-select select2 select2-edit"
+                                name="employee_id">
                                 <option value="">Pilih Pengajar</option>
                                 @forelse ($employees as $employee)
                                     <option value="{{ $employee->id }}">{{ $employee->user->name }}</option>
                                 @empty
                                 @endforelse
                             </select>
+                            @error('employee_id')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                 </div>

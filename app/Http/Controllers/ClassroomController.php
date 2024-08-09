@@ -70,7 +70,7 @@ class ClassroomController extends Controller
     {
         try {
             $this->service->store($request);
-            return redirect()->back()->with('success', 'Berhasil menambahkan kelas');
+            return redirect()->back();
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
         }

@@ -51,4 +51,9 @@ class LevelClassRepository extends BaseRepository implements LevelClassInterface
             })
             ->latest()->paginate(10);
     }
+
+    public function duplicate(mixed $query): mixed
+    {
+        return $this->model->query()->where('name', 'LIKE', '%' . $query . '%')->first();
+    }
 }
