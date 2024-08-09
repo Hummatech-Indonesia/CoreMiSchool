@@ -42,7 +42,7 @@ class CreateAttendanceCommand extends Command
 
         $attendanceStudent = $classroomStudents->map(function ($student) use ($day) {
             return [
-                'point' => LessonHour::query()->where('day', $day)->count(),
+                'point' => 10,
                 'model_type' => "App\Models\ClassroomStudent",
                 'model_id' => $student->student->id,
                 'created_at' => now(),
