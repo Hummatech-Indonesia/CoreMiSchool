@@ -70,7 +70,7 @@ class ExtracurricularController extends Controller
     public function show(Extracurricular $extracurricular, Request $request)
     {
         $schoolYear = $this->schoolYear->active();
-        $extracurricularStudents = $this->extracurricularStudent->where($extracurricular->id, $request);
+        $extracurricularStudents = $this->extracurricularStudent->where($request, $extracurricular->id);
         $classrooms = $this->classroom->where($schoolYear->id);
         return view('school.new.extracurricular.detail', compact('extracurricular', 'schoolYear', 'extracurricularStudents', 'classrooms'));
     }

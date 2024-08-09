@@ -59,6 +59,6 @@ class TeacherJournalRepository extends BaseRepository implements TeacherJournalI
         return $this->model->query()
             ->with('attendanceJournals')
             ->where('date', '<', now()->format('Y-m-d'))
-            ->paginate();
+            ->get();
     }
 }
