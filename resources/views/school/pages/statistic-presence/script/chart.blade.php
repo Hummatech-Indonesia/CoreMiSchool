@@ -59,32 +59,3 @@
     chartStudent.render();
 </script>
 
-
-{{-- statistik pegawai --}}
-
-<script>
-    var options = {
-        series: [44, 55, 41],
-        chart: {
-            type: 'donut'
-        },
-        dataLabels: {
-            enabled: false // Menyembunyikan persentase di dalam chart
-        },
-        labels: [], // Menghapus tulisan series
-        responsive: [{
-            breakpoint: 480,
-            options: {
-                chart: {
-                    width: 200
-                },
-                legend: {
-                    position: 'bottom'
-                }
-            }
-        }]
-    };
-
-    var chart = new ApexCharts(document.querySelector("#chart-employee"), options);
-    chart.render();
-</script>

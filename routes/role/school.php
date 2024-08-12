@@ -19,6 +19,7 @@ use App\Http\Controllers\School\AttendanceStatisticController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SchoolDashboardController;
 use App\Http\Controllers\Schools\AttendanceController as SchoolsAttendanceController;
+use App\Http\Controllers\Schools\AttendanceEmployeeController;
 use App\Http\Controllers\Schools\EmployeeController;
 use App\Http\Controllers\Schools\ExtracurricularController as SchoolsExtracurricularController;
 use App\Http\Controllers\Schools\StaffController;
@@ -58,6 +59,8 @@ Route::middleware('auth')->prefix('school')->name('school.')->group(function() {
     Route::post('import-student/{classroom}', [StudentController::class, 'import'])->name('student.import');
     Route::get('download-template-student/', [StudentController::class, 'downloadTemplate'])->name('student.download-template');
 
+    Route::get('doenload-template-class-student', [StudentController::class, 'downloadTemplateClass'])->name('class.download-template');
+
     Route::resource('students', StudentController::class)->except(['store']);
     Route::post('students/{classroom}', [StudentController::class, 'store'])->name('students.store');
 
@@ -77,10 +80,9 @@ Route::middleware('auth')->prefix('school')->name('school.')->group(function() {
     Route::resource('classroom', ClassroomController::class);
     Route::resource('level-class', LevelClassController::class);
     Route::get('class-detail/{classroom}', [ClassroomStudentController::class, 'index'])->name('class-student.index');
-
     Route::put('update-classroom/{classroom}', [ClassroomStudentController::class, 'update'])->name('student-classroom.update');
-
     Route::patch('school-years/{schoolYear}/active', [SchoolYearController::class, 'setActive'])->name('school-year.setActive');
+    Route::post('import-class-student', [ClassroomStudentController::class, 'import'])->name('class.student.import');
 
     Route::prefix('semesters')->name('semesters.')->group(function () {
         Route::get('/', [SemesterController::class, 'index'])->name('index');
@@ -159,9 +161,7 @@ Route::prefix('school')->group(function () {
 
     Route::get('statistic-presence', [AttendanceStatisticController::class, 'index'])->name('statistic-presence.index');
 
-    Route::get('statistic-pesence-employee', function(){
-        return view('school.pages.statistic-presence.employee');
-    })->name('statistic-presence-employee.index');
+    Route::get('statistic-presence-employee', [AttendanceEmployeeController::class, 'index'])->name('statistic-presence-employee.index');
 });
 
 //tes absensi
