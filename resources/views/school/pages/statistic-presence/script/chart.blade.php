@@ -50,9 +50,10 @@
             opacity: 1
         }
         , legend: {
-            position: 'top'
-            , horizontalAlign: 'left'
-            , offsetX: 40
+            // position: 'top'
+            // , horizontalAlign: 'left'
+            // , offsetX: 40
+            show: false
         }
         , colors: ['#13DEB9', '#5D87FF', '#FFAE1F', '#FA896B']
     };
