@@ -160,6 +160,18 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
             ->count();
     }
 
+    public function AttendanceChartEmployee(mixed $day, mixed $week, mixed $month, mixed $year, mixed $status): mixed
+    {
+        return $this->model->query()
+            ->where('model_type', 'App\Models\Employee')
+            ->where('status', $status)
+            ->whereDay('created_at', $day)
+            // ->whereWeek('created_at', $week)
+            ->whereMonth('created_at', $month)
+            ->whereYear('created_at', $year)
+            ->count();
+    }
+
     public function checkPresence(mixed $id, mixed $status): mixed
     {
         return $this->model->query()
@@ -209,5 +221,12 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
             ->where('model_type', 'App\Models\ClassroomStudent')
             ->where('model_id', $id)
             ->first();
+    }
+
+    public function whereModel(mixed $model): mixed
+    {
+        return $this->model->query()
+            ->where('model_type', $model)
+            ->get();
     }
 }

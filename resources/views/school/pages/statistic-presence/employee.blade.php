@@ -108,13 +108,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse (range(1,5) as $employee)
+                        @forelse ($attendances as $employee)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>Ahmad Lukman Hakim</td>
-                            <td>08.00</td>
-                            <td>16.00</td>
-                            <td><span class="badge bg-light-primary text-primary">Masuk</span></td>
+                            <td>{{ $employee->model->user->name }}</td>
+                            <td>{{ $employee->checkin ? $employee->checkin : '-' }}</td>
+                            <td>{{ $employee->checkout ? $employee->checkout : '-' }}</td>
+                            <td><span class="badge {{ $employee->status == 'present' ? 'bg-light-primary text-primary' : ($employee->status == 'sick' ? 'bg-light-warning text-warning' : ($employee->status == 'alpha' ? 'bg-light-danger text-danger' : ($employee->status == 'permit' ? 'bg-light-warning text-warning' : ($employee->status == 'late' ? 'bg-light-warning text-warning' : '')))) }}">
+                                {{ $employee->status == 'present' ? 'Masuk' : ($employee->status == 'sick' ? 'Sakit' : ($employee->status == 'alpha' ? 'Alpha' : ($employee->status == 'permit' ? 'Izin' : ($employee->status == 'late' ? 'Telat' : '')))) }}
+                            </span></td>
                         </tr>
                         @empty
                         <tr>
@@ -140,7 +142,7 @@
                 <p>Hari ini</p>
             </div>
             <div id="chart-employee"></div>
-            
+
             <div class="d-flex">
                 <div class="d-flex">
                     <div id="custom-legend">
@@ -169,5 +171,5 @@
 @endsection
 
 @section('script')
-@include('school.pages.statistic-presence.script.chart')
+@include('school.pages.statistic-presence.script.donut-chart')
 @endsection
