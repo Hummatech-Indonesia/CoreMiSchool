@@ -156,6 +156,9 @@ Route::prefix('school')->group(function () {
     // rfid aktif
     Route::get('rfid-active', [ModelHasRfidController::class, 'showActive'])->name('rfid-active.index');
 
+    Route::get('statistic-presence', function(){
+        return view('school.pages.statistic-presence.index');
+    })->name('statistic-presence.index');
 });
 
 //tes absensi
