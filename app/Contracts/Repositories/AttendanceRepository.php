@@ -173,7 +173,8 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
                 // Mengelompokkan berdasarkan classroom_id dari relasi model
                 return $item->model->classroom_id ?? 'Unknown'; // Pastikan ada fallback jika null
             });
-
+    }
+    
     public function AttendanceChartEmployee(mixed $day, mixed $week, mixed $month, mixed $year, mixed $status): mixed
     {
         return $this->model->query()
