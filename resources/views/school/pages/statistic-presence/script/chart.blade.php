@@ -1,66 +1,62 @@
 {{-- statistik siswa --}}
 <script>
-    var options = {
+    var optionsStudent = {
         series: [{
-            name: 'Masuk'
-            , data: [45, 45, 45, 45, 45, 45, 45, 45, 45]
+            name: 'Masuk',
+            data: {!! json_encode($attendanceData['present']) !!}
         }, {
-            name: 'Izin'
-            , data: [45, 45, 45, 45, 45, 45, 45, 45, 45]
+            name: 'Izin',
+            data: {!! json_encode($attendanceData['permit']) !!}
         }, {
-            name: 'Sakit'
-            , data: [45, 45, 45, 45, 45, 45, 45, 45, 45]
+            name: 'Sakit',
+            data: {!! json_encode($attendanceData['sick']) !!}
         }, {
-            name: 'Alfa'
-            , data: [45, 45, 45, 45, 45, 45, 45, 45, 45]
-        }]
-        , chart: {
-            type: 'bar'
-            , height: 350
-            , stacked: true
-        }
-        , plotOptions: {
+            name: 'Alfa',
+            data: {!! json_encode($attendanceData['alpha']) !!}
+        }],
+        chart: {
+            type: 'bar',
+            height: 350,
+            stacked: true
+        },
+        plotOptions: {
             bar: {
                 horizontal: true
-            , }
-        , }
-        , stroke: {
-            width: 1
-            , colors: ['#fff']
-        }
-        , xaxis: {
-            categories: ['X RPL 1', 'X RPL 2', 'X RPL 3', 'X TKJ 1', 'X TKJ 2', 'X TKJ 3', 'X TKR 1', 'X TKR 2', 'X TKR 3']
-            , labels: {
+            }
+        },
+        stroke: {
+            width: 1,
+            colors: ['#fff']
+        },
+        xaxis: {
+            categories: {!! json_encode(array_values($categories)) !!}, // Pastikan kategori ditampilkan dengan benar
+            labels: {
                 show: false
             }
-        }
-        , yaxis: {
+        },
+        yaxis: {
             title: {
                 text: undefined
             }
-        , }
-        , tooltip: {
+        },
+        tooltip: {
             y: {
                 formatter: function(val) {
-                    return val + "K";
+                    return val + " siswa";
                 }
             }
-        }
-        , fill: {
+        },
+        fill: {
             opacity: 1
-        }
-        , legend: {
-            // position: 'top'
-            // , horizontalAlign: 'left'
-            // , offsetX: 40
+        },
+        legend: {
             show: false
-        }
-        , colors: ['#13DEB9', '#5D87FF', '#FFAE1F', '#FA896B']
+        },
+        colors: ['#13DEB9', '#5D87FF', '#FFAE1F', '#FA896B']
     };
 
-    var chart = new ApexCharts(document.querySelector("#chart-student"), options);
-    chart.render();
-
+    var chartStudent = new ApexCharts(document.querySelector("#chart-student"), optionsStudent);
+    chartStudent.render();
 </script>
 
 

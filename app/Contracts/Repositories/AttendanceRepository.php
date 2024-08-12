@@ -36,7 +36,8 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
         return $this->model->query()->with('classroomStudent')->whereDay('checkin', Carbon::create($date)->day)->get();
     }
 
-    public function nowAttendance(): mixed {
+    public function nowAttendance(): mixed
+    {
         return $this->model->whereDate('created_at', now())->get();
     }
 
@@ -160,6 +161,20 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
             ->count();
     }
 
+    public function classroomAttendanceChart($date)
+    {
+        return $this->model->query()
+            ->whereDate('created_at', $date)
+            ->with(['model' => function ($query) {
+                $query->with('classroom'); // Memuat relasi classroom dari model
+            }])
+            ->get()
+            ->groupBy(function ($item) {
+                // Mengelompokkan berdasarkan classroom_id dari relasi model
+                return $item->model->classroom_id ?? 'Unknown'; // Pastikan ada fallback jika null
+            });
+    }
+
     public function checkPresence(mixed $id, mixed $status): mixed
     {
         return $this->model->query()
@@ -200,7 +215,7 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
             ->delete();
     }
 
-    public function getClassroomStudent(string $id) : mixed
+    public function getClassroomStudent(string $id): mixed
     {
         return $this->model->query()
             ->whereDay('created_at', now()->day)

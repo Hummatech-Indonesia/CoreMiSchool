@@ -3,16 +3,24 @@
 namespace App\Services;
 
 use App\Contracts\Interfaces\AttendanceInterface;
+use App\Contracts\Interfaces\ClassroomInterface;
+use App\Contracts\Interfaces\SchoolYearInterface;
 use App\Enums\AttendanceEnum;
+use App\Models\Attendance;
+use App\Models\Classroom;
 use Carbon\Carbon;
 
 class SchoolChartService
 {
     private AttendanceInterface $attendance;
+    private SchoolYearInterface $schoolYear;
+    private ClassroomInterface $classroom;
 
-    public function __construct(AttendanceInterface $attendance)
+    public function __construct(AttendanceInterface $attendance, SchoolYearInterface $schoolYear, ClassroomInterface $classroom)
     {
         $this->attendance = $attendance;
+        $this->schoolYear = $schoolYear;
+        $this->classroom = $classroom;
     }
 
     public function ChartAttendance(AttendanceInterface $attendance)
@@ -42,5 +50,19 @@ class SchoolChartService
         $data  = array_values($grafikDataCollection);
 
         return $data;
+    }
+
+    public function ChartClassroomAttendance($date)
+    {
+        $attendances = $this->attendance->classroomAttendanceChart($date);
+
+        // Mengambil nama kelas berdasarkan classroom_id yang ada dalam data kehadiran
+        $classroomIds = $attendances->keys();
+        $classrooms = $this->classroom->classroomAttendance($classroomIds);
+
+        return [
+            'attendances' => $attendances,
+            'classrooms' => $classrooms
+        ];
     }
 }
