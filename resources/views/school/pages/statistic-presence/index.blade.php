@@ -53,12 +53,12 @@
 
 <ul class="nav nav-pills p-3 mb-3 rounded align-items-center card flex-row" id="pills-tab" role="tablist">
     <li class="nav-item">
-        <a class="nav-link active" id="pills-student-tab" data-bs-toggle="pill" href="#pills-student" role="tab" aria-controls="pills-student" aria-selected="true">
+        <a class="nav-link active" id="pills-keseluruhan-tab" data-bs-toggle="pill" href="#pills-keseluruhan" role="tab" aria-controls="pills-keseluruhan" aria-selected="true">
             Keseluruhan
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="pills-alumni-tab" data-bs-toggle="pill" href="#pills-alumni" role="tab" aria-controls="pills-alumni" aria-selected="false">
+        <a class="nav-link" id="pills-detail-tab" data-bs-toggle="pill" href="#pills-detail" role="tab" aria-controls="pills-detail" aria-selected="false">
             Detail
         </a>
     </li>
@@ -71,10 +71,10 @@
 </ul>
 
 <div class="tab-content mt-4" id="pills-tabContent">
-    <div class="tab-pane fade show active" id="pills-student" role="tabpanel" aria-labelledby="pills-student-tab">
+    <div class="tab-pane fade show active" id="pills-keseluruhan" role="tabpanel" aria-labelledby="pills-keseluruhan-tab">
         @include('school.pages.statistic-presence.panes.tab-student')
     </div>
-    <div class="tab-pane fade" id="pills-alumni" role="tabpanel" aria-labelledby="pills-alumni-tab">
+    <div class="tab-pane fade" id="pills-detail" role="tabpanel" aria-labelledby="pills-detail-tab">
         @include('school.pages.statistic-presence.panes.tab-employee')
     </div>
 </div>
@@ -85,4 +85,5 @@
 
 @section('script')
 @include('school.pages.statistic-presence.script.chart')
+@include('school.pages.statistic-presence.script.tab')
 @endsection

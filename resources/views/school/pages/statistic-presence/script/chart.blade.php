@@ -68,17 +68,21 @@
 
 <script>
     var options = {
-        series: [44, 55, 41, 17, 15]
-        , chart: {
+        series: [44, 55, 41],
+        chart: {
             type: 'donut'
-        , }
-        , responsive: [{
-            breakpoint: 480
-            , options: {
+        },
+        dataLabels: {
+            enabled: false // Menyembunyikan persentase di dalam chart
+        },
+        labels: [], // Menghapus tulisan series
+        responsive: [{
+            breakpoint: 480,
+            options: {
                 chart: {
                     width: 200
-                }
-                , legend: {
+                },
+                legend: {
                     position: 'bottom'
                 }
             }
@@ -87,5 +91,4 @@
 
     var chart = new ApexCharts(document.querySelector("#chart-employee"), options);
     chart.render();
-
 </script>
