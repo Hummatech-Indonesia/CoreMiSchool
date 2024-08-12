@@ -91,7 +91,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row mt-3">
     <div class="col-lg-8">
         <div class="card card-body">
             <h5 class="mb-4">Data Absensi Pegawai</h5>
@@ -137,9 +137,9 @@
     </div>
     <div class="col-lg-4">
         <div class="card card-body">
-            <h5>Statistik Absensi Siswa</h5>
+            <h5>Statistik Absensi Pegawai</h5>
             <div>
-                <p>Hari ini</p>
+                <p>20 </p>
             </div>
             <div id="chart-employee"></div>
 
