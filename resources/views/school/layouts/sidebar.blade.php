@@ -269,7 +269,7 @@
                                 <span class="hide-menu">Pengaturan Jam</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
+                        {{-- <li class="sidebar-item">
                             <a href="javascript:void(0)" class="sidebar-link has-arrowiojui  {{ request()->routeIs('school.student-attendance.show') ? 'active' : '' }}" aria-expanded="false"
                                 style="display: flex; align-items: center;">
                                 <div class="d-flex">
@@ -300,9 +300,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
-
-
+                        </li> --}}
                     </ul>
                 </li>
                 {{-- <li class="sidebar-item">
