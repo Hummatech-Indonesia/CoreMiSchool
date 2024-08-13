@@ -72,10 +72,10 @@
 
 <div class="tab-content mt-4" id="pills-tabContent">
     <div class="tab-pane fade show active" id="pills-keseluruhan" role="tabpanel" aria-labelledby="pills-keseluruhan-tab">
-        @include('school.pages.statistic-presence.panes.tab-student')
+        @include('school.pages.statistic-presence.panes.tab-all')
     </div>
     <div class="tab-pane fade" id="pills-detail" role="tabpanel" aria-labelledby="pills-detail-tab">
-        @include('school.pages.statistic-presence.panes.tab-employee')
+        @include('school.pages.statistic-presence.panes.tab-detail')
     </div>
 </div>
 
