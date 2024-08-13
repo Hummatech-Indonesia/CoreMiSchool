@@ -25,16 +25,16 @@ class StoreEmployeeRequest extends FormRequest
             'name' => 'required',
             'email' => 'required',
             'image' => 'nullable',
-            'nip' => 'required|max:18',
+            'nip' => 'required|max:18|numeric',
             'birth_date' => 'required|date',
             'birth_place' => 'required',
-            'gender' => 'required',
-            'nik' => 'required|max:16',
-            'phone_number' => 'required|max:13',
+            'gender' => 'required|exists:employees,gender',
+            'nik' => 'required|max:16|numeric',
+            'phone_number' => 'required|max:13|numeric',
             'address' => 'required',
             'active' => 'nullable',
             'status' => 'nullable',
-            'religion_id' => 'required',
+            'religion_id' => 'required|exists:employees,religion_id',
         ];
     }
 
@@ -46,15 +46,19 @@ class StoreEmployeeRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'name.required' => 'Nama wajib diisi.',
+            'email.required' => 'Email wajib diisi.',
             'nip.required' => 'NIP wajib diisi dan harus minimal 8 karakter.',
             'birth_date.required' => 'Tanggal lahir wajib diisi dan harus berupa tanggal yang valid.',
-            'birth_place.required' => 'Tempat lahir wajib diisi dan harus berupa tanggal yang valid.',
+            'birth_place.required' => 'Tempat lahir wajib diisi dan harus berupa tempat yang valid.',
             'gender.required' => 'Jenis kelamin wajib diisi.',
             'nik.required' => 'NIK wajib diisi dan harus minimal 16 karakter.',
             'phone_number.required' => 'Nomor telepon wajib diisi dan harus minimal 15 karakter.',
             'address.required' => 'Alamat wajib diisi.',
             'status.required' => 'Status wajib diisi.',
-            'religion_id.required' => 'Agama wajib diisi'
+            'religion_id.required' => 'Agama wajib diisi.',
+            'gender.exists' => 'Jenis Kelamin wajib diisi.',
+            'religion.exists' => 'Agama wajib diisi.'
         ];
     }
 }
