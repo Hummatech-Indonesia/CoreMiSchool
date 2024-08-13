@@ -176,14 +176,12 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
             });
     }
 
-    public function AttendanceChartEmployee(mixed $day, mixed $month, mixed $year, mixed $status): mixed
+    public function AttendanceChartEmployee(mixed $start_date, mixed $end_date, mixed $status): mixed
     {
         return $this->model->query()
             ->where('model_type', 'App\Models\Employee')
             ->where('status', $status)
-            ->whereDay('created_at', $day)
-            ->whereMonth('created_at', $month)
-            ->whereYear('created_at', $year)
+            ->whereBetween('created_at', [$start_date, $end_date])
             ->count();
     }
 
@@ -242,8 +240,8 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
     {
         return $this->model->query()
             ->where('model_type', $model)
-            ->when($request->date, function($q) use ($request){
-                $q->whereDate('created_at', $request->date);
+            ->when($request->start_date, function($q) use ($request){
+                $q->whereBetween('created_at', [$request->start_date. ' 00:00:00', $request->end_date. ' 23:59:59']);
             })
             ->get();
     }
