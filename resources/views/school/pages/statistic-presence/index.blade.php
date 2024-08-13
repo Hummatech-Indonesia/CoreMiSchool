@@ -63,10 +63,12 @@
         </a>
     </li>
     <li class="nav-item d-flex align-items-center ms-md-auto mt-2 gap-2 mt-md-0 guru-buttons">
-        <input type="date" name="" class="form-control" id="">
-        <button type="button" class="btn btn-primary">
-            Cari
-        </button>
+        <form action="">
+            <input type="date" name="date" class="form-control" id="date" value="{{ $date }}">
+            <button type="submit" class="btn btn-primary">
+                Cari
+            </button>
+        </form>
     </li>
 </ul>
 
