@@ -4,40 +4,6 @@
         .table-wrapper {
             max-height: 400px;
             overflow-y: auto;
-            position: relative;
-        }
-
-        .table-wrapper table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .table-wrapper thead {
-            position: sticky;
-            top: 0;
-            background-color: #5D87FF;
-            z-index: 1;
-        }
-
-        .table-wrapper tbody {
-            display: block;
-            height: 300px;
-            overflow-y: auto;
-        }
-
-        .table-wrapper th,
-        .table-wrapper td {
-            width: 33.33%;
-            text-align: center;
-        }
-
-        .table-wrapper th {
-            background-color: #5D87FF;
-            color: #fff;
-        }
-
-        .table-wrapper td {
-            border-top: 1px solid #ddd;
         }
 
         .table-wrapper::-webkit-scrollbar {
@@ -128,9 +94,9 @@
                             class="table border text-nowrap customize-table mb-0 align-middle text-center">
                             <thead>
                                 <tr>
-                                    <th>Siswa</th>
-                                    <th>NISN</th>
-                                    <th>Action</th>
+                                    <th class="text-white" style="background-color: #5D87FF;">Siswa</th>
+                                    <th class="text-white" style="background-color: #5D87FF;">NISN</th>
+                                    <th class="text-white" style="background-color: #5D87FF;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -181,9 +147,9 @@
                             class="table border text-nowrap customize-table mb-0 align-middle text-center">
                             <thead>
                                 <tr>
-                                    <th>Siswa</th>
-                                    <th>NISN</th>
-                                    <th>Action</th>
+                                    <th class="text-white" style="background-color: #5D87FF;">Siswa</th>
+                                    <th class="text-white" style="background-color: #5D87FF;">NISN</th>
+                                    <th class="text-white" style="background-color: #5D87FF;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
