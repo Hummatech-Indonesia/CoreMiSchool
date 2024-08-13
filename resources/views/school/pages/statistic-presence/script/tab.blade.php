@@ -9,7 +9,6 @@
         var activeTab = localStorage.getItem('activeTab');
 
         if (!activeTab) {
-            // Set the default tab if no tab is stored in localStorage
             activeTab = '#pills-keseluruhan';
         }
 
@@ -24,12 +23,10 @@
         localStorage.setItem('activeTab', activeTab);
     }
 
-    // Event listener for tab changes
     $('.nav-link').on('shown.bs.tab', function() {
         storeActiveTab();
     });
 
-    // Activate the stored tab on page load
     changeTab();
 });
 

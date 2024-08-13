@@ -44,24 +44,13 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
                         <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="icon icon-tabler icons-tabler-outline icon-tabler-aperture">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-                                <path d="M3.6 15h10.55" />
-                                <path d="M6.551 4.938l3.26 10.034" />
-                                <path d="M17.032 4.636l-8.535 6.201" />
-                                <path d="M20.559 14.51l-8.535 -6.201" />
-                                <path d="M12.257 20.916l3.261 -10.034" />
-                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M9 17H7v-7h2zm4 0h-2V7h2zm4 0h-2v-4h2zm2 2H5V5h14zm0-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2"/></svg>
                         </span>
                         <span class="hide-menu">Statistik Absensi</span>
                     </a>
-                    <ul aria-expanded="false" class="collapse first-level">
+                    <ul aria-expanded="false" class="collapse first-level {{ request()->routeIs('detail-presence-class.index') ? 'in' : '' }}">
                         <li class="sidebar-item">
-                            <a href="{{ route('statistic-presence.index') }}" class="sidebar-link">
+                            <a href="{{ route('statistic-presence.index') }}" class="sidebar-link {{ request()->routeIs('detail-presence-class.index') ? 'active' : '' }}">
                                 <div class="round-16 d-flex align-items-center justify-content-center">
                                     <i class="ti ti-circle"></i>
                                 </div>
