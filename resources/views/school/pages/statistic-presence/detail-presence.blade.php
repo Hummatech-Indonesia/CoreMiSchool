@@ -8,7 +8,7 @@
                 <h4 class="fw-semibold mb-8 text-primary">Detail Absensi</h4>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item text-primary" aria-current="page">Siswa - X RPL 1</li>
+                        <li class="breadcrumb-item text-primary" aria-current="page">Siswa - {{ $classroom->name }}</li>
                     </ol>
                 </nav>
             </div>
@@ -27,9 +27,9 @@
     </div>
 
     <div class="d-flex gap-2">
-        <form class="d-flex gap-2 align-items-center ms-2">
-            <input type="date" name="" class="form-control" id="">
-            <button class="btn btn-primary">Cari</button>
+        <form action="" class="d-flex gap-2 align-items-center ms-2">
+            <input type="date" name="date" class="form-control" value="{{ request('date') }}">
+            <button type="submit" class="btn btn-primary">Cari</button>
         </form>
         <a href="/new/school/export/attendance-student" class="btn btn-success">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
@@ -60,17 +60,17 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse (range(1,10) as $data)
+                @forelse ($attendances as $attendance)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>Suyadi Oke</td>
-                    <td>07.00</td>
-                    <td>16.00</td>
-                    <td>1</td>
+                    <td>{{ $attendance->student->user->name }}</td>
+                    <td>{{ Carbon\Carbon::parse($attendance->attendances->first()->checkin)->format('H.i') }}</td>
+                    <td>{{ $attendance->attendances->first()->checkout ? Carbon\Carbon::parse($attendance->attendances->first()->checkout)->format('H.i') : '-' }}</td>
+                    <td>{{ $attendance->attendances->first()->point }}</td>
                     <td>10</td>
                     <td>
                         <span class="badge bg-light-primary text-primary">
-                            Masuk
+                            {{ $attendance->attendances->first()->status->label() }}
                         </span>
                     </td>
                 </tr>
@@ -80,7 +80,7 @@
                         <div class="d-flex flex-column justify-content-center align-items-center">
                             <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt="" width="300px">
                             <p class="fs-5 text-dark text-center mt-2">
-                                Siswa belum ditambahkan
+                                Tidak ada kehadiran siswa
                             </p>
                         </div>
                     </td>
