@@ -15,11 +15,11 @@ use App\Http\Controllers\LevelClassController;
 use App\Http\Controllers\MapleController;
 use App\Http\Controllers\ModelHasRfidController;
 use App\Http\Controllers\RfidController;
-use App\Http\Controllers\School\AttendanceStatisticController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SchoolDashboardController;
 use App\Http\Controllers\Schools\AttendanceController as SchoolsAttendanceController;
 use App\Http\Controllers\Schools\AttendanceEmployeeController;
+use App\Http\Controllers\Schools\AttendanceStudentController as SchoolsAttendanceStudentController;
 use App\Http\Controllers\Schools\EmployeeController;
 use App\Http\Controllers\Schools\ExtracurricularController as SchoolsExtracurricularController;
 use App\Http\Controllers\Schools\StaffController;
@@ -159,7 +159,7 @@ Route::prefix('school')->group(function () {
     // rfid aktif
     Route::get('rfid-active', [ModelHasRfidController::class, 'showActive'])->name('rfid-active.index');
 
-    Route::get('statistic-presence', [AttendanceStatisticController::class, 'index'])->name('statistic-presence.index');
+    Route::get('statistic-presence', [SchoolsAttendanceStudentController::class, 'index'])->name('statistic-presence.index');
 
     Route::get('statistic-presence-employee', [AttendanceEmployeeController::class, 'index'])->name('statistic-presence-employee.index');
 
