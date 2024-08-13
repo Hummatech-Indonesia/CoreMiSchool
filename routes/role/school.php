@@ -162,6 +162,10 @@ Route::prefix('school')->group(function () {
     Route::get('statistic-presence', [AttendanceStatisticController::class, 'index'])->name('statistic-presence.index');
 
     Route::get('statistic-presence-employee', [AttendanceEmployeeController::class, 'index'])->name('statistic-presence-employee.index');
+
+    Route::get('detail-presence-class', function(){
+        return view('school.pages.statistic-presence.detail-presence');
+    })->name('detail-presence-class.index');
 });
 
 //tes absensi
