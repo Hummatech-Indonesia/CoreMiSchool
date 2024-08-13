@@ -197,3 +197,7 @@ Route::get('new/school/extracurricular/detail', function () {
 Route::get('new/school/export/attendance-student', function () {
     return view('school.pages.statistic-presence.export.student');
 })->name('new.export.attendance.student');
+
+Route::get('new/school/export/attendance-employee', function () {
+    return view('school.pages.statistic-presence.export.employee');
+})->name('new.export.attendance.employee');
