@@ -94,6 +94,7 @@ class SchoolYearController extends Controller
     {
         try {
             $this->schoolYear->delete($schoolYear->id);
+            $this->schoolYear->setActive(['active' => 1]);
             return redirect()->back()->with('success', 'Berhasil menghapus tahun ajaran');
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());

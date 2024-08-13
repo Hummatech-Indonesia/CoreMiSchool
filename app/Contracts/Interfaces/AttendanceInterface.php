@@ -27,10 +27,10 @@ interface AttendanceInterface extends GetInterface, StoreInterface, UpdateInterf
     public function getCurrentDay() :mixed;
     public function updateWithAttribute(array $attribute, array $data): mixed;
     public function listAttendance($date);
-    public function whereModel(mixed $model) : mixed;
+    public function whereModel(mixed $model, Request $request) : mixed;
     public function reset($date);
     public function nowAttendance(): mixed;
     public function getClassroomStudent(string $id) : mixed;
+    public function AttendanceChartEmployee(mixed $day, mixed $month, mixed $year, mixed $status): mixed;
     public function classroomAttendanceChart($date);
-    public function AttendanceChartEmployee(mixed $day, mixed $week, mixed $month, mixed $year, mixed $status): mixed;
 }

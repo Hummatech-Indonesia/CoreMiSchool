@@ -29,10 +29,10 @@ class AttendanceStatisticController extends Controller
     public function index(Request $request)
     {
         $date = $request->input('date', Carbon::today()->format('Y-m-d'));
-
         $data = $this->schoolChartService->ChartClassroomAttendance($date);
-
         $categories = $data['classrooms']->toArray(); // Mengambil nama kelas dari data
+
+        $classrooms = $this->classroom->whereInSchoolYears();
 
         $attendanceData = $data['attendances']->map(function ($group) {
             return [
@@ -44,6 +44,7 @@ class AttendanceStatisticController extends Controller
         });
 
         return view('school.pages.statistic-presence.index', [
+            'classrooms' => $classrooms,
             'categories' => $categories,
             'attendanceData' => $attendanceData->reduce(function ($carry, $item) {
                 $carry['present'][] = $item['present'];

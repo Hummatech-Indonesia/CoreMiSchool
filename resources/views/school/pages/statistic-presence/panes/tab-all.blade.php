@@ -2,7 +2,7 @@
     <div class="d-flex justify-content-between">
         <h5>Statistik Absensi Siswa</h5>
         <div class="d-flex">
-            <h5>20 Januari 2024</h5>
+            <h5>{{ \Carbon\Carbon::parse($date)->format('d F Y') }}</h5>
 
             <div class="btn-group">
                 <div class="btn-group dropstart" role="group">

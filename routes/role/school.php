@@ -163,7 +163,7 @@ Route::prefix('school')->group(function () {
 
     Route::get('statistic-presence-employee', [AttendanceEmployeeController::class, 'index'])->name('statistic-presence-employee.index');
 
-    Route::get('detail-presence-class', function(){
+    Route::get('detail-presence-class/{classroom}', function(){
         return view('school.pages.statistic-presence.detail-presence');
     })->name('detail-presence-class.index');
 });
