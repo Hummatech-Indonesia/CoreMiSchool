@@ -60,6 +60,7 @@
     @include('school.new.student.widgets.student.modal-create-rfid')
     @include('school.new.student.widgets.student.modal-detail-student')
     @include('school.new.student.widgets.student.modal-update-student')
+    @include('school.new.student.widgets.student.import')
 
     {{-- modal alumni --}}
     @include('school.new.student.widgets.alumni.modal-detail-alumni')

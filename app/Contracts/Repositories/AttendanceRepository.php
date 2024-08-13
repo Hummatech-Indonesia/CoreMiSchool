@@ -175,14 +175,13 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
                 return $item->model->classroom_id ?? 'Unknown'; // Pastikan ada fallback jika null
             });
     }
-    
-    public function AttendanceChartEmployee(mixed $day, mixed $week, mixed $month, mixed $year, mixed $status): mixed
+
+    public function AttendanceChartEmployee(mixed $day, mixed $month, mixed $year, mixed $status): mixed
     {
         return $this->model->query()
             ->where('model_type', 'App\Models\Employee')
             ->where('status', $status)
             ->whereDay('created_at', $day)
-            // ->whereWeek('created_at', $week)
             ->whereMonth('created_at', $month)
             ->whereYear('created_at', $year)
             ->count();
@@ -239,10 +238,13 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
             ->first();
     }
 
-    public function whereModel(mixed $model): mixed
+    public function whereModel(mixed $model, Request $request): mixed
     {
         return $this->model->query()
             ->where('model_type', $model)
+            ->when($request->date, function($q) use ($request){
+                $q->whereDate('created_at', $request->date);
+            })
             ->get();
     }
 }
