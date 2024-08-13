@@ -99,7 +99,7 @@ Route::middleware('auth')->prefix('school')->name('school.')->group(function () 
     // kehadiran guru
     Route::get('teacher-attendance', [SchoolsAttendanceController::class, 'teacher'])->name('teacher-attendance.index');
     //export kehadiran guru
-    Route::get('teacher-attendance/export', [SchoolsAttendanceController::class, 'export_teacher'])->name('teacher-attendance.export');
+    Route::get('teacher-attendance/export', [AttendanceEmployeeController::class, 'export'])->name('teacher-attendance.export');
 
     // get classroom students by classroom id
     Route::get('classroom-students', [ClassroomStudentController::class, 'show'])->name('classroom-students.show');
@@ -113,6 +113,9 @@ Route::middleware('auth')->prefix('school')->name('school.')->group(function () 
 
     // get teacher subject by subject id
     Route::get('teacher-subject/{subject}', [TeacherSubjectController::class, 'show'])->name('teacher-subject.show');
+
+    Route::get('export/attendance-employee', [AttendanceEmployeeController::class, 'export'])->name('export.attendance.employee');
+    // return view('school.pages.statistic-presence.export.employee');
 });
 
 
@@ -196,7 +199,3 @@ Route::get('new/school/extracurricular/detail', function () {
 Route::get('new/school/export/attendance-student', function () {
     return view('school.pages.statistic-presence.export.student');
 })->name('new.export.attendance.student');
-
-Route::get('new/school/export/attendance-employee', function () {
-    return view('school.pages.statistic-presence.export.employee');
-})->name('new.export.attendance.employee');

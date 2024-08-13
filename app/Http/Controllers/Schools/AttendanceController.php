@@ -77,15 +77,6 @@ class AttendanceController extends Controller
     }
 
     /**
-     * export kehadiran guru
-     * @param Request $request untuk menampilkan data berdasarkan tanggal
-     */
-    public function export_teacher(Request $request)
-    {
-        return Excel::download(new TeacherAttendanceExport($request, $this->attendanceTeacher), 'attendance-teacher.xlsx');
-    }
-
-    /**
      * export kehadiran siswa
      * @param Classroom $classroom classroom yang diberikan
      * @param Request $request untuk menampilkan data berdasarkan tanggal
