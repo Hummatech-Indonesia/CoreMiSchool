@@ -50,7 +50,7 @@
                         </div>
                         <div class="col-lg-4 mt-4 col-md-12 d-flex justify-content-end">
                             <div class="form-group">
-                                <button type="submit" class="btn-review btn btn-warning ms-2">
+                                <button type="submit" class="btn btn-warning ms-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                         viewBox="0 0 24 24">
                                         <path fill="currentColor"
@@ -60,7 +60,7 @@
                                 </button>
                             </div>
                             <div>
-                                <button type="submit" class="btn-export btn btn-success ms-2">
+                                <button type="submit" data-id="{{ $classroom->id }}" class="btn-export btn btn-success ms-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                         viewBox="0 0 24 24">
                                         <g fill="none">
@@ -132,11 +132,6 @@
 
 @section('script')
     <script>
-        $('.btn-preview').on('click', function() {
-            var id = $(this).data('id');
-            $('#form-action').attr('action', '{{ route('school.student-attendance.show', '') }}/' + id);
-        });
-
         $('.btn-export').on('click', function() {
             var id = $(this).data('id');
             $('#form-action').attr('action', '{{ route('school.student-attendance.export', '') }}/' + id);

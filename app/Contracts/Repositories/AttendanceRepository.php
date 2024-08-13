@@ -103,9 +103,12 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
         $date = $request->date ?? Carbon::today()->toDateString();
 
         return $this->student->query()
-            ->whereHas('attendances', function ($query) use ($date) {
+            ->whereHas('attendances', function ($query) use ($date, $request) {
                 $query->whereDate('created_at', $date)
-                    ->whereNotNull('checkin');
+                ->when($request->start, function($q) use($request){
+                    $q->whereBetween('created_at', [$request->start . ' 00:00:00', $request->end. ' 23:59:59']);
+                })
+                ->whereNotNull('checkin');
             })
             ->with(['student.user', 'attendances' => function ($query) use ($date) {
                 $query->whereDate('created_at', $date);
@@ -120,12 +123,12 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
     public function exportClassAndDate(mixed $classroom_id, Request $request): mixed
     {
         return $this->student->query()
-            ->with(['student.user', 'attendances'])
+            ->with(['attendances'])
             ->whereHas('attendances')
             ->where('classroom_id', $classroom_id)
             ->when($request->start, function ($query) use ($request) {
                 $query->whereHas('attendances', function ($query) use ($request) {
-                    $query->whereBetween('created_at', [$request->start, $request->end]);
+                    $query->whereBetween('created_at', [$request->start. ' 00:00:00', $request->end. ' 23:59:59']);
                 });
             })
             ->get();

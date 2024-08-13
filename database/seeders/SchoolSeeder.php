@@ -21,7 +21,7 @@ class SchoolSeeder extends Seeder
             'npsn' => '89269',
             'phone_number' => '08618802',
             'image' => 'logo.png',
-            'user_id' => '4',
+            'user_id' => '3',
             'province_id' => '1',
             'city_id' => '2',
             'sub_district_id' => '30',
