@@ -1,4 +1,25 @@
 @extends('school.layouts.app')
+@section('style')
+    <style>
+        .table-wrapper {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .table-wrapper::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .table-wrapper::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        .table-wrapper::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+@endsection
 @section('content')
     <div class="card bg-light-primary shadow-none position-relative overflow-hidden text-dark">
         <div class="card-body px-4 py-4">
@@ -21,6 +42,7 @@
             position: absolute;
             transition: all ease 0.3s;
         }
+
         .minimize {
             scale: 0.1;
             position: absolute;
@@ -67,7 +89,7 @@
                         </form>
                     </div>
 
-                    <div class="table-responsive rounded-2">
+                    <div class="table-wrapper rounded-2">
                         <table id="left-table"
                             class="table border text-nowrap customize-table mb-0 align-middle text-center">
                             <thead>
@@ -120,7 +142,7 @@
                         </form>
                     </div>
 
-                    <div class="table-responsive rounded-2">
+                    <div class="table-wrapper rounded-2">
                         <table id="right-table"
                             class="table border text-nowrap customize-table mb-0 align-middle text-center">
                             <thead>
