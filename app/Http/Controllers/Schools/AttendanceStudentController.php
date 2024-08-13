@@ -6,6 +6,7 @@ use App\Contracts\Interfaces\AttendanceInterface;
 use App\Contracts\Interfaces\ClassroomInterface;
 use App\Contracts\Interfaces\SchoolYearInterface;
 use App\Http\Controllers\Controller;
+use App\Models\Classroom;
 use App\Services\AttendanceService;
 use App\Services\SchoolChartService;
 use Carbon\Carbon;
@@ -60,5 +61,11 @@ class AttendanceStudentController extends Controller
             ]),
             'date' => $date
         ]);
+    }
+
+    public function show(Classroom $classroom, Request $request)
+    {
+        $attendances = $this->attendance->classAndDate($classroom->id, $request);
+        return view('school.pages.statistic-presence.detail-presence', compact('classroom', 'attendances'));
     }
 }

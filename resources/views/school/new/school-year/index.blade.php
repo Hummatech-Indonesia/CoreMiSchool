@@ -4,6 +4,51 @@
 @endphp
 @extends('school.layouts.app')
 
+@section('style')
+<style>
+    .form-group {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .select-start-container,
+    .select-end-container {
+        width: 100% !important;
+    }
+
+    .select2-container {
+        z-index: 1050; /* Higher than modal */
+    }
+
+    .select2-container .select2-selection--single {
+        height: 36px !important;
+        padding: 6px 12px !important;
+        font-size: 14px !important;
+        line-height: 1.42857143 !important;
+        color: #555 !important;
+        background-color: #fff !important;
+        background-image: none !important;
+        border: 1px solid #ccc !important;
+        border-radius: 4px !important;
+        width: 200px;
+    }
+
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        color: #555 !important;
+        line-height: 1.42857143 !important;
+    }
+
+    .select2-container--default .select2-selection--single .select2-selection__arrow {
+        top: 5px !important;
+    }
+
+    .slash {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+</style>
+@endsection
 @section('content')
     <div class="card bg-primary shadow-none position-relative overflow-hidden">
         <div class="card-body px-4 py-3">
@@ -200,5 +245,22 @@
     });
 </script>
 
+<script>
+<script>
+        $(document).ready(function () {
+            // Initialize Select2 inside the modal
+            $('#modal-create-school-year').on('shown.bs.modal', function () {
+                $('#start-year').select2({
+                    theme: 'bootstrap4',
+                    width: 'resolve'
+                }).data('select2').$container.addClass('select-start-container');
+
+                $('#end-year').select2({
+                    theme: 'bootstrap4',
+                    width: 'resolve'
+                }).data('select2').$container.addClass('select-end-container');
+            });
+        });
+    </script>
 
 @endsection
