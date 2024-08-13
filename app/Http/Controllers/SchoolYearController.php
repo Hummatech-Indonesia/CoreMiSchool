@@ -51,7 +51,7 @@ class SchoolYearController extends Controller
     {
         try {
             $this->schoolYear->setNonactive();
-            $this->schoolYear->store($request->validated());
+            $this->schoolYear->store(['school_year' => $request->school_year]);
             return redirect()->back()->with('success', 'Berhasil menambahkan tahun ajaran');
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
@@ -80,7 +80,7 @@ class SchoolYearController extends Controller
     public function update(UpdateSchoolYearRequest $request, SchoolYear $schoolYear)
     {
         try {
-            $this->schoolYear->update($schoolYear->id, $request->validated());
+            $this->schoolYear->update($schoolYear->id, ['school_year' => $request->school_year]);
             return redirect()->back()->with('success', 'Berhasil memperbarui tahun ajaran');
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());

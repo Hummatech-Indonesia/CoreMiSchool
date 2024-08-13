@@ -11,7 +11,19 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="">Tahun Ajaran <span class="text-danger" style="font-size: larger;">*</span></label>
-                        <input type="text" id="name-update" name="school_year" class="form-control" placeholder="Masukkan tahun ajaran">
+                        <div class="d-flex justify-content-between mt-3">
+                            <select name="start_year" id="update-start-year" class="me-2 select2 select-start-update">
+                                @for ($year = now()->year + 5; $year >= now()->year - 10; $year--)
+                                    <option value="{{ $year }}" {{ $year == now()->year ? 'selected' : '' }}>{{ $year }}</option>
+                                @endfor
+                            </select>
+                            <h2>/</h2>
+                            <select name="end_year" id="update-end-year" class="ms-2 select2 select-end-update">
+                                @for ($year = now()->year + 5; $year >= now()->year - 10; $year--)
+                                    <option value="{{ $year }}" {{ $year == now()->year ? 'selected' : '' }}>{{ $year }}</option>
+                                @endfor
+                            </select>
+                        </div>
                         @error('school_year')
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror

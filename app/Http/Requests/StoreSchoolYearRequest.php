@@ -14,6 +14,13 @@ class StoreSchoolYearRequest extends FormRequest
         return true;
     }
 
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'school_year' => $this->start_year . '/' . $this->end_year,
+        ]);
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -22,10 +29,12 @@ class StoreSchoolYearRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'start_year' => 'required',
+            'end_year' => 'required',
             'school_year' => [
-                'required',
+                // 'required',
                 'unique:school_years,school_year',
-                'regex:/^[0-9\/]+$/'
+                // 'regex:/^[0-9\/]+$/'
             ],
             'active' => 'nullable',
         ];
@@ -41,7 +50,7 @@ class StoreSchoolYearRequest extends FormRequest
         return [
             'school_year.required' => 'Tahun ajaran wajib diisi.',
             'school_year.unique' => 'Tahun ajaran sudah ada',
-            'school_year.regex' => 'Tahun ajaran hanya boleh angka dan garis miring (/) saja.',
+            // 'school_year.regex' => 'Tahun ajaran hanya boleh angka dan garis miring (/) saja.',
         ];
     }
 }
