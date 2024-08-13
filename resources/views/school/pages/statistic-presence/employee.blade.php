@@ -139,7 +139,7 @@
         <div class="card card-body">
             <h5>Statistik Absensi Pegawai</h5>
             <div>
-                <p>20 </p>
+                <p>20 Januari 2024</p>
             </div>
             <div id="chart-employee"></div>
 
