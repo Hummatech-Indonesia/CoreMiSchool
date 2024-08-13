@@ -18,19 +18,18 @@ class AttendanceEmployeeService
 
     public function ChartAttendanceEmployee(AttendanceInterface $attendance, Request $request)
     {
-        $Requestday = Carbon::parse($request->date)->day;
-        $Requestmonth = Carbon::parse($request->date)->month;
-        $Requestyear = Carbon::parse($request->date)->year;
-        $Curentday = Carbon::now()->day;
-        $Curentmonth = Carbon::now()->month;
-        $Curentyear = Carbon::now()->year;
+        $StartRequestday = Carbon::parse($request->start_date)->format('Y-m-d'). ' 00:00:00';
+        $EndRequestday = Carbon::parse($request->end_date)->format('Y-m-d'). ' 23:59:59';
+
+        $StartCurentdate = Carbon::today();
+        $EndCurentdate = Carbon::tomorrow();
 
         $grafikDataCollection = [];
 
-        $attendance_present = $this->attendance->AttendanceChartEmployee($Requestday ? $Requestday : $Curentday, $Requestmonth ? $Requestmonth : $Curentmonth, $Requestyear ? $Requestyear : $Curentyear, AttendanceEnum::PRESENT->value);
-        $attendance_permit = $this->attendance->AttendanceChartEmployee($Requestday ? $Requestday : $Curentday, $Requestmonth ? $Requestmonth : $Curentmonth, $Requestyear ? $Requestyear : $Curentyear, AttendanceEnum::PERMIT->value);
-        $attendance_sick = $this->attendance->AttendanceChartEmployee($Requestday ? $Requestday : $Curentday, $Requestmonth ? $Requestmonth : $Curentmonth, $Requestyear ? $Requestyear : $Curentyear, AttendanceEnum::SICK->value);
-        $attendance_alpha = $this->attendance->AttendanceChartEmployee($Requestday ? $Requestday : $Curentday, $Requestmonth ? $Requestmonth : $Curentmonth, $Requestyear ? $Requestyear : $Curentyear, AttendanceEnum::ALPHA->value);
+        $attendance_present = $this->attendance->AttendanceChartEmployee($StartRequestday ? $StartRequestday : $StartCurentdate, $EndRequestday ? $EndRequestday : $EndCurentdate, AttendanceEnum::PRESENT->value);
+        $attendance_permit = $this->attendance->AttendanceChartEmployee($StartRequestday ? $StartRequestday : $StartCurentdate, $EndRequestday ? $EndRequestday : $EndCurentdate, AttendanceEnum::PERMIT->value);
+        $attendance_sick = $this->attendance->AttendanceChartEmployee($StartRequestday ? $StartRequestday : $StartCurentdate, $EndRequestday ? $EndRequestday : $EndCurentdate, AttendanceEnum::SICK->value);
+        $attendance_alpha = $this->attendance->AttendanceChartEmployee($StartRequestday ? $StartRequestday : $StartCurentdate, $EndRequestday ? $EndRequestday : $EndCurentdate, AttendanceEnum::ALPHA->value);
 
         $grafikDataCollection[] = [
             'attendance_present' => $attendance_present,

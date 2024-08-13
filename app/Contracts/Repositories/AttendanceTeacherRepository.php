@@ -3,14 +3,14 @@
 namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\AttendanceTeacherInterface;
-use App\Models\AttendanceTeacher;
+use App\Models\Attendance;
 use Illuminate\Http\Request;
 
 class AttendanceTeacherRepository extends BaseRepository implements AttendanceTeacherInterface
 {
-    public function __construct(AttendanceTeacher $attendanceTeacher)
+    public function __construct(Attendance $attendance)
     {
-        $this->model = $attendanceTeacher;
+        $this->model = $attendance;
     }
 
     public function get(): mixed
@@ -84,6 +84,6 @@ class AttendanceTeacherRepository extends BaseRepository implements AttendanceTe
 
     public function whereBetween(Request $request): mixed
     {
-        return $this->model->query()->whereBetween('created_at', [$request->start, $request->end])->get();
+        return $this->model->query()->whereBetween('created_at', [$request->start_date, $request->end_date])->get();
     }
 }

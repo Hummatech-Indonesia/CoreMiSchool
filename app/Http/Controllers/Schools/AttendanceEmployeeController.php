@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Schools;
 
 use App\Contracts\Interfaces\AttendanceInterface;
+use App\Exports\TeacherAttendanceExport;
 use App\Http\Controllers\Controller;
 use App\Services\School\AttendanceEmployeeService;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AttendanceEmployeeController extends Controller
 {
@@ -26,6 +28,15 @@ class AttendanceEmployeeController extends Controller
         $attendanceEmployeeChart = $this->service->ChartAttendanceEmployee($this->attendance, $request);
         $attendances = $this->attendance->whereModel('App\Models\Employee', $request);
         return view('school.pages.statistic-presence.employee', compact('attendances', 'attendanceEmployeeChart'));
+    }
+
+    /**
+     * export kehadiran guru
+     * @param Request $request untuk menampilkan data berdasarkan tanggal
+     */
+    public function export(Request $request)
+    {
+        return Excel::download(new TeacherAttendanceExport($request, $this->attendance), 'attendance-teacher.xlsx');
     }
 
     /**
