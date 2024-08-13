@@ -8,8 +8,10 @@ use App\Contracts\Interfaces\StudentInterface;
 use App\Models\ClassroomStudent;
 use App\Http\Requests\StoreClassroomStudentRequest;
 use App\Http\Requests\UpdateClassroomStudentRequest;
+use App\Imports\ClassStudentImport;
 use App\Models\Classroom;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ClassroomStudentController extends Controller
 {
@@ -123,6 +125,22 @@ class ClassroomStudentController extends Controller
             return redirect()->back()->with('success', 'Berhasil menghapus siswa');
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
+    }
+
+    public function import(Request $request)
+    {
+        $file = $request->file('file');
+
+        try {
+            Excel::import(new ClassStudentImport, $file);
+            return to_route('school.students.index')->with('success', "Berhasil Mengimport Data!");
+        } catch (\Throwable $th) {
+            if ($file->getClientOriginalExtension() != 'xlsx') {
+                return redirect()->back()->with('error', 'Format file salah');
+            } else {
+                return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+            }
         }
     }
 }

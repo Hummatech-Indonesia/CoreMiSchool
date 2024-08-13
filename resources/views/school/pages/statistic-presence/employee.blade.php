@@ -76,8 +76,8 @@
     </div>
     <div class="d-flex gap-2">
         <form class="d-flex gap-2 align-items-center ms-2">
-            <input type="date" name="" class="form-control" id="">
-            <button class="btn btn-primary">Cari</button>
+            <input type="date" name="date" class="form-control" id="" value="{{ old('date', request()->date ?? date('Y-m-d')) }}">
+            <button type="submit" class="btn btn-primary">Cari</button>
         </form>
         <button class="btn btn-success">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">

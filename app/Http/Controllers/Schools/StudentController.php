@@ -12,6 +12,7 @@ use App\Contracts\Interfaces\UserInterface;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Contracts\Interfaces\StudentInterface;
 use App\Contracts\Interfaces\ReligionInterface;
+use App\Exports\StudentClassroomExport;
 use App\Http\Controllers\Controller;
 use App\Imports\StudentImport;
 use App\Services\ClassroomStudentService;
@@ -140,6 +141,19 @@ class StudentController extends Controller
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
         }
+    }
+
+    public function downloadTemplateClass()
+    {
+        try {
+            $export = new StudentClassroomExport();
+            $export->registerEvents();
+            $filePath = public_path('file/new-class-format-import-student.xlsx');
+            return response()->download($filePath)->deleteFileAfterSend(false);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
+
     }
 
     public function import(Request $request, string $classroom)
