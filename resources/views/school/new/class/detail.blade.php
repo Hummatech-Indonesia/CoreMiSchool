@@ -4,15 +4,6 @@
         .table-wrapper {
             max-height: 400px;
             overflow-y: auto;
-            position: relative;
-        }
-
-        .table-wrapper thead {
-            position: sticky;
-            top: 0;
-            z-index: 1;
-            background-color: #5D87FF;
-            /* Match the header background color */
         }
 
         .table-wrapper::-webkit-scrollbar {
@@ -26,23 +17,6 @@
 
         .table-wrapper::-webkit-scrollbar-thumb:hover {
             background: #555;
-        }
-
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .table th,
-        .table td {
-            padding: 8px;
-            text-align: center;
-        }
-
-        .table th {
-            background-color: #5D87FF;
-            /* Ensure the header background color */
-            color: white;
         }
     </style>
 @endsection
@@ -116,12 +90,13 @@
                     </div>
 
                     <div class="table-wrapper rounded-2">
-                        <table id="left-table" class="table border text-nowrap customize-table mb-0 align-middle">
+                        <table id="left-table"
+                            class="table border text-nowrap customize-table mb-0 align-middle text-center">
                             <thead>
                                 <tr>
-                                    <th>Siswa</th>
-                                    <th>NISN</th>
-                                    <th>Action</th>
+                                    <th class="text-white" style="background-color: #5D87FF;">Siswa</th>
+                                    <th class="text-white" style="background-color: #5D87FF;">NISN</th>
+                                    <th class="text-white" style="background-color: #5D87FF;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -168,12 +143,13 @@
                     </div>
 
                     <div class="table-wrapper rounded-2">
-                        <table id="right-table" class="table border text-nowrap customize-table mb-0 align-middle">
+                        <table id="right-table"
+                            class="table border text-nowrap customize-table mb-0 align-middle text-center">
                             <thead>
                                 <tr>
-                                    <th>Siswa</th>
-                                    <th>NISN</th>
-                                    <th>Action</th>
+                                    <th class="text-white" style="background-color: #5D87FF;">Siswa</th>
+                                    <th class="text-white" style="background-color: #5D87FF;">NISN</th>
+                                    <th class="text-white" style="background-color: #5D87FF;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
