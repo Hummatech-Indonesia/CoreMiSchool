@@ -63,7 +63,7 @@
         </a>
     </li>
     <li class="nav-item d-flex align-items-center ms-md-auto mt-2 gap-2 mt-md-0 guru-buttons">
-        <form action="">
+        <form action="" class="d-flex gap-2">
             <input type="date" name="date" class="form-control" id="date" value="{{ $date }}">
             <button type="submit" class="btn btn-primary">
                 Cari
