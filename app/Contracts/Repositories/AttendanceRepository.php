@@ -165,6 +165,7 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
     {
         return $this->model->query()
             ->whereDate('created_at', $date)
+            ->where('model_type', 'App\Models\ClassroomStudent')
             ->with(['model' => function ($query) {
                 $query->with('classroom'); // Memuat relasi classroom dari model
             }])
