@@ -19,11 +19,11 @@
             <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d-m-y') }}</td>
             <td>{{ $item->student->user->name }}</td>
             <td>{{ $item->classroom->name }}</td>
-            <td>{{ $item->status == 'present' ? 'Masuk' : ($item->status == 'sick' ? 'Sakit' : ($item->status == 'alpha' ? 'Alpha' : ($item->status == 'permit' ? 'Izin' : ''))) }}</td>
-            <td>{{ \Carbon\Carbon::parse($item->checkin)->format('H:i') }}</td>
-            <td>{{ \Carbon\Carbon::parse($item->checkout)->format('H:i') }}</td>
-            <td>{{ $item->point }}</td>
-            <td>10</td>
+            <td>{{ $item->attendances->first()->status->label() }}</td>
+            <td>{{ $item->attendances->first()->checkin ? \Carbon\Carbon::parse($item->attendances->first()->checkin)->format('H:i') : '-' }}</td>
+            <td>{{ $item->attendances->first()->checkout ? \Carbon\Carbon::parse($item->attendances->first()->checkout)->format('H:i') : '-' }}</td>
+            <td>{{ $item->attendances->first()->point }}</td>
+            <td>{{ $item->attendances->first()->point }}</td>
         </tr>
         @empty
         @endforelse
