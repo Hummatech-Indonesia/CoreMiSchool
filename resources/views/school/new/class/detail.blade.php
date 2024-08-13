@@ -178,11 +178,11 @@
                                 @endforelse
                             </tbody>
                         </table>
-                        <div class="text-end mt-3 mb-3">
-                            <button id="move-to-left" class="btn btn-danger">
-                                Keluarkan
-                            </button>
-                        </div>
+                    </div>
+                    <div class="text-end mt-3 mb-3">
+                        <button id="move-to-left" class="btn btn-danger">
+                            Keluarkan
+                        </button>
                     </div>
                 </div>
             </div>
