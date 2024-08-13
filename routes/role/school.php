@@ -33,7 +33,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::middleware('auth')->prefix('school')->name('school.')->group(function() {
+Route::middleware('auth')->prefix('school')->name('school.')->group(function () {
     Route::resource('employees', EmployeeController::class);
 
     // cud and import teacher
@@ -139,7 +139,7 @@ Route::prefix('school')->group(function () {
     Route::get('alumni/{classroom}', [ClassroomController::class, 'studentAlumni'])->name('alumni.index');
 
     // setting informasi
-    Route::prefix('information')->group(function(){
+    Route::prefix('information')->group(function () {
         Route::get('', [SchoolDashboardController::class, 'show'])->name('settings-information.index');
         Route::resource('rfid', RfidController::class);
     });
@@ -175,7 +175,9 @@ Route::get('menu-test', function () {
     return view('school.pages.test.menu');
 })->name('menu-test.index');
 
-Route::get('user-list', function () {return view('school.pages.test.user-list');})->name('user-list.index');
+Route::get('user-list', function () {
+    return view('school.pages.test.user-list');
+})->name('user-list.index');
 
 // list absensi
 Route::get('list-attendance', [AttendanceStudentController::class, 'index'])->name('list-attendance.index');
@@ -191,3 +193,11 @@ Route::post('attendance-test-teacher', [AttendanceMasterController::class, 'chec
 Route::get('new/school/extracurricular/detail', function () {
     return view('school.new.extracurricular.detail');
 })->name('new.extracurricular.detail');
+
+Route::get('new/school/export/attendance-student', function () {
+    return view('school.pages.statistic-presence.export.student');
+})->name('new.export.attendance.student');
+
+Route::get('new/school/export/attendance-employee', function () {
+    return view('school.pages.statistic-presence.export.employee');
+})->name('new.export.attendance.employee');
