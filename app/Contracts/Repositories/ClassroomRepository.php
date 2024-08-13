@@ -57,6 +57,11 @@ class ClassroomRepository extends BaseRepository implements ClassroomInterface
         return $this->model->query()->whereIn('school_year_id', $schoolYears)->get();
     }
 
+    public function classroomAttendance($classroomIds)
+    {
+        return $this->model->query()->whereIn('id', $classroomIds)->get()->pluck('name', 'id');
+    }
+
     public function where(Request $request, mixed $data): mixed
     {
         return $this->model->query()

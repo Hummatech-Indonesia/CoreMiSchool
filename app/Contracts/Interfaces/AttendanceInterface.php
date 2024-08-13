@@ -32,4 +32,5 @@ interface AttendanceInterface extends GetInterface, StoreInterface, UpdateInterf
     public function nowAttendance(): mixed;
     public function getClassroomStudent(string $id) : mixed;
     public function AttendanceChartEmployee(mixed $day, mixed $month, mixed $year, mixed $status): mixed;
+    public function classroomAttendanceChart($date);
 }

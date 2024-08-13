@@ -15,6 +15,7 @@ use App\Http\Controllers\LevelClassController;
 use App\Http\Controllers\MapleController;
 use App\Http\Controllers\ModelHasRfidController;
 use App\Http\Controllers\RfidController;
+use App\Http\Controllers\School\AttendanceStatisticController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SchoolDashboardController;
 use App\Http\Controllers\Schools\AttendanceController as SchoolsAttendanceController;
@@ -158,11 +159,13 @@ Route::prefix('school')->group(function () {
     // rfid aktif
     Route::get('rfid-active', [ModelHasRfidController::class, 'showActive'])->name('rfid-active.index');
 
-    Route::get('statistic-presence', function(){
-        return view('school.pages.statistic-presence.index');
-    })->name('statistic-presence.index');
+    Route::get('statistic-presence', [AttendanceStatisticController::class, 'index'])->name('statistic-presence.index');
 
     Route::get('statistic-presence-employee', [AttendanceEmployeeController::class, 'index'])->name('statistic-presence-employee.index');
+
+    Route::get('detail-presence-class', function(){
+        return view('school.pages.statistic-presence.detail-presence');
+    })->name('detail-presence-class.index');
 });
 
 //tes absensi
