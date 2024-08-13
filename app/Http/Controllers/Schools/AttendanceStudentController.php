@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\School;
+namespace App\Http\Controllers\Schools;
 
 use App\Contracts\Interfaces\AttendanceInterface;
 use App\Contracts\Interfaces\ClassroomInterface;
@@ -11,7 +11,7 @@ use App\Services\SchoolChartService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class AttendanceStatisticController extends Controller
+class AttendanceStudentController extends Controller
 {
     private AttendanceInterface $attendance;
     private ClassroomInterface $classroom;
