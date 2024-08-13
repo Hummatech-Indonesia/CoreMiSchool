@@ -87,6 +87,22 @@
 
 <script>
     $(document).ready(function() {
+        $('.select-start').select2({
+            dropdownParent: $('#modal-create-school-year')
+        });
+
+        $('.select-end').select2({
+            dropdownParent: $('#modal-create-school-year')
+        });
+
+        $('.select-start-update').select2({
+            dropdownParent: $('#modal-update-school-year')
+        });
+
+        $('.select-end-update').select2({
+            dropdownParent: $('#modal-update-school-year')
+        });
+
         $('.toggle-btn').click(function() {
             $(this).toggleClass('active');
             $('.toggle-btn').not(this).removeClass('active');
