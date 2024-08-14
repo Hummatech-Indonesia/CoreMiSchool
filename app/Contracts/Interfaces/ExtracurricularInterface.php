@@ -13,5 +13,5 @@ use Illuminate\Http\Request;
 
 interface ExtracurricularInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface
 {
-    public function whereSchool(mixed $id, Request $request): mixed;
+    //
 }

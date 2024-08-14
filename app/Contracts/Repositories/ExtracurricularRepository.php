@@ -42,13 +42,4 @@ class ExtracurricularRepository extends BaseRepository implements Extracurricula
     {
         return $this->model->query()->latest()->paginate(10);
     }
-
-    public function whereSchool(mixed $id, Request $request): mixed
-    {
-        return $this->model->query()
-            ->when($request->name, function ($query) use ($request) {
-                $query->where('name', 'LIKE', '%' .  $request->name . '%');
-            })
-            ->latest()->paginate(10);
-    }
 }
