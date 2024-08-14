@@ -46,7 +46,7 @@
                                             <select name="religion_id" id="" class="form-select">
                                                 <option value="">Pilih agama..</option>
                                                 @foreach ($religions as $religion)
-                                                <option value="{{ $religion->id }}">{{ $religion->name }}</option>
+                                                    <option value="{{ $religion->id }}" {{ old('religion_id') == $religion->id ? 'selected' : '' }}>{{ $religion->name }}</option>
                                                 @endforeach
                                             </select>
                                             @error('religion_id', 'create-employee')
@@ -76,11 +76,11 @@
                                         <label for="">Jenis Kelamin <span class="text-danger" style="font-size: larger;">*</span></label>
                                         <div class="form-check d-flex align-items-center mt-2">
                                             <div class="custom-control custom-radio me-4">
-                                                <input type="radio" class="custom-control-input" id="customControlValidationA" name="gender" value="male">
+                                                <input type="radio" class="custom-control-input" id="customControlValidationA" name="gender" value="male" {{ old('gender') == 'male' ? 'checked' : '' }}>
                                                 <label class="custom-control-label" for="customControlValidationA">Laki-laki</label>
                                             </div>
                                             <div class="custom-control custom-radio me-4">
-                                                <input type="radio" class="custom-control-input" id="customControlValidationB" name="gender" value="female">
+                                                <input type="radio" class="custom-control-input" id="customControlValidationB" name="gender" value="female" {{ old('gender') == 'female' ? 'checked' : '' }}>
                                                 <label class="custom-control-label" for="customControlValidationB">Perempuan</label>
                                             </div>
                                             @error('gender', 'create-employee')
