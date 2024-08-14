@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
             var_dump('failed: ' . $output);
         })
             ->timezone('Asia/Jakarta')
-            ->everyTwentySeconds();
+            ->everyMinute();
 
         // $schedule->command('command:create-attendance')
         //     ->everyMinute()
