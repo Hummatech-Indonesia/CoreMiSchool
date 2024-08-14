@@ -24,8 +24,8 @@
                         </div>
                         {{-- <label for="">Tahun Ajaran <span class="text-danger" style="font-size: larger;">*</span></label> --}}
                         {{-- <input type="text" name="school_year" class="form-control" placeholder="Masukkan tahun ajaran"> --}}
-                        @error('school_year')
-                            <strong class="text-danger">{{ $message }}</strong>
+                        @error('school_year', 'create')
+                            <strong class="text-danger error-create">{{ $message }}</strong>
                         @enderror
                     </div>
                 </div>
