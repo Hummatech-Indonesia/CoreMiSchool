@@ -12,8 +12,8 @@
                     <div class="mb-3">
                         <label for="">Mata Pelajaran <span class="text-danger">*</span></label>
                         <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Masukan nama mata pelajaran">
-                        @error('name')
-                        <div class="invalid-feedback">
+                        @error('name', 'create')
+                        <div class="text-danger error-create">
                             <small>{{ $message }}</small>
                         </div>
                         @enderror
@@ -31,11 +31,6 @@
                             <option value="{{ $religion->id }}">{{ $religion->name }}</option>
                             @endforeach
                         </select>
-                        @error('religion_id')
-                        <div class="invalid-feedback">
-                            <small>{{ $message }}</small>
-                        </div>
-                        @enderror
                     </div>
                 </div>
                 <div class="modal-footer">

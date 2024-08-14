@@ -50,4 +50,10 @@ class UpdateSchoolYearRequest extends FormRequest
             'school_year.unique' => 'Tahun ajaran sudah ada',
         ];
     }
+
+    protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
+    {
+        session()->flash('showEditModal', true);
+        throw new \Illuminate\Validation\ValidationException($validator, redirect()->back()->withErrors($validator, 'edit'));
+    }
 }

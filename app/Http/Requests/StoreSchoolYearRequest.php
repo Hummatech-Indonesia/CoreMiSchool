@@ -53,4 +53,10 @@ class StoreSchoolYearRequest extends FormRequest
             // 'school_year.regex' => 'Tahun ajaran hanya boleh angka dan garis miring (/) saja.',
         ];
     }
+
+    protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
+    {
+        session()->flash('showCreateModal', true);
+        throw new \Illuminate\Validation\ValidationException($validator, redirect()->back()->withErrors($validator, 'create'));
+    }
 }

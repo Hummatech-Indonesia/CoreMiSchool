@@ -39,4 +39,10 @@ class StoreSubjectRequest extends FormRequest
             'name.unique' => 'Mata pelajaran sudah ada'
         ];
     }
+
+    protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
+    {
+        session()->flash('showCreateSubject', true);
+        throw new \Illuminate\Validation\ValidationException($validator, redirect()->back()->withErrors($validator, 'create'));
+    }
 }
