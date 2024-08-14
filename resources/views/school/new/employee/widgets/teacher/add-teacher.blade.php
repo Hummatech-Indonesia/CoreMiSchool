@@ -28,9 +28,9 @@
                                             <label for="">Nama <span class="text-danger"
                                                     style="font-size: larger;">*</span></label>
                                             <input type="text" name="name" placeholder="Masukkan nama"
-                                                class="form-control" value="{{ old('name') }}">
-                                            @error('name')
-                                                <strong class="text-danger">{{ $message }}</strong>
+                                                class="form-control mb-3" value="{{ old('name') }}">
+                                            @error('name', 'create')
+                                                <strong class="text-danger error-create-teacher mb-2">{{ $message }}</strong>
                                             @enderror
                                         </div>
                                     </div>
@@ -39,9 +39,9 @@
                                             <label for="">NIP <span class="text-danger"
                                                     style="font-size: larger;">*</span></label>
                                             <input type="number" name="nip" placeholder="Masukkan nip"
-                                                class="form-control" value="{{ old('nip') }}">
-                                            @error('nip')
-                                                <strong class="text-danger">{{ $message }}</strong>
+                                                class="form-control mb-3" value="{{ old('nip') }}">
+                                            @error('nip', 'create')
+                                                <strong class="text-danger error-create-teacher mb-2">{{ $message }}</strong>
                                             @enderror
                                         </div>
                                     </div>
@@ -49,13 +49,13 @@
                                         <div class="form-group">
                                             <label for="">Agama</label>
                                             <select name="religion_id" id="" class="form-select">
-                                                <option>Pilih agama..</option>
+                                                <option value="">Pilih agama..</option>
                                                 @foreach ($religions as $religion)
                                                 <option value="{{ $religion->id }}">{{ $religion->name }}</option>
                                                 @endforeach
                                             </select>
-                                            @error('religion_id')
-                                                <strong class="text-danger">{{ $message }}</strong>
+                                            @error('religion_id', 'create')
+                                                <strong class="text-danger error-create-teacher mb-2">{{ $message }}</strong>
                                             @enderror
                                         </div>
                                     </div>
@@ -65,8 +65,8 @@
                                                     style="font-size: larger;">*</span></label>
                                             <input type="date" name="birth_date" class="form-control"
                                                 value="{{ old('birth_date') }}">
-                                            @error('birth_date')
-                                                <strong class="text-danger">{{ $message }}</strong>
+                                            @error('birth_date', 'create')
+                                                <strong class="text-danger error-create-teacher mb-2">{{ $message }}</strong>
                                             @enderror
                                         </div>
                                     </div>
@@ -77,8 +77,8 @@
                                             <input type="text" placeholder="Masukkan tempat lahir"
                                                 class="form-control" name="birth_place"
                                                 value="{{ old('birth_place') }}">
-                                            @error('birth_place')
-                                                <strong class="text-danger">{{ $message }}</strong>
+                                            @error('birth_place', 'create')
+                                                <strong class="text-danger error-create-teacher mb-2">{{ $message }}</strong>
                                             @enderror
                                         </div>
                                     </div>
@@ -99,8 +99,8 @@
                                                     for="customControlValidationB">Perempuan</label>
                                             </div>
                                         </div>
-                                        @error('gender')
-                                            <strong class="text-danger">{{ $message }}</strong>
+                                        @error('gender', 'create')
+                                            <strong class="text-danger error-create-teacher mb-2">{{ $message }}</strong>
                                         @enderror
                                     </div>
                                 </div>
@@ -116,10 +116,10 @@
                                         <div class="form-group">
                                             <label for="">NIK <span class="text-danger"
                                                     style="font-size: larger;">*</span></label>
-                                            <input type="number" placeholder="Masukkan nik" name="nik"
-                                                class="form-control" value="{{ old('nik') }}">
-                                            @error('nik')
-                                                <strong class="text-danger">{{ $message }}</strong>
+                                            <input type="text" placeholder="Masukkan nik" name="nik"
+                                                class="form-control mb-3" value="{{ old('nik') }}">
+                                            @error('nik', 'create')
+                                                <strong class="text-danger error-create-teacher mb-2">{{ $message }}</strong>
                                             @enderror
                                         </div>
                                     </div>
@@ -127,10 +127,10 @@
                                         <div class="form-group">
                                             <label for="">No Telp <span class="text-danger"
                                                     style="font-size: larger;">*</span></label>
-                                            <input type="number" placeholder="Masukkan no telp" name="phone_number"
-                                                class="form-control" value="{{ old('phone_number') }}">
-                                            @error('phone_number')
-                                                <strong class="text-danger">{{ $message }}</strong>
+                                            <input type="text" placeholder="Masukkan no telp" name="phone_number"
+                                                class="form-control mb-3" value="{{ old('phone_number') }}">
+                                            @error('phone_number', 'create')
+                                                <strong class="text-danger error-create-teacher mb-2">{{ $message }}</strong>
                                             @enderror
                                         </div>
                                     </div>
@@ -139,9 +139,9 @@
                                             <label for="">Email <span class="text-danger"
                                                     style="font-size: larger;">*</span></label>
                                             <input type="text" placeholder="Masukkan email" name="email"
-                                                class="form-control" value="{{ old('email') }}">
-                                            @error('email')
-                                                <strong class="text-danger">{{ $message }}</strong>
+                                                class="form-control mb-3" value="{{ old('email') }}">
+                                            @error('email', 'create')
+                                                <strong class="text-danger error-create-teacher mb-2">{{ $message }}</strong>
                                             @enderror
                                         </div>
                                     </div>
@@ -158,9 +158,9 @@
                                         <div class="form-group">
                                             <h6>Alamat <span class="text-danger" style="font-size: larger;">*</span>
                                             </h6>
-                                            <textarea name="address" class="form-control" placeholder="Masukkan alamat" rows="3">{{ old('address') }}</textarea>
-                                            @error('address')
-                                                <strong class="text-danger">{{ $message }}</strong>
+                                            <textarea name="address" class="form-control mb-3" placeholder="Masukkan alamat" rows="3">{{ old('address') }}</textarea>
+                                            @error('address', 'create')
+                                                <strong class="text-danger error-create-teacher mb-2">{{ $message }}</strong>
                                             @enderror
                                         </div>
                                     </div>

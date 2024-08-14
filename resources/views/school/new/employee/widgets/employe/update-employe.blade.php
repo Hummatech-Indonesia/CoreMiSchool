@@ -25,8 +25,8 @@
                                     <div class="form-group">
                                         <label for="">Nama <span class="text-danger" style="font-size: larger;">*</span></label>
                                         <input type="text" name="name" id="edit-name" placeholder="Masukan nama" class="form-control mb-3">
-                                        @error('name')
-                                        <strong class="text-danger">{{ $message }}</strong>
+                                        @error('name', 'update')
+                                            <strong class="text-danger error-edit-employee mb-2">{{ $message }}</strong>
                                         @enderror
                                     </div>
                                 </div>
@@ -34,8 +34,8 @@
                                     <div class="form-group">
                                         <label for="">NIP <span class="text-danger" style="font-size: larger;">*</span></label>
                                         <input type="number" name="nip" placeholder="Masukan NIP" id="edit-nip" class="form-control mb-3">
-                                        @error('nip')
-                                        <strong class="text-danger">{{ $message }}</strong>
+                                        @error('nip', 'update')
+                                        <strong class="text-danger error-edit-employee mb-2">{{ $message }}</strong>
                                         @enderror
                                     </div>
                                 </div>
@@ -47,8 +47,8 @@
                                             <option value="{{ $religion->id }}">{{ $religion->name }}</option>
                                             @endforeach
                                         </select>
-                                        @error('religion_id')
-                                        <strong class="text-danger">{{ $message }}</strong>
+                                        @error('religion_id', 'update')
+                                        <strong class="text-danger error-edit-employee mb-2">{{ $message }}</strong>
                                         @enderror
                                     </div>
                                 </div>
@@ -56,8 +56,8 @@
                                     <div class="form-group">
                                         <label for="">Tanggal Lahir <span class="text-danger" style="font-size: larger;">*</span></label>
                                         <input type="date" name="birth_date" id="edit-birth-date" class="form-control mb-3">
-                                        @error('birth_date')
-                                        <strong class="text-danger">{{ $message }}</strong>
+                                        @error('birth_date', 'update')
+                                        <strong class="text-danger error-edit-employee mb-2">{{ $message }}</strong>
                                         @enderror
                                     </div>
                                 </div>
@@ -65,8 +65,8 @@
                                     <div class="form-group">
                                         <label for="">Tempat Lahir <span class="text-danger" style="font-size: larger;">*</span></label>
                                         <input type="text" class="form-control" placeholder="Masukan tempat lahir" id="edit-birth-place" name="birth_place">
-                                        @error('birth_place')
-                                        <strong class="text-danger">{{ $message }}</strong>
+                                        @error('birth_place', 'update')
+                                        <strong class="text-danger error-edit-employee mb-2">{{ $message }}</strong>
                                         @enderror
                                     </div>
                                 </div>
@@ -81,6 +81,9 @@
                                             <input type="radio" class="custom-control-input" id="edit-gender-female" name="gender" value="female">
                                             <label class="custom-control-label" for="edit-gender-female">Perempuan</label>
                                         </div>
+                                        @error('gender', 'update')
+                                            <strong class="text-danger error-edit-employee mb-2">{{ $message }}</strong>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -96,8 +99,8 @@
                                     <div class="form-group">
                                         <label for="">NIK <span class="text-danger" style="font-size: larger;">*</span></label>
                                         <input type="text" name="nik" id="edit-nik" placeholder="Masukan NIK" class="form-control mb-3">
-                                        @error('nik')
-                                        <strong class="text-danger">{{ $message }}</strong>
+                                        @error('nik', 'update')
+                                        <strong class="text-danger error-edit-employee mb-2">{{ $message }}</strong>
                                         @enderror
                                     </div>
                                 </div>
@@ -105,8 +108,8 @@
                                     <div class="form-group">
                                         <label for="">No Telp <span class="text-danger" style="font-size: larger;">*</span></label>
                                         <input type="text" name="phone_number" placeholder="Masukan nomor telepon" id="edit-phone" class="form-control mb-3">
-                                        @error('phone_number')
-                                        <strong class="text-danger">{{ $message }}</strong>
+                                        @error('phone_number', 'update')
+                                        <strong class="text-danger error-edit-employee mb-2">{{ $message }}</strong>
                                         @enderror
                                     </div>
                                 </div>
@@ -114,8 +117,8 @@
                                     <div class="form-group">
                                         <label for="">Email <span class="text-danger" style="font-size: larger;">*</span></label>
                                         <input type="text" name="email" id="edit-email" placeholder="Masukan email" class="form-control mb-3">
-                                        @error('email')
-                                        <strong class="text-danger">{{ $message }}</strong>
+                                        @error('email', 'update')
+                                        <strong class="text-danger error-edit-employee mb-2">{{ $message }}</strong>
                                         @enderror
                                     </div>
                                 </div>
@@ -132,8 +135,8 @@
                                     <div class="form-group">
                                         <h6>Alamat <span class="text-danger" style="font-size: larger;">*</span></h6>
                                         <textarea name="address" id="edit-address" placeholder="Masukan alamat" class="form-control mb-3" rows="3"></textarea>
-                                        @error('address')
-                                        <strong class="text-danger">{{ $message }}</strong>
+                                        @error('address', 'update')
+                                        <strong class="text-danger error-edit-employee mb-2">{{ $message }}</strong>
                                         @enderror
                                     </div>
                                 </div>

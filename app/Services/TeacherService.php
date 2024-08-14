@@ -6,8 +6,10 @@ use App\Contracts\Interfaces\UserInterface;
 use App\Enums\RoleEnum;
 use App\Enums\UploadDiskEnum;
 use App\Http\Requests\StoreEmployeeRequest;
+use App\Http\Requests\StoreTeacherRequest;
 use App\Traits\UploadTrait;
 use App\Http\Requests\UpdateEmployeeRequest;
+use App\Http\Requests\UpdateTeacherRequest;
 use App\Models\Employee;
 use App\Models\Student;
 use Illuminate\Support\Facades\Hash;
@@ -29,7 +31,7 @@ class TeacherService
         return $this->upload($disk, $file);
     }
 
-    public function store(StoreEmployeeRequest $request): array|bool
+    public function store(StoreTeacherRequest $request): array|bool
     {
         $data = $request->validated();
         $rules = $this->user->showEmail($data['email']);
@@ -53,7 +55,7 @@ class TeacherService
         return $data;
     }
 
-    public function update(Employee $employee, UpdateEmployeeRequest $request): array|bool
+    public function update(Employee $employee, UpdateTeacherRequest $request): array|bool
     {
         $data = $request->validated();
 
