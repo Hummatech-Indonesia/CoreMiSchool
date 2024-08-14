@@ -23,8 +23,8 @@
                                 @endfor
                             </select>
                         </div>
-                        @error('school_year')
-                            <strong class="text-danger">{{ $message }}</strong>
+                        @error('school_year', 'edit')
+                            <strong class="text-danger error-edit">{{ $message }}</strong>
                         @enderror
                     </div>
                 </div>

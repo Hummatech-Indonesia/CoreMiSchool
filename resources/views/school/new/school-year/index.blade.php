@@ -129,6 +129,7 @@
 @include('school.new.school-year.scripts.delete-year')
 @include('school.new.school-year.scripts.tab')
 @include('school.new.school-year.scripts.update-year')
+@include('school.new.school-year.scripts.modal-create')
 
 <script>
     $(document).ready(function() {
