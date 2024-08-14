@@ -1,4 +1,3 @@
-<!-- tambah subject -->
 <div class="modal fade" id="subject-teacher" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -21,8 +20,8 @@
                                     @empty
                                     @endforelse
                                 </select>
-                                @error('subject')
-                                <strong class="text-danger">{{ $message }}</strong>
+                                @error('subject', 'create')
+                                <strong class="text-danger error-create">{{ $message }}</strong>
                                 @enderror
                             </div>
                         </div>

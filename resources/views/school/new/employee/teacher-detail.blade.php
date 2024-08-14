@@ -1,34 +1,6 @@
 @extends('school.layouts.app')
 
 @section('style')
-{{-- <style>
-        .select2 {
-            width: 100% !important;
-        }
-
-        .select2-selection__rendered {
-            width: 100%;
-            height: 100px;
-            padding: 6px 12px;
-            font-size: 14px;
-            line-height: 1.42857143;
-            color: #555;
-            background-color: #fff;
-            background-image: none;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        .select2-selection {
-            height: fit-content !important;
-            color: #555 !important;
-            background-color: #fff !important;
-            background-image: none !important;
-            border: 1px solid #ccc !important;
-            border-radius: 4px !important;
-        }
-    </style> --}}
-
 <style>
     .select2 {
         width: 100% !important;
@@ -208,6 +180,22 @@
 @endsection
 
 @section('script')
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const showSubjectTeacher = @json(session('showSubjectTeacher'));
+
+        if (showSubjectTeacher) {
+            var showSubjectErrors = document.querySelectorAll('.error-create');
+            if (showSubjectErrors.length > 0) {
+                var showSubjectElement = new bootstrap.Modal(document.getElementById('subject-teacher'));
+                showSubjectElement.show();
+            }
+        }
+    });
+</script>
+
+
 <script>
     $(document).ready(function() {
         $('.select2').select2({
