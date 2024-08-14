@@ -63,6 +63,6 @@ class UpdateTeacherRequest extends FormRequest
     protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
     {
         session()->flash('showUpdateTeacher', true);
-        throw new \Illuminate\Validation\ValidationException($validator, redirect()->back()->withErrors($validator, 'update'));
+        throw new \Illuminate\Validation\ValidationException($validator, redirect()->back()->withInput()->withErrors($validator, 'update'));
     }
 }

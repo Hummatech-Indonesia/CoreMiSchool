@@ -25,10 +25,8 @@
                                     </div>
                                     <div class="col-md-6  mb-3">
                                         <div class="form-group">
-                                            <label for="">Nama <span class="text-danger"
-                                                    style="font-size: larger;">*</span></label>
-                                            <input type="text" name="name" placeholder="Masukkan nama"
-                                                class="form-control mb-3" value="{{ old('name') }}">
+                                            <label for="">Nama <span class="text-danger" style="font-size: larger;">*</span></label>
+                                            <input type="text" name="name" placeholder="Masukkan nama" class="form-control mb-3" value="{{ old('name') }}">
                                             @error('name', 'create')
                                                 <strong class="text-danger error-create-teacher mb-2">{{ $message }}</strong>
                                             @enderror

@@ -65,6 +65,6 @@ class StoreEmployeeRequest extends FormRequest
     protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
     {
         session()->flash('showCreateEmployee', true);
-        throw new \Illuminate\Validation\ValidationException($validator, redirect()->back()->withErrors($validator, 'create-employee'));
+        throw new \Illuminate\Validation\ValidationException($validator, redirect()->back()->withInput()->withErrors($validator, 'create-employee'));
     }
 }
