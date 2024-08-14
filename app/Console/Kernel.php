@@ -19,7 +19,14 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command('command:create-attendance')->dailyAt('01:00');
+        $schedule->command('command:create-attendance')
+            ->everyMinute()
+            ->onFailureWithOutput(function ($output) {
+                var_dump('failed: ' . $output);
+            })
+            ->onSuccessWithOutput(function ($output) {
+                var_dump('success: ' . $output);
+            });
         $schedule->command('command:delete-attendance')->dailyAt('23:00');
     }
 
@@ -28,7 +35,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands(): void
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }
