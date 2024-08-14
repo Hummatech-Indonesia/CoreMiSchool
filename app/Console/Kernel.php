@@ -20,6 +20,15 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
+
+        $schedule->call(function () {
+            Log::info('running command...' + now()->format('Y-m-d H:i:s'));
+        })->onFailure(function ($err) {
+            Log::error($err);
+        })
+            ->timezone('Asia/Jakarta')
+            ->everyTwentySeconds();
+
         $schedule->command('command:create-attendance')
             ->everyMinute()
             ->onFailureWithOutput(function ($output) {
