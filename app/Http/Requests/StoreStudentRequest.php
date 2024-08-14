@@ -46,6 +46,7 @@ class StoreStudentRequest extends FormRequest
             'email.required' => 'Email tidak boleh kosong',
             'email.email' => 'Email tidak valid',
             'gender.required' => 'Jenis kelamin tidak boleh kosong',
+            'nisn.required' => 'NISN tidak boleh kosong',
             'nisn.numeric' => 'NISN harus berupa angka',
             'nik.required' => 'NIK tidak boleh kosong',
             'nik.min' => 'NIK tidak valid',
@@ -66,5 +67,11 @@ class StoreStudentRequest extends FormRequest
             'order_child.numeric' => 'Anak ke- harus berupa angka',
             'count_siblings.numeric' => 'Jumlah saudaa harus berupa angka',
         ];
+    }
+
+    protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
+    {
+        session()->flash('showCreateModal', true);
+        throw new \Illuminate\Validation\ValidationException($validator, redirect()->back()->withInput()->withErrors($validator, 'create'));
     }
 }
