@@ -112,14 +112,13 @@
         <x-paginate-component :paginator="$subjects" />
     </div>
 
-
     @include('school.pages.subjects.widgets.modal-create-subject')
     @include('school.pages.subjects.widgets.modal-update-subject')
-
 
     <x-delete-modal-component />
 @endsection
 
 @section('script')
 @include('school.pages.subjects.script.script-create-subjects')
+@include('school.pages.subjects.script.session')
 @endsection
