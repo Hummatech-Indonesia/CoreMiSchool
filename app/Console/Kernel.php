@@ -11,6 +11,7 @@ use App\Models\ClassroomStudent;
 use App\Models\LessonHour;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Log;
 
 class Kernel extends ConsoleKernel
 {
@@ -28,6 +29,11 @@ class Kernel extends ConsoleKernel
                 var_dump('success: ' . $output);
             });
         $schedule->command('command:delete-attendance')->dailyAt('23:00');
+
+        $schedule->command('command:test-cron')->onFailureWithOutput(function ($e) {
+            Log::error($e);
+        })
+            ->everyMinute();
     }
 
     /**
