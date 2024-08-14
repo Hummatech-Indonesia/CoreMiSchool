@@ -1,3 +1,4 @@
+
 @extends('school.layouts.app')
 @section('style')
     <style>
@@ -332,6 +333,7 @@
 @endsection
 
 @section('script')
+    @include('school.new.class.script.script-validation')
     @include('school.new.class.script.script-preview')
     @include('school.new.class.script.script-toggle-rolling')
     @include('school.new.class.script.script-create-rfid')

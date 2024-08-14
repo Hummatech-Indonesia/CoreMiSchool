@@ -68,4 +68,10 @@ class UpdateStudentRequest extends FormRequest
             'count_siblings.numeric' => 'Jumlah saudaa harus berupa angka',
         ];  
     }
+
+    protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
+    {
+        session()->flash('showEditModal', true);
+        throw new \Illuminate\Validation\ValidationException($validator, redirect()->back()->withInput()->withErrors($validator, 'edit'));
+    }
 }
