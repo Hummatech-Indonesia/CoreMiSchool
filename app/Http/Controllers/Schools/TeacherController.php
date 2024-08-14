@@ -11,7 +11,9 @@ use App\Contracts\Interfaces\TeacherSubjectInterface;
 use App\Contracts\Interfaces\UserInterface;
 use App\Enums\RoleEnum;
 use App\Http\Requests\StoreEmployeeRequest;
+use App\Http\Requests\StoreTeacherRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
+use App\Http\Requests\UpdateTeacherRequest;
 use App\Imports\TeacherImport;
 use App\Models\Employee;
 use App\Services\TeacherService;
@@ -60,7 +62,7 @@ class TeacherController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreEmployeeRequest $request)
+    public function store(StoreTeacherRequest $request)
     {
         try {
             $data = $this->service->store($request);
@@ -93,7 +95,7 @@ class TeacherController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateEmployeeRequest $request, Employee $employee)
+    public function update(UpdateTeacherRequest $request, Employee $employee)
     {
         try {
             $data = $this->service->update($employee, $request);

@@ -105,4 +105,5 @@
     @include('school.new.employee.scripts.delete')
     @include('school.new.employee.scripts.create')
     @include('school.new.employee.scripts.edit')
+    @include('school.new.employee.scripts.session')
 @endsection

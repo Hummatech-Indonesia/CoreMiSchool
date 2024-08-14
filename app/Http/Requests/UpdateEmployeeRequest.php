@@ -46,6 +46,8 @@ class UpdateEmployeeRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'name.required' => 'Nama wajib di isi',
+            'email.required' => 'Email wajib di isi',
             'nip.required' => 'NIP wajib diisi dan harus minimal 8 karakter.',
             'birth_date.required' => 'Tanggal lahir wajib diisi dan harus berupa tanggal yang valid.',
             'birth_place.required' => 'Tempat lahir wajib diisi dan harus berupa tanggal yang valid.',
@@ -56,5 +58,11 @@ class UpdateEmployeeRequest extends FormRequest
             'status.required' => 'Status wajib diisi.',
             'religion_id.required' => 'Agama wajib diisi'
         ];
+    }
+
+    protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
+    {
+        session()->flash('showUpdateEmployee', true);
+        throw new \Illuminate\Validation\ValidationException($validator, redirect()->back()->withErrors($validator, 'update'));
     }
 }

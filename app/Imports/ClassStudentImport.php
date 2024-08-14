@@ -76,10 +76,11 @@ class ClassStudentImport implements ToModel, WithHeadingRow, WithEvents
         }
 
         $classroom = Classroom::where('name', $this->sheetName)->first();
+        $employee = Employee::whereRelation('user', 'name', $row[1])->first();
 
         $class_id = "";
+
         if (!$classroom) {
-            $employee = Employee::whereRelation('user', 'name', $row[1])->first();
             $school_year = SchoolYear::where('active', true)->first();
             $level_class = LevelClass::where('name', 'Kelas 10')->first();
 

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreEmployeeRequest extends FormRequest
+class UpdateTeacherRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +14,7 @@ class StoreEmployeeRequest extends FormRequest
         return true;
     }
 
-    /**
+     /**
      * Get the validation rules that apply to the request.
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
@@ -24,7 +24,7 @@ class StoreEmployeeRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required',
-            'image' => 'nullable',
+            'image' => 'nullable|mimes:jpg,jpeg,png',
             'nip' => 'required|max:18',
             'birth_date' => 'required|date',
             'birth_place' => 'required',
@@ -62,7 +62,7 @@ class StoreEmployeeRequest extends FormRequest
 
     protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
     {
-        session()->flash('showCreateEmployee', true);
-        throw new \Illuminate\Validation\ValidationException($validator, redirect()->back()->withErrors($validator, 'create'));
+        session()->flash('showUpdateTeacher', true);
+        throw new \Illuminate\Validation\ValidationException($validator, redirect()->back()->withErrors($validator, 'update'));
     }
 }

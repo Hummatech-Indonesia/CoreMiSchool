@@ -41,9 +41,7 @@ class EmployeeService
         ];
         $user = $this->user->store($dataUser);
 
-        if ($data['status'] == RoleEnum::ADMIN->value) {
-            $user->assignRole(RoleEnum::ADMIN->value);
-        } else if ($data['status'] == RoleEnum::TEACHER->value) {
+        if ($data['status'] == RoleEnum::TEACHER->value) {
             $user->assignRole(RoleEnum::TEACHER->value);
         } else if ($data['status'] == RoleEnum::STAFF->value) {
             $user->assignRole(RoleEnum::STAFF->value);
