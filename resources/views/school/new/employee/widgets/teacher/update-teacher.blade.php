@@ -96,7 +96,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="">NIK <span class="text-danger" style="font-size: larger;">*</span></label>
-                                        <input type="text" name="nik" placeholder="Masukkan nik" id="nik-edit" class="form-control mb-3" value="{{ old('nik') }}">
+                                        <input type="number" name="nik" placeholder="Masukkan nik" id="nik-edit" class="form-control mb-3" value="{{ old('nik') }}">
                                         @error('nik')
                                         <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -105,7 +105,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="">No Telp <span class="text-danger" style="font-size: larger;">*</span></label>
-                                        <input type="text" name="phone_number" placeholder="Masukkan no telp" id="phone-edit" class="form-control mb-3" value="{{ old('phone_number') }}">
+                                        <input type="number" name="phone_number" placeholder="Masukkan no telp" id="phone-edit" class="form-control mb-3" value="{{ old('phone_number') }}">
                                         @error('phone_number')
                                         <strong class="text-danger">{{ $message }}</strong>
                                         @enderror

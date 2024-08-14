@@ -36,7 +36,8 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
         return $this->model->query()->with('classroomStudent')->whereDay('checkin', Carbon::create($date)->day)->get();
     }
 
-    public function nowAttendance(): mixed {
+    public function nowAttendance(): mixed
+    {
         return $this->model->whereDate('created_at', now())->get();
     }
 
@@ -102,9 +103,12 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
         $date = $request->date ?? Carbon::today()->toDateString();
 
         return $this->student->query()
-            ->whereHas('attendances', function ($query) use ($date) {
+            ->whereHas('attendances', function ($query) use ($date, $request) {
                 $query->whereDate('created_at', $date)
-                    ->whereNotNull('checkin');
+                ->when($request->start, function($q) use($request){
+                    $q->whereBetween('created_at', [$request->start . ' 00:00:00', $request->end. ' 23:59:59']);
+                })
+                ->whereNotNull('checkin');
             })
             ->with(['student.user', 'attendances' => function ($query) use ($date) {
                 $query->whereDate('created_at', $date);
@@ -119,12 +123,12 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
     public function exportClassAndDate(mixed $classroom_id, Request $request): mixed
     {
         return $this->student->query()
-            ->with(['student.user', 'attendances'])
+            ->with(['attendances'])
             ->whereHas('attendances')
             ->where('classroom_id', $classroom_id)
             ->when($request->start, function ($query) use ($request) {
                 $query->whereHas('attendances', function ($query) use ($request) {
-                    $query->whereBetween('created_at', [$request->start, $request->end]);
+                    $query->whereBetween('created_at', [$request->start. ' 00:00:00', $request->end. ' 23:59:59']);
                 });
             })
             ->get();
@@ -157,6 +161,30 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
             ->where('status', $status)
             ->whereYear('created_at', $year)
             ->whereMonth('created_at', $month)
+            ->count();
+    }
+
+    public function classroomAttendanceChart($date)
+    {
+        return $this->model->query()
+            ->whereDate('created_at', $date)
+            ->where('model_type', 'App\Models\ClassroomStudent')
+            ->with(['model' => function ($query) {
+                $query->with('classroom'); // Memuat relasi classroom dari model
+            }])
+            ->get()
+            ->groupBy(function ($item) {
+                // Mengelompokkan berdasarkan classroom_id dari relasi model
+                return $item->model->classroom_id ?? 'Unknown'; // Pastikan ada fallback jika null
+            });
+    }
+
+    public function AttendanceChartEmployee(mixed $start_date, mixed $end_date, mixed $status): mixed
+    {
+        return $this->model->query()
+            ->where('model_type', 'App\Models\Employee')
+            ->where('status', $status)
+            ->whereBetween('created_at', [$start_date, $end_date])
             ->count();
     }
 
@@ -200,7 +228,7 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
             ->delete();
     }
 
-    public function getClassroomStudent(string $id) : mixed
+    public function getClassroomStudent(string $id): mixed
     {
         return $this->model->query()
             ->whereDay('created_at', now()->day)
@@ -209,5 +237,15 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
             ->where('model_type', 'App\Models\ClassroomStudent')
             ->where('model_id', $id)
             ->first();
+    }
+
+    public function whereModel(mixed $model, Request $request): mixed
+    {
+        return $this->model->query()
+            ->where('model_type', $model)
+            ->when($request->start_date, function($q) use ($request){
+                $q->whereBetween('created_at', [$request->start_date. ' 00:00:00', $request->end_date. ' 23:59:59']);
+            })
+            ->get();
     }
 }

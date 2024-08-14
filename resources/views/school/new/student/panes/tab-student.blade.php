@@ -144,5 +144,3 @@
         <x-paginate-component :paginator="$students" />
     </div>
 </div>
-
-@include('school.new.student.widgets.student.import')

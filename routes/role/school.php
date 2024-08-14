@@ -18,6 +18,8 @@ use App\Http\Controllers\RfidController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SchoolDashboardController;
 use App\Http\Controllers\Schools\AttendanceController as SchoolsAttendanceController;
+use App\Http\Controllers\Schools\AttendanceEmployeeController;
+use App\Http\Controllers\Schools\AttendanceStudentController as SchoolsAttendanceStudentController;
 use App\Http\Controllers\Schools\EmployeeController;
 use App\Http\Controllers\Schools\ExtracurricularController as SchoolsExtracurricularController;
 use App\Http\Controllers\Schools\StaffController;
@@ -31,7 +33,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::middleware('auth')->prefix('school')->name('school.')->group(function() {
+Route::middleware('auth')->prefix('school')->name('school.')->group(function () {
     Route::resource('employees', EmployeeController::class);
 
     // cud and import teacher
@@ -57,6 +59,8 @@ Route::middleware('auth')->prefix('school')->name('school.')->group(function() {
     Route::post('import-student/{classroom}', [StudentController::class, 'import'])->name('student.import');
     Route::get('download-template-student/', [StudentController::class, 'downloadTemplate'])->name('student.download-template');
 
+    Route::get('doenload-template-class-student', [StudentController::class, 'downloadTemplateClass'])->name('class.download-template');
+
     Route::resource('students', StudentController::class)->except(['store']);
     Route::post('students/{classroom}', [StudentController::class, 'store'])->name('students.store');
 
@@ -76,10 +80,9 @@ Route::middleware('auth')->prefix('school')->name('school.')->group(function() {
     Route::resource('classroom', ClassroomController::class);
     Route::resource('level-class', LevelClassController::class);
     Route::get('class-detail/{classroom}', [ClassroomStudentController::class, 'index'])->name('class-student.index');
-
     Route::put('update-classroom/{classroom}', [ClassroomStudentController::class, 'update'])->name('student-classroom.update');
-
     Route::patch('school-years/{schoolYear}/active', [SchoolYearController::class, 'setActive'])->name('school-year.setActive');
+    Route::post('import-class-student', [ClassroomStudentController::class, 'import'])->name('class.student.import');
 
     Route::prefix('semesters')->name('semesters.')->group(function () {
         Route::get('/', [SemesterController::class, 'index'])->name('index');
@@ -96,7 +99,7 @@ Route::middleware('auth')->prefix('school')->name('school.')->group(function() {
     // kehadiran guru
     Route::get('teacher-attendance', [SchoolsAttendanceController::class, 'teacher'])->name('teacher-attendance.index');
     //export kehadiran guru
-    Route::get('teacher-attendance/export', [SchoolsAttendanceController::class, 'export_teacher'])->name('teacher-attendance.export');
+    Route::get('teacher-attendance/export', [AttendanceEmployeeController::class, 'export'])->name('teacher-attendance.export');
 
     // get classroom students by classroom id
     Route::get('classroom-students', [ClassroomStudentController::class, 'show'])->name('classroom-students.show');
@@ -110,6 +113,9 @@ Route::middleware('auth')->prefix('school')->name('school.')->group(function() {
 
     // get teacher subject by subject id
     Route::get('teacher-subject/{subject}', [TeacherSubjectController::class, 'show'])->name('teacher-subject.show');
+
+    Route::get('export/attendance-employee', [AttendanceEmployeeController::class, 'export'])->name('export.attendance.employee');
+    // return view('school.pages.statistic-presence.export.employee');
 });
 
 
@@ -136,7 +142,7 @@ Route::prefix('school')->group(function () {
     Route::get('alumni/{classroom}', [ClassroomController::class, 'studentAlumni'])->name('alumni.index');
 
     // setting informasi
-    Route::prefix('information')->group(function(){
+    Route::prefix('information')->group(function () {
         Route::get('', [SchoolDashboardController::class, 'show'])->name('settings-information.index');
         Route::resource('rfid', RfidController::class);
     });
@@ -156,6 +162,12 @@ Route::prefix('school')->group(function () {
     // rfid aktif
     Route::get('rfid-active', [ModelHasRfidController::class, 'showActive'])->name('rfid-active.index');
 
+    Route::get('statistic-presence', [SchoolsAttendanceStudentController::class, 'index'])->name('statistic-presence.index');
+
+    Route::get('statistic-presence-employee', [AttendanceEmployeeController::class, 'index'])->name('statistic-presence-employee.index');
+
+    Route::get('detail-presence-class/{classroom}', [SchoolsAttendanceStudentController::class, 'show'])->name('detail-presence-class.index');
+    Route::get('detail-presence-class/{classroom}/export', [SchoolsAttendanceStudentController::class, 'exportPreview'])->name('detail-presence-class.export-preview');
 });
 
 //tes absensi
@@ -165,7 +177,9 @@ Route::get('menu-test', function () {
     return view('school.pages.test.menu');
 })->name('menu-test.index');
 
-Route::get('user-list', function () {return view('school.pages.test.user-list');})->name('user-list.index');
+Route::get('user-list', function () {
+    return view('school.pages.test.user-list');
+})->name('user-list.index');
 
 // list absensi
 Route::get('list-attendance', [AttendanceStudentController::class, 'index'])->name('list-attendance.index');
@@ -181,3 +195,7 @@ Route::post('attendance-test-teacher', [AttendanceMasterController::class, 'chec
 Route::get('new/school/extracurricular/detail', function () {
     return view('school.new.extracurricular.detail');
 })->name('new.extracurricular.detail');
+
+Route::get('new/school/export/attendance-student', function () {
+    return view('school.pages.statistic-presence.export.student');
+})->name('new.export.attendance.student');

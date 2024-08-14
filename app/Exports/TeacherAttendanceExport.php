@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Contracts\Interfaces\AttendanceTeacherInterface;
+use App\Contracts\Interfaces\AttendanceInterface;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
@@ -16,9 +16,9 @@ use Illuminate\Http\Request;
 class TeacherAttendanceExport implements FromView, ShouldAutoSize, WithStyles
 {
     private Request $request;
-    private AttendanceTeacherInterface $attendance;
+    private AttendanceInterface $attendance;
 
-    public function __construct(Request $request, AttendanceTeacherInterface $attendance)
+    public function __construct(Request $request, AttendanceInterface $attendance)
     {
         $this->request = $request;
         $this->attendance = $attendance;
@@ -26,8 +26,9 @@ class TeacherAttendanceExport implements FromView, ShouldAutoSize, WithStyles
 
     public function view() : View
     {
+        $data = $this->attendance->whereModel('App\Models\Employee', $this->request);
         return view('school.export.invoices-attendance-teacher', [
-            'items' => $this->attendance->whereBetween($this->request),
+            'items' => $data,
         ]);
     }
 

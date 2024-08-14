@@ -41,6 +41,32 @@
                         <span class="hide-menu">Beranda</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M9 17H7v-7h2zm4 0h-2V7h2zm4 0h-2v-4h2zm2 2H5V5h14zm0-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2"/></svg>
+                        </span>
+                        <span class="hide-menu">Statistik Absensi</span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse first-level {{ request()->routeIs('detail-presence-class.index') ? 'in' : '' }}">
+                        <li class="sidebar-item">
+                            <a href="{{ route('statistic-presence.index') }}" class="sidebar-link {{ request()->routeIs('detail-presence-class.index') ? 'active' : '' }}">
+                                <div class="round-16 d-flex align-items-center justify-content-center">
+                                    <i class="ti ti-circle"></i>
+                                </div>
+                                <span class="hide-menu">Siswa</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="{{ route('statistic-presence-employee.index') }}" class="sidebar-link">
+                                <div class="round-16 d-flex align-items-center justify-content-center">
+                                    <i class="ti ti-circle"></i>
+                                </div>
+                                <span class="hide-menu">Guru</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">Master</span>
@@ -232,7 +258,7 @@
                                 <span class="hide-menu">Pengaturan Jam</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
+                        {{-- <li class="sidebar-item">
                             <a href="javascript:void(0)" class="sidebar-link has-arrowiojui  {{ request()->routeIs('school.student-attendance.show') ? 'active' : '' }}" aria-expanded="false"
                                 style="display: flex; align-items: center;">
                                 <div class="d-flex">
@@ -263,9 +289,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
-
-
+                        </li> --}}
                     </ul>
                 </li>
                 {{-- <li class="sidebar-item">

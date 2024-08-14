@@ -52,9 +52,14 @@ class ClassroomRepository extends BaseRepository implements ClassroomInterface
             ->paginate(10);
     }
 
-    public function whereInSchoolYears($schoolYears)
+    public function whereInSchoolYears(): mixed
     {
-        return $this->model->query()->whereIn('school_year_id', $schoolYears)->get();
+        return $this->model->query()->whereRelation('schoolYear', 'active', 1)->latest()->paginate(10);
+    }
+
+    public function classroomAttendance($classroomIds)
+    {
+        return $this->model->query()->whereIn('id', $classroomIds)->get()->pluck('name', 'id');
     }
 
     public function where(Request $request, mixed $data): mixed

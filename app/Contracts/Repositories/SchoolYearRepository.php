@@ -72,9 +72,12 @@ class SchoolYearRepository extends BaseRepository implements SchoolYearInterface
         return $this->model->query()->where('active', true)->first();
     }
 
-    // public function setActive(SchoolYear $schoolYear): mixed {
-    //     return $this->model->query;
-    // }
+    public function setActive(array $data): mixed {
+        return $this->model->query()
+            ->latest()
+            ->first()
+            ->update($data);
+    }
 
 
     public function setNonactive(): mixed {
