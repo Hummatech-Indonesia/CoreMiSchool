@@ -16,8 +16,7 @@
                                     <option value="{{ $year }}" {{ $year == now()->year ? 'selected' : '' }}>{{ $year }}</option>
                                 @endfor
                             </select>
-                            <h2>/</h2>
-                            <select name="end_year" id="end-year" class="ms-2 select2 select-end">
+                            <p class="fs-7">/</p>                            <select name="end_year" id="end-year" class="ms-2 select2 select-end">
                                 @for ($year = now()->year + 5; $year >= now()->year - 10; $year--)
                                     <option value="{{ $year }}" {{ $year == now()->year ? 'selected' : '' }}>{{ $year }}</option>
                                 @endfor

@@ -15,15 +15,15 @@
                             @csrf
                             <!-- Step 1 -->
                             <section>
-                                <div class="row mx-3 ">
+                                <div class="row mx-3 mb-3">
                                     <div class="col-md-12">
                                         <label for="" class="mb-2">Foto Guru (opsional)</label>
                                         <img id="addImagePreview" src="#" alt="Preview"
                                             style="max-width: 200px; display: none; height: auto;">
                                         <input type="file" name="image" id="image"
-                                            class="form-control mt-2 mb-3" onchange="previewAddImage(event)">
+                                            class="form-control mt-2" onchange="previewAddImage(event)">
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6  mb-3">
                                         <div class="form-group">
                                             <label for="">Nama <span class="text-danger"
                                                     style="font-size: larger;">*</span></label>
@@ -34,7 +34,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mb-3">
                                         <div class="form-group">
                                             <label for="">NIP <span class="text-danger"
                                                     style="font-size: larger;">*</span></label>
@@ -45,7 +45,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6  mb-3">
                                         <div class="form-group">
                                             <label for="">Agama</label>
                                             <select name="religion_id" id="" class="form-select">
@@ -59,18 +59,18 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mb-3">
                                         <div class="form-group">
                                             <label for="">Tanggal Lahir <span class="text-danger"
                                                     style="font-size: larger;">*</span></label>
-                                            <input type="date" name="birth_date" class="form-control mb-3"
+                                            <input type="date" name="birth_date" class="form-control"
                                                 value="{{ old('birth_date') }}">
                                             @error('birth_date', 'create')
                                                 <strong class="text-danger error-create-teacher mb-2">{{ $message }}</strong>
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mb-3">
                                         <div class="form-group">
                                             <label for="">Tempat Lahir <span class="text-danger"
                                                     style="font-size: larger;">*</span></label>
@@ -82,7 +82,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mb-3">
                                         <label for="">Jenis Kelamin <span class="text-danger"
                                                 style="font-size: larger;">*</span></label>
                                         <div class="form-check d-flex align-items-center mt-2">
@@ -112,7 +112,7 @@
                             <!-- Step 2 -->
                             <section>
                                 <div class="row mx-3 pt-4">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mb-3">
                                         <div class="form-group">
                                             <label for="">NIK <span class="text-danger"
                                                     style="font-size: larger;">*</span></label>
@@ -123,7 +123,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mb-3">
                                         <div class="form-group">
                                             <label for="">No Telp <span class="text-danger"
                                                     style="font-size: larger;">*</span></label>
@@ -134,7 +134,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mb-3">
                                         <div class="form-group">
                                             <label for="">Email <span class="text-danger"
                                                     style="font-size: larger;">*</span></label>
@@ -145,16 +145,16 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mb-3">
                                         <div class="form-group">
                                             <label for="">Status</label>
-                                            <select name="active" id="" class="form-select mb-3">
+                                            <select name="active" id="" class="form-select">
                                                 <option value="1">Aktif</option>
                                                 <option value="0">NonAktif</option>
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 mb-3">
                                         <div class="form-group">
                                             <h6>Alamat <span class="text-danger" style="font-size: larger;">*</span>
                                             </h6>
