@@ -220,4 +220,5 @@
 @section('script')
     @include('school.new.extracurricular.scripts.detail')
     @include('school.new.extracurricular.scripts.select2')
+    @include('school.new.extracurricular.scripts.script-validation')
 @endsection

@@ -36,4 +36,10 @@ class StoreExtracurricularStudentRequest extends FormRequest
             'student_id.exists' => 'Siswa tidak ditemukan',
         ];
     }
+
+    protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
+    {
+        session()->flash('showCreateModal', true);
+        throw new \Illuminate\Validation\ValidationException($validator, redirect()->back()->withErrors($validator, 'create'));
+    }
 }
