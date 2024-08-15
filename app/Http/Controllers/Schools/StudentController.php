@@ -14,9 +14,11 @@ use App\Contracts\Interfaces\StudentInterface;
 use App\Contracts\Interfaces\ReligionInterface;
 use App\Contracts\Interfaces\SchoolYearInterface;
 use App\Exports\ClassroomExport;
+use App\Exports\StudentClassroom2Export;
 use App\Exports\StudentClassroomExport;
 use App\Http\Controllers\Controller;
 use App\Imports\StudentImport;
+use App\Models\Classroom;
 use App\Services\ClassroomStudentService;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -147,26 +149,19 @@ class StudentController extends Controller
         }
     }
 
-    public function downloadTemplateClass()
+    public function downloadTemplateClass2()
     {
         try {
-            $schoolYear = $this->schoolYear->active();
-            return Excel::download(new ClassroomExport($schoolYear->id), 'classrooms.xlsx')->deleteFileAfterSend(false);
+            $filePath = public_path('file/new-class-format-import-student.xlsx');
+            $schoolYearId = $this->schoolYear->active();
+            $export = new StudentClassroom2Export($schoolYearId);
+            $export->registerEvents();
+
+            return response()->download($filePath)->deleteFileAfterSend(false);
         } catch (\Throwable $th) {
-            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $th->getMessage());
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
         }
     }
-
-    public function template()
-    {
-        try {
-            $schoolYear = $this->schoolYear->active();
-            return Excel::download(new ClassroomExport($schoolYear->id), 'classrooms.xlsx')->deleteFileAfterSend(false);
-        } catch (\Throwable $th) {
-            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $th->getMessage());
-        }
-    }
-
 
     public function import(Request $request, string $classroom)
     {
