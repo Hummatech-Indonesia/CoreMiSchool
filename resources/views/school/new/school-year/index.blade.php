@@ -195,7 +195,7 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr("content")
                         },
                         data: {
-                            school_id: {{ auth()->user()->school->id }},
+
                             type: '{{ SemesterEnum::GANJIL->value }}'
                         },
                         success: function(res) {
@@ -229,7 +229,6 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr("content")
                         },
                         data: {
-                            school_id: {{ auth()->user()->school->id }},
                             type: '{{ SemesterEnum::GENAP->value }}'
                         },
                         success: function(res) {
