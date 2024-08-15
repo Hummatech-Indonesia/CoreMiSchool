@@ -60,6 +60,7 @@ Route::middleware('auth')->prefix('school')->name('school.')->group(function () 
     Route::get('download-template-student/', [StudentController::class, 'downloadTemplate'])->name('student.download-template');
 
     Route::get('doenload-template-class-student', [StudentController::class, 'downloadTemplateClass'])->name('class.download-template');
+    Route::get('download-template-class-student', [StudentController::class, 'template'])->name('class.download');
 
     Route::resource('students', StudentController::class)->except(['store']);
     Route::post('students/{classroom}', [StudentController::class, 'store'])->name('students.store');

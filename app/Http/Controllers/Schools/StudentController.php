@@ -12,6 +12,8 @@ use App\Contracts\Interfaces\UserInterface;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Contracts\Interfaces\StudentInterface;
 use App\Contracts\Interfaces\ReligionInterface;
+use App\Contracts\Interfaces\SchoolYearInterface;
+use App\Exports\ClassroomExport;
 use App\Exports\StudentClassroomExport;
 use App\Http\Controllers\Controller;
 use App\Imports\StudentImport;
@@ -28,8 +30,9 @@ class StudentController extends Controller
     private ClassroomStudentInterface $classroomStudent;
     private ClassroomStudentService $classroomService;
     private ModelHasRfidInterface $modelHasRfid;
+    private SchoolYearInterface $schoolYear;
 
-    public function __construct(UserInterface $user, StudentInterface $student, StudentService $service, ReligionInterface $religion, ClassroomStudentInterface $classroomStudent, ClassroomStudentService $classroomService, ModelHasRfidInterface $modelHasRfid)
+    public function __construct(UserInterface $user, StudentInterface $student, StudentService $service, ReligionInterface $religion, ClassroomStudentInterface $classroomStudent, ClassroomStudentService $classroomService, ModelHasRfidInterface $modelHasRfid, SchoolYearInterface $schoolYear)
     {
         $this->user = $user;
         $this->student = $student;
@@ -38,6 +41,7 @@ class StudentController extends Controller
         $this->classroomStudent = $classroomStudent;
         $this->classroomService = $classroomService;
         $this->modelHasRfid = $modelHasRfid;
+        $this->schoolYear = $schoolYear;
     }
 
     /**
@@ -129,7 +133,7 @@ class StudentController extends Controller
 
             return redirect()->back()->with('success', 'Siswa berhasil dihapus');
         } catch (\Throwable $th) {
-            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+            return redirect()->back()->with('error', 'Terjadi kesalahan' . $th->getMessage());
         }
     }
 
@@ -139,22 +143,30 @@ class StudentController extends Controller
             $template = public_path('file/format-excel-import-student.xlsx');
             return response()->download($template, 'format-excel-import-student.xlsx');
         } catch (\Throwable $th) {
-            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+            return redirect()->back()->with('error', 'Terjadi kesalahan' . $th->getMessage());
         }
     }
 
     public function downloadTemplateClass()
     {
         try {
-            $export = new StudentClassroomExport();
-            $export->registerEvents();
-            $filePath = public_path('file/new-class-format-import-student.xlsx');
-            return response()->download($filePath)->deleteFileAfterSend(false);
+            $schoolYear = $this->schoolYear->active();
+            return Excel::download(new ClassroomExport($schoolYear->id), 'classrooms.xlsx')->deleteFileAfterSend(false);
         } catch (\Throwable $th) {
-            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $th->getMessage());
         }
-
     }
+
+    public function template()
+    {
+        try {
+            $schoolYear = $this->schoolYear->active();
+            return Excel::download(new ClassroomExport($schoolYear->id), 'classrooms.xlsx')->deleteFileAfterSend(false);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $th->getMessage());
+        }
+    }
+
 
     public function import(Request $request, string $classroom)
     {
@@ -163,7 +175,7 @@ class StudentController extends Controller
             Excel::import(new StudentImport($classroom), $file);
             return redirect()->back()->with('success', "Berhasil Mengimport Data!");
         } catch (\Throwable $th) {
-            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+            return redirect()->back()->with('error', 'Terjadi kesalahan' . $th->getMessage());
         }
     }
 }
