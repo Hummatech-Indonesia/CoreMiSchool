@@ -16,7 +16,7 @@ class SemesterRepository extends BaseRepository implements SemesterInterface
 
     public function get(): mixed
     {
-        return $this->model->query()->get();
+        return $this->model->query()->where('school_id', auth()->user()->school->id)->orderBy('created_at', 'desc')->get();
     }
 
     public function store(array $data): mixed
