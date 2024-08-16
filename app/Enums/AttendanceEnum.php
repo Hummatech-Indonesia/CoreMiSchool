@@ -20,4 +20,14 @@ enum AttendanceEnum: string
             self::PERMIT => 'izin',
         };
     }
+    public function color(): string
+    {
+        return match ($this) {
+            self::PRESENT => 'bg-light-success text-success',
+            self::LATE => 'bg-light-warning text-warning',
+            self::SICK => 'bg-light-info text-info',
+            self::ALPHA => 'bg-light-danger text-danger',
+            self::PERMIT => 'bg-light-secondary text-secondary',
+        };
+    }
 }
