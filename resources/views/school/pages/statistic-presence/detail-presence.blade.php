@@ -55,7 +55,6 @@
                     <th class="text-white" style="background-color: #5D87FF;">Masuk</th>
                     <th class="text-white" style="background-color: #5D87FF;">Pulang</th>
                     <th class="text-white" style="background-color: #5D87FF;">Point</th>
-                    <th class="text-white" style="background-color: #5D87FF;">Max Point</th>
                     <th class="text-white" style="background-color: #5D87FF;">Status</th>
                 </tr>
             </thead>
@@ -67,7 +66,6 @@
                     <td>{{ Carbon\Carbon::parse($attendance->attendances->first()->checkin)->format('H.i') }}</td>
                     <td>{{ $attendance->attendances->first()->checkout ? Carbon\Carbon::parse($attendance->attendances->first()->checkout)->format('H.i') : '-' }}</td>
                     <td>{{ $attendance->attendances->first()->point }}</td>
-                    <td>10</td>
                     <td>
                         <span class="badge bg-light-primary text-primary">
                             {{ $attendance->attendances->first()->status->label() }}

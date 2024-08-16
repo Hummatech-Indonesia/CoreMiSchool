@@ -107,8 +107,7 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
                 $query->whereDate('created_at', $date)
                 ->when($request->start, function($q) use($request){
                     $q->whereBetween('created_at', [$request->start . ' 00:00:00', $request->end. ' 23:59:59']);
-                })
-                ->whereNotNull('checkin');
+                });
             })
             ->with(['student.user', 'attendances' => function ($query) use ($date) {
                 $query->whereDate('created_at', $date);
