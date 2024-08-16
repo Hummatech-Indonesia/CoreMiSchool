@@ -152,14 +152,10 @@ class StudentController extends Controller
     public function downloadTemplateClass2()
     {
         try {
-            $filePath = public_path('file/new-class-format-import-student.xlsx');
-            $schoolYearId = $this->schoolYear->active();
-            $export = new StudentClassroom2Export($schoolYearId);
-            $export->registerEvents();
-
-            return response()->download($filePath)->deleteFileAfterSend(false);
+            $schoolYear = $this->schoolYear->active();
+            return Excel::download(new StudentClassroomExport($schoolYear->id), 'format-import-siswa.xlsx')->deleteFileAfterSend(false);
         } catch (\Throwable $th) {
-            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $th->getMessage());
         }
     }
 
