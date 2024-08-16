@@ -44,7 +44,7 @@ class InterfaceCommand extends Command
         $interfaceContent = "<?php
         \nnamespace App\Contracts\Interfaces;
         \nuse App\Contracts\Interfaces\Eloquent\DeleteInterface; \nuse App\Contracts\Interfaces\Eloquent\GetInterface; \nuse App\Contracts\Interfaces\Eloquent\ShowInterface; \nuse App\Contracts\Interfaces\Eloquent\StoreInterface; \nuse App\Contracts\Interfaces\Eloquent\UpdateInterface;
-        \ninterface $name extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface \n{\n    // Define your methods here\n}";
+        \ninterface {$name}Interface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface \n{\n    // Define your methods here\n}";
 
         File::put($filePath, $interfaceContent);
         $absolutePath = realpath($filePath);
