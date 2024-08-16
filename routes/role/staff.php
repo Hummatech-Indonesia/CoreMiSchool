@@ -9,3 +9,6 @@ Route::get('employee', function(){
 Route::get('repair', function(){
     return view('staff.pages.repair.index');
 })->name('employee.repair');
+Route::get('overview', function(){
+    return view('staff.pages.overview.index');
+})->name('overview.index');
