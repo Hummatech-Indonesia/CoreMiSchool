@@ -52,9 +52,13 @@ class ClassroomRepository extends BaseRepository implements ClassroomInterface
             ->paginate(10);
     }
 
-    public function whereInSchoolYears(): mixed
+    public function whereInSchoolYears(Request $request): mixed
     {
-        return $this->model->query()->whereRelation('schoolYear', 'active', 1)->latest()->paginate(10);
+        return $this->model->query()->whereRelation('schoolYear', 'active', 1)
+            ->when($request->search, function ($query) use ($request) {
+                $query->where('name', 'LIKE', '%' . $request->search . '%');
+            })
+            ->latest()->paginate(12);
     }
 
     public function classroomAttendance($classroomIds)
@@ -65,7 +69,7 @@ class ClassroomRepository extends BaseRepository implements ClassroomInterface
     public function where(Request $request, mixed $data): mixed
     {
         return $this->model->query()
-            ->when($request->search, function($query) use ($request) {
+            ->when($request->search, function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->search . '%');
             })
             ->where('school_year_id', $data)->get();
@@ -75,7 +79,7 @@ class ClassroomRepository extends BaseRepository implements ClassroomInterface
     {
         return $this->model->query()
             ->whereRelation('levelClass', 'name', '!=', 'Alumni')
-            ->when($request->year, function($query) use ($request){
+            ->when($request->year, function ($query) use ($request) {
                 $query->whereRelation('schoolYear', 'school_year', $request->year);
             })
             ->when($request->name, function ($query) use ($request) {
@@ -103,7 +107,7 @@ class ClassroomRepository extends BaseRepository implements ClassroomInterface
         });
 
         return $query
-        ->paginate(10);
+            ->paginate(10);
     }
 
 
@@ -127,7 +131,7 @@ class ClassroomRepository extends BaseRepository implements ClassroomInterface
             $query->whereRelation('schoolYear', 'school_year', 'LIKE', '%' .  $request->school_year . '%');
         });
 
-        $query->when($request->school_year == null, function($query) {
+        $query->when($request->school_year == null, function ($query) {
             $query->whereRelation('schoolYear', 'active', true);
         });
 

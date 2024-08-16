@@ -33,7 +33,7 @@ class AttendanceStudentController extends Controller
         $data = $this->schoolChartService->ChartClassroomAttendance($date);
         $categories = $data['classrooms']->toArray(); // Mengambil nama kelas dari data
 
-        $classrooms = $this->classroom->whereInSchoolYears();
+        $classrooms = $this->classroom->whereInSchoolYears($request);
 
         $attendanceData = $data['attendances']->map(function ($group) {
             return [

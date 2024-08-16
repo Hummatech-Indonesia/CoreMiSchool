@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 
 interface ClassroomInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface
 {
-    public function whereInSchoolYears(): mixed;
+    public function whereInSchoolYears(Request $request): mixed;
     public function whereSchoolYears(Request $request);
     public function classroomAttendance($classroomIds);
     public function where(Request $request, mixed $data): mixed;
