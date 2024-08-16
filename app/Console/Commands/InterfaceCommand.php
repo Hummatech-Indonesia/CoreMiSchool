@@ -34,7 +34,7 @@ class InterfaceCommand extends Command
             $this->info('Directory created successfully.');
         }
 
-        $filePath = $directory . '/' . $name . '.php';
+        $filePath = $directory . '/' . $name . 'Interface.php';
 
         if (File::exists($filePath)) {
             $this->error('Interface already exists!');
