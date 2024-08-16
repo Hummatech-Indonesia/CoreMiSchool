@@ -47,6 +47,7 @@ class InterfaceCommand extends Command
         \ninterface $name extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface \n{\n    // Define your methods here\n}";
 
         File::put($filePath, $interfaceContent);
-        $this->info("Interface $name created successfully in app/Contracts/Interfaces.");
+        $absolutePath = realpath($filePath);
+        $this->info("Interface [{$absolutePath}] created successfully.");
     }
 }
