@@ -56,7 +56,7 @@
         </div>
     </div>
 
-    <ul class="nav nav-tabs mb-4" role="tablist">
+    <ul class="nav nav-pills p-3 mb-3 rounded align-items-center card flex-row" role="tablist">
         <li class="nav-item" role="presentation">
             <a class="nav-link d-flex align-items-center active" data-bs-toggle="tab" href="#student" role="tab"
                 aria-selected="true">
@@ -97,5 +97,5 @@
 @endsection
 
 @section('script')
-@include('staff.pages.top-violation.script.script-tab')
+    @include('staff.pages.top-violation.script.script-tab')
 @endsection
