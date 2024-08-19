@@ -23,6 +23,7 @@ use App\Contracts\Interfaces\ReligionInterface;
 use App\Contracts\Interfaces\RepairInterface;
 use App\Contracts\Interfaces\RfidInterface;
 use App\Contracts\Interfaces\SchoolInterface;
+use App\Contracts\Interfaces\SchoolPointInterface;
 use App\Contracts\Interfaces\SchoolYearInterface;
 use App\Contracts\Interfaces\SemesterInterface;
 use App\Contracts\Interfaces\StudentInterface;
@@ -51,6 +52,7 @@ use App\Contracts\Repositories\RegulationRepository;
 use App\Contracts\Repositories\ReligionRepository;
 use App\Contracts\Repositories\RepairRepository;
 use App\Contracts\Repositories\RfidRepository;
+use App\Contracts\Repositories\SchoolPointRepository;
 use App\Contracts\Repositories\SchoolRepository;
 use App\Contracts\Repositories\SchoolYearRepository;
 use App\Contracts\Repositories\SemesterRepository;
@@ -95,6 +97,7 @@ class AppServiceProvider extends ServiceProvider
         TeacherJournalInterface::class => TeacherJournalRepository::class,
         AttendanceJournalInterface::class => AttendanceJournalRepository::class,
         RepairInterface::class => RepairRepository::class,
+        SchoolPointInterface::class => SchoolPointRepository::class,
     ];
 
     /**
