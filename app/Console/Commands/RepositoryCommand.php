@@ -45,9 +45,40 @@ class RepositoryCommand extends Command
 
                 namespace App\Contracts\Repositories;
 
-                interface {$name}Repository extends BaseRepository
+                use App\Contracts\Interfaces\{$name}Interface;
+                use App\Models\{$name};
+
+                class {$name}Repository extends BaseRepository implements {$name}Interface
                 {
-                    // Add your repository methods here
+                    public function __construct({$name} \${$name})
+                    {
+                        \$this->model = \${$name};
+                    }
+
+                    public function get(): mixed
+                    {
+                        return \$this->model->query()->get();
+                    }
+
+                    public function store(array \$data): mixed
+                    {
+                        return \$this->model->query()->create(\$data);
+                    }
+
+                    public function show(mixed \$id): mixed
+                    {
+                        return \$this->model->query()->findOrFail(\$id);
+                    }
+
+                    public function update(mixed \$id, array \$data): mixed
+                    {
+                        return \$this->model->query()->findOrFail(\$id)->update(\$data);
+                    }
+
+                    public function delete(mixed \$id): mixed
+                    {
+                        return \$this->model->query()->findOrFail(\$id)->delete();
+                    }
                 }
             EOT;
 
