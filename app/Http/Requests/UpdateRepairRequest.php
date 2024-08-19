@@ -33,9 +33,9 @@ class UpdateRepairRequest extends FormRequest
             'name.required' => 'Nama perbaikan wajib diisi',
             'name.string' => 'Nama perbaikan harus berupa string',
             'name.max' => 'Nama perbaikan tidak boleh lebih dari 255 karakter',
-            'point.required' => 'Titik perbaikan wajib diisi',
-            'point.numeric' => 'Titik perbaikan harus berupa angka',
-            'point.min' => 'Titik perbaikan harus lebih dari 1',
+            'point.required' => 'Poin perbaikan wajib diisi',
+            'point.numeric' => 'Poin perbaikan harus berupa angka',
+            'point.min' => 'Poin perbaikan harus lebih dari 1',
         ];
     }
 }
