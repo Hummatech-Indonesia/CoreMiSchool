@@ -19,6 +19,7 @@ use App\Contracts\Interfaces\SubjectInterface;
 use App\Contracts\Interfaces\ModelHasRfidInterface;
 use App\Contracts\Interfaces\ProvinceInterface;
 use App\Contracts\Interfaces\ReligionInterface;
+use App\Contracts\Interfaces\RepairInterface;
 use App\Contracts\Interfaces\RfidInterface;
 use App\Contracts\Interfaces\SchoolInterface;
 use App\Contracts\Interfaces\SchoolYearInterface;
@@ -46,6 +47,7 @@ use App\Contracts\Repositories\SubjectRepository;
 use App\Contracts\Repositories\ModelHasRfidRepository;
 use App\Contracts\Repositories\ProvinceRepository;
 use App\Contracts\Repositories\ReligionRepository;
+use App\Contracts\Repositories\RepairRepository;
 use App\Contracts\Repositories\RfidRepository;
 use App\Contracts\Repositories\SchoolRepository;
 use App\Contracts\Repositories\SchoolYearRepository;
@@ -88,6 +90,7 @@ class AppServiceProvider extends ServiceProvider
         ExtracurricularStudentInterface::class => ExtracurricularStudentRepository::class,
         TeacherJournalInterface::class => TeacherJournalRepository::class,
         AttendanceJournalInterface::class => AttendanceJournalRepository::class,
+        RepairInterface::class => RepairRepository::class,
     ];
 
     /**
