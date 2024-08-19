@@ -1,3 +1,21 @@
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
+    <form class="d-flex flex-column flex-md-row align-items-center" method="GET">
+        <div class="mb-3 mb-md-0 me-md-3">
+            <input type="text" name="search" class="form-control" placeholder="Cari...">
+        </div>
+
+        <div class="mb-3 mb-md-0 me-md-3">
+            <select name="points" class="form-select">
+                <option value="highest">Point Tertinggi</option>
+                <option value="lowest">Point Terendah</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Filter</button>
+    </form>
+</div>
+
+
 <div class="row">
     @forelse (range(1,5) as $item)
         <div class="col-lg-4 col-md-12">
