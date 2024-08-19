@@ -58,7 +58,7 @@
 
     <ul class="nav nav-tabs mb-4" role="tablist">
         <li class="nav-item" role="presentation">
-            <a class="nav-link d-flex align-items-center active" data-bs-toggle="tab" href="#home2" role="tab"
+            <a class="nav-link d-flex align-items-center active" data-bs-toggle="tab" href="#student" role="tab"
                 aria-selected="true">
                 <span class="d-flex align-items-center me-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="me-1" width="20" height="20"
@@ -71,7 +71,7 @@
             </a>
         </li>
         <li class="nav-item" role="presentation">
-            <a class="nav-link d-flex align-items-center" data-bs-toggle="tab" href="#profile2" role="tab"
+            <a class="nav-link d-flex align-items-center" data-bs-toggle="tab" href="#class" role="tab"
                 aria-selected="false" tabindex="-1">
                 <span class="d-flex align-items-center me-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256"
@@ -87,16 +87,15 @@
     </ul>
 
     <div class="tab-content">
-        <div class="tab-pane active show" id="home2" role="tabpanel">
+        <div class="tab-pane active show" id="student" role="tabpanel">
             @include('staff.pages.top-violation.panes.student')
         </div>
-        <div class="tab-pane" id="profile2" id="profile2">
+        <div class="tab-pane" id="class">
             @include('staff.pages.top-violation.panes.class')
-
         </div>
     </div>
 @endsection
 
 @section('script')
-
+@include('staff.pages.top-violation.script.script-tab')
 @endsection
