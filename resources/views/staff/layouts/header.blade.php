@@ -35,9 +35,9 @@
                             <span class="text-dark fs-3 fw-semibold lh-1 mb-1 username">
                                 {{ auth()->user()->name }}
                             </span>
-                            {{-- <span class="text-dark fs-3 fw-bold lh-1 role">
-                                head master
-                            </span> --}}
+                            <span class="text-dark fs-3 fw-bold lh-1 role">
+                                {{ auth()->user()->email }}
+                            </span>
                         </div>
                     </li>
                     <li class="nav-item dropdown">

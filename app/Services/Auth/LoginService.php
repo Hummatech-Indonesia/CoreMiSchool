@@ -35,7 +35,7 @@ class   LoginService
                     return to_route('school.index');
                     break;
                 case "staff":
-                    return redirect('home');
+                    return to_route('employee.dashboard');
                     break;
                 default:
                     return redirect()->back()->withErrors("Ada Yang Salah");
