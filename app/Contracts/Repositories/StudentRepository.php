@@ -89,4 +89,12 @@ class StudentRepository extends BaseRepository implements StudentInterface
             ->whereRelation('classroomStudents.classroom.levelClass', 'name', 'Alumni')
             ->count();
     }
+
+    public function getByPoint(): mixed
+    {
+        return $this->model->query()
+            ->where('point' , '>', 0)
+            ->orderBy('point', 'desc')
+            ->paginate(10);
+    }
 }

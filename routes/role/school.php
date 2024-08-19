@@ -14,6 +14,7 @@ use App\Http\Controllers\LessonScheduleController;
 use App\Http\Controllers\LevelClassController;
 use App\Http\Controllers\MapleController;
 use App\Http\Controllers\ModelHasRfidController;
+use App\Http\Controllers\RegulationController;
 use App\Http\Controllers\RfidController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SchoolDashboardController;
@@ -35,6 +36,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('auth')->prefix('school')->name('school.')->group(function () {
+
+    Route::resource('violation', RegulationController::class);
     Route::resource('employees', EmployeeController::class);
 
     // cud and import teacher

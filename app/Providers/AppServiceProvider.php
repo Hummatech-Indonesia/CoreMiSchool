@@ -26,6 +26,7 @@ use App\Contracts\Interfaces\SchoolInterface;
 use App\Contracts\Interfaces\SchoolYearInterface;
 use App\Contracts\Interfaces\SemesterInterface;
 use App\Contracts\Interfaces\StudentInterface;
+use App\Contracts\Interfaces\StudentViolationInterface;
 use App\Contracts\Interfaces\SubDistrictInterface;
 use App\Contracts\Interfaces\Teachers\TeacherJournalInterface;
 use App\Contracts\Interfaces\TeacherSubjectInterface;
@@ -95,6 +96,8 @@ class AppServiceProvider extends ServiceProvider
         TeacherJournalInterface::class => TeacherJournalRepository::class,
         AttendanceJournalInterface::class => AttendanceJournalRepository::class,
         RepairInterface::class => RepairRepository::class,
+        StudentViolationInterface::class => StudentViolationRepository::class,
+        RegulationInterface::class => RegulationRepository::class
     ];
 
     /**
