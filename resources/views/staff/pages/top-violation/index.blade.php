@@ -58,10 +58,10 @@
         <!-- Tab Content -->
         <div class="tab-content mt-4" id="nav-tabContent">
             <div class="tab-pane fade" id="teacher-content" role="tabpanel" aria-labelledby="teacher-tab">
-
+                @include('staff.pages.top-violation.panes.student')
             </div>
             <div class="tab-pane fade" id="employee-content" role="tabpanel" aria-labelledby="employee-tab">
-
+                @include('staff.pages.top-violation.panes.class')
             </div>
         </div>
     </div>
