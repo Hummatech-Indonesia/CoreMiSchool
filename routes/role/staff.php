@@ -17,3 +17,7 @@ Route::get('overview', function(){
 Route::get('top-violation', function(){
     return view('staff.pages.top-violation.index');
 })->name('top-violation.index');
+
+Route::get('class-detail-violation', function(){
+    return view('staff.pages.top-violation.detail-class');
+})->name('class-violation.detail');
