@@ -1,4 +1,37 @@
 @extends('staff.layouts.app')
+
+@section('style')
+    <style>
+        .table th,
+        .table td {
+            padding: 0.5rem;
+        }
+
+        .table .text-start {
+            text-align: left;
+        }
+
+        .table .nama-col {
+            width: 200px;
+        }
+
+        .table .nama-col .d-flex {
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .table .text-center .btn {
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .table .text-center .badge {
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+@endsection
+
 @section('content')
     <div class="card bg-light-info shadow-none position-relative overflow-hidden">
         <div class="card-body px-4 py-3">
@@ -23,46 +56,46 @@
         </div>
     </div>
 
-    <div class="container-fluid note-has-grid">
-        <!-- Navigation Tabs -->
-        <ul class="nav nav-pills p-3 mb-3 rounded align-items-center card flex-row flex-wrap" id="nav-tab" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link note-link d-flex align-items-center justify-content-center px-3 text-body-color"
-                    id="teacher-tab" data-bs-toggle="pill" href="#teacher-content" role="tab"
-                    aria-controls="teacher-content" aria-selected="true">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32"
-                        class="me-1">
+    <ul class="nav nav-tabs mb-4" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link d-flex align-items-center active" data-bs-toggle="tab" href="#student" role="tab"
+                aria-selected="true">
+                <span class="d-flex align-items-center me-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="me-1" width="20" height="20"
+                        viewBox="0 0 16 16">
                         <path fill="currentColor"
-                            d="M4 6v2h22v16H12v2h18v-2h-2V6zm4.002 3A4.016 4.016 0 0 0 4 13c0 2.199 1.804 4 4.002 4A4.014 4.014 0 0 0 12 13c0-2.197-1.802-4-3.998-4M14 10v2h5v-2zm7 0v2h3v-2zM8.002 11C9.116 11 10 11.883 10 13c0 1.12-.883 2-1.998 2C6.882 15 6 14.12 6 13c0-1.117.883-2 2.002-2M14 14v2h10v-2zM4 18v8h2v-6h3v6h2v-5.342l2.064 1.092c.585.31 1.288.309 1.872 0v.002l3.53-1.867l-.933-1.77l-3.531 1.867l-3.096-1.634A3.005 3.005 0 0 0 9.504 18z" />
+                            d="M15 14s1 0 1-1s-1-4-5-4s-5 3-5 4s1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276c.593.69.758 1.457.76 1.72l-.008.002l-.014.002zM11 7a2 2 0 1 0 0-4a2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0a3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904c.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724c.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0a3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4a2 2 0 0 0 0-4" />
                     </svg>
-                    <span class="d-none d-md-block font-weight-medium">Siswa</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link note-link d-flex align-items-center justify-content-center px-3 text-body-color"
-                    id="employee-tab" data-bs-toggle="pill" href="#employee-content" role="tab"
-                    aria-controls="employee-content" aria-selected="false">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 36 36"
-                        class="me-1">
+                </span>
+                <span class="d-none d-md-block">Siswa</span>
+            </a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link d-flex align-items-center" data-bs-toggle="tab" href="#class" role="tab"
+                aria-selected="false" tabindex="-1">
+                <span class="d-flex align-items-center me-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256"
+                        class="me-2">
                         <path fill="currentColor"
-                            d="M16.43 16.69a7 7 0 1 1 7-7a7 7 0 0 1-7 7m0-11.92a5 5 0 1 0 5 5a5 5 0 0 0-5-5M22 17.9a25.4 25.4 0 0 0-16.12 1.67a4.06 4.06 0 0 0-2.31 3.68v5.95a1 1 0 1 0 2 0v-5.95a2 2 0 0 1 1.16-1.86a22.9 22.9 0 0 1 9.7-2.11a23.6 23.6 0 0 1 5.57.66Zm.14 9.51h6.14v1.4h-6.14z" />
-                        <path fill="currentColor"
-                            d="M33.17 21.47H28v2h4.17v8.37H18v-8.37h6.3v.42a1 1 0 0 0 2 0V20a1 1 0 0 0-2 0v1.47H17a1 1 0 0 0-1 1v10.37a1 1 0 0 0 1 1h16.17a1 1 0 0 0 1-1V22.47a1 1 0 0 0-1-1" />
+                            d="M232 212h-20V40a20 20 0 0 0-20-20H64a20 20 0 0 0-20 20v172H24a12 12 0 0 0 0 24h208a12 12 0 0 0 0-24M68 44h120v168H68Zm104 88a16 16 0 1 1-16-16a16 16 0 0 1 16 16" />
                     </svg>
-                    <span class="d-none d-md-block font-weight-medium">Kelas</span>
-                </a>
-            </li>
+                </span>
+                <span class="d-none d-md-block">Kelas</span>
+            </a>
+        </li>
 
-        </ul>
+    </ul>
 
-        <!-- Tab Content -->
-        <div class="tab-content mt-4" id="nav-tabContent">
-            <div class="tab-pane fade" id="teacher-content" role="tabpanel" aria-labelledby="teacher-tab">
-                @include('staff.pages.top-violation.panes.student')
-            </div>
-            <div class="tab-pane fade" id="employee-content" role="tabpanel" aria-labelledby="employee-tab">
-                @include('staff.pages.top-violation.panes.class')
-            </div>
+    <div class="tab-content">
+        <div class="tab-pane active show" id="student" role="tabpanel">
+            @include('staff.pages.top-violation.panes.student')
+        </div>
+        <div class="tab-pane" id="class">
+            @include('staff.pages.top-violation.panes.class')
         </div>
     </div>
+@endsection
+
+@section('script')
+@include('staff.pages.top-violation.script.script-tab')
 @endsection
