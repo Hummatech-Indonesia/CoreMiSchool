@@ -13,3 +13,7 @@ Route::get('repair', function(){
 Route::get('overview', function(){
     return view('staff.pages.overview.index');
 })->name('overview.index');
+
+Route::get('top-violation', function(){
+    return view('staff.pages.top-violation.index');
+})->name('top-violation.index');
