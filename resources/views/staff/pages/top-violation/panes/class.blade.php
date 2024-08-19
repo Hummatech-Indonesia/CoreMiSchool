@@ -62,7 +62,7 @@
                         </div>
                     </div>
                     <div class="mt-3">
-                        <a href="#" class="btn btn-primary w-100">Lihat Detail</a>
+                        <a href="{{ route('class-violation.detail') }}" class="btn btn-primary w-100">Lihat Detail</a>
                     </div>
                 </div>
             </div>
