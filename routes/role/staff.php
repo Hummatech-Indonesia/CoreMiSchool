@@ -13,7 +13,6 @@ Route::middleware('auth')->prefix('employee')->name('employee.')->group(function
     })->name('repair');
 
     Route::get('overview', [StaffViolationController::class, 'overview'])->name('overview.index');
-
     Route::get('top-violation', [StaffViolationController::class, 'index'])->name('top-violation.index');
     Route::get('class-detail-violation/{classroom}', [StaffViolationController::class, 'show'])->name('class-violation.detail');
 });
