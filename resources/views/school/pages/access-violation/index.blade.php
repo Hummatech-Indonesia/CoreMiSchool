@@ -47,10 +47,10 @@
                     </td>
                     <td>
                         <div class="d-flex gap-3">
-                            <a href="">
+                            <a href="" data-bs-toggle="modal" data-bs-target="#modal-detail">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="text-primary" width="20" height="20" viewBox="0 0 16 16"><path fill="currentColor" d="M2.984 8.625v.003a.5.5 0 0 1-.612.355c-.431-.114-.355-.611-.355-.611l.018-.062s.026-.084.047-.145a6.7 6.7 0 0 1 1.117-1.982C4.096 5.089 5.605 4 8 4s3.904 1.089 4.802 2.183a6.7 6.7 0 0 1 1.117 1.982a4 4 0 0 1 .06.187l.003.013v.004l.001.002a.5.5 0 0 1-.966.258l-.001-.004l-.008-.025l-.035-.109a5.7 5.7 0 0 0-.945-1.674C11.286 5.912 10.045 5 8 5s-3.285.912-4.028 1.817a5.7 5.7 0 0 0-.945 1.674l-.035.109zM8 7a2.5 2.5 0 1 0 0 5a2.5 2.5 0 0 0 0-5M6.5 9.5a1.5 1.5 0 1 1 3 0a1.5 1.5 0 0 1-3 0"/></svg>
                             </a>
-                            <a href="">
+                            <a href="" data-bs-toggle="modal" data-bs-target="#modal-delete">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="text-danger"
                                         viewBox="0 0 24 24">
                                         <path fill="none" stroke="currentColor" stroke-linecap="round"
@@ -73,4 +73,8 @@
 
 {{-- modal tambah pengakses --}}
 @include('school.pages.access-violation.widgets.modal-create-access')
+{{-- modal detail pengakses --}}
+@include('school.pages.access-violation.widgets.modal-detail')
+<x-delete-modal-component />
+
 @endsection
