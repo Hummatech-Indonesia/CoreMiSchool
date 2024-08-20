@@ -111,7 +111,7 @@
     </div>
 </div>
 
-@include('school.new.employee.widgets.teacher.create-subject')
+@include('school.pages.employee.widgets.teacher.create-subject')
 <x-delete-modal-component />
 
 <div class="row">

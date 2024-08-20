@@ -6,9 +6,7 @@ use App\Contracts\Interfaces\AttendanceInterface;
 use App\Contracts\Interfaces\AttendanceTeacherInterface;
 use App\Contracts\Interfaces\ClassroomInterface;
 use App\Contracts\Interfaces\SchoolYearInterface;
-use App\Contracts\Interfaces\StudentInterface;
 use App\Exports\StudentAttendanceExport;
-use App\Exports\TeacherAttendanceExport;
 use App\Http\Controllers\Controller;
 use App\Models\Classroom;
 use Illuminate\Http\Request;
@@ -46,7 +44,7 @@ class AttendanceController extends Controller
         $classrooms = $this->classroom->where($request, $yearId);
         // dd($classrooms);
         $schoolYears = $this->schoolYear->get();
-        return view('school.new.attendace.student.class-attendace', compact('classrooms', 'schoolYears'));
+        return view('school.pages.attendance.student.class-attendace', compact('classrooms', 'schoolYears'));
     }
 
 
@@ -58,13 +56,13 @@ class AttendanceController extends Controller
     public function student(Classroom $classroom, Request $request)
     {
         $attendances = $this->attendance->classAndDate($classroom->id, $request);
-        return view('school.new.attendace.student.list-attendace-student', compact('attendances', 'classroom'));
+        return view('school.pages.attendance.student.list-attendace-student', compact('attendances', 'classroom'));
     }
 
     public function expotStudent(Request $request, Classroom $classroom)
     {
         $attendances = $this->attendance->exportClassAndDate($classroom->id, $request);
-        return view('school.new.attendace.student.export', compact('attendances', 'classroom'));
+        return view('school.pages.attendance.student.export', compact('attendances', 'classroom'));
     }
     /**
      * menampilkan kehadiran guru
@@ -73,7 +71,7 @@ class AttendanceController extends Controller
     public function teacher(Request $request)
     {
         $attendanceTeachers = $this->attendance->attendanceGetTecaher($request);
-        return view('school.pages.attendace.teacher.index', compact('attendanceTeachers'));
+        return view('school.pages.attendance.teacher.index', compact('attendanceTeachers'));
     }
 
     /**

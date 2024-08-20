@@ -33,7 +33,7 @@ class SchoolYearController extends Controller
     {
         $schoolYears = $this->schoolYear->search($request);
         $semesters = $this->semester->get();
-        return view('school.new.school-year.index', compact('schoolYears', 'semesters'));
+        return view('school.pages.school-year.index', compact('schoolYears', 'semesters'));
     }
 
     /**

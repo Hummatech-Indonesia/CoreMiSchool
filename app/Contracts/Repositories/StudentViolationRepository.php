@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\DB;
 
 class StudentViolationRepository extends BaseRepository implements StudentViolationInterface
 {
-
     public function __construct(StudentViolation $studentViolation)
     {
         $this->model = $studentViolation;
@@ -17,6 +16,13 @@ class StudentViolationRepository extends BaseRepository implements StudentViolat
     public function get(): mixed
     {
         return $this->model->query()->get();
+    }
+
+    public function whereClassroom(mixed $id): mixed
+    {
+        return $this->model->query()
+            ->whereRelation('classroomStudent', 'classroom_id' , $id)
+            ->paginate(10);
     }
 
     public function store(array $data): mixed

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateSchoolPointRequest extends FormRequest
+class ViolationAccessRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,15 +22,8 @@ class UpdateSchoolPointRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'max_points' => 'required|numeric',
-        ];
-    }
-
-    public function messages(): array
-    {
-        return [
-            'max_points.required' => 'Maksimal poin harus diisi.',
-            'max_points.numeric' => 'Maksimal poin harus berupa angka.',
+            'query' => 'required|array',
+            'query.*' => 'required'
         ];
     }
 }

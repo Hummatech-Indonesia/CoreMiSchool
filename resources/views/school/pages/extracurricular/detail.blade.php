@@ -212,13 +212,13 @@
     </div>
 
     {{-- modal --}}
-    @include('school.new.extracurricular.widgets.modal-import')
-    @include('school.new.extracurricular.widgets.modal-create-student')
-    @include('school.new.extracurricular.widgets.detail-student')
+    @include('school.pages.extracurricular.widgets.modal-import')
+    @include('school.pages.extracurricular.widgets.modal-create-student')
+    @include('school.pages.extracurricular.widgets.detail-student')
     <x-delete-modal-component />
 @endsection
 @section('script')
-    @include('school.new.extracurricular.scripts.detail')
-    @include('school.new.extracurricular.scripts.select2')
-    @include('school.new.extracurricular.scripts.script-validation')
+    @include('school.pages.extracurricular.scripts.detail')
+    @include('school.pages.extracurricular.scripts.select2')
+    @include('school.pages.extracurricular.scripts.script-validation')
 @endsection

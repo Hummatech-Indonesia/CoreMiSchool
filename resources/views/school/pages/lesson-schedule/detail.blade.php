@@ -143,40 +143,40 @@
     <div class="mt-2 card card-body shadow">
         <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-senin" role="tabpanel" aria-labelledby="pills-senin-tab">
-                @include('school.new.lesson-schedule.panes.tab-monday')
+                @include('school.pages.lesson-schedule.panes.tab-monday')
             </div>
             <div class="tab-pane fade" id="pills-selasa" role="tabpanel" aria-labelledby="pills-selasa-tab">
-                @include('school.new.lesson-schedule.panes.tab-tuesday')
+                @include('school.pages.lesson-schedule.panes.tab-tuesday')
             </div>
             <div class="tab-pane fade" id="pills-rabu" role="tabpanel" aria-labelledby="pills-rabu-tab">
-                @include('school.new.lesson-schedule.panes.tab-wednesday')
+                @include('school.pages.lesson-schedule.panes.tab-wednesday')
             </div>
             <div class="tab-pane fade" id="pills-kamis" role="tabpanel" aria-labelledby="pills-kamis-tab">
-                @include('school.new.lesson-schedule.panes.tab-thursday')
+                @include('school.pages.lesson-schedule.panes.tab-thursday')
             </div>
             <div class="tab-pane fade" id="pills-jumat" role="tabpanel" aria-labelledby="pills-jumat-tab">
-                @include('school.new.lesson-schedule.panes.tab-friday')
+                @include('school.pages.lesson-schedule.panes.tab-friday')
             </div>
             <div class="tab-pane fade" id="pills-sabtu" role="tabpanel" aria-labelledby="pills-sabtu-tab">
-                @include('school.new.lesson-schedule.panes.tab-saturday')
+                @include('school.pages.lesson-schedule.panes.tab-saturday')
             </div>
             <div class="tab-pane fade" id="pills-minggu" role="tabpanel" aria-labelledby="pills-minggu-tab">
-                @include('school.new.lesson-schedule.panes.tab-sunday')
+                @include('school.pages.lesson-schedule.panes.tab-sunday')
             </div>
         </div>
     </div>
 
     @include('components.delete-modal-component')
-    @include('school.new.lesson-schedule.widgets.create')
-    @include('school.new.lesson-schedule.widgets.update')
-    @include('school.new.lesson-schedule.widgets.import')
+    @include('school.pages.lesson-schedule.widgets.create')
+    @include('school.pages.lesson-schedule.widgets.update')
+    @include('school.pages.lesson-schedule.widgets.import')
 
 @endsection
 
 @section('script')
-    @include('school.new.lesson-schedule.scripts.create')
-    @include('school.new.lesson-schedule.scripts.update')
-    @include('school.new.lesson-schedule.scripts.delete')
-    @include('school.new.lesson-schedule.scripts.select2')
-    @include('school.new.lesson-schedule.scripts.tab')
+    @include('school.pages.lesson-schedule.scripts.create')
+    @include('school.pages.lesson-schedule.scripts.update')
+    @include('school.pages.lesson-schedule.scripts.delete')
+    @include('school.pages.lesson-schedule.scripts.select2')
+    @include('school.pages.lesson-schedule.scripts.tab')
 @endsection
