@@ -212,14 +212,14 @@
 
     </div>
 
-    @include('school.new.violation.widgets.modal-create-violation')
-    @include('school.new.violation.widgets.modal-update-violation')
-    @include('school.new.violation.widgets.modal-max-point')
+    @include('school.pages.violation.widgets.modal-create-violation')
+    @include('school.pages.violation.widgets.modal-update-violation')
+    @include('school.pages.violation.widgets.modal-max-point')
     <x-delete-modal-component />
 @endsection
 
 @section('script')
-    @include('school.new.violation.scripts.script-modal-create')
-    @include('school.new.violation.scripts.script-modal-update')
-    @include('school.new.violation.scripts.script-modal-delete')
+    @include('school.pages.violation.scripts.script-modal-create')
+    @include('school.pages.violation.scripts.script-modal-update')
+    @include('school.pages.violation.scripts.script-modal-delete')
 @endsection

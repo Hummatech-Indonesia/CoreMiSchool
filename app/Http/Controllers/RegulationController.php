@@ -26,7 +26,7 @@ class RegulationController extends Controller
     {
         $regulations = $this->regulation->get();
         $maxPoint = $this->schoolPoint->get();
-        return view('school.new.violation.index', compact('regulations', 'maxPoint'));
+        return view('school.pages.violation.index', compact('regulations', 'maxPoint'));
     }
 
     /**
