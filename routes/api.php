@@ -23,7 +23,7 @@ use App\Models\User;
 |
 */
 
-Route::post('attendance/masterkey-check', [AttendanceMasterController::class, 'check'])->name('attendance-test.check');
+Route::post('attendace/masterkey-check', [AttendanceMasterController::class, 'check'])->name('attendance-test.check');
 
 // Route::middleware(['auth:sanctum'])->group(function () {
 Route::post('attendance/add', [AttendanceController::class, 'store'])->name('attendance.add');
