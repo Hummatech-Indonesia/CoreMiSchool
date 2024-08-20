@@ -11,7 +11,7 @@
             </form>
         </div>
     </div>
-    <button type="button" class="btn mb-1 btn-primary" data-bs-toggle="modal" data-bs-target="#modal-create">
+    <button type="button" class="btn mb-1 btn-primary" data-bs-toggle="modal" data-bs-target="#modal-create-access">
         Tambah Pengakses
     </button>
 </div>
@@ -69,4 +69,7 @@
 {{-- <div class="pagination justify-content-center mb-0">
     <x-paginate-component :paginator="$levelClasses" />
 </div> --}}
+
+{{-- modal tambah pengakses --}}
+@include('school.pages.access-violation.widgets.modal-create-access')
 @endsection
