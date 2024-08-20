@@ -31,6 +31,6 @@ class DatabaseSeeder extends Seeder
             AttendanceRuleSeeder::class,
             SubjectSeeder::class, 
             SchoolPointSeeder::class,
-        ]);
+        ]); 
     }
 }
