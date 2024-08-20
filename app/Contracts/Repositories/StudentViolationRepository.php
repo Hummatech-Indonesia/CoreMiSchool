@@ -18,6 +18,13 @@
             return $this->model->query()->get();
         }
 
+        public function whereClassroom(mixed $id): mixed
+        {
+            return $this->model->query()
+                ->whereRelation('classroomStudent', 'classroom_id' , $id)
+                ->paginate(10);
+        }
+
         public function store(array $data): mixed
         {
             return $this->model->query()->create($data);
