@@ -17,6 +17,7 @@ class AttendanceRuleApiController extends Controller
     public function __construct(AttendanceRuleInterface $attendanceRule)
     {
         $this->attendanceRule = $attendanceRule;
+        // $this->middleware = ['staf:create,dets'];
     }
 
     /**
@@ -25,7 +26,8 @@ class AttendanceRuleApiController extends Controller
     public function index(): mixed
     {
         $attendanceRules = $this->attendanceRule->get();
-        
+
+        // auth()->user()->hasRole();
         return response()->json(['status'=> 'success', 'code'=>200, 'data' => AttendanceRuleResource::collection($attendanceRules)]);
     }
 }

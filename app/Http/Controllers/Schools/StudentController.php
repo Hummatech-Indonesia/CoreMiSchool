@@ -2,26 +2,28 @@
 
 namespace App\Http\Controllers\Schools;
 
-use App\Contracts\Interfaces\ClassroomStudentInterface;
-use App\Contracts\Interfaces\ModelHasRfidInterface;
 use App\Models\Student;
+use App\Models\Classroom;
+use App\Models\SchoolYear;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Imports\StudentImport;
+use App\Exports\ClassroomExport;
 use App\Services\StudentService;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\StudentClassroomExport;
+use App\Exports\StudentClassroom2Export;
+use App\Services\ClassroomStudentService;
 use App\Http\Requests\StoreStudentRequest;
 use App\Contracts\Interfaces\UserInterface;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Contracts\Interfaces\StudentInterface;
 use App\Contracts\Interfaces\ReligionInterface;
 use App\Contracts\Interfaces\SchoolYearInterface;
-use App\Exports\ClassroomExport;
-use App\Exports\StudentClassroom2Export;
-use App\Exports\StudentClassroomExport;
-use App\Http\Controllers\Controller;
-use App\Imports\StudentImport;
-use App\Models\Classroom;
-use App\Services\ClassroomStudentService;
-use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
+use App\Contracts\Interfaces\ModelHasRfidInterface;
+use App\Contracts\Interfaces\ClassroomStudentInterface;
 
 class StudentController extends Controller
 {
@@ -157,6 +159,33 @@ class StudentController extends Controller
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $th->getMessage());
         }
+    }
+
+    public function downloadTemplateClass()
+    {
+        // Instantiate the export class
+        $export = new ClassroomExport();
+
+        // Trigger the event-driven export logic defined in the export class
+        Excel::store($export, 'file/classrooom-format-import-student.xlsx');
+
+        // Define the path to the newly generated file
+        $filePath = public_path('file/generated-class-format-import-student.xlsx');
+
+        // Check if the file exists
+        if (File::exists($filePath)) {
+            // Return the file as a download response
+            return response()->download($filePath)->deleteFileAfterSend(true);
+        } else {
+            // Handle the error case if the file was not created successfully
+            return redirect()->back()->with('error', 'Failed to generate the file.');
+        }
+
+    }
+
+    public function download()
+    {
+        return Excel::download(new ClassroomExport, 'classroom-export.xlsx');
     }
 
     public function import(Request $request, string $classroom)

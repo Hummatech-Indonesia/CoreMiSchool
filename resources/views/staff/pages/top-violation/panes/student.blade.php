@@ -4,21 +4,21 @@
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
             <form class="d-flex flex-column flex-md-row align-items-center" method="GET">
                 <div class="mb-3 mb-md-0 me-md-3">
-                    <input type="text" name="search" class="form-control" placeholder="Cari...">
+                    <input type="text" name="search_student" class="form-control" placeholder="Cari..." value="{{ old('search_student', request('search_student')) }}">
                 </div>
 
                 <div class="mb-3 mb-md-0 me-md-3">
                     <select name="gender" class="form-select">
                         <option value="">Jenis Kelamin</option>
-                        <option value="Laki-laki">Laki-laki</option>
-                        <option value="Perempuan">Perempuan</option>
+                        <option value="male" {{ old('gender', request('gender')) == 'male' ? 'selected' : '' }}>Laki-laki</option>
+                        <option value="female"  {{ old('gender', request('gender')) == 'female' ? 'selected' : '' }}>Perempuan</option>
                     </select>
                 </div>
 
                 <div class="mb-3 mb-md-0 me-md-3">
-                    <select name="points" class="form-select">
-                        <option value="highest">Point Tertinggi</option>
-                        <option value="lowest">Point Terendah</option>
+                    <select name="point_student" class="form-select">
+                        <option value="highest" {{ old('point_student', request('point_student')) == 'highest' ? 'selected' : '' }}>Point Tertinggi</option>
+                        <option value="lowest" {{ old('point_student', request('point_student')) == 'lowest' ? 'selected' : '' }}>Point Terendah</option>
                     </select>
                 </div>
 
@@ -63,52 +63,9 @@
                         </tr>
                     @empty
                     @endforelse
-                    {{-- <tr>
-                        <td class="text-start">
-                            <div class="d-flex align-items-center">
-                                <img src="{{ asset('admin_assets/dist/images/profile/user-10.jpg') }}"
-                                    class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40"
-                                    height="40" alt="" />
-                                <div class="ms-2">
-                                    <h6 class="fs-4 fw-semibold mb-0 text-start">Ahmad Lukman Hakim</h6>
-                                    <span class="fw-normal">Laki-laki</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td>X RPL 1</td>
-                        <td>2131123123</td>
-                        <td>
-                            <span class="mb-1 badge font-medium bg-light-warning text-warning">50 Point</span>
-                        </td>
-                        <td>
-                            <button type="button" class="btn mb-1 waves-effect waves-light btn-primary"
-                                data-bs-toggle="modal" data-bs-target="#detail-repair">Detail</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-start">
-                            <div class="d-flex align-items-center">
-                                <img src="{{ asset('admin_assets/dist/images/profile/user-10.jpg') }}"
-                                    class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40"
-                                    height="40" alt="" />
-                                <div class="ms-2">
-                                    <h6 class="fs-4 fw-semibold mb-0 text-start">Ahmad Lukman Hakim</h6>
-                                    <span class="fw-normal">Laki-laki</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td>X RPL 1</td>
-                        <td>2131123123</td>
-                        <td>
-                            <span class="mb-1 badge font-medium bg-light-primary text-primary">10 Point</span>
-                        </td>
-                        <td>
-                            <button type="button" class="btn mb-1 waves-effect waves-light btn-primary"
-                                data-bs-toggle="modal" data-bs-target="#detail-repair">Detail</button>
-                        </td>
-                    </tr> --}}
                 </tbody>
             </table>
+            <x-paginate-component :paginator="$students" />
         </div>
 
     </div>

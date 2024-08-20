@@ -68,7 +68,7 @@
                 </tr>
             </thead>
             <tbody class="text-center">
-                @forelse (range(1,5) as $item)
+                @forelse ($studentClass as $student)
                     <tr>
                         <td class="text-start">
                             <div class="d-flex align-items-center">
@@ -76,16 +76,16 @@
                                     class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40"
                                     height="40" alt="" />
                                 <div class="ms-2">
-                                    <h6 class="fs-4 fw-semibold mb-0 text-start">Ahmad Lukman Hakim</h6>
-                                    <span class="fw-normal">Laki-laki</span>
+                                    <h6 class="fs-4 fw-semibold mb-0 text-start">{{ $student->classroomStudent->student->user->name }}</h6>
+                                    <span class="fw-normal">{{ $student->classroomStudent->student->gender->label() }}</span>
                                 </div>
                             </div>
                         </td>
-                        <td>XI RPL 1</td>
-                        <td>Bermain slot saat jam pelajaran</td>
-                        <td>10 Mei 2024</td>
+                        <td>{{ $student->classroomStudent->classroom->name }}</td>
+                        <td>{{ $student->regulation->violation }}</td>
+                        <td>{{ \Carbon\Carbon::parse($student->created_at)->format('d M Y') }}</td>
                         <td>
-                            <span class="mb-1 badge font-medium bg-light-danger text-danger">80 Point</span>
+                            <span class="mb-1 badge font-medium bg-light-danger text-danger">{{ $student->regulation->point }} Point</span>
                         </td>
                         <td>
                             <button type="button" class="btn mb-1 waves-effect waves-light btn-primary"
@@ -96,5 +96,6 @@
                 @endforelse
             </tbody>
         </table>
+        <x-paginate-component :paginator="$studentClass" />
     </div>
 @endsection
