@@ -90,11 +90,25 @@ class StudentRepository extends BaseRepository implements StudentInterface
             ->count();
     }
 
-    public function getByPoint(): mixed
+    public function getByPoint(Request $request): mixed
     {
         return $this->model->query()
+            ->when($request->search_student, function($query) use ($request){
+                $query->when($request->search_student, function($q) use($request){
+                    $q->whereRelation('user', 'name', 'LIKE', '%' . $request->search_student . '%');
+                });
+            })
+            ->when($request->gender, function($query) use ($request){
+                $query->where('gender', $request->gender);
+            })
             ->where('point' , '>', 0)
-            ->orderBy('point', 'desc')
+            ->when($request->point_student, function($q) use($request) {
+                if ($request->point_student == 'highest') {
+                    $q->orderBy('point', 'desc');
+                } elseif ($request->point_student == 'lowest') {
+                    $q->orderBy('point', 'asc');
+                }
+            })
             ->paginate(10);
     }
 
