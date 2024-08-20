@@ -52,7 +52,7 @@ class ClassroomController extends Controller
         $teachers = $this->employee->getTeacher();
         $classLevel = $this->levelClass->get();
 
-        return view('school.new.class.index', compact('classrooms', 'levelClasses', 'teachers', 'classLevel', 'selectLevel'));
+        return view('school.pages.class.index', compact('classrooms', 'levelClasses', 'teachers', 'classLevel', 'selectLevel'));
     }
 
     /**

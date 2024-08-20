@@ -34,7 +34,7 @@ class ClassroomStudentController extends Controller
         $classroomStudents = $this->classroomStudent->whereClassroom($classroom->id, $request);
         $religions = $this->religion->get();
         $students = $this->student->doesntHaveClassroom($request);
-        return view('school.new.class.detail', compact('classroomStudents', 'classroom', 'religions', 'students'));
+        return view('school.pages.class.detail', compact('classroomStudents', 'classroom', 'religions', 'students'));
     }
 
     /**

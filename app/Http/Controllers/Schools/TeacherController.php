@@ -81,7 +81,7 @@ class TeacherController extends Controller
         $teacher = $this->employee->showWithSlug($slug);
         $teacher_subjects = $this->teacherSubject->where($teacher->id);
         $subjects = $this->subjects->whereTeacher($teacher->id);
-        return view('school.new.employee.teacher-detail', compact('teacher', 'teacher_subjects', 'subjects'));
+        return view('school.pages.employee.teacher-detail', compact('teacher', 'teacher_subjects', 'subjects'));
     }
 
     /**

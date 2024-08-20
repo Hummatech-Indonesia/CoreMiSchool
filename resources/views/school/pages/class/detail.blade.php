@@ -323,21 +323,21 @@
         {{-- <x-paginate-component :paginator="$classroomStudents" /> --}}
     </div>
 
-    @include('school.new.class.widgets.class.create-student')
-    @include('school.new.class.widgets.class.import-student')
-    @include('school.new.class.widgets.class.update-student')
-    @include('school.new.class.widgets.class.rfid-student')
-    @include('school.new.class.widgets.class.detail-student')
+    @include('school.pages.class.widgets.class.create-student')
+    @include('school.pages.class.widgets.class.import-student')
+    @include('school.pages.class.widgets.class.update-student')
+    @include('school.pages.class.widgets.class.rfid-student')
+    @include('school.pages.class.widgets.class.detail-student')
 
     <x-delete-modal-component />
 @endsection
 
 @section('script')
-    @include('school.new.class.script.script-validation')
-    @include('school.new.class.script.script-preview')
-    @include('school.new.class.script.script-toggle-rolling')
-    @include('school.new.class.script.script-create-rfid')
-    @include('school.new.class.script.script-rolling-student')
-    @include('school.new.class.script.script-update-student')
-    @include('school.new.class.script.script-delete-student')
+    @include('school.pages.class.script.script-validation')
+    @include('school.pages.class.script.script-preview')
+    @include('school.pages.class.script.script-toggle-rolling')
+    @include('school.pages.class.script.script-create-rfid')
+    @include('school.pages.class.script.script-rolling-student')
+    @include('school.pages.class.script.script-update-student')
+    @include('school.pages.class.script.script-delete-student')
 @endsection
