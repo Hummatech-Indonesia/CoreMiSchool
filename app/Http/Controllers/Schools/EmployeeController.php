@@ -36,7 +36,7 @@ class EmployeeController extends Controller
         $teachers = $this->employee->getByRole(RoleEnum::TEACHER->value, $request);
         $staffs = $this->employee->getByRole(RoleEnum::STAFF->value, $request);
         $religions = $this->religion->get();
-        return view('school.new.employee.index', compact('teachers', 'staffs', 'religions'));
+        return view('school.pages.employee.index', compact('teachers', 'staffs', 'religions'));
     }
 
     /**
