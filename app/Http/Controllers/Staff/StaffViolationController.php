@@ -32,6 +32,14 @@ class StaffViolationController extends Controller
         return view('staff.pages.top-violation.index', compact('students', 'classrooms'));
     }
 
+
+    public function overview(Request $request)
+    {
+        $students = $this->student->getByPoint($request);
+        $countByClassroomStudent = $this->studentViolation->countByClassroomStudent();
+        return view('staff.pages.overview.index', compact('countByClassroomStudent', 'students'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

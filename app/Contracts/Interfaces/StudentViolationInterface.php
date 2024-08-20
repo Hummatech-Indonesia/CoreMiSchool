@@ -11,4 +11,5 @@ use App\Contracts\Interfaces\Eloquent\UpdateInterface;
 interface StudentViolationInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface
 {
     public function whereClassroom(mixed $id) : mixed;
+    public function countByClassroomStudent();
 }
