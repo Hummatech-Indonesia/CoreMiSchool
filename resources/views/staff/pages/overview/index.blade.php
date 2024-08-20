@@ -6,13 +6,20 @@
         <div class="card bg-primary shadow-none position-relative overflow-hidden">
             <div class="card-body px-4 py-3">
                 <div class="row align-items-center">
-                    <div class="col-12">
-                        <h4 class="fw-semibold text-white mb-8">Statistik Absensi</h4>
+                    <div class="col-9">
+                        <b class="text-white fs-2">Daftar Point Siswa</b>
+                        <h4 class="fw-semibold text-white fs-5 mt-1">100 Siswa Melanggar</h4>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a class="text-white text-decoration-none" href="javascript:void(0)">Statistik absensi siswa dan pegawai</a></li>
+                                <li class="breadcrumb-item"><a class="text-white fs-2" href="javascript:void(0)">Daftar daftar siswa yang melanggar akan mendapatkan point sesuai apa yang dilanggar</a></li>
                             </ol>
                         </nav>
+                    </div>
+                    <div class="col-3">
+                        <div class="text-center mb-n5">
+                            <img src="{{ asset('admin_assets/dist/images/breadcrumb/pagar.png') }}" width="130px" alt=""
+                                class="img-fluid mb-3">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -23,7 +30,7 @@
             <div class="card-body px-4 py-3">
                 <div class="row align-items-center">
                     <div class="col-12">
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-between mb-2">
                             <h5 class="fw-semibold text-white mb-8">Statistik Absensi</h5>
                             <span class="mb-1 badge bg-white p-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="text-warning" width="15" height="15" viewBox="0 0 24 24">
