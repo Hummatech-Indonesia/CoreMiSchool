@@ -68,8 +68,8 @@ Route::middleware('auth')->prefix('school')->name('school.')->group(function () 
     Route::post('import-student/{classroom}', [StudentController::class, 'import'])->name('student.import');
     Route::get('download-template-student/', [StudentController::class, 'downloadTemplate'])->name('student.download-template');
 
-    Route::get('download-template-class-student2', [StudentController::class, 'downloadTemplateClass1'])->name('class.download-template2');
-    Route::get('doenload-template-class-student', [StudentController::class, 'downloadTemplateClass2'])->name('class.download.template');
+    Route::get('download-template-class-student2', [StudentController::class, 'downloadTemplateClass2'])->name('class.download-template2');
+    Route::get('doenload-template-class-student', [StudentController::class, 'downloadTemplateClass'])->name('class.download.template');
     Route::get('download', [StudentController::class, 'download'])->name('class.download');
 
     Route::resource('students', StudentController::class)->except(['store']);
