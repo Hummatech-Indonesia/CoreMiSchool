@@ -97,4 +97,12 @@ class StudentRepository extends BaseRepository implements StudentInterface
             ->orderBy('point', 'desc')
             ->paginate(10);
     }
+
+    public function getByPointAsc(): mixed
+    {
+        return $this->model->query()
+            ->where('point', '>', 0)
+            ->orderBy('point', 'asc')
+            ->paginate(10);
+    }
 }
