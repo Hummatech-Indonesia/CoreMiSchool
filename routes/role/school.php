@@ -175,6 +175,10 @@ Route::prefix('school')->group(function () {
 
     Route::get('detail-presence-class/{classroom}', [SchoolsAttendanceStudentController::class, 'show'])->name('detail-presence-class.index');
     Route::get('detail-presence-class/{classroom}/export', [SchoolsAttendanceStudentController::class, 'exportPreview'])->name('detail-presence-class.export-preview');
+
+    Route::get('access-violation', function(){
+        return view('school.pages.access-violation.index');
+    })->name('access-violation.index');
 });
 
 //tes absensi
