@@ -18,6 +18,7 @@ use App\Http\Controllers\RegulationController;
 use App\Http\Controllers\RfidController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SchoolDashboardController;
+use App\Http\Controllers\SchoolPointController;
 use App\Http\Controllers\Schools\AttendanceController as SchoolsAttendanceController;
 use App\Http\Controllers\Schools\AttendanceEmployeeController;
 use App\Http\Controllers\Schools\AttendanceStudentController as SchoolsAttendanceStudentController;
@@ -36,7 +37,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('auth')->prefix('school')->name('school.')->group(function () {
-
+    Route::patch('max-point/{schoolPoint}', [SchoolPointController::class, 'update'])->name('max-point.update');
     Route::resource('violation', RegulationController::class);
     Route::resource('employees', EmployeeController::class);
 
