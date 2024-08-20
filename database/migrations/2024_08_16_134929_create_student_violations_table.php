@@ -15,9 +15,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('student_violations', function (Blueprint $table) {
+            $table->id();
             $this->addForeignId($table, 'classroom_student_id');
             $this->addForeignId($table, 'regulation_id');
-            $table->id();
             $table->timestamps();
         });
     }

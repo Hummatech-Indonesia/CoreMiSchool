@@ -22,7 +22,7 @@
                             <select id="pengajar" class="select2 select2-create" name="employee_id">
                                 <option value="">Pilih Pengajar</option>
                                 @forelse ($employees as $employee)
-                                    <option value="{{ $employee->id }}">{{ $employee->user->name }}</option>
+                                    <option value="{{ $employee->id }}" {{ old('employee_id') == $employee->id ? 'selected' : '' }}>{{ $employee->user->name }}</option>
                                 @empty
                                 @endforelse
                             </select>
