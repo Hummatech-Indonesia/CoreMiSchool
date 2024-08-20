@@ -77,33 +77,33 @@
         <!-- Tab Content -->
         <div class="tab-content mt-4" id="nav-tabContent">
             <div class="tab-pane fade" id="teacher-content" role="tabpanel" aria-labelledby="teacher-tab">
-                @include('school.new.employee.panes.teacher-tab')
+                @include('school.pages.employee.panes.teacher-tab')
             </div>
             <div class="tab-pane fade" id="employee-content" role="tabpanel" aria-labelledby="employee-tab">
-                @include('school.new.employee.panes.employee-tab')
+                @include('school.pages.employee.panes.employee-tab')
             </div>
         </div>
     </div>
 
-    @include('school.new.employee.widgets.employe.update-employe')
-    @include('school.new.employee.widgets.employe.modal-detail')
+    @include('school.pages.employee.widgets.employe.update-employe')
+    @include('school.pages.employee.widgets.employe.modal-detail')
 
-    @include('school.new.employee.widgets.teacher.update-teacher')
-    @include('school.new.employee.widgets.teacher.modal-rfid')
+    @include('school.pages.employee.widgets.teacher.update-teacher')
+    @include('school.pages.employee.widgets.teacher.modal-rfid')
 
-    @include('school.new.employee.widgets.teacher.import-teacher')
-    @include('school.new.employee.widgets.employe.import-employe')
-    @include('school.new.employee.widgets.employe.add-employe')
-    @include('school.new.employee.widgets.teacher.add-teacher')
+    @include('school.pages.employee.widgets.teacher.import-teacher')
+    @include('school.pages.employee.widgets.employe.import-employe')
+    @include('school.pages.employee.widgets.employe.add-employe')
+    @include('school.pages.employee.widgets.teacher.add-teacher')
     <x-delete-modal-component />
 @endsection
 
 @section('script')
-    @include('school.new.employee.scripts.tab')
-    @include('school.new.employee.scripts.rfid')
-    @include('school.new.employee.scripts.detail')
-    @include('school.new.employee.scripts.delete')
-    @include('school.new.employee.scripts.create')
-    @include('school.new.employee.scripts.edit')
-    @include('school.new.employee.scripts.session')
+    @include('school.pages.employee.scripts.tab')
+    @include('school.pages.employee.scripts.rfid')
+    @include('school.pages.employee.scripts.detail')
+    @include('school.pages.employee.scripts.delete')
+    @include('school.pages.employee.scripts.create')
+    @include('school.pages.employee.scripts.edit')
+    @include('school.pages.employee.scripts.session')
 @endsection
