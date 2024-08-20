@@ -8,7 +8,7 @@
                 <div class="row align-items-center">
                     <div class="col-9">
                         <b class="text-white fs-2">Daftar Point Siswa</b>
-                        <h4 class="fw-semibold text-white fs-5 mt-1">100 Siswa Melanggar</h4>
+                        <h4 class="fw-semibold text-white fs-5 mt-1">{{ $countByClassroomStudent->count() }} Siswa Melanggar</h4>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a class="text-white fs-2" href="javascript:void(0)">Daftar daftar siswa yang melanggar akan mendapatkan point sesuai apa yang dilanggar</a></li>
@@ -50,20 +50,20 @@
 
 <div class="">
     <div class="mb-3">
-        <form class="d-flex gap-2" action="/school/students">
+        <form class="d-flex gap-2" action="">
             <div class="position-relative">
                 <input type="text" name="name" class="form-control product-search ps-5" id="input-search" placeholder="Cari..." value="{{ old('name', request('name')) }}">
                 <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
             </div>
             <div class="d-flex gap-2">
                 <select name="gender" class="form-select">
-                    <option value="">Tampilkan semua</option>
-                    <option value="male">Laki-laki</option>
-                    <option value="female">Perempuan</option>
+                    <option value="all">Tampilkan semua</option>
+                    <option value="male" {{ request()->has('gender') == 'male' ? 'selected' : '' }}>Laki-laki</option>
+                    <option value="female" {{ request()->has('gender') == 'female' ? 'selected' : '' }}>Perempuan</option>
                 </select>
-                <select name="class" class="form-select">
-                    <option value="">Point Tertinggi</option>
-                    <option value="">Point Terendah</option>
+                <select name="point" class="form-select">
+                    <option value="highest" {{ request()->has('point') == 'highest' ? 'selected' : '' }}>Point Tertinggi</option>
+                    <option value="lowest" {{ request()->has('point') == 'lowest' ? 'selected' : '' }}>Point Terendah</option>
                 </select>
                 <div>
                     <button type="submit" class="btn btn-primary btn-md">Filter</button>
@@ -84,22 +84,22 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse (range(1,10) as $student)
+                @forelse ($students as $student)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>
                             <div class="d-flex align-items-center">
                                 <img src="{{ asset('admin_assets/dist/images/profile/user-10.jpg') }}" class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40" height="40" alt="" />
                                 <div class="ms-3">
-                                    <h6 class="fs-4 fw-semibold mb-0 text-start">Ahmad Lukman Hakim</h6>
+                                    <h6 class="fs-4 fw-semibold mb-0 text-start">{{ $student->user->name }}</h6>
                                     <span class="fw-normal"></span>
                                 </div>
                             </div>
                         </td>
-                        <td>X RPL 1</td>
-                        <td>123456789</td>
+                        <td>{{ $student->classroomStudents->first()->classroom->name }}</td>
+                        <td>{{ $student->nisn }}</td>
                         <td>
-                            <span class="badge bg-light-danger text-danger">80 Point</span>
+                            <span class="badge bg-light-danger text-danger">{{ $student->point }} Point</span>
                         </td>
                         <td>
                             <button class="btn btn-primary py-1 px-4">Detail</button>
