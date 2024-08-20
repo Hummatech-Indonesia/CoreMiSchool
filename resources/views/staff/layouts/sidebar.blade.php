@@ -47,7 +47,7 @@
                     <span class="hide-menu">Pelanggaran</span>
                 </li>
                 <li class="sidebar-item ">
-                    <a class="sidebar-link" href="{{ route('overview.index') }}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('employee.overview.index') }}" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
