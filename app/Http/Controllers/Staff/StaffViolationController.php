@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Staff;
 
 use App\Contracts\Interfaces\ClassroomInterface;
+use App\Contracts\Interfaces\SchoolPointInterface;
 use App\Contracts\Interfaces\StudentInterface;
 use App\Contracts\Interfaces\StudentViolationInterface;
 use App\Http\Controllers\Controller;
@@ -14,12 +15,14 @@ class StaffViolationController extends Controller
     private StudentViolationInterface $studentViolation;
     private ClassroomInterface $classroom;
     private StudentInterface $student;
+    private SchoolPointInterface $schoolPoint;
 
-    public function __construct(StudentViolationInterface $studentViolation, StudentInterface $student, ClassroomInterface $classroom)
+    public function __construct(StudentViolationInterface $studentViolation, StudentInterface $student, ClassroomInterface $classroom, SchoolPointInterface $schoolPoint)
     {
         $this->studentViolation = $studentViolation;
         $this->student = $student;
         $this->classroom = $classroom;
+        $this->schoolPoint = $schoolPoint;
     }
 
     /**

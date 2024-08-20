@@ -5,16 +5,18 @@
                 <h5 class="modal-title" id="createRFID">Tambah Pengakses</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form id="" method="POST" enctype="multipart/form-data">
-                {{-- @method('post') --}}
+            <form action="{{ route('school.account-access-violation') }}" method="POST" enctype="multipart/form-data">
+                @method('post')
                 @csrf
-                <input type="hidden" name="old_rfid" id="old_rfid_input">
                 <div class="modal-body">
                     <div class="mb-3">
                         <div class="form-group">
                             <h6 class="mb-2">Pilih Pegawai:</h6>
-                            <select name="" id="" class="form-select">
+                            <select name="query[]" id="" class="form-select">
                                 <option value="">Pilih Pegawai</option>
+                                @foreach ($employees as $employee)
+                                    <option value="{{ $employee->user->id }}">{{ $employee->user->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>

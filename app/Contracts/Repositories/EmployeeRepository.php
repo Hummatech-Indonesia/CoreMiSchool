@@ -87,6 +87,16 @@ class EmployeeRepository extends BaseRepository implements EmployeeInterface
         return $this->model->query()->whereRelation('user', 'slug', $slug)->firstOrFail();
     }
 
+    public function getPermission(Request $request): mixed
+    {
+        return $this->model->query()
+            ->join('users', 'users.id', '=', 'employees.user_id')
+            ->join('model_has_permissions', 'model_has_permissions.model_id', '=', 'users.id')
+            ->where('model_has_permissions.model_type', '=', 'App\\Models\\User')
+            ->select('employees.*', 'users.name as user_name', 'model_has_permissions.permission_id')
+            ->get();
+    }
+
     public function getCountEmployee(mixed $query): mixed
     {
         return $this->model->query()->whereRelation('user.roles', 'name', $query)->count();
