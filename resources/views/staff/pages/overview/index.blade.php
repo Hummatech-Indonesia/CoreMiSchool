@@ -75,12 +75,12 @@
         <table class="table border text-nowrap customize-table mb-0 align-middle">
             <thead class="text-dark fs-4">
                 <tr class="">
-                    <th class="text-white">No</th>
-                    <th class="text-white">Nama</th>
-                    <th class="text-white">Kelas</th>
-                    <th class="text-white">NISN</th>
-                    <th class="text-white">Point</th>
-                    <th class="text-white">Aksi</th>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Kelas</th>
+                    <th>NISN</th>
+                    <th>Point</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
