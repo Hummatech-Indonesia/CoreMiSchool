@@ -179,6 +179,8 @@ Route::prefix('school')->group(function () {
     Route::get('access-violation', function(){
         return view('school.pages.access-violation.index');
     })->name('access-violation.index');
+
+
 });
 
 //tes absensi
@@ -201,11 +203,6 @@ Route::get('list-attendance-teacher', [AttendanceTeacherController::class, 'inde
 Route::get('attendance-test', [AttendanceMasterController::class, 'index'])->name('attendance-test.index');
 Route::get('attendance-test-teacher', [AttendanceMasterController::class, 'index_teacher'])->name('attendance-test-teacher.index');
 Route::post('attendance-test-teacher', [AttendanceMasterController::class, 'check_teacher'])->name('attendance-test-teacher.check');
-
-// route baru
-Route::get('new/school/extracurricular/detail', function () {
-    return view('school.new.extracurricular.detail');
-})->name('new.extracurricular.detail');
 
 Route::get('new/school/export/attendance-student', function () {
     return view('school.pages.statistic-presence.export.student');
