@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\RegulationInterface;
+use App\Contracts\Interfaces\SchoolPointInterface;
 use App\Http\Requests\UpdateRegulationRequest;
 use App\Http\Requests\StoreRegulationRequest;
 use App\Models\Regulation;
@@ -10,10 +11,12 @@ use App\Models\Regulation;
 class RegulationController extends Controller
 {
     private RegulationInterface $regulation;
+    private SchoolPointInterface $schoolPoint;
 
-    public function __construct(RegulationInterface $regulation)
+    public function __construct(RegulationInterface $regulation, SchoolPointInterface $schoolPoint)
     {
         $this->regulation = $regulation;
+        $this->schoolPoint = $schoolPoint;
     }
 
     /**
@@ -22,7 +25,8 @@ class RegulationController extends Controller
     public function index()
     {
         $regulations = $this->regulation->get();
-        return view('school.new.violation.index', compact('regulations'));
+        $maxPoint = $this->schoolPoint->get();
+        return view('school.new.violation.index', compact('regulations', 'maxPoint'));
     }
 
     /**
