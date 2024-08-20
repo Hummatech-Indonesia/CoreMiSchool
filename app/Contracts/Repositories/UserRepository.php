@@ -4,9 +4,12 @@ namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\UserInterface;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class UserRepository extends BaseRepository implements UserInterface
 {
+    private $permission;
+
     public function __construct(User $user)
     {
         $this->model = $user;
@@ -45,5 +48,10 @@ class UserRepository extends BaseRepository implements UserInterface
     public function showEmail(string $email): mixed
     {
         return $this->model->query()->where('email', $email)->first();
+    }
+
+    public function findOrFail(mixed $id): mixed
+    {
+        return $this->model->query()->findOrFail($id);
     }
 }

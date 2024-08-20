@@ -46,6 +46,7 @@
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">Pelanggaran</span>
                 </li>
+
                 <li class="sidebar-item ">
                     <a class="sidebar-link" href="{{ route('employee.overview.index') }}" aria-expanded="false">
                         <span>

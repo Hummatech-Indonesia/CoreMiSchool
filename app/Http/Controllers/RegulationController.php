@@ -72,7 +72,7 @@ class RegulationController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.  
+     * Remove the specified resource from storage.
      */
     public function destroy(Regulation $violation)
     {

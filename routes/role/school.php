@@ -27,6 +27,7 @@ use App\Http\Controllers\Schools\ExtracurricularController as SchoolsExtracurric
 use App\Http\Controllers\Schools\StaffController;
 use App\Http\Controllers\Schools\StudentController;
 use App\Http\Controllers\Schools\TeacherController;
+use App\Http\Controllers\Schools\ViolationAccessController;
 use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\SubjectController;
@@ -48,6 +49,9 @@ Route::middleware('auth')->prefix('school')->name('school.')->group(function () 
     Route::delete('teacher/{employee}', [TeacherController::class, 'destroy'])->name('teacher.destroy');
     Route::post('import-teacher/', [TeacherController::class, 'import'])->name('teacher.import');
     Route::get('download-template-teacher/', [TeacherController::class, 'downloadTemplate'])->name('teacher.download-template');
+
+    Route::get('access-violation', [ViolationAccessController::class, 'index'])->name('access-violation.index');
+    Route::post('account-acceess', [ViolationAccessController::class, 'store'])->name('account-access-violation');
 
     //TeacherSubject
     Route::post('teacher-subject/{employee}', [TeacherSubjectController::class, 'store'])->name('teacher-subject.store');
@@ -175,12 +179,6 @@ Route::prefix('school')->group(function () {
 
     Route::get('detail-presence-class/{classroom}', [SchoolsAttendanceStudentController::class, 'show'])->name('detail-presence-class.index');
     Route::get('detail-presence-class/{classroom}/export', [SchoolsAttendanceStudentController::class, 'exportPreview'])->name('detail-presence-class.export-preview');
-
-    Route::get('access-violation', function(){
-        return view('school.pages.access-violation.index');
-    })->name('access-violation.index');
-
-
 });
 
 //tes absensi

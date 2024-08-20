@@ -23,12 +23,12 @@
                 <th class="fs-4 fw-semibold mb-0">No</th>
                 <th class="fs-4 fw-semibold mb-0">Nama</th>
                 <th class="fs-4 fw-semibold mb-0">Email</th>
-                <th class="fs-4 fw-semibold mb-0">NISN</th>
+                <th class="fs-4 fw-semibold mb-0">NIK</th>
                 <th class="fs-4 fw-semibold mb-0">Aksi</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (range(1,10) as $classroom)
+            @foreach ($users as $user)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>
@@ -36,14 +36,14 @@
                             <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}"
                                 class="rounded-circle me-2 user-profile" style="object-fit: cover" width="30"
                                 height="30" alt="" />
-                            Ahmad Lukman
+                            {{ $user->user->name }}
                         </div>
                     </td>
                     <td>
-                        lukman@gmail.com
+                        {{ $user->user->email }}
                     </td>
                     <td>
-                        12345678
+                        {{ $user->nik }}
                     </td>
                     <td>
                         <div class="d-flex gap-3">
@@ -66,6 +66,7 @@
         </tbody>
     </table>
 </div>
+
 {{-- <div class="pagination justify-content-center mb-0">
     <x-paginate-component :paginator="$levelClasses" />
 </div> --}}
