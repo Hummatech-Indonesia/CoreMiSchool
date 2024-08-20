@@ -104,7 +104,7 @@ class AttendanceController extends Controller
         $schoolYear = $this->schoolYear->whereSchoolYear($year);
         $classrooms = $this->classroom->whereSchoolYears($schoolYear->id, $request);
         $schoolYears = $this->schoolYear->get();
-        return view('school.pages.attendace.student.class', compact('schoolYears', 'classrooms'));
+        return view('school.pages.attendance.student.class', compact('schoolYears', 'classrooms'));
     }
 
     /**
@@ -114,7 +114,7 @@ class AttendanceController extends Controller
     {
         $attendances = $this->attendance->whereClassroom($classroom);
         $schoolYears = $this->schoolYear->get();
-        return view('school.pages.attendace.student.index', compact('attendances', 'schoolYears', 'classroom'));
+        return view('school.pages.attendance.student.index', compact('attendances', 'schoolYears', 'classroom'));
     }
 
     /**
@@ -124,15 +124,7 @@ class AttendanceController extends Controller
     {
         $attendanceTeachers = $this->attendanceTeacher->whereSchool(auth()->user()->school->id, $request);
         $schoolYears = $this->schoolYear->get();
-        return view('school.pages.attendace.teacher.index', compact('attendanceTeachers', 'schoolYears'));
-    }
-
-    /**
-     * Display a listing of the resource.
-     */
-    public function export_teacher(Request $request)
-    {
-        return Excel::download(new TeacherAttendanceExport($request, $this->attendanceTeacher), 'attendance-teacher.xlsx');
+        return view('school.pages.attendance.teacher.index', compact('attendanceTeachers', 'schoolYears'));
     }
 
     public function export_student(Classroom $classroom, Request $request)
@@ -146,7 +138,7 @@ class AttendanceController extends Controller
     public function studentExportPreview(Classroom $classroom, Request $request)
     {
         $attendances = $this->attendance->classAndDate($classroom->id, $request);
-        return view('school.new.attendace.student.export', compact('attendances', 'classroom'));
+        return view('school.pages.attendance.student.export', compact('attendances', 'classroom'));
     }
 
     /**
@@ -156,7 +148,7 @@ class AttendanceController extends Controller
     {
         $attendances = $this->attendanceTeacher->whereSchool(auth()->user()->school->id, $request);
         $schoolYears = $this->schoolYear->get();
-        return view('school.pages.attendace.teacher.export', compact('attendances', 'schoolYears'));
+        return view('school.pages.attendance.teacher.export', compact('attendances', 'schoolYears'));
     }
 
     public function listAttendance(Request $request)

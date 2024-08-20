@@ -33,7 +33,7 @@
     </div>
     <div class="col-lg-6 mb-3">
         <div class="d-flex gap-2 justify-content-end">
-            <a href="{{ route('school.attendace-student-export.show', ['classroom' => $classroom->id]) }}" type="button" class="btn mb-1 btn-success">
+            <a href="{{ route('school.attendance-student-export.show', ['classroom' => $classroom->id]) }}" type="button" class="btn mb-1 btn-success">
                 Export
             </a>
         </div>

@@ -100,7 +100,7 @@ Route::middleware('auth')->prefix('school')->name('school.')->group(function () 
     Route::get('student-attendance', [SchoolsAttendanceController::class, 'class'])->name('student-attendance.index');
     Route::get('student-attendance/{classroom}', [SchoolsAttendanceController::class, 'student'])->name('student-attendance.show');
 
-    Route::get('export/{classroom}', [SchoolsAttendanceController::class, 'expotStudent'])->name('attendace-student-export.show');
+    Route::get('export/{classroom}', [SchoolsAttendanceController::class, 'expotStudent'])->name('attendance-student-export.show');
     Route::get('student-attendance/export/{classroom}', [SchoolsAttendanceController::class, 'export_student'])->name('student-attendance.export');
 
     // kehadiran guru
@@ -138,7 +138,7 @@ Route::prefix('school')->group(function () {
     // absen
     // Route::get('clock-settings', [AttendanceRuleController::class, 'index'])->name('clock-settings.index');
     Route::get('clock-settings', function () {
-        return view('school.pages.attendace.copy-clock-settings');
+        return view('school.pages.attendance.clock-settings');
     })->name('clock-settings.index');
     Route::get('get-clock-settings', [AttendanceRuleController::class, 'index'])->name('clock-settings.get');
     Route::post('add-clock-settings/{day}/{role}', [AttendanceRuleController::class, 'store'])->name('clock-settings.store');
