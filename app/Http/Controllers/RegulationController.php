@@ -22,7 +22,7 @@ class RegulationController extends Controller
     public function index()
     {
         $regulations = $this->regulation->get();
-        return view('', compact('regulations'));
+        return view('school.new.violation.index', compact('regulations'));
     }
 
     /**
@@ -61,18 +61,18 @@ class RegulationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRegulationRequest $request, Regulation $regulation)
+    public function update(UpdateRegulationRequest $request, Regulation $violation)
     {
-        $this->regulation->update($regulation->id, $request->validated());
+        $this->regulation->update($violation->id, $request->validated());
         return redirect()->back()->with('success', 'Berhasil update peraturan');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Regulation $regulation)
+    public function destroy(Regulation $violation)
     {
-        $this->regulation->delete($regulation->id);
+        $this->regulation->delete($violation->id);
         return redirect()->back()->with('success', 'Berhasil menghapus peraturan');
     }
 }
