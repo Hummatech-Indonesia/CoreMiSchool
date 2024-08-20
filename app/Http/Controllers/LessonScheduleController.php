@@ -44,7 +44,7 @@ class LessonScheduleController extends Controller
         $lessonSchedules = $this->lessonSchedule->get();
         $classrooms = $this->classroom->whereLessonSchedule($request);
         $schoolYears = $this->schoolYear->get();
-        return view('school.new.lesson-schedule.index', compact('lessonSchedules', 'classrooms', 'schoolYears'));
+        return view('school.pages.lesson-schedule.index', compact('lessonSchedules', 'classrooms', 'schoolYears'));
     }
 
     /**
@@ -79,7 +79,7 @@ class LessonScheduleController extends Controller
         $lessonHourUpdates = $this->lessonHour->groupByNotUpdate('day');
         $lessonSchedules = $this->lessonSchedule->whereClassroom($classroom->id, 'day');
         $latestSchedule = $this->service->get();
-        return view('school.new.lesson-schedule.detail', compact('lessonSchedules', 'classroom', 'teachers', 'subjects', 'lessonHours', 'lessonHourUpdates', 'latestSchedule'));
+        return view('school.pages.lesson-schedule.detail', compact('lessonSchedules', 'classroom', 'teachers', 'subjects', 'lessonHours', 'lessonHourUpdates', 'latestSchedule'));
     }
 
     /**
