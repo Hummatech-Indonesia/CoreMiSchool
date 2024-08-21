@@ -10,5 +10,5 @@ use App\Contracts\Interfaces\Eloquent\UpdateInterface;
         
 interface StudentRepairInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface 
 {
-    // Define your methods here
+    public function whereStudent(mixed $id): mixed;
 }

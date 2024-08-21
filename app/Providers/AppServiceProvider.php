@@ -27,6 +27,7 @@ use App\Contracts\Interfaces\SchoolPointInterface;
 use App\Contracts\Interfaces\SchoolYearInterface;
 use App\Contracts\Interfaces\SemesterInterface;
 use App\Contracts\Interfaces\StudentInterface;
+use App\Contracts\Interfaces\StudentRepairInterface;
 use App\Contracts\Interfaces\StudentViolationInterface;
 use App\Contracts\Interfaces\SubDistrictInterface;
 use App\Contracts\Interfaces\Teachers\TeacherJournalInterface;
@@ -65,6 +66,7 @@ use App\Contracts\Repositories\Teachers\TeacherJournalRepository;
 use App\Contracts\Repositories\TeacherSubjectRepository;
 use App\Contracts\Repositories\UserRepository;
 use App\Contracts\Repositories\VillageRepository;
+use App\Policies\StudentRepairPolicy;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -101,6 +103,7 @@ class AppServiceProvider extends ServiceProvider
         StudentViolationInterface::class => StudentViolationRepository::class,
         RegulationInterface::class => RegulationRepository::class,
         SchoolPointInterface::class => SchoolPointRepository::class,
+        StudentRepairInterface::class => StudentRepairRepository::class
     ];
 
     /**

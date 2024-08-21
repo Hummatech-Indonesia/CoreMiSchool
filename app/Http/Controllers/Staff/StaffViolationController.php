@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Staff;
 use App\Contracts\Interfaces\ClassroomInterface;
 use App\Contracts\Interfaces\SchoolPointInterface;
 use App\Contracts\Interfaces\StudentInterface;
+use App\Contracts\Interfaces\StudentRepairInterface;
 use App\Contracts\Interfaces\StudentViolationInterface;
 use App\Http\Controllers\Controller;
 use App\Models\Classroom;
@@ -14,13 +15,15 @@ use Illuminate\Http\Request;
 class StaffViolationController extends Controller
 {
     private StudentViolationInterface $studentViolation;
+    private StudentRepairInterface $studentRepair;
     private ClassroomInterface $classroom;
     private StudentInterface $student;
     private SchoolPointInterface $schoolPoint;
 
-    public function __construct(StudentViolationInterface $studentViolation, StudentInterface $student, ClassroomInterface $classroom, SchoolPointInterface $schoolPoint)
+    public function __construct(StudentViolationInterface $studentViolation, StudentInterface $student, ClassroomInterface $classroom, SchoolPointInterface $schoolPoint, StudentRepairInterface $studentRepair)
     {
         $this->studentViolation = $studentViolation;
+        $this->studentRepair = $studentRepair;
         $this->student = $student;
         $this->classroom = $classroom;
         $this->schoolPoint = $schoolPoint;
@@ -71,7 +74,9 @@ class StaffViolationController extends Controller
 
     public function show_detail_student(Student $student)
     {
-        return view('staff.pages.top-violation.detail-student');
+        $violations = $this->studentViolation->whereStudent($student->id);
+        $repairs = $this->studentRepair->whereStudent($student->id);
+        return view('staff.pages.top-violation.detail-student', compact('student', 'violations', 'repairs'));
     }
 
     /**

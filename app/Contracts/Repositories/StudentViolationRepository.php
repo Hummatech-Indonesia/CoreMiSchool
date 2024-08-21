@@ -25,6 +25,13 @@ class StudentViolationRepository extends BaseRepository implements StudentViolat
             ->paginate(10);
     }
 
+    public function whereStudent(mixed $id): mixed
+    {
+        return $this->model->query()
+            ->whereRelation('classroomStudent', 'student_id', $id)
+            ->get();
+    }
+
     public function store(array $data): mixed
     {
         return $this->model->query()->create($data);
@@ -52,4 +59,6 @@ class StudentViolationRepository extends BaseRepository implements StudentViolat
         ->groupBy('classroom_student_id')
         ->get();
     }
+
+
 }

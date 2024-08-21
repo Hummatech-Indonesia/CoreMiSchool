@@ -12,12 +12,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse (range(1,3) as $item)
+                    @forelse ($repairs as $repair)
                         <tr>
-                            <td>Menyapu halaman sekolah</td>
-                            <td>10 Mei 2024 - 20 Mei 2024</td>
+                            <td>{{ $repair->repair->name }}</td>
+                            <td>{{ \Carbon\Carbon::parse($repair->created_at)->translatedFormat('d F Y') }}</td>
                             <td>
-                                <span class="mb-1 badge font-medium bg-light-primary text-primary">-80 Point</span>
+                                <span class="mb-1 badge font-medium bg-light-primary text-primary">-{{ $repair->repair->point }} Point</span>
                             </td>
                             <td>
                                 <button type="button" class="btn mb-1 waves-effect waves-light btn-primary w-100"
@@ -25,6 +25,16 @@
                             </td>
                         </tr>
                     @empty
+                        <tr>
+                            <td colspan="4" class="text-center align-middle">
+                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                    <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt="" width="300px">
+                                    <p class="fs-5 text-dark text-center mt-2">
+                                        Tidak ada Perbaikan bagi siswa ini
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
                     @endforelse
                 </tbody>
             </table>

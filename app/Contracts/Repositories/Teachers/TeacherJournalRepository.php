@@ -46,7 +46,7 @@ class TeacherJournalRepository extends BaseRepository implements TeacherJournalI
 
     public function paginate(): mixed
     {
-        //
+        return 0;
     }
 
     public function getLessonSchedule(mixed $id): mixed
@@ -58,7 +58,6 @@ class TeacherJournalRepository extends BaseRepository implements TeacherJournalI
     {
         return $this->model->query()
             ->with('attendanceJournals')
-            ->where('date', '<', now()->format('Y-m-d'))
             ->get();
     }
 }
