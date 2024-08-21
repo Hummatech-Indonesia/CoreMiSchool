@@ -12,7 +12,7 @@
                     <div class="mb-3">
                         <div class="form-group">
                             <h6 class="mb-2">Pilih Pegawai:</h6>
-                            <select name="query[]" id="" class="form-select">
+                            <select name="query[]" id="" multiple class="form-select select2 select2-create">
                                 <option value="">Pilih Pegawai</option>
                                 @foreach ($employees as $employee)
                                     <option value="{{ $employee->user->id }}">{{ $employee->user->name }}</option>
