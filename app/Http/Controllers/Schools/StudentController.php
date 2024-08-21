@@ -161,33 +161,6 @@ class StudentController extends Controller
         }
     }
 
-    public function downloadTemplateClass()
-    {
-        // Instantiate the export class
-        $export = new ClassroomExport();
-
-        // Trigger the event-driven export logic defined in the export class
-        Excel::store($export, 'file/classrooom-format-import-student.xlsx');
-
-        // Define the path to the newly generated file
-        $filePath = public_path('file/generated-class-format-import-student.xlsx');
-
-        // Check if the file exists
-        if (File::exists($filePath)) {
-            // Return the file as a download response
-            return response()->download($filePath)->deleteFileAfterSend(true);
-        } else {
-            // Handle the error case if the file was not created successfully
-            return redirect()->back()->with('error', 'Failed to generate the file.');
-        }
-
-    }
-
-    public function download()
-    {
-        return Excel::download(new ClassroomExport, 'classroom-export.xlsx');
-    }
-
     public function import(Request $request, string $classroom)
     {
         try {

@@ -37,13 +37,17 @@ class ViolationAccessController extends Controller
      */
     public function store(ViolationAccessRequest $request)
     {
-        $data = $request->validated();
-        foreach ($data['query'] as $key => $value) {
-            $user = $this->user->findOrFail($value);
-            $user->givePermissionTo('view_violation');
-        }
+        try {
+            $data = $request->validated();
+            foreach ($data['query'] as $key => $value) {
+                $user = $this->user->findOrFail($value);
+                $user->givePermissionTo('view_violation');
+            }
 
-        return redirect()->back()->with('success', 'Berhasil memberi akses');
+            return redirect()->back()->with('success', 'Berhasil memberi akses');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Tidak dapat menambahkan hak akses');
+        }
     }
 
     /**
@@ -51,7 +55,11 @@ class ViolationAccessController extends Controller
      */
     public function destroy(User $user)
     {
-        $user->revokePermissionTo('view_violation');
-        return redirect()->back()->with('success', 'Berhasil manghapus akses');
+        try {
+            $user->revokePermissionTo('view_violation');
+            return redirect()->back()->with('success', 'Berhasil manghapus akses');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Tidak bisa manghapus akses');
+        }
     }
 }

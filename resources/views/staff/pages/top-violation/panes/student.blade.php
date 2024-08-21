@@ -65,7 +65,7 @@
                                     Point</span>
                             </td>
                             <td>
-                                <a href="{{ route('employee.student-violation.detail') }}" type="button"
+                                <a href="{{ route('employee.student-violation.detail', ['student' => $student->id]) }}" type="button"
                                     class="btn mb-1 waves-effect waves-light btn-primary">Detail</a>
                             </td>
                         </tr>

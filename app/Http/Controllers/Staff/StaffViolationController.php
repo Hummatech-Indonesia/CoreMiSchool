@@ -8,6 +8,7 @@ use App\Contracts\Interfaces\StudentInterface;
 use App\Contracts\Interfaces\StudentViolationInterface;
 use App\Http\Controllers\Controller;
 use App\Models\Classroom;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class StaffViolationController extends Controller
@@ -66,6 +67,11 @@ class StaffViolationController extends Controller
     {
         $studentClass = $this->studentViolation->whereClassroom($classroom->id);
         return view('staff.pages.top-violation.detail-class', compact('studentClass'));
+    }
+
+    public function show_detail_student(Student $student)
+    {
+        return view('staff.pages.top-violation.detail-student');
     }
 
     /**
