@@ -61,12 +61,6 @@
             </div>
             <div class="mb-3 mb-md-0 me-md-3">
                 <select name="points" class="form-select">
-                    <option value="highest">Laki-laki</option>
-                    <option value="lowest">Perempuan</option>
-                </select>
-            </div>
-            <div class="mb-3 mb-md-0 me-md-3">
-                <select name="points" class="form-select">
                     <option value="highest">Point Tertinggi</option>
                     <option value="lowest">Point Terendah</option>
                 </select>
