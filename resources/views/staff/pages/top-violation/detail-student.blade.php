@@ -9,10 +9,10 @@
                             Profil Siswa
                         </h5>
                         <div class="text-center">
-                            <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}" alt=""
+                            <img src="{{ $student->image ? asset('storage/'. $student->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}" alt=""
                                 class="img-fluid rounded-circle" width="125" height="125">
                             <div class="d-flex align-items-center justify-content-center my-4 gap-3">
-                                <h5><b>Ardian Supriadi Jaga Kali</b></h5>
+                                <h5><b>{{ $student->user->name }}</b></h5>
                             </div>
                         </div>
                         <div class="row">
@@ -20,28 +20,28 @@
                                 <h6><b>RFID :</b></h6>
                             </div>
                             <div class="col-7">
-                                <h6>12345678</h6>
+                                <h6>{{ $student->modelHasRfid ? $student->modelHasRfid->rfid : 'Tidak ada rfid' }}</h6>
                                 <hr class="full-width-hr">
                             </div>
                             <div class="col-5 d-flex align-items-center">
                                 <h6><b>Kelas :</b></h6>
                             </div>
                             <div class="col-7">
-                                <h6>X RPL 1</h6>
+                                <h6>{{ $student->classroomStudents->first()->classroom->name }}</h6>
                                 <hr class="full-width-hr">
                             </div>
                             <div class="col-5 d-flex align-items-center">
                                 <h6><b>Jenis Kelamin :</b></h6>
                             </div>
                             <div class="col-7">
-                                <h6>Laki-laki</h6>
+                                <h6>{{ $student->gender->label() }}</h6>
                                 <hr class="full-width-hr">
                             </div>
                             <div class="col-5 d-flex align-items-center">
                                 <h6><b>Agama :</b></h6>
                             </div>
                             <div class="col-7">
-                                <h6>Pohon Pisang</h6>
+                                <h6>{{ $student->religion->name }}</h6>
                                 <hr class="full-width-hr">
                             </div>
                         </div>
@@ -71,7 +71,7 @@
                             style="background: linear-gradient(135deg, #51B6FF, #4F7CFF); color: #fff;">
                             <div class="card-body p-3" style="background: none;">
                                 <h6 class="text-light text-center" style="font-size: 24px"><b>Jumlah Point</b></h6>
-                                <h1 class="text-light text-center" style="font-size: 48px"><b>47</b></h1>
+                                <h1 class="text-light text-center" style="font-size: 48px"><b>{{ $student->point }}</b></h1>
                                 <p class="card-text text-center" style="font-size: 13px">Siswa dapat melakukan perbaikan
                                     untuk
                                     mengurangi poin.</p>

@@ -36,4 +36,11 @@ class StudentRepairRepository extends BaseRepository implements StudentRepairInt
     {
         return $this->model->query()->findOrFail($id)->delete();
     }
+
+    public function whereStudent(mixed $id): mixed
+    {
+        return $this->model->query()
+            ->whereRelation('classroomStudent', 'student_id', $id)
+            ->get();
+    }
 }
