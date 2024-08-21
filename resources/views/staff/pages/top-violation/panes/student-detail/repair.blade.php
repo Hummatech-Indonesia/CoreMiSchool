@@ -21,7 +21,7 @@
                             </td>
                             <td>
                                 <button type="button" class="btn mb-1 waves-effect waves-light btn-primary w-100"
-                                    data-bs-toggle="modal" data-bs-target="#detail-repair">Detail</button>
+                                    data-bs-toggle="modal" data-bs-target="#repair-student-detail">Detail</button>
                             </td>
                         </tr>
                     @empty
@@ -31,3 +31,5 @@
         </div>
     </div>
 </div>
+
+@include('staff.pages.top-violation.widgets.repair-detail')

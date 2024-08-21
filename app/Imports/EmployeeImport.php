@@ -31,6 +31,7 @@ class EmployeeImport implements ToModel
         }
 
         $user->assignRole(RoleEnum::STAFF->value);
+        $user->givePermissionTo('view_violation');
 
         $birthDate = $row[4] ? Carbon::instance(Date::excelToDateTimeObject($row[4])) : null;
 

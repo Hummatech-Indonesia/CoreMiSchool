@@ -4,21 +4,28 @@
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
             <form class="d-flex flex-column flex-md-row align-items-center" method="GET">
                 <div class="mb-3 mb-md-0 me-md-3">
-                    <input type="text" name="search_student" class="form-control" placeholder="Cari..." value="{{ old('search_student', request('search_student')) }}">
+                    <input type="text" name="search_student" class="form-control" placeholder="Cari..."
+                        value="{{ old('search_student', request('search_student')) }}">
                 </div>
 
                 <div class="mb-3 mb-md-0 me-md-3">
                     <select name="gender" class="form-select">
                         <option value="">Jenis Kelamin</option>
-                        <option value="male" {{ old('gender', request('gender')) == 'male' ? 'selected' : '' }}>Laki-laki</option>
-                        <option value="female"  {{ old('gender', request('gender')) == 'female' ? 'selected' : '' }}>Perempuan</option>
+                        <option value="male" {{ old('gender', request('gender')) == 'male' ? 'selected' : '' }}>
+                            Laki-laki</option>
+                        <option value="female" {{ old('gender', request('gender')) == 'female' ? 'selected' : '' }}>
+                            Perempuan</option>
                     </select>
                 </div>
 
                 <div class="mb-3 mb-md-0 me-md-3">
                     <select name="point_student" class="form-select">
-                        <option value="highest" {{ old('point_student', request('point_student')) == 'highest' ? 'selected' : '' }}>Point Tertinggi</option>
-                        <option value="lowest" {{ old('point_student', request('point_student')) == 'lowest' ? 'selected' : '' }}>Point Terendah</option>
+                        <option value="highest"
+                            {{ old('point_student', request('point_student')) == 'highest' ? 'selected' : '' }}>Point
+                            Tertinggi</option>
+                        <option value="lowest"
+                            {{ old('point_student', request('point_student')) == 'lowest' ? 'selected' : '' }}>Point
+                            Terendah</option>
                     </select>
                 </div>
 
@@ -42,9 +49,9 @@
                         <tr>
                             <td class="text-start">
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ $student->image ? asset('storage/'. $student->image) : asset('admin_assets/dist/images/profile/user-10.jpg') }}"
-                                        class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40"
-                                        height="40" alt="" />
+                                    <img src="{{ $student->image ? asset('storage/' . $student->image) : asset('admin_assets/dist/images/profile/user-10.jpg') }}"
+                                        class="rounded-circle me-2 user-profile" style="object-fit: cover"
+                                        width="40" height="40" alt="" />
                                     <div class="ms-2">
                                         <h6 class="fs-4 fw-semibold mb-0 text-start">{{ $student->user->name }}</h6>
                                         <span class="fw-normal">{{ $student->gender->label() }}</span>
@@ -54,11 +61,12 @@
                             <td>{{ $student->classroomStudents->first()->classroom->name }}</td>
                             <td>{{ $student->nisn }}</td>
                             <td>
-                                <span class="mb-1 badge font-medium bg-light-danger text-danger">{{ $student->point }} Point</span>
+                                <span class="mb-1 badge font-medium bg-light-danger text-danger">{{ $student->point }}
+                                    Point</span>
                             </td>
                             <td>
-                                <button type="button" class="btn mb-1 waves-effect waves-light btn-primary"
-                                    data-bs-toggle="modal" data-bs-target="#detail-repair">Detail</button>
+                                <a href="/student-detail-violation" type="button"
+                                    class="btn mb-1 waves-effect waves-light btn-primary">Detail</a>
                             </td>
                         </tr>
                     @empty
