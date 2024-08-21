@@ -47,11 +47,12 @@
 
             <button type="submit" class="btn btn-primary">Filter</button>
         </form>
-        <form action="" class="d-flex">
+        <form action="" class="d-flex gap-2">
             <div class="mb-3 mb-md-0 me-md-3">
                 <input type="date" name="search-date" class="form-control">
             </div>
             <button type="submit" class="btn btn-primary">Cari</button>
+            {{-- <a class="btn btn-warning" href="{{ route('employee.top-violation.index') }}">Kembali</a> --}}
         </form>
     </div>
 
@@ -93,6 +94,16 @@
                         </td>
                     </tr>
                 @empty
+                    <tr>
+                        <td colspan="7" class="text-center align-middle">
+                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt="" width="300px">
+                                <p class="fs-5 text-dark text-center mt-2">
+                                    Tidak ada siswa melanggar
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
                 @endforelse
             </tbody>
         </table>
