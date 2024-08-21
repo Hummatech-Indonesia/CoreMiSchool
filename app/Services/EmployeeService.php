@@ -45,6 +45,7 @@ class EmployeeService
             $user->assignRole(RoleEnum::TEACHER->value);
         } else if ($data['status'] == RoleEnum::STAFF->value) {
             $user->assignRole(RoleEnum::STAFF->value);
+            $user->givePermissionTo('view_violation');
         }
 
         $data['user_id'] = $user->id;

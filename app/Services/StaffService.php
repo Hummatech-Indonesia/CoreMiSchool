@@ -44,6 +44,7 @@ class StaffService
         ];
         $user = $this->user->store($dataUser);
         $user->assignRole(RoleEnum::STAFF->value);
+        $user->givePermissionTo('view_violation');
 
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $data['image'] = $request->file('image')->store(UploadDiskEnum::STAFF->value, 'public');

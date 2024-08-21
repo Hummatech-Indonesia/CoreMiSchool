@@ -52,6 +52,7 @@ Route::middleware('auth')->prefix('school')->name('school.')->group(function () 
 
     Route::get('access-violation', [ViolationAccessController::class, 'index'])->name('access-violation.index');
     Route::post('account-acceess', [ViolationAccessController::class, 'store'])->name('account-access-violation');
+    Route::delete('delete-account-acceess/{user}', [ViolationAccessController::class, 'destroy'])->name('delete-access.violation');
 
     //TeacherSubject
     Route::post('teacher-subject/{employee}', [TeacherSubjectController::class, 'store'])->name('teacher-subject.store');
