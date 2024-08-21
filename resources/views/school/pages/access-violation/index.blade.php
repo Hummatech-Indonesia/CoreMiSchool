@@ -1,5 +1,75 @@
 @extends('school.layouts.app')
 
+@section('style')
+    <style>
+        .category-selector .dropdown-menu {
+            position: absolute;
+            z-index: 1050;
+            transform: translate3d(0, 0, 0);
+        }
+
+        .select2 {
+            width: 100% !important;
+        }
+
+        .select2-selection__rendered {
+            width: 100%;
+            height: 36px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .select2-selection {
+            height: fit-content !important;
+            color: #555 !important;
+            background-color: #fff !important;
+            background-image: none !important;
+            border: 1px solid #ccc !important;
+            border-radius: 4px !important;
+        }
+    </style>
+
+    <style>
+        .category-selector .dropdown-menu {
+            position: absolute;
+            z-index: 1050;
+            transform: translate3d(0, 0, 0);
+        }
+
+        .select2-custom {
+            width: 100% !important;
+        }
+
+        .select2-custom-selection__rendered {
+            width: 100%;
+            height: 36px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .select2-custom-selection {
+            height: fit-content !important;
+            color: #555 !important;
+            background-color: #fff !important;
+            background-image: none !important;
+            border: 1px solid #ccc !important;
+            border-radius: 4px !important;
+        }
+    </style>
+@endsection
+
 @section('content')
 <div class="d-flex flex-wrap justify-content-between align-items-center">
     <div class="d-flex flex-wrap">
@@ -28,7 +98,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($users as $user)
+            @forelse ($users as $user)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>
@@ -62,7 +132,11 @@
                         </div>
                     </td>
                 </tr>
-            @endforeach
+            @empty
+                <tr class="text-center">
+                    <td colspan="5">Tidak ada data</td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 </div>
