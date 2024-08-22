@@ -39,7 +39,7 @@
             </div>
         </div>
         <div>
-            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#import-violation">
+            <button class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#import-violation">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                     <g fill="none" fill-rule="evenodd">
                         <path
