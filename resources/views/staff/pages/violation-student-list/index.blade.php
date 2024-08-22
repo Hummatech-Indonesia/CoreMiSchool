@@ -61,8 +61,8 @@
                 <tr>
                     <th>No</th>
                     <th class="text-start nama-col">Nama</th>
-                    <th>Kelas</th>
-                    <th>NISN</th>
+                    <th>Jenis Pelanggaran</th>
+                    <th>Tanggal</th>
                     <th>Point</th>
                     <th>Aksi</th>
                 </tr>
