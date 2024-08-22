@@ -36,4 +36,11 @@ class RegulationRepository extends BaseRepository implements RegulationInterface
     {
         return $this->model->query()->findOrFail($id)->delete();
     }
+
+    public function where(mixed $data): mixed
+    {
+        return $this->model->query()
+            ->where('violation', $data)
+            ->first();
+    }
 }

@@ -16,4 +16,5 @@ interface TeacherSubjectInterface extends GetInterface, StoreInterface, UpdateIn
     public function insert(array $data): mixed;
     public function whereTeacher(mixed $subject_id, mixed $employee_id): mixed;
     public function getBySubjectId(mixed $subject_id): mixed;
+    public function getByTeacher(mixed $id) : mixed;
 }
