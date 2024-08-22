@@ -27,43 +27,45 @@ class ClassStudentImport implements ToModel, WithHeadingRow, WithEvents
 
     public function model(array $row)
     {
-        if (in_array($row['data_kelas'], ['Data Kelas', 'tingkatan kelas', 'NAMA', 'Contoh Format(Jangan Dihapus)']) || $row['data_kelas'] == null) {
+        // dd($row);
+        if ($row['nama'] == 'Contoh Format(Jangan Dihapus)' || $row['nama'] == null) {
             return null;
         }
 
-        $user = User::where('email', $row[1])->first();
+        $classroom = Classroom::where('name', $this->sheetName)->first();
 
-        if ($user) {
-            return null;
-        } else {
-            if ($row['data_kelas'] != 'nama guru') {
+        if ($classroom) {
+            $class_id = $classroom->id;
+            $user = User::where('email', $row['email'])->first();
+
+            if ($user) {
+                return null;
+            } else {
                 $user = User::create([
-                    'name' => $row['data_kelas'] ?? null,
-                    'email' => $row[1],
-                    'slug' => Str::slug($row['data_kelas']),
-                    'password' => $row[2],
+                    'name' => $row['nama'] ?? null,
+                    'email' => $row['email'],
+                    'slug' => Str::slug($row['nama']),
+                    'password' => $row['nisn'],
                 ]);
             }
-        }
 
-        $studentId = "";
-        if ($row['data_kelas'] != 'nama guru') {
+            $studentId = "";
             $user->assignRole(RoleEnum::STUDENT->value);
-            $birthDate = $row['jika_ingin_menambahkan_kelas_baru_silahkan_menambahkan_sheet_baru_sesuai_nama_kelasnya'] ? Carbon::instance(Date::excelToDateTimeObject($row['jika_ingin_menambahkan_kelas_baru_silahkan_menambahkan_sheet_baru_sesuai_nama_kelasnya'])) : null;
+            $birthDate = $row['tanggal_lahir'] ? Carbon::instance(Date::excelToDateTimeObject($row['tanggal_lahir'])) : null;
 
             $data = [
                 'user_id' => $user->id,
-                'nisn'        => $row[2],
-                'religion_id' => Religion::where('name', $row[12])->first()->id,
-                'gender' => $row[5] == 'Laki-laki' ? 'male' : 'female',
+                'nisn'        => $row['nisn'],
+                'religion_id' => Religion::where('name', $row['agama'])->first()->id,
+                'gender' => $row['jenis_kelamin'] == 'Laki-laki' ? 'male' : 'female',
                 'birth_date' => $birthDate,
-                'birth_place' => $row[4],
-                'address' => $row[9],
-                'nik' => $row[6],
-                'number_kk' => $row[7],
-                'number_akta' => $row[8],
-                'order_child' => $row[10],
-                'count_siblings' => $row[11]
+                'birth_place' => $row['tempat_lahir'],
+                'address' => $row['alamat'],
+                'nik' => $row['nik'],
+                'number_kk' => $row['no_kk'],
+                'number_akta' => $row['no_akta'],
+                'order_child' => $row['anak_ke'],
+                'count_siblings' => $row['jumlah_saudara']
             ];
 
             if (in_array(null, $data)) {
@@ -73,34 +75,14 @@ class ClassStudentImport implements ToModel, WithHeadingRow, WithEvents
 
             $student = Student::create($data);
             $studentId = $student->id;
-        }
 
-        $classroom = Classroom::where('name', $this->sheetName)->first();
-        $employee = Employee::whereRelation('user', 'name', $row[1])->first();
-
-        $class_id = "";
-
-        if (!$classroom) {
-            $school_year = SchoolYear::where('active', true)->first();
-            $level_class = LevelClass::where('name', 'Kelas 10')->first();
-
-            $class_id = Classroom::create([
-                'name' => $this->sheetName,
-                'employee_id' => $employee->id,
-                'school_year_id' => $school_year->id,
-                'level_class_id' => $level_class->id,
-            ])->id;
-        } else {
-            $class_id = $classroom->id;
-        }
-
-        if ($row['data_kelas'] != 'nama guru') {
             ClassroomStudent::create([
                 'student_id' => $studentId,
                 'classroom_id' => $class_id,
             ]);
+        } else {
+            return null;
         }
-
     }
 
     public function registerEvents(): array

@@ -51,56 +51,50 @@ class StudentClassroomSheet implements WithTitle, WithEvents, ShouldAutoSize, Wi
                 $validation->setShowDropDown(true);
                 $sheet->getCell('B2')->setDataValidation($validation);
     
-                $sheet->setCellValue('A1', 'Nama kelas');
-                $sheet->setCellValue('B1', $this->classroom->name);
-    
-                $sheet->setCellValue('A2', 'Wali kelas');
-                $sheet->setCellValue('B2', $this->classroom->employee->user->name);
-    
-                $sheet->setCellValue('A4', 'Nama');
-                $sheet->setCellValue('B4', 'Email');
-                $sheet->setCellValue('C4', 'NISN');
-                $sheet->setCellValue('D4', 'Tanggal Lahir');
-                $sheet->setCellValue('E4', 'Tempat Lahir');
-                $sheet->setCellValue('F4', 'Jenis Kelamin');
-                $sheet->setCellValue('G4', 'NIK');
-                $sheet->setCellValue('H4', 'No KK');
-                $sheet->setCellValue('I4', 'No Akta');
-                $sheet->setCellValue('J4', 'Alamat');
-                $sheet->setCellValue('K4', 'Anak-ke');
-                $sheet->setCellValue('L4', 'Jumlah Saudara');
-                $sheet->setCellValue('M4', 'Agama');
+                $sheet->setCellValue('A1', 'Nama');
+                $sheet->setCellValue('B1', 'Email');
+                $sheet->setCellValue('C1', 'NISN');
+                $sheet->setCellValue('D1', 'Tanggal Lahir');
+                $sheet->setCellValue('E1', 'Tempat Lahir');
+                $sheet->setCellValue('F1', 'Jenis Kelamin');
+                $sheet->setCellValue('G1', 'NIK');
+                $sheet->setCellValue('H1', 'No KK');
+                $sheet->setCellValue('I1', 'No Akta');
+                $sheet->setCellValue('J1', 'Alamat');
+                $sheet->setCellValue('K1', 'Anak-ke');
+                $sheet->setCellValue('L1', 'Jumlah Saudara');
+                $sheet->setCellValue('M1', 'Agama');
     
                 // Tambahkan data contoh
-                $sheet->setCellValue('A5', 'Contoh Format(Jangan Dihapus)');
-                $sheet->setCellValue('B5', 'contohformat@gmail.com');
-                $sheet->setCellValue('C5', '2876376');
-                $sheet->setCellValue('D5', '1/3/1900');
-                $sheet->setCellValue('E5', 'Malang');
-                $sheet->setCellValue('F5', 'Laki-laki');
-                $sheet->setCellValue('G5', '0037896');
-                $sheet->setCellValue('H5', '003768675');
-                $sheet->setCellValue('I5', '0036564256');
-                $sheet->setCellValue('J5', 'Jl Krajan Gampingan');
-                $sheet->setCellValue('K5', '2');
-                $sheet->setCellValue('L5', '2');
-                $sheet->setCellValue('M5', 'Kristen');
+                $sheet->setCellValue('A2', 'Contoh Format(Jangan Dihapus)');
+                $sheet->setCellValue('B2', 'contohformat@gmail.com');
+                $sheet->setCellValue('C2', '2876376');
+                $sheet->setCellValue('D2', '1/3/1900');
+                $sheet->setCellValue('E2', 'Malang');
+                $sheet->setCellValue('F2', 'Laki-laki');
+                $sheet->setCellValue('G2', '0037896');
+                $sheet->setCellValue('H2', '003768675');
+                $sheet->setCellValue('I2', '0036564256');
+                $sheet->setCellValue('J2', 'Jl Krajan Gampingan');
+                $sheet->setCellValue('K2', '2');
+                $sheet->setCellValue('L2', '2');
+                $sheet->setCellValue('M2', 'Kristen');
     
-                $genderValidation = $sheet->getCell('F5')->getDataValidation();
+                $genderValidation = $sheet->getCell('F2')->getDataValidation();
                 $genderOptions = 'Laki-laki,Perempuan';
                 $genderValidation->setType(DataValidation::TYPE_LIST);
                 $genderValidation->setFormula1('"' . $genderOptions . '"');
                 $genderValidation->setAllowBlank(false);
                 $genderValidation->setShowDropDown(true);
-                $sheet->getCell('F5')->setDataValidation($genderValidation);
+                $sheet->getCell('F2')->setDataValidation($genderValidation);
     
-                $religionValidation = $sheet->getCell('M5')->getDataValidation();
+                $religionValidation = $sheet->getCell('M2')->getDataValidation();
                 $religionOptions = 'Kristen,Islam,Hindu,Budha,Katolik,Konghucu'; 
                 $religionValidation->setType(DataValidation::TYPE_LIST);
                 $religionValidation->setFormula1('"' . $religionOptions . '"');
                 $religionValidation->setAllowBlank(false);
                 $religionValidation->setShowDropDown(true);
-                $sheet->getCell('M5')->setDataValidation($religionValidation);
+                $sheet->getCell('M2')->setDataValidation($religionValidation);
             }
         ];
     }    
@@ -111,12 +105,11 @@ class StudentClassroomSheet implements WithTitle, WithEvents, ShouldAutoSize, Wi
             $sheet->getColumnDimension($columnID)->setAutoSize(true);
         }
     
-        // Mewarnai baris A4 sampai M4 dengan warna biru
-        $row4Range = "A4:M4";
+        $row4Range = "A1:M1";
         $sheet->getStyle($row4Range)->applyFromArray([
             'fill' => [
                 'fillType' => Fill::FILL_SOLID,
-                'color' => ['argb' => '2960FF'], // Warna background biru
+                'color' => ['argb' => '2960FF'], 
             ],
             'font' => [
                 'color' => [
@@ -125,12 +118,11 @@ class StudentClassroomSheet implements WithTitle, WithEvents, ShouldAutoSize, Wi
             ],
         ]);
     
-        // Mewarnai baris A5 sampai M5 dengan warna merah
-        $row5Range = "A5:M5";
+        $row5Range = "A2:M2";
         $sheet->getStyle($row5Range)->applyFromArray([
             'fill' => [
                 'fillType' => Fill::FILL_SOLID,
-                'color' => ['argb' => 'F73A08'], // Warna background merah
+                'color' => ['argb' => 'F73A08'],
             ],
             'font' => [
                 'color' => [
