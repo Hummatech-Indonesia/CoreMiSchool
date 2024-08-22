@@ -23,12 +23,12 @@
                         </ol>
                     </nav>
                 </div>
-                <div class="col-3">
+                {{-- <div class="col-3">
                     <div class="text-center">
                         <img src="{{ asset('admin_assets/dist/images/breadcrumb/ChatBc.png') }}" alt=""
                             class="img-fluid mb-n3" style="width: 170px; height: 120px; object-fit: cover;">
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
