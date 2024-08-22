@@ -22,7 +22,7 @@ class StoreTeacherSubjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'subject' => 'array|required|unique:teacher_subjects,subject_id,except,id',
+            'subject' => 'array|required|unique:teacher_subjects,employee_id,except,id',
             'subject.*' => 'required',
         ];
     }
