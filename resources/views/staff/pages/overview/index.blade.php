@@ -78,7 +78,6 @@
                     <th>No</th>
                     <th>Nama</th>
                     <th>Kelas</th>
-                    <th>NISN</th>
                     <th>Point</th>
                     <th>Aksi</th>
                 </tr>
@@ -92,12 +91,11 @@
                                 <img src="{{ asset('admin_assets/dist/images/profile/user-10.jpg') }}" class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40" height="40" alt="" />
                                 <div class="ms-3">
                                     <h6 class="fs-4 fw-semibold mb-0 text-start">{{ $student->user->name }}</h6>
-                                    <span class="fw-normal"></span>
+                                    <span class="fw-normal">{{ $student->nisn }}</span>
                                 </div>
                             </div>
                         </td>
                         <td>{{ $student->classroomStudents->first()->classroom->name }}</td>
-                        <td>{{ $student->nisn }}</td>
                         <td>
                             <span class="badge bg-light-danger text-danger">{{ $student->point }} Point</span>
                         </td>
