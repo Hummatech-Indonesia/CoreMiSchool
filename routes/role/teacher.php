@@ -1,13 +1,12 @@
 <?php
 
+use App\Http\Controllers\Teacher\DashboardTeacherController;
 use App\Http\Controllers\Teacher\TeacherJournalController;
 use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('auth')->prefix('teacher')->name('teacher.')->group(function () {
-    Route::get('', function () {
-        return view('teacher.pages.dashboard');
-    })->name('dashboard');
+    Route::get('', [DashboardTeacherController::class, 'index'])->name('dashboard');
 
     // extracurricular
     Route::get('extracurricular', function () {

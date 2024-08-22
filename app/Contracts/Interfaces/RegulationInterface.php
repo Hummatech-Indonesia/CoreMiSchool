@@ -9,7 +9,7 @@ use App\Contracts\Interfaces\Eloquent\StoreInterface;
 use App\Contracts\Interfaces\Eloquent\UpdateInterface;
 use App\Contracts\Interfaces\Eloquent\WhereInterface;
 
-interface RegulationInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface
+interface RegulationInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, WhereInterface
 {
     //
 }

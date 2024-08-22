@@ -6,7 +6,10 @@ use App\Contracts\Interfaces\RegulationInterface;
 use App\Contracts\Interfaces\SchoolPointInterface;
 use App\Http\Requests\UpdateRegulationRequest;
 use App\Http\Requests\StoreRegulationRequest;
+use App\Imports\RegulationImport;
 use App\Models\Regulation;
+use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class RegulationController extends Controller
 {
@@ -78,5 +81,31 @@ class RegulationController extends Controller
     {
         $this->regulation->delete($violation->id);
         return redirect()->back()->with('success', 'Berhasil menghapus peraturan');
+    }
+
+    public function download()
+    {
+        try {
+            $template = public_path('file/format-excel-regulation.xlsx');
+            return response()->download($template, 'format-excel-regulation.xlsx');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
+    }
+
+    public function import(Request $request)
+    {
+        try {
+            $file = $request->file('file');
+            Excel::import(new RegulationImport($this->regulation), $file);
+
+            if (session()->has('warning')) {
+                return redirect()->back()->with('warning', session('warning'));
+            }
+
+            return to_route('')->with('success', "Berhasil Mengimport Data!");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+        }
     }
 }

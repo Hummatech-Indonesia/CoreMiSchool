@@ -102,6 +102,13 @@ class EmployeeRepository extends BaseRepository implements EmployeeInterface
         return $this->model->query()->whereRelation('user.roles', 'name', $query)->count();
     }
 
+    public function getByUser(mixed $id): mixed
+    {
+        return $this->model->query()
+            ->where('user_id' , $id)
+            ->first();
+    }
+
     /**
      * Mengambil data pegawai berdasarkan role.
      *

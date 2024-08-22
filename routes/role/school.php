@@ -40,6 +40,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->prefix('school')->name('school.')->group(function () {
     Route::patch('max-point/{schoolPoint}', [SchoolPointController::class, 'update'])->name('max-point.update');
     Route::resource('violation', RegulationController::class);
+    Route::get('violation-download', [RegulationController::class, 'download'])->name('violation.download');
+    Route::post('violation-import', [RegulationController::class, 'import'])->name('violation.import');
+
     Route::resource('employees', EmployeeController::class);
 
     // cud and import teacher
