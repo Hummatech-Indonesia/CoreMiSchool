@@ -2,19 +2,18 @@
 
 namespace App\Exports;
 
-use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithTitle;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
 use PhpOffice\PhpSpreadsheet\Cell\DataValidation;
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithStyles;
-use PhpOffice\PhpSpreadsheet\Style\Alignment;
-use PhpOffice\PhpSpreadsheet\Style\Border;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class StudentClassroomSheet implements WithTitle, WithEvents, ShouldAutoSize, WithStyles
+class StudentClassroomSheet implements FromView, WithTitle, ShouldAutoSize, WithEvents, WithStyles
 {
     protected $classroom;
 
@@ -23,81 +22,57 @@ class StudentClassroomSheet implements WithTitle, WithEvents, ShouldAutoSize, Wi
         $this->classroom = $classroom;
     }
 
-    /**
-     * Memberikan nama sheet berdasarkan nama kelas.
-     * @return string
-     */
-    public function title(): string
+    public function view(): View
     {
-        return $this->classroom->name; // Nama sheet sesuai nama kelas
+        return view('school.export.students', [
+            'classroom' => $this->classroom,
+        ]);
     }
 
-    /**
-     * Menggunakan AfterSheet untuk menambahkan data ke dalam sheet.
-     */
+    public function title(): string
+    {
+        return $this->classroom->name;
+    }
+
     public function registerEvents(): array
     {
         return [
             AfterSheet::class => function (AfterSheet $event) {
                 $sheet = $event->sheet->getDelegate();
+                
+                for ($cell=2; $cell < 1002 ; $cell++) { 
+                    $sheet->getStyle('D'.$cell)->getNumberFormat()->setFormatCode('yyyy-mm-dd');
+                    $dateValidation = $sheet->getCell('D'.$cell)->getDataValidation();
+                    $dateValidation->setType(DataValidation::TYPE_DATE);
+                    $dateValidation->setOperator(DataValidation::OPERATOR_BETWEEN);
+                    $dateValidation->setFormula1('DATE(1900, 1, 1)');
+                    $dateValidation->setFormula2('DATE(9999, 12, 31)');
+                    $dateValidation->setAllowBlank(false);
+                    $dateValidation->setShowDropDown(true);
+                    $dateValidation->setErrorStyle(DataValidation::STYLE_STOP);
+                    $dateValidation->setErrorTitle('Invalid input');
+                    $dateValidation->setError('Only dates are allowed.');
+                    $sheet->getCell('D'.$cell)->setDataValidation($dateValidation);
+
+                    $genderValidation = $sheet->getCell('F'.$cell)->getDataValidation();
+                    $genderOptions = 'Laki-laki,Perempuan';
+                    $genderValidation->setType(DataValidation::TYPE_LIST);
+                    $genderValidation->setFormula1('"' . $genderOptions . '"');
+                    $genderValidation->setAllowBlank(false);
+                    $genderValidation->setShowDropDown(true);
+                    $sheet->getCell('F'.$cell)->setDataValidation($genderValidation);
     
-                $teachers = $this->classroom->employee->user->pluck('name')->toArray();
-                $list = implode(',', $teachers);
-    
-                $validation = $sheet->getCell('B2')->getDataValidation();
-                $validation->setType(DataValidation::TYPE_LIST);
-                $validation->setFormula1('"' . $list . '"');
-                $validation->setAllowBlank(false);
-                $validation->setShowDropDown(true);
-                $sheet->getCell('B2')->setDataValidation($validation);
-    
-                $sheet->setCellValue('A1', 'Nama');
-                $sheet->setCellValue('B1', 'Email');
-                $sheet->setCellValue('C1', 'NISN');
-                $sheet->setCellValue('D1', 'Tanggal Lahir');
-                $sheet->setCellValue('E1', 'Tempat Lahir');
-                $sheet->setCellValue('F1', 'Jenis Kelamin');
-                $sheet->setCellValue('G1', 'NIK');
-                $sheet->setCellValue('H1', 'No KK');
-                $sheet->setCellValue('I1', 'No Akta');
-                $sheet->setCellValue('J1', 'Alamat');
-                $sheet->setCellValue('K1', 'Anak-ke');
-                $sheet->setCellValue('L1', 'Jumlah Saudara');
-                $sheet->setCellValue('M1', 'Agama');
-    
-                // Tambahkan data contoh
-                $sheet->setCellValue('A2', 'Contoh Format(Jangan Dihapus)');
-                $sheet->setCellValue('B2', 'contohformat@gmail.com');
-                $sheet->setCellValue('C2', '2876376');
-                $sheet->setCellValue('D2', '1/3/1900');
-                $sheet->setCellValue('E2', 'Malang');
-                $sheet->setCellValue('F2', 'Laki-laki');
-                $sheet->setCellValue('G2', '0037896');
-                $sheet->setCellValue('H2', '003768675');
-                $sheet->setCellValue('I2', '0036564256');
-                $sheet->setCellValue('J2', 'Jl Krajan Gampingan');
-                $sheet->setCellValue('K2', '2');
-                $sheet->setCellValue('L2', '2');
-                $sheet->setCellValue('M2', 'Kristen');
-    
-                $genderValidation = $sheet->getCell('F2')->getDataValidation();
-                $genderOptions = 'Laki-laki,Perempuan';
-                $genderValidation->setType(DataValidation::TYPE_LIST);
-                $genderValidation->setFormula1('"' . $genderOptions . '"');
-                $genderValidation->setAllowBlank(false);
-                $genderValidation->setShowDropDown(true);
-                $sheet->getCell('F2')->setDataValidation($genderValidation);
-    
-                $religionValidation = $sheet->getCell('M2')->getDataValidation();
-                $religionOptions = 'Kristen,Islam,Hindu,Budha,Katolik,Konghucu'; 
-                $religionValidation->setType(DataValidation::TYPE_LIST);
-                $religionValidation->setFormula1('"' . $religionOptions . '"');
-                $religionValidation->setAllowBlank(false);
-                $religionValidation->setShowDropDown(true);
-                $sheet->getCell('M2')->setDataValidation($religionValidation);
+                    $religionValidation = $sheet->getCell('M'.$cell)->getDataValidation();
+                    $religionOptions = 'Kristen,Islam,Hindu,Budha,Katolik,Konghucu'; 
+                    $religionValidation->setType(DataValidation::TYPE_LIST);
+                    $religionValidation->setFormula1('"' . $religionOptions . '"');
+                    $religionValidation->setAllowBlank(false);
+                    $religionValidation->setShowDropDown(true);
+                    $sheet->getCell('M'.$cell)->setDataValidation($religionValidation);
+                }
             }
         ];
-    }    
+    }
 
     public function styles(Worksheet $sheet)
     {
@@ -132,3 +107,4 @@ class StudentClassroomSheet implements WithTitle, WithEvents, ShouldAutoSize, Wi
         ]);
     }
 }
+
