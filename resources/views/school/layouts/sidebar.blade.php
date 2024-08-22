@@ -338,69 +338,52 @@
                     <span class="hide-menu">Absensi</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link has-arrow {{ request()->routeIs('school.student-attendance.show') ? 'active' : '' }}"
+                    <a class="sidebar-link" href="{{ route('clock-settings.index') }}" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2">
+                                <path
+                                    d="M21 12a9 9 0 1 0-9.002 9m5.003-2a2 2 0 1 0 4 0a2 2 0 1 0-4 0m2-3.5V17m0 4v1.5m3.031-5.25l-1.299.75m-3.463 2l-1.3.75m0-3.5l1.3.75m3.463 2l1.3.75" />
+                                <path d="M12 7v5l2 2" />
+                            </g>
+                        </svg>
+                        <span class="hide-menu">Pengaturan Jam</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link has-arrow {{ request()->routeIs('detail-presence-class.index') ? 'active' : '' }}"
                         href="javascript:void(0)" aria-expanded="false">
-                        <span class="d-flex">
+                        <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                 viewBox="0 0 24 24">
-                                <g fill="none" stroke="currentColor" stroke-linecap="round"
-                                    stroke-linejoin="round" stroke-width="1.5" color="currentColor">
-                                    <path
-                                        d="m12.88 7.017l4.774 1.271m-5.796 2.525l2.386.636m-2.267 6.517l.954.255c2.7.72 4.05 1.079 5.114.468c1.063-.61 1.425-1.953 2.148-4.637l1.023-3.797c.724-2.685 1.085-4.027.471-5.085s-1.963-1.417-4.664-2.136l-.954-.255c-2.7-.72-4.05-1.079-5.113-.468c-1.064.61-1.426 1.953-2.15 4.637l-1.022 3.797c-.724 2.685-1.086 4.027-.471 5.085c.614 1.057 1.964 1.417 4.664 2.136" />
-                                    <path
-                                        d="m12 20.946l-.952.26c-2.694.733-4.04 1.1-5.102.477c-1.06-.622-1.422-1.99-2.143-4.728l-1.021-3.872c-.722-2.737-1.083-4.106-.47-5.184C2.842 6.966 4 7 5.5 7" />
-                                </g>
+                                <path fill="currentColor"
+                                    d="M12 5a3.5 3.5 0 0 0-3.5 3.5A3.5 3.5 0 0 0 12 12a3.5 3.5 0 0 0 3.5-3.5A3.5 3.5 0 0 0 12 5m0 2a1.5 1.5 0 0 1 1.5 1.5A1.5 1.5 0 0 1 12 10a1.5 1.5 0 0 1-1.5-1.5A1.5 1.5 0 0 1 12 7M5.5 8A2.5 2.5 0 0 0 3 10.5c0 .94.53 1.75 1.29 2.18c.36.2.77.32 1.21.32s.85-.12 1.21-.32c.37-.21.68-.51.91-.87A5.42 5.42 0 0 1 6.5 8.5v-.28c-.3-.14-.64-.22-1-.22m13 0c-.36 0-.7.08-1 .22v.28c0 1.2-.39 2.36-1.12 3.31c.12.19.25.34.4.49a2.48 2.48 0 0 0 1.72.7c.44 0 .85-.12 1.21-.32c.76-.43 1.29-1.24 1.29-2.18A2.5 2.5 0 0 0 18.5 8M12 14c-2.34 0-7 1.17-7 3.5V19h14v-1.5c0-2.33-4.66-3.5-7-3.5m-7.29.55C2.78 14.78 0 15.76 0 17.5V19h3v-1.93c0-1.01.69-1.85 1.71-2.52m14.58 0c1.02.67 1.71 1.51 1.71 2.52V19h3v-1.5c0-1.74-2.78-2.72-4.71-2.95M12 16c1.53 0 3.24.5 4.23 1H7.77c.99-.5 2.7-1 4.23-1" />
                             </svg>
                         </span>
-                        <span class="hide-menu">Absensi</span>
+                        <span class="hide-menu">Kehadiran</span>
                     </a>
                     <ul aria-expanded="false"
-                        class="collapse first-level {{ request()->routeIs('school.student-attendance.show') ? 'in' : '' }}">
+                        class="collapse first-level {{ request()->routeIs('detail-presence-class.index') ? 'in' : '' }}">
                         <li class="sidebar-item">
-                            <a href="{{ route('clock-settings.index') }}" class="sidebar-link">
+                            <a href="{{ route('school.student-attendance.index') }}"
+                                class="sidebar-link {{ request()->routeIs('detail-presence-class.index') ? 'active' : '' }}">
                                 <div class="round-16 d-flex align-items-center justify-content-center">
                                     <i class="ti ti-circle"></i>
                                 </div>
-                                <span class="hide-menu">Pengaturan Jam</span>
+                                <span class="hide-menu">Siswa</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="javascript:void(0)"
-                                class="sidebar-link has-arrowiojui  {{ request()->routeIs('school.student-attendance.show') ? 'active' : '' }}"
-                                aria-expanded="false" style="display: flex; align-items: center;">
-                                <div class="d-flex">
-                                    <div class="round-16 d-flex align-items-center justify-content-center">
-                                        <i class="ti ti-circle"></i>
-                                    </div>
-                                    <span class="hide-menu ms-4">Kehadiran</span>
+                            <a href="{{ route('school.teacher-attendance.index') }}" class="sidebar-link">
+                                <div class="round-16 d-flex align-items-center justify-content-center">
+                                    <i class="ti ti-circle"></i>
                                 </div>
-                                <i class="ti ti-angle-down" style="margin-left: auto;"></i>
+                                <span class="hide-menu">Guru</span>
                             </a>
-                            <ul aria-expanded="false"
-                                class="collapse second-level {{ request()->routeIs('school.student-attendance.show') ? 'active in' : '' }}">
-                                <li class="sidebar-item">
-                                    <a href="{{ route('school.student-attendance.index') }}"
-                                        class="sidebar-link  {{ request()->routeIs('school.student-attendance.show') ? 'active' : '' }}"
-                                        style="display: flex; align-items: center; margin-left: 20px;">
-                                        <div class="round-16 d-flex align-items-center justify-content-center ms-3">
-                                            <i class="ti ti-circle"></i>
-                                        </div>
-                                        <span class="hide-menu ">Siswa</span>
-                                    </a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="{{ route('school.teacher-attendance.index') }}" class="sidebar-link"
-                                        style="display: flex; align-items: center; margin-left: 20px;">
-                                        <div class="round-16 d-flex align-items-center justify-content-center ms-3">
-                                            <i class="ti ti-circle"></i>
-                                        </div>
-                                        <span class="hide-menu ">Guru</span>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
                     </ul>
                 </li>
+
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">Jurnal</span>
@@ -426,7 +409,8 @@
                     <span class="hide-menu">Pelanggaran</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('school.access-violation.index') }}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('school.access-violation.index') }}"
+                        aria-expanded="false">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                             <path fill="currentColor"
                                 d="M5.8 10C5.4 8.8 4.3 8 3 8c-1.7 0-3 1.3-3 3s1.3 3 3 3c1.3 0 2.4-.8 2.8-2H7v2h2v-2h2v-2zM3 12c-.6 0-1-.4-1-1s.4-1 1-1s1 .4 1 1s-.4 1-1 1m13-8c-2.2 0-4 1.8-4 4s1.8 4 4 4s4-1.8 4-4s-1.8-4-4-4m0 6.1c-1.2 0-2.1-.9-2.1-2.1s.9-2.1 2.1-2.1s2.1.9 2.1 2.1s-.9 2.1-2.1 2.1m0 2.9c-2.7 0-8 1.3-8 4v3h16v-3c0-2.7-5.3-4-8-4m6.1 5.1H9.9V17c0-.6 3.1-2.1 6.1-2.1s6.1 1.5 6.1 2.1z" />

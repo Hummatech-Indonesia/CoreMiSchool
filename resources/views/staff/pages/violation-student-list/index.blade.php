@@ -1,0 +1,115 @@
+@extends('staff.layouts.app')
+@section('content')
+    <div class="card bg-light-info shadow-none position-relative overflow-hidden">
+        <div class="card-body px-4 py-3">
+            <div class="row align-items-center">
+                <div class="col-9">
+                    <h4 class="fw-semibold mb-8">Pelanggaran</h4>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a class="text-dark text-decoration-none"
+                                    href="javascript:void(0)">Daftar siswa perbaikan untuk mengurangi point pelanggaran</a>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col-3">
+                    <div class="text-center">
+                        <img src="{{ asset('admin_assets/dist/images/breadcrumb/welcome.png') }}" alt=""
+                            class="img-fluid mb-n3" style="width: 170px; height: 120px; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+        <div class="d-flex flex-wrap">
+            <div class="col-12 col-md-6 col-lg-6 mb-3 me-3">
+                <form action="" class="position-relative">
+                    <input type="text" class="form-control product-search ps-5" id="input-search" placeholder="Cari...">
+                    <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
+                </form>
+            </div>
+            <div class="col-12 col-md-6 col-lg-5 mb-3">
+                <select id="status-activity" class="form-select">
+                    <option value="">Laki-Laki</option>
+                    <option value="">Perempuan</option>
+                </select>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#import-violation">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                    <g fill="none" fill-rule="evenodd">
+                        <path
+                            d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z" />
+                        <path fill="currentColor"
+                            d="M13.586 2a2 2 0 0 1 1.284.467l.13.119L19.414 7a2 2 0 0 1 .578 1.238l.008.176V20a2 2 0 0 1-1.85 1.995L18 22h-6v-2h6V10h-4.5a1.5 1.5 0 0 1-1.493-1.356L12 8.5V4H6v8H4V4a2 2 0 0 1 1.85-1.995L6 2zM7.707 14.465l2.829 2.828a1 1 0 0 1 0 1.414l-2.829 2.828a1 1 0 1 1-1.414-1.414L7.414 19H3a1 1 0 1 1 0-2h4.414l-1.121-1.121a1 1 0 1 1 1.414-1.415ZM14 4.414V8h3.586z" />
+                    </g>
+                </svg>
+                Import
+                Perbaikan</button>
+            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#violation-student-list">Tambah
+                Pelanggaran</button>
+        </div>
+    </div>
+
+    <div class="table-responsive rounded-2">
+        <table class="table border text-nowrap customize-table mb-0 align-middle">
+            <thead class="text-dark fs-4 text-center">
+                <tr>
+                    <th>No</th>
+                    <th class="text-start nama-col">Nama</th>
+                    <th>Kelas</th>
+                    <th>NISN</th>
+                    <th>Point</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                @forelse (range(1,4) as $item)
+                    <tr>
+                        <td>{{ $item }}</td>
+                        <td class="text-start">
+                            <div class="d-flex align-items-center">
+                                <img src="{{ asset('admin_assets/dist/images/profile/user-10.jpg') }}"
+                                    class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40"
+                                    height="40" alt="" />
+                                <div class="ms-2">
+                                    <h6 class="fs-4 fw-semibold mb-0 text-start">Ahmad Lukman Hakim</h6>
+                                    <span class="fw-normal">X RPL 1</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Merokok dijam pelajaran</td>
+                        <td>10 Januari 2020</td>
+                        <td>
+                            <span class="mb-1 badge font-medium bg-light-danger text-danger">+ 80 Point</span>
+                        </td>
+                        <td>
+                            <button data-bs-toggle="modal" data-bs-target="#detail-violation-student" type="button"
+                                class="btn mb-1 waves-effect waves-light btn-primary">Detail</button>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="7" class="text-center align-middle">
+                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt=""
+                                    width="300px">
+                                <p class="fs-5 text-dark text-center mt-2">
+                                    Belum ada siswa melanggar
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                @endforelse
+
+            </tbody>
+        </table>
+    </div>
+
+    @include('staff.pages.violation-student-list.widgets.detail-violation')
+    @include('staff.pages.violation-student-list.widgets.import')
+@endsection

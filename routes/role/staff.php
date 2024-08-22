@@ -17,4 +17,8 @@ Route::middleware('auth')->prefix('employee')->name('employee.')->group(function
     Route::get('top-violation', [StaffViolationController::class, 'index'])->name('top-violation.index');
     Route::get('class-detail-violation/{classroom}', [StaffViolationController::class, 'show'])->name('class-violation.detail');
     Route::get('student-detail-violation/{student}', [StaffViolationController::class, 'show_detail_student'])->name('student-violation.detail');
+
+    Route::get('violation-student-list', function(){
+        return view('staff.pages.violation-student-list.index');
+    })->name('violation-student.index');
 });
