@@ -37,16 +37,17 @@
             <table class="table border text-nowrap customize-table mb-0 align-middle">
                 <thead class="text-dark fs-4 text-center">
                     <tr>
+                        <th>No</th>
                         <th class="text-start nama-col">Nama</th>
                         <th>Kelas</th>
-                        <th>NISN</th>
                         <th>Point</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="text-center">
-                    @forelse ($students as $student)
+                    @forelse ($students as $key=>$student)
                         <tr>
+                            <td>{{ ++$key}}</td>
                             <td class="text-start">
                                 <div class="d-flex align-items-center">
                                     <img src="{{ $student->image ? asset('storage/' . $student->image) : asset('admin_assets/dist/images/profile/user-10.jpg') }}"
@@ -54,12 +55,11 @@
                                         width="40" height="40" alt="" />
                                     <div class="ms-2">
                                         <h6 class="fs-4 fw-semibold mb-0 text-start">{{ $student->user->name }}</h6>
-                                        <span class="fw-normal">{{ $student->gender->label() }}</span>
+                                        <span class="fw-normal">{{ $student->nisn }}</span>
                                     </div>
                                 </div>
                             </td>
                             <td>{{ $student->classroomStudents->first()->classroom->name }}</td>
-                            <td>{{ $student->nisn }}</td>
                             <td>
                                 <span class="mb-1 badge font-medium bg-light-danger text-danger">{{ $student->point }}
                                     Point</span>
