@@ -5,7 +5,7 @@
             <div class="row align-items-center">
                 <div class="col-9">
                     <h6><strong>Daftar Siswa Melanggar</strong></h6>
-                    <h4 class="fw-semibold mb-8">100 Siswa Melanggar</h4>
+                    <h4 class="fw-semibold mb-8">{{ $studentClass->count() }} Siswa Melanggar</h4>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a class="text-dark text-decoration-none"

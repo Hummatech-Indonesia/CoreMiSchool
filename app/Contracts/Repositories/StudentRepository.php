@@ -98,9 +98,6 @@ class StudentRepository extends BaseRepository implements StudentInterface
                     $q->whereRelation('user', 'name', 'LIKE', '%' . $request->search_student . '%');
                 });
             })
-            ->when($request->gender, function($query) use ($request){
-                $query->where('gender', $request->gender);
-            })
             ->where('point' , '>', 0)
             ->when($request->point_student, function($q) use($request) {
                 if ($request->point_student == 'highest') {
