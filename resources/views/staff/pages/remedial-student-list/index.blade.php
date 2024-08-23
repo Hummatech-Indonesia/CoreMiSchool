@@ -1,80 +1,7 @@
 @extends('staff.layouts.app')
 
 @section('style')
-<style>
-    /* Mengatur lebar select2 */
-    .select2-siswa {
-        width: 100% !important;
-    }
 
-    /* Mengatur gaya pada area yang menampilkan pilihan yang dipilih */
-    .select2-siswa .select2-selection__rendered {
-        width: 100%;
-        height: 36px;
-        padding: 6px 12px;
-        font-size: 14px;
-        line-height: 1.42857143;
-        color: #555;
-        background-color: #fff;
-        background-image: none;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        display: flex;
-        align-items: center;
-    }
-
-    /* Mengatur gaya untuk area yang dapat diklik dan memunculkan dropdown */
-    .select2-siswa .select2-selection__rendered {
-        width: 100% !important;
-        height: 36px !important;
-        padding: 6px 12px !important;
-        font-size: 14px !important;
-        line-height: 1.42857143 !important;
-        color: #555 !important;
-        background-color: #fff !important;
-        border: 1px solid #ccc !important;
-        border-radius: 4px !important;
-    }
-
-    /* Gaya untuk dropdown */
-    .select2-siswa .select2-dropdown {
-        background-color: #fff;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        z-index: 1050;
-    }
-
-    /* Mengatur item pada dropdown */
-    .select2-siswa .select2-results__option {
-        padding: 6px 12px;
-        font-size: 14px;
-        color: #555;
-        cursor: pointer;
-    }
-
-    /* Mengatur gaya untuk item yang sedang dipilih (hover atau aktif) */
-    .select2-siswa .select2-results__option--highlighted {
-        background-color: #f0f0f0;
-        color: #333;
-    }
-
-    /* Placeholder */
-    .select2-siswa .select2-selection__placeholder {
-        color: #999;
-    }
-
-    /* Clear button */
-    .select2-siswa .select2-selection__clear {
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #888;
-        cursor: pointer;
-    }
-
-</style>
 @endsection
 
 @section('content')
@@ -198,6 +125,9 @@
 {{-- modal tambah --}}
 @include('staff.pages.remedial-student-list.widgets.modal-create')
 
+@endsection
+
+@section('script')
 {{-- select2 --}}
 @include('staff.pages.remedial-student-list.scripts.select2')
 @endsection
