@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg px-4">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="importPegawai" style="font-size: 20px"><b>Tambah Perbaikan</b> </h5>
+                <h5 class="modal-title" id="importPegawai" style="font-size: 20px"><b>Tambah Pelanggaran</b> </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body px-4">
