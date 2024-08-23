@@ -4,6 +4,7 @@ namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\StudentViolationInterface;
 use App\Models\StudentViolation;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class StudentViolationRepository extends BaseRepository implements StudentViolationInterface
@@ -16,6 +17,18 @@ class StudentViolationRepository extends BaseRepository implements StudentViolat
     public function get(): mixed
     {
         return $this->model->query()->get();
+    }
+
+    public function search(Request $request): mixed
+    {
+        return $this->model->query()
+            ->when($request->search, function($query) use ($request){
+                $query->whereRelation('classroomStudent.student.user', 'name', 'like', '%' . $request->search . '%');
+            })
+            ->when($request->gender, function($query) use ($request){
+                $query->whereRelation('classroomStudent.student', 'gender', 'like', '%' . $request->gender . '%');
+            })
+            ->paginate(10);
     }
 
     public function whereClassroom(mixed $id): mixed
