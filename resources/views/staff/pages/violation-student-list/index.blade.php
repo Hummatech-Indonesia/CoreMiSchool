@@ -1,4 +1,5 @@
 @extends('staff.layouts.app')
+
 @section('content')
     <div class="card bg-light-info shadow-none position-relative overflow-hidden">
         <div class="card-body px-4 py-3">
@@ -24,20 +25,26 @@
     </div>
 
     <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
-        <div class="d-flex flex-wrap">
-            <div class="col-12 col-md-6 col-lg-6 mb-3 me-3">
-                <form action="" class="position-relative">
+        <form action="" class="position-relative">
+            <div class="d-flex flex-wrap align-items-end">
+                <div class="col-12 col-md-6 col-lg-5 mb-3 me-3 position-relative">
                     <input type="text" class="form-control product-search ps-5" id="input-search" placeholder="Cari...">
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
-                </form>
+                </div>
+                <div class="col-12 col-md-5 col-lg-4 mb-3 me-3">
+                    <select id="status-activity" class="form-select">
+                        <option value="">Laki-Laki</option>
+                        <option value="">Perempuan</option>
+                    </select>
+                </div>
+                <div class="col-12 col-md-1 col-lg-2 mb-3">
+                    <button type="submit" class="btn btn-primary">Filter
+                    </button>
+                </div>
             </div>
-            <div class="col-12 col-md-6 col-lg-5 mb-3">
-                <select id="status-activity" class="form-select">
-                    <option value="">Laki-Laki</option>
-                    <option value="">Perempuan</option>
-                </select>
-            </div>
-        </div>
+        </form>
+
+
         <div>
             <button class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#import-violation">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
@@ -77,21 +84,25 @@
                                     class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40"
                                     height="40" alt="" />
                                 <div class="ms-2">
-                                    <h6 class="fs-4 fw-semibold mb-0 text-start">{{ $studentViolation->classroomStudent->student->user->name }}</h6>
-                                    <span class="fw-normal">{{ $studentViolation->classroomStudent->classroom->name }}</span>
+                                    <h6 class="fs-4 fw-semibold mb-0 text-start">
+                                        {{ $studentViolation->classroomStudent->student->user->name }}</h6>
+                                    <span
+                                        class="fw-normal">{{ $studentViolation->classroomStudent->classroom->name }}</span>
                                 </div>
                             </div>
                         </td>
                         <td>{{ $studentViolation->regulation->violation }}</td>
                         <td>{{ $studentViolation->created_at->translatedFormat('d F Y') }}</td>
                         <td>
-                            <span class="mb-1 badge font-medium bg-light-danger text-danger">+ {{ $studentViolation->regulation->point }} Point</span>
+                            <span class="mb-1 badge font-medium bg-light-danger text-danger">+
+                                {{ $studentViolation->regulation->point }} Point</span>
                         </td>
                         <td>
                             <button data-name="{{ $studentViolation->classroomStudent->student->user->name }}"
                                 data-class="{{ $studentViolation->classroomStudent->classroom->name }}"
                                 data-violation="{{ $studentViolation->regulation->violation }}"
-                                data-date="{{ $studentViolation->created_at->translatedFormat('d F Y') }}"  data-bs-toggle="modal" data-bs-target="#detail-violation-student" type="button"
+                                data-date="{{ $studentViolation->created_at->translatedFormat('d F Y') }}"
+                                data-bs-toggle="modal" data-bs-target="#detail-violation-student" type="button"
                                 class="btn mb-1 waves-effect waves-light btn-primary">Detail</button>
                         </td>
                     </tr>
@@ -116,4 +127,8 @@
     @include('staff.pages.violation-student-list.widgets.detail-violation')
     @include('staff.pages.violation-student-list.widgets.import')
     @include('staff.pages.violation-student-list.widgets.create-violation')
+@endsection
+
+@section('script')
+    @include('staff.pages.violation-student-list.scripts.create-script')
 @endsection
