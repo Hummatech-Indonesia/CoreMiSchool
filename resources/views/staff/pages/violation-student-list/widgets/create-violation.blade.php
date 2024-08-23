@@ -26,7 +26,7 @@
                         <div data-repeater-list="repeater-group">
                             <div data-repeater-item class="mb-3 position-relative">
                                 <div class="mb-3">
-                                    <label for="" class="mb-2">Jenis Pelanggaran</label>
+                                    <label for="" class="mb-2"><b>Jenis Pelanggaran</b></label>
                                     <select class="form-select" name="">
                                         <option value="" disabled selected>Pilih Jenis Pelanggaran</option>
                                         <option value="jenis1">Jenis Pelanggaran 1</option>
@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="d-flex align-items-center">
                                     <div class="flex-grow-1 me-3">
-                                        <label for="" class="mb-2">Nama Siswa Melakukan Pelanggaran</label>
+                                        <label for="" class="mb-2"><b>Nama Siswa Melakukan Pelanggaran</b></label>
                                         <select class="form-select" name="">
                                             <option value="" disabled selected>Pilih Nama Siswa</option>
                                             <option value="siswa1">Nama Siswa 1</option>
@@ -49,9 +49,9 @@
                                         <i class="ti ti-circle-x fs-5"></i>
                                     </button>
                                 </div>
-                                <!-- Separator line -->
-                                <hr class="position-absolute bottom-0 start-0 end-0 my-0"
-                                    style="border-color: #ddd; bottom: -20px;">
+                                <div class="col-lg-12">
+                                    <hr>
+                                </div>
                             </div>
                         </div>
                         <button type="button" data-repeater-create="" class="btn btn-info waves-effect waves-light">
