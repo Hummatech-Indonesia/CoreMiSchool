@@ -7,10 +7,12 @@ use App\Contracts\Interfaces\Eloquent\GetInterface;
 use App\Contracts\Interfaces\Eloquent\ShowInterface;
 use App\Contracts\Interfaces\Eloquent\StoreInterface;
 use App\Contracts\Interfaces\Eloquent\UpdateInterface;
+use Illuminate\Http\Request;
 
 interface StudentViolationInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface
 {
     public function whereClassroom(mixed $id) : mixed;
     public function countByClassroomStudent();
     public function whereStudent(mixed $id) : mixed;
+    public function search(Request $request) : mixed;
 }
