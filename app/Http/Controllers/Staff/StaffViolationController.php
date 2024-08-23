@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Staff;
 
 use App\Contracts\Interfaces\ClassroomInterface;
+use App\Contracts\Interfaces\RegulationInterface;
 use App\Contracts\Interfaces\SchoolPointInterface;
 use App\Contracts\Interfaces\StudentInterface;
 use App\Contracts\Interfaces\StudentRepairInterface;
@@ -19,14 +20,17 @@ class StaffViolationController extends Controller
     private ClassroomInterface $classroom;
     private StudentInterface $student;
     private SchoolPointInterface $schoolPoint;
+    private RegulationInterface $regulation;
 
-    public function __construct(StudentViolationInterface $studentViolation, StudentInterface $student, ClassroomInterface $classroom, SchoolPointInterface $schoolPoint, StudentRepairInterface $studentRepair)
+    public function __construct(StudentViolationInterface $studentViolation, StudentInterface $student, ClassroomInterface $classroom, SchoolPointInterface $schoolPoint, StudentRepairInterface $studentRepair, RegulationInterface $regulation)
     {
         $this->studentViolation = $studentViolation;
         $this->studentRepair = $studentRepair;
         $this->student = $student;
         $this->classroom = $classroom;
         $this->schoolPoint = $schoolPoint;
+
+        $this->regulation = $regulation;
     }
 
     /**
@@ -34,13 +38,13 @@ class StaffViolationController extends Controller
      */
     public function index(Request $request)
     {
-        $students = $this->student->getByPoint($request);
+        $violations = $this->regulation->getAll($request);
         $classrooms = $this->classroom->whereInSchoolYears($request);
-        return view('staff.pages.top-violation.index', compact('students', 'classrooms'));
+        return view('staff.pages.top-violation.index', compact('violations', 'classrooms'));
     }
 
 
-    public function overview(Request $request)
+    public function violation_student(Request $request)
     {
         $students = $this->student->getByPoint($request);
         $countByClassroomStudent = $this->studentViolation->countByClassroomStudent();

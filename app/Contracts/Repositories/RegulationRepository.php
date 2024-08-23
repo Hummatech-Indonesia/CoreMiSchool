@@ -4,6 +4,7 @@ namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\RegulationInterface;
 use App\Models\Regulation;
+use Illuminate\Http\Request;
 
 class RegulationRepository extends BaseRepository implements RegulationInterface
 {
@@ -42,5 +43,32 @@ class RegulationRepository extends BaseRepository implements RegulationInterface
         return $this->model->query()
             ->where('violation', $data)
             ->first();
+    }
+
+    public function getAll(Request $request)
+    {
+        return $this->model->query()
+            ->when($request->name, function($query) use ($request){
+                $query->where('violation', 'like', '%' . $request->name . '%');
+            })
+            ->when($request->filter, function($query) use ($request){
+                $query->when($request->filter == 'highest', function($q) {
+                    $q->withCount('studentViolations')
+                    ->orderBy('student_violations_count', 'desc');
+                });
+                $query->when($request->filter == 'lowest', function($q) {
+                    $q->withCount('studentViolations')
+                    ->orderBy('student_violations_count', 'asc');
+                });
+                $query->when($request->filter == 'latest', function($q) {
+                    $q->latest();
+                });
+                $query->when($request->filter == 'oldest', function($q) {
+                    $q->oldest();
+                });
+            })
+            ->withCount('studentViolations')
+            ->orderBy('student_violations_count', 'desc')
+            ->paginate(10);
     }
 }

@@ -74,7 +74,7 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item ">
+                {{-- <li class="sidebar-item ">
                     <a class="sidebar-link" href="/employee/violation-student-list" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
@@ -88,7 +88,7 @@
                         </span>
                         <span class="hide-menu">Pelanggaran</span>
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="sidebar-item ">
                     <a class="sidebar-link" href="{{ route('employee.top-violation.index') }}" aria-expanded="false">
@@ -102,7 +102,7 @@
                                 </g>
                             </svg>
                         </span>
-                        <span class="hide-menu">Pelanggaran Terbanyak</span>
+                        <span class="hide-menu">Pelanggaran</span>
                     </a>
                 </li>
 
