@@ -55,6 +55,8 @@
     <script src="{{ asset('admin_assets/dist/js/app-style-switcher.js') }}"></script>
     <script src="{{ asset('admin_assets/dist/js/sidebarmenu.js') }}"></script>
     <script src="{{ asset('admin_assets/dist/js/custom.js') }}"></script>
+    <script src="{{ asset('admin_assets/dist/libs/jquery.repeater/jquery.repeater.min.js') }}"></script>
+    <script src="{{ asset('admin_assets/dist/js/plugins/repeater-init.js') }}"></script>
     @yield('script')
 </body>
 
