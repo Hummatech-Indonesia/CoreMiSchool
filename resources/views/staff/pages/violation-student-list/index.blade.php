@@ -1,4 +1,5 @@
 @extends('staff.layouts.app')
+
 @section('content')
     <div class="card bg-light-info shadow-none position-relative overflow-hidden">
         <div class="card-body px-4 py-3">
@@ -24,20 +25,26 @@
     </div>
 
     <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
-        <div class="d-flex flex-wrap">
-            <div class="col-12 col-md-6 col-lg-6 mb-3 me-3">
-                <form action="" class="position-relative">
+        <form action="" class="position-relative">
+            <div class="d-flex flex-wrap align-items-end">
+                <div class="col-12 col-md-6 col-lg-5 mb-3 me-3 position-relative">
                     <input type="text" class="form-control product-search ps-5" id="input-search" placeholder="Cari...">
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
-                </form>
+                </div>
+                <div class="col-12 col-md-5 col-lg-4 mb-3 me-3">
+                    <select id="status-activity" class="form-select">
+                        <option value="">Laki-Laki</option>
+                        <option value="">Perempuan</option>
+                    </select>
+                </div>
+                <div class="col-12 col-md-1 col-lg-2 mb-3">
+                    <button type="submit" class="btn btn-primary">Filter
+                    </button>
+                </div>
             </div>
-            <div class="col-12 col-md-6 col-lg-5 mb-3">
-                <select id="status-activity" class="form-select">
-                    <option value="">Laki-Laki</option>
-                    <option value="">Perempuan</option>
-                </select>
-            </div>
-        </div>
+        </form>
+
+
         <div>
             <button class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#import-violation">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
@@ -123,5 +130,5 @@
 @endsection
 
 @section('script')
-@include('staff.pages.violation-student-list.scripts.create-script')
+    @include('staff.pages.violation-student-list.scripts.create-script')
 @endsection
