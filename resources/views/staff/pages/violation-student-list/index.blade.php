@@ -50,7 +50,7 @@
                 </svg>
                 Import
                 Perbaikan</button>
-            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#violation-student-list">Tambah
+            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#violation-student-create">Tambah
                 Pelanggaran</button>
         </div>
     </div>
@@ -112,4 +112,5 @@
 
     @include('staff.pages.violation-student-list.widgets.detail-violation')
     @include('staff.pages.violation-student-list.widgets.import')
+    @include('staff.pages.violation-student-list.widgets.create-violation')
 @endsection
