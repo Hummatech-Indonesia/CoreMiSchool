@@ -21,4 +21,8 @@ Route::middleware('auth')->prefix('employee')->name('employee.')->group(function
     Route::get('violation-student-list', function(){
         return view('staff.pages.violation-student-list.index');
     })->name('violation-student.index');
+
+    Route::get('remidial-student-list', function(){
+        return view('staff.pages.remedial-student-list.index');
+    })->name('remidial-student.index');
 });

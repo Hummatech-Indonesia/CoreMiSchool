@@ -4,11 +4,13 @@ namespace App\Imports;
 
 use App\Contracts\Interfaces\RegulationInterface;
 use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\ToModel;
 
-class RegulationImport implements ToModel
+class RegulationImport implements ToCollection
 {
     private RegulationInterface $regulation;
+    public $existingViolations = [];
 
     public function __construct(RegulationInterface $regulation)
     {
@@ -18,26 +20,24 @@ class RegulationImport implements ToModel
     /**
     * @param Collection $collection
     */
-    public function model(array $row)
+    public function collection(Collection $collection)
     {
-        if (in_array($row[0], ['NAMA PELANGGARAN', 'Rambut Panjang (Jangan Dihapus)']) || $row[0] == null) {
-            return null;
+        foreach ($collection as $row) {
+            if (in_array($row[0], ['NAMA PELANGGARAN', 'Rambut Panjang (Jangan Dihapus)']) || $row[0] == null) {
+                continue;
+            }
+
+            $regulation = $this->regulation->where($row[0]);
+
+            if ($regulation) {
+                $this->existingViolations[] = $row[0];
+            } else {
+                $data = [
+                    'violation' => $row[0],
+                    'point' => $row[1],
+                ];
+                $this->regulation->store($data);
+            }
         }
-
-        $regulation = $this->regulation->where($row[0]);
-
-        if ($regulation) {
-            session()->flash('warning', "Pelanggaran '{$row[0]}' sudah tersedia.");
-            return null;
-        }
-
-        $data = [
-            'violation' => $row[0],
-            'point' => $row[1],
-        ];
-
-        $this->regulation->store($data);
-
-        return null;
     }
 }

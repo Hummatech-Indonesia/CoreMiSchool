@@ -1,6 +1,12 @@
 @extends('school.layouts.app')
 
 @section('content')
+    @if (!empty($notification))
+        <div class="alert alert-warning">
+            {{ $notification }}
+        </div>
+    @endif
+
     <div class="row d-flex align-items-stretch">
         <div class="col-lg-8">
             <div class="card bg-primary shadow-none position-relative overflow-hidden h-75">

@@ -97,13 +97,17 @@ class RegulationController extends Controller
     {
         try {
             $file = $request->file('file');
-            Excel::import(new RegulationImport($this->regulation), $file);
-
-            if (session()->has('warning')) {
-                return redirect()->back()->with('warning', session('warning'));
+            $import = new RegulationImport($this->regulation);
+            Excel::import($import, $file);
+    
+            $existingViolations = $import->existingViolations;
+    
+            if (count($existingViolations) > 0) {
+                $message = 'Pelanggaran sudah tersedia: ' . implode(', ', $existingViolations);
+                return redirect()->back()->with('warning', $message);
+            } else {
+                return redirect()->back()->with('success', "Berhasil Mengimport Data!");
             }
-
-            return to_route('')->with('success', "Berhasil Mengimport Data!");
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
         }
