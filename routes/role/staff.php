@@ -12,7 +12,7 @@ Route::middleware('auth')->prefix('employee')->name('employee.')->group(function
         return view('staff.pages.repair.index');
     })->name('repair');
 
-    Route::get('overview', [StaffViolationController::class, 'overview'])->name('overview.index');
+    Route::get('violation-student', [StaffViolationController::class, 'violation_student'])->name('overview.index');
 
     Route::get('top-violation', [StaffViolationController::class, 'index'])->name('top-violation.index');
     Route::get('class-detail-violation/{classroom}', [StaffViolationController::class, 'show'])->name('class-violation.detail');

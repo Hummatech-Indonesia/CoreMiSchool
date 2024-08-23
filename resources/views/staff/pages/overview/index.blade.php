@@ -49,27 +49,27 @@
 </div>
 
 <div class="">
-    <div class="mb-3">
-        <form class="d-flex gap-2" action="">
-            <div class="position-relative">
-                <input type="text" name="name" class="form-control product-search ps-5" id="input-search" placeholder="Cari..." value="{{ old('name', request('name')) }}">
-                <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
-            </div>
-            <div class="d-flex gap-2">
-                <select name="gender" class="form-select">
-                    <option value="all">Tampilkan semua</option>
-                    <option value="male" {{ request()->has('gender') == 'male' ? 'selected' : '' }}>Laki-laki</option>
-                    <option value="female" {{ request()->has('gender') == 'female' ? 'selected' : '' }}>Perempuan</option>
-                </select>
-                <select name="point" class="form-select">
-                    <option value="highest" {{ request()->has('point') == 'highest' ? 'selected' : '' }}>Point Tertinggi</option>
-                    <option value="lowest" {{ request()->has('point') == 'lowest' ? 'selected' : '' }}>Point Terendah</option>
-                </select>
-                <div>
-                    <button type="submit" class="btn btn-primary btn-md">Filter</button>
+    <div class="mb-3 d-flex justify-content-between">
+        <div>
+            <form class="d-flex gap-2" action="">
+                <div class="position-relative">
+                    <input type="text" name="name" class="form-control product-search ps-5" id="input-search" placeholder="Cari..." value="{{ old('name', request('name')) }}">
+                    <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                 </div>
-            </div>
-        </form>
+                <div class="d-flex gap-2">
+                    <select name="point" class="form-select">
+                        <option value="highest" {{ request()->has('point') == 'highest' ? 'selected' : '' }}>Point Tertinggi</option>
+                        <option value="lowest" {{ request()->has('point') == 'lowest' ? 'selected' : '' }}>Point Terendah</option>
+                    </select>
+                    <div>
+                        <button type="submit" class="btn btn-primary btn-md">Filter</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div>
+            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#violation-student-list">Tambah Siswa Pelanggar</button>
+        </div>
     </div>
     <div class="table-responsive rounded-2 mb-4">
         <table class="table border text-nowrap customize-table mb-0 align-middle">
