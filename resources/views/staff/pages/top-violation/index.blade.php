@@ -1,35 +1,6 @@
 @extends('staff.layouts.app')
 
 @section('style')
-    <style>
-        .table th,
-        .table td {
-            padding: 0.5rem;
-        }
-
-        .table .text-start {
-            text-align: left;
-        }
-
-        .table .nama-col {
-            width: 200px;
-        }
-
-        .table .nama-col .d-flex {
-            margin-top: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .table .text-center .btn {
-            margin-top: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .table .text-center .badge {
-            margin-top: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-    </style>
 @endsection
 
 @section('content')
@@ -67,7 +38,7 @@
                     <div class="row align-items-center">
                         <div class="col-12">
                             <div class="d-flex justify-content-between mb-2">
-                                <h5 class="fw-semibold text-white mb-8">Statistik Absensi</h5>
+                                <h5 class="fw-semibold text-white mb-8">Maksimal point pada sekolah</h5>
                                 <span class="mb-1 badge bg-white p-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="text-warning" width="15"
                                         height="15" viewBox="0 0 24 24">
@@ -77,8 +48,7 @@
                                 </span>
                             </div>
                             <nav aria-label="breadcrumb">
-                                <span
-                                    class="badge fw-semibold fs-6 text-warning bg-white p-2">23
+                                <span class="badge fw-semibold fs-6 text-warning bg-white p-2">23
                                     Point</span>
                             </nav>
                         </div>
