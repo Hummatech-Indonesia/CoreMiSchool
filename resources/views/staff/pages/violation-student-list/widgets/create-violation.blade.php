@@ -56,8 +56,18 @@
                         </div>
                         <button type="button" data-repeater-create="" class="btn btn-info waves-effect waves-light">
                             <div class="d-flex align-items-center">
-                                Add More File
-                                <i class="ti ti-circle-plus ms-1 fs-5"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="me-2"
+                                    viewBox="0 0 48 48">
+                                    <g fill="none">
+                                        <rect width="38" height="26" x="5" y="16" stroke="currentColor"
+                                            stroke-linejoin="round" stroke-width="4" rx="3" />
+                                        <path fill="currentColor"
+                                            d="M19 8h10V4H19zm11 1v7h4V9zm-12 7V9h-4v7zm11-8a1 1 0 0 1 1 1h4a5 5 0 0 0-5-5zM19 4a5 5 0 0 0-5 5h4a1 1 0 0 1 1-1z" />
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="4" d="M18 29h12m-6-6v12" />
+                                    </g>
+                                </svg>
+                                Tambah Pelanggaran
                             </div>
                         </button>
                     </div>
