@@ -69,12 +69,18 @@ use Carbon\Carbon;
                 <h5 class="fw-bold pb-3">Laporan Kegiatan</h5>
                 <div class="form-group mb-3">
                     <label for="title" class="form-label">Judul</label>
-                    <input type="text" class="form-control" name="title" id="title">
+                    <input type="text" class="form-control" name="title" id="title" placeholder="Masukkan judul jurnal" value="{{ old('title') }}">
+                    @error('title')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="description" class="form-label">Tuliskan laporan di sini</label>
                     <textarea class="form-control" id="description" name="description" rows="5"
-                        placeholder="Tuliskan deskripsi kegiatan di sini...">{{ $teacherJournal->description ?? '' }}</textarea>
+                        placeholder="Tuliskan deskripsi kegiatan di sini...">{{ old('description') }}</textarea>
+                    @error('description')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
             </div>
         </div>

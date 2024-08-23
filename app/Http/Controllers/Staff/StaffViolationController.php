@@ -48,7 +48,8 @@ class StaffViolationController extends Controller
     {
         $students = $this->student->getByPoint($request);
         $countByClassroomStudent = $this->studentViolation->countByClassroomStudent();
-        return view('staff.pages.overview.index', compact('countByClassroomStudent', 'students'));
+        $schoolPoint = $this->schoolPoint->get();
+        return view('staff.pages.overview.index', compact('countByClassroomStudent', 'students', 'schoolPoint'));
     }
 
     /**
