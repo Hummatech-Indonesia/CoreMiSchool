@@ -11,7 +11,7 @@
                     <div class="row align-items-center">
                         <div class="col-9">
                             <b class="text-white fs-2">Daftar Point Siswa</b>
-                            <h4 class="fw-semibold text-white fs-5 mt-1">30 Siswa
+                            <h4 class="fw-semibold text-white fs-5 mt-1">{{ $students->count() }} Siswa
                                 Melanggar</h4>
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">

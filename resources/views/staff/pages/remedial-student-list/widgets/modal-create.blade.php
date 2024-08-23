@@ -37,8 +37,13 @@
                                             <input type="text" class="form-control" placeholder="Masukan jumlah point dikurangi">
                                         </div>
                                         <div class="col-md-10 mb-3">
-                                            <label for="" class="mb-1 text-dark">Nama siswa melakukan perbaikan</label>
-                                            <input type="text" class="form-control" placeholder="Masukan nama siswa">
+                                            <label for="nama-siswa" class="mb-1 text-dark">Nama siswa melakukan perbaikan</label>
+                                            <select id="nama-siswa" class="form-control select2 select2-siswa" placeholder="Masukan nama siswa">
+                                                <option value="Siswa 1">Siswa 1</option>
+                                                <option value="Siswa 2">Siswa 2</option>
+                                                <option value="Siswa 3">Siswa 3</option>
+                                                <!-- Tambahkan opsi lainnya sesuai kebutuhan -->
+                                            </select>
                                         </div>
                                         <div class="col-md-2 mt-4">
                                             <button data-repeater-delete="" class="btn btn-danger waves-effect waves-light" type="button">
