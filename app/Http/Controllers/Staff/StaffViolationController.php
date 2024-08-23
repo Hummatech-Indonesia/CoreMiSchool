@@ -65,6 +65,7 @@ class StaffViolationController extends Controller
     public function list_student()
     {
         $studentViolations = $this->studentViolation->get();
+        
         return view('staff.pages.violation-student-list.index', compact('studentViolations'));
     }
 }

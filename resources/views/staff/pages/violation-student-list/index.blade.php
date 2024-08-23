@@ -73,22 +73,25 @@
                         <td>{{ $loop->iteration }}</td>
                         <td class="text-start">
                             <div class="d-flex align-items-center">
-                                <img src="{{ asset('admin_assets/dist/images/profile/user-10.jpg') }}"
+                                <img src="{{ $studentViolation->classroomStudent->student->image ? asset('storage/' . $studentViolation->classroomStudent->student->image) : asset('admin_assets/dist/images/profile/user-10.jpg') }}"
                                     class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40"
                                     height="40" alt="" />
                                 <div class="ms-2">
-                                    <h6 class="fs-4 fw-semibold mb-0 text-start">{{ $studentViolation->classroom }}</h6>
-                                    <span class="fw-normal">X RPL 1</span>
+                                    <h6 class="fs-4 fw-semibold mb-0 text-start">{{ $studentViolation->classroomStudent->student->user->name }}</h6>
+                                    <span class="fw-normal">{{ $studentViolation->classroomStudent->classroom->name }}</span>
                                 </div>
                             </div>
                         </td>
-                        <td>Merokok dijam pelajaran</td>
-                        <td>10 Januari 2020</td>
+                        <td>{{ $studentViolation->regulation->violation }}</td>
+                        <td>{{ $studentViolation->created_at->translatedFormat('d F Y') }}</td>
                         <td>
-                            <span class="mb-1 badge font-medium bg-light-danger text-danger">+ 80 Point</span>
+                            <span class="mb-1 badge font-medium bg-light-danger text-danger">+ {{ $studentViolation->regulation->point }} Point</span>
                         </td>
                         <td>
-                            <button data-bs-toggle="modal" data-bs-target="#detail-violation-student" type="button"
+                            <button data-name="{{ $studentViolation->classroomStudent->student->user->name }}"
+                                data-class="{{ $studentViolation->classroomStudent->classroom->name }}"
+                                data-violation="{{ $studentViolation->regulation->violation }}"
+                                data-date="{{ $studentViolation->created_at->translatedFormat('d F Y') }}"  data-bs-toggle="modal" data-bs-target="#detail-violation-student" type="button"
                                 class="btn mb-1 waves-effect waves-light btn-primary">Detail</button>
                         </td>
                     </tr>
