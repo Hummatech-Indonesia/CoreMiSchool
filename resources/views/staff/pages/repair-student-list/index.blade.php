@@ -78,15 +78,15 @@
             </tr>
         </thead>
         <tbody>
-            @forelse (range(1,5) as $student)
+            @forelse ($studentRepairs as $studentRepair)
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>
                     <div class="d-flex align-items-center">
                         <img src="{{ asset('admin_assets/dist/images/profile/user-10.jpg') }}" class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40" height="40" alt="" />
                         <div class="ms-3">
-                            <h6 class="fs-4 fw-semibold mb-0 text-start">Ahmad Lukman</h6>
-                            <span class="fw-normal">123456789</span>
+                            <h6 class="fs-4 fw-semibold mb-0 text-start">{{ $studentRepair->classroomStudent->student->user->name }}</h6>
+                            <span class="fw-normal">{{ $studentRepair->classroomStudent->student->user->phone_number }}</span>
                         </div>
                     </div>
                 </td>
@@ -119,15 +119,15 @@
 </div>
 
 {{-- modal detail --}}
-@include('staff.pages.remedial-student-list.widgets.modal-detail')
+@include('staff.pages.repair-student-list.widgets.modal-detail')
 {{-- modal import --}}
-@include('staff.pages.remedial-student-list.widgets.modal-import')
+@include('staff.pages.repair-student-list.widgets.modal-import')
 {{-- modal tambah --}}
-@include('staff.pages.remedial-student-list.widgets.modal-create')
+@include('staff.pages.repair-student-list.widgets.modal-create')
 
 @endsection
 
 @section('script')
 {{-- select2 --}}
-@include('staff.pages.remedial-student-list.scripts.select2')
+@include('staff.pages.repair-student-list.scripts.select2')
 @endsection

@@ -12,6 +12,10 @@ class SchoolPointSeeder extends Seeder
      */
     public function run(): void
     {
-        SchoolPoint::factory()->create(['max_points' => 200]);
+        SchoolPoint::factory()->create([
+            'start_point' => 100,
+            'end_point' => 150,
+            'description' => 'Peringatan pertama'
+        ]);
     }
 }

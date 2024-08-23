@@ -8,7 +8,7 @@
             </div>
             <form action="" method="POST" enctype="multipart/form-data">
                 @csrf
-                <div class="modal-body">
+                <div class="modal-body overflow-auto">
                     <div class="d-flex">
                         <div class="align-items-center mb-4">
                             <span class="mb-1 badge bg-primary p-0 rounded-2">
