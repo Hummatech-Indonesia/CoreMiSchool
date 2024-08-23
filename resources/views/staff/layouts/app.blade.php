@@ -23,6 +23,7 @@
 
     <!-- Core Css -->
     <link id="themeColors" rel="stylesheet" href="{{ asset('admin_assets/dist/css/style.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('admin_assets/dist/libs/select2/dist/css/select2.min.css') }}">
     @yield('style')
 </head>
 
@@ -428,6 +429,8 @@
     <!--  Customizer -->
     <!--  Import Js Files -->
     @yield('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <script src="{{ asset('admin_assets/dist/libs/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('admin_assets/dist/libs/simplebar/dist/simplebar.min.js') }}"></script>
     <script src="{{ asset('admin_assets/dist/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
@@ -443,6 +446,11 @@
     <script src="{{ asset('admin_assets/dist/js/dashboard.js') }}"></script>
     <script src="{{ asset('admin_assets/dist/libs/jquery.repeater/jquery.repeater.min.js') }}"></script>
     <script src="{{ asset('admin_assets/dist/js/plugins/repeater-init.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{ asset('admin_assets/dist/libs/select2/dist/js/select2.full.min.js') }}"></script>
+    <script src="{{ asset('admin_assets/dist/libs/select2/dist/js/select2.min.js') }}"></script>
+    <script src="{{ asset('admin_assets/dist/js/forms/select2.init.js') }}"></script>
+
 </body>
 
 <!-- Mirrored from demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/html/main/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Jul 2023 01:55:21 GMT -->
