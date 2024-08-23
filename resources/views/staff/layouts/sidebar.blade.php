@@ -63,18 +63,18 @@
                 </li>
 
                 <li class="sidebar-item ">
-                    <a class="sidebar-link" href="{{ route('employee.overview.index') }}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('employee.top-violation.index') }}" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                 <path fill="currentColor"
                                     d="M20 11q-.425 0-.712-.288T19 10t.288-.712T20 9t.713.288T21 10t-.288.713T20 11m-1-3V3h2v5zM9 12q-1.65 0-2.825-1.175T5 8t1.175-2.825T9 4t2.825 1.175T13 8t-1.175 2.825T9 12m-8 8v-2.8q0-.85.438-1.562T2.6 14.55q1.55-.775 3.15-1.162T9 13t3.25.388t3.15 1.162q.725.375 1.163 1.088T17 17.2V20zm2-2h12v-.8q0-.275-.137-.5t-.363-.35q-1.35-.675-2.725-1.012T9 15t-2.775.338T3.5 16.35q-.225.125-.363.35T3 17.2zm6-8q.825 0 1.413-.587T11 8t-.587-1.412T9 6t-1.412.588T7 8t.588 1.413T9 10m0 8" />
                             </svg>
                         </span>
-                        <span class="hide-menu">Daftar Siswa Melanggar</span>
+                        <span class="hide-menu">Daftar Point Siswa</span>
                     </a>
                 </li>
 
-                {{-- <li class="sidebar-item ">
+                <li class="sidebar-item ">
                     <a class="sidebar-link" href="/employee/violation-student-list" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
@@ -86,23 +86,25 @@
                                 </g>
                             </svg>
                         </span>
-                        <span class="hide-menu">Pelanggaran</span>
+                        <span class="hide-menu">Daftar Pelanggaran</span>
                     </a>
-                </li> --}}
+                </li>
 
                 <li class="sidebar-item ">
-                    <a class="sidebar-link" href="{{ route('employee.top-violation.index') }}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('employee.remidial-student.index') }}" aria-expanded="false">
                         <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
                                 <g fill="none">
-                                    <path
-                                        d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z" />
+                                    <rect width="38" height="26" x="5" y="16" stroke="currentColor"
+                                        stroke-linejoin="round" stroke-width="4" rx="3" />
                                     <path fill="currentColor"
-                                        d="m13.299 3.148l8.634 14.954a1.5 1.5 0 0 1-1.299 2.25H3.366a1.5 1.5 0 0 1-1.299-2.25l8.634-14.954c.577-1 2.02-1 2.598 0M12 4.898L4.232 18.352h15.536zM12 15a1 1 0 1 1 0 2a1 1 0 0 1 0-2m0-7a1 1 0 0 1 1 1v4a1 1 0 1 1-2 0V9a1 1 0 0 1 1-1" />
+                                        d="M19 8h10V4H19zm11 1v7h4V9zm-12 7V9h-4v7zm11-8a1 1 0 0 1 1 1h4a5 5 0 0 0-5-5zM19 4a5 5 0 0 0-5 5h4a1 1 0 0 1 1-1z" />
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="4" d="M18 29h12m-6-6v12" />
                                 </g>
                             </svg>
                         </span>
-                        <span class="hide-menu">Pelanggaran</span>
+                        <span class="hide-menu">Daftar Siswa Perbaikan</span>
                     </a>
                 </li>
 

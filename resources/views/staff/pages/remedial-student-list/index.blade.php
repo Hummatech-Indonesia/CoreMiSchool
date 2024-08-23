@@ -48,11 +48,11 @@
         </div>
 
         <div class="d-flex gap-2">
-            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#import-remidial">
+            <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#import-remidial">
                 <svg xmlns="http://www.w3.org/2000/svg" class="mb-1 me-1" width="17" height="17" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M5 13V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2h-5.5M2 19h7m-3-3l3 3l-3 3"/></g></svg>
                 Import Perbaikan
             </button>
-            <button class="btn btn-primary">
+            <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#modal-create-remidial">
                 <svg xmlns="http://www.w3.org/2000/svg" class="mb-1 me-1" width="17" height="17" viewBox="0 0 24 24"><path fill="currentColor" d="M4 22q-.825 0-1.412-.587T2 20V8q0-.825.588-1.412T4 6h4V4q0-.825.588-1.412T10 2h4q.825 0 1.413.588T16 4v2h4q.825 0 1.413.588T22 8v12q0 .825-.587 1.413T20 22zm0-2h16V8H4zm6-14h4V4h-4zM4 20V8zm7-5v3h2v-3h3v-2h-3v-3h-2v3H8v2z"/></svg>
                 Tambah Perbaikan
             </button>
@@ -118,4 +118,6 @@
 @include('staff.pages.remedial-student-list.widgets.modal-detail')
 {{-- modal import --}}
 @include('staff.pages.remedial-student-list.widgets.modal-import')
+{{-- modal tambah --}}
+@include('staff.pages.remedial-student-list.widgets.modal-create')
 @endsection
