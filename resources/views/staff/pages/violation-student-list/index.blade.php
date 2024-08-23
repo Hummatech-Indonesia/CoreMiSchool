@@ -49,7 +49,7 @@
                     </g>
                 </svg>
                 Import
-                Perbaikan</button>
+                Pelanggaran</button>
             <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#violation-student-create">Tambah
                 Pelanggaran</button>
         </div>
