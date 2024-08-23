@@ -35,9 +35,9 @@ class StaffViolationController extends Controller
 
     public function index(Request $request)
     {
-        $violations = $this->regulation->getAll($request);
+        $students = $this->student->getByPoint($request);
         $classrooms = $this->classroom->whereInSchoolYears($request);
-        return view('staff.pages.top-violation.index', compact('violations', 'classrooms'));
+        return view('staff.pages.top-violation.index', compact('students', 'classrooms'));
     }
 
 
@@ -65,7 +65,6 @@ class StaffViolationController extends Controller
     public function list_student()
     {
         $studentViolations = $this->studentViolation->get();
-        
         return view('staff.pages.violation-student-list.index', compact('studentViolations'));
     }
 }
