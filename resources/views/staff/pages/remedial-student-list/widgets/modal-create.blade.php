@@ -74,21 +74,13 @@
                             <div class="email-repeater mb-3">
                                 <div data-repeater-list="repeater-group">
                                     <div data-repeater-item="" class="row mb-3">
-                                        <div class="col-md-5 mb-3">
+                                        <div class="col-md-7 mb-3">
                                             <label for="" class="mb-1 text-dark">Jenis Perbaikan</label>
-                                            <select id="jenis-perbaikan" class="form-control select2 select2-violation" style="width: 100%; height: 36px" multiple="multiple" placeholder="Masukan nama siswa">
-                                                <option value="">Membersihkan halaman</option>
-                                                <option value="">Membersihkan toilet</option>
-                                                <option value="">Membersihkan kelas</option>
-                                            </select>
+                                            <input type="text" class="form-control" placeholder="Masukan jenis perbaikan">
                                         </div>
-                                        <div class="col-md-5 mb-3">
+                                        <div class="col-md-3 mb-3">
                                             <label for="" class="mb-1 text-dark">Jumlah point dikurangi</label>
-                                            <select id="minus-poin" class="form-control select2 select2-point" style="width: 100%; height: 36px" placeholder="Masukan nama siswa">
-                                                <option value="">10</option>
-                                                <option value="">15</option>
-                                                <option value="">20</option>
-                                            </select>
+                                            <input type="text" class="form-control" placeholder="Masukan jumlah point">
                                         </div>
                                         <div class="col-md-10 mb-3">
                                             <label for="nama-siswa" class="mb-1 text-dark">Nama siswa melakukan perbaikan</label>
