@@ -2,27 +2,28 @@
     <div class="">
         <h4>Daftar Guru</h4>
     </div>
-        <div class="row">
-            <div class="col-lg-10 mt-3 mb-3">
-                <div class="d-flex justify-content-between mb-3 col-md-5 align-items-center">
-                    <form class="d-flex gap-2 align-items-center flex-grow-1">
-                        <div class="position-relative flex-grow-1">
-                            <input type="text" name="search" class="form-control search-chat py-2 px-4 ps-5"
-                                id="search-name" placeholder="Cari" value="{{ old('search', request('search')) }}">
-                            <i class="ti ti-search position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
-                        </div>
-                    </form>
-                    <form class="d-flex gap-2 align-items-center ms-2">
-                        <select name="gender" class="form-select" id="search-status">
-                            <option value="" {{ old('gender', request('gender')) == '' ? 'selected' : '' }}>Semua</option>
-                            <option value="male" {{ old('gender', request('gender')) == 'male' ? 'selected' : '' }}>Laki-laki</option>
-                            <option value="female" {{ old('gender', request('gender')) == 'female' ? 'selected' : '' }}>Perempuan</option>
-                        </select>
-                        <button type="submit" class="btn btn-primary">Filter</button>
-                    </form>
+    <div class="row">
+        <div class="col-lg-5 mt-3 mb-3">
+            <form class="d-flex gap-2 align-items-center flex-grow-1" method="GET" action="{{ url()->current() }}">
+                <div class="position-relative flex-grow-1">
+                    <input type="text" name="search" class="form-control search-chat py-2 px-4 ps-5" id="search-name"
+                        placeholder="Cari" value="{{ old('search', request('search')) }}">
+                    <i class="ti ti-search position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
                 </div>
-            </div>
+                <div class="col-lg-4">
+                    <select name="gender" class="form-select" id="search-status">
+                        <option value="" {{ old('gender', request('gender')) == '' ? 'selected' : '' }}>Semua</option>
+                        <option value="male" {{ old('gender', request('gender')) == 'male' ? 'selected' : '' }}>Laki-laki
+                        </option>
+                        <option value="female" {{ old('gender', request('gender')) == 'female' ? 'selected' : '' }}>
+                            Perempuan</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </form>
         </div>
+    </div>
+
 
     <div class="">
         <div class="table-responsive rounded-2 mb-4">
@@ -54,14 +55,15 @@
 
                             </td>
                             <td>
-                                <span class="badge bg-light-primary text-primary">{{ $teacher->teacherSubjects->count() }} Mapel</span>
+                                <span
+                                    class="badge bg-light-primary text-primary">{{ $teacher->teacherSubjects->count() }}
+                                    Mapel</span>
                             </td>
                             <td>{{ $teacher->user->email }}</td>
                             <td>{{ $teacher->nip }}</td>
                             <td>{{ $teacher->modelHasRfid ? $teacher->modelHasRfid->rfid : '-' }}
                                 <button type="button" class="btn btn-rounded btn-warning p-1 ms-2 btn-rfid"
-                                data-name="{{ $teacher->user->name }}"
-                                    data-id="{{ $teacher->id }}"
+                                    data-name="{{ $teacher->user->name }}" data-id="{{ $teacher->id }}"
                                     data-rfid="{{ $teacher->modelHasRfid ? $teacher->modelHasRfid->rfid : 'Kosong' }}"
                                     data-old-rfid="{{ $teacher->modelHasRfid ? $teacher->modelHasRfid->rfid : 'Kosong' }}"
                                     data-role="Employee">
@@ -86,16 +88,17 @@
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
                                         <li>
-                                            <a href="{{ route('school.teacher.show', $teacher->user->slug) }}" type="button"
+                                            <a href="{{ route('school.teacher.show', $teacher->user->slug) }}"
+                                                type="button"
                                                 class="btn-detail dropdown-item d-flex align-items-center gap-3"><i
                                                     class="fs-4 ti ti-eye"></i>Detail</a>
                                         </li>
                                         <li>
-                                            <button type="button" class="dropdown-item d-flex align-items-center gap-3 btn-edit-teacher"
+                                            <button type="button"
+                                                class="dropdown-item d-flex align-items-center gap-3 btn-edit-teacher"
                                                 data-id="{{ $teacher->id }}"
-                                                data-image="{{ asset('storage/'. $teacher->image) }}"
-                                                data-name="{{ $teacher->user->name }}"
-                                                data-nip="{{ $teacher->nip }}"
+                                                data-image="{{ asset('storage/' . $teacher->image) }}"
+                                                data-name="{{ $teacher->user->name }}" data-nip="{{ $teacher->nip }}"
                                                 data-religion_id="{{ $teacher->religion_id }}"
                                                 data-birth_date="{{ $teacher->birth_date }}"
                                                 data-birth_place="{{ $teacher->birth_place }}"
@@ -109,7 +112,8 @@
                                             </button>
                                         </li>
                                         <li>
-                                            <button class="btn-delete dropdown-item d-flex align-items-center gap-3 text-danger btn-delete-teacher"
+                                            <button
+                                                class="btn-delete dropdown-item d-flex align-items-center gap-3 text-danger btn-delete-teacher"
                                                 data-id="{{ $teacher->id }}">
                                                 <i class="fs-4 ti ti-trash"></i>Delete
                                             </button>
@@ -119,17 +123,17 @@
                             </td>
                         </tr>
                     @empty
-                    <tr>
-                        <td colspan="7" class="text-center align-middle">
-                            <div class="d-flex flex-column justify-content-center align-items-center">
-                                <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt=""
-                                    width="300px">
-                                <p class="fs-5 text-dark text-center mt-2">
-                                    Belum ada data
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td colspan="7" class="text-center align-middle">
+                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                    <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}"
+                                        alt="" width="300px">
+                                    <p class="fs-5 text-dark text-center mt-2">
+                                        Belum ada data
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
                     @endforelse
                 </tbody>
             </table>
