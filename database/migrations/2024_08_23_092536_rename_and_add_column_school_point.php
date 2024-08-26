@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::table('school_points', function (Blueprint $table) {
             $table->dropColumn('max_points');
-            $table->integer('start_point')->default(10)->after('id');
-            $table->integer('end_point')->default(10)->after('start_point');
-            $table->longText('description')->nullable()->after('end_point');
+            $table->integer('point')->default(10)->after('id');
+            $table->longText('description')->nullable()->after('point');
         });
     }
 
@@ -26,8 +25,7 @@ return new class extends Migration
     {
         Schema::table('school_points', function (Blueprint $table) {
             $table->integer('max_points')->default(10);
-            $table->dropColumn('start_point');
-            $table->dropColumn('end_point');
+            $table->dropColumn('point');
             $table->dropColumn('description');
         });
     }
