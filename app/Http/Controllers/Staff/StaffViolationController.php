@@ -8,6 +8,7 @@ use App\Contracts\Interfaces\SchoolPointInterface;
 use App\Contracts\Interfaces\StudentInterface;
 use App\Contracts\Interfaces\StudentRepairInterface;
 use App\Contracts\Interfaces\StudentViolationInterface;
+use App\Exports\StudentViolationExport;
 use App\Http\Controllers\Controller;
 use App\Models\Classroom;
 use App\Models\Student;
@@ -68,5 +69,17 @@ class StaffViolationController extends Controller
         $students = $this->student->get();
         $violations = $this->regulation->get();
         return view('staff.pages.violation-student-list.index', compact('studentViolations', 'students', 'violations'));
+    }
+
+    public function download_student()
+    {
+        $export = new StudentViolationExport();
+        $export->collection();
+        return response()->download(storage_path('app/public/siswa-pelanggaran.xlsx'))->deleteFileAfterSend(true);
+    }
+
+    public function import(Request $request)
+    {
+
     }
 }

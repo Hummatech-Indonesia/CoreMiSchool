@@ -6,9 +6,9 @@
                 <h5 class="modal-title" id="importPegawai">Tambah Perbaikan</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('employee.student-repair.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <div class="modal-body" style="max-he   ight: 70vh; overflow-y: auto;">
+                <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
                     <!-- Explanation Section -->
                     <div class="d-flex">
                         <div class="align-items-center mb-4">
@@ -28,20 +28,31 @@
                             <div data-repeater-list="repeater-group">
                                 <div data-repeater-item="" class="row mb-3">
                                     <div class="col-md-7 mb-3">
-                                        <label for="" class="mb-1 text-dark">Jenis Perbaikan</label>
-                                        <input type="text" class="form-control" placeholder="Masukan jenis perbaikan">
+                                        <label for="" class="mb-1 text-dark">Perbaikan</label>
+                                        <input type="text" class="form-control" name="repair" placeholder="Masukan perbaikan" value="{{ old('repair') }}">
+                                        @error('repair')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                     <div class="col-md-3 mb-3">
                                         <label for="" class="mb-1 text-dark">Jumlah point dikurangi</label>
-                                        <input type="text" class="form-control" placeholder="Masukan jumlah point">
+                                        <input type="number" class="form-control" name="point" placeholder="Masukan point" value="{{ old('point') }}">
+                                        @error('point')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                     <div class="col-md-10 mb-3">
                                         <label for="nama-siswa" class="mb-1 text-dark">Nama siswa melakukan perbaikan</label>
-                                        <select id="nama-siswa" class="form-control select2 select2-siswa-remidial" style="width: 100%; height: 36px" multiple="multiple" placeholder="Masukan nama siswa">
-                                            <option value="Siswa 1">Siswa 1</option>
-                                            <option value="Siswa 2">Siswa 2</option>
-                                            <option value="Siswa 3">Siswa 3</option>
+                                        <select id="nama-siswa"  name="classroom_student_id[]" class="form-control select2 select2-siswa-remidial" style="width: 100%; height: 36px" multiple="multiple" placeholder="Masukan nama siswa">
+                                            @forelse ($classroomStudents as $classroomStudent)
+                                                <option value="{{ $classroomStudent->student_id }}">{{ $classroomStudent->student->user->name }}</option>
+                                            @empty
+                                                <option value="">Belum ada siswa</option>
+                                            @endforelse
                                         </select>
+                                        @error('classroom_student_ids')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                     <div class="col-md-2 mt-4">
                                         <button data-repeater-delete="" class="btn btn-danger waves-effect waves-light" type="button">
@@ -70,11 +81,17 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <label for="" class="mb-1 text-dark">Tanggal Awal</label>
-                                    <input type="date" class="form-control">
+                                    <input type="date" name="start_date" class="form-control" value="{{ old('start_date', Carbon\Carbon::now()->format('Y-m-d')) }}">
+                                    @error('start_date')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="col-lg-6">
                                     <label for="" class="mb-1 text-dark">Tanggal Akhir</label>
-                                    <input type="date" class="form-control">
+                                    <input type="date" name="end_date" class="form-control" value="{{ old('end_date', Carbon\Carbon::now()->format('Y-m-d')) }}">
+                                    @error('end_date')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
