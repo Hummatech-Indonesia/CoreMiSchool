@@ -13,7 +13,9 @@ class StudentRepair extends Model
 
     protected $fillable = [
         'classroom_student_id',
-        'repair_id',
-        'is_approved',
+        'repair',
+        'point',
+        'start_date',
+        'end_date',
     ];
 }
