@@ -63,7 +63,7 @@
                                             d="M18 29h12m-6-6v12" />
                                     </g>
                                 </svg>
-                                Tambah Peringatan
+                                Tambah Point
                             </div>
                         </button>
                     </div>
