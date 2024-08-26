@@ -41,7 +41,6 @@ class StudentViolationController extends Controller
      */
     public function store(StoreStudentViolationRequest $request)
     {
-        $this->studentViolation->store($request->validated());
         $this->service->store($request);
         return redirect()->back()->with('success', 'Berhasil menambahkan pelanggar');
     }

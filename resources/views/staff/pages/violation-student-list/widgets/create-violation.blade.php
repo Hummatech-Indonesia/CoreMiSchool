@@ -21,18 +21,19 @@
                     </div>
                 </div>
 
-                <form class="mt-4">
+                <form class="mt-4" action="{{ route('employee.studentViolation.store') }}" method="POST">
+                    @method('post')
+                    @csrf
                     <div class="email-repeater mb-3">
                         <div data-repeater-list="repeater-group">
                             <div data-repeater-item class="mb-3 position-relative">
                                 <div class="mb-3">
                                     <label for="" class="mb-2"><b>Jenis Pelanggaran</b></label>
-                                    <select class="form-select select2-jenis" style="width: 100%; height: 36px"
-                                        name="">
+                                    <select class="form-select select2-jenis" name="repeater-group[][violation_id]" style="width: 100%; height: 36px">
                                         <option value="" disabled selected>Pilih Jenis Pelanggaran</option>
-                                        <option value="jenis1">Jenis Pelanggaran 1</option>
-                                        <option value="jenis2">Jenis Pelanggaran 2</option>
-                                        <option value="jenis3">Jenis Pelanggaran 3</option>
+                                        @foreach ($violations as $violation)
+                                            <option value="{{ $violation->id }}">{{ $violation->violation }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="d-flex align-items-center">
@@ -40,11 +41,11 @@
                                         <label for="" class="mb-2"><b>Nama Siswa Melakukan
                                                 Pelanggaran</b></label>
                                         <select class="form-select select2-siswa" multiple="multiple"
-                                            style="width: 100%; height: 36px" name="siswa[]">
+                                            style="width: 100%; height: 36px" name="repeater-group[][student_id][]">
                                             <option value="" disabled>Pilih Nama Siswa</option>
-                                            <option value="siswa1">Nama Siswa 1</option>
-                                            <option value="siswa2">Nama Siswa 2</option>
-                                            <option value="siswa3">Nama Siswa 3</option>
+                                            @foreach ($students as $student)
+                                                <option value="{{ $student->id }}">{{ $student->user->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <button data-repeater-delete="" class="btn btn-danger waves-effect waves-light"
@@ -74,12 +75,12 @@
                             </div>
                         </button>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn mb-1 waves-effect waves-light"
+                            style="background-color: #C7C7C7; color: white;" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn mb-1 waves-effect waves-light btn-primary">Tambah</button>
+                    </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn mb-1 waves-effect waves-light"
-                    style="background-color: #C7C7C7; color: white;" data-bs-dismiss="modal">Tutup</button>
-                <button type="submit" class="btn mb-1 waves-effect waves-light btn-primary">Tambah</button>
             </div>
         </div>
     </div>

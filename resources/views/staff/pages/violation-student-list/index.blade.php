@@ -57,8 +57,7 @@
                 </svg>
                 Import
                 Pelanggaran</button>
-            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#violation-student-create">Tambah
-                Pelanggaran</button>
+            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#violation-student-create">Tambah Pelanggaran</button>
         </div>
     </div>
 

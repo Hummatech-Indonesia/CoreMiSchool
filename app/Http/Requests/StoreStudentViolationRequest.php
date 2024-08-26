@@ -11,7 +11,7 @@ class StoreStudentViolationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class StoreStudentViolationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'repeater-group' => 'required',
+            'repeater-group.*.violation_id' => 'required',
+            'repeater-group.*.student_id' => 'required|array',
+            'repeater-group.*.student_id.*' => 'required',
         ];
     }
 }

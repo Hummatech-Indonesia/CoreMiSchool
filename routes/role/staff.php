@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Staff\StaffViolationController;
+use App\Http\Controllers\StudentViolationController;
+use App\Models\StudentViolation;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->prefix('employee')->name('employee.')->group(function () {
@@ -19,6 +21,8 @@ Route::middleware('auth')->prefix('employee')->name('employee.')->group(function
     Route::get('student-detail-violation/{student}', [StaffViolationController::class, 'show_detail_student'])->name('student-violation.detail');
 
     Route::get('violation-student-list', [StaffViolationController::class, 'list_student'])->name('violation-student.index');
+
+    Route::resource('studentViolation', StudentViolationController::class);
 
     Route::get('remidial-student-list', function(){
         return view('staff.pages.remedial-student-list.index');

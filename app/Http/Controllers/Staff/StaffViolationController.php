@@ -65,6 +65,8 @@ class StaffViolationController extends Controller
     public function list_student(Request $request)
     {
         $studentViolations = $this->studentViolation->search($request);
-        return view('staff.pages.violation-student-list.index', compact('studentViolations'));
+        $students = $this->student->get();
+        $violations = $this->regulation->get();
+        return view('staff.pages.violation-student-list.index', compact('studentViolations', 'students', 'violations'));
     }
 }
