@@ -30,4 +30,5 @@ Route::middleware('auth')->prefix('employee')->name('employee.')->group(function
     })->name('remidial-student.index');
 
     Route::resource('student-repair', StudentRepairController::class);
+    Route::get('export-student-repair', [StudentRepairController::class, 'download_student'])->name('student-repair.download');
 });

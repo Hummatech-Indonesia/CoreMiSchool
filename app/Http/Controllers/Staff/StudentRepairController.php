@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Staff;
 
 use App\Contracts\Interfaces\ClassroomStudentInterface;
 use App\Contracts\Interfaces\StudentRepairInterface;
+use App\Exports\StudentRepairExport;
 use App\Models\StudentRepair;
 use App\Http\Requests\StoreStudentRepairRequest;
 use App\Http\Requests\UpdateStudentRepairRequest;
@@ -48,6 +49,13 @@ class StudentRepairController extends Controller
     {
         $this->service->store($request);
         return redirect()->back()->with('success', 'Berhasil menambahkan perbaikan');
+    }
+
+    public function download_student()
+    {   
+        $export = new StudentRepairExport();
+        $export->collection();
+        return response()->download(storage_path('app/public/siswa-perbaikan.xlsx'))->deleteFileAfterSend(true);
     }
 
     /**

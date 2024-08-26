@@ -3,16 +3,15 @@
 namespace App\Exports;
 
 use App\Models\Student;
-use App\Models\Regulation;
-use PhpOffice\PhpSpreadsheet\Style\Alignment;
-use PhpOffice\PhpSpreadsheet\Style\Color;
-use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Style\Color;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use PhpOffice\PhpSpreadsheet\Style\Alignment;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Cell\DataValidation as DataValidationType;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
-class StudentViolationExport implements FromCollection
+class StudentRepairExport implements FromCollection
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -20,20 +19,28 @@ class StudentViolationExport implements FromCollection
     public function collection()
     {
         $siswaList = Student::with('user')->get()->pluck('user.name')->toArray();
-        $pelanggaranList = Regulation::pluck('violation')->toArray();
 
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
 
-        $sheet->setCellValue('A1', 'Nama Siswa');
-        $sheet->setCellValue('B1', 'Jenis Pelanggaran');
+        $sheet->setCellValue('A1', 'Nama siswa');
+        $sheet->setCellValue('B1', 'Perbaikan');
+        $sheet->setCellValue('C1', 'Jumlah point dikurangi');
+        $sheet->setCellValue('D1', 'Tanggal dimulai');
+        $sheet->setCellValue('E1', 'Tanggal berakhir');
 
         $sheet->setCellValue('A2', 'Contoh Format (Jangan di Hapus)');
-        $sheet->setCellValue('B2', 'Tidak memakai dasi');
+        $sheet->setCellValue('B2', 'Keliling Lapangan');
+        $sheet->setCellValue('C2', '20');
+        $sheet->setCellValue('D2', 'hari/bulan/tahun ( 10/1/2024 )');
+        $sheet->setCellValue('E2', 'hari/bulan/tahun ( 10/1/2024 )');
 
         // Lebarkan kolom sesuai dengan isinya
         $sheet->getColumnDimension('A')->setAutoSize(true);
         $sheet->getColumnDimension('B')->setAutoSize(true);
+        $sheet->getColumnDimension('C')->setAutoSize(true);
+        $sheet->getColumnDimension('D')->setAutoSize(true);
+        $sheet->getColumnDimension('E')->setAutoSize(true);
 
         // Style untuk header
         $headerStyle = [
@@ -52,7 +59,7 @@ class StudentViolationExport implements FromCollection
                 ],
             ],
         ];
-        
+
         $exampleStyle = [
             'font' => [
                 'color' => ['argb' => Color::COLOR_WHITE],
@@ -70,8 +77,8 @@ class StudentViolationExport implements FromCollection
         ];
 
         // Terapkan style ke A1 dan B1
-        $sheet->getStyle('A1:B1')->applyFromArray($headerStyle);
-        $sheet->getStyle('A2:B2')->applyFromArray($exampleStyle);
+        $sheet->getStyle('A1:E1')->applyFromArray($headerStyle);
+        $sheet->getStyle('A2:E2')->applyFromArray($exampleStyle);
 
         // Set tingginya agar lebih jelas
         $sheet->getRowDimension(1)->setRowHeight(20);
@@ -90,22 +97,8 @@ class StudentViolationExport implements FromCollection
             $sheet->getCell("A$row")->setDataValidation(clone $validationA);
         }
 
-        $dropdownCellB = 'B3:B1000';
-        $validationB = $sheet->getCell('B3')->getDataValidation();
-        $validationB->setType(DataValidationType::TYPE_LIST);
-        $validationB->setErrorStyle(DataValidationType::STYLE_INFORMATION);
-        $validationB->setAllowBlank(false);
-        $validationB->setShowInputMessage(true);
-        $validationB->setShowErrorMessage(true);
-        $validationB->setShowDropDown(true);
-        $validationB->setFormula1('"' . implode(',', $pelanggaranList) . '"');
-
-        foreach (range(2, 100) as $row) {
-            $sheet->getCell("B$row")->setDataValidation(clone $validationB);
-        }
-
         $writer = new Xlsx($spreadsheet);
-        $filePath = storage_path('app/public/siswa-pelanggaran.xlsx');
+        $filePath = storage_path('app/public/siswa-perbaikan.xlsx');
         $writer->save($filePath);
     }
 }
