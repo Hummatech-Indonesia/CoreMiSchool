@@ -38,7 +38,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('auth')->prefix('school')->name('school.')->group(function () {
-    Route::patch('max-point/{schoolPoint}', [SchoolPointController::class, 'update'])->name('max-point.update');
+    Route::post('school-points', [SchoolPointController::class, 'store'])->name('school-points.store');
     Route::resource('violation', RegulationController::class);
     Route::get('violation-download', [RegulationController::class, 'download'])->name('violation.download');
     Route::post('violation-import', [RegulationController::class, 'import'])->name('violation.import');

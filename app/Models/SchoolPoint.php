@@ -9,5 +9,5 @@ class SchoolPoint extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['max_points'];
+    protected $fillable = ['point', 'description'];
 }

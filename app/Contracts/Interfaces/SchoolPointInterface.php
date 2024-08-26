@@ -1,11 +1,12 @@
 <?php
         
 namespace App\Contracts\Interfaces;
+
+use App\Contracts\Interfaces\Eloquent\GetInterface;
+use App\Contracts\Interfaces\Eloquent\StoreInterface;
         
-use App\Contracts\Interfaces\Eloquent\GetInterface; 
-use App\Contracts\Interfaces\Eloquent\UpdateInterface;
-        
-interface SchoolPointInterface extends GetInterface, UpdateInterface
+interface SchoolPointInterface extends GetInterface, StoreInterface
 {
-    // Define your methods here
+    public function deleteAll(): mixed;
+    public function getMaxPoint(): mixed;
 }
