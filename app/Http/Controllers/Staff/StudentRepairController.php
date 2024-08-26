@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Staff;
 
 use App\Contracts\Interfaces\StudentRepairInterface;
 use App\Models\StudentRepair;
 use App\Http\Requests\StoreStudentRepairRequest;
 use App\Http\Requests\UpdateStudentRepairRequest;
+use App\Http\Controllers\Controller;
 
 class StudentRepairController extends Controller
 {
@@ -22,8 +23,7 @@ class StudentRepairController extends Controller
     public function index()
     {
         $studentRepairs = $this->studentRepair->get();
-
-        return view('', compact('studentRepairs'));
+        return view('staff.pages.repair-student-list.index', compact('studentRepairs'));
     }
 
     /**

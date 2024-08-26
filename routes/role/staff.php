@@ -3,6 +3,7 @@
 use App\Http\Controllers\Staff\StaffViolationController;
 use App\Http\Controllers\StudentViolationController;
 use App\Models\StudentViolation;
+use App\Http\Controllers\Staff\StudentRepairController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->prefix('employee')->name('employee.')->group(function () {
@@ -27,4 +28,6 @@ Route::middleware('auth')->prefix('employee')->name('employee.')->group(function
     Route::get('remidial-student-list', function(){
         return view('staff.pages.remedial-student-list.index');
     })->name('remidial-student.index');
+    
+    Route::resource('student-repair', StudentRepairController::class);
 });

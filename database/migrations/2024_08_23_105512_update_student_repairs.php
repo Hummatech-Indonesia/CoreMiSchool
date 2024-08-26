@@ -16,6 +16,8 @@ return new class extends Migration
             $table->dropColumn('repair_id');
             $table->longText('repair')->after('classroom_student_id');
             $table->integer('point')->default(0)->after('repair');
+            $table->date('start_date')->after('point');
+            $table->date('end_date')->after('start_date');
         });
     }
 
@@ -28,6 +30,8 @@ return new class extends Migration
             $table->foreignId('repair_id')->constrained()->after('classroom_student_id');
             $table->dropColumn('point');
             $table->dropColumn('repair');
+            $table->dropColumn('start_date');
+            $table->dropColumn('end_date');
         });
     }
 };
