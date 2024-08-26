@@ -31,7 +31,7 @@
                             <div data-repeater-item class="mb-3 position-relative">
                                 <div class="mb-3">
                                     <label for="" class="mb-2"><b>Point Peringatan Ke-<span class="repeater-index">1</span></b></label>
-                                    <input type="text" class="form-control" name="repeater-group[][violation_id]"
+                                    <input type="number" class="form-control" name="repeater-group[][violation_id]"
                                         placeholder="Masukkan Point Peringatan Ke-<span class='repeater-index'>1</span>"
                                         style="width: 100%; height: 36px;">
                                 </div>
