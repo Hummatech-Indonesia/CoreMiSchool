@@ -43,9 +43,9 @@
                                     </div>
                                     <div class="col-md-10 mb-3">
                                         <label for="nama-siswa" class="mb-1 text-dark">Nama siswa melakukan perbaikan</label>
-                                        <select id="nama-siswa"  name="classroom_student_id[]" class="form-control select2 select2-siswa-remidial" style="width: 100%; height: 36px" multiple="multiple" placeholder="Masukan nama siswa">
-                                            @forelse ($classroomStudents as $classroomStudent)
-                                                <option value="{{ $classroomStudent->student_id }}">{{ $classroomStudent->student->user->name }}</option>
+                                        <select id="nama-siswa"  name="classroom_student_id" multiple class="form-control select2 select2-siswa-remidial" style="width: 100%; height: 36px" multiple="multiple" placeholder="Masukan nama siswa">
+                                            @forelse ($students as $student)
+                                                <option value="{{ $student->student_id }}">{{ $student->student->user->name }}</option>
                                             @empty
                                                 <option value="">Belum ada siswa</option>
                                             @endforelse

@@ -2,19 +2,25 @@
 
 namespace App\Http\Controllers\Staff;
 
+use App\Contracts\Interfaces\ClassroomStudentInterface;
 use App\Contracts\Interfaces\StudentRepairInterface;
 use App\Models\StudentRepair;
 use App\Http\Requests\StoreStudentRepairRequest;
 use App\Http\Requests\UpdateStudentRepairRequest;
 use App\Http\Controllers\Controller;
+use App\Services\StudentRepairService;
 
 class StudentRepairController extends Controller
 {
     private StudentRepairInterface $studentRepair;
+    private ClassroomStudentInterface $classroomStudent;
+    private StudentRepairService $service;
 
-    public function __construct(StudentRepairInterface $studentRepair)
+    public function __construct(StudentRepairInterface $studentRepair, ClassroomStudentInterface $classroomStudent, StudentRepairService $service)
     {
         $this->studentRepair = $studentRepair;
+        $this->classroomStudent = $classroomStudent;
+        $this->service = $service;
     }
 
     /**
@@ -23,7 +29,8 @@ class StudentRepairController extends Controller
     public function index()
     {
         $studentRepairs = $this->studentRepair->get();
-        return view('staff.pages.repair-student-list.index', compact('studentRepairs'));
+        $students = $this->classroomStudent->get();
+        return view('staff.pages.repair-student-list.index', compact('studentRepairs', 'students'));
     }
 
     /**
@@ -39,7 +46,8 @@ class StudentRepairController extends Controller
      */
     public function store(StoreStudentRepairRequest $request)
     {
-        //
+        $this->service->store($request);
+        return redirect()->back()->with('success', 'Berhasil menambahkan perbaikan');
     }
 
     /**

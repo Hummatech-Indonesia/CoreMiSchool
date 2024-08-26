@@ -22,9 +22,13 @@ class StoreStudentRepairRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'classroom_student_id' => 'required|exists:classroom_students,id',
-            'repair_id' => 'required|exists:repairs,id',
-            'is_approved' => 'nullable',
+            'repeater-group' => 'required',
+            'repeater-group.*.repair' => 'required',
+            'repeater-group.*.point' => 'required',
+            'repeater-group.*.classroom_student_id' => 'required|array|exists:classroom_students,id',
+            'repeater-group.*.classroom_student_id.*' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
         ];
     }
 
