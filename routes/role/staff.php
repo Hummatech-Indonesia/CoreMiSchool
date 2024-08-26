@@ -20,7 +20,7 @@ Route::middleware('auth')->prefix('employee')->name('employee.')->group(function
     Route::get('top-violation', [StaffViolationController::class, 'index'])->name('top-violation.index');
     Route::get('class-detail-violation/{classroom}', [StaffViolationController::class, 'show'])->name('class-violation.detail');
     Route::get('student-detail-violation/{student}', [StaffViolationController::class, 'show_detail_student'])->name('student-violation.detail');
-
+    Route::get('export-student-violation', [StaffViolationController::class, 'download_student'])->name('student-violation.download');
     Route::get('violation-student-list', [StaffViolationController::class, 'list_student'])->name('violation-student.index');
 
     Route::resource('studentViolation', StudentViolationController::class);
@@ -28,6 +28,6 @@ Route::middleware('auth')->prefix('employee')->name('employee.')->group(function
     Route::get('remidial-student-list', function(){
         return view('staff.pages.remedial-student-list.index');
     })->name('remidial-student.index');
-    
+
     Route::resource('student-repair', StudentRepairController::class);
 });
