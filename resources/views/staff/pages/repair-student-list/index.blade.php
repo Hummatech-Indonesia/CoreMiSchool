@@ -90,13 +90,13 @@
                         </div>
                     </div>
                 </td>
-                <td>10 Mei 2024 - 10 Mei 2024</td>
-                <td>Menyapu halaman sekolah</td>
+                <td>{{ $studentRepair->start_date }} - {{ $studentRepair->end_date }}</td>
+                <td>{{ $studentRepair->repair }}</td>
                 <td>
-                    <span class="badge bg-light-success text-success">Sudah Dikerjakan</span>
+                    <span class="badge {{ $studentRepair->is_approved == 0 ? 'bg-light-danger text-danger' : 'bg-light-success text-success' }}">{{ $studentRepair->is_approved == 0 ? 'Belum di kerjakan' : 'Sudah di kerjakan' }}</span>
                 </td>
                 <td>
-                    <span class="badge bg-light-primary text-primary">-80 Point</span>
+                    <span class="badge bg-light-primary text-primary">-{{ $studentRepair->point }} Point</span>
                 </td>
                 <td>
                     <a href="" class="btn btn-primary py-1 px-4" data-bs-toggle="modal" data-bs-target="#modal-detail-remidial">Detail</a>
