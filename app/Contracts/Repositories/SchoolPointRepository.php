@@ -14,11 +14,23 @@ class SchoolPointRepository extends BaseRepository implements SchoolPointInterfa
 
     public function get(): mixed
     {
-        return $this->model->query()->first();
+        return $this->model->query()->get();
     }
 
-    public function update(mixed $id, array $data): mixed
+    public function store(array $data): mixed
     {
-        return $this->model->query()->findOrFail($id)->update($data);
+        return $this->model->create($data);
+    }
+
+    public function deleteAll(): mixed
+    {
+        return $this->model->query()->get()->each(function ($item) {
+            $item->delete();
+        });
+    }
+
+    public function getMaxPoint(): mixed
+    {
+        return $this->model->orderBy('point', 'DESC')->pluck('point')->first();
     }
 }

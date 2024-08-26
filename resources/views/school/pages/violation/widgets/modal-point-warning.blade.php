@@ -5,8 +5,7 @@
                 <h5 class="modal-title" id="createRFID"><b>Peringatan Point</b></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form id="form-edit-point" action="{{ route('school.max-point.update', $maxPoint->id) }}" method="POST" enctype="multipart/form-data">
-                @method('PATCH')
+            <form id="form-edit-point" action="{{ route('school.school-points.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
                     <div style="background-color: #EFF3FF; color: white; padding: 16px; border-radius: 8px;" class="mb-3">
@@ -26,47 +25,93 @@
                         </p>
                     </div>
 
-                    <div class="email-repeater mb-3">
-                        <div data-repeater-list="repeater-group">
-                            <div data-repeater-item class="mb-3 position-relative">
-                                <div class="mb-3">
-                                    <label for="" class="mb-2"><b>Point Peringatan Ke-<span class="repeater-index">1</span></b></label>
-                                    <input type="number" class="form-control" name="repeater-group[][violation_id]"
-                                        placeholder="Masukkan Point Peringatan Ke-<span class='repeater-index'>1</span>"
-                                        style="width: 100%; height: 36px;">
+                <div class="email-repeater mb-3">
+                    <div data-repeater-list="repeater-group">
+                    @forelse ($schoolPoints as $key => $schoolPoint)
+                        <div data-repeater-item class="mb-3 position-relative repeater-item" data-id="{{ $schoolPoint->id }}">
+                            <div class="mb-3">
+                                <label for="" class="mb-2"><b>Point Peringatan Ke-<span class="repeater-index">1</span></b></label>
+                                <input type="number" class="form-control" name="repeater-group[{{ $key }}][point]" value="{{ $schoolPoint->point }}"
+                                    placeholder="Masukkan Point Peringatan Ke-<span class='repeater-index'>1</span>"
+                                    style="width: 100%; height: 36px;">
+                                @error('point.*')
+                                    <span class="text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1 me-3">
+                                    <label for="" class="mb-2"><b>Deskripsi</b></label>
+                                    <input type="text" class="form-control" name="repeater-group[{{ $key }}][description]" value="{{ $schoolPoint->description }}"
+                                        placeholder="Masukkan Deskripsi" style="width: 100%; height: 36px;">
+                                    @error('description.*')
+                                        <span class="text-danger">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
                                 </div>
-                                <div class="d-flex align-items-center">
-                                    <div class="flex-grow-1 me-3">
-                                        <label for="" class="mb-2"><b>Deskripsi</b></label>
-                                        <input type="text" class="form-control" name="repeater-group[][student_id][]"
-                                            placeholder="Masukkan Deskripsi" style="width: 100%; height: 36px;">
-                                    </div>
-                                    <button data-repeater-delete="" class="btn btn-danger waves-effect waves-light"
-                                        type="button" style="padding: 6px 12px; height: 38px; margin-top: 24px;">
-                                        <i class="ti ti-circle-x fs-5"></i>
-                                    </button>
-                                </div>
-                                <div class="col-lg-12">
-                                    <hr>
-                                </div>
+                                <input type="hidden" name="repeater-group[{{ $key }}][id]" value="{{ $schoolPoint->id }}">
+                                <button data-repeater-delete="" class="btn btn-danger waves-effect waves-light repeater-delete"
+                                    type="button" style="padding: 6px 12px; height: 38px; margin-top: 24px;">
+                                    <i class="ti ti-circle-x fs-5"></i>
+                                </button>
+                            </div>
+                            <div class="col-lg-12">
+                                <hr>
                             </div>
                         </div>
-                        <button type="button" data-repeater-create="" class="btn btn-primary waves-effect waves-light">
-                            <div class="d-flex align-items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="me-2" viewBox="0 0 48 48">
-                                    <g fill="none">
-                                        <rect width="38" height="26" x="5" y="16" stroke="currentColor" stroke-linejoin="round"
-                                            stroke-width="4" rx="3" />
-                                        <path fill="currentColor"
-                                            d="M19 8h10V4H19zm11 1v7h4V9zm-12 7V9h-4v7zm11-8a1 1 0 0 1 1 1h4a5 5 0 0 0-5-5zM19 4a5 5 0 0 0-5 5h4a1 1 0 0 1 1-1z" />
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"
-                                            d="M18 29h12m-6-6v12" />
-                                    </g>
-                                </svg>
-                                Tambah Point
+                    @empty
+                        <div data-repeater-item class="mb-3 position-relative repeater-item">
+                            <div class="mb-3">
+                                <label for="" class="mb-2"><b>Point Peringatan Ke-<span class="repeater-index">1</span></b></label>
+                                <input type="number" class="form-control" name="repeater-group[][point]"
+                                    placeholder="Masukkan Point Peringatan Ke-<span class='repeater-index'>1</span>"
+                                    style="width: 100%; height: 36px;">
+                                @error('point.*')
+                                    <span class="text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
                             </div>
-                        </button>
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1 me-3">
+                                    <label for="" class="mb-2"><b>Deskripsi</b></label>
+                                    <input type="text" class="form-control" name="repeater-group[][description]"
+                                        placeholder="Masukkan Deskripsi" style="width: 100%; height: 36px;">
+                                    @error('description.*')
+                                        <span class="text-danger">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
+                                </div>
+                                <button data-repeater-delete="" class="btn btn-danger waves-effect waves-light repeater-delete"
+                                    type="button" style="padding: 6px 12px; height: 38px; margin-top: 24px;">
+                                    <i class="ti ti-circle-x fs-5"></i>
+                                </button>
+                            </div>
+                            <div class="col-lg-12">
+                                <hr>
+                            </div>
+                        </div>
+                    @endforelse
                     </div>
+                    <button type="button" data-repeater-create="" class="btn btn-primary waves-effect waves-light">
+                        <div class="d-flex align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="me-2" viewBox="0 0 48 48">
+                                <g fill="none">
+                                    <rect width="38" height="26" x="5" y="16" stroke="currentColor" stroke-linejoin="round"
+                                        stroke-width="4" rx="3" />
+                                    <path fill="currentColor"
+                                        d="M19 8h10V4H19zm11 1v7h4V9zm-12 7V9h-4v7zm11-8a1 1 0 0 1 1 1h4a5 5 0 0 0-5-5zM19 4a5 5 0 0 0-5 5h4a1 1 0 0 1 1-1z" />
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"
+                                        d="M18 29h12m-6-6v12" />
+                                </g>
+                            </svg>
+                            Tambah Point
+                        </div>
+                    </button>
+                </div>
 
                 </div>
                 <div class="modal-footer">

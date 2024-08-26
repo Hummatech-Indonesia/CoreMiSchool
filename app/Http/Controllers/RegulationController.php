@@ -28,8 +28,9 @@ class RegulationController extends Controller
     public function index()
     {
         $regulations = $this->regulation->get();
-        $maxPoint = $this->schoolPoint->get();
-        return view('school.pages.violation.index', compact('regulations', 'maxPoint'));
+        $schoolPoints = $this->schoolPoint->get();
+        $maxPoint = $this->schoolPoint->getMaxPoint();
+        return view('school.pages.violation.index', compact('regulations', 'schoolPoints', 'maxPoint'));
     }
 
     /**

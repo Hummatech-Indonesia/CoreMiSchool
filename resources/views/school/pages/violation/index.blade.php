@@ -15,11 +15,11 @@
                     <div class="row align-items-center">
                         <div class="col-12">
                             <div class="d-flex justify-content-between mb-2">
-                                <h5 class="fw-semibold text-white mb-4">Maks Point Pada Sekolah</h5>
+                                <h5 class="fw-semibold text-white mb-4">Maks Poin Pada Sekolah</h5>
                             </div>
                             <nav aria-label="breadcrumb">
-                                <span class="badge fw-semibold fs-6 text-primary bg-white p-2">{{ $maxPoint->max_points }}
-                                    Point</span>
+                                <span class="badge fw-semibold fs-6 text-primary bg-white p-2">{{ $maxPoint }}
+                                    Poin</span>
                             </nav>
                         </div>
                     </div>
@@ -32,14 +32,15 @@
                 <div class="card-body px-4 py-4">
                     <div class="row align-items-center">
                         <div class="col-9">
-                            <h4 class="fs-5 mt-1"><b>Point Peringatan</b></h4>
+                            <h4 class="fs-5 mt-1"><b>Poin Peringatan</b></h4>
                             <nav aria-label="breadcrumb">
                                 <ul style="list-style-type:disc; padding-left: 20px;">
-                                    <li style="padding-bottom: 3px">point __ - __ lorem ipsum dolor sit amet
-                                        yang telah dilanggar</li>
-                                    <li style="padding-bottom: 3px">Guru diharuskan untuk menindak lanjuti siswa yang
-                                        mempunyai banyak point Pelanggaran</li>
-                                    <li>point __ - __ lorem ipsum dolor sit amet</li>
+                                    @forelse ($schoolPoints as $schoolPoint)
+                                        <li style="padding-bottom: 3px">Poin peringatan {{ $schoolPoint->point }}+ : {{ $schoolPoint->description }}</li>
+                                    @empty
+                                        <li style="padding-bottom: 3px">Poin peringatan belum ditambahkan</li>
+                                    @endforelse
+                                    <li style="padding-bottom: 3px">Guru diharuskan untuk menindak lanjuti siswa yang mempunyai banyak poin Pelanggaran</li>
                                 </ul>
                             </nav>
                         </div>

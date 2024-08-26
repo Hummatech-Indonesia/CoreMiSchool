@@ -22,16 +22,9 @@ class StoreSchoolPointRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'max_points' => 'required|numeric|min:10',
-        ];
-    }
-
-    public function messages(): array
-    {
-        return [
-            'max_points.required' => 'Maksimal poin harus diisi.',
-            'max_points.numeric' => 'Maksimal poin harus berupa angka.',
-            'max_points.min' => 'Maksimal poin harus lebih dari :min.',
+            'repeater-group' => 'required',
+            'repeater-group.*.point' => 'required|numeric',
+            'repeater-group.*.description' => 'required|string',
         ];
     }
 }
