@@ -10,12 +10,12 @@
             </div>
             <div class="modal-body px-4" style="max-height: 70vh; overflow-y: auto;">
                 <div class="mb-3">
-                    <h5 style="font-size: 15px"><b>Nama Pelapor:</b></h5>
+                    <h5 style="font-size: 15px"><b>Pembuat Perbaikan:</b></h5>
                     <h6 style="font-size: 14px">Alfian Fahrul Rifa'i</h6>
                 </div>
                 <hr>
                 <div class="mb-4">
-                    <h5 style="font-size: 15px"><b>Nama Siswa Dilaporkan:</b></h5>
+                    <h5 style="font-size: 15px"><b>Nama Siswa Perbaikan:</b></h5>
                     <h6 style="font-size: 14px">Alfian Fahrul Rifa'i</h6>
                 </div>
                 <div class="mb-4">
