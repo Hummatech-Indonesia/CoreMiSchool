@@ -79,7 +79,7 @@
                                 Point</span>
                         </td>
                         <td>
-                            <button data-bs-toggle="modal" data-bs-target="#repair-list-detail"
+                            <button data-bs-toggle="modal" data-bs-target="#repair-upload-detail"
                                 class="btn btn-primary py-1 px-4">Detail</button>
                         </td>
                     </tr>
@@ -118,4 +118,5 @@
     </div>
 
     @include('student.pages.repair.widgets.modal-detail')
+    @include('student.pages.repair.widgets.modal-upload')
 @endsection
