@@ -134,7 +134,7 @@
             <tbody>
                 @forelse ($studentViolations as $studentViolation)
                     <tr>
-                        <td>{{ $item }}</td>
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $studentViolation->regulation->violation }}</td>
                         <td>{{ Carbon\Carbon::parse($studentViolation->created_at)->format('d M Y') }}</td>
                         <td>
