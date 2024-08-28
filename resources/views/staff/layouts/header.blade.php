@@ -45,7 +45,7 @@
                             aria-expanded="false">
                             <div class="d-flex align-items-center">
                                 <div class="">
-                                    <img src="{{ asset('assets/images/logo/logo-M.png') }}"
+                                    <img src="{{ Auth::user()->image ? asset('storage/' . Auth::user()->image) : asset('assets/images/default-user.jpeg') }}"
                                         class="rounded-circle user-profile" style="object-fit: cover" width="35"
                                         height="35" alt="" />
                                 </div>
@@ -58,7 +58,7 @@
                                     <h5 class="mb-0 fs-5 fw-semibold">{{ auth()->user()->name }} Profil</h5>
                                 </div>
                                 <div class="d-flex align-items-center py-9 mx-7 border-bottom">
-                                    <img src="{{ asset('assets/images/logo/logo-M.png') }}"
+                                    <img src="{{ Auth::user()->image ? asset('storage/' . Auth::user()->image) : asset('assets/images/default-user.jpeg') }}"
                                         class="rounded-circle user-profile" style="object-fit: cover" width="80"
                                         height="80" alt="" />
                                     <div class="ms-3">
@@ -107,7 +107,7 @@
             <button class="navbar-toggler p-0 border-0" type="button" id="drop1" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 <div class="">
-                    <img src="{{ asset('assets/images/logo/logo-M.png') }}" class="rounded-circle user-profile"
+                    <img src="{{ Auth::user()->image ? asset('storage/' . Auth::user()->image) : asset('assets/images/default-user.jpeg') }}" class="rounded-circle user-profile"
                         style="object-fit: cover" width="35" height="35" alt="" />
                 </div>
             </button>
@@ -118,7 +118,7 @@
                         <h5 class="mb-0 fs-5 fw-semibold">{{ auth()->user()->name }} Profile</h5>
                     </div>
                     <div class="d-flex align-items-center py-9 mx-7 border-bottom">
-                        <img src="{{ asset('assets/images/logo/logo-M.png') }}" class="rounded-circle user-profile"
+                        <img src="{{ Auth::user()->image ? asset('storage/' . Auth::user()->image) : asset('assets/images/default-user.jpeg') }}" class="rounded-circle user-profile"
                             style="object-fit: cover" width="80" height="80" alt="" />
                         <div class="ms-3">
                             <h5 class="mb-1 fs-3 username">{{ auth()->user()->name }}</h5>
@@ -129,7 +129,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="message-body">
+                    {{-- <div class="message-body">
                         <a class="py-8 px-7 mt-8 d-flex align-items-center"
                             href="{{ asset('assets/images/logo/logo-M.png') }}">
                             <span class="d-flex align-items-center justify-content-center bg-light rounded-1 p-6">
@@ -141,7 +141,7 @@
                                 <span class="d-block text-dark">Setting Akun</span>
                             </div>
                         </a>
-                    </div>
+                    </div> --}}
                     <form id="logout-form" action="{{ route('logout') }}" method="POST">
                         @csrf
                         <div class="d-grid py-4 px-7 pt-8">
