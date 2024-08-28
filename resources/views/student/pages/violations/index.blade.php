@@ -141,7 +141,7 @@
                             <span class="badge bg-light-danger text-danger">+ {{ $studentViolation->regulation->point }} Point</span>
                         </td>
                         <td>
-                            <a href="javascript:void(0)" class="btn btn-primary py-1 px-4">Detail</a>
+                            <button data-bs-toggle="modal" data-bs-target="#violation-list-detail" class="btn btn-primary py-1 px-4">Detail</button>
                         </td>
                     </tr>
                 @empty
@@ -160,4 +160,6 @@
             </tbody>
         </table>
     </div>
+
+    @include('student.pages.violations.widgets.modal-detail')
 @endsection
