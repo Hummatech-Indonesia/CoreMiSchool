@@ -22,6 +22,10 @@ Route::middleware('auth')->prefix('teacher')->name('teacher.')->group(function (
     // Route::get('journals/detail', function () {
     //     return view('teacher.pages.journals.detail');
     // })->name('journals.detail');
+
+    Route::get('journal-and-attendance', function(){
+        return view('teacher.pages.journals-and-attendance.index');
+    })->name('journal-and-attendace.index');
 });
 
 

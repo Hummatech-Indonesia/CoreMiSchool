@@ -58,7 +58,7 @@
                                 </g>
                             </svg>
                         </span>
-                        <span class="hide-menu">Jurnal</span>
+                        <span class="hide-menu">Jurnal dan Absensi</span>
                     </a>
                 </li>
 
