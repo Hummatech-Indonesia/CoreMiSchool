@@ -32,8 +32,8 @@ class StudentRepairExport implements FromCollection
         $sheet->setCellValue('A2', 'Contoh Format (Jangan di Hapus)');
         $sheet->setCellValue('B2', 'Keliling Lapangan');
         $sheet->setCellValue('C2', '20');
-        $sheet->setCellValue('D2', 'hari/bulan/tahun ( 10/1/2024 )');
-        $sheet->setCellValue('E2', 'hari/bulan/tahun ( 10/1/2024 )');
+        $sheet->setCellValue('D2', 'bulan/hari/tahun ( 01/18/2024 )');
+        $sheet->setCellValue('E2', 'bulan/hari/tahun ( 01/18/2024 )');
 
         // Lebarkan kolom sesuai dengan isinya
         $sheet->getColumnDimension('A')->setAutoSize(true);

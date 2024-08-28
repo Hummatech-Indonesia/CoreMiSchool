@@ -9,7 +9,10 @@ use App\Models\StudentRepair;
 use App\Http\Requests\StoreStudentRepairRequest;
 use App\Http\Requests\UpdateStudentRepairRequest;
 use App\Http\Controllers\Controller;
+use App\Imports\StudentRepairImport;
 use App\Services\StudentRepairService;
+use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class StudentRepairController extends Controller
 {
@@ -52,10 +55,18 @@ class StudentRepairController extends Controller
     }
 
     public function download_student()
-    {   
+    {
         $export = new StudentRepairExport();
         $export->collection();
         return response()->download(storage_path('app/public/siswa-perbaikan.xlsx'))->deleteFileAfterSend(true);
+    }
+
+    public function import(Request $request)
+    {
+        $file = $request->file('file');
+        $import = new StudentRepairImport();
+        Excel::import($import, $file);
+        return redirect()->back()->with('success', "Berhasil Mengimport Data!");
     }
 
     /**

@@ -10,9 +10,11 @@ use App\Contracts\Interfaces\StudentRepairInterface;
 use App\Contracts\Interfaces\StudentViolationInterface;
 use App\Exports\StudentViolationExport;
 use App\Http\Controllers\Controller;
+use App\Imports\StudentViolationImport;
 use App\Models\Classroom;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class StaffViolationController extends Controller
 {
@@ -80,6 +82,9 @@ class StaffViolationController extends Controller
 
     public function import(Request $request)
     {
-
+        $file = $request->file('file');
+        $import = new StudentViolationImport();
+        Excel::import($import, $file);
+        return redirect()->back()->with('success', "Berhasil Mengimport Data!");
     }
 }

@@ -41,7 +41,7 @@
                     <h6 class="text-light text-center pt-2" style="font-size: 20px"><b>Jumlah Point Kamu</b></h6>
                     <p class="card-text text-center" style="font-size: 12px; margin-bottom: 10px;">Siswa bisa melakukan
                         perbaikan untuk mengurangi point</p>
-                    <h1 class="text-light text-center" style="font-size: 40px; margin-top: 20px;"><b>12</b></h1>
+                    <h1 class="text-light text-center" style="font-size: 40px; margin-top: 20px;"><b>{{ auth()->user()->student->point }}</b></h1>
                     <h6 class="text-light text-center" style="font-size: 20px; margin-top: 10px;"><b>Point Pelanggaran</b>
                     </h6>
                 </div>
@@ -55,7 +55,7 @@
                 </div>
                 <div class="card-body p-3 d-flex flex-column">
                     <ul style="list-style-type:disc; padding-left: 20px;">
-                        <li style="padding-bottom: 6px">Point maksimal pada sekolah <b>200 point</b></li>
+                        <li style="padding-bottom: 6px">Point maksimal pada sekolah <b>{{ $maxPoint }} point</b></li>
                         <li style="padding-bottom: 6px">Siswa diperkenankan melakukan perbaikan untuk mengurangi point
                             pelanggaran yang dimiliki (silahkan ke staff untuk meminta tugas perbaikan)</li>
                         <li style="padding-bottom: 6px">Siswa melanggar akan diberikan point yang setimpal dengan apa yang
@@ -72,9 +72,11 @@
                 </div>
                 <div class="card-body p-3 d-flex flex-column">
                     <ul style="list-style-type:disc; padding-left: 20px;">
-                        <li style="padding-bottom: 6px">point __ - __ lorem ipsum dolor sit amet</li>
-                        <li style="padding-bottom: 6px">point __ - __ lorem ipsum dolor sit amet</li>
-                        <li style="padding-bottom: 6px">point __ - __ lorem ipsum dolor sit amet</li>
+                        @forelse ($schoolPoints as $schoolPoint)
+                            <li style="padding-bottom: 6px">Point {{ $schoolPoint->point }}: {{ $schoolPoint->description }}</li>
+                        @empty
+                            <li style="padding-bottom: 6px">Belum ada point peringatan</li>
+                        @endforelse
                     </ul>
                 </div>
             </div>
@@ -130,13 +132,13 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse (range(1,4) as $item)
+                @forelse ($studentViolations as $studentViolation)
                     <tr>
                         <td>{{ $item }}</td>
-                        <td>Bermain Slot saat jam pelajaran, gacor kang...</td>
-                        <td>10 Januari 2023</td>
+                        <td>{{ $studentViolation->regulation->violation }}</td>
+                        <td>{{ Carbon\Carbon::parse($studentViolation->created_at)->format('d M Y') }}</td>
                         <td>
-                            <span class="badge bg-light-danger text-danger">+ 12 Point</span>
+                            <span class="badge bg-light-danger text-danger">+ {{ $studentViolation->regulation->point }} Point</span>
                         </td>
                         <td>
                             <a href="javascript:void(0)" class="btn btn-primary py-1 px-4">Detail</a>
@@ -149,7 +151,7 @@
                                 <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt=""
                                     width="300px">
                                 <p class="fs-5 text-dark text-center mt-2">
-                                    Siswa belum ditambahkan
+                                    Kamu belum pernah melanggar peraturan sekolah
                                 </p>
                             </div>
                         </td>

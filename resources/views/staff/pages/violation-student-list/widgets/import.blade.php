@@ -6,7 +6,8 @@
                 <h5 class="modal-title" id="importPegawai">Import Pelanggaran</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('employee.student-violation.import') }}" method="POST" enctype="multipart/form-data">
+                @method('post')
                 @csrf
                 <div class="modal-body">
                     <div class="card p-3" style="background-color: #FFF5E3;">
@@ -33,7 +34,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">File Excel</label>
-                        <input type="file" class="form-control" name="file">
+                        <input type="file" class="form-control" name="file">    
                         @error('')
                         <span class="invalid-feedback" role="alert" style="color: red;">
                             <strong>{{ $message }}</strong>
