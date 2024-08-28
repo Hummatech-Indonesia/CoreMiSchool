@@ -23,7 +23,7 @@
                 <!-- Dashboard -->
                 <!-- =================== -->
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/student" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('student.dashboard') }}" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -46,7 +46,7 @@
                     <span class="hide-menu">Fitur</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/violations" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('student.violations') }}" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                 <path fill="none" stroke="currentColor" stroke-linecap="round"
