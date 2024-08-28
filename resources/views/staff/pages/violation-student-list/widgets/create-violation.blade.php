@@ -16,7 +16,7 @@
                             </svg>
                         </div>
                         <h6 class="text-warning ms-2" style="font-size: 16">Maksimal point pelanggaran pada sekolah
-                            <br> 200 Point
+                            <br> {{ $maxPoint }} Point
                         </h6>
                     </div>
                 </div>

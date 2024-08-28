@@ -57,6 +57,7 @@
 
     <!--  Customizer -->
     <!--  Import Js Files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     @yield('script')
     <script src="{{ asset('admin_assets/dist/libs/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('admin_assets/dist/libs/simplebar/dist/simplebar.min.js') }}"></script>
