@@ -8,4 +8,7 @@ Route::middleware('auth')->prefix('student')->name('student.')->group(function (
         return view('student.pages.dashboard');
     })->name('dashboard');
     Route::get('violations', [ViolationController::class, 'index'])->name('violations');
+    Route::get('repair', function () {
+        return view('student.pages.repair.index');
+    })->name('repair');
 });
