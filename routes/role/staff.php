@@ -21,6 +21,8 @@ Route::middleware('auth')->prefix('employee')->name('employee.')->group(function
     Route::get('class-detail-violation/{classroom}', [StaffViolationController::class, 'show'])->name('class-violation.detail');
     Route::get('student-detail-violation/{student}', [StaffViolationController::class, 'show_detail_student'])->name('student-violation.detail');
     Route::get('export-student-violation', [StaffViolationController::class, 'download_student'])->name('student-violation.download');
+    Route::post('import-student-violation', [StaffViolationController::class, 'import'])->name('student-violation.import');
+    
     Route::get('violation-student-list', [StaffViolationController::class, 'list_student'])->name('violation-student.index');
 
     Route::resource('studentViolation', StudentViolationController::class);
@@ -31,4 +33,5 @@ Route::middleware('auth')->prefix('employee')->name('employee.')->group(function
 
     Route::resource('student-repair', StudentRepairController::class);
     Route::get('export-student-repair', [StudentRepairController::class, 'download_student'])->name('student-repair.download');
+    Route::post('import-student-repair', [StudentRepairController::class, 'import'])->name('student-repair.import');
 });

@@ -19,11 +19,8 @@ class StudentViolationExport implements FromCollection
     */
     public function collection()
     {
-        $students = Student::with('user')->get();
-        $regulations = Regulation::all();
-
-        $siswaList = $students->map(fn($student) => "{$student->id}|{$student->user->name}")->toArray();
-        $pelanggaranList = $regulations->map(fn($regulation) => "{$regulation->id}|{$regulation->violation}")->toArray();
+        $siswaList = Student::with('user')->get()->pluck('user.name')->toArray();
+        $pelanggaranList = Regulation::pluck('violation')->toArray();
 
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
