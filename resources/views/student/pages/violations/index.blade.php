@@ -141,7 +141,12 @@
                             <span class="badge bg-light-danger text-danger">+ {{ $studentViolation->regulation->point }} Point</span>
                         </td>
                         <td>
-                            <button data-bs-toggle="modal" data-bs-target="#violation-list-detail" class="btn btn-primary py-1 px-4">Detail</button>
+                            <button class="btn btn-primary py-1 px-4 btn-detail"
+                                data-name="{{ $studentViolation->classroomStudent->student->user->name }}"
+                                data-classroom="{{ $studentViolation->classroomStudent->classroom->name }}"
+                                data-violation="{{ $studentViolation->regulation->violation }}"
+                                data-date="{{ Carbon\Carbon::parse($studentViolation->created_at)->format('d M Y') }}"  
+                            >Detail</button>
                         </td>
                     </tr>
                 @empty
@@ -162,4 +167,7 @@
     </div>
 
     @include('student.pages.violations.widgets.modal-detail')
+@endsection
+@section('script')
+    @include('student.pages.violations.scripts.detail')
 @endsection
