@@ -40,7 +40,7 @@
                             aria-expanded="false">
                             <div class="d-flex align-items-center">
                                 <div class="">
-                                    <img src="{{ auth()->user()->student->image ? asset('storage/' . auth()->user()->student->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}"
+                                    <img src="{{ auth()->user()->student->image ? asset('storage/' . auth()->user()->student->image) : asset('assets/images/default-user.jpeg') }}"
                                         class="rounded-circle user-profile" style="object-fit: cover" width="35"
                                         height="35" alt="" />
                                 </div>
@@ -53,7 +53,7 @@
                                     <h5 class="mb-0 fs-5 fw-semibold">Profil Siswa</h5>
                                 </div>
                                 <div class="d-flex align-items-center py-9 mx-7 border-bottom">
-                                    <img src="{{ auth()->user()->student->image ? asset('storage/' . auth()->user()->student->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}"
+                                    <img src="{{ auth()->user()->student->image ? asset('storage/' . auth()->user()->student->image) : asset('assets/images/default-user.jpeg') }}"
                                         class="rounded-circle user-profile" style="object-fit: cover" width="80"
                                         height="80" alt="" />
                                     <div class="ms-3">
@@ -99,7 +99,7 @@
             <button class="navbar-toggler p-0 border-0" type="button" id="drop1" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 <div class="">
-                    <img src="{{ auth()->user()->student->image ? asset('storage/' . auth()->user()->student->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}" class="rounded-circle user-profile" style="object-fit: cover" width="35"
+                    <img src="{{ auth()->user()->student->image ? asset('storage/' . auth()->user()->student->image) : asset('assets/images/default-user.jpeg') }}" class="rounded-circle user-profile" style="object-fit: cover" width="35"
                         height="35" alt="" />
                 </div>
             </button>
@@ -110,7 +110,7 @@
                         <h5 class="mb-0 fs-5 fw-semibold">Profil Siswa</h5>
                     </div>
                     <div class="d-flex align-items-center py-9 mx-7 border-bottom">
-                        <img src="{{ auth()->user()->student->image ? asset('storage/' . auth()->user()->student->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}" class="rounded-circle user-profile" style="object-fit: cover"
+                        <img src="{{ auth()->user()->student->image ? asset('storage/' . auth()->user()->student->image) : asset('assets/images/default-user.jpeg') }}" class="rounded-circle user-profile" style="object-fit: cover"
                             width="80" height="80" alt="" />
                         <div class="ms-3">
                             <h5 class="mb-1 fs-3 username">{{ auth()->user()->name }}</h5>
