@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Route;
+use App\Exports\JadwalPelajaranExport;
+use App\Http\Controllers\imports\ImportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +36,14 @@ require_once __DIR__ . '/role/landing.php';
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('import-jadwal', function() {
+    return view('home-import');
+});
+Route::get('/customizing-column', function () {
+    // return (new InvoicesExport)->download('data.xlsx');
+    return Excel::download(new JadwalPelajaranExport, 'template_jadwal_pelajaran.xlsx');
+})->name('template');
+
+Route::post('import', [ImportController::class, 'import'])->name('import');
+Route::post('importSpreadsheet', [ImportController::class, 'importSpreadsheet'])->name('import-spreadsheet');
