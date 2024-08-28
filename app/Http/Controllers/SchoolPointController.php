@@ -3,34 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\SchoolPointInterface;
-use App\Models\SchoolPoint;
-use App\Http\Requests\UpdateSchoolPointRequest;
+use App\Http\Requests\StoreSchoolPointRequest;
+use App\Services\SchoolPointService;
 
 class SchoolPointController extends Controller
 {
     private SchoolPointInterface $schoolPoint;
+    private SchoolPointService $schoolPointService;
 
-    public function __construct(SchoolPointInterface $schoolPoint)
+    public function __construct(SchoolPointInterface $schoolPoint, SchoolPointService $schoolPointService)
     {
         $this->schoolPoint = $schoolPoint;
+        $this->schoolPointService = $schoolPointService;
     }
 
     /**
-     * Display a listing of the resource.
+     * Store a newly created resource in storage.
      */
-    public function index()
+    public function store(StoreSchoolPointRequest $request)
     {
-        $point = $this->schoolPoint->get();
-
-        return view('', compact('point'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateSchoolPointRequest $request, SchoolPoint $schoolPoint)
-    {
-        $this->schoolPoint->update($schoolPoint->id, $request->validated());
-        return redirect()->back()->with('success', 'Point berhasil diperbarui');
+        $this->schoolPointService->store($request);
+        return redirect()->back()->with('success', 'Point peringatan berhasil disimpan');
     }
 }

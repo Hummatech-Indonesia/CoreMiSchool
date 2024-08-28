@@ -3,7 +3,7 @@
 
 <head>
     <!--  Title -->
-    <title>{{ env('APP_NAME') }}</title>
+    <title>MiSchool | Student</title>
     <!--  Required Meta Tag -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,11 +27,11 @@
 <body>
     <!-- Preloader -->
     <div class="preloader">
-        <img src="{{ asset('preloader.png') }}" style="width:150px" alt="loader" class="lds-ripple" />
+        <img src="{{ asset('assets/images/logo/logo-M.png') }}" style="width:100px" alt="loader" class="lds-ripple" />
     </div>
     <!-- Preloader -->
     <div class="preloader">
-        <img src="{{ asset('preloader.png') }}" style="width:150px" alt="loader" class="lds-ripple" />
+        <img src="{{ asset('assets/images/logo/logo-M.png') }}" style="width:100px" alt="loader" class="lds-ripple" />
     </div>
     <!--  Body Wrapper -->
     <div class="page-wrapper" id="main-wrapper" data-theme="blue_theme" data-layout="vertical" data-sidebartype="full"

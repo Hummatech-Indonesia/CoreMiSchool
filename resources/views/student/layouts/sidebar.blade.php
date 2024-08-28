@@ -23,9 +23,12 @@
                 <!-- Dashboard -->
                 <!-- =================== -->
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="index-2.html" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('student.dashboard') }}" aria-expanded="false">
                         <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-aperture">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-aperture">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
                                 <path d="M3.6 15h10.55" />
@@ -43,26 +46,24 @@
                     <span class="hide-menu">Fitur</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="index2.html" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('student.violations') }}" aria-expanded="false">
                         <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-list-check">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M3.5 5.5l1.5 1.5l2.5 -2.5" />
-                                <path d="M3.5 11.5l1.5 1.5l2.5 -2.5" />
-                                <path d="M3.5 17.5l1.5 1.5l2.5 -2.5" />
-                                <path d="M11 6l9 0" />
-                                <path d="M11 12l9 0" />
-                                <path d="M11 18l9 0" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2"
+                                    d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1zm-8-5v4m0 4h.01" />
                             </svg>
                         </span>
-                        <span class="hide-menu">E-Learning</span>
+                        <span class="hide-menu">Daftar Pelanggaran</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
+                {{-- <li class="sidebar-item">
                     <a class="sidebar-link" href="index3.html" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                                <path fill="currentColor" d="m12 3.19l7 3.11V11c0 4.52-2.98 8.69-7 9.93c-4.02-1.24-7-5.41-7-9.93V6.3zM12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5zm-1 6h2v2h-2zm0 4h2v6h-2z" /></svg>
+                                <path fill="currentColor"
+                                    d="m12 3.19l7 3.11V11c0 4.52-2.98 8.69-7 9.93c-4.02-1.24-7-5.41-7-9.93V6.3zM12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5zm-1 6h2v2h-2zm0 4h2v6h-2z" />
+                            </svg>
                         </span>
                         <span class="hide-menu">Pelanggaran dan Perbaikan</span>
                     </a>
@@ -70,9 +71,13 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="index4.html" aria-expanded="false">
                         <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-bubble">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-bubble">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M12.4 3a5.34 5.34 0 0 1 4.906 3.239a5.333 5.333 0 0 1 -1.195 10.6a4.26 4.26 0 0 1 -5.28 1.863l-3.831 2.298v-3.134a2.668 2.668 0 0 1 -1.795 -3.773a4.8 4.8 0 0 1 2.908 -8.933a5.33 5.33 0 0 1 4.287 -2.16" />
+                                <path
+                                    d="M12.4 3a5.34 5.34 0 0 1 4.906 3.239a5.333 5.333 0 0 1 -1.195 10.6a4.26 4.26 0 0 1 -5.28 1.863l-3.831 2.298v-3.134a2.668 2.668 0 0 1 -1.795 -3.773a4.8 4.8 0 0 1 2.908 -8.933a5.33 5.33 0 0 1 4.287 -2.16" />
                             </svg> </span>
                         <span class="hide-menu">FAQ</span>
                     </a>
@@ -80,7 +85,10 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link has-arrow" href="#" aria-expanded="false">
                         <span class="d-flex">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-file-invoice">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-file-invoice">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <path d="M14 3v4a1 1 0 0 0 1 1h4" />
                                 <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
@@ -101,19 +109,8 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
             </ul>
-            {{-- <div class="unlimited-access hide-menu bg-light-primary position-relative my-7 rounded">
-                <div class="d-flex">
-                    <div class="unlimited-access-title">
-                        <h6 class="fw-semibold fs-4 mb-6 text-dark w-85">Unlimited Access</h6>
-                        <button class="btn btn-primary fs-2 fw-semibold lh-sm">Signup</button>
-                    </div>
-                    <div class="unlimited-access-img">
-                        <img src="#" alt="" class="img-fluid">
-                    </div>
-                </div>
-            </div> --}}
         </nav>
         <div class="fixed-profile p-3 bg-light-secondary rounded sidebar-ad mt-3">
             <div class="hstack gap-3">
@@ -124,7 +121,8 @@
                     <h6 class="mb-0 fs-4 fw-semibold">Mathew</h6>
                     <span class="fs-2 text-dark">Designer</span>
                 </div>
-                <button class="border-0 bg-transparent text-primary ms-auto" tabindex="0" type="button" aria-label="logout" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="logout">
+                <button class="border-0 bg-transparent text-primary ms-auto" tabindex="0" type="button"
+                    aria-label="logout" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="logout">
                     <i class="ti ti-power fs-6"></i>
                 </button>
             </div>
