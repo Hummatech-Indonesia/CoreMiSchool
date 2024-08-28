@@ -35,27 +35,25 @@
     <p>Penjelasan tentang pelanggaran dan point peringatan melanggar</p>
 
     <div class="row">
-        <!-- Smaller Point Card -->
-        <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="card position-relative mt-3 py-3 w-100"
-                style="background: linear-gradient(135deg, #51B6FF, #4F7CFF); color: #fff;">
+        <div class="col-lg-3 col-md-6 d-flex align-items-stretch" style="flex: 0 0 25%; max-width: 25%;">
+            <div class="card w-100 border p-0" style="background: linear-gradient(135deg, #51B6FF, #4F7CFF); color: #fff;">
                 <div class="card-body d-flex flex-column p-3" style="background: none;">
-                    <h6 class="text-light text-center" style="font-size: 20px"><b>Jumlah Point Kamu</b></h6>
-                    <p class="card-text text-center" style="font-size: 12px">Siswa bisa melakukan perbaikan untuk mengurangi
-                        point</p>
-                    <h1 class="text-light text-center mt-auto" style="font-size: 40px"><b>12</b></h1>
-                    <h6 class="text-light text-center" style="font-size: 20px"><b>Point Pelanggaran</b></h6>
+                    <h6 class="text-light text-center pt-2" style="font-size: 20px"><b>Jumlah Point Kamu</b></h6>
+                    <p class="card-text text-center" style="font-size: 12px; margin-bottom: 10px;">Siswa bisa melakukan
+                        perbaikan untuk mengurangi point</p>
+                    <h1 class="text-light text-center" style="font-size: 40px; margin-top: 20px;"><b>12</b></h1>
+                    <h6 class="text-light text-center" style="font-size: 20px; margin-top: 10px;"><b>Point Pelanggaran</b>
+                    </h6>
                 </div>
             </div>
         </div>
 
-        <!-- Larger Cards -->
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch" style="flex: 0 0 37.5%; max-width: 37.5%;">
             <div class="card w-100 border p-0">
                 <div class="card-header bg-danger rounded-bottom-2">
                     <h4 class="mb-0 text-white card-title">Pelanggaran</h4>
                 </div>
-                <div class="card-body p-3 d-flex flex-column ">
+                <div class="card-body p-3 d-flex flex-column">
                     <ul style="list-style-type:disc; padding-left: 20px;">
                         <li style="padding-bottom: 6px">Point maksimal pada sekolah <b>200 point</b></li>
                         <li style="padding-bottom: 6px">Siswa diperkenankan melakukan perbaikan untuk mengurangi point
@@ -67,7 +65,7 @@
             </div>
         </div>
 
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch" style="flex: 0 0 37.5%; max-width: 37.5%;">
             <div class="card w-100 border">
                 <div class="card-header bg-warning rounded-bottom-2">
                     <h4 class="mb-0 text-white card-title">Point Peringatan</h4>
@@ -82,6 +80,8 @@
             </div>
         </div>
     </div>
+
+
 
     <div class="d-flex align-items-center mb-2">
         <span class="mb-1 badge bg-primary p-0 rounded-2 d-flex align-items-center justify-content-center"
@@ -134,13 +134,12 @@
                     <tr>
                         <td>{{ $item }}</td>
                         <td>Bermain Slot saat jam pelajaran, gacor kang...</td>
-                        <td>10 Januari  2023</td>
+                        <td>10 Januari 2023</td>
                         <td>
                             <span class="badge bg-light-danger text-danger">+ 12 Point</span>
                         </td>
                         <td>
-                            <a href="javascript:void(0)"
-                                class="btn btn-primary py-1 px-4">Detail</a>
+                            <a href="javascript:void(0)" class="btn btn-primary py-1 px-4">Detail</a>
                         </td>
                     </tr>
                 @empty
