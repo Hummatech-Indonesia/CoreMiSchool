@@ -24,6 +24,7 @@ use App\Http\Controllers\Schools\AttendanceEmployeeController;
 use App\Http\Controllers\Schools\AttendanceStudentController as SchoolsAttendanceStudentController;
 use App\Http\Controllers\Schools\EmployeeController;
 use App\Http\Controllers\Schools\ExtracurricularController as SchoolsExtracurricularController;
+use App\Http\Controllers\Schools\JournalTeacherController;
 use App\Http\Controllers\Schools\StaffController;
 use App\Http\Controllers\Schools\StudentController;
 use App\Http\Controllers\Schools\TeacherController;
@@ -39,6 +40,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->prefix('school')->name('school.')->group(function () {
     Route::post('school-points', [SchoolPointController::class, 'store'])->name('school-points.store');
+    Route::get('journals', [JournalTeacherController::class, 'index'])->name('journals.detail');
+    Route::patch('max-point/{schoolPoint}', [SchoolPointController::class, 'update'])->name('max-point.update');
     Route::resource('violation', RegulationController::class);
     Route::get('violation-download', [RegulationController::class, 'download'])->name('violation.download');
     Route::post('violation-import', [RegulationController::class, 'import'])->name('violation.import');

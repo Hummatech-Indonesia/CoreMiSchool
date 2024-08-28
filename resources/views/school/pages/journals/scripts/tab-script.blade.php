@@ -1,15 +1,10 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const tabs = document.querySelectorAll('#nav-tab a[data-bs-toggle="pill"]');
-        const guruButtons = document.querySelectorAll('#guru-buttons');
-        const pegawaiButtons = document.querySelectorAll('#pegawai-buttons');
 
         function updateButtons() {
             const activeTabId = document.querySelector('#nav-tab .nav-link.active').getAttribute('id');
-            const isTeacherTabActive = activeTabId === 'teacher-tab';
-
-            guruButtons.forEach(btn => btn.classList.toggle('d-none', !isTeacherTabActive));
-            pegawaiButtons.forEach(btn => btn.classList.toggle('d-none', isTeacherTabActive));
+            const isTeacherTabActive = activeTabId === 'all-tab';
         }
 
         tabs.forEach(tab => {
@@ -32,14 +27,17 @@
             resetActiveTab();
             var tab = null;
             switch (hash) {
-                case '#employee-content':
-                    tab = $('#employee-tab');
+                case '#all-content':
+                    tab = $('#all-tab');
                     break;
-                case '#teacher-content':
-                    tab = $('#teacher-tab');
+                case '#fill-content':
+                    tab = $('#fill-tab');
+                    break;
+                case '#notfill-content':
+                    tab = $('#notfill-tab');
                     break;
                 default:
-                    tab = $('#teacher-tab');
+                    tab = $('#all-tab');
                     break;
             }
             tab.addClass('active');
@@ -66,8 +64,8 @@
         if (storedTab) {
             window.location.hash = storedTab;
         } else {
-            $('#teacher-tab').addClass('active');
-            $('#teacher-content').addClass('active show');
+            $('#all-tab').addClass('active');
+            $('#all-content').addClass('active show');
         }
     });
 </script>

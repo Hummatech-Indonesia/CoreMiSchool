@@ -8,6 +8,7 @@ use App\Contracts\Interfaces\Eloquent\PaginateInterface;
 use App\Contracts\Interfaces\Eloquent\ShowInterface;
 use App\Contracts\Interfaces\Eloquent\StoreInterface;
 use App\Contracts\Interfaces\Eloquent\UpdateInterface;
+use Illuminate\Http\Request;
 
 interface LessonScheduleInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface
 {
@@ -16,4 +17,5 @@ interface LessonScheduleInterface extends GetInterface, StoreInterface, UpdateIn
     public function whereTeacher(mixed $id, mixed $day): mixed;
     public function whereTeacherNotif(mixed $id, mixed $day): mixed;
     public function groupByLatest($query): mixed;
+    public function whereJournalTeacher(mixed $query, Request $request) : mixed;
 }

@@ -5,6 +5,7 @@ namespace App\Contracts\Repositories;
 use App\Contracts\Interfaces\LessonScheduleInterface;
 use App\Enums\DayEnum;
 use App\Models\LessonSchedule;
+use Illuminate\Http\Request;
 
 class LessonScheduleRepository extends BaseRepository implements LessonScheduleInterface
 {
@@ -78,6 +79,28 @@ class LessonScheduleRepository extends BaseRepository implements LessonScheduleI
             ->whereDoesntHave('teacherJournals')
             ->whereRelation('teacherSubject.employee.user', 'id', $id)
             ->where('day', $day->format('l'))
+            ->get();
+    }
+
+    public function whereJournalTeacher(mixed $query, Request $request) :mixed
+    {
+        return $this->model->query()
+            ->when($query == 'fill', function($q) use ($request) {
+                $q->when($request->search_fill, function($i) use ($request){
+                    $i->whereRelation('teacherSubject.employee.user', 'name', 'like', '%' . $request->search_fill . '%');
+                });
+                $q->whereHas('teacherJournals');
+            })
+            ->when($query == 'notfill', function($q) use ($request) {
+                $q->when($request->search_notfill, function($i) use ($request){
+                    $i->whereRelation('teacherSubject.employee.user', 'name', 'like', '%' . $request->search_notfill . '%');
+                });
+                $q->doesntHave('teacherJournals');
+            })
+            ->when($request->search, function($i) use ($request){
+                $i->whereRelation('teacherSubject.employee.user', 'name', 'like', '%' . $request->search . '%');
+            })
+            ->latest()
             ->get();
     }
 
