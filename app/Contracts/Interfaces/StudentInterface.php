@@ -17,4 +17,5 @@ interface StudentInterface extends GetInterface, StoreInterface, UpdateInterface
     public function countStudentAlumni() : mixed;
     public function count() : mixed;
     public function getByPoint(Request $request) : mixed;
+    public function whereClassroomStudent(mixed $id) : mixed;
 }

@@ -64,9 +64,15 @@ class StudentRepairController extends Controller
     public function import(Request $request)
     {
         $file = $request->file('file');
-        $import = new StudentRepairImport();
+        $import = new StudentRepairImport(auth()->user()->employee->id);
         Excel::import($import, $file);
         return redirect()->back()->with('success', "Berhasil Mengimport Data!");
+    }
+
+    public function approve(StudentRepair $studentRepair)
+    {
+        $this->service->update_point($studentRepair);
+        return redirect()->back()->with('success', 'Berhasil konfirmasi bukti perbaikan');
     }
 
     /**

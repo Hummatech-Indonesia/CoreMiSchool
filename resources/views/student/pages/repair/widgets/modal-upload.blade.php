@@ -43,7 +43,6 @@
                     <img src="{{ asset('admin_assets/dist/images/backgrounds/student.png') }}" alt="Bukti Perbaikan"
                         class="img-fluid rounded-3 pt-2" style="max-width: 100%; height: auto;">
                     <input class="form-control mt-3" name="image" type="file" id="formFile">
-
                 </div>
             </div>
             <div class="modal-footer">

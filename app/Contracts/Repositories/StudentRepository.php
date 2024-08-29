@@ -108,4 +108,11 @@ class StudentRepository extends BaseRepository implements StudentInterface
             })
             ->paginate(10);
     }
+
+    public function whereClassroomStudent(mixed $id): mixed
+    {
+        return $this->model->query()
+            ->whereRelation('classroomStudents', 'id', $id)
+            ->first();
+    }
 }

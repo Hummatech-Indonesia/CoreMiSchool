@@ -65,39 +65,28 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse (range(1,3) as $item)
+                @forelse ($repairs as $repair)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>Bermain Slot saat jam pelajaran, gacor kang...</td>
-                        <td>10 Januari 2023</td>
-                        <td>10 Januari 2023</td>
+                        <td>{{ $repair->repair }}</td>
+                        <td>{{ $repair->start_date }}</td>
+                        <td>{{ $repair->end_date }}</td>
                         <td>
-                            <span class="badge bg-light-danger text-danger">Belum Dikerjakan</span>
+                            <span class="badge {{ $repair->is_approved == false ? 'bg-light-danger text-danger' : 'bg-light-success text-success' }}">{{ $repair->is_approved == false ? 'Belum Dikerjakan' : 'Sudah Dikerjakan'}}</span>
                         </td>
                         <td>
-                            <span class="badge bg-light-danger text-danger">+ 23
+                            <span class="badge bg-light-success text-success">- {{ $repair->point }}
                                 Point</span>
                         </td>
                         <td>
-                            <button data-bs-toggle="modal" data-bs-target="#repair-upload-detail"
-                                class="btn btn-primary py-1 px-4">Detail</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>Bermain Slot saat jam pelajaran, gacor kang...</td>
-                        <td>10 Januari 2023</td>
-                        <td>10 Januari 2023</td>
-                        <td>
-                            <span class="badge bg-light-success text-success">Selesai Dikerjakan</span>
-                        </td>
-                        <td>
-                            <span class="badge bg-light-danger text-danger">+ 23
-                                Point</span>
-                        </td>
-                        <td>
-                            <button data-bs-toggle="modal" data-bs-target="#repair-list-detail"
-                                class="btn btn-primary py-1 px-4">Detail</button>
+                            <button data-employee="{{ $repair->employee->user->name }}"
+                                    data-student="{{ $repair->classroomStudent->student->user->name }}"
+                                    data-repair="{{ $repair->repapir }}"
+                                    data-point="{{ $repair->point }}"
+                                    data-start_date="{{ $repair->start_date }}"
+                                    data-end_date="{{ $repair->end_date }}"
+                                    data-proof="{{ $repair->proof ? asset('storage'. $repair->proof) : asset('admin_assets/dist/images/backgrounds/student.png') }}"
+                                class="btn {{ $repair->is_approved == false ? 'btn-upload' : 'btn-detail' }} btn-primary py-1 px-4">Detail</button>
                         </td>
                     </tr>
                 @empty
@@ -119,4 +108,8 @@
 
     @include('student.pages.repair.widgets.modal-detail')
     @include('student.pages.repair.widgets.modal-upload')
+@endsection
+
+@section('script')
+@include('student.pages.repair.scripts.btn-script')
 @endsection

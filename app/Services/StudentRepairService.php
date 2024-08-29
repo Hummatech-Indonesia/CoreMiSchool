@@ -3,26 +3,33 @@
     namespace App\Services;
 
 use App\Contracts\Interfaces\ClassroomStudentInterface;
+use App\Contracts\Interfaces\EmployeeInterface;
 use App\Contracts\Interfaces\StudentInterface;
 use App\Contracts\Interfaces\StudentRepairInterface;
 use App\Http\Requests\StoreStudentRepairRequest;
+use App\Models\Employee;
+use App\Models\StudentRepair;
 
     class StudentRepairService
     {
         private StudentInterface $student;
         private ClassroomStudentInterface $classroom;
         private StudentRepairInterface $studentRepair;
+        private EmployeeInterface $employee;
 
-        public function __construct(StudentInterface $student, ClassroomStudentInterface $classroom, StudentRepairInterface $studentRepair)
+        public function __construct(StudentInterface $student, ClassroomStudentInterface $classroom, StudentRepairInterface $studentRepair, EmployeeInterface $employee)
         {
             $this->student = $student;
             $this->classroom = $classroom;
             $this->studentRepair = $studentRepair;
+            $this->employee = $employee;
         }
 
         public function store(StoreStudentRepairRequest $request): void
         {
             $data = $request->validated();
+            $user = auth()->user();
+            $employee = $this->employee->getByUser($user->id);
 
             $start_date = $data['start_date'];
             $end_date = $data['end_date'];
@@ -32,11 +39,12 @@ use App\Http\Requests\StoreStudentRepairRequest;
                 $point = $group['point'];
 
                 foreach ($group['classroom_student_id'] as $student_id) {
-                    $student = $this->student->show($student_id);
-                    $this->student->update($student->id, ['point' => ($student->point - $point) ]);
+                    // $student = $this->student->show($student_id);
+                    // $this->student->update($student->id, ['point' => ($student->point - $point) ]);
 
                     $classroom = $this->classroom->whereStudent($student_id);
                     $this->studentRepair->store([
+                        'employee_id' => $employee->id,
                         'repair' => $repair,
                         'point' => $point,
                         'classroom_student_id' => $classroom->id,
@@ -47,13 +55,10 @@ use App\Http\Requests\StoreStudentRepairRequest;
             }
         }
 
-        public function update(): void
+        public function update_point(StudentRepair $studentRepair) : void
         {
-
-        }
-
-        public function delete(): void
-        {
-
+            $student = $this->student->whereClassroomStudent($studentRepair->classroom_student_id);
+            $this->student->update($student->id, ['point' => ($student->point - $studentRepair->point) ]);
+            $this->studentRepair->update($studentRepair->id, ['is_approved' => true]);
         }
     }
