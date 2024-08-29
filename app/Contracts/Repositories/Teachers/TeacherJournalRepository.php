@@ -6,6 +6,7 @@ use App\Contracts\Interfaces\Teachers\TeacherJournalInterface;
 use App\Contracts\Repositories\BaseRepository;
 use App\Models\TeacherJournal;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class TeacherJournalRepository extends BaseRepository implements TeacherJournalInterface
 {
@@ -54,10 +55,18 @@ class TeacherJournalRepository extends BaseRepository implements TeacherJournalI
         return $this->model->query()->where('lesson_schedule_id', $id)->first();
     }
 
-    public function histories(): mixed
+    public function histories(Request $request): mixed
     {
         return $this->model->query()
             ->with('attendanceJournals')
+            ->when($request->search, function ($query) use ($request) {
+                $query->where('name', 'LIKE', '%' . $request->search . '%');
+            })->when($request->filter === "terbaru", function($query) {
+                $query->latest();
+            })
+            ->when($request->filter === "terlama", function($query) {
+                $query->oldest();
+            })
             ->get();
     }
 
