@@ -40,10 +40,10 @@ class TeacherJournalController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $teacherSchedules = $this->lessonSchedule->whereTeacher(auth()->user()->id, now());
-        $histories = $this->teacherJournal->histories();
+        $histories = $this->teacherJournal->histories($request);
         // dd($teacherSchedules);
         return view('teacher.pages.journals.index', compact('teacherSchedules', 'histories'));
     }
