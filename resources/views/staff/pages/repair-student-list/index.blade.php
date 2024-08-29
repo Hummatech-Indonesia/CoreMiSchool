@@ -116,8 +116,16 @@
                             <span class="badge bg-light-primary text-primary">-{{ $studentRepair->point }} Point</span>
                         </td>
                         <td>
-                            <a href="" class="btn btn-primary py-1 px-4" data-bs-toggle="modal"
-                                data-bs-target="#modal-detail-remidial">Detail</a>
+                            <button data-id="{{ $studentRepair->id }}" 
+                                    data-student="{{ $studentRepair->classroomStudent->student->user->name }}"
+                                    data-classroom="{{ $studentRepair->classroomStudent->classroom->name }}" 
+                                    data-gender="{{ $studentRepair->classroomStudent->student->gender->label() }}"
+                                    data-employee="{{ $studentRepair->employee->user->name }}"
+                                    data-repair="{{ $studentRepair->repair }}"
+                                    data-proof="{{ $studentRepair->proof ? asset('storage/'. $studentRepair->proof) : asset('admin_assets/dist/images/backgrounds/student.png') }}"
+                                    data-is_approved="{{ $studentRepair->is_approved }}"
+                                    data-date="{{ $studentRepair->created_at }}"
+                            class="btn btn-detail btn-primary py-1 px-4">Detail</button>
                         </td>
                     </tr>
                 @empty
@@ -148,4 +156,5 @@
 @section('script')
     {{-- select2 --}}
     @include('staff.pages.repair-student-list.scripts.select2')
+    @include('staff.pages.repair-student-list.scripts.btn-script')
 @endsection

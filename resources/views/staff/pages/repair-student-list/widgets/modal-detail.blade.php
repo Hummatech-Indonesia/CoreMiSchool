@@ -4,34 +4,34 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="importPegawai">
                     <b>Detail Bukti Perbaikan / </b>
-                    <span class="mb-1 badge font-medium bg-light-primary text-primary">10 Januari 2020</span>
+                    <span class="mb-1 badge font-medium bg-light-primary text-primary">10 Mei 2020</span>
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body px-4">
                 <div class="mb-3">
                     <h5 style="font-size: 15px"><b>Nama Siswa:</b></h5>
-                    <h6 style="font-size: 14px">Alfian Fahrul Rifa'i</h6>
+                    <h6 style="font-size: 14px" id="student-detail"></h6>
                 </div>
                 <div class="mb-3">
                     <h5 style="font-size: 15px"><b>Kelas:</b></h5>
-                    <h6 style="font-size: 14px">XI RPL 1</h6>
+                    <h6 style="font-size: 14px" id="classroom-detail"></h6>
                 </div>
                 <div class="mb-3">
                     <h5 style="font-size: 15px"><b>Jenis Kelamin:</b></h5>
-                    <h6 style="font-size: 14px">Laki-laki</h6>
+                    <h6 style="font-size: 14px" id="gender-detail">Laki-laki</h6>
                 </div>
                 <div class="mb-3">
                     <h5 style="font-size: 15px"><b>Pembuat Perbaikan:</b></h5>
-                    <h6 style="font-size: 14px">Suyadi Oke</h6>
+                    <h6 style="font-size: 14px" id="employee-detail"></h6>
                 </div>
                 <div class="mb-3">
                     <h5 style="font-size: 15px"><b>Jenis Perbaikan:</b></h5>
-                    <h6 style="font-size: 14px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, voluptatum!</h6>
+                    <h6 style="font-size: 14px" id="repair-detail"></h6>
                 </div>
                 <div class="mb-3">
                     <h5 style="font-size: 15px"><b>Bukti:</b></h5>
-                    <img src="{{ asset('admin_assets/dist/images/backgrounds/student.png') }}" alt="Bukti Perbaikan"
+                    <img id="proof-detail" src="" alt="Bukti Perbaikan"
                         class="img-fluid rounded-3 pt-2" style="max-width: 100%; height: auto;">
                 </div>
             </div>
