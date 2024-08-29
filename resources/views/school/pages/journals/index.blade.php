@@ -66,4 +66,5 @@
 
 @section('script')
     @include('school.pages.journals.scripts.tab-script')
+    @include('school.pages.journals.scripts.detail')
 @endsection

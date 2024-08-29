@@ -9,22 +9,19 @@
             <div class="modal-body px-4">
                 <div class="mb-3">
                     <h5 style="font-size: 15px"><b>Pembuat Jurnal:</b></h5>
-                    <h6 style="font-size: 14px">Alfian Fahrul Rifa'i</h6>
+                    <h6 style="font-size: 14px" id="detail-journal-author"></h6>
                 </div>
                 <div class="mb-3">
                     <h5 style="font-size: 15px"><b>Tanggal:</b></h5>
-                    <h6 style="font-size: 14px">20 Januari 2024</h6>
+                    <h6 style="font-size: 14px" id="detail-journal-date"></h6>
                 </div>
                 <div class="mb-3">
                     <h5 style="font-size: 15px"><b>Kelas:</b></h5>
-                    <h6 style="font-size: 14px">X RPL - Bahasa Indonesia</h6>
+                    <h6 style="font-size: 14px" id="detail-journal-class"></h6>
                 </div>
                 <div class="mb-3">
                     <h5 style="font-size: 15px"><b>Deskripsi:</b></h5>
-                    <h6 style="font-size: 14px">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut orci orci,
-                        placerat nec quam quis, consequat gravida nisi. Integer lobortis dignissim sapien, eu rhoncus
-                        dui tincidunt vitae. Sed vel sem congue, vehicula leo a, dapibus felis. Lorem ipsum dolor sit
-                        amet,</h6>
+                    <div id="detail-journal-description"></div>
                 </div>
             </div>
             <div class="modal-footer">
