@@ -69,8 +69,8 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $repair->repair }}</td>
-                        <td>{{ $repair->start_date }}</td>
-                        <td>{{ $repair->end_date }}</td>
+                        <td>{{ \Carbon\Carbon::parse($repair->start_date)->translatedFormat('d F Y') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($repair->end_date)->translatedFormat('d F Y') }}</td>
                         <td>
                             <span class="badge {{ $repair->is_approved == false ? 'bg-light-danger text-danger' : 'bg-light-success text-success' }}">{{ $repair->is_approved == false ? 'Belum Dikerjakan' : 'Sudah Dikerjakan'}}</span>
                         </td>
@@ -79,13 +79,15 @@
                                 Point</span>
                         </td>
                         <td>
-                            <button data-employee="{{ $repair->employee->user->name }}"
+                            <button
+                                data-id="{{ $repair->id }}"
+                                data-employee="{{ $repair->employee->user->name }}"
                                     data-student="{{ $repair->classroomStudent->student->user->name }}"
                                     data-repair="{{ $repair->repapir }}"
                                     data-point="{{ $repair->point }}"
                                     data-start_date="{{ $repair->start_date }}"
                                     data-end_date="{{ $repair->end_date }}"
-                                    data-proof="{{ $repair->proof ? asset('storage'. $repair->proof) : asset('admin_assets/dist/images/backgrounds/student.png') }}"
+                                    data-proof="{{ $repair->proof ? asset('storage/'. $repair->proof) : asset('admin_assets/dist/images/backgrounds/student.png') }}"
                                 class="btn {{ $repair->is_approved == false ? 'btn-upload' : 'btn-detail' }} btn-primary py-1 px-4">Detail</button>
                         </td>
                     </tr>

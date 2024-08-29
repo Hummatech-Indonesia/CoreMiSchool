@@ -10,8 +10,5 @@ Route::middleware('auth')->prefix('student')->name('student.')->group(function (
     })->name('dashboard');
 
     Route::get('violations', [ViolationController::class, 'index'])->name('violations');
-
-    // Route::get('repair', [RepairStudentController::class, 'index'])->name('repair');
-
     Route::resource('repair', RepairStudentController::class);
 });

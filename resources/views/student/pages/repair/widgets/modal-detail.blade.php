@@ -11,36 +11,34 @@
             <div class="modal-body px-4" style="max-height: 70vh; overflow-y: auto;">
                 <div class="mb-3">
                     <h5 style="font-size: 15px"><b>Pembuat Perbaikan:</b></h5>
-                    <h6 style="font-size: 14px">Alfian Fahrul Rifa'i</h6>
+                    <h6 style="font-size: 14px" id="employee-detail"></h6>
                 </div>
                 <hr>
                 <div class="mb-4">
                     <h5 style="font-size: 15px"><b>Nama Siswa Perbaikan:</b></h5>
-                    <h6 style="font-size: 14px">Alfian Fahrul Rifa'i</h6>
+                    <h6 style="font-size: 14px" id="student-detail"></h6>
                 </div>
                 <div class="mb-4">
                     <h5 style="font-size: 15px"><b>Jenis Pelanggaran:</b></h5>
-                    <h6 style="font-size: 14px">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut orci orci,
-                        placerat nec quam quis, consequat gravida nisi. Integer lobortis dignissim sapien, eu rhoncus
-                        dui tincidunt vitae.</h6>
+                    <h6 style="font-size: 14px" id="repair-detail"></h6>
                 </div>
                 <div class="mb-4">
                     <h5 style="font-size: 15px"><b>Pengurangan Point:</b></h5>
-                    <h6 style="font-size: 14px">- 80 Point</h6>
+                    <h6 style="font-size: 14px" id="point-detail"></h6>
                 </div>
                 <div class="d-flex">
                     <div class="mb-3">
                         <h5 style="font-size: 15px"><b>Tanggal Mulai:</b></h5>
-                        <h6 style="font-size: 14px">10 mei 2024</h6>
+                        <h6 style="font-size: 14px" id="start_date-detail"></h6>
                     </div>
                     <div class="mb-3 ms-5">
                         <h5 style="font-size: 15px"><b>Tanggal Akhir:</b></h5>
-                        <h6 style="font-size: 14px">20 mei 2024</h6>
+                        <h6 style="font-size: 14px" id="end_date-detail"></h6>
                     </div>
                 </div>
                 <div class="mb-3">
                     <h5 style="font-size: 15px"><b>Bukti:</b></h5>
-                    <img src="{{ asset('admin_assets/dist/images/backgrounds/student.png') }}" alt="Bukti Perbaikan"
+                    <img id="proof-detail" src="" alt="Bukti Perbaikan"
                         class="img-fluid rounded-3 pt-2" style="max-width: 100%; height: auto;">
                 </div>
             </div>
