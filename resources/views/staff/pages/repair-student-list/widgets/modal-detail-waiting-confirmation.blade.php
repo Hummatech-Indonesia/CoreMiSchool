@@ -1,5 +1,7 @@
 <div class="modal fade" id="modal-waiting-confirmation" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
-    <form action="" enctype="multipart/form-data">
+    <form id="form-confirm" method="POST" enctype="multipart/form-data">
+        @method('put')
+        @csrf
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -56,7 +58,7 @@
                             </svg>
                             Tolak
                         </button>
-                        <button type="button" class="btn mb-1 waves-effect waves-light btn-success"
+                        <button type="submit" class="btn mb-1 waves-effect waves-light btn-success"
                             data-bs-dismiss="modal">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                 <path fill="currentColor"

@@ -26,6 +26,7 @@ Route::middleware('auth')->prefix('employee')->name('employee.')->group(function
     Route::get('violation-student-list', [StaffViolationController::class, 'list_student'])->name('violation-student.index');
 
     Route::resource('studentViolation', StudentViolationController::class);
+    Route::put('apprived-repair/{studentRepair}', [StudentRepairController::class, 'approved'])->name('approved.repair');
 
     Route::get('remidial-student-list', function(){
         return view('staff.pages.remedial-student-list.index');
