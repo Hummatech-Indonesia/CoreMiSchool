@@ -46,7 +46,7 @@
                             <td>{{ $notfill_journal->classroom->name }} -
                                 {{ $notfill_journal->teacherSubject->subject->name }}</td>
                             <td><span
-                                    class="mb-1 badge font-medium {{ $notfill_journal->teacherJournals->first() ? 'bg-light-secondary text-secondary' : 'bg-light-danger text-danger' }}">{{ $notfill_journal->teacherJournals->first() ? 'Mengisi' : 'Tidak Mengisi' }}</span>
+                                    class="mb-1 badge font-medium {{ $notfill_journal->teacherJournals->first() ? 'bg-light-success text-success' : 'bg-light-danger text-danger' }}">{{ $notfill_journal->teacherJournals->first() ? 'Mengisi' : 'Tidak Mengisi' }}</span>
                             </td>
                             <td>{{ $notfill_journal->teacherJournals->first() ? \Illuminate\Support\Str::limit($notfill_journal->teacherJournals->first()->description, 50) : 'Kosong..' }}
                             </td>

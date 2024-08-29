@@ -45,7 +45,7 @@
                             <td>{{ $all_journal->classroom->name }} - {{ $all_journal->teacherSubject->subject->name }}
                             </td>
                             <td><span
-                                    class="mb-1 badge font-medium {{ $all_journal->teacherJournals->first() ? 'bg-light-secondary text-secondary' : 'bg-light-danger text-danger' }}">{{ $all_journal->teacherJournals->first() ? 'Mengisi' : 'Tidak Mengisi' }}</span>
+                                    class="mb-1 badge font-medium {{ $all_journal->teacherJournals->first() ? 'bg-light-success text-success' : 'bg-light-danger text-danger' }}">{{ $all_journal->teacherJournals->first() ? 'Mengisi' : 'Tidak Mengisi' }}</span>
                             </td>
                             <td>{{ $all_journal->teacherJournals->first() ? \Illuminate\Support\Str::limit($all_journal->teacherJournals->first()->description, 50) : 'Kosong..' }}
                             </td>
