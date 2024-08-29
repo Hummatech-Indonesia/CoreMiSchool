@@ -41,28 +41,30 @@
                         <div class="col-lg-9 col-md-12 gap-2 d-flex">
                             <div class="form-group">
                                 <label for="startDate" class="mb-2">Tanggal Awal</label>
-                                <input type="date" class="form-control" id="startDate" name="start" value="">
+                                <input type="date" class="form-control" id="startDate" name="start" value="{{ request('start') }}">
                             </div>
                             <div class="form-group ms-2">
                                 <label for="endDate" class="mb-2">Tanggal Akhir</label>
-                                <input type="date" class="form-control" id="endDate" name="end" value="">
+                                <input type="date" class="form-control" id="endDate" name="end" value="{{ request('end') }}">
                             </div>
                             <div class="form-group ms-2">
                                 <label for="kelas" class="mb-2">Kelas</label>
-                                <select class="form-control" id="kelas" name="kelas">
+                                <select class="form-control" id="kelas" name="classroom">
                                     <option value="" disabled selected>Pilih Kelas</option>
-                                    <option value="kelas1">kelas 1</option>
-                                    <option value="kelas2">kelas 2</option>
-                                    <option value="kelas3">kelas 3</option>
+                                    @forelse ($classrooms as $classroom)
+                                        <option value="{{ $classroom->id }}" {{ old('classroom', request('classroom')) == $classroom->id ? 'selected' : '' }}>{{ $classroom->name }}</option>
+                                    @empty
+                                    @endforelse
                                 </select>
                             </div>
                             <div class="form-group ms-2">
                                 <label for="mapel" class="mb-2">Mapel</label>
-                                <select class="form-control" id="mapel" name="mapel">
+                                <select class="form-control" id="mapel" name="subject">
                                     <option value="" disabled selected>Pilih Mapel</option>
-                                    <option value="mapel1">mapel 1</option>
-                                    <option value="mapel2">mapel 2</option>
-                                    <option value="mapel3">mapel 3</option>
+                                    @forelse ($subjects as $subject)
+                                        <option value="{{ $subject->id }}" {{ old('subject', request('subject')) == $subject->id ? 'selected' : '' }}>{{ $subject->name }}</option>
+                                    @empty
+                                    @endforelse
                                 </select>
                             </div>
                         </div>
@@ -79,7 +81,7 @@
                                 </button>
                             </div>
                             <div>
-                                <button type="submit" class="btn-export btn btn-primary ms-2">
+                                <a href="javascript:void(0)" class="btn-export btn btn-primary ms-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                         viewBox="0 0 24 24">
                                         <g fill="none">
@@ -90,7 +92,7 @@
                                         </g>
                                     </svg>
                                     Ekspor
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </form>
@@ -116,7 +118,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse (range(1,3) as $item)
+                        @forelse ($journals as $journal)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td class="text-start">
@@ -126,17 +128,20 @@
                                             width="40" height="40" alt="" />
                                         <div class="ms-2">
                                             <h6 class="fs-4 fw-semibold mb-0 text-start">
-                                                Ahmad Lukman Hakim</h6>
-                                            <span class="fw-normal">123123123</span>
+                                                {{ $journal->teacherSubject->employee->user->name }}</h6>
+                                            <span class="fw-normal">{{ $journal->teacherSubject->employee->nip }}</span>
                                         </div>
                                     </div>
                                 </td>
-                                <td>10 mei 2023</td>
-                                <td>X RPL 1 - Bahasa Indonesia</td>
-                                <td>Lorem Ipsum Dolor sit amet aodwiaoc aoioiwd adoidn,.....</td>
+                                <td>{{ \Carbon\Carbon::parse($journal->created_at)->translatedFormat('d F Y') }}</td>
+                                <td>{{ $journal->classroom->name }} - {{ $journal->teacherSubject->subject->name }}</td>
+                                <td>{{ $journal->teacherJournals->first() ? \Illuminate\Support\Str::limit($journal->teacherJournals->first()->description, 50) : 'kosong...' }}</td>
                                 <td>
-                                    <a type="button" class="text-primari" data-bs-toggle="modal"
-                                        data-bs-target="#modal-detail-journal">
+                                    <a type="button" class="text-primari btn-detail-journal"
+                                            data-author="{{ $journal->teacherSubject->employee->user->name }}"
+                                            data-date="{{ \Carbon\Carbon::parse($journal->created_at)->translatedFormat('d F Y') }}"
+                                            data-description="{{ $journal->teacherJournals->first() ? \Illuminate\Support\Str::limit($journal->teacherJournals->first()->description, 50) : 'kosong...' }}" 
+                                            data-classroom="{{ $journal->classroom->name }} - {{ $journal->teacherSubject->subject->name }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                             viewBox="0 0 24 24">
                                             <g fill="none" stroke="currentColor" stroke-linecap="round"
@@ -183,4 +188,5 @@
             $('#form-action').attr('action', '{{ route('school.student-attendance.export', '') }}/' + id);
         });
     </script>
+     @include('school.pages.journals.scripts.detail')
 @endsection
