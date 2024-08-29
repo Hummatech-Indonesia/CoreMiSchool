@@ -85,7 +85,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
     <script src="{{ asset('admin_assets/dist/js/apex-chart/apex.area.init.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> --}}
     {{-- <script src="{{ asset('admin_assets/dist/libs/jquery/dist/jquery.min.js') }}"></script> --}}
     <script src="{{ asset('admin_assets/dist/libs/simplebar/dist/simplebar.min.js') }}"></script>
     <script src="{{ asset('admin_assets/dist/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
