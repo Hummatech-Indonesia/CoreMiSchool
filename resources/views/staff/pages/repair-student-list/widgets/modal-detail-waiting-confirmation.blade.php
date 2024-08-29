@@ -11,34 +11,30 @@
             <div class="modal-body px-4">
                 <div class="mb-3">
                     <h5 style="font-size: 15px"><b>Pembuat Perbaikan :</b></h5>
-                    <h6 style="font-size: 14px">Alfian Fahrul Rifa'i</h6>
+                    <h6 style="font-size: 14px" id="employee-confirm"></h6>
                 </div>
                 <div class="col-lg-12"><hr></div>
                 <div class="mb-3">
                     <h5 style="font-size: 15px"><b>Nama Siswa Perbaikan:</b></h5>
-                    <h6 style="font-size: 14px">Alfian Fahrul Rifa'i</h6>
-                </div>
-                <div class="mb-3">
-                    <h5 style="font-size: 15px"><b>Pembuat Perbaikan:</b></h5>
-                    <h6 style="font-size: 14px">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis, veniam!</h6>
+                    <h6 style="font-size: 14px" id="student-confirm"></h6>
                 </div>
                 <div class="mb-3">
                     <h5 style="font-size: 15px"><b>Pengurangan Point:</b></h5>
-                    <h6 style="font-size: 14px">-80</h6>
+                    <h6 style="font-size: 14px" id="point-confirm"></h6>
                 </div>
                 <div class="mb-3 d-flex gap-5">
                     <div>
                         <h5 style="font-size: 15px"><b>Tanggal Mulai:</b></h5>
-                        <h6 style="font-size: 14px">10 Mei 2024</h6>
+                        <h6 style="font-size: 14px" id="start_date-confirm"></h6>
                     </div>
                     <div>
                         <h5 style="font-size: 15px"><b>Tanggal Akhir:</b></h5>
-                        <h6 style="font-size: 14px">20 Mei 2024</h6>
+                        <h6 style="font-size: 14px" id="end_date-confirm"></h6>
                     </div>
                 </div>
                 <div class="mb-3">
                     <h5 style="font-size: 15px"><b>Bukti:</b></h5>
-                    <img src="{{ asset('admin_assets/dist/images/backgrounds/student.png') }}" alt="Bukti Perbaikan"
+                    <img id="proof-confirm" src="" alt="Bukti Perbaikan"
                         class="img-fluid rounded-3 pt-2" style="max-width: 100%; height: auto;">
                 </div>
             </div>

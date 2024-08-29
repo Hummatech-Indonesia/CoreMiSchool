@@ -125,7 +125,10 @@
                                     data-proof="{{ $studentRepair->proof ? asset('storage/'. $studentRepair->proof) : asset('admin_assets/dist/images/backgrounds/student.png') }}"
                                     data-is_approved="{{ $studentRepair->is_approved }}"
                                     data-date="{{ $studentRepair->created_at }}"
-                            class="btn btn-detail btn-primary py-1 px-4">Detail</button>
+                                    data-point="{{ $studentRepair->point }}"
+                                    data-start_date="{{ $studentRepair->start_date }}"
+                                    data-end_date="{{ $studentRepair->end_date }}"
+                            class="btn {{$studentRepair->is_approved == false ? 'btn-confirm' : 'btn-detail'}} btn-primary py-1 px-4">Detail</button>
                         </td>
                     </tr>
                 @empty
@@ -152,7 +155,7 @@
     {{-- modal tambah --}}
     @include('staff.pages.repair-student-list.widgets.modal-create')
     {{-- modal detail konfirmasi --}}
-    @include('staff.pages.repair-student-list.widgets.modal-detail-waiting confirmation')
+    @include('staff.pages.repair-student-list.widgets.modal-detail-waiting-confirmation')
 @endsection
 
 @section('script')
