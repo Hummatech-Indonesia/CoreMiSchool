@@ -66,6 +66,8 @@ class TeacherJournalRepository extends BaseRepository implements TeacherJournalI
             })
             ->when($request->filter === "terlama", function($query) {
                 $query->oldest();
+            })->when($request->date, function ($query) use ($request) {
+                $query->where('date', 'LIKE', '%' . $request->date . '%');
             })
             ->get();
     }
