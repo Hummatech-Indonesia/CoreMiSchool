@@ -41,6 +41,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->prefix('school')->name('school.')->group(function () {
     Route::post('school-points', [SchoolPointController::class, 'store'])->name('school-points.store');
     Route::get('journals', [JournalTeacherController::class, 'index'])->name('journals.detail');
+    Route::get('export-journal', [JournalTeacherController::class, 'export_preview'])->name('export-journal.index');
     Route::patch('max-point/{schoolPoint}', [SchoolPointController::class, 'update'])->name('max-point.update');
     Route::resource('violation', RegulationController::class);
     Route::get('violation-download', [RegulationController::class, 'download'])->name('violation.download');
@@ -197,10 +198,6 @@ Route::get('menu-test', function () {
 Route::get('user-list', function () {
     return view('school.pages.test.user-list');
 })->name('user-list.index');
-
-Route::get('export-journal', function () {
-    return view('school.pages.journals.export');
-})->name('export-journal.index');
 
 // list absensi
 Route::get('list-attendance', [AttendanceStudentController::class, 'index'])->name('list-attendance.index');

@@ -21,4 +21,26 @@
 
         $('#modal-detail-remidial').modal('show');
     });
+
+    $('.btn-confirm').click(function() {
+        var id = $(this).data('id');
+        var student = $(this).data('student');
+        var employee = $(this).data('employee');
+        var repair = $(this).data('repair');
+        var proof = $(this).data('proof');
+        var point = $(this).data('point');
+        var start_date = $(this).data('start_date');
+        var end_date = $(this).data('end_date');
+
+        $('#student-confirm').text(student);
+        $('#employee-confirm').text(employee);
+        $('#repair-confirm').text(repair);
+        $('#point-confirm').text(point + ' Point'); 
+        $('#proof-confirm').attr('src', proof);
+        $('#start_date-confirm').text(start_date); 
+        $('#end_date-confirm').text(end_date); 
+
+        $('#form-confirm').attr('action', '{{ route('employee.approved.repair', '') }}/' + id);
+        $('#modal-waiting-confirmation').modal('show');
+    });
 </script>

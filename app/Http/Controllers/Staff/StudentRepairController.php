@@ -69,7 +69,7 @@ class StudentRepairController extends Controller
         return redirect()->back()->with('success', "Berhasil Mengimport Data!");
     }
 
-    public function approve(StudentRepair $studentRepair)
+    public function approved(StudentRepair $studentRepair)
     {
         $this->service->update_point($studentRepair);
         return redirect()->back()->with('success', 'Berhasil konfirmasi bukti perbaikan');

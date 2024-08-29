@@ -39,7 +39,7 @@ class LessonScheduleRepository extends BaseRepository implements LessonScheduleI
         return $this->model->query()->findOrFail($id)->delete();
     }
 
-    public function paginate() : mixed
+    public function paginate(): mixed
     {
         return $this->model->query()->latest()->paginate(10);
     }
@@ -66,7 +66,7 @@ class LessonScheduleRepository extends BaseRepository implements LessonScheduleI
     {
         return $this->model->query()
             ->whereRelation('teacherSubject.employee.user', 'id', $id)
-            ->with('teacherJournals', function($query) use ($day) {
+            ->with('teacherJournals', function ($query) use ($day) {
                 $query->whereDay('created_at', $day);
             })
             ->where('day', $day->format('l'))
@@ -82,32 +82,50 @@ class LessonScheduleRepository extends BaseRepository implements LessonScheduleI
             ->get();
     }
 
-    public function whereJournalTeacher(mixed $query, Request $request) :mixed
+    public function whereJournalTeacher(mixed $query, Request $request): mixed
     {
         return $this->model->query()
-            ->when($query == 'fill', function($q) use ($request) {
-                $q->when($request->search_fill, function($i) use ($request){
+            ->when($query == 'fill', function ($q) use ($request) {
+                $q->when($request->search_fill, function ($i) use ($request) {
                     $i->whereRelation('teacherSubject.employee.user', 'name', 'like', '%' . $request->search_fill . '%');
                 });
                 $q->whereHas('teacherJournals');
             })
-            ->when($query == 'notfill', function($q) use ($request) {
-                $q->when($request->search_notfill, function($i) use ($request){
+            ->when($query == 'notfill', function ($q) use ($request) {
+                $q->when($request->search_notfill, function ($i) use ($request) {
                     $i->whereRelation('teacherSubject.employee.user', 'name', 'like', '%' . $request->search_notfill . '%');
                 });
                 $q->doesntHave('teacherJournals');
             })
-            ->when($request->search, function($i) use ($request){
+            ->when($request->search, function ($i) use ($request) {
                 $i->whereRelation('teacherSubject.employee.user', 'name', 'like', '%' . $request->search . '%');
             })
             ->latest()
             ->get();
     }
 
-    public function groupByLatest($query):mixed
+    public function export(Request $request): mixed
     {
         return $this->model->query()
-            ->where('day',$query)
+            ->when($request->start, function ($q) use ($request) {
+                $q->whereBetween('created_at', [$request->start . ' 00:00:00', $request->end . ' 23:59:59']);
+            })
+            ->when($request->classroom, function ($q) use ($request) {
+                $q->where('classroom_id', $request->classroom);
+            })
+            ->when($request->subject, function ($q) use ($request) {
+                $q->whereHas('teacherSubject', function ($query) use ($request) {
+                    $query->where('subject_id', $request->subject);
+                });
+            })
+            ->get();
+    }
+
+
+    public function groupByLatest($query): mixed
+    {
+        return $this->model->query()
+            ->where('day', $query)
             ->latest()
             ->first();
     }

@@ -4,30 +4,37 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="importPegawai">
                     <b>Detail Bukti Perbaikan / </b>
-                    <span class="mb-1 badge font-medium bg-light-primary text-primary">10 Mei 2020</span>
+                    <span class="mb-1 badge font-medium bg-light-primary text-primary">Selesai Dikerjakan</span>
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body px-4">
                 <div class="mb-3">
+                    <h5 style="font-size: 15px"><b>Pembuat Perbaikan:</b></h5>
+                    <h6 style="font-size: 14px" id="employee-detail"></h6>
+                </div>
+                <div class="col-lg-12"><hr></div>
+                <div class="mb-3">
                     <h5 style="font-size: 15px"><b>Nama Siswa:</b></h5>
                     <h6 style="font-size: 14px" id="student-detail"></h6>
                 </div>
                 <div class="mb-3">
-                    <h5 style="font-size: 15px"><b>Kelas:</b></h5>
-                    <h6 style="font-size: 14px" id="classroom-detail"></h6>
-                </div>
-                <div class="mb-3">
-                    <h5 style="font-size: 15px"><b>Jenis Kelamin:</b></h5>
-                    <h6 style="font-size: 14px" id="gender-detail">Laki-laki</h6>
-                </div>
-                <div class="mb-3">
-                    <h5 style="font-size: 15px"><b>Pembuat Perbaikan:</b></h5>
-                    <h6 style="font-size: 14px" id="employee-detail"></h6>
-                </div>
-                <div class="mb-3">
                     <h5 style="font-size: 15px"><b>Jenis Perbaikan:</b></h5>
                     <h6 style="font-size: 14px" id="repair-detail"></h6>
+                </div>
+                <div class="mb-3">
+                    <h5 style="font-size: 15px"><b>Pengurangan Point:</b></h5>
+                    <h6 style="font-size: 14px" id="classroom-detail"></h6>
+                </div>
+                <div class="mb-3 d-flex gap-5">
+                    <div>
+                        <h5 style="font-size: 15px"><b>Tanggal Mulai:</b></h5>
+                        <h6 style="font-size: 14px">10 Mei 2024</h6>
+                    </div>
+                    <div>
+                        <h5 style="font-size: 15px"><b>Tanggal Akhir:</b></h5>
+                        <h6 style="font-size: 14px">20 Mei 2024</h6>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <h5 style="font-size: 15px"><b>Bukti:</b></h5>
