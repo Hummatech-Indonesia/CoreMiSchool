@@ -40,7 +40,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td>{{ $fill_journal->created_at }}</td>
+                            <td>{{ \Carbon\Carbon::parse($fill_journal->created_at)->translatedFormat('d F Y') }}</td>
                             <td>{{ $fill_journal->classroom->name }} - {{ $fill_journal->teacherSubject->subject->name }}</td>
                             <td><span class="mb-1 badge font-medium {{ $fill_journal->teacherJournals->first() ? 'bg-light-secondary text-secondary' : 'bg-light-danger text-danger' }}">{{ $fill_journal->teacherJournals->first() ? 'Mengisi' : 'Tidak Mengisi'  }}</span></td>
                             <td>{{ $fill_journal->teacherJournals->first() ? $fill_journal->teacherJournals->first()->description : 'Kosong..'}}</td>
