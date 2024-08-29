@@ -47,8 +47,8 @@
                             <td><span
                                     class="mb-1 badge font-medium {{ $all_journal->teacherJournals->first() ? 'bg-light-secondary text-secondary' : 'bg-light-danger text-danger' }}">{{ $all_journal->teacherJournals->first() ? 'Mengisi' : 'Tidak Mengisi' }}</span>
                             </td>
-                            <td>{{ $all_journal->teacherJournals->first() ? $all_journal->teacherJournals->first()->description : 'Kosong...' }}
-                            </td>
+                            <td>{{ $all_journal->teacherJournals->first() ? \Illuminate\Support\Str::limit($all_journal->teacherJournals->first()->description, 50) : 'Kosong..' }}</td>
+                        </td>
                             <td class="text-center">
                                 <div class="d-flex justify-content-center align-items-center gap-2">
                                     <a href="">
