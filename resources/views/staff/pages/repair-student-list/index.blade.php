@@ -103,9 +103,9 @@
                                 </div>
                             </div>
                         </td>
-                        <td>{{ \Carbon\Carbon::parse($studentRepair->start_date)->format('d F Y') }}
+                        <td>{{ \Carbon\Carbon::parse($studentRepair->start_date)->translatedFormat('d F Y') }}
                             <span class="mx-1"><b>-</b></span>
-                            {{ \Carbon\Carbon::parse($studentRepair->end_date)->format('d F Y') }}
+                            {{ \Carbon\Carbon::parse($studentRepair->end_date)->translatedFormat('d F Y') }}
                         </td>
                         <td>{{ $studentRepair->repair }}</td>
                         <td>

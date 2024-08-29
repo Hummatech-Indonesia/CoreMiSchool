@@ -4,7 +4,8 @@
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
             <form class="d-flex flex-column flex-md-row align-items-center" method="GET">
                 <div class="mb-3 mb-md-0 me-md-3">
-                    <input type="text" name="search" class="form-control" placeholder="Cari..." value="{{ old('search', request()->input('search')) }}">
+                    <input type="text" name="search" class="form-control" placeholder="Cari..."
+                        value="{{ old('search', request()->input('search')) }}">
                 </div>
                 <button type="submit" class="btn btn-primary">Cari</button>
             </form>
@@ -29,24 +30,29 @@
                             <td>{{ $loop->iteration }}</td>
                             <td class="text-start">
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ $all_journal->teacherSubject->employee->image ? asset('storage/'. $all_journal->teacherSubject->employee->image ) : asset('admin_assets/dist/images/profile/user-10.jpg') }}"
-                                        class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40"
-                                        height="40" alt="" />
+                                    <img src="{{ $all_journal->teacherSubject->employee->image ? asset('storage/' . $all_journal->teacherSubject->employee->image) : asset('admin_assets/dist/images/profile/user-10.jpg') }}"
+                                        class="rounded-circle me-2 user-profile" style="object-fit: cover"
+                                        width="40" height="40" alt="" />
                                     <div class="ms-2">
                                         <h6 class="fs-4 fw-semibold mb-0 text-start">
-                                            {{$all_journal->teacherSubject->employee->user->name}}</h6>
+                                            {{ $all_journal->teacherSubject->employee->user->name }}</h6>
                                         <span
-                                            class="fw-normal">{{$all_journal->teacherSubject->employee->user->modelHasRfid ? $all_journal->teacherSubject->employee->user->modelHasRfid->rfid : 'Tidak ada rfid'}}</span>
+                                            class="fw-normal">{{ $all_journal->teacherSubject->employee->user->modelHasRfid ? $all_journal->teacherSubject->employee->user->modelHasRfid->rfid : 'Tidak ada rfid' }}</span>
                                     </div>
                                 </div>
                             </td>
-                            <td>{{ $all_journal->created_at }}</td>
-                            <td>{{ $all_journal->classroom->name }} - {{ $all_journal->teacherSubject->subject->name }}</td>
-                            <td><span class="mb-1 badge font-medium {{ $all_journal->teacherJournals->first() ? 'bg-light-secondary text-secondary' : 'bg-light-danger text-danger' }}">{{ $all_journal->teacherJournals->first() ? 'Mengisi' : 'Tidak Mengisi'  }}</span></td>
-                            <td>{{ $all_journal->teacherJournals->first() ? $all_journal->teacherJournals->first()->description : 'Kosong..'}}</td>
+                            <td>{{ \Carbon\Carbon::parse($all_journal->created_at)->translatedFormat('d F Y') }}</td>
+                            <td>{{ $all_journal->classroom->name }} - {{ $all_journal->teacherSubject->subject->name }}
+                            </td>
+                            <td><span
+                                    class="mb-1 badge font-medium {{ $all_journal->teacherJournals->first() ? 'bg-light-success text-success' : 'bg-light-danger text-danger' }}">{{ $all_journal->teacherJournals->first() ? 'Mengisi' : 'Tidak Mengisi' }}</span>
+                            </td>
+                            <td>{{ $all_journal->teacherJournals->first() ? \Illuminate\Support\Str::limit($all_journal->teacherJournals->first()->description, 50) : 'Kosong..' }}
+                            </td>
+                            </td>
                             <td class="text-center">
                                 <div class="d-flex justify-content-center align-items-center gap-2">
-                                    <a href="">
+                                    <a type="button" class="text-primari" data-bs-toggle="modal" data-bs-target="#modal-detail-journal">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                             viewBox="0 0 24 24">
                                             <g fill="none" stroke="currentColor" stroke-linecap="round"
@@ -60,20 +66,21 @@
                             </td>
                         </tr>
                     @empty
-                    <tr>
-                        <td colspan="7" class="text-center align-middle">
-                            <div class="d-flex flex-column justify-content-center align-items-center">
-                                <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt=""
-                                    width="300px">
-                                <p class="fs-5 text-dark text-center mt-2">
-                                    Data tidak ditemukan
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td colspan="7" class="text-center align-middle">
+                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                    <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt=""
+                                        width="300px">
+                                    <p class="fs-5 text-dark text-center mt-2">
+                                        Data tidak ditemukan
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
                     @endforelse
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+
