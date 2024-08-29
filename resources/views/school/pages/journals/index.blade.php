@@ -49,16 +49,19 @@
     <!-- Tab Content -->
     <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade" id="all-content" role="tabpanel" aria-labelledby="all-tab">
-            @include('school.pages.journals.widgets.journal-all')
+            @include('school.pages.journals.panes.journal-all')
         </div>
         <div class="tab-pane fade" id="fill-content" role="tabpanel" aria-labelledby="fill-tab">
-            @include('school.pages.journals.widgets.journal-fill')
+            @include('school.pages.journals.panes.journal-fill')
         </div>
         <div class="tab-pane fade" id="notfill-content" role="tabpanel" aria-labelledby="notfill-tab">
-            @include('school.pages.journals.widgets.journal-notfill')
+            @include('school.pages.journals.panes.journal-notfill')
         </div>
     </div>
 </div>
+
+@include('school.pages.journals.widgets.modal-detail')
+
 @endsection
 
 @section('script')
