@@ -131,6 +131,30 @@ use App\Enums\AttendanceEnum;
     </div>
 </div>
 
+<div class="align-items-center mb-4">
+    <form class="d-flex justify-content-between"  method="GET">
+        <div class="d-flex flex-column flex-md-row align-items-center">
+            <div class="mb-3 mb-md-0 me-md-3">
+                <input type="text" name="search_student" class="form-control" placeholder="Cari..."
+                    value="{{ old('search_student', request('search_student')) }}">
+            </div>
+    
+            <div class="mb-3 mb-md-0 me-md-3">
+                <select name="filter" class="form-select">
+                    <option value="">Tampilkan semua</option>
+                    <option value="terlama" {{ old('filter', request('filter')) == 'terlama' ? 'selected' : '' }}>Terlama</option>
+                    <option value="terbaru" {{ old('filter', request('filter')) == 'terbaru' ? 'selected' : '' }}>Terbaru</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </div>
+
+        <div class="d-flex">
+            <input type="date" class="form-control me-3">
+            <button type="submit" class="btn btn-primary">Cari</button>
+        </div>
+    </form>
+</div>
 
 <div class="row">
     @forelse ($histories as $journal)
