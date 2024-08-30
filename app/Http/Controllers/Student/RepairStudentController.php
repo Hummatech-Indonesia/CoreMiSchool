@@ -34,7 +34,7 @@ class RepairStudentController extends Controller
     public function update(RepairStudentRequest $request, StudentRepair $repair)
     {
         $data = $this->service->store($request, $repair);
-        $this->studentRepair->update($repair->id, ['proof' => $data]);
+        $this->studentRepair->update($repair->id, ['proof' => $data['file']]);
         return redirect()->back()->with('success', 'Berhasil menambahkan bukti');
     }
 }

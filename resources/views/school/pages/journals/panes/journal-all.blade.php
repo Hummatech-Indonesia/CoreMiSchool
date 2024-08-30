@@ -47,12 +47,17 @@
                             <td><span
                                     class="mb-1 badge font-medium {{ $all_journal->teacherJournals->first() ? 'bg-light-success text-success' : 'bg-light-danger text-danger' }}">{{ $all_journal->teacherJournals->first() ? 'Mengisi' : 'Tidak Mengisi' }}</span>
                             </td>
-                            <td>{{ $all_journal->teacherJournals->first() ? \Illuminate\Support\Str::limit($all_journal->teacherJournals->first()->description, 50) : 'Kosong..' }}
+                            <td>{{ $all_journal->teacherJournals->first() ? \Illuminate\Support\Str::limit($all_journal->teacherJournals->first()->description, 50) : 'kosong..' }}
                             </td>
                             </td>
                             <td class="text-center">
                                 <div class="d-flex justify-content-center align-items-center gap-2">
-                                    <a type="button" class="text-primari" data-bs-toggle="modal" data-bs-target="#modal-detail-journal">
+                                    <a type="button" class="text-primari btn-detail-journal"
+                                        data-author="{{ $all_journal->teacherSubject->employee->user->name }}"
+                                        data-date="{{ \Carbon\Carbon::parse($all_journal->created_at)->translatedFormat('d F Y') }}"
+                                        data-description="{{ $all_journal->teacherJournals->first() ? \Illuminate\Support\Str::limit($all_journal->teacherJournals->first()->description, 50) : 'kosong...' }}" 
+                                        data-classroom="{{ $all_journal->classroom->name }} - {{ $all_journal->teacherSubject->subject->name }}"
+                                        >
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                             viewBox="0 0 24 24">
                                             <g fill="none" stroke="currentColor" stroke-linecap="round"
