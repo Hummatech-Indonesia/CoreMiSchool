@@ -116,9 +116,9 @@
                             <span class="badge bg-light-primary text-primary">-{{ $studentRepair->point }} Point</span>
                         </td>
                         <td>
-                            <button data-id="{{ $studentRepair->id }}" 
+                            <button data-id="{{ $studentRepair->id }}"
                                     data-student="{{ $studentRepair->classroomStudent->student->user->name }}"
-                                    data-classroom="{{ $studentRepair->classroomStudent->classroom->name }}" 
+                                    data-classroom="{{ $studentRepair->classroomStudent->classroom->name }}"
                                     data-gender="{{ $studentRepair->classroomStudent->student->gender->label() }}"
                                     data-employee="{{ $studentRepair->employee->user->name }}"
                                     data-repair="{{ $studentRepair->repair }}"
@@ -151,6 +151,8 @@
     @include('staff.pages.repair-student-list.widgets.modal-import')
     {{-- modal tambah --}}
     @include('staff.pages.repair-student-list.widgets.modal-create')
+    {{-- modal detail konfirmasi --}}
+    @include('staff.pages.repair-student-list.widgets.modal-detail-waiting confirmation')
 @endsection
 
 @section('script')
