@@ -58,9 +58,9 @@ class StaffViolationController extends Controller
         return view('staff.pages.top-violation.detail-class', compact('studentClass'));
     }
 
-    public function show_detail_student(Student $student)
+    public function show_detail_student(Student $student, Request $request)
     {
-        $violations = $this->studentViolation->whereStudent($student->id);
+        $violations = $this->studentViolation->whereStudent($student->id, $request);
         $repairs = $this->studentRepair->whereStudent($student->id);
         return view('staff.pages.top-violation.detail-student', compact('student', 'violations', 'repairs'));
     }

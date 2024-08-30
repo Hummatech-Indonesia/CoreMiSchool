@@ -99,7 +99,7 @@
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 mt-4">
         <form class="d-flex flex-column flex-md-row align-items-center" method="GET">
             <div class="mb-3 mb-md-0 me-md-3">
-                <input type="text" name="search_student" class="form-control" placeholder="Cari..." value="">
+                <input type="text" name="search" value="{{ old('search', request('search')) }}" class="form-control" placeholder="Cari..." value="">
             </div>
 
             <div class="mb-3 mb-md-0 me-md-3">
@@ -110,11 +110,12 @@
             </div>
 
             <div class="mb-3 mb-md-0 me-md-3">
-                <select name="point_student" class="form-select">
-                    <option value="terbaru">Terbaru</option>
-                    <option value="terlama">Terlama</option>
+                <select name="order" class="form-select">
+                    <option value="terbaru" {{ old('order') == 'terbaru' ? 'selected' : '' }}>Terbaru</option>
+                    <option value="terlama" {{ old('order') == 'terlama' ? 'selected' : '' }}>Terlama</option>
                 </select>
             </div>
+
 
             <button type="submit" class="btn btn-primary">Filter</button>
         </form>
@@ -145,7 +146,7 @@
                                 data-name="{{ $studentViolation->classroomStudent->student->user->name }}"
                                 data-classroom="{{ $studentViolation->classroomStudent->classroom->name }}"
                                 data-violation="{{ $studentViolation->regulation->violation }}"
-                                data-date="{{ Carbon\Carbon::parse($studentViolation->created_at)->format('d M Y') }}"  
+                                data-date="{{ Carbon\Carbon::parse($studentViolation->created_at)->format('d M Y') }}"
                             >Detail</button>
                         </td>
                     </tr>
