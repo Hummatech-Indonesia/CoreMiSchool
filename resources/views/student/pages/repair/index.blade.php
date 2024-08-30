@@ -26,25 +26,20 @@
     <div class="d-flex flex-column flex-md-row justify-content-between mb-4">
         <form class="d-flex flex-column flex-md-row" method="GET">
             <div class="mb-3 mb-md-0 me-md-3">
-                <input type="text" name="search" value="{{ old('search', request('search')) }}" class="form-control"
-                    placeholder="Cari..." value="">
+                <input type="text" name="search" value="{{ old('search', request('search')) }}" class="form-control" placeholder="Cari..." value="">
             </div>
 
             <div class="mb-3 mb-md-0 me-md-3">
-                <select name="point_student" class="form-select">
-                    <option value="tertinggi">Point Tertinggi
-                    </option>
-                    <option value="terendah">Point Terendah
-                    </option>
+                <select name="point" class="form-select">
+                    <option value="highest">Point Tertinggi</option>
+                    <option value="lowest">Point Terendah</option>
                 </select>
             </div>
 
             <div class="mb-3 mb-md-0 me-md-3">
-                <select name="point_student" class="form-select">
-                    <option value="terbaru">Terbaru
-                    </option>
-                    <option value="terlama">Terlama
-                    </option>
+                <select name="order" class="form-select">
+                    <option value="latest">Terbaru</option>
+                    <option value="oldest">Terlama</option>
                 </select>
             </div>
 

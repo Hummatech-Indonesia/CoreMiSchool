@@ -42,8 +42,13 @@ class StudentRepairRepository extends BaseRepository implements StudentRepairInt
     {
         return $this->model->query()
             ->whereRelation('classroomStudent', 'student_id', $id)
-            ->when($request->search, function ($query) use ($request) {
-                $query->whereRelation('classroomStudent.student.user', 'name', 'like', '%' . $request->search . '%');
+            ->when($request->search, fn($query) => $query->whereRelation('classroomStudent.student.user', 'name', 'like', '%' . $request->search . '%'))
+            ->when($request->point, function($query) use ($request) {
+                $order = $request->point == 'highest' ? 'desc' : 'asc';
+                $query->orderBy('point', $order);
+            })
+            ->when($request->order, function($query) use ($request) {
+                $request->order == 'latest' ? $query->latest() : $query->oldest();
             })
             ->get();
     }
