@@ -25,6 +25,10 @@ class UserSeeder extends Seeder
                 ]);
 
             $user->assignRole($role);
+            if ($role['name'] == 'staff') {
+                $user->givePermissionTo('view_violation');
+            }
+
         }
     }
 }
