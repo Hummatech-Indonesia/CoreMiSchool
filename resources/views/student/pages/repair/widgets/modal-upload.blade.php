@@ -8,8 +8,10 @@
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="" enctype="multipart/form-data">
-
+            <form action="" method="" enctype="multipart/form-data">
+                @csrf
+                @method('')
+                
                 <div class="modal-body px-4" style="max-height: 70vh; overflow-y: auto;">
                     <div class="mb-3">
                         <h5 style="font-size: 15px"><b>Pembuat Perbaikan:</b></h5>
@@ -54,7 +56,7 @@
                         style="background-color: #C7C7C7; color: black; border: none;">Tutup</button>
                     <button type="submit" class="btn mb-1 waves-effect waves-light btn-primary">Ajukan</button>
                 </div>
-                
+
             </form>
         </div>
     </div>
