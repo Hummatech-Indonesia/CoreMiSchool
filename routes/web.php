@@ -24,7 +24,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-require_once __DIR__ . '/role/admin.php';
 require_once __DIR__ . '/role/school.php';
 require_once __DIR__ . '/role/staff.php';
 require_once __DIR__ . '/role/teacher.php';
