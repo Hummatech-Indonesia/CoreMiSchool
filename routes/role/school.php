@@ -198,6 +198,10 @@ Route::get('user-list', function () {
     return view('school.pages.test.user-list');
 })->name('user-list.index');
 
+Route::get('export-journal', function () {
+    return view('school.pages.journals.export');
+})->name('export-journal.index');
+
 // list absensi
 Route::get('list-attendance', [AttendanceStudentController::class, 'index'])->name('list-attendance.index');
 Route::post('add-teacher-list-attendance', [AttendanceTeacherController::class, 'store'])->name('add-teacher-list-attendance.index');
