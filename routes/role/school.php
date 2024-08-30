@@ -42,6 +42,7 @@ Route::middleware('auth')->prefix('school')->name('school.')->group(function () 
     Route::post('school-points', [SchoolPointController::class, 'store'])->name('school-points.store');
     Route::get('journals', [JournalTeacherController::class, 'index'])->name('journals.detail');
     Route::get('export-journal', [JournalTeacherController::class, 'export_preview'])->name('export-journal.index');
+    Route::get('export-journal/export', [JournalTeacherController::class, 'export'])->name('export-journal.export');
     Route::patch('max-point/{schoolPoint}', [SchoolPointController::class, 'update'])->name('max-point.update');
     Route::resource('violation', RegulationController::class);
     Route::get('violation-download', [RegulationController::class, 'download'])->name('violation.download');

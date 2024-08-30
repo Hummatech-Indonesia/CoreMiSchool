@@ -22,10 +22,10 @@ class StudentViolationRepository extends BaseRepository implements StudentViolat
     public function search(Request $request): mixed
     {
         return $this->model->query()
-            ->when($request->search, function($query) use ($request){
+            ->when($request->search, function ($query) use ($request) {
                 $query->whereRelation('classroomStudent.student.user', 'name', 'like', '%' . $request->search . '%');
             })
-            ->when($request->gender, function($query) use ($request){
+            ->when($request->gender, function ($query) use ($request) {
                 $query->whereRelation('classroomStudent.student', 'gender', 'like', '%' . $request->gender . '%');
             })
             ->paginate(10);
@@ -34,14 +34,17 @@ class StudentViolationRepository extends BaseRepository implements StudentViolat
     public function whereClassroom(mixed $id): mixed
     {
         return $this->model->query()
-            ->whereRelation('classroomStudent', 'classroom_id' , $id)
+            ->whereRelation('classroomStudent', 'classroom_id', $id)
             ->paginate(10);
     }
 
-    public function whereStudent(mixed $id): mixed
+    public function whereStudent(mixed $id, Request $request): mixed
     {
         return $this->model->query()
             ->whereRelation('classroomStudent', 'student_id', $id)
+            ->when($request->search, function ($query) use ($request) {
+                $query->whereRelation('classroomStudent.student.user', 'name', 'like', '%' . $request->search . '%');
+            })
             ->get();
     }
 
@@ -68,10 +71,8 @@ class StudentViolationRepository extends BaseRepository implements StudentViolat
     public function countByClassroomStudent(): mixed
     {
         return $this->model->query()
-        ->select('classroom_student_id', DB::raw('COUNT(*) as count'))
-        ->groupBy('classroom_student_id')
-        ->get();
+            ->select('classroom_student_id', DB::raw('COUNT(*) as count'))
+            ->groupBy('classroom_student_id')
+            ->get();
     }
-
-
 }

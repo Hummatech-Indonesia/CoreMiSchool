@@ -60,12 +60,14 @@ class TeacherJournalRepository extends BaseRepository implements TeacherJournalI
         return $this->model->query()
             ->with('attendanceJournals')
             ->when($request->search, function ($query) use ($request) {
-                $query->where('name', 'LIKE', '%' . $request->search . '%');
+                $query->where('title', 'LIKE', '%' . $request->search . '%');
             })->when($request->filter === "terbaru", function($query) {
                 $query->latest();
             })
             ->when($request->filter === "terlama", function($query) {
                 $query->oldest();
+            })->when($request->date, function ($query) use ($request) {
+                $query->where('date', 'LIKE', '%' . $request->date . '%');
             })
             ->get();
     }

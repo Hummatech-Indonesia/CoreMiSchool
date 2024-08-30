@@ -26,7 +26,8 @@
     <div class="d-flex flex-column flex-md-row justify-content-between mb-4">
         <form class="d-flex flex-column flex-md-row" method="GET">
             <div class="mb-3 mb-md-0 me-md-3">
-                <input type="text" name="search_student" class="form-control" placeholder="Cari..." value="">
+                <input type="text" name="search" value="{{ old('search', request('search')) }}" class="form-control"
+                    placeholder="Cari..." value="">
             </div>
 
             <div class="mb-3 mb-md-0 me-md-3">
@@ -72,22 +73,19 @@
                         <td>{{ \Carbon\Carbon::parse($repair->start_date)->translatedFormat('d F Y') }}</td>
                         <td>{{ \Carbon\Carbon::parse($repair->end_date)->translatedFormat('d F Y') }}</td>
                         <td>
-                            <span class="badge {{ $repair->is_approved == false ? 'bg-light-danger text-danger' : 'bg-light-success text-success' }}">{{ $repair->is_approved == false ? 'Belum Dikerjakan' : 'Sudah Dikerjakan'}}</span>
+                            <span
+                                class="badge {{ $repair->is_approved == false ? 'bg-light-danger text-danger' : 'bg-light-success text-success' }}">{{ $repair->is_approved == false ? 'Belum Dikerjakan' : 'Sudah Dikerjakan' }}</span>
                         </td>
                         <td>
                             <span class="badge bg-light-success text-success">- {{ $repair->point }}
                                 Point</span>
                         </td>
                         <td>
-                            <button
-                                data-id="{{ $repair->id }}"
-                                data-employee="{{ $repair->employee->user->name }}"
-                                    data-student="{{ $repair->classroomStudent->student->user->name }}"
-                                    data-repair="{{ $repair->repapir }}"
-                                    data-point="{{ $repair->point }}"
-                                    data-start_date="{{ $repair->start_date }}"
-                                    data-end_date="{{ $repair->end_date }}"
-                                    data-proof="{{ $repair->proof ? asset('storage/'. $repair->proof) : asset('admin_assets/dist/images/backgrounds/student.png') }}"
+                            <button data-id="{{ $repair->id }}" data-employee="{{ $repair->employee->user->name }}"
+                                data-student="{{ $repair->classroomStudent->student->user->name }}"
+                                data-repair="{{ $repair->repapir }}" data-point="{{ $repair->point }}"
+                                data-start_date="{{ $repair->start_date }}" data-end_date="{{ $repair->end_date }}"
+                                data-proof="{{ $repair->proof ? asset('storage/' . $repair->proof) : asset('admin_assets/dist/images/backgrounds/student.png') }}"
                                 class="btn {{ $repair->is_approved == false ? 'btn-upload' : 'btn-detail' }} btn-primary py-1 px-4">Detail</button>
                         </td>
                     </tr>
@@ -113,5 +111,5 @@
 @endsection
 
 @section('script')
-@include('student.pages.repair.scripts.btn-script')
+    @include('student.pages.repair.scripts.btn-script')
 @endsection

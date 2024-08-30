@@ -7,6 +7,7 @@ use App\Http\Requests\RepairStudentRequest;
 use App\Services\RepairStudentService;
 use App\Http\Controllers\Controller;
 use App\Models\StudentRepair;
+use Illuminate\Http\Request;
 
 class RepairStudentController extends Controller
 {
@@ -22,9 +23,9 @@ class RepairStudentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $repairs = $this->studentRepair->whereStudent(auth()->user()->student->id);
+        $repairs = $this->studentRepair->whereStudent(auth()->user()->student->id, $request);
         return view('student.pages.repair.index', compact('repairs'));
     }
 

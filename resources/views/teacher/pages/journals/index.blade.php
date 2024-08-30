@@ -54,7 +54,7 @@ use App\Enums\AttendanceEnum;
             <span class="badge bg-light-primary text-primary ms-2 fw-semibold">
                 <svg xmlns="http://www.w3.org/2000/svg" class="text-primary me-1" width="18" height="18" viewBox="0 0 24 24">
                     <path fill="currentColor" d="M12 12h5v5h-5zm7-9h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m0 2v2H5V5zM5 19V9h14v10z" /></svg>
-                20 Mei 2024
+                    <?php echo date('d F Y'); ?>
             </span>
         </div>
     </div>
@@ -86,8 +86,7 @@ use App\Enums\AttendanceEnum;
                         <td>{{ Carbon::parse($lessonSchedule->start->start)->format('H:i') }} -
                             {{ Carbon::parse($lessonSchedule->end->end)->format('H:i') }}</td>
                         @if ($lessonSchedule->start->name != 'Istirahat')
-                        <td>Jam ke {{ explode(' - ', $lessonSchedule->start->name)[1] }} -
-                            {{ explode(' - ', $lessonSchedule->end->name)[1] }}</td>
+                        <td>{{ \Carbon\Carbon::parse($lessonSchedule->created_at)->translatedFormat('d F Y') }}</td>
                         @endif
                         <td>{{ $lessonSchedule->classroom->name }}</td>
                         @if ($lessonSchedule->teacherJournals->count() > 0)
@@ -135,8 +134,8 @@ use App\Enums\AttendanceEnum;
     <form class="d-flex justify-content-between"  method="GET">
         <div class="d-flex flex-column flex-md-row align-items-center">
             <div class="mb-3 mb-md-0 me-md-3">
-                <input type="text" name="search_student" class="form-control" placeholder="Cari..."
-                    value="{{ old('search_student', request('search_student')) }}">
+                <input type="text" name="search" class="form-control" placeholder="Cari..."
+                    value="{{ old('search', request('search')) }}">
             </div>
     
             <div class="mb-3 mb-md-0 me-md-3">
@@ -150,7 +149,7 @@ use App\Enums\AttendanceEnum;
         </div>
 
         <div class="d-flex">
-            <input type="date" class="form-control me-3">
+            <input type="date" name="date" class="form-control me-3">
             <button type="submit" class="btn btn-primary">Cari</button>
         </div>
     </form>
@@ -218,7 +217,7 @@ use App\Enums\AttendanceEnum;
                     <div class="col-lg-8" style="border-right: 1px solid #c0c0c0;">
                         <div class="pe-3">
                             <h5 class="card-title mb-4">Deskripsi:</h5>
-                            <p>{{ $journal->description }}</p>
+                            <p>{{ \Illuminate\Support\Str::limit($journal->description, 100) }}</p>
                         </div>
                     </div>
                     <div class="col-lg-4">
