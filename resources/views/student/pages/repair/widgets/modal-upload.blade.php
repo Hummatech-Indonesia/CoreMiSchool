@@ -8,47 +8,54 @@
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body px-4" style="max-height: 70vh; overflow-y: auto;">
-                <div class="mb-3">
-                    <h5 style="font-size: 15px"><b>Pembuat Perbaikan:</b></h5>
-                    <h6 style="font-size: 14px">Alfian Fahrul Rifa'i</h6>
-                </div>
-                <hr>
-                <div class="mb-4">
-                    <h5 style="font-size: 15px"><b>Nama Siswa Perbaikan:</b></h5>
-                    <h6 style="font-size: 14px">Alfian Fahrul Rifa'i</h6>
-                </div>
-                <div class="mb-4">
-                    <h5 style="font-size: 15px"><b>Jenis Pelanggaran:</b></h5>
-                    <h6 style="font-size: 14px">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut orci orci,
-                        placerat nec quam quis, consequat gravida nisi. Integer lobortis dignissim sapien, eu rhoncus
-                        dui tincidunt vitae.</h6>
-                </div>
-                <div class="mb-4">
-                    <h5 style="font-size: 15px"><b>Pengurangan Point:</b></h5>
-                    <h6 style="font-size: 14px">- 80 Point</h6>
-                </div>
-                <div class="d-flex">
+            <form action="" enctype="multipart/form-data">
+
+                <div class="modal-body px-4" style="max-height: 70vh; overflow-y: auto;">
                     <div class="mb-3">
-                        <h5 style="font-size: 15px"><b>Tanggal Mulai:</b></h5>
-                        <h6 style="font-size: 14px">10 mei 2024</h6>
+                        <h5 style="font-size: 15px"><b>Pembuat Perbaikan:</b></h5>
+                        <h6 style="font-size: 14px">Alfian Fahrul Rifa'i</h6>
                     </div>
-                    <div class="mb-3 ms-5">
-                        <h5 style="font-size: 15px"><b>Tanggal Akhir:</b></h5>
-                        <h6 style="font-size: 14px">20 mei 2024</h6>
+                    <hr>
+                    <div class="mb-4">
+                        <h5 style="font-size: 15px"><b>Nama Siswa Perbaikan:</b></h5>
+                        <h6 style="font-size: 14px">Alfian Fahrul Rifa'i</h6>
+                    </div>
+                    <div class="mb-4">
+                        <h5 style="font-size: 15px"><b>Jenis Pelanggaran:</b></h5>
+                        <h6 style="font-size: 14px">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut orci
+                            orci,
+                            placerat nec quam quis, consequat gravida nisi. Integer lobortis dignissim sapien, eu
+                            rhoncus
+                            dui tincidunt vitae.</h6>
+                    </div>
+                    <div class="mb-4">
+                        <h5 style="font-size: 15px"><b>Pengurangan Point:</b></h5>
+                        <h6 style="font-size: 14px">- 80 Point</h6>
+                    </div>
+                    <div class="d-flex">
+                        <div class="mb-3">
+                            <h5 style="font-size: 15px"><b>Tanggal Mulai:</b></h5>
+                            <h6 style="font-size: 14px">10 mei 2024</h6>
+                        </div>
+                        <div class="mb-3 ms-5">
+                            <h5 style="font-size: 15px"><b>Tanggal Akhir:</b></h5>
+                            <h6 style="font-size: 14px">20 mei 2024</h6>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <h5 style="font-size: 15px"><b>Bukti:</b></h5>
+                        <img src="{{ asset('admin_assets/dist/images/backgrounds/student.png') }}" alt="Bukti Perbaikan"
+                            class="img-fluid rounded-3 pt-2" style="max-width: 100%; height: auto;">
+                        <input class="form-control mt-3" name="image" type="file" id="formFile">
                     </div>
                 </div>
-                <div class="mb-3">
-                    <h5 style="font-size: 15px"><b>Bukti:</b></h5>
-                    <img src="{{ asset('admin_assets/dist/images/backgrounds/student.png') }}" alt="Bukti Perbaikan"
-                        class="img-fluid rounded-3 pt-2" style="max-width: 100%; height: auto;">
-                    <input class="form-control mt-3" name="image" type="file" id="formFile">
+                <div class="modal-footer">
+                    <button type="button" class="btn mb-1 waves-effect waves-light" data-bs-dismiss="modal"
+                        style="background-color: #C7C7C7; color: black; border: none;">Tutup</button>
+                    <button type="submit" class="btn mb-1 waves-effect waves-light btn-primary">Ajukan</button>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn mb-1 waves-effect waves-light btn-primary"
-                    data-bs-dismiss="modal">Tutup</button>
-            </div>
+                
+            </form>
         </div>
     </div>
 </div>
