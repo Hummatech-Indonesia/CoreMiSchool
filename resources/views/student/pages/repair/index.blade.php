@@ -69,8 +69,8 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $repair->repair }}</td>
-                        <td>{{ $repair->start_date }}</td>
-                        <td>{{ $repair->end_date }}</td>
+                        <td>{{ \Carbon\Carbon::parse($repair->start_date)->translatedFormat('d F Y') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($repair->end_date)->translatedFormat('d F Y') }}</td>
                         <td>
                             <span class="badge {{ $repair->is_approved == false ? 'bg-light-danger text-danger' : 'bg-light-success text-success' }}">{{ $repair->is_approved == false ? 'Belum Dikerjakan' : 'Sudah Dikerjakan'}}</span>
                         </td>
