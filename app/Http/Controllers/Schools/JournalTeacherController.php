@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Schools;
 use App\Contracts\Interfaces\ClassroomInterface;
 use App\Contracts\Interfaces\LessonScheduleInterface;
 use App\Contracts\Interfaces\SubjectInterface;
+use App\Exports\TeacherJournalExport;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class JournalTeacherController extends Controller
 {
@@ -38,5 +40,10 @@ class JournalTeacherController extends Controller
         $classrooms = $this->classroom->whereInSchoolYears($request);
         $subjects = $this->subject->get();
         return view('school.pages.journals.export', compact('journals', 'classrooms', 'subjects'));
+    }
+
+    public function export(Request $request)
+    {
+        return Excel::download(new TeacherJournalExport($this->lessonSchedule, $request), 'Jurnal-Guru.xlsx');
     }
 }

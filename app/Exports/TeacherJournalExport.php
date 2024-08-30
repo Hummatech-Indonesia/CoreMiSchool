@@ -2,7 +2,8 @@
 
 namespace App\Exports;
 
-use App\Contracts\Interfaces\AttendanceInterface;
+use App\Contracts\Interfaces\LessonScheduleInterface;
+use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;   
@@ -11,23 +12,21 @@ use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 use Maatwebsite\Excel\Concerns\FromView;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
 
-class TeacherAttendanceExport implements FromView, ShouldAutoSize, WithStyles
+class TeacherJournalExport implements FromView, ShouldAutoSize, WithStyles
 {
+    private LessonScheduleInterface $lessonSchedule;
     private Request $request;
-    private AttendanceInterface $attendance;
 
-    public function __construct(Request $request, AttendanceInterface $attendance)
-    {
+    public function __construct(LessonScheduleInterface $lessonSchedule, Request $request) {
+        $this->lessonSchedule = $lessonSchedule;
         $this->request = $request;
-        $this->attendance = $attendance;
     }
 
     public function view() : View
     {
-        $data = $this->attendance->whereModel('App\Models\Employee', $this->request);
-        return view('school.export.invoices-attendance-teacher', [
+        $data = $this->lessonSchedule->export($this->request);
+        return view('school.export.invoices-journal-teacher', [
             'items' => $data,
         ]);
     }
@@ -38,7 +37,6 @@ class TeacherAttendanceExport implements FromView, ShouldAutoSize, WithStyles
         $highestColumn = $sheet->getHighestColumn();
 
         $sheet->getStyle("A1:{$highestColumn}{$highestRow}")->getAlignment()
-            ->setHorizontal(Alignment::HORIZONTAL_CENTER)
             ->setVertical(Alignment::VERTICAL_CENTER);
 
         $sheet->getStyle("A1:{$highestColumn}{$highestRow}")->applyFromArray([
@@ -54,7 +52,7 @@ class TeacherAttendanceExport implements FromView, ShouldAutoSize, WithStyles
             'fill' => [
                 'fillType' => Fill::FILL_SOLID,
                 'startColor' => [
-                    'argb' => '5D87FF',
+                    'argb' => '3CB0E5',
                 ],
             ],
         ]);

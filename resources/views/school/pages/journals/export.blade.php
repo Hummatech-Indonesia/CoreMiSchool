@@ -81,7 +81,7 @@
                                 </button>
                             </div>
                             <div>
-                                <a href="javascript:void(0)" class="btn-export btn btn-primary ms-2">
+                                <button type="submit" class="btn-export btn btn-primary ms-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                         viewBox="0 0 24 24">
                                         <g fill="none">
@@ -92,7 +92,7 @@
                                         </g>
                                     </svg>
                                     Ekspor
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </form>
@@ -180,12 +180,12 @@
     <script>
         $('.btn-preview').on('click', function() {
             var id = $(this).data('id');
-            $('#form-action').attr('action', '{{ route('school.student-attendance.show', '') }}/' + id);
+            $('#form-action').attr('action', '{{ route('school.export-journal.index') }}');
         });
 
         $('.btn-export').on('click', function() {
             var id = $(this).data('id');
-            $('#form-action').attr('action', '{{ route('school.student-attendance.export', '') }}/' + id);
+            $('#form-action').attr('action', '{{ route('school.export-journal.export') }}');
         });
     </script>
      @include('school.pages.journals.scripts.detail')
