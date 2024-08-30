@@ -1,8 +1,9 @@
 <div class="modal fade" id="modal-detail-remidial" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="importPegawai"><b>Detail Bukti Perbaikan / </b>
+                <h5 class="modal-title" id="importPegawai">
+                    <b>Detail Bukti Perbaikan / </b>
                     <span class="mb-1 badge font-medium bg-light-primary text-primary">10 Januari 2020</span>
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -35,8 +36,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn mb-1 waves-effect waves-light btn-primary"
-                    data-bs-dismiss="modal">Tutup</button>
+                <button type="button" class="btn mb-1 waves-effect waves-light btn-primary" data-bs-dismiss="modal">Tutup</button>
             </div>
         </div>
     </div>
