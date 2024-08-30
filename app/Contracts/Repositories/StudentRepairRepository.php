@@ -4,6 +4,7 @@ namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\StudentRepairInterface;
 use App\Models\StudentRepair;
+use Illuminate\Http\Request;
 
 class StudentRepairRepository extends BaseRepository implements StudentRepairInterface
 {
@@ -26,7 +27,7 @@ class StudentRepairRepository extends BaseRepository implements StudentRepairInt
     {
         return $this->model->query()->findOrFail($id);
     }
-    
+
     public function update(mixed $id, array $data): mixed
     {
         return $this->model->query()->findOrFail($id)->update($data);
@@ -37,10 +38,13 @@ class StudentRepairRepository extends BaseRepository implements StudentRepairInt
         return $this->model->query()->findOrFail($id)->delete();
     }
 
-    public function whereStudent(mixed $id): mixed
+    public function whereStudent(mixed $id, Request $request): mixed
     {
         return $this->model->query()
             ->whereRelation('classroomStudent', 'student_id', $id)
+            ->when($request->search, function ($query) use ($request) {
+                $query->whereRelation('classroomStudent.student.user', 'name', 'like', '%' . $request->search . '%');
+            })
             ->get();
     }
 }
