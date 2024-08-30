@@ -36,17 +36,28 @@
 
     <div class="row">
         <div class="col-lg-3 col-md-6 d-flex align-items-stretch" style="flex: 0 0 25%; max-width: 25%;">
-            <div class="card w-100 border p-0" style="background: linear-gradient(135deg, #51B6FF, #4F7CFF); color: #fff;">
+            <div class="card w-100 border p-0 position-relative"
+                style="background: linear-gradient(135deg, #51B6FF, #4F7CFF); color: #fff;">
                 <div class="card-body d-flex flex-column p-3" style="background: none;">
                     <h6 class="text-light text-center pt-2" style="font-size: 20px"><b>Jumlah Point Kamu</b></h6>
-                    <p class="card-text text-center" style="font-size: 12px; margin-bottom: 10px;">Siswa bisa melakukan
-                        perbaikan untuk mengurangi point</p>
-                    <h1 class="text-light text-center" style="font-size: 40px; margin-top: 20px;"><b>{{ auth()->user()->student->point }}</b></h1>
-                    <h6 class="text-light text-center" style="font-size: 20px; margin-top: 10px;"><b>Point Pelanggaran</b>
+                    <p class="card-text text-center" style="font-size: 12px; margin-bottom: 10px;">
+                        Siswa bisa melakukan perbaikan untuk mengurangi point
+                    </p>
+                    <h1 class="text-light text-center" style="font-size: 50px; margin-top: 10px;">
+                        <b>{{ auth()->user()->student->point }}</b>
+                    </h1>
+                    <h6 class="text-light text-center" style="font-size: 20px; margin-top: 10px; margin-bottom: 25px">
+                        <b>Point Pelanggaran</b>
                     </h6>
                 </div>
+                <img src="{{ asset('assets/images/background/toga.png') }}" alt="Left Corner Image"
+                    class="position-absolute"
+                    style="bottom: 0; left: 0; width: 100px; height: auto; margin-bottom: -10px; margin-left: -10px;">
+                <img src="{{ asset('assets/images/background/buble-1.png') }}" alt="Image" class="position-absolute"
+                    style="bottom: 0; right: 0; width: 110px; height: auto; margin-bottom: 0px; margin-right: 0px;">
             </div>
         </div>
+
 
         <div class="col-lg-4 col-md-6 d-flex align-items-stretch" style="flex: 0 0 37.5%; max-width: 37.5%;">
             <div class="card w-100 border p-0">
@@ -73,7 +84,8 @@
                 <div class="card-body p-3 d-flex flex-column">
                     <ul style="list-style-type:disc; padding-left: 20px;">
                         @forelse ($schoolPoints as $schoolPoint)
-                            <li style="padding-bottom: 6px">Point {{ $schoolPoint->point }}: {{ $schoolPoint->description }}</li>
+                            <li style="padding-bottom: 6px">Point {{ $schoolPoint->point }}: {{ $schoolPoint->description }}
+                            </li>
                         @empty
                             <li style="padding-bottom: 6px">Belum ada point peringatan</li>
                         @endforelse
@@ -99,7 +111,8 @@
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 mt-4">
         <form class="d-flex flex-column flex-md-row align-items-center" method="GET">
             <div class="mb-3 mb-md-0 me-md-3">
-                <input type="text" name="search" value="{{ old('search', request('search')) }}" class="form-control" placeholder="Cari..." value="">
+                <input type="text" name="search" value="{{ old('search', request('search')) }}" class="form-control"
+                    placeholder="Cari..." value="">
             </div>
 
             <div class="mb-3 mb-md-0 me-md-3">
@@ -139,15 +152,15 @@
                         <td>{{ $studentViolation->regulation->violation }}</td>
                         <td>{{ Carbon\Carbon::parse($studentViolation->created_at)->format('d M Y') }}</td>
                         <td>
-                            <span class="badge bg-light-danger text-danger">+ {{ $studentViolation->regulation->point }} Point</span>
+                            <span class="badge bg-light-danger text-danger">+ {{ $studentViolation->regulation->point }}
+                                Point</span>
                         </td>
                         <td>
                             <button class="btn btn-primary py-1 px-4 btn-detail"
                                 data-name="{{ $studentViolation->classroomStudent->student->user->name }}"
                                 data-classroom="{{ $studentViolation->classroomStudent->classroom->name }}"
                                 data-violation="{{ $studentViolation->regulation->violation }}"
-                                data-date="{{ Carbon\Carbon::parse($studentViolation->created_at)->format('d M Y') }}"
-                            >Detail</button>
+                                data-date="{{ Carbon\Carbon::parse($studentViolation->created_at)->format('d M Y') }}">Detail</button>
                         </td>
                     </tr>
                 @empty
