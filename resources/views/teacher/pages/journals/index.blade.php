@@ -86,8 +86,7 @@ use App\Enums\AttendanceEnum;
                         <td>{{ Carbon::parse($lessonSchedule->start->start)->format('H:i') }} -
                             {{ Carbon::parse($lessonSchedule->end->end)->format('H:i') }}</td>
                         @if ($lessonSchedule->start->name != 'Istirahat')
-                        <td>Jam ke {{ explode(' - ', $lessonSchedule->start->name)[1] }} -
-                            {{ explode(' - ', $lessonSchedule->end->name)[1] }}</td>
+                        <td>{{ \Carbon\Carbon::parse($lessonSchedule->created_at)->translatedFormat('d F Y') }}</td>
                         @endif
                         <td>{{ $lessonSchedule->classroom->name }}</td>
                         @if ($lessonSchedule->teacherJournals->count() > 0)
