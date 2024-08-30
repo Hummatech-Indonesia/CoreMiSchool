@@ -26,15 +26,9 @@
                     <h5 style="font-size: 15px"><b>Jenis Pelanggaran:</b></h5>
                     <h6 style="font-size: 14px" id="detail-student-violation"></h6>
                 </div>
-                <div class="mb-3">
-                    <h5 style="font-size: 15px"><b>Bukti:</b></h5>
-                    <img src="{{ asset('admin_assets/dist/images/backgrounds/student.png') }}" alt="Bukti Perbaikan"
-                        class="img-fluid rounded-3 pt-2" style="max-width: 100%; height: auto;">
-                </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn mb-1 waves-effect waves-light btn-primary"
-                    data-bs-dismiss="modal">Tutup</button>
+                <button type="button" class="btn mb-1 waves-effect waves-light btn-primary" data-bs-dismiss="modal">Tutup</button>
             </div>
         </div>
     </div>

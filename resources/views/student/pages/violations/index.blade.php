@@ -104,18 +104,17 @@
 
             <div class="mb-3 mb-md-0 me-md-3">
                 <select name="point_student" class="form-select">
-                    <option value="tertinggi">Point Tertinggi</option>
-                    <option value="terendah">Point Terendah</option>
+                    <option value="highest">Point Tertinggi</option>
+                    <option value="lowest">Point Terendah</option>
                 </select>
             </div>
 
             <div class="mb-3 mb-md-0 me-md-3">
                 <select name="order" class="form-select">
-                    <option value="terbaru" {{ old('order') == 'terbaru' ? 'selected' : '' }}>Terbaru</option>
-                    <option value="terlama" {{ old('order') == 'terlama' ? 'selected' : '' }}>Terlama</option>
+                    <option value="latest" {{ old('order') == 'latest' ? 'selected' : '' }}>Terbaru</option>
+                    <option value="oldest" {{ old('order') == 'oldest' ? 'selected' : '' }}>Terlama</option>
                 </select>
             </div>
-
 
             <button type="submit" class="btn btn-primary">Filter</button>
         </form>

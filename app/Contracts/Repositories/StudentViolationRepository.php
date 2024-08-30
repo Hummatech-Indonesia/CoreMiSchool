@@ -42,8 +42,15 @@ class StudentViolationRepository extends BaseRepository implements StudentViolat
     {
         return $this->model->query()
             ->whereRelation('classroomStudent', 'student_id', $id)
-            ->when($request->search, function ($query) use ($request) {
-                $query->whereRelation('classroomStudent.student.user', 'name', 'like', '%' . $request->search . '%');
+            ->when($request->search, fn($query) =>
+                $query->whereRelation('classroomStudent.student.user', 'name', 'like', '%' . $request->search . '%')
+            )
+            ->when($request->point_student, function($query) use ($request) {
+                $order = $request->point_student == 'highest' ? 'desc' : 'asc';
+                $query->with(['regulation' => fn($q) => $q->orderBy('point', $order)]);
+            })
+            ->when($request->order, function($query) use ($request) {
+                $request->order == 'latest' ? $query->latest() : $query->oldest();
             })
             ->get();
     }
