@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="importPegawai"><b>Detail Bukti Pelanggaran / </b>
-                    <span class="mb-1 badge font-medium bg-light-primary text-primary">10 Januari 2020</span>
+                    <span class="mb-1 badge font-medium bg-light-primary text-primary" id="detail-violation-date"></span>
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -16,23 +16,16 @@
                 <hr>
                 <div class="mb-3">
                     <h5 style="font-size: 15px"><b>Nama Siswa Dilaporkan:</b></h5>
-                    <h6 style="font-size: 14px">Alfian Fahrul Rifa'i</h6>
+                    <h6 style="font-size: 14px" id="detail-student-name"></h6>
                 </div>
                 <div class="mb-3">
                     <h5 style="font-size: 15px"><b>Kelas:</b></h5>
-                    <h6 style="font-size: 14px">X RPL 1</h6>
+                    <h6 style="font-size: 14px" id="detail-student-classroom"></h6>
                 </div>
                 <div class="mb-3">
                     <h5 style="font-size: 15px"><b>Jenis Pelanggaran:</b></h5>
-                    <h6 style="font-size: 14px">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut orci orci,
-                        placerat nec quam quis, consequat gravida nisi. Integer lobortis dignissim sapien, eu rhoncus
-                        dui tincidunt vitae.</h6>
+                    <h6 style="font-size: 14px" id="detail-student-violation"></h6>
                 </div>
-                {{-- <div class="mb-3">
-                    <h5 style="font-size: 15px"><b>Bukti:</b></h5>
-                    <img src="{{ asset('admin_assets/dist/images/backgrounds/student.png') }}" alt="Bukti Perbaikan"
-                        class="img-fluid rounded-3 pt-2" style="max-width: 100%; height: auto;">
-                </div> --}}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn mb-1 waves-effect waves-light btn-primary"
