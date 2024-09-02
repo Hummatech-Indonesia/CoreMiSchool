@@ -25,9 +25,9 @@ class RegulationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $regulations = $this->regulation->get();
+        $regulations = $this->regulation->search($request);
         $schoolPoints = $this->schoolPoint->get();
         $maxPoint = $this->schoolPoint->getMaxPoint();
         return view('school.pages.violation.index', compact('regulations', 'schoolPoints', 'maxPoint'));
@@ -100,9 +100,9 @@ class RegulationController extends Controller
             $file = $request->file('file');
             $import = new RegulationImport($this->regulation);
             Excel::import($import, $file);
-    
+
             $existingViolations = $import->existingViolations;
-    
+
             if (count($existingViolations) > 0) {
                 $message = 'Pelanggaran sudah tersedia: ' . implode(', ', $existingViolations);
                 return redirect()->back()->with('warning', $message);

@@ -9,13 +9,13 @@
                 <div class="mb-3">
                     <div class="form-group">
                         <h6 class="mb-2"><b>Jenis Pelanggaran :</b></h6>
-                        <p>Bermain slot di jam pelajaran dan tidak membayar hutang pinjol</p>
+                        <p id="violation-detail"></p>
                     </div>
                 </div>
                 <div class="mb-3">
                     <div class="form-group d-flex">
                         <h6 class="mb-2"><b>Point Pelanggaran :</b></h6>
-                        <span class="mb-1 badge font-medium bg-light-danger text-danger ms-3">+ 80 Point</span>
+                        <span class="mb-1 badge font-medium bg-light-danger text-danger ms-3"><p id="point-detail"></p></span>
                     </div>
                 </div>
             </div>

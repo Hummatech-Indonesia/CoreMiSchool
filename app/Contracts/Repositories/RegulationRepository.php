@@ -18,6 +18,19 @@ class RegulationRepository extends BaseRepository implements RegulationInterface
         return $this->model->query()->get();
     }
 
+    public function search(Request $request): mixed
+    {
+        return $this->model->query()
+            ->when($request->search, function($query)use($request){
+                $query->where('violation', 'Like', '%' . $request->search . '%');
+            })
+            ->when($request->points, function($query)use($request){
+                $order = $request->points == 'highest' ? 'desc' : 'asc';
+                $query->orderBy('point', $order);
+            })
+            ->get();
+    }
+
     public function store(array $data): mixed
     {
         return $this->model->query()->create($data);
