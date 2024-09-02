@@ -14,10 +14,10 @@
                 <tbody>
                     @forelse ($repairs as $repair)
                         <tr>
-                            <td>{{ $repair->repair->name }}</td>
+                            <td>{{ $repair->repair }}</td>
                             <td>{{ \Carbon\Carbon::parse($repair->created_at)->translatedFormat('d F Y') }}</td>
                             <td>
-                                <span class="mb-1 badge font-medium bg-light-primary text-primary">-{{ $repair->repair->point }} Point</span>
+                                <span class="mb-1 badge font-medium bg-light-primary text-primary">-{{ $repair->point }} Point</span>
                             </td>
                             <td>
                                 <button type="button" class="btn mb-1 waves-effect waves-light btn-primary w-100"

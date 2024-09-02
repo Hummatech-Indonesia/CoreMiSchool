@@ -90,8 +90,7 @@
                             <span class="mb-1 badge font-medium bg-light-danger text-danger">{{ $student->regulation->point }} Point</span>
                         </td>
                         <td>
-                            <button type="button" class="btn mb-1 waves-effect waves-light btn-primary"
-                                data-bs-toggle="modal" data-bs-target="#detail-repair">Detail</button>
+                            <a href="{{ route('employee.student-violation.detail', ['student' => $student->classroomStudent->student->id]) }}" class="btn mb-1 waves-effect waves-light btn-primary">Detail</a>
                         </td>
                     </tr>
                 @empty

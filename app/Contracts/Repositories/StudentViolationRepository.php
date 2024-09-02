@@ -37,9 +37,7 @@ class StudentViolationRepository extends BaseRepository implements StudentViolat
         return $this->model->query()
             ->whereRelation('classroomStudent', 'classroom_id', $id)
             ->when(
-                $request->search,
-                fn($query) =>
-                $query->whereRelation('classroomStudent.student.user', 'name', 'like', '%' . $request->search . '%')
+                $request->search, fn($query) => $query->whereRelation('classroomStudent.student.user', 'name', 'like', '%' . $request->search . '%')
             )
             ->when($request->gender, fn($query) => $query->whereRelation('classroomStudent.student', 'gender', $request->gender)
             )
