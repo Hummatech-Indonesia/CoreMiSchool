@@ -26,22 +26,27 @@ class StudentViolationRepository extends BaseRepository implements StudentViolat
                 $query->whereRelation('classroomStudent.student.user', 'name', 'like', '%' . $request->search . '%');
             })
             ->when($request->gender, function ($query) use ($request) {
-                $query->whereRelation('classroomStudent.student', 'gender', 'like', '%' . $request->gender . '%');
+                $query->whereRelation('classroomStudent.student', 'gender', $request->gender);
             })
             ->paginate(10);
     }
+
 
     public function whereClassroom(mixed $id, Request $request): mixed
     {
         return $this->model->query()
             ->whereRelation('classroomStudent', 'classroom_id', $id)
-            ->when($request->search, fn($query) =>
+            ->when(
+                $request->search,
+                fn($query) =>
                 $query->whereRelation('classroomStudent.student.user', 'name', 'like', '%' . $request->search . '%')
             )
-            ->when($request->gender, fn($query) =>
+            ->when(
+                $request->gender,
+                fn($query) =>
                 $query->whereRelation('classroomStudent.student', 'gender', 'like', '%' . $request->gender . '%')
             )
-            ->when($request->points, function($query) use ($request) {
+            ->when($request->points, function ($query) use ($request) {
                 $order = $request->points == 'highest' ? 'desc' : 'asc';
                 $query->orderBy('point', $order);
             })
@@ -52,14 +57,16 @@ class StudentViolationRepository extends BaseRepository implements StudentViolat
     {
         return $this->model->query()
             ->whereRelation('classroomStudent', 'student_id', $id)
-            ->when($request->search, fn($query) =>
+            ->when(
+                $request->search,
+                fn($query) =>
                 $query->whereRelation('classroomStudent.student.user', 'name', 'like', '%' . $request->search . '%')
             )
-            ->when($request->point_student, function($query) use ($request) {
+            ->when($request->point_student, function ($query) use ($request) {
                 $order = $request->point_student == 'highest' ? 'desc' : 'asc';
                 $query->with(['regulation' => fn($q) => $q->orderBy('point', $order)]);
             })
-            ->when($request->order, function($query) use ($request) {
+            ->when($request->order, function ($query) use ($request) {
                 $request->order == 'latest' ? $query->latest() : $query->oldest();
             })
             ->get();
