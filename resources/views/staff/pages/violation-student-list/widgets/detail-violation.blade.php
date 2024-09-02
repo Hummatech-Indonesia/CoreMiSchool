@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="importPegawai"><b>Detail Bukti Perbaikan / </b>
+                <h5 class="modal-title" id="importPegawai"><b>Detail Bukti Pelanggaran / </b>
                     <span class="mb-1 badge font-medium bg-light-primary text-primary">10 Januari 2020</span>
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -28,11 +28,11 @@
                         placerat nec quam quis, consequat gravida nisi. Integer lobortis dignissim sapien, eu rhoncus
                         dui tincidunt vitae.</h6>
                 </div>
-                <div class="mb-3">
+                {{-- <div class="mb-3">
                     <h5 style="font-size: 15px"><b>Bukti:</b></h5>
                     <img src="{{ asset('admin_assets/dist/images/backgrounds/student.png') }}" alt="Bukti Perbaikan"
                         class="img-fluid rounded-3 pt-2" style="max-width: 100%; height: auto;">
-                </div>
+                </div> --}}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn mb-1 waves-effect waves-light btn-primary"
