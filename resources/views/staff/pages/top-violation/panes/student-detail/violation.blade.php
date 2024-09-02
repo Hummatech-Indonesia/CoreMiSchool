@@ -15,18 +15,16 @@
                     @forelse ($violations as $violation)
                         <tr>
                             <td>{{ $violation->regulation->violation }}</td>
-                            {{-- <td>10 Mei 2024 - 20 Mei 2024</td> --}}
                             <td>{{ \Carbon\Carbon::parse($violation->created_at)->translatedFormat('d F Y') }}</td>
                             <td>
                                 <span class="mb-1 badge font-medium bg-light-primary text-primary">+{{ $violation->regulation->point }} Point</span>
                             </td>
                             <td>
-                                <button type="button" class="btn mb-1 waves-effect waves-light btn-primary w-100"
-                                    data-bs-toggle="modal" data-bs-target="#violation-student-detail">Detail</button>
+                                <button data-violation="{{ $violation->regulation->violation }}" data-point="{{ $violation->regulation->point }}" data-date="{{ \Carbon\Carbon::parse($violation->created_at)->translatedFormat('d F Y') }}" class="btn mb-1 btn-detail-violation waves-effect waves-light btn-primary w-100">Detail</button>
                             </td>
                         </tr>
                     @empty
-                         <tr>
+                        <tr>
                             <td colspan="4" class="text-center align-middle">
                                 <div class="d-flex flex-column justify-content-center align-items-center">
                                     <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt="" width="300px">
@@ -35,12 +33,13 @@
                                     </p>
                                 </div>
                             </td>
-                        </tr>   
+                        </tr>
                     @endforelse
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+
 
 @include('staff.pages.top-violation.widgets.violation-detail')
