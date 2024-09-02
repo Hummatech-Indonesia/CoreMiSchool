@@ -31,10 +31,20 @@ class StudentViolationRepository extends BaseRepository implements StudentViolat
             ->paginate(10);
     }
 
-    public function whereClassroom(mixed $id): mixed
+    public function whereClassroom(mixed $id, Request $request): mixed
     {
         return $this->model->query()
             ->whereRelation('classroomStudent', 'classroom_id', $id)
+            ->when($request->search, fn($query) =>
+                $query->whereRelation('classroomStudent.student.user', 'name', 'like', '%' . $request->search . '%')
+            )
+            ->when($request->gender, fn($query) =>
+                $query->whereRelation('classroomStudent.student', 'gender', 'like', '%' . $request->gender . '%')
+            )
+            ->when($request->points, function($query) use ($request) {
+                $order = $request->points == 'highest' ? 'desc' : 'asc';
+                $query->orderBy('point', $order);
+            })
             ->paginate(10);
     }
 

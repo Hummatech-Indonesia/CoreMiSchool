@@ -52,9 +52,9 @@ class StaffViolationController extends Controller
         return view('staff.pages.overview.index', compact('countByClassroomStudent', 'students', 'schoolPoint'));
     }
 
-    public function show(Classroom $classroom)
+    public function show(Classroom $classroom, Request $request)
     {
-        $studentClass = $this->studentViolation->whereClassroom($classroom->id);
+        $studentClass = $this->studentViolation->whereClassroom($classroom->id, $request);
         return view('staff.pages.top-violation.detail-class', compact('studentClass'));
     }
 

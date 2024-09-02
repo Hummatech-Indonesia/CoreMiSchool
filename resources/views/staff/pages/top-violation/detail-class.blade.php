@@ -33,8 +33,8 @@
             <div class="mb-3 mb-md-0 me-md-3">
                 <select name="gender" class="form-select">
                     <option value="">Jenis Kelamin</option>
-                    <option value="Laki-laki">Laki-laki</option>
-                    <option value="Perempuan">Perempuan</option>
+                    <option value="male">Laki-laki</option>
+                    <option value="female">Perempuan</option>
                 </select>
             </div>
 
@@ -47,13 +47,14 @@
 
             <button type="submit" class="btn btn-primary">Filter</button>
         </form>
-        <form action="" class="d-flex gap-2">
+
+        {{-- <form action="" class="d-flex gap-2">
             <div class="mb-3 mb-md-0 me-md-3">
                 <input type="date" name="search-date" class="form-control">
             </div>
             <button type="submit" class="btn btn-primary">Cari</button>
-            {{-- <a class="btn btn-warning" href="{{ route('employee.top-violation.index') }}">Kembali</a> --}}
-        </form>
+            <a class="btn btn-warning" href="{{ route('employee.top-violation.index') }}">Kembali</a>
+        </form> --}}
     </div>
 
     <div class="table-responsive rounded-2">

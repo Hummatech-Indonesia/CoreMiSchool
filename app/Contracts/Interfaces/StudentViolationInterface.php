@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 interface StudentViolationInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface
 {
-    public function whereClassroom(mixed $id) : mixed;
+    public function whereClassroom(mixed $id, Request $request) : mixed;
     public function countByClassroomStudent();
     public function whereStudent(mixed $id, Request $request): mixed;
     public function search(Request $request) : mixed;

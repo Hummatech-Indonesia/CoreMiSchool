@@ -70,3 +70,5 @@
     @empty
     @endforelse
 </div>
+
+<x-paginate-component :paginator="$classrooms" />
