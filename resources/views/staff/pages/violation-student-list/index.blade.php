@@ -102,11 +102,10 @@
                         </td>
                         <td>
                             <button data-name="{{ $studentViolation->classroomStudent->student->user->name }}"
-                                data-class="{{ $studentViolation->classroomStudent->classroom->name }}"
+                                data-classroom="{{ $studentViolation->classroomStudent->classroom->name }}"
                                 data-violation="{{ $studentViolation->regulation->violation }}"
-                                data-date="{{ $studentViolation->created_at->translatedFormat('d F Y') }}"
-                                data-bs-toggle="modal" data-bs-target="#detail-violation-student" type="button"
-                                class="btn mb-1 waves-effect waves-light btn-primary">Detail</button>
+                                data-date="{{ $studentViolation->created_at->translatedFormat('d F Y') }}" type="button"
+                                class="btn mb-1 waves-effect waves-light btn-primary btn-detail">Detail</button>
                         </td>
                     </tr>
                 @empty
@@ -134,4 +133,5 @@
 
 @section('script')
     @include('staff.pages.violation-student-list.scripts.create-script')
+    @include('staff.pages.violation-student-list.scripts.detail')
 @endsection
