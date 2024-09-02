@@ -74,10 +74,15 @@
     <div class="d-flex flex-wrap justify-content-between align-items-center">
         <div class="d-flex flex-wrap">
             <div class="col-12 col-md-6 col-lg-12 mb-3 me-3">
-                <form class="position-relative" action="/school/extracurricular">
-                    <input type="text" name="name" class="form-control product-search ps-5" id="input-search"
-                        placeholder="Cari..." value="{{ old('name', request()->name) }}">
-                    <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
+                <form class="position-relative d-flex gap-2">
+                    <div>
+                        <input type="text" name="search" class="form-control product-search ps-5" id="input-search"
+                            placeholder="Cari..." value="{{ old('search', request()->search) }}">
+                        <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary" type="submit">Cari</button>
+                    </div>
                 </form>
             </div>
         </div>
