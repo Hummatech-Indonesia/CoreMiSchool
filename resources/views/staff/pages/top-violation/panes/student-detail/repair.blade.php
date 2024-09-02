@@ -15,13 +15,13 @@
                     @forelse ($repairs as $repair)
                         <tr>
                             <td>{{ $repair->repair }}</td>
-                            <td>{{ \Carbon\Carbon::parse($repair->created_at)->translatedFormat('d F Y') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($repair->start_date)->translatedFormat('d M Y') }} - {{ \Carbon\Carbon::parse($repair->end_date)->translatedFormat('d M Y') }}</td>
                             <td>
-                                <span class="mb-1 badge font-medium bg-light-primary text-primary">-{{ $repair->point }} Point</span>
+                                <span class="mb-1 badge font-medium bg-light-primary text-primary">- {{ $repair->point }} Point</span>
                             </td>
                             <td>
-                                <button type="button" class="btn mb-1 waves-effect waves-light btn-primary w-100"
-                                    data-bs-toggle="modal" data-bs-target="#repair-student-detail">Detail</button>
+                                <button data-name="{{ $repair->repair }}" data-point="{{ $repair->point }}" data-approved="{{ $repair->is_approved == false ? 'Belum Dikerjakan' : 'Sudah Dikerjakan' }}" data-proof="{{ $repair->proof ? asset('storage/'. $repair->proof) : asset('admin_assets/dist/images/backgrounds/student.png') }}"
+                                    data-date="{{ \Carbon\Carbon::parse($repair->start_date)->translatedFormat('d M Y') }} - {{ \Carbon\Carbon::parse($repair->end_date)->translatedFormat('d M Y') }}" class="btn btn-detail-repair mb-1 waves-effect waves-light btn-primary w-100">Detail</button>
                             </td>
                         </tr>
                     @empty
