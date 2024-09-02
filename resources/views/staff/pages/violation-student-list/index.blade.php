@@ -104,6 +104,7 @@
                             <button data-name="{{ $studentViolation->classroomStudent->student->user->name }}"
                                 data-classroom="{{ $studentViolation->classroomStudent->classroom->name }}"
                                 data-violation="{{ $studentViolation->regulation->violation }}"
+                                data-employee="{{ $studentViolation->employee->user->name }}"
                                 data-date="{{ $studentViolation->created_at->translatedFormat('d F Y') }}" type="button"
                                 class="btn mb-1 waves-effect waves-light btn-primary btn-detail">Detail</button>
                         </td>

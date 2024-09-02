@@ -11,7 +11,7 @@
             <div class="modal-body px-4">
                 <div class="mb-3">
                     <h5 style="font-size: 15px"><b>Nama Pelapor:</b></h5>
-                    <h6 style="font-size: 14px">Alfian Fahrul Rifa'i</h6>
+                    <h6 style="font-size: 14px" id="detail-student-employee"></h6>
                 </div>
                 <hr>
                 <div class="mb-3">
