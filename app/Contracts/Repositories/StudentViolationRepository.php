@@ -39,11 +39,13 @@ class StudentViolationRepository extends BaseRepository implements StudentViolat
                 $query->whereRelation('classroomStudent.student.user', 'name', 'like', '%' . $request->search . '%')
             )
             ->when($request->gender, fn($query) =>
-                $query->whereRelation('classroomStudent.student', 'gender', 'like', '%' . $request->gender . '%')
+                $query->whereRelation('classroomStudent.student', 'gender', $request->gender)
             )
             ->when($request->points, function($query) use ($request) {
                 $order = $request->points == 'highest' ? 'desc' : 'asc';
-                $query->orderBy('point', $order);
+                $query->whereHas('regulation',function($query) use ($order){
+                    $query->orderBy('point', $order);
+                });
             })
             ->paginate(10);
     }
