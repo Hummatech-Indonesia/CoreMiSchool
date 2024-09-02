@@ -25,24 +25,27 @@
     </div>
 
     <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
-        <form action="" class="position-relative">
+        <form class="position-relative">
             <div class="d-flex flex-wrap align-items-end">
                 <div class="col-12 col-md-6 col-lg-5 mb-3 me-3 position-relative">
-                    <input type="text" class="form-control product-search ps-5" name="name" value="{{ old('name', request('name')) }}" id="input-search" placeholder="Cari...">
+                    <input type="text" class="form-control product-search ps-5" name="search"
+                        value="{{ request('search') }}" id="input-search" placeholder="Cari...">
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                 </div>
                 <div class="col-12 col-md-5 col-lg-4 mb-3 me-3">
-                    <select id="status-activity" class="form-select">
-                        <option value="">Laki-Laki</option>
-                        <option value="">Perempuan</option>
+                    <select name="gender" class="form-select">
+                        <option value="">Tampilkan semua</option>
+                        <option value="male" {{ request('gender') == 'male' ? 'selected' : '' }}>Laki-laki</option>
+                        <option value="female" {{ request('gender') == 'female' ? 'selected' : '' }}>Perempuan</option>
                     </select>
                 </div>
                 <div class="col-12 col-md-1 col-lg-2 mb-3">
-                    <button type="submit" class="btn btn-primary">Filter
-                    </button>
+                    <button type="submit" class="btn btn-primary">Filter</button>
                 </div>
             </div>
         </form>
+
+
 
 
         <div>
@@ -57,7 +60,8 @@
                 </svg>
                 Import
                 Pelanggaran</button>
-            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#violation-student-create">Tambah Pelanggaran</button>
+            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#violation-student-create">Tambah
+                Pelanggaran</button>
         </div>
     </div>
 
