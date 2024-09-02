@@ -30,9 +30,9 @@ class StudentRepairController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $studentRepairs = $this->studentRepair->get();
+        $studentRepairs = $this->studentRepair->search($request);
         $students = $this->classroomStudent->get();
         return view('staff.pages.repair-student-list.index', compact('studentRepairs', 'students'));
     }
