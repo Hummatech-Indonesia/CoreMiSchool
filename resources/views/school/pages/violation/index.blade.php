@@ -23,8 +23,8 @@
                         </div>
                     </div>
                     <img src="{{ asset('assets/images/background/buble-1.png') }}" alt="Image"
-                         class="position-absolute"
-                         style="bottom: 0; right: 0; width: 130px; height: auto; margin-bottom: -10px; margin-right: -10px;">
+                        class="position-absolute"
+                        style="bottom: 0; right: 0; width: 130px; height: auto; margin-bottom: -10px; margin-right: -10px;">
                 </div>
             </div>
         </div>
@@ -103,7 +103,7 @@
     </div>
 
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
-        <form class="d-flex flex-column flex-md-row align-items-center" method="GET">
+        <form class="d-flex flex-column flex-md-row align-items-center">
             <div class="mb-3 mb-md-0 me-md-3">
                 <input type="text" name="search" class="form-control" placeholder="Cari...">
             </div>
@@ -155,7 +155,7 @@
                             </td>
                             <td class="text-center">
                                 <div class="d-flex justify-content-center align-items-center gap-2">
-                                    <a href="" data-bs-toggle="modal" data-bs-target="#modal-detail" type="button">
+                                    <a class="btn-detail" type="button" data-point="{{ $regulation->point }}" data-violation="{{ $regulation->violation }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                             viewBox="0 0 24 24">
                                             <g fill="none" stroke="currentColor" stroke-linecap="round"
@@ -220,5 +220,6 @@
     @include('school.pages.violation.scripts.script-modal-create')
     @include('school.pages.violation.scripts.script-modal-update')
     @include('school.pages.violation.scripts.script-modal-delete')
+    @include('school.pages.violation.scripts.script-modal-detail')
     @include('school.pages.violation.scripts.script-modal-warning-point')
 @endsection
