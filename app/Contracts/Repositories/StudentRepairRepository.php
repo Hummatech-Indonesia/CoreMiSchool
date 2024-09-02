@@ -52,4 +52,17 @@ class StudentRepairRepository extends BaseRepository implements StudentRepairInt
             })
             ->get();
     }
+
+    public function search(Request $request): mixed
+    {
+        return $this->model->query()
+            ->when($request->search, fn($query) => $query->whereRelation('classroomStudent.student.user', 'name', 'like', '%' . $request->search . '%'))
+            ->when($request->orders, function($query) use ($request) {
+                $request->orders == 'latest' ? $query->latest() : $query->oldest();
+            })
+            ->when($request->filters, function($query) use ($request) {
+                $request->filters == 'finish' ? $query->where('is_approved', true) : $query->where('is_approved', false);
+            })
+            ->get();
+    }
 }

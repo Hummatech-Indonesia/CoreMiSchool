@@ -123,8 +123,8 @@
                         <td>
                             <div class="d-flex gap-3">
                                 <button class="border-0 bg-transparent btn-detail" data-name="{{ $user->user->name }}"
-                                    data-email="{{ $user->user->email }}" data-phone="{{ $user->user->phone_number }}"
-                                    data-gender="{{ $user->gender }}" data-nip="{{ $user->nip }}"
+                                    data-email="{{ $user->user->email }}" data-phone="{{ $user->phone_number }}"
+                                    data-gender="{{ $user->gender->label() }}" data-nip="{{ $user->nip }}"
                                     data-address="{{ $user->address }}"
                                     data-image="{{ $user->image ? asset('storage/' . $user->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}"
                                     data-rfid="{{ $user->modelHasRfid ? $user->modelHasRfid->rfid : 'Belum memiliki rfid' }}">

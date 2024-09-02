@@ -28,20 +28,28 @@
     </div>
 
     <div class="mb-3">
-        <form class="d-flex justify-content-between" action="">
+        <form class="d-flex justify-content-between">
             <div class="d-flex gap-2">
                 <div class="position-relative">
-                    <input type="text" name="name" class="form-control product-search ps-5" id="input-search"
-                        placeholder="Cari..." value="{{ old('name', request('name')) }}">
+                    <input type="text" name="search" class="form-control product-search ps-5" id="input-search"
+                        placeholder="Cari..." value="{{ old('search', request('search')) }}">
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                 </div>
                 <div class="d-flex gap-2">
-                    <select name="gender" class="form-select">
-                        <option value="all">Tampilkan semua</option>
-                        <option value="male" {{ request()->has('gender') == 'male' ? 'selected' : '' }}>Laki-laki</option>
-                        <option value="female" {{ request()->has('gender') == 'female' ? 'selected' : '' }}>Perempuan
+                    <select name="filters" class="form-select">
+                        <option value="">Tampilkan semua</option>
+                        <option value="finish" {{ request()->has('filters') == 'finish' ? 'selected' : '' }}>Sudah Dikerjakan</option>
+                        <option value="not_finish" {{ request()->has('filters') == 'not_finish' ? 'selected' : '' }}>Belum Dikerjakan
                         </option>
                     </select>
+
+                    <select name="orders" class="form-select">
+                        <option value="">Tampilkan Semua</option>
+                        <option value="latest" {{ request()->has('orders') == 'latest' ? 'selected' : '' }}>Terbaru</option>
+                        <option value="oldest" {{ request()->has('orders') == 'oldest' ? 'selected' : '' }}>Terlama
+                        </option>
+                    </select>
+
                     <div>
                         <button type="submit" class="btn btn-primary btn-md">Filter</button>
                     </div>
