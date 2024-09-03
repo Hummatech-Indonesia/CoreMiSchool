@@ -16,6 +16,9 @@
             </form>
         </div>
     </div>
+    {{-- <button type="button" class="btn btn-success px-4" data-bs-toggle="modal" data-bs-target="#modal-import">
+        Import Jadwal
+    </button> --}}
 </div>
 
 <div class="row">
@@ -53,4 +56,6 @@
     </div>
     @endforelse
 </div>
+
+    @include('school.pages.lesson-schedule.widgets.import')
 @endsection

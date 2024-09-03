@@ -41,6 +41,7 @@ class StudentViolationService
                     foreach ($value['student_id'] as $studentId) {
                         $classroom = $this->classroom->whereStudent($studentId);
                         $this->studentViolation->store([
+                            'employee_id' => auth()->user()->employee->id,
                             'classroom_student_id' => $classroom->id,
                             'regulation_id' => $regulation_id,
                         ]);

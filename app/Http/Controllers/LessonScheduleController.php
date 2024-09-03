@@ -8,12 +8,16 @@ use App\Contracts\Interfaces\LessonHourInterface;
 use App\Contracts\Interfaces\LessonScheduleInterface;
 use App\Contracts\Interfaces\SchoolYearInterface;
 use App\Contracts\Interfaces\SubjectInterface;
+use App\Http\Requests\ImportLessonScheduleRequest;
 use App\Models\LessonSchedule;
 use App\Http\Requests\StoreLessonScheduleRequest;
 use App\Http\Requests\UpdateLessonScheduleRequest;
+use App\Imports\LessonScheduleTimetableImport;
 use App\Models\Classroom;
+use App\Services\ImportLessonScheduleService;
 use App\Services\LessonScheduleService;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LessonScheduleController extends Controller
 {
@@ -24,8 +28,9 @@ class LessonScheduleController extends Controller
     private LessonHourInterface $lessonHour;
     private LessonScheduleService $service;
     private SchoolYearInterface $schoolYear;
+    private ImportLessonScheduleService $importService;
 
-    public function __construct(LessonScheduleInterface $lessonSchedule, ClassroomInterface $classroom, EmployeeInterface $employee, SubjectInterface $subjects, LessonHourInterface $lessonHour, LessonScheduleService $service, SchoolYearInterface $schoolYear)
+    public function __construct(LessonScheduleInterface $lessonSchedule, ClassroomInterface $classroom, EmployeeInterface $employee, SubjectInterface $subjects, LessonHourInterface $lessonHour, LessonScheduleService $service, SchoolYearInterface $schoolYear, ImportLessonScheduleService $importService)
     {
         $this->lessonSchedule = $lessonSchedule;
         $this->classroom = $classroom;
@@ -34,6 +39,7 @@ class LessonScheduleController extends Controller
         $this->lessonHour = $lessonHour;
         $this->service = $service;
         $this->schoolYear = $schoolYear;
+        $this->importService = $importService;
     }
 
     /**
@@ -126,5 +132,10 @@ class LessonScheduleController extends Controller
 
         $pdf->loadView('export-pdf.export-lesson-schedule', ['lessonSchedule' => $data, 'classroom' => $classroom]);
         return $pdf->download('jadwal.pdf');
+    }
+
+    public function import(ImportLessonScheduleRequest $request)
+    {
+        $this->importService->xml($request);
     }
 }
