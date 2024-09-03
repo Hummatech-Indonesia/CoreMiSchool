@@ -9,7 +9,7 @@
 <div class="row">
     @forelse ($classrooms as $classroom)
     <div class="col-lg-4 mb-3">
-        <div class="card d-flex flex-column h-100 card-hover">
+        <div class="card d-flex flex-column h-100 hover-img overflow-hidden rounded-2">
             <div class="card-body d-flex flex-column">
                 <div class="d-flex justify-content-between align-items-center mb-1">
                     <h4 class="mb-2"><b>{{ $classroom->name }}</b></h4>
