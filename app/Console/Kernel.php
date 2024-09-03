@@ -30,13 +30,12 @@ class Kernel extends ConsoleKernel
         //     ->everyMinute();
 
         $schedule->command('command:create-attendance')
-            ->everyMinute()
             ->onFailureWithOutput(function ($output) {
                 var_dump('failed: ' . $output);
             })
             ->onSuccessWithOutput(function ($output) {
                 var_dump('success: ' . $output);
-            });
+            })->dailyAt('01:00');
         $schedule->command('command:delete-attendance')->dailyAt('23:00');
 
         // $schedule->command('command:test-cron')->onFailureWithOutput(function ($e) {
