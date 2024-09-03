@@ -10,25 +10,29 @@
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="">Mata Pelajaran <span class="text-danger">*</span></label>
-                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Masukan nama mata pelajaran">
+                        <label for="" class="mb-2">Mata Pelajaran <span class="text-danger">*</span></label>
+                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
+                            placeholder="Masukan nama mata pelajaran">
                         @error('name', 'create')
-                        <div class="text-danger error-create">
-                            <small>{{ $message }}</small>
-                        </div>
+                            <div class="text-danger error-create">
+                                <small>{{ $message }}</small>
+                            </div>
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="">Kagamaan</label>
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                        </div>
+                        <label class="mb-2" for="category">Kategori<span class="text-danger ms-1">*</span></label>
+                        <select id="category" name="category" class="form-select mb-3">
+                            <option value="umum">Umum</option>
+                            <option value="keagamaan">Keagamaan</option>
+                        </select>
                     </div>
-                    <div class="mb-3">
-                        <select id="keagamaan" name="religion_id" class="form-select form-select mb-3 @error('religion_id') is-invalid @enderror">
-                            <option value="">Pilih agama <span class="text-danger">*</span></option>
+
+                    <div id="religion-field" class="mb-3" style="display: none;">
+                        <label for="religion_id" class="mb-2">Agama</label>
+                        <select id="religion_id" name="religion_id"
+                            class="form-select @error('religion_id') is-invalid @enderror">
                             @foreach ($religions as $religion)
-                            <option value="{{ $religion->id }}">{{ $religion->name }}</option>
+                                <option value="{{ $religion->id }}">{{ $religion->name }}</option>
                             @endforeach
                         </select>
                     </div>

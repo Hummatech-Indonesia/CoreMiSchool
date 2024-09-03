@@ -18,7 +18,7 @@
     });
 </script>
 
-<script>
+{{-- <script>
     document.getElementById('flexSwitchCheckDefault').addEventListener('change', function() {
         var keagamaanSelect = document.getElementById('keagamaan');
         if (this.checked) {
@@ -47,6 +47,17 @@
         } else {
             editKeagamaanSelect.style.display = 'none';
             keagamaanSelect.innerHTML = '<option value="">Pilih agama <span class="text-danger">*</span></option>';
+        }
+    });
+</script> --}}
+
+<script>
+    document.getElementById('category').addEventListener('change', function() {
+        var religionField = document.getElementById('religion-field');
+        if (this.value === 'keagamaan') {
+            religionField.style.display = 'block';
+        } else {
+            religionField.style.display = 'none';
         }
     });
 </script>
