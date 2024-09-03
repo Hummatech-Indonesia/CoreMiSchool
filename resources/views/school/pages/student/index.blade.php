@@ -26,7 +26,7 @@
     <div class="row">
         <div class="col-md-6 col-lg-6">
             <div class="card rounded-3 card-hover border position-relative">
-                <div class="card-body">
+                <div class="card-body p-3">
                     <div class="d-flex align-items-center">
                         <div class="bg-light-success text-success d-inline-block px-3 py-3 rounded">
                             <svg xmlns="http://www.w3.org/2000/svg" class="mb-1 me-1" width="40" height="40"
@@ -37,7 +37,7 @@
                         </div>
                         <div class="ms-4">
                             <h4 class="card-title text-dark"><b>Jumlah Siswa</b></h4>
-                            <h6 style="font-size: 25px; color: #13DEB9"><b>200</b></h6>
+                            <h6 style="font-size: 25px; color: #13DEB9"><b>{{ $students->count() }}</b></h6>
                         </div>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
 
         <div class="col-md-6 col-lg-6">
             <div class="card rounded-3 card-hover border position-relative">
-                <div class="card-body">
+                <div class="card-body p-3">
                     <div class="d-flex align-items-center">
                         <div class="bg-light-warning text-warning d-inline-block px-3 py-3 rounded">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32">
@@ -58,7 +58,7 @@
                         </div>
                         <div class="ms-4">
                             <h4 class="card-title text-dark"><b>Jumlah Alumni</b></h4>
-                            <h6 style="font-size: 25px; color: #FFAE1F"><b>200</b></h6>
+                            <h6 style="font-size: 25px; color: #FFAE1F"><b>{{ $alumnus->count() }}</b></h6>
                         </div>
                     </div>
                 </div>
