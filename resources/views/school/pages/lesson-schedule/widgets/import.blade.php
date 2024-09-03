@@ -6,7 +6,7 @@
                 <h5 class="modal-title" id="importPegawai">Import Jadwal Pelajaran</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('school.lesson-schedule.import') }}" method="POST" enctype="multipart/form-data">
                 @method('post')
                 @csrf
                 <div class="modal-body">
@@ -18,8 +18,7 @@
                             <ul style="list-style-type: disc;" class="ms-4">
                                 <li>Jika jam pelajaran tidak terimport maka kemungkinan jam pelajaran tersebut telah digunakan.
                                 </li>
-                                <li>File yang dapat diunggah berupa file excel berekstensi xls, xlsx.</li>
-                                {{-- <li>Password siswa secara default adalah NISN.</li> --}}
+                                <li>File yang dapat diunggah berupa file excel berekstensi xls, xlsx atau file xml dari timetable</li>
                                 <li>Format pengisian file excel seperti dibawah ini.</li>
                             </ul>
                         </div>
@@ -33,10 +32,10 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="" class="form-label">File Excel</label>
+                        <label for="" class="form-label">File Excel/XML</label>
                         <input type="file" class="form-control" name="file">
-                        @error('')
-                        <span class="invalid-feedback" role="alert" style="color: red;">
+                        @error('file')
+                        <span class="text-danger">
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
