@@ -273,7 +273,7 @@
                                 </g>
                             </svg>
                         </span>
-                        <span class="hide-menu">Daftar Siswa Perbaikan</span>
+                        <span class="hide-menu">Daftar Perbaikan Siswa</span>
                     </a>
                 </li>
             </ul>

@@ -12,7 +12,7 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav scroll-sidebar" data-simplebar>
             <ul id="sidebarnav">
-                
+
 
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
@@ -76,7 +76,7 @@
                                 </g>
                             </svg>
                         </span>
-                        <span class="hide-menu">Daftar Siswa Perbaikan</span>
+                        <span class="hide-menu">Daftar Perbaikan Siswa</span>
                     </a>
                 </li>
 
