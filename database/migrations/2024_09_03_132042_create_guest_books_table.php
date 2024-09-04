@@ -21,6 +21,7 @@ return new class extends Migration
             $table->longText('needs');
             $table->date('date');
             $table->enum('status', [GuestBookEnum::INDIVIDUAL->value, GuestBookEnum::NEGERI->value, GuestBookEnum::SWASTA->value])->default(GuestBookEnum::INDIVIDUAL->value);
+            $table->string('address')->nullable();
             $table->timestamps();
         });
     }
