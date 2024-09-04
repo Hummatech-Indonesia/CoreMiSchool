@@ -48,7 +48,7 @@
                                 </span>
                             </div>
                             <nav aria-label="breadcrumb">
-                                <span class="badge fw-semibold fs-6 text-warning bg-white p-2">23
+                                <span class="badge fw-semibold fs-6 text-warning bg-white p-2">{{ $maxPoint }}
                                     Point</span>
                             </nav>
                         </div>

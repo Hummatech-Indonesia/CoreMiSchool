@@ -40,7 +40,8 @@ class StaffViolationController extends Controller
     {
         $students = $this->student->getByPoint($request);
         $classrooms = $this->classroom->whereInSchoolYears($request);
-        return view('staff.pages.top-violation.index', compact('students', 'classrooms'));
+        $maxPoint = $this->schoolPoint->getMaxPoint();
+        return view('staff.pages.top-violation.index', compact('students', 'classrooms', 'maxPoint'));
     }
 
 
