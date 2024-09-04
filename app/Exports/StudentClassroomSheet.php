@@ -39,8 +39,8 @@ class StudentClassroomSheet implements FromView, WithTitle, ShouldAutoSize, With
         return [
             AfterSheet::class => function (AfterSheet $event) {
                 $sheet = $event->sheet->getDelegate();
-                
-                for ($cell=2; $cell < 1002 ; $cell++) { 
+
+                for ($cell=2; $cell < 1002 ; $cell++) {
                     $sheet->getStyle('D'.$cell)->getNumberFormat()->setFormatCode('yyyy-mm-dd');
                     $dateValidation = $sheet->getCell('D'.$cell)->getDataValidation();
                     $dateValidation->setType(DataValidation::TYPE_DATE);
@@ -61,9 +61,9 @@ class StudentClassroomSheet implements FromView, WithTitle, ShouldAutoSize, With
                     $genderValidation->setAllowBlank(false);
                     $genderValidation->setShowDropDown(true);
                     $sheet->getCell('F'.$cell)->setDataValidation($genderValidation);
-    
+
                     $religionValidation = $sheet->getCell('M'.$cell)->getDataValidation();
-                    $religionOptions = 'Kristen,Islam,Hindu,Budha,Katolik,Konghucu'; 
+                    $religionOptions = 'Kristen,Islam,Hindu,Budha,Katolik,Konghucu';
                     $religionValidation->setType(DataValidation::TYPE_LIST);
                     $religionValidation->setFormula1('"' . $religionOptions . '"');
                     $religionValidation->setAllowBlank(false);
@@ -79,12 +79,12 @@ class StudentClassroomSheet implements FromView, WithTitle, ShouldAutoSize, With
         foreach (range('A', 'M') as $columnID) {
             $sheet->getColumnDimension($columnID)->setAutoSize(true);
         }
-    
+
         $row4Range = "A1:M1";
         $sheet->getStyle($row4Range)->applyFromArray([
             'fill' => [
                 'fillType' => Fill::FILL_SOLID,
-                'color' => ['argb' => '2960FF'], 
+                'color' => ['argb' => '2960FF'],
             ],
             'font' => [
                 'color' => [
@@ -92,7 +92,7 @@ class StudentClassroomSheet implements FromView, WithTitle, ShouldAutoSize, With
                 ]
             ],
         ]);
-    
+
         $row5Range = "A2:M2";
         $sheet->getStyle($row5Range)->applyFromArray([
             'fill' => [

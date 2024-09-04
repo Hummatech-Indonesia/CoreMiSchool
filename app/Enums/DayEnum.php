@@ -24,4 +24,18 @@ enum DayEnum: string
             self::SUNDAY => "minggu",
         };
     }
+
+    public static function translate(string $dayInIndonesian): string
+    {
+        return match($dayInIndonesian) {
+            'senin' => self::MONDAY->value,
+            'selasa' => self::TUESDAY->value,
+            'rabu' => self::WEDNESDAY->value,
+            'kamis' => self::THURSDAY->value,
+            'jumat' => self::FRIDAY->value,
+            'sabtu' => self::SATURDAY->value,
+            'minggu' => self::SUNDAY->value,
+            default => $dayInIndonesian,
+        };
+    }
 }
