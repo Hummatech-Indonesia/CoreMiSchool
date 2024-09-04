@@ -1,5 +1,6 @@
 <?php
 
+use App\Exports\JadwalPelajaranExportNew;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AttendanceMasterController;
 use App\Http\Controllers\AttendanceRuleController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\ClassroomStudentController;
 use App\Http\Controllers\ExtracurricularController;
 use App\Http\Controllers\ExtracurricularStudentController;
+use App\Http\Controllers\imports\ImportController;
 use App\Http\Controllers\LessonHourController;
 use App\Http\Controllers\LessonScheduleController;
 use App\Http\Controllers\LevelClassController;
@@ -35,8 +37,7 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherSubjectController;
 use App\Models\Student;
 use Illuminate\Support\Facades\Route;
-
-
+use Maatwebsite\Excel\Facades\Excel;
 
 Route::middleware('auth')->prefix('school')->name('school.')->group(function () {
     Route::post('school-points', [SchoolPointController::class, 'store'])->name('school-points.store');
@@ -129,7 +130,12 @@ Route::middleware('auth')->prefix('school')->name('school.')->group(function () 
     Route::get('lesson-schedule/export/{classroom}', [LessonScheduleController::class, 'export_pdf'])->name('lesson-schedule.export');
     Route::post('lesson-schedule/import', [LessonScheduleController::class, 'import'])->name('lesson-schedule.import');
 
-    // Route::get('lesson-schedule', [LessonScheduleController::class, 'index'])->name('lesson-schedule.index');
+    Route::get('/download-template-schedule', function () {
+        // return (new InvoicesExport)->download('data.xlsx');
+        return Excel::download(new JadwalPelajaranExportNew, 'template_jadwal_pelajaran.xlsx');
+    })->name('classroom.template.schedule');
+
+    Route::post('importSpreadsheet', [ImportController::class, 'importSpreadsheet'])->name('import-spreadsheet');
 
     // get teacher subject by subject id
     Route::get('teacher-subject/{subject}', [TeacherSubjectController::class, 'show'])->name('teacher-subject.show');
