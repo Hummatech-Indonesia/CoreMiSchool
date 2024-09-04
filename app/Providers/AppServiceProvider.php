@@ -10,8 +10,10 @@ use App\Contracts\Interfaces\CityInterface;
 use App\Contracts\Interfaces\ClassroomInterface;
 use App\Contracts\Interfaces\ClassroomStudentInterface;
 use App\Contracts\Interfaces\EmployeeInterface;
+use App\Contracts\Interfaces\EmployeeJournalInterface;
 use App\Contracts\Interfaces\ExtracurricularInterface;
 use App\Contracts\Interfaces\ExtracurricularStudentInterface;
+use App\Contracts\Interfaces\GuestBookInterface;
 use App\Contracts\Interfaces\LessonHourInterface;
 use App\Contracts\Interfaces\LessonScheduleInterface;
 use App\Contracts\Interfaces\LevelClassInterface;
@@ -41,9 +43,11 @@ use App\Contracts\Repositories\AttendanceTeacherRepository;
 use App\Contracts\Repositories\CityRepository;
 use App\Contracts\Repositories\ClassroomRepository;
 use App\Contracts\Repositories\ClassroomStudentRepository;
+use App\Contracts\Repositories\EmployeeJournalRepository;
 use App\Contracts\Repositories\EmployeeRepository;
 use App\Contracts\Repositories\ExtracurricularRepository;
 use App\Contracts\Repositories\ExtracurricularStudentRepository;
+use App\Contracts\Repositories\GuestBookRepository;
 use App\Contracts\Repositories\LessonHourRepository;
 use App\Contracts\Repositories\LessonScheduleRepository;
 use App\Contracts\Repositories\LevelClassRepository;
@@ -103,7 +107,9 @@ class AppServiceProvider extends ServiceProvider
         StudentViolationInterface::class => StudentViolationRepository::class,
         RegulationInterface::class => RegulationRepository::class,
         SchoolPointInterface::class => SchoolPointRepository::class,
-        StudentRepairInterface::class => StudentRepairRepository::class
+        StudentRepairInterface::class => StudentRepairRepository::class,
+        EmployeeJournalInterface::class => EmployeeJournalRepository::class,
+        GuestBookInterface::class => GuestBookRepository::class,
     ];
 
     /**
