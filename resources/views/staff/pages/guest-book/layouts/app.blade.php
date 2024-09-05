@@ -112,7 +112,7 @@
 
         <!-- SVG Icon di Sebelah Kanan -->
         <div>
-            <a href="#" class="nav-link p-0 m-0">
+            <a href="{{ route('employee.dashboard') }}" class="nav-link p-0 m-0">
                 <svg xmlns="http://www.w3.org/2000/svg" class="header-svg" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
