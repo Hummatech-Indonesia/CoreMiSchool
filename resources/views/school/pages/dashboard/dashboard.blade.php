@@ -13,9 +13,12 @@
             margin-right: 0.5px;
         }
     </style>
+
+    @include('school.pages.dashboard.style.journal-statistics')
 @endsection
 
 @section('content')
+
     @include('school.pages.dashboard.panes.corousel')
 
     @include('school.pages.dashboard.panes.school-year')
@@ -84,6 +87,10 @@
 
     @include('school.pages.dashboard.panes.teacher-journal')
 
+
+    <h4 class="mb-4"><b>Data Pelanggaran</b></h4>
+    @include('school.pages.dashboard.panes.violations-list')
+
     {{-- <div class="row">
         <div class="col-lg-8">
             <div class="card">
@@ -146,6 +153,7 @@
 
     @include('school.pages.dashboard.scripts.script-corousel')
     @include('school.pages.dashboard.scripts.chart-student')
+    @include('school.pages.dashboard.scripts.chart-violations')
 
     <script>
         $(function() {

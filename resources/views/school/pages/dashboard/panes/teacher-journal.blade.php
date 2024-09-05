@@ -1,6 +1,6 @@
 <div class="row d-flex">
     <div class="col-lg-9 col-md-12 d-flex">
-        <div class="card w-100 h-100 border">
+        <div class="card border shadow">
             <div class="card-body">
                 <h5 class="mb-4"><b>Daftar Guru Tidak Mengisi Jurnal</b></h5>
                 <div class="table-responsive rounded-2 mb-4">
@@ -48,15 +48,39 @@
         </div>
     </div>
 
-    <div class="col-lg-3 d-flex">
-        <div class="card w-100 h-100 overflow-hidden border">
-            <div class="card-body">
-                {{-- <div class="row align-items-center">
-                    <h5 class="card-title fw-semibold">Statistik Absensi Siswa</h5>
-                    <h6 class="mb-3">Hari ini</h6>
-                    <div id="chart-student" class="d-flex justify-content-center"></div>
-                </div> --}}
+    <div class="col-lg-3 mb-3 ">
+        <div class="statistik-container">
+            <h4><b>Statistik</b></h4>
+            <div class="line">
+                <div class="small-line"></div>
+                <div class="smaller-line"></div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="card border shadow rounded-4 p-0 mb-3">
+                <div class="card-body card-body-with-line">
+                    <h5><b>Jumlah Guru</b></h5>
+                    <h3 class="text-primary">59 Guru</h3>
+                </div>
+            </div>
+            <div class="card border shadow rounded-4 p-0">
+                <div class="card-body card-body-with-line2">
+                    <h5><b>Guru Mengisi Jurnal</b></h5>
+                    <h3 class="text-success">59 Guru</h3>
+                </div>
+            </div>
+            <div class="card border shadow rounded-4 p-0">
+                <div class="card-body card-body-with-line3">
+                    <h5><b>Guru Tidak Mengisi Jurnal</b></h5>
+                    <h3 class="text-danger">59 Guru</h3>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn waves-effect waves-light btn-outline-primary w-100" type="button">Lihat Selengkapnya</button>
     </div>
+
+
+
 </div>
