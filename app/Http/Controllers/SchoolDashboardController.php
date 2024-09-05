@@ -63,7 +63,7 @@ class SchoolDashboardController extends Controller
         $students = $this->student->count();
         $subjects = $this->subjects->count();
 
-        return view('school.pages.dashboard', compact('classrooms', 'schoolYear', 'semester', 'attendanceChart', 'alumni', 'teachers', 'employees', 'students', 'subjects'));
+        return view('school.pages.dashboard.dashboard', compact('classrooms', 'schoolYear', 'semester', 'attendanceChart', 'alumni', 'teachers', 'employees', 'students', 'subjects'));
     }
 
     public function show(Request $request)
