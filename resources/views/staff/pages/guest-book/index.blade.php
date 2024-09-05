@@ -1,4 +1,5 @@
 @extends('staff.pages.guest-book.layouts.app')
+
 @section('content')
     <h2 class="text-white pt-3"><b>Selamat Datang di Buku Tamu</b></h2>
     <h6 class="text-white">Kunjungan akan di simpan dibuku tamu dan direkap oleh sekolah</h6>
@@ -7,17 +8,18 @@
         <div class="col-12 pt-3">
             <div class="card p-2 shadow" style="border: none; border-radius: 30px">
                 <div class="card-body">
-                    <form action="">
+                    <form action="{{ route('employee.guestBooks.store') }}" method="POST" enctype="multipart/form-data">
+                        @method('post')
+                        @csrf
                         <div class="d-flex align-items-center justify-content-between" style="border-bottom: 2px solid #CCCCCC; padding-bottom: 5px;">
                             <h5 class="mb-4">
                                 <b>Pengisian Form</b>
                             </h5>
-                            <span class="mb-1 badge bg-light-warning text-warning" style="font-size: 14px; border-radius: 5px;">
+                            <span id="currentDate" class="mb-1 badge bg-light-warning text-warning" style="font-size: 14px; border-radius: 5px;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
                                     <path fill="currentColor"
                                         d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z" />
                                 </svg>
-                                10 Januari 2024
                             </span>
                         </div>
 
@@ -40,6 +42,7 @@
                                     saja yang telah berkunjung</p>
 
                                 <div class="row">
+                                    <input type="hidden" name="date" id="currentDateInput">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="name1" class="mb-2"><b>Nama</b></label>
@@ -51,7 +54,7 @@
                                         <div class="form-group">
                                             <label for="status" class="mb-2"><b>Status</b></label>
                                             <select class="form-select" id="status" name="status">
-                                                <option value="individu">Individu</option>
+                                                <option value="individual">Individu</option>
                                                 <option value="negeri">Negeri</option>
                                                 <option value="swasta">Swasta</option>
                                             </select>

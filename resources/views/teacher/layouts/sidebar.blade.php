@@ -212,7 +212,7 @@
                 </li>
 
                 <li class="sidebar-item ">
-                    <a class="sidebar-link" href="/employee/guest-book" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('employee.guestBooks.create') }}" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                 <path fill="currentColor"

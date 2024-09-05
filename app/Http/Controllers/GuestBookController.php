@@ -30,7 +30,7 @@ class GuestBookController extends Controller
      */
     public function create()
     {
-        //
+        return view('staff.pages.guest-book.index');
     }
 
     /**

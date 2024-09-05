@@ -29,6 +29,7 @@ class StoreGuestBookRequest extends FormRequest
             'needs' => 'required',
             'date' => 'required',
             'status' => 'nullable',
+            'address' => 'nullable',
         ];
     }
 }
