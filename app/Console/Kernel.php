@@ -29,13 +29,13 @@ class Kernel extends ConsoleKernel
         //     ->timezone('Asia/Jakarta')
         //     ->everyMinute();
 
-        $schedule->command('command:create-attendance')
-            ->onFailureWithOutput(function ($output) {
-                var_dump('failed: ' . $output);
-            })
-            ->onSuccessWithOutput(function ($output) {
-                var_dump('success: ' . $output);
-            })->dailyAt('01:00');
+        // $schedule->command('command:create-attendance')
+        //     ->onFailureWithOutput(function ($output) {
+        //         var_dump('failed: ' . $output);
+        //     })
+        //     ->onSuccessWithOutput(function ($output) {
+        //         var_dump('success: ' . $output);
+        //     })->dailyAt('01:00');
         $schedule->command('command:delete-attendance')->dailyAt('23:00');
 
         // $schedule->command('command:test-cron')->onFailureWithOutput(function ($e) {
