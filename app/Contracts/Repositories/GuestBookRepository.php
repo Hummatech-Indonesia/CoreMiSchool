@@ -2,8 +2,8 @@
 
     namespace App\Contracts\Repositories;
 
-    use App\Contracts\Interfaces\{GuestBook}Interface;
-    use App\Models\{GuestBook};
+use App\Contracts\Interfaces\GuestBookInterface;
+use App\Models\GuestBook;
 
     class GuestBookRepository extends BaseRepository implements GuestBookInterface
     {
