@@ -6,7 +6,9 @@ use App\Contracts\Interfaces\ClassroomStudentInterface;
 use App\Contracts\Interfaces\RegulationInterface;
 use App\Contracts\Interfaces\StudentInterface;
 use App\Contracts\Interfaces\StudentViolationInterface;
+use App\Http\Requests\SingleStoreStudentViolationRequest;
 use App\Http\Requests\StoreStudentViolationRequest;
+use App\Models\Student;
 
 class StudentViolationService
     {
@@ -47,6 +49,20 @@ class StudentViolationService
                         ]);
                     }
                 }
+            }
+        }
+
+        public function single_store(SingleStoreStudentViolationRequest $request, Student $student)
+        {
+            $data = $request->validated();
+            $classroom = $this->classroom->whereStudent($student->id);
+
+            foreach($data['violation_id'] as $value){
+                $this->studentViolation->store([
+                    'employee_id' => auth()->user()->employee->id,
+                    'classroom_student_id' => $classroom->id,
+                    'regulation_id' => $value,
+                ]);
             }
         }
 

@@ -1,10 +1,9 @@
 <?php
 
-use App\Http\Controllers\GuestBookController;
 use App\Http\Controllers\Staff\StaffViolationController;
-use App\Http\Controllers\StudentViolationController;
-use App\Models\StudentViolation;
 use App\Http\Controllers\Staff\StudentRepairController;
+use App\Http\Controllers\StudentViolationController;
+use App\Http\Controllers\GuestBookController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->prefix('employee')->name('employee.')->group(function () {
@@ -27,6 +26,8 @@ Route::middleware('auth')->prefix('employee')->name('employee.')->group(function
     Route::get('violation-student-list', [StaffViolationController::class, 'list_student'])->name('violation-student.index');
 
     Route::resource('studentViolation', StudentViolationController::class);
+    Route::post('single-student-violation/{student}', [StudentViolationController::class, 'single_store'])->name('single.student.violation');
+
     Route::put('apprived-repair/{studentRepair}', [StudentRepairController::class, 'approved'])->name('approved.repair');
 
     Route::get('remidial-student-list', function () {
@@ -34,6 +35,8 @@ Route::middleware('auth')->prefix('employee')->name('employee.')->group(function
     })->name('remidial-student.index');
 
     Route::resource('student-repair', StudentRepairController::class);
+    Route::post('single-student-repair', [StudentRepairController::class, 'single_store'])->name('single.student.repair');
+
     Route::get('export-student-repair', [StudentRepairController::class, 'download_student'])->name('student-repair.download');
     Route::post('import-student-repair', [StudentRepairController::class, 'import'])->name('student-repair.import');
 

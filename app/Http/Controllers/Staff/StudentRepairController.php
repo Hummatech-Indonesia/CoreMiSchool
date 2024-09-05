@@ -9,7 +9,9 @@ use App\Models\StudentRepair;
 use App\Http\Requests\StoreStudentRepairRequest;
 use App\Http\Requests\UpdateStudentRepairRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SingleStoreStudentRepairRequest;
 use App\Imports\StudentRepairImport;
+use App\Models\Student;
 use App\Services\StudentRepairService;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -51,6 +53,12 @@ class StudentRepairController extends Controller
     public function store(StoreStudentRepairRequest $request)
     {
         $this->service->store($request);
+        return redirect()->back()->with('success', 'Berhasil menambahkan perbaikan');
+    }
+
+    public function single_store(SingleStoreStudentRepairRequest $request, Student $student)
+    {
+        $this->service->single_store($request, $student);
         return redirect()->back()->with('success', 'Berhasil menambahkan perbaikan');
     }
 
