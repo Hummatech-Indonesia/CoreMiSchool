@@ -6,8 +6,10 @@ use App\Contracts\Interfaces\ClassroomStudentInterface;
 use App\Contracts\Interfaces\EmployeeInterface;
 use App\Contracts\Interfaces\StudentInterface;
 use App\Contracts\Interfaces\StudentRepairInterface;
+use App\Http\Requests\SingleStoreStudentRepairRequest;
 use App\Http\Requests\StoreStudentRepairRequest;
 use App\Models\Employee;
+use App\Models\Student;
 use App\Models\StudentRepair;
 
     class StudentRepairService
@@ -53,6 +55,21 @@ use App\Models\StudentRepair;
                     ]);
                 }
             }
+        }
+
+        public function single_store(SingleStoreStudentRepairRequest $request, Student $student): void
+        {
+            $data = $request->validated();
+            $classroom = $this->classroom->whereStudent($student->id);
+
+            $this->studentRepair->store([
+                'employee_id' => auth()->user()->employee->id,
+                'repair' => $data['repair'],
+                'point' => $data['point'],
+                'classroom_student_id' => $classroom->id,
+                'start_date' => $data['start_date'],
+                'end_date' => $data['end_date']
+            ]);
         }
 
         public function update_point(StudentRepair $studentRepair) : void
