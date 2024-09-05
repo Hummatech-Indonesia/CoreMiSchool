@@ -107,7 +107,7 @@
 
         <!-- Judul di Tengah -->
         <div class="header-title">
-           Buku Tamu
+           @yield('title')
         </div>
 
         <!-- SVG Icon di Sebelah Kanan -->

@@ -42,3 +42,7 @@ Route::middleware('auth')->prefix('employee')->name('employee.')->group(function
 
     Route::resource('guestBooks', GuestBookController::class);
 });
+
+Route::get('detail-student-violation', function () {
+    return view('staff.pages.single-violation.detail-student');
+});

@@ -1,4 +1,8 @@
-@extends('staff.pages.guest-book.layouts.app')
+@extends('staff.fulllayouts.app')
+
+@section('title')
+    Buku Tamu
+@endsection
 
 @section('content')
     <h2 class="text-white pt-3"><b>Selamat Datang di Buku Tamu</b></h2>
