@@ -8,27 +8,36 @@
             <div class="card p-2 shadow" style="border: none; border-radius: 30px">
                 <div class="card-body">
                     <form action="">
-                        <h5 style="border-bottom: 2px solid #CCCCCC; padding-bottom: 20px;" class="mb-4">
-                            <b>Pengisian Form</b>
-                        </h5>
+                        <div class="d-flex align-items-center justify-content-between" style="border-bottom: 2px solid #CCCCCC; padding-bottom: 5px;">
+                            <h5 class="mb-4">
+                                <b>Pengisian Form</b>
+                            </h5>
+                            <span class="mb-1 badge bg-light-warning text-warning" style="font-size: 14px; border-radius: 5px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z" />
+                                </svg>
+                                10 Januari 2024
+                            </span>
+                        </div>
+
+
                         <div class="row">
-                            <div class="col-8">
-                                <div class="mb-3"
-                                    style="background: linear-gradient(to bottom, #51B6FF, #4F7CFF); color: white; padding: 14px; border-radius: 20px; border: none;">
-                                    <div class="d-flex align-items-center">
-                                        <span class="mb-1 badge bg-light p-2" style="color: #50A7FF; border-radius: 11px">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                viewBox="0 0 192 512">
-                                                <path fill="currentColor"
-                                                    d="M48 80a48 48 0 1 1 96 0a48 48 0 1 1-96 0M0 224c0-17.7 14.3-32 32-32h64c17.7 0 32 14.3 32 32v224h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h32V256H32c-17.7 0-32-14.3-32-32" />
-                                            </svg>
-                                        </span>
-                                        <h5 class="ms-3 mb-0 text-white">Informasi</h5>
-                                    </div>
-                                    <p class="pt-2 text-white" style="font-size: 15px;">Fitur buku tamu ini memungkinkan
-                                        Anda mencatat dan melacak data pengunjung, memberikan catatan lengkap tentang siapa
-                                        saja yang telah berkunjung</p>
+                            <div class="col-8 pt-3">
+                                <div class="d-flex align-items-center">
+                                    <span class="mb-1 badge  p-2"
+                                        style="color: white; background-color: #5D87FF; border-radius: 11px">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                            viewBox="0 0 192 512">
+                                            <path fill="currentColor"
+                                                d="M48 80a48 48 0 1 1 96 0a48 48 0 1 1-96 0M0 224c0-17.7 14.3-32 32-32h64c17.7 0 32 14.3 32 32v224h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h32V256H32c-17.7 0-32-14.3-32-32" />
+                                        </svg>
+                                    </span>
+                                    <h5 class="ms-3 mb-0">Informasi</h5>
                                 </div>
+                                <p class="pt-2" style="font-size: 15px;">Fitur buku tamu ini memungkinkan
+                                    Anda mencatat dan melacak data pengunjung, memberikan catatan lengkap tentang siapa
+                                    saja yang telah berkunjung</p>
 
                                 <div class="row">
                                     <div class="col-md-6">
@@ -79,13 +88,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-4">
-                                <div class="mb-3"
-                                    style="background: linear-gradient(to bottom, #FFB431, #F6BB22); color: white; padding: 25px; border-radius: 20px; border: none;">
-                                    <h5 class="text-white"><b>Tanggal Saat Ini</b></h5>
-                                    <h3 class="text-white pt-2">10 Januari 2023</h3>
-                                </div>
-
+                            <div class="col-4" style="margin-top: 103px">
                                 <label for="needs" class="mb-2"><b>Keperluan</b></label>
                                 <textarea class="form-control" id="needs" placeholder="Masukkan keperluan" name="needs" rows="8"></textarea>
                             </div>
