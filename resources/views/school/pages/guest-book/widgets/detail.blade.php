@@ -1,4 +1,3 @@
-<!-- modal detail -->
 <div class="modal fade" id="modal-detail" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content modal-lg">
@@ -11,56 +10,52 @@
                     <div class="col-12 col-md-6">
                         <div class="d-flex" style="margin-bottom: 0.5rem;">
                             <h6 style="margin-bottom: 0;">Nama:</h6>
-                            <p class="ms-2" style="margin-bottom: 0;" id="name-detail">Ahmad Lukman Hakim</p>
+                            <p class="ms-2" style="margin-bottom: 0;" id="detail-name">Ahmad Lukman Hakim</p>
                         </div>
                         <hr>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="d-flex" style="margin-bottom: 0.5rem;">
                             <h6 style="margin-bottom: 0;">Email:</h6>
-                            <p class="ms-2" style="margin-bottom: 0;" id="email-detail"></p>
-                        </div>
-                        <hr>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="d-flex" style="margin-bottom: 0.5rem;">
-                            <h6 style="margin-bottom: 0;">Nomor Telepon:</h6>
-                            <p class="ms-2" style="margin-bottom: 0;" id="nisn-detail"></p>
+                            <p class="ms-2" style="margin-bottom: 0;" id="detail-email"></p>
                         </div>
                         <hr>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="d-flex" style="margin-bottom: 0.5rem;">
                             <h6 style="margin-bottom: 0;">Status:</h6>
-                            <p class="ms-2" style="margin-bottom: 0;" id="classroom-detail"></p>
+                            <p class="ms-2" style="margin-bottom: 0;" id="detail-status"></p>
                         </div>
                         <hr>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="d-flex" style="margin-bottom: 0.5rem;">
                             <h6 style="margin-bottom: 0;">Jabatan:</h6>
-                            <p class="ms-2" style="margin-bottom: 0;" id="gender-detail"></p>
+                            <p class="ms-2" style="margin-bottom: 0;" id="detail-position"></p>
                         </div>
                         <hr>
                     </div>
-                    <div class="col-12 col-md-6">
+
+                    <!-- Tambahkan div container untuk address -->
+                    <div class="col-12 col-md-6" id="address">
                         <div class="d-flex" style="margin-bottom: 0.5rem;">
-                            <h6 style="margin-bottom: 0;">Berasal Dari:</h6>
-                            <p class="ms-2" style="margin-bottom: 0;" id="religion-detail"></p>
+                            <h6 style="margin-bottom: 0;">Alamat:</h6>
+                            <p class="ms-2" style="margin-bottom: 0;" id="detail-address"></p>
                         </div>
                         <hr>
                     </div>
+
                     <div class="col-12 col-md-6">
                         <div class="d-flex text-start">
                             <h6 style="margin-bottom: 0;">Tanggal Berkunjung:</h6>
-                            <p class="ms-2 text-muted text-break" style="margin-bottom: 0;" id="birth-date-detail"></p>
+                            <p class="ms-2 text-muted text-break" style="margin-bottom: 0;" id="detail-date"></p>
                         </div>
                         <hr>
                     </div>
                     <div class="col-12 col-md-12">
                         <div class="d-flex text-start">
                             <h6 style="margin-bottom: 0;">Keperluan:</h6>
-                            <p class="ms-2 text-muted text-break" style="margin-bottom: 0;" id="address-detail"></p>
+                            <p class="ms-2 text-muted text-break" style="margin-bottom: 0;" id="detail-needs"></p>
                         </div>
                         <hr>
                     </div>
