@@ -4,14 +4,18 @@ namespace App\Http\Controllers;
 use App\Contracts\Interfaces\AttendanceInterface;
 use App\Contracts\Interfaces\ClassroomInterface;
 use App\Contracts\Interfaces\EmployeeInterface;
+use App\Contracts\Interfaces\LessonScheduleInterface;
 use App\Contracts\Interfaces\MapleInterface;
 use App\Contracts\Interfaces\ModelHasRfidInterface;
 use App\Contracts\Interfaces\RfidInterface;
 use App\Contracts\Interfaces\SchoolInterface;
+use App\Contracts\Interfaces\SchoolPointInterface;
 use App\Contracts\Interfaces\SchoolYearInterface;
 use App\Contracts\Interfaces\SemesterInterface;
 use App\Contracts\Interfaces\StudentInterface;
+use App\Contracts\Interfaces\StudentViolationInterface;
 use App\Contracts\Interfaces\SubjectInterface;
+use App\Enums\AttendanceEnum;
 use App\Enums\RoleEnum;
 use App\Http\Requests\StoreModelHasRfidRequest;
 use App\Models\School;
@@ -33,10 +37,15 @@ class SchoolDashboardController extends Controller
     private SchoolChartService $schoolChart;
     private SubjectInterface $subjects;
     private ModelHasRfidInterface $modelHasRfid;
+    private LessonScheduleInterface $lessonSchedule;
+    private SchoolPointInterface $schoolPoints;
+    private StudentViolationInterface $studentViolation;
 
     public function __construct(SchoolInterface $school, SchoolYearInterface $schoolYear,
     RfidInterface $rfid, ClassroomInterface $classroom, SemesterInterface $semester,
-    SchoolChartService $schoolChart, AttendanceInterface $attendance, StudentInterface $student, EmployeeInterface $employee, SubjectInterface $subjects, ModelHasRfidInterface $modelHasRfid)
+    SchoolChartService $schoolChart, AttendanceInterface $attendance, StudentInterface $student,
+    EmployeeInterface $employee, SubjectInterface $subjects, ModelHasRfidInterface $modelHasRfid,
+    LessonScheduleInterface $lessonSchedule, SchoolPointInterface $schoolPoints, StudentViolationInterface $studentViolation)
     {
         $this->employee = $employee;
         $this->school = $school;
@@ -49,21 +58,47 @@ class SchoolDashboardController extends Controller
         $this->student = $student;
         $this->subjects = $subjects;
         $this->modelHasRfid = $modelHasRfid;
+        $this->lessonSchedule = $lessonSchedule;
+        $this->schoolPoints = $schoolPoints;
+        $this->studentViolation = $studentViolation;
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $classrooms = $this->classroom->countClass();
         $schoolYear = $this->schoolYear->active();
         $semester = $this->semester->whereSchool();
+
         $attendanceChart = $this->schoolChart->ChartAttendance($this->attendance);
+        $violationChart = $this->schoolChart->ChartViolation($this->studentViolation);
+        $violations = $this->studentViolation->get();
+
         $alumni = $this->student->countStudentAlumni();
         $teachers = $this->employee->where(RoleEnum::TEACHER->value);
         $employees = $this->employee->where(RoleEnum::STAFF->value);
         $students = $this->student->count();
         $subjects = $this->subjects->count();
 
-        return view('school.pages.dashboard.dashboard', compact('classrooms', 'schoolYear', 'semester', 'attendanceChart', 'alumni', 'teachers', 'employees', 'students', 'subjects'));
+        $schoolPoints = $this->schoolPoints->get();
+        $maxPoint = $this->schoolPoints->getMaxPoint();
+
+        $fill = $this->lessonSchedule->dahsboardSchool('fill',now());
+        $notfill = $this->lessonSchedule->dahsboardSchool('notfill',now());
+
+        $lates = $this->attendance->AttendanceDasboard(AttendanceEnum::LATE->value, $request);
+        $alpha = $this->attendance->AttendanceDasboard(AttendanceEnum::ALPHA->value, $request);
+        $sick = $this->attendance->AttendanceDasboard(AttendanceEnum::SICK->value, $request);
+        $studentChart = $this->schoolChart->chartStudentAttendance($lates, $sick, $alpha);
+
+        // dd($studentChart);
+
+        return view('school.pages.dashboard.dashboard', compact(
+            'lates', 'alpha', 'sick', 'studentChart',
+            'fill','notfill','classrooms', 'violations',
+            'schoolYear', 'semester',
+            'attendanceChart', 'alumni',
+            'teachers', 'employees', 'students',
+            'subjects', 'schoolPoints', 'maxPoint', 'violationChart'));
     }
 
     public function show(Request $request)

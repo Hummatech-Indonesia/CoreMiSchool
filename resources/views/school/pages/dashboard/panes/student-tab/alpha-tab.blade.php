@@ -10,17 +10,16 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (range(1, 5) as $item)
+            @foreach ($alpha as $item)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-
                     <td>
-                        Ahmad Lukman Hakim
+                        {{ $item->model->student->user->name }}
                     </td>
                     <td>
-                        X RPL 1
+                        {{ $item->model->classroom->name }}
                     </td>
-                    <td>08.00</td>
+                    <td>{{ $item->checkin ? \Carbon\Carbon::parse($item->checkin)->format('H.i') : '-' }}</td>
                     <td>
                         <span class="badge bg-light-danger text-danger fw-semibold fs-2">Alpha</span>
                     </td>

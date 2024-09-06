@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Contracts\Interfaces\AttendanceInterface;
 use App\Contracts\Interfaces\ClassroomInterface;
 use App\Contracts\Interfaces\SchoolYearInterface;
+use App\Contracts\Interfaces\StudentViolationInterface;
 use App\Enums\AttendanceEnum;
 use App\Models\Attendance;
 use App\Models\Classroom;
@@ -15,12 +16,14 @@ class SchoolChartService
     private AttendanceInterface $attendance;
     private SchoolYearInterface $schoolYear;
     private ClassroomInterface $classroom;
+    private StudentViolationInterface $studentViolation;
 
-    public function __construct(AttendanceInterface $attendance, SchoolYearInterface $schoolYear, ClassroomInterface $classroom)
+    public function __construct(AttendanceInterface $attendance, SchoolYearInterface $schoolYear, ClassroomInterface $classroom, StudentViolationInterface $studentViolation)
     {
         $this->attendance = $attendance;
         $this->schoolYear = $schoolYear;
         $this->classroom = $classroom;
+        $this->studentViolation = $studentViolation;
     }
 
     public function ChartAttendance(AttendanceInterface $attendance)
@@ -50,6 +53,39 @@ class SchoolChartService
         $data  = array_values($grafikDataCollection);
 
         return $data;
+    }
+
+    public function ChartViolation(StudentViolationInterface $studentViolation)
+    {
+        $Curentyear = Carbon::now()->year;
+        $Curentmonth = Carbon::now()->month;
+
+        $grafikDataCollection = [];
+
+        for($month = 1; $month <= 12; $month++){
+            $date = Carbon::createFromDate($Curentyear, $month, 1);
+            $yearMonth = $date->isoFormat('MMMM');
+            $violation = $this->studentViolation->ViolationChart($Curentyear, $month);
+
+            $grafikDataCollection[] = [
+                'year' => $Curentyear,
+                'month' => $yearMonth,
+                'violation' => $violation,
+            ];
+        }
+        $data  = array_values($grafikDataCollection);
+
+        return $data;
+    }
+
+    public function chartStudentAttendance($lates, $sick, $alpha)
+    {
+        
+        return [
+            'chartLate' => $lates->count(),
+            'chartSick' => $sick->count(),
+            'chartAlpha' => $alpha->count()
+        ];
     }
 
     public function ChartClassroomAttendance($date)

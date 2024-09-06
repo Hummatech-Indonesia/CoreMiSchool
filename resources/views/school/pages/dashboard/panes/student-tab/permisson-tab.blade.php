@@ -10,17 +10,16 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (range(1, 5) as $item)
+            @foreach ($sick as $data)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-
                     <td>
-                        Ahmad Lukman Hakim
+                        {{ $data->model->student->user->name }}
                     </td>
                     <td>
-                        X RPL 1
+                        {{ $data->model->classroom->name }}
                     </td>
-                    <td>08.00</td>
+                    <td>{{ $data->checkin ? \Carbon\Carbon::parse($data->checkin)->format('H.i') : '-' }}</td>
                     <td>
                         <span class="badge bg-light-warning text-warning fw-semibold fs-2">Izin</span>
                     </td>

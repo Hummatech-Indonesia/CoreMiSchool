@@ -9,7 +9,7 @@
                             <h5 class="fw-semibold text-white mb-3 pt-3">Maks Poin Pada Sekolah</h5>
                         </div>
                         <nav aria-label="breadcrumb">
-                            <span class="badge fw-semibold fs-8 text-primary bg-white p-2 px-3">100</span>
+                            <span class="badge fw-semibold fs-8 text-primary bg-white p-2 px-3">{{ $maxPoint }}</span>
                         </nav>
                     </div>
                 </div>
@@ -29,10 +29,14 @@
                         <h4 class="fs-5 mt-1"><b>Poin Peringatan</b></h4>
                         <nav aria-label="breadcrumb">
                             <ul style="list-style-type:disc; padding-left: 20px;">
-                                <li style="padding-bottom: 3px">point __ - __ lorem ipsum dolor sit amet</li>
+                                @forelse ($schoolPoints as $schoolPoint)
+                                    <li style="padding-bottom: 3px">Poin peringatan {{ $schoolPoint->point }}+ :
+                                        {{ $schoolPoint->description }}</li>
+                                @empty
+                                    <li style="padding-bottom: 3px">Poin peringatan belum ditambahkan</li>
+                                @endforelse
                                 <li style="padding-bottom: 3px">Guru diharuskan untuk menindak lanjuti siswa yang
                                     mempunyai banyak point Pelanggaran</li>
-                                <li style="padding-bottom: 3px">point __ - __ lorem ipsum dolor sit amet</li>
                             </ul>
                         </nav>
                     </div>
@@ -74,24 +78,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (range(1, 5) as $item)
+                    @foreach ($violations as $violation)
                         <tr>
                             <td>
                                 <div class="d-flex align-items-center">
                                     <img src="{{ asset('assets/images/default-user.jpeg') }}"
                                         class="rounded-circle" width="40" height="40">
                                     <div class="ms-3">
-                                        <h6 class="fs-4 fw-semibold mb-0">Ahmad Lukman Hakim</h6>
-                                        <span class="fw-normal">X RPL 1</span>
+                                        <h6 class="fs-4 fw-semibold mb-0">{{ $violation->classroomStudent->student->user->name }}</h6>
+                                        <span class="fw-normal">{{ $violation->classroomStudent->classroom->name }}</span>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                10 Januari 2024
+                                {{ $violation->created_at->locale('id')->translatedFormat('d F Y') }}
                             </td>
-                            <td>Merokok dikelas pada jam pelajaran....</td>
+                            <td>{{ $violation->regulation->violation }}</td>
                             <td>
-                                <span class="badge bg-light-danger text-danger fw-semibold fs-2">+10 Point</span>
+                                <span class="badge bg-light-danger text-danger fw-semibold fs-2">+ {{ $violation->regulation->point }} Point</span>
                             </td>
                             <td>
                                 <button class="btn mb-1 btn-primary" type="button">Detail</button>

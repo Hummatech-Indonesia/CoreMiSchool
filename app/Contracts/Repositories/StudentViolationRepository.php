@@ -96,4 +96,12 @@ class StudentViolationRepository extends BaseRepository implements StudentViolat
             ->groupBy('classroom_student_id')
             ->get();
     }
+
+    public function ViolationChart(mixed $year, mixed $month): mixed
+    {
+        return $this->model->query()
+            ->whereYear('created_at', $year)
+            ->whereMonth('created_at', $month)
+            ->count();
+    }
 }
