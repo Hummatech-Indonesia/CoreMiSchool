@@ -8,6 +8,7 @@ use App\Http\Controllers\AttendanceStudentController;
 use App\Http\Controllers\AttendanceTeacherController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\ClassroomStudentController;
+use App\Http\Controllers\EmployeeJournalController;
 use App\Http\Controllers\ExtracurricularController;
 use App\Http\Controllers\ExtracurricularStudentController;
 use App\Http\Controllers\imports\ImportController;
@@ -142,9 +143,11 @@ Route::middleware('auth')->prefix('school')->name('school.')->group(function () 
     Route::get('teacher-subject/{subject}', [TeacherSubjectController::class, 'show'])->name('teacher-subject.show');
 
     Route::get('export/attendance-employee', [AttendanceEmployeeController::class, 'export'])->name('export.attendance.employee');
-    
+
 
     Route::get('guest-book', [GuestBookController::class, 'index'])->name('guest-book.index');
+    Route::get('journal-staff', [EmployeeJournalController::class, 'show'])->name('employee-journal.show');
+    Route::get('export-journal-staff', [EmployeeJournalController::class, 'export'])->name('employee-journal.export');
 });
 
 

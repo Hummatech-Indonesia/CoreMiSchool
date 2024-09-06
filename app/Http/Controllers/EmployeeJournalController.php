@@ -28,6 +28,11 @@ class EmployeeJournalController extends Controller
         return view('staff.pages.journal.index', compact('employeeJournals'));
     }
 
+    public function export()
+    {
+        return view('school.pages.journals.export-staff');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -51,7 +56,7 @@ class EmployeeJournalController extends Controller
      */
     public function show(EmployeeJournal $employeeJournal)
     {
-        //
+        return view('school.pages.journals.journal-staff');
     }
 
     /**

@@ -42,7 +42,7 @@ Route::middleware('auth')->prefix('employee')->name('employee.')->group(function
     Route::post('import-student-repair', [StudentRepairController::class, 'import'])->name('student-repair.import');
 
     Route::resource('guestBooks', GuestBookController::class);
-    Route::resource('journal', EmployeeJournalController::class);
+    Route::resource('journal', EmployeeJournalController::class)->except('show');
 });
 
 Route::get('detail-student-violation', function () {
