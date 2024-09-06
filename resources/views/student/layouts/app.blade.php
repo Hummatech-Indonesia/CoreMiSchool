@@ -21,6 +21,7 @@
 
     <!-- Core Css -->
     <link id="themeColors" rel="stylesheet" href="{{ asset('admin_assets/dist/css/style.min.css') }}" />
+    
     @yield('style')
 </head>
 
@@ -71,6 +72,9 @@
     <!--  current page js files -->
     <script src="{{ asset('admin_assets/dist/libs/owl.carousel/dist/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('admin_assets/dist/js/dashboard.js') }}"></script>
+    <script src="{{ asset('admin_assets/dist/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
+
+
 </body>
 
 </html>
