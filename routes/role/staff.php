@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployeeJournalController;
 use App\Http\Controllers\Staff\StaffViolationController;
 use App\Http\Controllers\Staff\StudentRepairController;
 use App\Http\Controllers\StudentViolationController;
@@ -41,12 +42,9 @@ Route::middleware('auth')->prefix('employee')->name('employee.')->group(function
     Route::post('import-student-repair', [StudentRepairController::class, 'import'])->name('student-repair.import');
 
     Route::resource('guestBooks', GuestBookController::class);
+    Route::resource('journal', EmployeeJournalController::class)->except('show');
 });
 
 Route::get('detail-student-violation', function () {
     return view('staff.pages.single-violation.detail-student');
-});
-
-Route::get('journal', function () {
-    return view('staff.pages.journal.index');
 });

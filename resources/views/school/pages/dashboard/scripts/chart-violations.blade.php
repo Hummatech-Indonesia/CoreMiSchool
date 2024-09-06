@@ -1,8 +1,13 @@
 <script>
+    var violationChartData = @json($violationChart);
+
+    var categories = violationChartData.map(item => item.month);
+    var data1 = violationChartData.map(item => item.violation);
+
     var options_line = {
         series: [{
-            name: "Desktops",
-            data: [10, 41, 35, 51, 49, 62, 69, 91, 148, 130, 160, 175],
+            name: "Pelanggaran",
+            data: data1,
         }],
         chart: {
             height: 350,
@@ -29,9 +34,7 @@
             borderColor: "transparent",
         },
         xaxis: {
-            categories: [
-                "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-            ],
+            categories: categories,
             labels: {
                 style: {
                     colors: [

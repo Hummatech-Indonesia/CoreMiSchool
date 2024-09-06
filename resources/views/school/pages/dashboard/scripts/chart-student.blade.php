@@ -1,11 +1,17 @@
 <script>
+    var studentChartData = @json($studentChart);
+
+    var late = studentChartData.chartLate;
+    var sick = studentChartData.chartSick;
+    var alpha = studentChartData.chartAlpha;
+
     var options = {
-        series: [44, 30, 26], // Data numerik untuk 'Masuk', 'Izin', 'Alpha'
+        series: [late, sick, alpha], // Data numerik untuk 'Masuk', 'Izin', 'Alpha'
         chart: {
             type: 'donut',
             width: 450 // Perbesar chart
         },
-        labels: ['Masuk', 'Izin', 'Alpha'], // Label keterangan
+        labels: ['Telat', 'Izin', 'Alpha'], // Label keterangan
         colors: ['#5D87FF', '#FFAE1F', '#FA896B'], // Custom warna chart
         legend: {
             position: 'bottom', // Pindahkan keterangan ke bawah chart

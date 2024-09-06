@@ -42,21 +42,29 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse (range(1,6) as $regulation)
+                    @forelse ($guestBooks as $guestBook)
                         <tr>
                             <td class="text-center">{{ $loop->iteration }}</td>
                             <td class="align-items-center">
-                                <h5 class="m-0">Afrizal Himawan, S.Kom</h5>
-                                <p class="m-0">afrizal@gmail.com</p>
+                                <h5 class="m-0">{{ $guestBook->name }}</h5>
+                                <p class="m-0">{{ $guestBook->email }}</p>
                             </td>
                             <td class="">
-                                <span class="badge bg-light-primary text-primary">Individual</span>
+                                <span class="badge bg-light-{{ $guestBook->status->color() }} text-{{ $guestBook->status->color() }} text-capitalize">{{ $guestBook->status }}</span>
                             </td>
-                            <td class="">5 September 2024</td>
-                            <td class="">Lorem ipsum dolor sit...</td>
+                            <td class="">{{ Carbon\Carbon::parse($guestBook->date)->format('d F Y') }}</td>
+                            <td class="">{{ Str::limit($guestBook->needs, 50) }}</td>
                             <td class="">
                                 <div class="d-flex justify-content-center align-items-center gap-2">
-                                    <a class="btn-detail" type="button">
+                                    <a class="btn-detail" type="button"
+                                    data-name="{{ $guestBook->name }}"
+                                    data-email="{{ $guestBook->email }}"
+                                    data-status="{{ $guestBook->status }}"
+                                    data-date="{{ $guestBook->date }}"
+                                    data-position="{{ $guestBook->position }}"
+                                    data-address="{{ $guestBook->address }}"
+                                    data-needs="{{ $guestBook->needs }}"
+                                    >
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                             viewBox="0 0 24 24">
                                             <g fill="none" stroke="currentColor" stroke-linecap="round"

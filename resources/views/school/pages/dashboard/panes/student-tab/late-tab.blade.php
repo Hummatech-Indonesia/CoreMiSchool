@@ -10,17 +10,16 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (range(1, 5) as $item)
+            @foreach ($lates as $late)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-
                     <td>
-                        Ahmad Lukman Hakim
+                        {{ $late->model->student->user->name }}
                     </td>
                     <td>
-                        X RPL 1
+                        {{ $late->model->classroom->name }}
                     </td>
-                    <td>08.00</td>
+                    <td>{{ $late->checkin ? \Carbon\Carbon::parse($late->checkin)->format('H.i') : '-' }}</td>
                     <td>
                         <span class="badge bg-light-primary text-primary fw-semibold fs-2">Telat</span>
                     </td>

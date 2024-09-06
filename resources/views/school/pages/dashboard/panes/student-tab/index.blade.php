@@ -14,7 +14,7 @@
                     </div>
                 </div>
                 <span class="mb-1 badge font-medium bg-light-primary text-primary px-3 py-2"
-                    style="font-size: 20px"><b>10 Siswa</b></span>
+                    style="font-size: 20px"><b>{{ $lates->count() }} Siswa</b></span>
             </div>
         </div>
     </div>
@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <span class="mb-1 badge font-medium bg-light-warning text-warning px-3 py-2"
-                    style="font-size: 20px"><b>10 Siswa</b></span>
+                    style="font-size: 20px"><b>{{ $sick->count() }} Siswa</b></span>
             </div>
         </div>
     </div>
@@ -51,8 +51,7 @@
                         </svg>
                     </div>
                 </div>
-                <span class="mb-1 badge font-medium bg-light-danger text-danger px-3 py-2" style="font-size: 20px"><b>10
-                        Siswa</b></span>
+                <span class="mb-1 badge font-medium bg-light-danger text-danger px-3 py-2" style="font-size: 20px"><b>{{ $alpha->count() }} Siswa</b></span>
             </div>
         </div>
     </div>

@@ -21,17 +21,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (range(1, 5) as $item)
+                            @foreach ($notfill as $value)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
 
                                     <td>
-                                        Ahmad Lukman Hakim
+                                        {{ $value->teacherSubject->employee->user->name }}
                                     </td>
                                     <td>
-                                        10 Januari 2024
+                                        {{ $value->created_at->locale('id')->translatedFormat('d F Y') }}
                                     </td>
-                                    <td>X RPL 1 - Bahasa Indonesia</td>
+                                    <td>{{ $value->classroom->name }} - {{ $value->teacherSubject->subject->name }}</td>
                                     <td>
                                         <span class="badge bg-light-danger text-danger fw-semibold fs-2">Tidak Mengisi</span>
                                     </td>
@@ -61,19 +61,19 @@
             <div class="card border shadow rounded-4 p-0 mb-3">
                 <div class="card-body card-body-with-line">
                     <h5><b>Jumlah Guru</b></h5>
-                    <h3 class="text-primary">59 Guru</h3>
+                    <h3 class="text-primary">{{ $teachers }} Guru</h3>
                 </div>
             </div>
             <div class="card border shadow rounded-4 p-0">
                 <div class="card-body card-body-with-line2">
                     <h5><b>Guru Mengisi Jurnal</b></h5>
-                    <h3 class="text-success">59 Guru</h3>
+                    <h3 class="text-success">{{ $fill->count() }} Guru</h3>
                 </div>
             </div>
             <div class="card border shadow rounded-4 p-0">
                 <div class="card-body card-body-with-line3">
                     <h5><b>Guru Tidak Mengisi Jurnal</b></h5>
-                    <h3 class="text-danger">59 Guru</h3>
+                    <h3 class="text-danger">{{ $notfill->count() }} Guru</h3>
                 </div>
             </div>
         </div>
