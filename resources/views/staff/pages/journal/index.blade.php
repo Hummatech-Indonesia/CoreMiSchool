@@ -69,8 +69,9 @@
         <div class="card border">
             <div class="card-body">
                 <h4 class="mb-4">Jurnal Harian</h4>
-                <form action="" method="POST">
-
+                <form action="{{ route('employee.journal.store') }}" method="POST" enctype="multipart/form-data">
+                    @method('post')
+                    @csrf
                     <div class="form-group mb-3">
                         <h5>Judul</h5>
                         <input type="text" class="form-control" name="title" id="placeholder" placeholder="Masukkan judul">
@@ -82,9 +83,7 @@
                     </div>
 
                     <div class="d-flex justify-content-end ">
-
-                        <button class="btn mb-1 waves-effect waves-light btn-success px-4" type="submit">Tambah
-                            Jurnal</button>
+                        <button class="btn mb-1 waves-effect waves-light btn-success px-4" type="submit">Tambah Jurnal</button>
                     </div>
                 </form>
             </div>
@@ -106,12 +105,12 @@
     </div>
     <div class="row">
         <div class="col-lg-12 col-md-12">
-            @forelse (range(1, 5) as $item)
+            @forelse ($employeeJournals as $employeeJournal)
                 <div class="col-md-12 d-flex align-items-stretch">
                     <div class="card w-100">
                         <div class="card-header bg-primary" style="border-radius: 0.50rem;">
                             <h4 class="mb-0 text-white card-title">
-                                Judul Jurnal
+                                {{ $employeeJournal->title }}
                             </h4>
                             <div class="position-absolute top-0 end-0" style="padding: 0px; position: relative;">
                                 <img src="{{ asset('assets/images/background/arrow-leftwarning.png') }}" alt="Description"
@@ -123,7 +122,7 @@
                                         <path fill="currentColor"
                                             d="M12 12h5v5h-5zm7-9h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m0 2v2H5V5zM5 19V9h14v10z" />
                                     </svg>
-                                    10 Agustus 2024
+                                    {{ $employeeJournal->created_at->locale('id')->translatedFormat('d F Y') }}
                                 </span>
                             </div>
                         </div>
@@ -133,11 +132,7 @@
                                 <div class="col-lg-12">
                                     <div class="pe-3">
                                         <h5 class="card-title">Deskripsi:</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vehicula lacus
-                                            massa, a finibus urna hendrerit fringilla.
-                                            Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-                                            himenaeos.
-                                            lorem ipsum....</p>
+                                        <p>{{ \Illuminate\Support\Str::limit($employeeJournal->description, 200, '...') }}</p>
                                     </div>
                                 </div>
                             </div>

@@ -2,8 +2,8 @@
 
     namespace App\Contracts\Repositories;
 
-    use App\Contracts\Interfaces\{EmployeeJournal}Interface;
-    use App\Models\{EmployeeJournal};
+    use App\Contracts\Interfaces\EmployeeJournalInterface;
+    use App\Models\EmployeeJournal;
 
     class EmployeeJournalRepository extends BaseRepository implements EmployeeJournalInterface
     {
@@ -15,6 +15,11 @@
         public function get(): mixed
         {
             return $this->model->query()->get();
+        }
+
+        public function getEmployee(mixed $id): mixed
+        {
+            return $this->model->query()->whereRelation('employee.user', 'id', $id)->get();
         }
 
         public function store(array $data): mixed

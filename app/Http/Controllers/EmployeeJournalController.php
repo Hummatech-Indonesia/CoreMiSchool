@@ -24,8 +24,8 @@ class EmployeeJournalController extends Controller
      */
     public function index()
     {
-        $employeeJournals = $this->employeeJournal->get();
-        return view('', compact('employeeJournals'));
+        $employeeJournals = $this->employeeJournal->getEmployee(auth()->user()->id);
+        return view('staff.pages.journal.index', compact('employeeJournals'));
     }
 
     /**
