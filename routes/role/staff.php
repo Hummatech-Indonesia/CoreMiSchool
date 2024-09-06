@@ -46,3 +46,7 @@ Route::middleware('auth')->prefix('employee')->name('employee.')->group(function
 Route::get('detail-student-violation', function () {
     return view('staff.pages.single-violation.detail-student');
 });
+
+Route::get('journal', function () {
+    return view('staff.pages.journal.index');
+});

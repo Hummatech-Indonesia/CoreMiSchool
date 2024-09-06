@@ -1,25 +1,36 @@
+
 <script>
     var options = {
-        series: [44, 55, 41],
+        series: [44, 30, 26], // Data numerik untuk 'Masuk', 'Izin', 'Alpha'
         chart: {
             type: 'donut',
-            width: 400
+            width: 450 // Perbesar chart
         },
-        labels: ['Alpha', 'Masuk', 'Izin'],
+        labels: ['Masuk', 'Izin', 'Alpha'], // Label keterangan
+        colors: ['#5D87FF', '#FFAE1F', '#FA896B'], // Custom warna chart
         legend: {
-            position: 'bottom',
+            position: 'bottom', // Pindahkan keterangan ke bawah chart
+            horizontalAlign: 'center', // Selaraskan secara horizontal
+            itemMargin: {
+                horizontal: 20, // Atur jarak horizontal antar keterangan
+                vertical: 10 // Atur jarak vertikal antar keterangan
+            }
         },
         dataLabels: {
-            enabled: false,
+            enabled: false // Menghilangkan persen
         },
         responsive: [{
-            breakpoint: 600,
+            breakpoint: 480,
             options: {
                 chart: {
-                    width: 400
+                    width: 400 // Atur ukuran lebih kecil untuk layar kecil
                 },
                 legend: {
-                    position: 'bottom'
+                    position: 'bottom',
+                    itemMargin: {
+                        horizontal: 20, // Tetap atur jarak untuk perangkat kecil
+                        vertical: 10
+                    }
                 }
             }
         }]
