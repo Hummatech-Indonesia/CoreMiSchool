@@ -26,6 +26,7 @@ use App\Http\Controllers\Schools\AttendanceEmployeeController;
 use App\Http\Controllers\Schools\AttendanceStudentController as SchoolsAttendanceStudentController;
 use App\Http\Controllers\Schools\EmployeeController;
 use App\Http\Controllers\Schools\ExtracurricularController as SchoolsExtracurricularController;
+use App\Http\Controllers\Schools\GuestBookController;
 use App\Http\Controllers\Schools\JournalTeacherController;
 use App\Http\Controllers\Schools\StaffController;
 use App\Http\Controllers\Schools\StudentController;
@@ -141,7 +142,9 @@ Route::middleware('auth')->prefix('school')->name('school.')->group(function () 
     Route::get('teacher-subject/{subject}', [TeacherSubjectController::class, 'show'])->name('teacher-subject.show');
 
     Route::get('export/attendance-employee', [AttendanceEmployeeController::class, 'export'])->name('export.attendance.employee');
-    // return view('school.pages.statistic-presence.export.employee');
+    
+
+    Route::get('guest-book', [GuestBookController::class, 'index'])->name('guest-book.index');
 });
 
 
