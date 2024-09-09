@@ -19,6 +19,7 @@ return new class extends Migration
             $this->addForeignId($table, 'employee_id');
             $table->string('title');
             $table->longText('description');
+            $table->boolean('is_finish')->default(0);
             $table->timestamps();
         });
     }
