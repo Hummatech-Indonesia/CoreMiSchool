@@ -87,4 +87,14 @@ class TeacherService
             $this->remove($employee->image);
         }
     }
+
+    public function chartTeacherAttendance($late, $sick, $alpha, $present, $permit)
+    {
+        
+        return [
+            'chartPresent' => $present->count() + $late->count(),
+            'chartPermit' => $sick->count() + $permit->count(),
+            'chartAlpha' => $alpha->count()
+        ];
+    }
 }

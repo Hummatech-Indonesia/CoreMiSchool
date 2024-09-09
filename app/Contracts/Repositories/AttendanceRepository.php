@@ -273,4 +273,13 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
             ->where('model_id', $id)
             ->get();
     }
+
+    public function getByUserAndStatus(mixed $model, mixed $id, mixed $status): mixed
+    {
+        return $this->model->query()
+            ->where('model_type', $model)
+            ->where('model_id', $id)
+            ->where('status', $status)
+            ->get();
+    }
 }

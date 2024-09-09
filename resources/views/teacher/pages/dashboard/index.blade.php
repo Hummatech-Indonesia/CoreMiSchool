@@ -165,7 +165,7 @@
                             <tbody>
                                 @forelse ($attendances as $attendance)
                                     <tr>
-                                        <td>{{ $attendance->created_at->format('D') }}</td>
+                                        <td>{{ $attendance->created_at->translatedFormat('l') }}</td>
                                         <td>{{ $attendance->created_at->format('d F Y') }}</td>
                                         <td>{{ $attendance->checkin }}</td>
                                         <td>
