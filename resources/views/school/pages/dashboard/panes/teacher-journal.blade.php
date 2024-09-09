@@ -57,7 +57,7 @@
 
         <div class="row">
             <div class="col-12 mb-3">
-                <div class="card border shadow rounded-4 p-0">
+                <div class="card border shadow rounded-4 p-0 card-body-with-line">
                     <div class="card-body">
                         <h5><b>Jumlah Guru</b></h5>
                         <h3 class="text-primary">{{ $teachers }} Guru</h3>
@@ -65,7 +65,7 @@
                 </div>
             </div>
             <div class="col-12 mb-3">
-                <div class="card border shadow rounded-4 p-0">
+                <div class="card border shadow rounded-4 p-0 card-body-with-line2">
                     <div class="card-body">
                         <h5><b>Guru Mengisi Jurnal</b></h5>
                         <h3 class="text-success">{{ $fill->count() }} Guru</h3>
@@ -73,7 +73,7 @@
                 </div>
             </div>
             <div class="col-12">
-                <div class="card border shadow rounded-4 p-0">
+                <div class="card border shadow rounded-4 p-0 card-body-with-line3">
                     <div class="card-body">
                         <h5><b>Guru Tidak Mengisi Jurnal</b></h5>
                         <h3 class="text-danger">{{ $notfill->count() }} Guru</h3>
