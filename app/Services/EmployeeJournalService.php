@@ -38,7 +38,6 @@ use App\Http\Requests\UpdateEmployeeJournalRequest;
                 'employee_id' => $employee->id,
                 'title' => $data['title'],
                 'description' => $data['description'],
-                'is_finish' => true,
             ];
         }
     }
