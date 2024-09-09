@@ -37,6 +37,7 @@ class Kernel extends ConsoleKernel
                 var_dump('success: ' . $output);
             })->dailyAt('01:00');
         $schedule->command('command:delete-attendance')->dailyAt('23:00');
+        $schedule->command('command:employee-journal-command')->dailyAt('23:59');
 
         // $schedule->command('command:test-cron')->onFailureWithOutput(function ($e) {
         //     Log::error($e);
