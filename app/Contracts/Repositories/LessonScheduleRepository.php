@@ -73,6 +73,14 @@ class LessonScheduleRepository extends BaseRepository implements LessonScheduleI
             ->get();
     }
 
+    public function getByTeacher(mixed $id): mixed
+    {
+        return $this->model->query()
+            ->whereRelation('teacherSubject.employee.user', 'id', $id)
+            ->get()
+            ->groupBy('day');
+    }
+
     public function whereTeacherNotif(mixed $id, mixed $day): mixed
     {
         return $this->model->query()
