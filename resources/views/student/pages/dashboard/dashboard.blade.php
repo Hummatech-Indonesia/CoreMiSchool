@@ -126,11 +126,11 @@
                         <table class="table border text-nowrap customize-table mb-0 align-middle">
                             <thead>
                                 <tr>
-                                    <th class="text-white" style="background-color: #5D87FF;">Hari</th>
+                                    <th class="text-white" style="background-color: #5D87FF; border-top-left-radius: 12px; border-bottom-left-radius: 12px;">Hari</th>
                                     <th class="text-white" style="background-color: #5D87FF;">Tanggal</th>
                                     <th class="text-white" style="background-color: #5D87FF;">Masuk</th>
                                     <th class="text-white" style="background-color: #5D87FF;">Masuk</th>
-                                    <th class="text-white" style="background-color: #5D87FF;">Status</th>
+                                    <th class="text-white" style="background-color: #5D87FF; border-top-right-radius: 12px; border-bottom-right-radius: 12px">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -173,7 +173,8 @@
                         <h5><b>Kelasmu</b></h5>
 
                         <div class="text-center">
-                            <img src="{{ asset('assets/images/Topi.png') }}" alt="" style="width: 100px; height: auto;">
+                            <img src="{{ asset('assets/images/Topi.png') }}" alt=""
+                                style="width: 100px; height: auto;">
                             <h3 class="pt-2 mb-3"><b>XII RPL 1</b></h3>
                             <span class="mb-1 badge font-medium bg-light-primary text-primary py-2 px-3"
                                 style="font-size: 18px;">34 Total Siswa</span>
@@ -187,7 +188,7 @@
                     <div class="card-body">
                         <h5 class="mb-4"><b>Wali Kelasmu</b></h5>
                         <div class="d-flex align-items-center">
-                            <img src="{{ asset('admin_assets/dist/images/profile/user-3.jpg') }}" alt=""
+                            <img src="{{ asset('admin_assets/dist/images/profile/user-4.jpg') }}" alt=""
                                 class="rounded-circle" style="width: 100px; height: 100px;">
 
                             <div class="ms-3">
@@ -220,19 +221,38 @@
                     <h5 class="mb-4"><b>Daftar Tugas</b></h5>
                     <div class="table-responsive rounded-2 mt-3">
                         <table class="table border text-nowrap customize-table mb-0 align-middle">
-                            <thead>
+                            <thead style="border-radius: 12px 12px 0 0;">
                                 <tr>
-                                    <th class="text-white" style="background-color: #5D87FF;">Tugas</th>
+                                    <th class="text-white" style="background-color: #5D87FF; border-top-left-radius: 12px; border-bottom-left-radius: 12px;">Tugas</th>
                                     <th class="text-white" style="background-color: #5D87FF;">Status</th>
-                                    <th class="text-white" style="background-color: #5D87FF;">Aksi</th>
+                                    <th class="text-white" style="background-color: #5D87FF; border-top-right-radius: 12px; border-bottom-right-radius: 12px">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse (range(1, 5) as $item)
                                     <tr>
-                                        <td>Senin</td>
-                                        <td>10 Agustus 2024</td>
-                                        <td>07.00</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div
+                                                    class="bg-light-primary text-primary d-inline-block px-2 py-2 rounded">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                                        class="" viewBox="0 0 24 24">
+                                                        <path fill="currentColor"
+                                                            d="M20 22H6.5A3.5 3.5 0 0 1 3 18.5V5a3 3 0 0 1 3-3h14a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1m-1-2v-3H6.5a1.5 1.5 0 0 0 0 3z" />
+                                                    </svg>
+                                                </div>
+                                                <div class="ms-3">
+                                                    <h6 class="fs-4 fw-semibold mb-0">Pemograman dasar I X RPL 1</h6>
+                                                    <span class="fw-normal">Membuat website file</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="mb-1 badge font-medium bg-light-danger text-danger">Belum Dikerjakan</span>
+                                        </td>
+                                        <td>
+                                            <button class="btn mb-1 waves-effect waves-light btn-primary" type="button">Detail</button>
+                                        </td>
                                     </tr>
                                 @empty
                                 @endforelse
