@@ -83,8 +83,8 @@
     <script src="{{ asset('admin_assets/dist/libs/jquery.repeater/jquery.repeater.min.js') }}"></script>
     <script src="{{ asset('admin_assets/dist/js/plugins/repeater-init.js') }}"></script>
     <script src="{{ asset('admin_assets/dist/libs/owl.carousel/dist/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('admin_assets/dist/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
-    <script src="{{ asset('admin_assets/dist/js/dashboard.js') }}"></script>
+    {{-- <script src="{{ asset('admin_assets/dist/libs/apexcharts/dist/apexcharts.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('admin_assets/dist/js/dashboard.js') }}"></script> --}}
 </body>
 
 <!-- Mirrored from demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/html/main/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Jul 2023 01:55:21 GMT -->

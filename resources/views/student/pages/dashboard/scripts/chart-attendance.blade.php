@@ -1,13 +1,7 @@
 
 <script>
-    var teacherAttendance = @json($chartTeacherAttendance);
-
-    var present = teacherAttendance.chartPresent;
-    var permit = teacherAttendance.chartPermit;
-    var alpha = teacherAttendance.chartAlpha;
-
     var options = {
-        series: [present, permit, alpha], // Data numerik untuk 'Masuk', 'Izin', 'Alpha'
+        series: [44, 30, 26], // Data numerik untuk 'Masuk', 'Izin', 'Alpha'
         chart: {
             type: 'donut',
             width: 450 // Perbesar chart
@@ -42,6 +36,6 @@
         }]
     };
 
-    var chart = new ApexCharts(document.querySelector("#chart-teacher"), options);
+    var chart = new ApexCharts(document.querySelector("#chart-attendance"), options);
     chart.render();
 </script>

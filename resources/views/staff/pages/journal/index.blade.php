@@ -74,7 +74,8 @@
                     @csrf
                     <div class="form-group mb-3">
                         <h5>Judul</h5>
-                        <input type="text" class="form-control" name="title" id="placeholder" placeholder="Masukkan judul">
+                        <input type="text" class="form-control" name="title" id="placeholder"
+                            placeholder="Masukkan judul">
                     </div>
                     <div class="form-group mb-3">
                         <h5>Deskripsi</h5>
@@ -83,7 +84,8 @@
                     </div>
 
                     <div class="d-flex justify-content-end ">
-                        <button class="btn mb-1 waves-effect waves-light btn-success px-4" type="submit">Tambah Jurnal</button>
+                        <button class="btn mb-1 waves-effect waves-light btn-success px-4" type="submit">Tambah
+                            Jurnal</button>
                     </div>
                 </form>
             </div>
@@ -132,7 +134,8 @@
                                 <div class="col-lg-12">
                                     <div class="pe-3">
                                         <h5 class="card-title">Deskripsi:</h5>
-                                        <p>{{ \Illuminate\Support\Str::limit($employeeJournal->description, 200, '...') }}</p>
+                                        <p>{{ \Illuminate\Support\Str::limit($employeeJournal->description, 200, '...') }}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -143,7 +146,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="mb-1"
                                         viewBox="0 0 24 24">
                                         <path fill="currentColor"
-                                            d="M17.92 11.62a1 1 0 0 0-.21-.33l-5-5a1 1 0 0 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1 1 0 0 0 0 1.42a1 1 0 0 0 1.42 0l5-5a1 1 0 0 0 .21-.33a1 1 0 0 0 0-.76" />
+                                            d="M17.92 11.62a1 1 0 0 0-.21-.33l-5-5a1 1 0 0 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1 1 0 0 0 0 1.42a1 1 0 0 0 1.42 0l5-5a1 1 0 0 0 .21-.33a1 1 0 0 0 0-.76" />
                                     </svg>
                                 </a>
                             </div>
@@ -152,6 +155,10 @@
                     </div>
                 </div>
             @empty
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                    <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt="" width="300px">
+                    <p class="fs-5 text-dark text-center mt-2">Belum ada jurnal</p>
+                </div>
             @endforelse
         </div>
     </div>

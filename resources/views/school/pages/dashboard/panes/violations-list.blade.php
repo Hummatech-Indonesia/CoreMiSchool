@@ -9,7 +9,8 @@
                             <h5 class="fw-semibold text-white mb-3 pt-3">Maks Poin Pada Sekolah</h5>
                         </div>
                         <nav aria-label="breadcrumb">
-                            <span class="badge fw-semibold fs-8 text-primary bg-white p-2 px-3">{{ $maxPoint }}</span>
+                            <span
+                                class="badge fw-semibold fs-8 text-primary bg-white p-2 px-3">{{ $maxPoint }}</span>
                         </nav>
                     </div>
                 </div>
@@ -78,15 +79,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($violations as $violation)
+                    @forelse ($violations as $violation)
                         <tr>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ asset('assets/images/default-user.jpeg') }}"
-                                        class="rounded-circle" width="40" height="40">
+                                    <img src="{{ asset('assets/images/default-user.jpeg') }}" class="rounded-circle"
+                                        width="40" height="40">
                                     <div class="ms-3">
-                                        <h6 class="fs-4 fw-semibold mb-0">{{ $violation->classroomStudent->student->user->name }}</h6>
-                                        <span class="fw-normal">{{ $violation->classroomStudent->classroom->name }}</span>
+                                        <h6 class="fs-4 fw-semibold mb-0">
+                                            {{ $violation->classroomStudent->student->user->name }}</h6>
+                                        <span
+                                            class="fw-normal">{{ $violation->classroomStudent->classroom->name }}</span>
                                     </div>
                                 </div>
                             </td>
@@ -95,13 +98,24 @@
                             </td>
                             <td>{{ $violation->regulation->violation }}</td>
                             <td>
-                                <span class="badge bg-light-danger text-danger fw-semibold fs-2">+ {{ $violation->regulation->point }} Point</span>
+                                <span class="badge bg-light-danger text-danger fw-semibold fs-2">+
+                                    {{ $violation->regulation->point }} Point</span>
                             </td>
                             <td>
                                 <button class="btn mb-1 btn-primary" type="button">Detail</button>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="7" class="text-center align-middle">
+                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                    <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt=""
+                                        width="300px">
+                                    <p class="fs-5 text-dark text-center mt-2">Belum ada data</p>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

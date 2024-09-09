@@ -10,7 +10,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($sick as $data)
+            @forelse ($sick as $data)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>
@@ -24,7 +24,17 @@
                         <span class="badge bg-light-warning text-warning fw-semibold fs-2">Izin</span>
                     </td>
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td colspan="7" class="text-center align-middle">
+                        <div class="d-flex flex-column justify-content-center align-items-center">
+                            <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt=""
+                                width="300px">
+                            <p class="fs-5 text-dark text-center mt-2">Belum ada data</p>
+                        </div>
+                    </td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 </div>

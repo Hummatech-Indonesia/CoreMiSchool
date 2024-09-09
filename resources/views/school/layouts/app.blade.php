@@ -97,7 +97,7 @@
     <!--  current page js files -->
     <script src="{{ asset('admin_assets/dist/libs/owl.carousel/dist/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('admin_assets/dist/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
-    <script src="{{ asset('admin_assets/dist/js/dashboard.js') }}"></script>
+    {{-- <script src="{{ asset('admin_assets/dist/js/dashboard.js') }}"></script> --}}
 
     <script src="{{ asset('admin_assets/dist/libs/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('admin_assets/dist/libs/select2/dist/js/select2.min.js') }}"></script>

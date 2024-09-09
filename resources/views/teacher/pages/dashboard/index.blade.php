@@ -61,16 +61,22 @@
                 <div class="card-body d-flex justify-content-between">
                     <div class="">
                         <h4>Absensi Hari Ini:</h4>
-                        <h4>10 Mei 2023 - 08.00</h4>
+                        @if ($todayAttendance != null)
+                            <h4>{{ $todayAttendance->created_at->format('d M Y') }} - {{ $todayAttendance->checkin }}</h4>      
+                        @else
+                            <p class="badge bg-light-danger text-danger">Anda belum absen hari ini</p>
+                        @endif
                     </div>
-                    <div class="badge bg-light-success text-success fs-6 pt-4 px-5">Masuk</div>
+                    @if ($todayAttendance != null)    
+                        <div class="badge bg-light-{{ $todayAttendance->status->color() }} text-{{ $todayAttendance->status->color() }} fs-6 pt-4 px-5">{{ $todayAttendance->status }}</div>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
 
     <div class="card card-body">
-        <h4>Jadwal Mengajar Hari ini</h4>
+        <h4>Jadwal Mengajar</h4>
         <ul class="nav nav-pills mt-3 rounded align-items-center flex-row" id="pills-tab" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" id="pills-senin-tab" data-bs-toggle="pill" href="#pills-senin" role="tab"
@@ -157,17 +163,28 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse (range(1, 5) as $item)
+                                @forelse ($attendances as $attendance)
                                     <tr>
-                                        <td>Senin</td>
-                                        <td>10 Agustus 2024</td>
-                                        <td>07.00</td>
+                                        <td>{{ $attendance->created_at->translatedFormat('l') }}</td>
+                                        <td>{{ $attendance->created_at->format('d F Y') }}</td>
+                                        <td>{{ $attendance->checkin }}</td>
                                         <td>
                                             <span
                                                 class="mb-1 badge font-medium bg-light-secondary text-secondary">Masuk</span>
                                         </td>
                                     </tr>
                                 @empty
+                                    <tr>
+                                        <td colspan="4" class="text-center align-middle">
+                                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                                <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt=""
+                                                    width="300px">
+                                                <p class="fs-5 text-dark text-center mt-2">
+                                                    Belum ada data
+                                                </p>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 @endforelse
                             </tbody>
                         </table>
@@ -179,7 +196,7 @@
             <div class="card w-100 h-100 overflow-hidden border">
                 <div class="card-body">
                     <div class="row align-items-center">
-                        <h5 class="card-title fw-semibold">Statistik Absensi Siswa</h5>
+                        <h5 class="card-title fw-semibold">Statistik Absensi Guru</h5>
                         <h6 class="mb-3">Hari ini</h6>
                         <div id="chart-teacher" class="d-flex justify-content-center"></div>
                     </div>
@@ -263,7 +280,8 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="mb-1"
                                         viewBox="0 0 24 24">
                                         <path fill="currentColor"
-                                            d="M17.92 11.62a1 1 0 0 0-.21-.33l-5-5a1 1 0 0 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1 1 0 0 0 0 1.42a1 1 0 0 0 1.42 0l5-5a1 1 0 0 0 .21-.33a1 1 0 0 0 0-.76" />
+                                        d="M17.92 11.62a1 1 0 0 0-.21-.33l-5-5a1 1 0 0 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1 1 0 0 0 0 1.42a1 1 0 0 0 1.42 0l5-5a1 1 0 0 0 .21-.33a1 1 0 0 0 0-.76"
+                                        />
                                     </svg>
                                 </a>
                             </div>

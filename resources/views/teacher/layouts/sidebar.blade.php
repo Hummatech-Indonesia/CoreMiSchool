@@ -270,7 +270,8 @@
                     </li>
 
                     <li class="sidebar-item ">
-                        <a class="sidebar-link" href="{{ route('employee.top-violation.index') }}" aria-expanded="false">
+                        <a class="sidebar-link {{ request()->routeIs('employee.top-violation.index') || request()->routeIs('employee.student-violation.detail') || request()->routeIs('employee.class-violation.detail') ? 'active' : '' }}"
+                            href="{{ route('employee.top-violation.index') }}" aria-expanded="false">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                     viewBox="0 0 24 24">
