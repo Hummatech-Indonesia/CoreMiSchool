@@ -17,7 +17,7 @@ class GuestBookController extends Controller
 
     public function index(Request $request)
     {
-        $guestBooks = $this->guestBook->get();
+        $guestBooks = $this->guestBook->get($request);
 
         return view('school.pages.guest-book.index', compact('guestBooks'));
     }

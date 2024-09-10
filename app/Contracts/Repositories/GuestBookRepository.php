@@ -4,6 +4,7 @@
 
 use App\Contracts\Interfaces\GuestBookInterface;
 use App\Models\GuestBook;
+use Illuminate\Http\Request;
 
     class GuestBookRepository extends BaseRepository implements GuestBookInterface
     {
@@ -12,9 +13,13 @@ use App\Models\GuestBook;
             $this->model = $GuestBook;
         }
 
-        public function get(): mixed
+        public function get(Request $request): mixed
         {
-            return $this->model->query()->get();
+            return $this->model->query()
+            ->when($request->search, function ($query) use ($request) {
+                $query->where('name', 'LIKE', '%' . $request->search . '%');
+            })
+            ->get();
         }
 
         public function store(array $data): mixed
