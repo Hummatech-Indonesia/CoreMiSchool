@@ -3,12 +3,12 @@
 namespace App\Contracts\Interfaces;
         
 use App\Contracts\Interfaces\Eloquent\DeleteInterface; 
-use App\Contracts\Interfaces\Eloquent\GetInterface; 
 use App\Contracts\Interfaces\Eloquent\ShowInterface; 
 use App\Contracts\Interfaces\Eloquent\StoreInterface; 
 use App\Contracts\Interfaces\Eloquent\UpdateInterface;
-        
-interface GuestBookInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface 
+use Illuminate\Http\Request;
+
+interface GuestBookInterface extends StoreInterface, UpdateInterface, ShowInterface, DeleteInterface 
 {
-    // Define your methods here
+    public function get(Request $request): mixed;
 }

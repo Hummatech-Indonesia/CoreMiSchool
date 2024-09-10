@@ -102,7 +102,13 @@
                                     {{ $violation->regulation->point }} Point</span>
                             </td>
                             <td>
-                                <button class="btn mb-1 btn-primary" type="button">Detail</button>
+                                <button class="btn mb-1 btn-primary btn-detail-violation"
+                                data-name="{{ $violation->classroomStudent->student->user->name }}"
+                                data-classroom="{{ $violation->classroomStudent->classroom->name }}"
+                                data-violation="{{ $violation->regulation->violation }}"
+                                data-date="{{ \Carbon\Carbon::parse($violation->created_at)->translatedFormat('d F Y')  }}"
+                                data-employee="{{ $violation->employee ? $violation->employee->user->name : 'Belum ada pelopor'}}"
+                                type="button">Detail</button>
                             </td>
                         </tr>
                     @empty

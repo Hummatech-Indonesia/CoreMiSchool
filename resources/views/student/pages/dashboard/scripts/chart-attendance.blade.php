@@ -1,7 +1,13 @@
 
 <script>
+    var studentChartData = @json($chartAttendance);
+
+    var present = studentChartData.present;
+    var permit = studentChartData.permit;
+    var alpha = studentChartData.alpha;
+
     var options = {
-        series: [44, 30, 26], // Data numerik untuk 'Masuk', 'Izin', 'Alpha'
+        series: [present, permit, alpha], // Data numerik untuk 'Masuk', 'Izin', 'Alpha'
         chart: {
             type: 'donut',
             width: 450 // Perbesar chart

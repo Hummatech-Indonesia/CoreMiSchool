@@ -41,7 +41,7 @@ Route::middleware('auth')->prefix('employee')->name('employee.')->group(function
     Route::get('export-student-repair', [StudentRepairController::class, 'download_student'])->name('student-repair.download');
     Route::post('import-student-repair', [StudentRepairController::class, 'import'])->name('student-repair.import');
 
-    Route::resource('guestBooks', GuestBookController::class);
+    Route::resource('guestbook', GuestBookController::class);
     Route::resource('journal', EmployeeJournalController::class)->except('show');
 });
 

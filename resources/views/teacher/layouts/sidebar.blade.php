@@ -44,8 +44,8 @@
                             <span class="hide-menu">Beranda</span>
                         </a>
                     </li>
-                    <li class="sidebar-item ">
-                        <a class="sidebar-link" href="{{ route('teacher.journals.index') }}" aria-expanded="false">
+                    <li class="sidebar-item">
+                        <a class="sidebar-link {{ request()->routeIs('teacher.journals.index') || request()->routeIs('teacher.journals.create') || request()->routeIs('teacher.journals.show') || request()->routeIs('teacher.journals.edit') ? 'active' : '' }}" href="{{ route('teacher.journals.index') }}" aria-expanded="false">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 16">
                                     <g fill="currentColor">
@@ -212,7 +212,7 @@
                     </li>
 
                     <li class="sidebar-item ">
-                        <a class="sidebar-link" href="{{ route('employee.guestBooks.create') }}" aria-expanded="false">
+                        <a class="sidebar-link" href="{{ route('employee.guestbook.create') }}" aria-expanded="false">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                     <path fill="currentColor"
