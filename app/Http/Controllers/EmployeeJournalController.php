@@ -43,6 +43,7 @@ class EmployeeJournalController extends Controller
         return Excel::download(new EmployeeJournalExport($this->employeeJournal, $request), 'Jurnal-Staff.xlsx');
     }
 
+
     /**
      * Show the form for creating a new resource.
      */
