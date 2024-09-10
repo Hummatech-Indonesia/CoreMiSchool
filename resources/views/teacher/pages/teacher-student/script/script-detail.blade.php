@@ -4,7 +4,7 @@
         var name = $(this).data('name');
         var email = $(this).data('email');
         var nisn = $(this).data('nisn');
-        var class = $(this).data('class');
+        var classroom = $(this).data('classroom');
         var gender = $(this).data('gender');
         var religion = $(this).data('religion');
         var birth_place = $(this).data('birth_place');
@@ -16,11 +16,12 @@
         var numbersibling = $(this).data('numbersibling');
         var address = $(this).data('address');
         var image = $(this).data('image');
+        
 
         $('#name-detail').text(name);
         $('#email-detail').text(email);
         $('#nisn-detail').text(nisn);
-        $('#class-detail').text(class);
+        $('#classroom-detail').text(classroom);
         $('#gender-detail').text(gender);
         $('#religion-detail').text(religion);
         $('#birthdate-detail').text(birth_date);

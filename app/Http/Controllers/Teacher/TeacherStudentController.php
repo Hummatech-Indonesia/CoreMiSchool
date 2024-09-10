@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Teacher;
 
+use App\Contracts\Interfaces\ClassroomInterface;
 use App\Contracts\Interfaces\ClassroomStudentInterface;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -9,18 +10,22 @@ use Illuminate\Http\Request;
 class TeacherStudentController extends Controller
 {
     private ClassroomStudentInterface $classroomStudent;
+    private ClassroomInterface $classroom;
 
-    public function __construct(ClassroomStudentInterface $classroomStudent)
+    public function __construct(ClassroomStudentInterface $classroomStudent, ClassroomInterface $classroom)
     {
         $this->classroomStudent = $classroomStudent;
+        $this->classroom = $classroom;
     }
 
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('teacher.pages.teacher-student.index');
+        $classroom = $this->classroom->whereEmployeeId(auth()->user()->employee->id);
+        $classroomStudents = $this->classroomStudent->where($classroom->id, $request);
+        return view('teacher.pages.teacher-student.index', compact('classroomStudents', 'classroom'));
     }
 
     /**

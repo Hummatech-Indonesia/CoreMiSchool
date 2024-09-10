@@ -37,7 +37,7 @@
                     <div class="col-12 col-md-6">
                         <div class="d-flex" style="margin-bottom: 0.5rem;">
                             <h6 style="margin-bottom: 0;">Kelas:</h6>
-                            <p class="ms-2" style="margin-bottom: 0;" id="class-detail"></p>
+                            <p class="ms-2" style="margin-bottom: 0;" id="classroom-detail"></p>
                         </div>
                         <hr>
                     </div>
@@ -58,14 +58,14 @@
                     <div class="col-12 col-md-6">
                         <div class="d-flex" style="margin-bottom: 0.5rem;">
                             <h6 style="margin-bottom: 0;">Tanggal Lahir:</h6>
-                            <p class="ms-2" style="margin-bottom: 0;" id="birtdate-detail"></p>
+                            <p class="ms-2" style="margin-bottom: 0;" id="birthdate-detail"></p>
                         </div>
                         <hr>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="d-flex" style="margin-bottom: 0.5rem;">
                             <h6 style="margin-bottom: 0;">Tempat Lahir:</h6>
-                            <p class="ms-2" style="margin-bottom: 0;" id="birtplace-detail"></p>
+                            <p class="ms-2" style="margin-bottom: 0;" id="birthplace-detail"></p>
                         </div>
                         <hr>
                     </div>
