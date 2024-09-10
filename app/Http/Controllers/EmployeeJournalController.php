@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\EmployeeJournalInterface;
+use App\Enums\StatusEnum;
 use App\Models\EmployeeJournal;
 use App\Http\Requests\StoreEmployeeJournalRequest;
 use App\Http\Requests\UpdateEmployeeJournalRequest;
 use App\Services\EmployeeJournalService;
+use Illuminate\Http\Request;
 
 class EmployeeJournalController extends Controller
 {
@@ -54,10 +56,16 @@ class EmployeeJournalController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(EmployeeJournal $employeeJournal)
+    public function show(EmployeeJournal $employeeJournal, Request $request)
     {
-        return view('school.pages.journals.journal-staff');
+        $allJournals = $this->employeeJournal->search($request);
+        $completedJournals = $this->employeeJournal->getByStatus(StatusEnum::COMPLETED->value, $request);
+
+        $notCompletedJournals = $this->employeeJournal->getByStatus(StatusEnum::NOT_COMPLETED->value, $request);
+
+        return view('school.pages.journals.journal-staff', compact('completedJournals', 'notCompletedJournals', 'allJournals'));
     }
+
 
     /**
      * Show the form for editing the specified resource.

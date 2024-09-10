@@ -142,7 +142,7 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="ps-3">
-                            <h5 class="card-title mb-4 ms-5 ps-3">Rekab Absensi:</h5>
+                            <h5 class="card-title mb-4 ms-5 ps-3">Rekap Absensi:</h5>
                             <div class="row px-5">
                                 <div class="col-lg-4">
                                     <div class="text-center">

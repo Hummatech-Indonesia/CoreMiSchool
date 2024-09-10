@@ -271,6 +271,7 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
         return $this->model->query()
             ->where('model_type', $model)
             ->where('model_id', $id)
+            ->latest()
             ->get();
     }
 

@@ -157,4 +157,12 @@ class ClassroomRepository extends BaseRepository implements ClassroomInterface
             })
             ->get();
     }
+
+    public function whereEmployeeId(mixed $employee_id): mixed
+    {
+        return $this->model->query()
+            ->whereRelation('levelClass', 'name', '!=', 'Alumni')
+            ->where('employee_id', $employee_id)
+            ->first();
+    }
 }
