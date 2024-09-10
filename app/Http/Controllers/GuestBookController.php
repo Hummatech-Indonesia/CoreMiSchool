@@ -6,6 +6,7 @@ use App\Contracts\Interfaces\GuestBookInterface;
 use App\Models\GuestBook;
 use App\Http\Requests\StoreGuestBookRequest;
 use App\Http\Requests\UpdateGuestBookRequest;
+use Illuminate\Http\Request;
 
 class GuestBookController extends Controller
 {
@@ -19,9 +20,9 @@ class GuestBookController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $guestBooks = $this->guestBook->get();
+        $guestBooks = $this->guestBook->get($request);
         return view('', compact('guestBooks'));
     }
 
