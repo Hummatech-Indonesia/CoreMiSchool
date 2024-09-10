@@ -31,7 +31,6 @@ class EmployeeJournalExport implements FromView, ShouldAutoSize, WithStyles
     public function view() : View
     {
         $data = $this->employeeJournal->export($this->request);
-        dd($data);
         return view('school.export.invoices-journal-staff', [
             'items' => $data,
         ]);

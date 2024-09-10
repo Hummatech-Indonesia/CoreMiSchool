@@ -148,7 +148,7 @@ Route::middleware('auth')->prefix('school')->name('school.')->group(function () 
     Route::get('guest-book', [GuestBookController::class, 'index'])->name('guest-book.index');
     Route::get('journal-staff', [EmployeeJournalController::class, 'show'])->name('employee-journal.show');
     Route::get('export-journal-staff', [EmployeeJournalController::class, 'export'])->name('employee-journal.export');
-    Route::get('export-journal-staff/download', [EmployeeJournalController::class, 'journalExport'])->name('employee-journal.download');
+    Route::get('export-journal-staff/download', [EmployeeJournalController::class, 'downloadJournal'])->name('employee-journal.download');
     Route::get('journal-staff/export', [EmployeeJournalController::class, 'download_journal'])->name('export-journal-staff.export');
 });
 
