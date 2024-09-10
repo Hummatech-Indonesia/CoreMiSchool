@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Teacher;
 
 use App\Contracts\Interfaces\AttendanceInterface;
+use App\Contracts\Interfaces\ClassroomInterface;
 use App\Contracts\Interfaces\LessonScheduleInterface;
 use App\Contracts\Interfaces\SchoolYearInterface;
+use App\Contracts\Interfaces\Teachers\TeacherJournalInterface;
 use App\Contracts\Interfaces\TeacherSubjectInterface;
 use App\Enums\AttendanceEnum;
 use App\Http\Controllers\Controller;
@@ -19,8 +21,14 @@ class DashboardTeacherController extends Controller
     private AttendanceInterface $attendance;
     private LessonScheduleInterface $lessonSchedule;
     private TeacherService $service;
+    private TeacherJournalInterface $teacherJournal;
+    private ClassroomInterface $classroom;
 
-    public function __construct(NotificationJournalService $notification, SchoolYearInterface $schoolYear, TeacherSubjectInterface $teacherSubject, AttendanceInterface $attendance, LessonScheduleInterface $lessonSchedule, TeacherService $service)
+    public function __construct(
+        NotificationJournalService $notification, SchoolYearInterface $schoolYear, 
+        TeacherSubjectInterface $teacherSubject, AttendanceInterface $attendance, 
+        LessonScheduleInterface $lessonSchedule, TeacherService $service, TeacherJournalInterface $teacherJournal,
+        ClassroomInterface $classroom)
     {
         $this->notification = $notification;
         $this->schoolYear = $schoolYear;
@@ -28,6 +36,8 @@ class DashboardTeacherController extends Controller
         $this->attendance = $attendance;
         $this->lessonSchedule = $lessonSchedule;
         $this->service = $service;
+        $this->teacherJournal = $teacherJournal;
+        $this->classroom = $classroom;
     }
 
     public function index()
@@ -46,12 +56,14 @@ class DashboardTeacherController extends Controller
         $permit = $this->attendance->getByUserAndStatus('App\Models\Employee', auth()->user()->employee->id, AttendanceEnum::PERMIT->value);
         $chartTeacherAttendance = $this->service->chartTeacherAttendance($late, $sick, $alpha, $present, $permit);
 
+        $teacherJournals = $this->teacherJournal->getByTeacher(auth()->user()->employee->id);
+        $classroom = $this->classroom->whereEmployeeId(auth()->user()->employee->id);
         // dd($chartTeacherAttendance);
 
         return view('teacher.pages.dashboard.index', compact(
             'notifications', 'schoolYear', 'teacherSubjects', 
             'todayAttendance', 'lessonSchedules', 'attendances', 
-            'chartTeacherAttendance'));
+            'chartTeacherAttendance', 'teacherJournals', 'classroom'));
     }
 
 }
