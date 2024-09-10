@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->prefix('employee')->name('employee.')->group(function () {
     Route::get('/', function () {
-        return view('staff.pages.dashboard');
+        return view('staff.pages.dashboard.dashboard');
     })->name('dashboard');
 
     Route::get('repair', function () {

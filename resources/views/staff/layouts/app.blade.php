@@ -19,6 +19,8 @@
     <!-- Core CSS -->
     <link id="themeColors" rel="stylesheet" href="{{ asset('admin_assets/dist/css/style.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin_assets/dist/libs/select2/dist/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin_assets/dist/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}">
+
     @yield('style')
 </head>
 
@@ -57,6 +59,9 @@
     <script src="{{ asset('admin_assets/dist/js/custom.js') }}"></script>
     <script src="{{ asset('admin_assets/dist/libs/jquery.repeater/jquery.repeater.min.js') }}"></script>
     <script src="{{ asset('admin_assets/dist/js/plugins/repeater-init.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+    <script src="{{ asset('admin_assets/dist/libs/owl.carousel/dist/owl.carousel.min.js') }}"></script>
+
     @yield('script')
 </body>
 
