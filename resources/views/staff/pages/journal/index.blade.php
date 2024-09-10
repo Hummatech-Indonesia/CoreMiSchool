@@ -141,7 +141,7 @@
                             </div>
 
                             <div>
-                                <a href="#" class="btn btn-primary">
+                                <a href="{{ route('employee.journal.detail') }}" class="btn btn-primary">
                                     Lihat Detail Jurnal
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="mb-1"
                                         viewBox="0 0 24 24">
