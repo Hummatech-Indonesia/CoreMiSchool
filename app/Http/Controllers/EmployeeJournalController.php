@@ -8,6 +8,7 @@ use App\Models\EmployeeJournal;
 use App\Http\Requests\StoreEmployeeJournalRequest;
 use App\Http\Requests\UpdateEmployeeJournalRequest;
 use App\Services\EmployeeJournalService;
+use Illuminate\Http\Request;
 
 class EmployeeJournalController extends Controller
 {
@@ -55,12 +56,12 @@ class EmployeeJournalController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(EmployeeJournal $employeeJournal)
+    public function show(EmployeeJournal $employeeJournal, Request $request)
     {
-        $allJournals = $this->employeeJournal->get();
-        $completedJournals = $this->employeeJournal->getByStatus(StatusEnum::COMPLETED->value);
+        $allJournals = $this->employeeJournal->search($request);
+        $completedJournals = $this->employeeJournal->getByStatus(StatusEnum::COMPLETED->value, $request);
 
-        $notCompletedJournals = $this->employeeJournal->getByStatus(StatusEnum::NOT_COMPLETED->value);
+        $notCompletedJournals = $this->employeeJournal->getByStatus(StatusEnum::NOT_COMPLETED->value, $request);
 
         return view('school.pages.journals.journal-staff', compact('completedJournals', 'notCompletedJournals', 'allJournals'));
     }

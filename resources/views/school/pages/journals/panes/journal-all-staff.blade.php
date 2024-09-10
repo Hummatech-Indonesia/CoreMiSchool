@@ -2,14 +2,15 @@
     <div class="card-body">
 
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
-            <form class="d-flex flex-column flex-md-row align-items-center" method="GET">
+            <form class="d-flex flex-column flex-md-row align-items-center">
                 <div class="mb-3 mb-md-0 me-md-3">
-                    <input type="text" name="search" class="form-control" placeholder="Cari..."
-                        value="{{ old('search', request()->input('search')) }}">
+                    <input type="text" name="name" class="form-control" placeholder="Cari Staff..."
+                        value="{{ old('name', request()->input('name')) }}">
                 </div>
                 <button type="submit" class="btn btn-primary">Cari</button>
             </form>
         </div>
+
 
         <div class="table-responsive rounded-2">
             <table class="table border text-nowrap customize-table mb-0 align-middle">
@@ -81,6 +82,9 @@
                 </tbody>
 
             </table>
+        </div>
+        <div class="pagination justify-content-end mb-0">
+            <x-paginate-component :paginator="$allJournals" />
         </div>
     </div>
 </div>
