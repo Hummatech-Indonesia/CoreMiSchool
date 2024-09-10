@@ -10,17 +10,50 @@
             </tr>
         </thead>
         <tbody>
-            @forelse (range(1, 3) as $item)
+            @if (isset($lessonSchedules['thursday']))
+                @foreach ($lessonSchedules['thursday'] as $lessonSchedule)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $lessonSchedule->teacherSubject->subject->name }}</td>
+                        <td>
+                            <span class="badge bg-light-primary text-primary">
+                                {{ \Carbon\Carbon::parse($lessonSchedule->start->start)->format('H:i') }} -
+                                {{ \Carbon\Carbon::parse($lessonSchedule->end->end)->format('H:i') }}
+                            </span>
+                            @php
+                                $lessonHours = App\Models\LessonHour::whereBetween('start', [
+                                    $lessonSchedule->start->start,
+                                    $lessonSchedule->end->start,
+                                ])
+                                    ->where('day', 'thursday')
+                                    ->where('name', 'Istirahat')
+                                    ->get();
+                            @endphp
+                            @foreach ($lessonHours as $lessonHour)
+                                <br>
+                                <span class="badge bg-light-warning text-warning mt-1">
+                                    {{ $lessonHour->name }} : {{ $lessonHour->start }} - {{ $lessonHour->end }}
+                                </span>
+                            @endforeach
+                        </td>
+                        <td>Jam ke {{ explode(' - ', $lessonSchedule->start->name)[1] }} -
+                            {{ explode(' - ', $lessonSchedule->end->name)[1] }}</td>
+                        <td>{{ $lessonSchedule->classroom->name }}</td>
+                    </tr>
+                @endforeach
+            @else
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>Ilmu Pengetahuan Sosial</td>
-                    <td>07.00 - 08.15</td>
-                    <td>Jam ke 1-2</td>
-                    <td>X RPL 1</td>
+                    <td colspan="4" class="text-center align-middle">
+                        <div class="d-flex flex-column justify-content-center align-items-center">
+                            <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt=""
+                                width="300px">
+                            <p class="fs-5 text-dark text-center mt-2">
+                                Belum ada data
+                            </p>
+                        </div>
+                    </td>
                 </tr>
-            @empty
-                
-            @endforelse
+            @endif
         </tbody>
     </table>
 </div>
