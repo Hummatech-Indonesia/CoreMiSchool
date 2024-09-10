@@ -82,7 +82,9 @@
     </div>
 
     <h4 class="mb-4"><b>Data Jurnal Guru Hari Ini / </b>
-        <span class="mb-1 badge font-medium bg-light-primary text-primary" style="font-size: "><b>10 Januari 2024</b></span>
+        <span class="mb-1 badge font-medium bg-light-primary text-primary" style="font-size: ">
+            <b>{{ \Carbon\Carbon::now()->translatedFormat('d F Y') }}</b>
+        </span>        
     </h4>
 
     @include('school.pages.dashboard.panes.teacher-journal')
