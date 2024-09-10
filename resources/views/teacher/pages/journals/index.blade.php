@@ -32,9 +32,9 @@
                 style="border-radius:0px 5px 5px 0px;">Informasi</span>
         </div>
         <ul class="ms-5 pb-2" style="list-style-type:disc;">
-            <li>Jurnal wajib di isi oleh semua guru & staff, untuk direkap sekolah</li>
-            <li>Ketika tidak mengisi jurnal, maka pihak sekolah akan menganggarp bahwa guru tersebut tidak masuk/mengajar pada jam mapel tersebut</li>
-            <li>Batas jam pengisian jurnal adalah 00.00 bengi pokok e</li>
+            <li>Jurnal wajib di isi oleh semua guru & staff untuk direkap sekolah</li>
+            <li>Ketika tidak mengisi jurnal, maka pihak sekolah akan menganggap bahwa guru tersebut tidak masuk/mengajar pada jam mapel tersebut</li>
+            <li>Batas jam pengisian jurnal adalah 23.59 WIB</li>
         </ul>
         <div class="position-absolute bottom-0 end-0" style="padding: 0px;">
             <img src="{{ asset('assets/images/background/bubble-warning.png') }}" alt="Description" class="img-fluid"
