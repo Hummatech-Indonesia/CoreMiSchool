@@ -41,9 +41,9 @@
         {
             return $this->model->query()->findOrFail($id)->delete();
         }
-
-        public function getByStatus(mixed $query): mixed
+        public function getByStatus(string $status): mixed
         {
-            return 0;
+            return $this->model->query()->where('status', $status)->get();
         }
+
     }

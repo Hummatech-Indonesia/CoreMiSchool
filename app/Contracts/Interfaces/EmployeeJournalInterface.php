@@ -11,5 +11,5 @@ use App\Contracts\Interfaces\Eloquent\UpdateInterface;
 interface EmployeeJournalInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface
 {
     public function getEmployee(mixed $id) : mixed;
-    public function getByStatus(mixed $query) : mixed;
+    public function getByStatus(string $status): mixed;
 }
