@@ -2,9 +2,11 @@
 
 namespace App\Services;
 
+use App\Contracts\Interfaces\AttendanceInterface;
 use App\Contracts\Interfaces\ClassroomStudentInterface;
 use App\Contracts\Interfaces\StudentInterface;
 use App\Contracts\Interfaces\UserInterface;
+use App\Enums\AttendanceEnum;
 use App\Enums\RoleEnum;
 use App\Enums\UploadDiskEnum;
 use App\Traits\UploadTrait;
@@ -21,12 +23,14 @@ class StudentService
     private UserInterface $user;
     private StudentInterface $student;
     private ClassroomStudentInterface $classroom;
+    private AttendanceInterface $attendance;
 
-    public function __construct(UserInterface $user, StudentInterface $student, ClassroomStudentInterface $classroom)
+    public function __construct(UserInterface $user, StudentInterface $student, ClassroomStudentInterface $classroom, AttendanceInterface $attendance)
     {
         $this->user = $user;
         $this->student = $student;
         $this->classroom = $classroom;
+        $this->attendance = $attendance;
     }
 
     public function validateAndUpload(string $disk, object $file, string $old_file = null): string
@@ -87,5 +91,19 @@ class StudentService
         if ($student->image != null) {
             $this->remove($student->image);
         }
+    }
+
+    public function chartAttendance(mixed $id)
+    {
+        $studentClasses = $this->classroom->whereStudent($id);
+        $present = $this->attendance->getByUserAndStatus('App\Models\ClassroomStudent', $studentClasses->id, AttendanceEnum::PRESENT->value, 'count');
+        $permit = $this->attendance->getByUserAndStatus('App\Models\ClassroomStudent', $studentClasses->id, AttendanceEnum::PERMIT->value, 'count');
+        $alpha = $this->attendance->getByUserAndStatus('App\Models\ClassroomStudent', $studentClasses->id, AttendanceEnum::ALPHA->value, 'count');
+
+        return [
+            'present' => $present,
+            'permit' => $permit,
+            'alpha' => $alpha,
+        ];
     }
 }

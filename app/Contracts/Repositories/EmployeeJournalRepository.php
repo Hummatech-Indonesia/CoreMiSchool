@@ -40,7 +40,7 @@
         public function delete(mixed $id): mixed
         {
             return $this->model->query()->findOrFail($id)->delete();
-        }
+        }   
 
         public function getByStatus(mixed $query): mixed
         {

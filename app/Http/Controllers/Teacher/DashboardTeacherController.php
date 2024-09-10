@@ -39,18 +39,18 @@ class DashboardTeacherController extends Controller
         $lessonSchedules = $this->lessonSchedule->getByTeacher(auth()->user()->id);
         $attendances = $this->attendance->whereUser(auth()->user()->employee->id, 'App\Models\Employee');
 
-        $late = $this->attendance->getByUserAndStatus('App\Models\Employee', auth()->user()->employee->id, AttendanceEnum::LATE->value);
-        $sick = $this->attendance->getByUserAndStatus('App\Models\Employee', auth()->user()->employee->id, AttendanceEnum::SICK->value);
-        $alpha = $this->attendance->getByUserAndStatus('App\Models\Employee', auth()->user()->employee->id, AttendanceEnum::ALPHA->value);
-        $present = $this->attendance->getByUserAndStatus('App\Models\Employee', auth()->user()->employee->id, AttendanceEnum::PRESENT->value);
-        $permit = $this->attendance->getByUserAndStatus('App\Models\Employee', auth()->user()->employee->id, AttendanceEnum::PERMIT->value);
+        $late = $this->attendance->getByUserAndStatus('App\Models\Employee', auth()->user()->employee->id, AttendanceEnum::LATE->value, 'get');
+        $sick = $this->attendance->getByUserAndStatus('App\Models\Employee', auth()->user()->employee->id, AttendanceEnum::SICK->value, 'get');
+        $alpha = $this->attendance->getByUserAndStatus('App\Models\Employee', auth()->user()->employee->id, AttendanceEnum::ALPHA->value, 'get');
+        $present = $this->attendance->getByUserAndStatus('App\Models\Employee', auth()->user()->employee->id, AttendanceEnum::PRESENT->value, 'get');
+        $permit = $this->attendance->getByUserAndStatus('App\Models\Employee', auth()->user()->employee->id, AttendanceEnum::PERMIT->value, 'get');
         $chartTeacherAttendance = $this->service->chartTeacherAttendance($late, $sick, $alpha, $present, $permit);
 
         // dd($chartTeacherAttendance);
 
         return view('teacher.pages.dashboard.index', compact(
-            'notifications', 'schoolYear', 'teacherSubjects', 
-            'todayAttendance', 'lessonSchedules', 'attendances', 
+            'notifications', 'schoolYear', 'teacherSubjects',
+            'todayAttendance', 'lessonSchedules', 'attendances',
             'chartTeacherAttendance'));
     }
 

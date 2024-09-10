@@ -2,18 +2,24 @@
 
 namespace App\Http\Controllers\Student;
 
+use App\Contracts\Interfaces\AttendanceInterface;
 use App\Contracts\Interfaces\ClassroomStudentInterface;
 use App\Http\Controllers\Controller;
 use App\Models\ClassroomStudent;
+use App\Services\StudentService;
 use Illuminate\Http\Request;
 
 class DashboardStudentController extends Controller
 {
     private ClassroomStudentInterface $studentClass;
+    private AttendanceInterface $attendance;
+    private StudentService $service;
 
-    public function __construct(ClassroomStudentInterface $studentClass)
+    public function __construct(ClassroomStudentInterface $studentClass, AttendanceInterface $attendance, StudentService $service)
     {
         $this->studentClass = $studentClass;
+        $this->attendance = $attendance;
+        $this->service = $service;
     }
 
     /**
@@ -22,7 +28,10 @@ class DashboardStudentController extends Controller
     public function index()
     {
         $studentClasses = $this->studentClass->whereStudent(auth()->user()->student->id);
-        return view('student.pages.dashboard.dashboard', compact('studentClasses'));
+        $single_attendance = $this->attendance->userToday('App\Models\ClassroomStudent', $studentClasses->id);
+        $history_attendance = $this->attendance->whereUser($studentClasses->id, 'App\Models\ClassroomStudent');
+        $chartAttendance = $this->service->chartAttendance(auth()->user()->student->id);
+        return view('student.pages.dashboard.dashboard', compact('studentClasses', 'single_attendance', 'history_attendance', 'chartAttendance'));
     }
 
     /**
