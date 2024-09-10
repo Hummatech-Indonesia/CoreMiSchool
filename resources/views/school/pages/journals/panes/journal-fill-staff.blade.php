@@ -2,10 +2,10 @@
     <div class="card-body">
 
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
-            <form class="d-flex flex-column flex-md-row align-items-center" method="GET">
+            <form class="d-flex flex-column flex-md-row align-items-center">
                 <div class="mb-3 mb-md-0 me-md-3">
-                    <input type="text" name="search" class="form-control" placeholder="Cari..."
-                        value="{{ old('search', request()->input('search')) }}">
+                    <input type="text" name="name" class="form-control" placeholder="Cari Staff..."
+                        value="{{ old('name', request()->input('name')) }}">
                 </div>
                 <button type="submit" class="btn btn-primary">Cari</button>
             </form>
@@ -24,36 +24,37 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse (range(1, 5) as $item)
+                    @forelse ($completedJournals as $journal)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td class="text-start">
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ asset('admin_assets/dist/images/profile/user-10.jpg') }}"
+                                    <img src="{{ $journal->employee->image ? asset('storage/' . $journal->employee->image) : asset('assets/images/default-user.jpeg') }}"
                                         class="rounded-circle me-2 user-profile" style="object-fit: cover"
                                         width="40" height="40" alt="" />
                                     <div class="ms-2">
                                         <h6 class="fs-4 fw-semibold mb-0 text-start">
-                                            Ahmad Lukman Hakim</h6>
-                                        <span
-                                            class="fw-normal">2973892740</span>
+                                            {{ $journal->employee->user->name }}</h6>
+                                        <span class="fw-normal">{{ $journal->employee->user->email }}</span>
                                     </div>
                                 </div>
                             </td>
-                            <td>10 Mei 2024</td>
-                            <td><span
-                                    class="mb-1 badge font-medium bg-light-success text-success">Mengisi</span>
+                            <td>{{ \Carbon\Carbon::parse($journal->created_at)->translatedFormat('d F Y') }}</td>
+                            <td>
+                                <span
+                                    class="mb-1 badge font-medium bg-light-{{ $journal->status->color() }} text-{{ $journal->status->color() }}">
+                                    {{ $journal->status->label() }}
+                                </span>
                             </td>
-                            <td>Lorem ipsum dolor sit amet...
-                            </td>
+                            <td>{{ \Illuminate\Support\Str::limit($journal->description, 65, '...') }}</td>
                             </td>
                             <td class="text-center">
                                 <div class="d-flex justify-content-center align-items-center gap-2">
-                                    <a type="button" class="text-primari btn-detail-journal"
-                                        data-author="Ahmad Lukman Hakim"
-                                        data-date="10 Mei 2024"
-                                        data-description="Lorem ipsum dolor sit amet" 
-                                        >
+                                    <a type="button" class="text-primary btn-detail-journal"
+                                        data-author="{{ $journal->employee->user->name }}"
+                                        data-title="{{ $journal->title }}"
+                                        data-date="{{ \Carbon\Carbon::parse($journal->created_at)->translatedFormat('d F Y') }}"
+                                        data-description="{{ $journal->description }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                             viewBox="0 0 24 24">
                                             <g fill="none" stroke="currentColor" stroke-linecap="round"
@@ -82,6 +83,8 @@
                 </tbody>
             </table>
         </div>
+        <div class="pagination justify-content-end mb-0">
+            <x-paginate-component :paginator="$completedJournals" />
+        </div>
     </div>
 </div>
-
