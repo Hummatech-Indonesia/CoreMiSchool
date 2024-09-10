@@ -15,10 +15,10 @@
         <tr>
             <td>{{ $loop->iteration }}</td>
             <td>{{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d F Y') }}</td>
-            <td>{{ $item->employeeJournal->employee->user->name }}</td>
-            <td>{{ $item->employeeJournal->employee->nip }}</td>
-            <td>{{ $item->employeeJournal->first() ? $item->employeeJournal->first()->title : 'kosong...' }}</td>
-            <td>{{ $item->employeeJournal->first() ? $item->employeeJournal->first()->description : 'kosong...' }}</td>
+            <td>{{ $item->employee->user->name }}</td>
+            <td>{{ $item->employee->nip }}</td>
+            <td>{{ $item->first() ? $item->first()->title : 'kosong...' }}</td>
+            <td>{{ $item->first() ? $item->first()->description : 'kosong...' }}</td>
         </tr>
         @empty
         @endforelse

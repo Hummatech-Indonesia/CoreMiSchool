@@ -43,8 +43,7 @@ Route::middleware('auth')->prefix('employee')->name('employee.')->group(function
 
     Route::resource('guestbook', GuestBookController::class);
     Route::resource('journal', EmployeeJournalController::class)->except('show');
-
-    Route::get('journal/detail', fn() => view('staff.pages.journal.detail'))->name('journal.detail');
+    Route::get('journal/detail/{employeeJournal}', [EmployeeJournalController::class, 'detail'])->name('journal.detail');
 });
 
 Route::get('detail-student-violation', function () {

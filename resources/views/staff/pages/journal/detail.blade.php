@@ -5,7 +5,7 @@
             <div class="row align-items-center">
                 <div class="col-9">
                     <h4 class="fw-semibold text-white mb-8">Detail Jurnal</h4>
-                    <h3 class="text-white">10 November 2024</h3>
+                    <h3 class="text-white">{{ $employeeJournal->created_at->translatedFormat('d F Y') }}</h3>
                 </div>
                 <div class="col-3">
                     <div class="text-center mb-n5">
@@ -25,13 +25,11 @@
         </div>
         <div class="card-body border-2">
             <h5><b>Judul</b></h5>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus excepturi laboriosam rem!</p>
+            <p>{{ $employeeJournal->title }}</p>
         </div>
         <div class="card-footer border-2 bg-transparent py-4">
             <h5><b>Isi Laporan</b></h5>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus excepturi laboriosam rem!
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore obcaecati porro libero quo quidem inventore dignissimos ipsa est ducimus? Neque modi ipsam odit eligendi suscipit perspiciatis quisquam quos labore expedita?
-            </p>
+            <p>{{ $employeeJournal->description }}</p>
         </div>
     </div>
 @endsection

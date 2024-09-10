@@ -43,6 +43,7 @@ class EmployeeJournalController extends Controller
         return Excel::download(new EmployeeJournalExport($this->employeeJournal, $request), 'Jurnal-Staff.xlsx');
     }
 
+
     /**
      * Show the form for creating a new resource.
      */
@@ -100,5 +101,10 @@ class EmployeeJournalController extends Controller
     {
         $this->employeeJournal->delete($employeeJournal->id);
         return redirect()->back()->with('success', 'Berhasil menghapus jurnal.');
+    }
+
+    public function detail(EmployeeJournal $employeeJournal)
+    {
+        return view('staff.pages.journal.detail', compact('employeeJournal'));
     }
 }

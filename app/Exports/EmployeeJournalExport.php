@@ -20,15 +20,15 @@ class EmployeeJournalExport implements FromView, ShouldAutoSize, WithStyles
     private Request $request;
 
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
     public function __construct(EmployeeJournalInterface $employeeJournal, Request $request)
     {
         $this->employeeJournal = $employeeJournal;
         $this->request = $request;
     }
 
-    public function view() : View
+    public function view(): View
     {
         $data = $this->employeeJournal->export($this->request);
         return view('school.export.invoices-journal-staff', [
