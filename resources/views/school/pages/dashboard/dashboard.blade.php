@@ -87,7 +87,6 @@
 
     @include('school.pages.dashboard.panes.teacher-journal')
 
-
     <h4 class="mb-4"><b>Data Pelanggaran</b></h4>
     @include('school.pages.dashboard.panes.violations-list')
 
@@ -144,6 +143,8 @@
             </div>
         </div>
     </div> --}}
+
+    @include('school.pages.dashboard.widgets.violation-detail')
 @endsection
 
 @section('script')
@@ -154,6 +155,7 @@
     @include('school.pages.dashboard.scripts.script-corousel')
     @include('school.pages.dashboard.scripts.chart-student')
     @include('school.pages.dashboard.scripts.chart-violations')
+    @include('school.pages.dashboard.scripts.btn-detail')
 
     <script>
         $(function() {
