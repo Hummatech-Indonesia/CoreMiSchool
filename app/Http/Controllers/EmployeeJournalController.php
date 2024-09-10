@@ -101,4 +101,9 @@ class EmployeeJournalController extends Controller
         $this->employeeJournal->delete($employeeJournal->id);
         return redirect()->back()->with('success', 'Berhasil menghapus jurnal.');
     }
+
+    public function detail(EmployeeJournal $employeeJournal)
+    {
+        return view('staff.pages.journal.detail', compact('employeeJournal'));
+    }
 }
