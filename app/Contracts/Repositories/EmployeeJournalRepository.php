@@ -60,4 +60,21 @@ class EmployeeJournalRepository extends BaseRepository implements EmployeeJourna
             })
             ->latest()->paginate(10);
     }
+
+    public function export(Request $request): mixed
+    {
+        $startDate = $request->filled('start') ? $request->start : now()->format('Y-m-d');
+        $endDate = $request->filled('end') ? $request->end : now()->format('Y-m-d');
+
+        return $this->model->query()
+            ->when($startDate && $endDate, function ($query) use ($startDate, $endDate) {
+                $query->where(function ($q) use ($startDate, $endDate) {
+                    $q->whereBetween('created_at', [$startDate, $endDate])
+                        ->orWhereDate('created_at', $startDate)
+                        ->orWhereDate('created_at', $endDate);
+                });
+            })
+            ->paginate(10);
+    }
+
 }
