@@ -79,4 +79,11 @@ class TeacherJournalRepository extends BaseRepository implements TeacherJournalI
             ->whereRelation('lessonSchedule.teacherSubject', 'subject_id', $subject_id)
             ->first();
     }
+
+    public function getByTeacher(mixed $employee_id): mixed
+    {
+        return $this->model->query()
+            ->whereRelation('lessonSchedule.teacherSubject', 'employee_id', $employee_id)
+            ->get();
+    }
 }
