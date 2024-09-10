@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\StatusEnum;
 use App\Traits\Migrations\HasForeign;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -19,6 +20,7 @@ return new class extends Migration
             $this->addForeignId($table, 'employee_id');
             $table->string('title');
             $table->longText('description');
+            $table->enum('status', [StatusEnum::COMPLETED->value, StatusEnum::NOT_COMPLETED->value])->default(StatusEnum::NOT_COMPLETED->value);
             $table->timestamps();
         });
     }

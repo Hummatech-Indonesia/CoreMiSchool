@@ -42,8 +42,8 @@
 
 @section('content')
     <div class="row">
-        <h3 class="mb-4"><b>Selamat Datang Ardian Supriadi</b></h3>
-        <div class="col-lg-4">
+        <h3 class="mb-4"><b>Selamat Datang {{ $studentClasses->student->user->name}}</b></h3>
+        {{-- <div class="col-lg-4">
             <div class="card border rounded-4 p-0 mb-3">
                 <div class="card-body card-body-with-line">
                     <div class="d-flex align-items-start justify-content-between">
@@ -96,7 +96,7 @@
                     <h3 class="text-danger">59 Guru</h3>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 
     <div class="row">
@@ -175,9 +175,9 @@
                         <div class="text-center">
                             <img src="{{ asset('assets/images/Topi.png') }}" alt=""
                                 style="width: 100px; height: auto;">
-                            <h3 class="pt-2 mb-3"><b>XII RPL 1</b></h3>
+                            <h3 class="pt-2 mb-3"><b>{{ $studentClasses->classroom->name }}</b></h3>
                             <span class="mb-1 badge font-medium bg-light-primary text-primary py-2 px-3"
-                                style="font-size: 18px;">34 Total Siswa</span>
+                                style="font-size: 18px;">{{ $studentClasses->classroom->classroomStudents->count() }} Total Siswa</span>
                         </div>
                     </div>
                 </div>
@@ -192,14 +192,14 @@
                                 class="rounded-circle" style="width: 100px; height: 100px;">
 
                             <div class="ms-3">
-                                <h4><b>Sayudi Oke</b></h4>
-                                <h6>Tahun Ajaran 2023-2024</h6>
+                                <h4><b>{{ $studentClasses->classroom->employee->user->name }}</b></h4>
+                                <h6>Tahun Ajaran {{ $studentClasses->classroom->schoolYear->school_year }}</h6>
 
                                 <div class="d-flex flex-wrap">
-                                    @forelse (range(1, 4) as $item)
+                                    @forelse ($studentClasses->classroom->employee->teacherSubjects as $data)
                                         <span class="mb-1 badge font-medium bg-light-primary text-primary me-2"
                                             style="font-size: 14px;">
-                                            Bahasa
+                                            {{ $data->subject->name }}
                                         </span>
                                     @empty
                                         <span class="mb-1 badge font-medium bg-light-warning text-warning"
