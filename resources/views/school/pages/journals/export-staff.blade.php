@@ -97,38 +97,40 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse (range(1, 10) as $item)
+                        @forelse ($journals as $journal)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td class="text-start">
                                     <div class="d-flex align-items-center">
-                                        <img src="{{ asset('admin_assets/dist/images/profile/user-10.jpg') }}"
+                                        <img src="{{ $journal->employee->image ? asset('storage/' . $journal->employee->image) : asset('assets/images/default-user.jpeg') }}"
                                             class="rounded-circle me-2 user-profile" style="object-fit: cover"
                                             width="40" height="40" alt="" />
                                         <div class="ms-2">
                                             <h6 class="fs-4 fw-semibold mb-0 text-start">
-                                                Ahmad Lukman Hakim</h6>
-                                            <span class="fw-normal">2763254762</span>
+                                                {{ $journal->employee->user->name }}</h6>
+                                            <span class="fw-normal">{{ $journal->employee->user->email }}</span>
                                         </div>
                                     </div>
                                 </td>
-                                <td>10 Mei 2024</td>
-                                <td>Lorem ipsum dolor sit amet...</td>
-                                <td>
-                                    <a type="button" class="text-primari btn-detail-journal"
-                                            data-author="Ahmad Lukman Hakim"
-                                            data-date="10 Mei 2024"
-                                            data-description="Lorem ipsum dolor sit amet...">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            viewBox="0 0 24 24">
-                                            <g fill="none" stroke="currentColor" stroke-linecap="round"
-                                                stroke-linejoin="round" stroke-width="1.5">
-                                                <path d="M3 13c3.6-8 14.4-8 18 0" />
-                                                <path d="M12 17a3 3 0 1 1 0-6a3 3 0 0 1 0 6" />
-                                            </g>
-                                        </svg>
-                                    </a>
-
+                                <td>{{ \Carbon\Carbon::parse($journal->created_at)->translatedFormat('d F Y') }}</td>
+                                <td>{{ \Illuminate\Support\Str::limit($journal->description, 65, '...') }}</td>
+                                <td class="text-center">
+                                    <div class="d-flex justify-content-center align-items-center gap-2">
+                                        <a type="button" class="text-primary btn-detail-journal"
+                                            data-author="{{ $journal->employee->user->name }}"
+                                            data-title="{{ $journal->title }}"
+                                            data-date="{{ \Carbon\Carbon::parse($journal->created_at)->translatedFormat('d F Y') }}"
+                                            data-description="{{ $journal->description }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 24 24">
+                                                <g fill="none" stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="1.5">
+                                                    <path d="M3 13c3.6-8 14.4-8 18 0" />
+                                                    <path d="M12 17a3 3 0 1 1 0-6a3 3 0 0 1 0 6" />
+                                                </g>
+                                            </svg>
+                                        </a>
+                                    </div>
                                 </td>
                             </tr>
                         @empty
@@ -147,6 +149,9 @@
                     </tbody>
                 </table>
             </div>
+            <div class="pagination justify-content-end mb-0">
+                <x-paginate-component :paginator="$journals" />
+            </div>
         </div>
     </div>
 
@@ -157,12 +162,12 @@
     <script>
         $('.btn-preview').on('click', function() {
             var id = $(this).data('id');
-            $('#form-action').attr('action', '{{ route('school.export-journal.index') }}');
+            $('#form-action').attr('action', '{{ route('school.employee-journal.export') }}');
         });
 
         $('.btn-export').on('click', function() {
             var id = $(this).data('id');
-            $('#form-action').attr('action', '{{ route('school.export-journal.export') }}');
+            $('#form-action').attr('action', '{{ route('school.employee-journal.download') }}');
         });
     </script>
     @include('school.pages.journals.scripts.detail-staff')

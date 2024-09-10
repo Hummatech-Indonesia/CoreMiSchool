@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\EmployeeJournalInterface;
 use App\Enums\StatusEnum;
+use App\Exports\EmployeeJournalExport;
 use App\Models\EmployeeJournal;
 use App\Http\Requests\StoreEmployeeJournalRequest;
 use App\Http\Requests\UpdateEmployeeJournalRequest;
 use App\Services\EmployeeJournalService;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class EmployeeJournalController extends Controller
 {
@@ -30,9 +32,15 @@ class EmployeeJournalController extends Controller
         return view('staff.pages.journal.index', compact('employeeJournals'));
     }
 
-    public function export()
+    public function export(Request $request)
     {
-        return view('school.pages.journals.export-staff');
+        $journals = $this->employeeJournal->export($request);
+        return view('school.pages.journals.export-staff', compact('journals'));
+    }
+
+    public function downloadJournal(Request $request)
+    {
+        return Excel::download(new EmployeeJournalExport($this->employeeJournal, $request), 'Jurnal-Staff.xlsx');
     }
 
     /**
