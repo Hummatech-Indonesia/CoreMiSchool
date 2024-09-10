@@ -105,11 +105,11 @@
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <div>
                         <h4 class="mb-3"><b>Absensi Hari Ini:</b></h4>
-                        <h4>10 Mei 2023 - 08.00</h4>
+                        <h4>{{ $single_attendance ? \Carbon\Carbon::parse($single_attendance->created_at)->translatedFormat('d F Y') : 'Belum Absen' }} {{ $single_attendance ? ' - '. \Carbon\Carbon::parse($single_attendance->checkin)->format('H:i') : '' }}</h4>
                     </div>
-                    <div class="badge bg-light-success text-success fs-5 text-nowrap py-3 px-4 rounded-3 w-100"
+                    <div class="badge {{ $single_attendance ? ($single_attendance->status == 'present' ? 'bg-light-success text-success' : ($status_attendance->status == 'sick' ? 'bg-light-warning text-warning' : 'bg-light-danger text-danger')) : 'bg-light-danger text-danger' }} fs-5 text-nowrap py-3 px-4 rounded-3 w-100"
                         style="max-width: 150px; overflow: hidden; text-overflow: ellipsis;">
-                        Masuk
+                        {{ $single_attendance ? $single_attendance->status->label() : 'Belum Absen'}}
                     </div>
                 </div>
 
@@ -129,22 +129,32 @@
                                     <th class="text-white" style="background-color: #5D87FF; border-top-left-radius: 12px; border-bottom-left-radius: 12px;">Hari</th>
                                     <th class="text-white" style="background-color: #5D87FF;">Tanggal</th>
                                     <th class="text-white" style="background-color: #5D87FF;">Masuk</th>
-                                    <th class="text-white" style="background-color: #5D87FF;">Masuk</th>
+                                    <th class="text-white" style="background-color: #5D87FF;">Pulang</th>
                                     <th class="text-white" style="background-color: #5D87FF; border-top-right-radius: 12px; border-bottom-right-radius: 12px">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse (range(1, 5) as $item)
+                                @forelse ($history_attendance as $data)
                                     <tr>
-                                        <td>Senin</td>
-                                        <td>10 Agustus 2024</td>
-                                        <td>07.00</td>
-                                        <td>16.00</td>
+                                        <td>{{ \Carbon\Carbon::parse($data->created_at)->translatedFormat('l') }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($data->created_at)->translatedFormat('d F Y') }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($data->checkin)->format('H:i') }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($data->checkout)->format('H:i') }}</td>
                                         <td>
-                                            <span class="mb-1 badge font-medium bg-light-success text-success">Masuk</span>
+                                            <span class="mb-1 badge font-medium {{$data->status == 'present' ? 'bg-light-success text-success' : ($data->status == 'permit' ? 'bg-light-warning text-warning' : 'bg-light-danger text-danger') }}">{{ $data->status->label() }}</span>
                                         </td>
                                     </tr>
                                 @empty
+                                    <tr>
+                                        <td colspan="5">
+                                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                                <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt="" width="300px">
+                                                <p class="fs-5 text-dark text-center mt-2">
+                                                    Tidak ada riwayat absen
+                                                </p>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 @endforelse
                             </tbody>
                         </table>
@@ -229,7 +239,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse (range(1, 5) as $item)
+                                @forelse ([] as $item)
                                     <tr>
                                         <td>
                                             <div class="d-flex align-items-center">
@@ -255,6 +265,16 @@
                                         </td>
                                     </tr>
                                 @empty
+                                    <tr>
+                                        <td colspan="3">
+                                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                                <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt="" width="300px">
+                                                <p class="fs-5 text-dark text-center mt-2">
+                                                    Tidak ada tugas
+                                                </p>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 @endforelse
                             </tbody>
                         </table>
