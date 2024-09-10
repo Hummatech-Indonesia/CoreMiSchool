@@ -45,7 +45,7 @@ class GuestBookController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(GuestBook $guestBook)
+    public function show(GuestBook $guestbook)
     {
         //
     }
@@ -53,7 +53,7 @@ class GuestBookController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(GuestBook $guestBook)
+    public function edit(GuestBook $guestbook)
     {
         //
     }
@@ -61,18 +61,18 @@ class GuestBookController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateGuestBookRequest $request, GuestBook $guestBook)
+    public function update(UpdateGuestBookRequest $request, GuestBook $guestbook)
     {
-        $this->guestBook->update($guestBook->id, $request->validated());
+        $this->guestBook->update($guestbook->id, $request->validated());
         return redirect()->back()->with('success', 'Berhasil mengupdate data.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(GuestBook $guestBook)
+    public function destroy(GuestBook $guestbook)
     {
-        $this->guestBook->delete($guestBook->id);
+        $this->guestBook->delete($guestbook->id);
         return redirect()->back()->with('success', 'Berhasil menghapus data.');
     }
 }
