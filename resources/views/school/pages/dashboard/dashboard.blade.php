@@ -56,7 +56,7 @@
 
         <form class="mt-4 mt-md-0">
             <div class="form-group d-flex gap-2">
-                <input type="date" class="form-control" value="{{ date('Y-m-d') }}">
+                <input type="date" name="date" class="form-control" value="{{ date('Y-m-d') }}">
                 <button class="btn btn-primary" type="submit">Cari</button>
             </div>
         </form>
