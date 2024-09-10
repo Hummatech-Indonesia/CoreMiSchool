@@ -107,7 +107,7 @@
                                 data-classroom="{{ $violation->classroomStudent->classroom->name }}"
                                 data-violation="{{ $violation->regulation->violation }}"
                                 data-date="{{ \Carbon\Carbon::parse($violation->created_at)->translatedFormat('d F Y')  }}"
-                                data-employee="{{ $violation->employee->user ? $violation->employee->user->name : 'Belum ada pelopor'}}"
+                                data-employee="{{ $violation->employee ? $violation->employee->user->name : 'Belum ada pelopor'}}"
                                 type="button">Detail</button>
                             </td>
                         </tr>
