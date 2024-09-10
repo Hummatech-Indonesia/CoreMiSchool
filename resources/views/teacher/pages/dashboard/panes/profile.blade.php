@@ -39,8 +39,8 @@
                         <img src="{{ asset('assets/images/Topi.png') }}">
                     </div>
                 @else
-                    <div class="col-lg-12">
-                        <img src="{{ asset('assets/images/Topi.png') }}">
+                    <div class="col-lg-12 text-center">
+                        <img src="{{ asset('assets/images/Topi.png') }}" width="140">
                         <h4>Anda tidak menjadi wali kelas manapun</h4>
                     </div>
                 @endif
