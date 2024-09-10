@@ -163,14 +163,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($attendances as $attendance)
+                                @forelse ($attendances->take(6) as $attendance)
                                     <tr>
                                         <td>{{ $attendance->created_at->translatedFormat('l') }}</td>
                                         <td>{{ $attendance->created_at->format('d F Y') }}</td>
                                         <td>{{ $attendance->checkin }}</td>
                                         <td>
                                             <span
-                                                class="mb-1 badge font-medium bg-light-secondary text-secondary">Masuk</span>
+                                                class="mb-1 badge font-medium {{ $attendance->status->color() }}">{{ $attendance->status->label() }}</span>
                                         </td>
                                     </tr>
                                 @empty
