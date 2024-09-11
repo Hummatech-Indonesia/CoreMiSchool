@@ -83,6 +83,12 @@ class StudentRepairController extends Controller
         return redirect()->back()->with('success', 'Berhasil konfirmasi bukti perbaikan');
     }
 
+    public function reject(StudentRepair $studentRepair)
+    {
+        $this->studentRepair->update($studentRepair->id, ['proof' => null]);
+        return redirect()->back()->with('success', 'Berkasil menolak bukti perbaikan');
+    }
+
     /**
      * Display the specified resource.
      */
