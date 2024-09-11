@@ -10,7 +10,7 @@
                                 <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">No</th>
                                 <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Nama Guru</th>
                                 <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Tanggal</th>
-                                <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Kelas</th>
+                                <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Kelas - Mapel</th>
                                 <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Status</th>
                             </tr>
                         </thead>
