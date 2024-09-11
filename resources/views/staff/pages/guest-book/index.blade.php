@@ -12,7 +12,7 @@
         <div class="col-12 pt-3">
             <div class="card p-2 shadow" style="border: none; border-radius: 30px">
                 <div class="card-body">
-                    <form action="{{ route('employee.guestBooks.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('employee.guestbook.store') }}" method="POST" enctype="multipart/form-data">
                         @method('post')
                         @csrf
                         <div class="d-flex align-items-center justify-content-between" style="border-bottom: 2px solid #CCCCCC; padding-bottom: 5px;">
