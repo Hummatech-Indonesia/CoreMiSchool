@@ -389,7 +389,7 @@
                     <span class="hide-menu">Jurnal</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->routeIs('school.jouenals.detail') || request()->routeIs('school.export-journal.index') ? 'active' : '' }}" href="{{ route('school.journals.detail') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ request()->routeIs('school.journals.detail') || request()->routeIs('school.export-journal.index') ? 'active' : '' }}" href="{{ route('school.journals.detail') }}" aria-expanded="false">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 16">
                             <g fill="currentColor">
                                 <path fill-rule="evenodd"

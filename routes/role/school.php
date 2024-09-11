@@ -42,8 +42,9 @@ use Illuminate\Support\Facades\Route;
 use Maatwebsite\Excel\Facades\Excel;
 
 Route::middleware('auth')->prefix('school')->name('school.')->group(function () {
+    Route::get('', [SchoolDashboardController::class, 'index'])->name('index');
     Route::post('school-points', [SchoolPointController::class, 'store'])->name('school-points.store');
-    Route::get('journals', [JournalTeacherController::class, 'index'])->name('journ als.detail');
+    Route::get('journals', [JournalTeacherController::class, 'index'])->name('journals.detail');
     Route::get('export-journal', [JournalTeacherController::class, 'export_preview'])->name('export-journal.index');
     Route::get('export-journal/export', [JournalTeacherController::class, 'export'])->name('export-journal.export');
     Route::patch('max-point/{schoolPoint}', [SchoolPointController::class, 'update'])->name('max-point.update');
@@ -155,7 +156,7 @@ Route::middleware('auth')->prefix('school')->name('school.')->group(function () 
 
 
 Route::prefix('school')->group(function () {
-    Route::get('', [SchoolDashboardController::class, 'index'])->name('school.index');
+   
 
     Route::get('detail-teacher/{employee}', [TeacherSubjectController::class, 'index'])->name('detail-teacher.index');
     Route::post('add-maple-teacher/{employee}', [TeacherSubjectController::class, 'store'])->name('maple-teacher.store');
