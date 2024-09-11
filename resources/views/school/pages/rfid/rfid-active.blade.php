@@ -140,7 +140,7 @@
         $('.btn-delete').click(function() {
             var id = $(this).data('id');
             $('#modal-delete').modal('show');
-            $('#form-delete').attr('action', `{{ route('rfid-school.delete', '') }}/${id}`)
+            $('#form-delete').attr('action', `{{ route('school.rfid-school.delete', '') }}/${id}`)
         })
     </script>
 @endsection

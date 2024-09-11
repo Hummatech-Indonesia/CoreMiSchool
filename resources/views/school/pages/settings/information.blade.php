@@ -7,7 +7,7 @@
                 <h4>Detail Sekolah</h4>
 
                 <div class="">
-                    <a href="{{ route('settings-information.edit') }}" class="btn btn-success">Edit Informasi</a>
+                    <a href="{{ route('school.settings-information.edit') }}" class="btn btn-success">Edit Informasi</a>
                 </div>
             </div>
             <div class="row pb-4 mt-3 mx-3">

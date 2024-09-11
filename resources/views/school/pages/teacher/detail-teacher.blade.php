@@ -63,7 +63,7 @@
                 <h5 class="modal-title" id="tambahPelajaran">Tambah Pelajaran Guru</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('maple-teacher.store', [$employee_id]) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('school.teacher-subject.store', [$employee_id]) }}" method="POST" enctype="multipart/form-data">
                 @method('post')
                 @csrf
                 <div class="modal-body">

@@ -1,6 +1,6 @@
 <div class="modal fade" id="modal-create-masterKey" tabindex="-1" aria-labelledby="tambahRfid" aria-hidden="true">
     <div class="modal-dialog">
-        <form action="{{ route('master-key.store') }}" method="post">
+        <form action="{{ route('school.master-key.store') }}" method="post">
             @csrf
             <div class="modal-content">
                 <div class="modal-header">
