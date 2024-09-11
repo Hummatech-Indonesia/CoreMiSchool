@@ -45,12 +45,12 @@ class StaffViolationController extends Controller
     }
 
 
-    public function violation_student(Request $request)
+    public function overview(Request $request)
     {
-        $students = $this->student->getByPoint($request);
-        $countByClassroomStudent = $this->studentViolation->countByClassroomStudent();
-        $schoolPoint = $this->schoolPoint->get();
-        return view('staff.pages.overview.index', compact('countByClassroomStudent', 'students', 'schoolPoint'));
+        // $students = $this->student->getByPoint($request);
+        // $countByClassroomStudent = $this->studentViolation->countByClassroomStudent();
+        // $schoolPoint = $this->schoolPoint->get();
+        return view('staff.pages.overview.index');
     }
 
     public function show(Classroom $classroom, Request $request)

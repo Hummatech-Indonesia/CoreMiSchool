@@ -13,7 +13,7 @@ Route::middleware('auth')->prefix('employee')->name('employee.')->group(function
 
     // fitur pelanggaran
     Route::prefix('violation')->name('violation.')->group(function () {
-        Route::get('overview', [StaffViolationController::class, 'violation_student'])->name('overview');
+        Route::get('overview', [StaffViolationController::class, 'overview'])->name('overview');
         Route::get('student-point', [StaffViolationController::class, 'index'])->name('student-point.index');
         Route::get('student-point/{student}', [StaffViolationController::class, 'show_detail_student'])->name('student-point.detail');
         Route::get('class-point/{classroom}', [StaffViolationController::class, 'show'])->name('class-point.detail');

@@ -1,123 +1,74 @@
 @extends('staff.layouts.app')
 
+@section('style')
+    <link rel="stylesheet" href="{{ asset('admin_assets/dist/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}">
+    <style>
+        .nav-tabs .nav-link {
+            margin-bottom: calc(-1* var(--bs-nav-tabs-border-width));
+            border: var(--bs-nav-tabs-border-width) solid transparent;
+            border-top-left-radius: var(--bs-nav-tabs-border-radius);
+            border-top-right-radius: var(--bs-nav-tabs-border-radius);
+            color: rgba(var(--bs-primary-rgb), var(--bs-border-opacity));
+            border-radius: 5px;
+            margin-right: 0.5px;
+        }
+    </style>
+@endsection
+
 @section('content')
-<div class="row">
-    <div class="col-lg-8">
-        <div class="card bg-primary shadow-none position-relative overflow-hidden">
-            <div class="card-body px-4 py-3">
-                <div class="row align-items-center">
-                    <div class="col-9">
-                        <b class="text-white fs-2">Daftar Point Siswa</b>
-                        <h4 class="fw-semibold text-white fs-5 mt-1">{{ $countByClassroomStudent->count() }} Siswa Melanggar</h4>
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a class="text-white fs-2" href="javascript:void(0)">Daftar daftar siswa yang melanggar akan mendapatkan point sesuai apa yang dilanggar</a></li>
-                            </ol>
-                        </nav>
+    @include('staff.pages.overview.panes.corousel')
+
+    
+    <div class="row d-flex align-items-stretch">
+        <div class="col-lg-3">
+            <div class="card shadow-none position-relative overflow-hidden h-75"
+                style="background: linear-gradient(to bottom, #5D87FF, #5D87FF);">
+                <div class="card-body px-4 py-3 position-relative">
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <div class="d-flex justify-content-between mb-2">
+                                <h5 class="fw-semibold text-white mb-4 pt-3">Maks Poin Pada Sekolah</h5>
+                            </div>
+                            <nav aria-label="breadcrumb">
+                                <span class="badge fw-semibold fs-8 text-primary bg-white p-2 px-3">200</span>
+                            </nav>
+                        </div>
                     </div>
-                    <div class="col-3">
-                        <div class="text-center mb-n5">
-                            <img src="{{ asset('admin_assets/dist/images/breadcrumb/pagar.png') }}" width="130px" alt=""
-                                class="img-fluid mb-3">
+                    <img src="{{ asset('assets/images/background/buble-1.png') }}" alt="Image"
+                        class="position-absolute"
+                        style="bottom: 0; right: 0; width: 130px; height: auto; margin-bottom: -10px; margin-right: -10px;">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-9">
+            <div class="card border border-grey shadow-none position-relative overflow-hidden h-75"
+                style="background-color: #FEF5E5;">
+                <div class="card-body px-4 py-4">
+                    <div class="row align-items-center">
+                        <div class="col-9">
+                            <h4 class="fs-5 mt-1"><b>Poin Peringatan</b></h4>
+                            <nav aria-label="breadcrumb">
+                                <ul style="list-style-type:disc; padding-left: 20px; padding-bottom: 10px">
+                                    @forelse (range(1, 3) as $schoolPoint)
+                                        <li style="padding-bottom: 3px">Poin peringatan 110+ :
+                                            Lorem, ipsum dolor.</li>
+                                    @empty
+                                        <li style="padding-bottom: 3px">Poin peringatan belum ditambahkan</li>
+                                    @endforelse
+                                    <li style="padding-bottom: 3px">Guru diharuskan untuk menindak lanjuti siswa yang
+                                        mempunyai banyak poin Pelanggaran</li>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-4">
-        <div class="card shadow-none position-relative overflow-hidden" style="background: linear-gradient(to bottom, #FFE252, #ffc107);">
-            <div class="card-body px-4 py-3">
-                <div class="row align-items-center">
-                    <div class="col-12">
-                        <div class="d-flex justify-content-between mb-2">
-                            <h5 class="fw-semibold text-white mb-8">Statistik Absensi</h5>
-                            <span class="mb-1 badge bg-white p-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="text-warning" width="15" height="15" viewBox="0 0 24 24">
-                                    <path fill="currentColor" d="M12 7q-.825 0-1.412-.587T10 5t.588-1.412T12 3t1.413.588T14 5t-.587 1.413T12 7m0 14q-.625 0-1.062-.437T10.5 19.5v-9q0-.625.438-1.062T12 9t1.063.438t.437 1.062v9q0 .625-.437 1.063T12 21" />
-                                </svg>
-                            </span>
-                        </div>
-                        <nav aria-label="breadcrumb">
-                            <span class="badge fw-semibold fs-6 text-warning bg-white p-2">{{ $schoolPoint->max_points }} Point</span>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+@endsection
 
-<div class="">
-    <div class="mb-3 d-flex justify-content-between">
-        <div>
-            <form class="d-flex gap-2" action="">
-                <div class="position-relative">
-                    <input type="text" name="name" class="form-control product-search ps-5" id="input-search" placeholder="Cari..." value="{{ old('name', request('name')) }}">
-                    <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
-                </div>
-                <div class="d-flex gap-2">
-                    <select name="point" class="form-select">
-                        <option value="highest" {{ request()->has('point') == 'highest' ? 'selected' : '' }}>Point Tertinggi</option>
-                        <option value="lowest" {{ request()->has('point') == 'lowest' ? 'selected' : '' }}>Point Terendah</option>
-                    </select>
-                    <div>
-                        <button type="submit" class="btn btn-primary btn-md">Filter</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div>
-            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#violation-student-list">Tambah Siswa Pelanggar</button>
-        </div>
-    </div>
-    <div class="table-responsive rounded-2 mb-4">
-        <table class="table border text-nowrap customize-table mb-0 align-middle">
-            <thead class="text-dark fs-4">
-                <tr class="">
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>Kelas</th>
-                    <th>Point</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($students as $student)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img src="{{ asset('admin_assets/dist/images/profile/user-10.jpg') }}" class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40" height="40" alt="" />
-                                <div class="ms-3">
-                                    <h6 class="fs-4 fw-semibold mb-0 text-start">{{ $student->user->name }}</h6>
-                                    <span class="fw-normal">{{ $student->nisn }}</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td>{{ $student->classroomStudents->first()->classroom->name }}</td>
-                        <td>
-                            <span class="badge bg-light-danger text-danger">{{ $student->point }} Point</span>
-                        </td>
-                        <td>
-                            <a href="{{ route('employee.violation.student-point.detail', ['student' => $student->id]) }}" class="btn btn-primary py-1 px-4">Detail</a>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="7" class="text-center align-middle">
-                            <div class="d-flex flex-column justify-content-center align-items-center">
-                                <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt="" width="300px">
-                                <p class="fs-5 text-dark text-center mt-2">
-                                    Siswa belum ditambahkan
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
-    </div>
-</div>
-
+@section('script')
+    @include('staff.pages.overview.scripts.script-corousel')
 @endsection
