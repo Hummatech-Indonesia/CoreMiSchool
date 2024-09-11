@@ -38,7 +38,7 @@
         $('#end_date-detail').text(end_date);
         $('#proof-detail').attr('src', proof);
 
-        $('#form-upload').attr('action', `{{ route('student.repair.update', '') }}/${id}`);
+        $('#form-upload').attr('action', `{{ route('student.repairs.update', '') }}/${id}`);
         $('#repair-upload-detail').modal('show');
     });
 </script>

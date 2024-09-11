@@ -9,5 +9,5 @@ Route::middleware('auth')->prefix('student')->name('student.')->group(function (
     Route::get('', [DashboardStudentController::class, 'index'])->name('dashboard');
 
     Route::get('violations', [ViolationController::class, 'index'])->name('violations');
-    Route::resource('repair', RepairStudentController::class);
+    Route::resource('repairs', RepairStudentController::class);
 });
