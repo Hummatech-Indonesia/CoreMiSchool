@@ -58,10 +58,6 @@ class StudentService
 
         $user->assignRole(RoleEnum::STUDENT->value);
         return $data;
-
-        return [
-            'name' => $data['name'],
-        ]
     }
 
     public function update(Student $student, UpdateStudentRequest $request): array|bool
