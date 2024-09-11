@@ -19,6 +19,7 @@
                 show: false
             },
         },
+        colors: ['#FA896B', '#13DEB9'], // Custom colors for the lines
         dataLabels: {
             enabled: false
         },
