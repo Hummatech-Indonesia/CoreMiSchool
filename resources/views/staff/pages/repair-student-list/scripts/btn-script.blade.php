@@ -40,7 +40,7 @@
         $('#start_date-confirm').text(start_date); 
         $('#end_date-confirm').text(end_date); 
 
-        $('#form-confirm').attr('action', '{{ route('employee.approved.repair', '') }}/' + id);
+        $('#form-confirm').attr('action', '{{ route('employee.violation.student-repair.approved', '') }}/' + id);
         $('#modal-waiting-confirmation').modal('show');
     });
 </script>

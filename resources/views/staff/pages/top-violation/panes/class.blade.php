@@ -62,7 +62,7 @@
                         </div>
                     </div>
                     <div class="mt-3">
-                        <a href="{{ route('employee.class-violation.detail', ['classroom' => $classroom->id]) }}" class="btn btn-primary w-100">Lihat Detail</a>
+                        <a href="{{ route('employee.violation.class-point.detail', ['classroom' => $classroom->id]) }}" class="btn btn-primary w-100">Lihat Detail</a>
                     </div>
                 </div>
             </div>

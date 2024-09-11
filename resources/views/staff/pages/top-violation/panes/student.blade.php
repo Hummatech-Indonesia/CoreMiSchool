@@ -50,7 +50,7 @@
                                 <span class="badge bg-light-danger text-danger">{{ $student->point }} Point</span>
                             </td>
                             <td>
-                                <a href="{{ route('employee.student-violation.detail', ['student' => $student->id]) }}" class="btn btn-primary py-1 px-4">Detail</a>
+                                <a href="{{ route('employee.violation.student-point.detail', ['student' => $student->id]) }}" class="btn btn-primary py-1 px-4">Detail</a>
                             </td>
                         </tr>
                     @empty

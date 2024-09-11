@@ -39,7 +39,6 @@ class StudentRepairImport implements ToModel
             'point' => $row[2],
             'start_date' => $start_date,
             'end_date' => $end_date,
-            
             'employee_id' => $this->employee,
         ]);
     }

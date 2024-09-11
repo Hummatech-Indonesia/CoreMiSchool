@@ -119,7 +119,7 @@
                         </a>
                     </li>
                     <div class="d-flex ms-auto">
-                        <a href="{{ url('employee/student-repair') }}" type="button" class="btn btn-success me-2 d-none" id="tambah-perbaikan">
+                        <a href="{{ route('employee.violation.student-repair.index') }}" type="button" class="btn btn-success me-2 d-none" id="tambah-perbaikan">
                             <svg xmlns="http://www.w3.org/2000/svg" class="me-1" width="20" height="20" viewBox="0 0 48 48">
                                 <g fill="none">
                                     <rect width="38" height="26" x="5" y="16" stroke="currentColor"
@@ -131,7 +131,7 @@
                                 </g>
                             </svg>
                             Tambah Perbaikan</a>
-                        <a href="{{ route('employee.violation-student.index') }}" type="button" class="btn btn-warning d-none" id="tambah-pelanggaran">
+                        <a href="{{ route('employee.violation.students') }}" type="button" class="btn btn-warning d-none" id="tambah-pelanggaran">
                             <svg xmlns="http://www.w3.org/2000/svg" class="me-1" width="20" height="20"
                                 viewBox="0 0 16 16">
                                 <path fill="currentColor"

@@ -21,7 +21,7 @@
                     </div>
                 </div>
 
-                <form class="mt-4" action="{{ route('employee.studentViolation.store') }}" method="POST">
+                <form class="mt-4" action="{{ route('employee.violation.students.store') }}" method="POST">
                     @method('post')
                     @csrf
                     <div class="email-repeater mb-3">

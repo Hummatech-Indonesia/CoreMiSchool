@@ -20,7 +20,7 @@
                 </li>
 
                 <li class="sidebar-item ">
-                    <a class="sidebar-link" href="javascript:void(0)" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('employee.violation.overview') }}" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -35,7 +35,7 @@
                 </li>
 
                 <li class="sidebar-item ">
-                    <a class="sidebar-link" href="{{ route('employee.top-violation.index') }}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('employee.violation.student-point.index') }}" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                 <path fill="currentColor"
@@ -47,7 +47,7 @@
                 </li>
 
                 <li class="sidebar-item ">
-                    <a class="sidebar-link" href="/employee/violation-student-list" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('employee.violation.students') }}" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                 <g fill="none">
@@ -63,7 +63,7 @@
                 </li>
 
                 <li class="sidebar-item ">
-                    <a class="sidebar-link" href="{{ route('employee.student-repair.index') }}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('employee.violation.student-repair.index') }}" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
                                 <g fill="none">

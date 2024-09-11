@@ -26,8 +26,7 @@ class StudentViolationController extends Controller
      */
     public function index()
     {
-        $studentViolations = $this->studentViolation->get();
-        return view('', compact('studentViolations'));
+       //
     }
 
     /**

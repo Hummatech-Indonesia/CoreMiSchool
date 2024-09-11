@@ -6,7 +6,7 @@
                 <h5 class="modal-title" id="importPegawai">Import Pelanggaran</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('employee.student-violation.import') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('employee.violation.student-violation.import') }}" method="POST" enctype="multipart/form-data">
                 @method('post')
                 @csrf
                 <div class="modal-body">

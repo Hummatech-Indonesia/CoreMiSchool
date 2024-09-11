@@ -53,7 +53,7 @@
                 <input type="date" name="search-date" class="form-control">
             </div>
             <button type="submit" class="btn btn-primary">Cari</button>
-            <a class="btn btn-warning" href="{{ route('employee.top-violation.index') }}">Kembali</a>
+            <a class="btn btn-warning" href="{{ route('employee.violation.student-point.index') }}">Kembali</a>
         </form> --}}
     </div>
 
@@ -90,7 +90,7 @@
                             <span class="mb-1 badge font-medium bg-light-danger text-danger">{{ $student->regulation->point }} Point</span>
                         </td>
                         <td>
-                            <a href="{{ route('employee.student-violation.detail', ['student' => $student->classroomStudent->student->id]) }}" class="btn mb-1 waves-effect waves-light btn-primary">Detail</a>
+                            <a href="{{ route('employee.violation.student-point.detail', ['student' => $student->classroomStudent->student->id]) }}" class="btn mb-1 waves-effect waves-light btn-primary">Detail</a>
                         </td>
                     </tr>
                 @empty
