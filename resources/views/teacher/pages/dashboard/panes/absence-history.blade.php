@@ -42,6 +42,7 @@
         </div>
     </div>
 </div>
+
 <div class="col-lg-4 d-flex">
     <div class="card w-100 h-100 overflow-hidden border">
         <div class="card-body">

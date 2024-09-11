@@ -18,7 +18,6 @@
 @section('content')
     @include('staff.pages.overview.panes.corousel')
 
-    
     <div class="row d-flex align-items-stretch">
         <div class="col-lg-3">
             <div class="card shadow-none position-relative overflow-hidden h-75"
@@ -40,7 +39,6 @@
                 </div>
             </div>
         </div>
-
 
         <div class="col-lg-9">
             <div class="card border border-grey shadow-none position-relative overflow-hidden h-75"
@@ -67,8 +65,20 @@
             </div>
         </div>
     </div>
+
+    <div class="col-lg-12 d-flex">
+        <div class="card w-100 h-100 overflow-hidden border">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div id="chart-violation" class="d-flex justify-content-center"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 @endsection
 
 @section('script')
     @include('staff.pages.overview.scripts.script-corousel')
+    @include('staff.pages.overview.scripts.script-line-chart')
 @endsection

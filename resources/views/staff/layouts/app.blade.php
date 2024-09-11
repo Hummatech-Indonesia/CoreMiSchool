@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ asset('admin_assets/dist/libs/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin_assets/dist/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}">
 
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     @yield('style')
 </head>
 
