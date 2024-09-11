@@ -65,4 +65,14 @@ class StudentRepairRepository extends BaseRepository implements StudentRepairInt
             })
             ->get();
     }
+
+    public function count(): mixed
+    {
+        $startOfWeek = now()->startOfWeek();
+        $endOfWeek = now()->endOfWeek();
+
+        return $this->model->query()
+            ->whereBetween('created_at', [$startOfWeek, $endOfWeek])
+            ->count();
+    }
 }

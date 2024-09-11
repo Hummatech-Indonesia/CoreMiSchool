@@ -5,12 +5,11 @@ use App\Http\Controllers\Staff\StaffViolationController;
 use App\Http\Controllers\Staff\StudentRepairController;
 use App\Http\Controllers\StudentViolationController;
 use App\Http\Controllers\GuestBookController;
+use App\Http\Controllers\Staff\DashboardStaffController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->prefix('employee')->name('employee.')->group(function () {
-    Route::get('/', function () {
-        return view('staff.pages.dashboard.dashboard');
-    })->name('dashboard');
+    Route::get('/', [DashboardStaffController::class, 'index'])->name('dashboard');
 
     // fitur pelanggaran
     Route::prefix('violation')->name('violation.')->group(function () {

@@ -18,9 +18,10 @@ class EmployeeJournalRepository extends BaseRepository implements EmployeeJourna
         return $this->model->query()->get();
     }
 
-    public function getEmployee(mixed $id): mixed
+    public function getEmployee(mixed $id, mixed $query): mixed
     {
-        return $this->model->query()->whereRelation('employee.user', 'id', $id)->get();
+        $result =  $this->model->query()->whereRelation('employee.user', 'id', $id);
+        return $query == 'take' ? $result->latest()->take(3)->get() : $result->paginate(10);
     }
 
     public function store(array $data): mixed

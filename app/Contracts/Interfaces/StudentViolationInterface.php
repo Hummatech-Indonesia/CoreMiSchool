@@ -17,4 +17,5 @@ interface StudentViolationInterface extends GetInterface, StoreInterface, Update
     public function search(Request $request) : mixed;
 
     public function ViolationChart(mixed $year, mixed $month): mixed;
+    public function count(mixed $query): mixed;
 }

@@ -115,4 +115,12 @@ class StudentRepository extends BaseRepository implements StudentInterface
             ->whereRelation('classroomStudents', 'id', $id)
             ->first();
     }
+
+    public function highestPoint(mixed $query): mixed
+    {
+        return $this->model->query()
+            ->where('point', '>', $query)
+            ->count();
+    }
+
 }
