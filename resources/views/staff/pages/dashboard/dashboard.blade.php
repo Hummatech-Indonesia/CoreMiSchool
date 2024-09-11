@@ -18,7 +18,7 @@
 @section('content')
     @include('staff.pages.dashboard.panes.corousel')
 
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
@@ -33,9 +33,8 @@
                     </div>
                 </div>
             </div>
-
         </div>
-    </div>
+    </div> --}}
 
     <h4 class=""><b>Riwayat Jurnal</b></h4>
     <p>Daftar jurnal staff setelah melakukan kegiatan</p>

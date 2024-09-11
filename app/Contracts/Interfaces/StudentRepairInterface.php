@@ -13,4 +13,5 @@ use Illuminate\Http\Request;
 interface StudentRepairInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, SearchInterface
 {
     public function whereStudent(mixed $id, Request $request): mixed;
+    public function count(): mixed;
 }

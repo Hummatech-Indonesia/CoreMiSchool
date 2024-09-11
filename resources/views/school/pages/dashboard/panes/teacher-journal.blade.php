@@ -82,6 +82,6 @@
             </div>
         </div>
 
-        <button class="btn waves-effect waves-light btn-outline-primary w-100" type="button">Lihat Selengkapnya</button>
+        <a href="{{ route('school.journals.detail') }}" class="btn waves-effect waves-light btn-outline-primary w-100">Lihat Selengkapnya</a>
     </div>
 </div>

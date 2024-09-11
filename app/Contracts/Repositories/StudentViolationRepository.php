@@ -104,4 +104,15 @@ class StudentViolationRepository extends BaseRepository implements StudentViolat
             ->whereMonth('created_at', $month)
             ->count();
     }
+
+    public function count(mixed $query): mixed
+    {
+        $startOfWeek = now()->startOfWeek();
+        $endOfWeek = now()->endOfWeek();
+
+        $result = $this->model->query();
+        $query == 'week' ? $result->whereBetween('created_at', [$startOfWeek, $endOfWeek]) : $result;
+
+        return $result->count();
+    }
 }
