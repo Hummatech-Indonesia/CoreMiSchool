@@ -3,7 +3,7 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        <form action="{{ route('settings-information.update', $school->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('school.settings-information.update', $school->id) }}" method="POST" enctype="multipart/form-data">
             <div class="row pb-4 mt-5 mx-3">
                 <h4>Edit Profil Sekolah</h4>
                 <div class="d-flex justify-content-center">
@@ -95,7 +95,7 @@
                     </div>
 
                     <div class="text-end">
-                        <a href="{{ route('settings-information.index') }}" class="btn btn-primary me-2">Kembali</a>
+                        <a href="{{ route('school.settings-information.index') }}" class="btn btn-primary me-2">Kembali</a>
                         <button type="submit" class="btn btn-success">Simpan</button>
                     </div>
                 </div>

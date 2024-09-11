@@ -64,7 +64,7 @@
                     <!-- Spacer to push the button to the bottom -->
                     <div class="mt-auto"></div>
 
-                    <a href="{{ route('detail-presence-class.index', ['classroom' => $classroom->id]) }}"
+                    <a href="{{ route('school.detail-presence-class.index', ['classroom' => $classroom->id]) }}"
                         class="btn waves-effect waves-light btn-primary w-100">Masuk Kelas</a>
                 </div>
             </div>

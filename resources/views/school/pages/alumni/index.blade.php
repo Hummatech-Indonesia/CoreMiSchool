@@ -22,7 +22,7 @@
         </form>
 
         <div>
-            <a href="{{ route('class-alumni.index') }}" class="btn btn-primary">
+            <a href="{{ route('school.class-alumni.index') }}" class="btn btn-primary">
                 Kembali
             </a>
         </div>

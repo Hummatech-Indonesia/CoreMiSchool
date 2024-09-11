@@ -42,7 +42,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link has-arrow {{ request()->routeIs('detail-presence-class.index') ? 'active' : '' }}"
+                    <a class="sidebar-link has-arrow {{ request()->routeIs('school.detail-presence-class.index') ? 'active' : '' }}"
                         href="javascript:void(0)" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
@@ -53,10 +53,10 @@
                         <span class="hide-menu">Statistik Absensi</span>
                     </a>
                     <ul aria-expanded="false"
-                        class="collapse first-level {{ request()->routeIs('detail-presence-class.index') ? 'in' : '' }}">
+                        class="collapse first-level {{ request()->routeIs('school.detail-presence-class.index') ? 'in' : '' }}">
                         <li class="sidebar-item">
-                            <a href="{{ route('statistic-presence.index') }}"
-                                class="sidebar-link {{ request()->routeIs('detail-presence-class.index') ? 'active' : '' }}">
+                            <a href="{{ route('school.statistic-presence.index') }}"
+                                class="sidebar-link {{ request()->routeIs('school.detail-presence-class.index') ? 'active' : '' }}">
                                 <div class="round-16 d-flex align-items-center justify-content-center">
                                     <i class="ti ti-circle"></i>
                                 </div>
@@ -64,7 +64,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="{{ route('statistic-presence-employee.index') }}" class="sidebar-link">
+                            <a href="{{ route('school.statistic-presence-employee.index') }}" class="sidebar-link">
                                 <div class="round-16 d-flex align-items-center justify-content-center">
                                     <i class="ti ti-circle"></i>
                                 </div>
@@ -122,8 +122,8 @@
                 </li>
                 {{-- <li class="sidebar-item">
                     <a class="sidebar-link
-                    {{ request()->routeIs('class-alumni.index') ||
-                        request()->routeIs('alumni.index') ? 'active' : '' }}" href="{{ route('class-alumni.index') }}" aria-expanded="false">
+                    {{ request()->routeIs('school.class-alumni.index') ||
+                        request()->routeIs('alumni.index') ? 'active' : '' }}" href="{{ route('school.class-alumni.index') }}" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256">
                                 <path fill="currentColor"
@@ -284,7 +284,7 @@
                     </a>
                     <ul aria-expanded="false" class="collapse first-level">
                         <li class="sidebar-item">
-                            <a href="{{ route('settings-information.index') }}" class="sidebar-link">
+                            <a href="{{ route('school.settings-information.index') }}" class="sidebar-link">
                                 <div class="round-16 d-flex align-items-center justify-content-center">
                                     <i class="ti ti-circle"></i>
                                 </div>
@@ -292,7 +292,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="/school/rfid-active" class="sidebar-link">
+                            <a href="{{ route('school.rfid-active.index') }}" class="sidebar-link">
                                 <div class="round-16 d-flex align-items-center justify-content-center">
                                     <i class="ti ti-circle"></i>
                                 </div>
@@ -312,7 +312,7 @@
                             </a>
                             <ul aria-expanded="false" class="collapse second-level">
                                 <li class="sidebar-item">
-                                    <a href="{{ route('rfid-school.index') }}" class="sidebar-link"
+                                    <a href="{{ route('school.rfid-school.index') }}" class="sidebar-link"
                                         style="display: flex; align-items: center; margin-left: 20px;">
                                         <div class="round-16 d-flex align-items-center justify-content-center ms-3">
                                             <i class="ti ti-circle"></i>
@@ -321,7 +321,7 @@
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
-                                    <a href="/school/rfid-active" class="sidebar-link"
+                                    <a href="{{ route('school.rfid-active.index') }}" class="sidebar-link"
                                         style="display: flex; align-items: center; margin-left: 20px;">
                                         <div class="round-16 d-flex align-items-center justify-content-center ms-3">
                                             <i class="ti ti-circle"></i>
@@ -338,7 +338,7 @@
                     <span class="hide-menu">Absensi</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('clock-settings.index') }}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('school.clock-settings.index') }}" aria-expanded="false">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                             <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                 stroke-width="2">
@@ -351,7 +351,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link has-arrow {{ request()->routeIs('detail-presence-class.index') ? 'active' : '' }}"
+                    <a class="sidebar-link has-arrow {{ request()->routeIs('school.detail-presence-class.index') ? 'active' : '' }}"
                         href="javascript:void(0)" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -363,10 +363,10 @@
                         <span class="hide-menu">Kehadiran</span>
                     </a>
                     <ul aria-expanded="false"
-                        class="collapse first-level {{ request()->routeIs('detail-presence-class.index') ? 'in' : '' }}">
+                        class="collapse first-level {{ request()->routeIs('school.detail-presence-class.index') ? 'in' : '' }}">
                         <li class="sidebar-item">
                             <a href="{{ route('school.student-attendance.index') }}"
-                                class="sidebar-link {{ request()->routeIs('detail-presence-class.index') ? 'active' : '' }}">
+                                class="sidebar-link {{ request()->routeIs('school.detail-presence-class.index') ? 'active' : '' }}">
                                 <div class="round-16 d-flex align-items-center justify-content-center">
                                     <i class="ti ti-circle"></i>
                                 </div>
