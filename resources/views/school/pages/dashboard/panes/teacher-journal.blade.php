@@ -12,7 +12,6 @@
                                 <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Tanggal</th>
                                 <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Kelas</th>
                                 <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Status</th>
-                                <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -24,9 +23,6 @@
                                     <td>{{ $value->classroom->name }} - {{ $value->teacherSubject->subject->name }}</td>
                                     <td>
                                         <span class="badge bg-light-danger text-danger fw-semibold fs-2">Tidak Mengisi</span>
-                                    </td>
-                                    <td>
-                                        <button class="btn mb-1 btn-primary" type="button">Detail</button>
                                     </td>
                                 </tr>
                             @empty
