@@ -20,7 +20,7 @@ Route::middleware('auth')->prefix('teacher')->name('teacher.')->group(function (
 
     Route::get('journals/create/{lessonSchedule}', [TeacherJournalController::class, 'create'])->name('journals.create');
     Route::post('journals/create/{lessonSchedule}', [TeacherJournalController::class, 'store'])->name('journals.store');
-    Route::resource('teacher-student', TeacherStudentController::class);
+    Route::resource('list-student-class', TeacherStudentController::class);
 
     // Route::get('journals/detail', function () {
     //     return view('teacher.pages.journals.detail');
