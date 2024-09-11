@@ -22,10 +22,16 @@ Route::middleware('auth')->prefix('employee')->name('employee.')->group(function
         Route::post('student-violation/{student}', [StudentViolationController::class, 'single_store'])->name('single.student-violation');
         Route::post('student-repair/{student}', [StudentRepairController::class, 'single_store'])->name('single.student-repair');
         Route::resource('student-repair', StudentRepairController::class);
-        Route::put('student-repair/approve/{studentRepair}', [StudentRepairController::class, 'approved'])->name('student-repair.approved');
+
+        Route::prefix('student-repair')->name('student-repair.')->group(function (){
+            Route::put('approve/{studentRepair}', [StudentRepairController::class, 'approved'])->name('approved');
+            Route::put('reject/{studentRepair}', [StudentRepairController::class, 'reject'])->name('reject');
+            Route::post('import', [StudentRepairController::class, 'import'])->name('import');
+        });
+
         Route::post('student-violation/import', [StaffViolationController::class, 'import'])->name('student-violation.import');
-        Route::post('student-repair/import', [StudentRepairController::class, 'import'])->name('student-repair.import');
     });
+
     Route::get('export-student-repair', [StudentRepairController::class, 'download_student'])->name('student-repair.download');
     Route::get('export-student-violation', [StaffViolationController::class, 'download_student'])->name('student-violation.download');
     Route::get('detail-student-violation', function () {

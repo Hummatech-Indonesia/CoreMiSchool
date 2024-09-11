@@ -18,6 +18,7 @@
         $('#proof-detail').attr('src', proof);
         $('#is_approved-detail').text(is_approved);
         $('#date-detail').attr('src', date);
+        $('.btn-reject').data('id', id);
 
         $('#modal-detail-remidial').modal('show');
     });
@@ -35,12 +36,18 @@
         $('#student-confirm').text(student);
         $('#employee-confirm').text(employee);
         $('#repair-confirm').text(repair);
-        $('#point-confirm').text(point + ' Point'); 
+        $('#point-confirm').text(point + ' Point');
         $('#proof-confirm').attr('src', proof);
-        $('#start_date-confirm').text(start_date); 
-        $('#end_date-confirm').text(end_date); 
+        $('#start_date-confirm').text(start_date);
+        $('#end_date-confirm').text(end_date);
+        $('.btn-reject').data('id', id);
 
         $('#form-confirm').attr('action', '{{ route('employee.violation.student-repair.approved', '') }}/' + id);
         $('#modal-waiting-confirmation').modal('show');
+    });
+
+    $('.btn-reject').click(function() {
+        var id = $(this).data('id');
+        $('#form-confirm').attr('action', '{{ route('employee.violation.student-repair.reject', '') }}/' + id);
     });
 </script>
