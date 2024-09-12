@@ -1,20 +1,42 @@
 {{-- statistik siswa --}}
 <script>
+    // Fetch the attendance data from the Blade template
+    var attendanceData = @json($data);
 
+    // Process the data for the chart
+    var classrooms = attendanceData.map(function(item) {
+        return item.classroom;
+    });
+
+    var presentData = attendanceData.map(function(item) {
+        return item.data.present;
+    });
+
+    var permitData = attendanceData.map(function(item) {
+        return item.data.permit;
+    });
+
+    var sickData = attendanceData.map(function(item) {
+        return item.data.sick;
+    });
+
+    var alphaData = attendanceData.map(function(item) {
+        return item.data.alpha;
+    });
 
     var optionsStudent = {
         series: [{
             name: 'Masuk',
-            data: 0
+            data: presentData
         }, {
             name: 'Izin',
-            data: 0
+            data: permitData
         }, {
             name: 'Sakit',
-            data: 0
+            data: sickData
         }, {
             name: 'Alfa',
-            data: 0
+            data: alphaData
         }],
         chart: {
             type: 'bar',
@@ -31,7 +53,7 @@
             colors: ['#fff']
         },
         xaxis: {
-            categories: 'categoris',
+            categories: classrooms, // Set classrooms as categories
             labels: {
                 show: false
             }
@@ -60,4 +82,3 @@
     var chartStudent = new ApexCharts(document.querySelector("#chart-student"), optionsStudent);
     chartStudent.render();
 </script>
-
