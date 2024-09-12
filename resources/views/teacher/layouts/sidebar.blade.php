@@ -64,7 +64,7 @@
 
                     @if (App\Models\Classroom::where('employee_id', auth()->user()->employee->id)->exists())
                         <li class="sidebar-item">
-                            <a class="sidebar-link {{ request()->routeIs('teacher.teacher-student.index') ? 'active' : '' }}" href="{{ route('teacher.teacher-student.index') }}" aria-expanded="false">
+                            <a class="sidebar-link {{ request()->routeIs('teacher.list-student-class.index') ? 'active' : '' }}" href="{{ route('teacher.list-student-class.index') }}" aria-expanded="false">
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                         <path fill="none" stroke="currentColor" stroke-linecap="round"
