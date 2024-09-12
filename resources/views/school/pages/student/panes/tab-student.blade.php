@@ -57,7 +57,7 @@
                             </div>
                         </td>
                         {{-- @dd($student->user->roles->pluck('name')[0]) --}}
-                        <td>{{ $student->gender == 'male' ? 'Laki Laki' : 'Perempuan' }}</td>
+                        <td>{{ $student->gender->value == 'male' ? 'Laki-laki' : 'Perempuan' }}</td>
                         <td>{{ $student->nisn }}</td>
                         <td>
                             {{ $student->modelHasRfid ? $student->modelHasRfid->rfid : '-' }}
