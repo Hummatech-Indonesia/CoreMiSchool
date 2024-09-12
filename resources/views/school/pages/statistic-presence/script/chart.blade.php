@@ -1,5 +1,7 @@
 {{-- statistik siswa --}}
 <script>
+    console.log({!! json_encode($attendanceData) !!});
+    
     var optionsStudent = {
         series: [{
             name: 'Masuk',
