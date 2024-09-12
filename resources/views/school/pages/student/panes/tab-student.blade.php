@@ -16,7 +16,7 @@
                     <select name="class" class="form-select">
                         <option value="">Pilih Kelas</option>
                         @foreach ($classrooms as $classroom)
-                        <option value="{{ $classroom->name }}">{{ $classroom->name }}</option>
+                        <option value="{{ $classroom->name }}" {{ request('class') == $classroom->name ? 'selected' : '' }}>{{ $classroom->name }}</option>
                         @endforeach
                     </select>
                     <div>
