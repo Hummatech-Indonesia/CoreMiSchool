@@ -17,7 +17,7 @@
         chart: {
             type: 'bar',
             height: 350,
-            stacked: true
+            stacked: true,
         },
         plotOptions: {
             bar: {

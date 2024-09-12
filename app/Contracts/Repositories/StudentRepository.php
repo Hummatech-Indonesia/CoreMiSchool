@@ -48,6 +48,11 @@ class StudentRepository extends BaseRepository implements StudentInterface
         return $this->model->query()->count();
     }
 
+    public function orderByPoint(): mixed
+    {
+        return $this->model->query()->orderBy('point', 'desc')->get();
+    }
+
     public function search(Request $request): mixed
     {
         return $this->model->query()

@@ -29,38 +29,8 @@ class AttendanceStudentController extends Controller
 
     public function index(Request $request)
     {
-        $date = $request->input('date', Carbon::today()->format('Y-m-d'));
-        $data = $this->schoolChartService->ChartClassroomAttendance($date);
-        $categories = $data['classrooms']->toArray(); // Mengambil nama kelas dari data
-
-        $classrooms = $this->classroom->whereInSchoolYears($request);
-
-        $attendanceData = $data['attendances']->map(function ($group) {
-            return [
-                'present' => $group->where('status', 'present')->count(),
-                'permit' => $group->where('status', 'permit')->count(),
-                'sick' => $group->where('status', 'sick')->count(),
-                'alpha' => $group->where('status', 'alpha')->count(),
-            ];
-        });
-
-        return view('school.pages.statistic-presence.index', [
-            'classrooms' => $classrooms,
-            'categories' => $categories,
-            'attendanceData' => $attendanceData->reduce(function ($carry, $item) {
-                $carry['present'][] = $item['present'];
-                $carry['permit'][] = $item['permit'];
-                $carry['sick'][] = $item['sick'];
-                $carry['alpha'][] = $item['alpha'];
-                return $carry;
-            }, [
-                'present' => [],
-                'permit' => [],
-                'sick' => [],
-                'alpha' => [],
-            ]),
-            'date' => $date
-        ]);
+        $data = $this->schoolChartService->chartClass($request);
+        return view('school.pages.statistic-presence.index', compact('data'));
     }
 
     public function show(Classroom $classroom, Request $request)

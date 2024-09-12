@@ -37,4 +37,6 @@ interface AttendanceInterface extends GetInterface, StoreInterface, UpdateInterf
     public function userToday(mixed $model, mixed $id): mixed;
     public function whereUser(mixed $id, mixed $model): mixed;
     public function getByUserAndStatus(mixed $model, mixed $id, mixed $status, mixed $condition): mixed;
+
+    public function whereClassroomCount(mixed $id, mixed $day, mixed $status): mixed;
 }

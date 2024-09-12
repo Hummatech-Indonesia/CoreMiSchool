@@ -14,4 +14,5 @@ interface StudentRepairInterface extends GetInterface, StoreInterface, UpdateInt
 {
     public function whereStudent(mixed $id, Request $request): mixed;
     public function count(): mixed;
+    public function repairChart(mixed $year, mixed $month): mixed;
 }

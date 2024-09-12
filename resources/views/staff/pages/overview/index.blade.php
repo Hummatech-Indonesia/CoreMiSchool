@@ -55,17 +55,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse (range(1,4) as $item)
+                        @forelse ($top_violations as $top_violation)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>
-                                    Memandikan burung tukang parkir
+                                    {{ $top_violation->violation }}
                                 </td>
                                 <td>
                                     <span class="badge bg-light-danger text-danger fw-semibold fs-2">+
-                                        5 Point</span>
+                                        {{ $top_violation->point }} Point</span>
                                 </td>
-                                <td>10 Siswa</td>
+                                <td>{{ $top_violation->studentViolations->count() }} Siswa</td>
                             </tr>
                         @empty
                             <tr>
@@ -81,7 +81,7 @@
                     </tbody>
                 </table>
             </div>
-            <button class="btn mb-1 waves-effect waves-light btn-outline-primary w-100" type="button">Lihat Selengkapnya</button>
+            <a class="btn mb-1 waves-effect waves-light btn-outline-primary w-100">Lihat Selengkapnya</a>
         </div>
     </div>
 

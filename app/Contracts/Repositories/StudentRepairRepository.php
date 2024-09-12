@@ -75,4 +75,12 @@ class StudentRepairRepository extends BaseRepository implements StudentRepairInt
             ->whereBetween('created_at', [$startOfWeek, $endOfWeek])
             ->count();
     }
+
+    public function repairChart(mixed $year, mixed $month): mixed
+    {
+        return $this->model->query()
+            ->whereYear('created_at', $year)
+            ->whereMonth('created_at', $month)
+            ->count();
+    }
 }

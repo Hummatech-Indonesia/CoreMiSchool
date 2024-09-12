@@ -98,6 +98,17 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
         return $this->model->query()->whereRelation('classroomStudent', 'classroom_id', $id)->paginate(10);
     }
 
+    public function whereClassroomCount(mixed $id, mixed $day, mixed $status): mixed
+    {
+        return $this->model->query()
+            ->where('status', $status)
+            ->whereDate('created_at', $day)
+            ->whereHas('model', function($query)use($id){
+                $query->where('classroom_id', $id);
+            })
+            ->count();
+    }
+
     public function classAndDate(mixed $classroom_id, Request $request): mixed
     {
         $date = $request->date ?? Carbon::today()->toDateString();

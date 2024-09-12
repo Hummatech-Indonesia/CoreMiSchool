@@ -15,4 +15,5 @@ interface RegulationInterface extends GetInterface, StoreInterface, UpdateInterf
 {
     public function getAll(Request $request);
     public function getRegulation(Request $request): mixed;
+    public function getOrder(): mixed;
 }

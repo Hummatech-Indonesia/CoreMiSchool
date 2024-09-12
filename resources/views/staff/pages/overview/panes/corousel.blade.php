@@ -9,7 +9,7 @@
                             d="M288 320a224 224 0 1 0 448 0a224 224 0 1 0-448 0m544 608H160a32 32 0 0 1-32-32v-96a160 160 0 0 1 160-160h448a160 160 0 0 1 160 160v96a32 32 0 0 1-32 32z" />
                     </svg>
                     <p class="fw-semibold fs-4 mt-2 text-warning mb-1">Jumlah Siswa Melanggar</p>
-                    <h5 class="fw-semibold fs-6 text-warning mb-0"><b>2</b></h5>
+                    <h5 class="fw-semibold fs-6 text-warning mb-0"><b>{{ $studentViolation }}</b></h5>
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
                         </g>
                     </svg>
                     <p class="fw-semibold mt-2 text-success mb-1" style="font-size: 15px"><b>Jumlah Siswa Point Tinggi</b></p>
-                    <h5 class="fw-semibold fs-6 text-success mb-0"><b>7</b></h5>
+                    <h5 class="fw-semibold fs-6 text-success mb-0"><b>{{ $studentHighPoint }}</b></h5>
                 </div>
             </div>
         </div>
@@ -43,7 +43,7 @@
                             d="m227.31 80.23l-51.54-51.54A16.13 16.13 0 0 0 164.45 24h-72.9a16.13 16.13 0 0 0-11.32 4.69L28.69 80.23A16.13 16.13 0 0 0 24 91.55v72.9a16.13 16.13 0 0 0 4.69 11.32l51.54 51.54A16.13 16.13 0 0 0 91.55 232h72.9a16.13 16.13 0 0 0 11.32-4.69l51.54-51.54a16.13 16.13 0 0 0 4.69-11.32v-72.9a16.13 16.13 0 0 0-4.69-11.32M120 80a8 8 0 0 1 16 0v56a8 8 0 0 1-16 0Zm8 104a12 12 0 1 1 12-12a12 12 0 0 1-12 12" />
                     </svg>
                     <p class="fw-semibold fs-4 mt-2 text-danger mb-1">Pelanggaran Minggu Ini</p>
-                    <h5 class="fw-semibold fs-6 text-danger mb-0"><b>4</b></h5>
+                    <h5 class="fw-semibold fs-6 text-danger mb-0"><b>{{ $countViolation }}</b></h5>
                 </div>
             </div>
         </div>
@@ -68,7 +68,7 @@
                         <path fill="currentColor" d="M0 0h48v48H0z" mask="url(#ipSMedicineChest0)" />
                     </svg>
                     <p class="fw-semibold fs-4 mt-2 text-primary mb-1">Perbaikan Minggu Ini</p>
-                    <h5 class="fw-semibold fs-6 text-primary mb-0"><b>6</b></h5>
+                    <h5 class="fw-semibold fs-6 text-primary mb-0"><b>{{ $countRepair }}</b></h5>
                 </div>
             </div>
         </div>

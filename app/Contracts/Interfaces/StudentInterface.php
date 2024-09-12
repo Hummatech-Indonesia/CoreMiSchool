@@ -19,4 +19,5 @@ interface StudentInterface extends GetInterface, StoreInterface, UpdateInterface
     public function getByPoint(Request $request) : mixed;
     public function whereClassroomStudent(mixed $id) : mixed;
     public function highestPoint(mixed $query): mixed;
+    public function orderByPoint(): mixed;
 }

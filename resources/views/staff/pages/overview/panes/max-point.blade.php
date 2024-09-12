@@ -8,7 +8,7 @@
                         <h5 class="fw-semibold text-white mb-4 pt-3">Maks Poin Pada Sekolah</h5>
                     </div>
                     <nav aria-label="breadcrumb">
-                        <span class="badge fw-semibold fs-8 text-primary bg-white p-2 px-3">200</span>
+                        <span class="badge fw-semibold fs-8 text-primary bg-white p-2 px-3">{{ $max_point }}</span>
                     </nav>
                 </div>
             </div>
@@ -28,9 +28,8 @@
                     <h4 class="fs-5 mt-1"><b>Poin Peringatan</b></h4>
                     <nav aria-label="breadcrumb">
                         <ul style="list-style-type:disc; padding-left: 20px; padding-bottom: 10px">
-                            @forelse (range(1, 3) as $schoolPoint)
-                                <li style="padding-bottom: 3px">Poin peringatan 110+ :
-                                    Lorem, ipsum dolor.</li>
+                            @forelse ($schoolPoints as $schoolPoint)
+                                <li style="padding-bottom: 3px">Poin {{ $schoolPoint->point }}+ : {{ $schoolPoint->description }}</li>
                             @empty
                                 <li style="padding-bottom: 3px">Poin peringatan belum ditambahkan</li>
                             @endforelse

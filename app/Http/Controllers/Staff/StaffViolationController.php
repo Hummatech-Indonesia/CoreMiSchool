@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use App\Imports\StudentViolationImport;
 use App\Models\Classroom;
 use App\Models\Student;
+use App\Services\StaffChartService;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -24,16 +25,17 @@ class StaffViolationController extends Controller
     private StudentInterface $student;
     private SchoolPointInterface $schoolPoint;
     private RegulationInterface $regulation;
+    private StaffChartService $chartService;
 
-    public function __construct(StudentViolationInterface $studentViolation, StudentInterface $student, ClassroomInterface $classroom, SchoolPointInterface $schoolPoint, StudentRepairInterface $studentRepair, RegulationInterface $regulation)
+    public function __construct(StudentViolationInterface $studentViolation, StudentInterface $student, ClassroomInterface $classroom, SchoolPointInterface $schoolPoint, StudentRepairInterface $studentRepair, RegulationInterface $regulation, StaffChartService $chartService)
     {
         $this->studentViolation = $studentViolation;
         $this->studentRepair = $studentRepair;
         $this->student = $student;
         $this->classroom = $classroom;
         $this->schoolPoint = $schoolPoint;
-
         $this->regulation = $regulation;
+        $this->chartService = $chartService;
     }
 
     public function index(Request $request)
@@ -47,10 +49,24 @@ class StaffViolationController extends Controller
 
     public function overview(Request $request)
     {
-        // $students = $this->student->getByPoint($request);
-        // $countByClassroomStudent = $this->studentViolation->countByClassroomStudent();
-        // $schoolPoint = $this->schoolPoint->get();
-        return view('staff.pages.overview.index');
+        $schoolPoints = $this->schoolPoint->get();
+        $max_point = $this->schoolPoint->getMaxPoint();
+
+        $countViolation = $this->studentViolation->count('week');
+        $studentViolation = $this->studentViolation->count('student');
+        $countRepair = $this->studentRepair->count();
+        $studentHighPoint = $this->student->highestPoint($max_point);
+        $charts = $this->chartService->violationChart();
+
+        $top_violations = $this->regulation->getOrder();
+        $class = $this->studentViolation->countByClassroomStudent();
+        $classroom = $this->classroom->show($class->classroom_id);
+        $students = $this->student->orderByPoint();
+
+        return view('staff.pages.overview.index', compact(
+            'schoolPoints', 'max_point', 'countViolation', 'studentViolation'
+            , 'countRepair', 'studentHighPoint', 'charts', 'top_violations', 'classroom', 'students'
+        ));
     }
 
     public function show(Classroom $classroom, Request $request)

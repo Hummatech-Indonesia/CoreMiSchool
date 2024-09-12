@@ -10,6 +10,7 @@ use App\Enums\AttendanceEnum;
 use App\Models\Attendance;
 use App\Models\Classroom;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class SchoolChartService
 {
@@ -80,7 +81,7 @@ class SchoolChartService
 
     public function chartStudentAttendance($lates, $sick, $alpha)
     {
-        
+
         return [
             'chartLate' => $lates->count(),
             'chartSick' => $sick->count(),
@@ -100,5 +101,27 @@ class SchoolChartService
             'attendances' => $attendances,
             'classrooms' => $classrooms
         ];
+    }
+
+    public function chartClass(Request $request)
+    {
+        $date = $request->input('date') ? $request->input('date', Carbon::today()->format('Y-m-d')) : today()->format('Y-m-d');
+        $classrooms = $this->classroom->get();
+
+        $result = [];
+        foreach ($classrooms as $classroom) {
+            $result[] = [
+                'classroom' => $classroom->name,
+                'data' => [
+                    'present' => $this->attendance->whereClassroomCount($classroom->id, $date, AttendanceEnum::PRESENT),
+                    'permit' => $this->attendance->whereClassroomCount($classroom->id, $date, AttendanceEnum::PERMIT),
+                    'sick' => $this->attendance->whereClassroomCount($classroom->id, $date, AttendanceEnum::SICK),
+                    'alpha' => $this->attendance->whereClassroomCount($classroom->id, $date, AttendanceEnum::ALPHA),
+                ]
+            ];
+        }
+
+        return $result;
+
     }
 }
