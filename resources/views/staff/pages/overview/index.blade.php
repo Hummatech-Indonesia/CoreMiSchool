@@ -19,51 +19,7 @@
     @include('staff.pages.overview.panes.corousel')
 
     <div class="row d-flex align-items-stretch">
-        <div class="col-lg-3">
-            <div class="card shadow-none position-relative overflow-hidden h-75"
-                style="background: linear-gradient(to bottom, #5D87FF, #5D87FF);">
-                <div class="card-body px-4 py-3 position-relative">
-                    <div class="row align-items-center">
-                        <div class="col-12">
-                            <div class="d-flex justify-content-between mb-2">
-                                <h5 class="fw-semibold text-white mb-4 pt-3">Maks Poin Pada Sekolah</h5>
-                            </div>
-                            <nav aria-label="breadcrumb">
-                                <span class="badge fw-semibold fs-8 text-primary bg-white p-2 px-3">200</span>
-                            </nav>
-                        </div>
-                    </div>
-                    <img src="{{ asset('assets/images/background/buble-1.png') }}" alt="Image"
-                        class="position-absolute"
-                        style="bottom: 0; right: 0; width: 130px; height: auto; margin-bottom: -10px; margin-right: -10px;">
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-9">
-            <div class="card border border-grey shadow-none position-relative overflow-hidden h-75"
-                style="background-color: #FEF5E5;">
-                <div class="card-body px-4 py-4">
-                    <div class="row align-items-center">
-                        <div class="col-9">
-                            <h4 class="fs-5 mt-1"><b>Poin Peringatan</b></h4>
-                            <nav aria-label="breadcrumb">
-                                <ul style="list-style-type:disc; padding-left: 20px; padding-bottom: 10px">
-                                    @forelse (range(1, 3) as $schoolPoint)
-                                        <li style="padding-bottom: 3px">Poin peringatan 110+ :
-                                            Lorem, ipsum dolor.</li>
-                                    @empty
-                                        <li style="padding-bottom: 3px">Poin peringatan belum ditambahkan</li>
-                                    @endforelse
-                                    <li style="padding-bottom: 3px">Guru diharuskan untuk menindak lanjuti siswa yang
-                                        mempunyai banyak poin Pelanggaran</li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @include('staff.pages.overview.panes.max-point')
     </div>
 
     <div class="col-lg-12 d-flex">
@@ -75,7 +31,68 @@
             </div>
         </div>
     </div>
-    
+
+    <div class="card border shadow">
+        <div class="card-body">
+            <h5 class="mb-4"><b>Pelanggaran Terpopuler Bulan Ini
+                    <span class="ms-2 me-2">|</span>
+                    Januari</b></h5>
+
+            <div class="table-responsive rounded-2 mb-4">
+                <table class="table border text-nowrap customize-table mb-0 align-middle">
+                    <thead class="text-dark fs-4">
+                        <tr class="">
+                            <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">No
+                            </th>
+                            <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Nama
+                                Pelanggaran
+                            </th>
+                            <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Point
+                            </th>
+                            <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Jumlah
+                                Siswa Melanggar
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse (range(1,4) as $item)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>
+                                    Memandikan burung tukang parkir
+                                </td>
+                                <td>
+                                    <span class="badge bg-light-danger text-danger fw-semibold fs-2">+
+                                        5 Point</span>
+                                </td>
+                                <td>10 Siswa</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="7" class="text-center align-middle">
+                                    <div class="d-flex flex-column justify-content-center align-items-center">
+                                        <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt=""
+                                            width="300px">
+                                        <p class="fs-5 text-dark text-center mt-2">Belum ada data</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+            <button class="btn mb-1 waves-effect waves-light btn-outline-primary w-100" type="button">Lihat Selengkapnya</button>
+        </div>
+    </div>
+
+    <h4 class=""><b>Statistik Kelas Pelanggar Terbanyak</b></h4>
+
+    @include('staff.pages.overview.panes.violation-class')
+
+    <h4 class=""><b>Data Point Siswa</b></h4>
+    @include('staff.pages.overview.panes.point-student')
+
+
 @endsection
 
 @section('script')
