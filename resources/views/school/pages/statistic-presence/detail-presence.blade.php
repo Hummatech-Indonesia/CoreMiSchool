@@ -63,7 +63,7 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $attendance->student->user->name }}</td>
-                    <td>{{ Carbon\Carbon::parse($attendance->attendances->first()->checkin)->format('H.i') }}</td>
+                    <td>{{ $attendance->attendances->first()->checkin ? Carbon\Carbon::parse($attendance->attendances->first()->checkin)->format('H.i') : '-' }}</td>
                     <td>{{ $attendance->attendances->first()->checkout ? Carbon\Carbon::parse($attendance->attendances->first()->checkout)->format('H.i') : '-' }}</td>
                     <td>{{ $attendance->attendances->first()->point }}</td>
                     <td>
