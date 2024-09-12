@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Schools;
 
+use App\Contracts\Interfaces\ClassroomInterface;
 use App\Models\Student;
 use App\Models\Classroom;
 use App\Models\SchoolYear;
@@ -35,8 +36,13 @@ class StudentController extends Controller
     private ClassroomStudentService $classroomService;
     private ModelHasRfidInterface $modelHasRfid;
     private SchoolYearInterface $schoolYear;
+    private ClassroomInterface $classroom;
 
-    public function __construct(UserInterface $user, StudentInterface $student, StudentService $service, ReligionInterface $religion, ClassroomStudentInterface $classroomStudent, ClassroomStudentService $classroomService, ModelHasRfidInterface $modelHasRfid, SchoolYearInterface $schoolYear)
+    public function __construct(
+        UserInterface $user, StudentInterface $student, StudentService $service, 
+        ReligionInterface $religion, ClassroomStudentInterface $classroomStudent, 
+        ClassroomStudentService $classroomService, ModelHasRfidInterface $modelHasRfid, 
+        SchoolYearInterface $schoolYear, ClassroomInterface $classroom)
     {
         $this->user = $user;
         $this->student = $student;
@@ -46,6 +52,7 @@ class StudentController extends Controller
         $this->classroomService = $classroomService;
         $this->modelHasRfid = $modelHasRfid;
         $this->schoolYear = $schoolYear;
+        $this->classroom = $classroom;
     }
 
     /**
@@ -56,7 +63,7 @@ class StudentController extends Controller
         $students = $this->student->search($request);
         $alumnus = $this->classroomStudent->getAlumnus($request);
         $religions = $this->religion->get();
-        $classrooms = $this->classroomStudent->get();
+        $classrooms = $this->classroom->get();
 
         return view('school.pages.student.index', compact('students', 'religions', 'alumnus', 'classrooms'));
     }
