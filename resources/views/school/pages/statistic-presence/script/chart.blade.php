@@ -1,20 +1,20 @@
 {{-- statistik siswa --}}
 <script>
-    console.log({!! json_encode($attendanceData) !!});
-    
+
+
     var optionsStudent = {
         series: [{
             name: 'Masuk',
-            data: {!! json_encode($attendanceData['present']) !!}
+            data: 0
         }, {
             name: 'Izin',
-            data: {!! json_encode($attendanceData['permit']) !!}
+            data: 0
         }, {
             name: 'Sakit',
-            data: {!! json_encode($attendanceData['sick']) !!}
+            data: 0
         }, {
             name: 'Alfa',
-            data: {!! json_encode($attendanceData['alpha']) !!}
+            data: 0
         }],
         chart: {
             type: 'bar',
@@ -31,7 +31,7 @@
             colors: ['#fff']
         },
         xaxis: {
-            categories: {!! json_encode(array_values($categories)) !!}, // Pastikan kategori ditampilkan dengan benar
+            categories: 'categoris',
             labels: {
                 show: false
             }
