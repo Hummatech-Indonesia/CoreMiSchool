@@ -45,7 +45,8 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link {{ request()->routeIs('teacher.journals.index') || request()->routeIs('teacher.journals.create') || request()->routeIs('teacher.journals.show') || request()->routeIs('teacher.journals.edit') ? 'active' : '' }}" href="{{ route('teacher.journals.index') }}" aria-expanded="false">
+                        <a class="sidebar-link {{ request()->routeIs('teacher.journals.index') || request()->routeIs('teacher.journals.create') || request()->routeIs('teacher.journals.show') || request()->routeIs('teacher.journals.edit') ? 'active' : '' }}"
+                            href="{{ route('teacher.journals.index') }}" aria-expanded="false">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 16">
                                     <g fill="currentColor">
@@ -64,9 +65,11 @@
 
                     @if (App\Models\Classroom::where('employee_id', auth()->user()->employee->id)->exists())
                         <li class="sidebar-item">
-                            <a class="sidebar-link {{ request()->routeIs('teacher.list-student-class.index') ? 'active' : '' }}" href="{{ route('teacher.list-student-class.index') }}" aria-expanded="false">
+                            <a class="sidebar-link {{ request()->routeIs('teacher.list-student-class.index') ? 'active' : '' }}"
+                                href="{{ route('teacher.list-student-class.index') }}" aria-expanded="false">
                                 <span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                        viewBox="0 0 24 24">
                                         <path fill="none" stroke="currentColor" stroke-linecap="round"
                                             stroke-linejoin="round" stroke-width="1.5"
                                             d="M17.928 19.634h2.138a1.165 1.165 0 0 0 1.116-1.555a6.851 6.851 0 0 0-6.117-3.95m0-2.759a3.664 3.664 0 0 0 3.665-3.664a3.664 3.664 0 0 0-3.665-3.674m-1.04 16.795a1.908 1.908 0 0 0 1.537-3.035a8.026 8.026 0 0 0-6.222-3.196a8.026 8.026 0 0 0-6.222 3.197a1.909 1.909 0 0 0 1.536 3.034zM9.34 11.485a4.16 4.16 0 0 0 4.15-4.161a4.151 4.151 0 0 0-8.302 0a4.16 4.16 0 0 0 4.151 4.16" />
@@ -243,7 +246,8 @@
                         <span class="hide-menu">Jurnal</span>
                     </li>
                     <li class="sidebar-item ">
-                        <a class="sidebar-link {{ request()->routeIs('employee.journal.index') || request()->routeIs('employee.journal.detail') ? 'active' : '' }}" href="{{ route('employee.journal.index') }}" aria-expanded="false">
+                        <a class="sidebar-link {{ request()->routeIs('employee.journal.index') || request()->routeIs('employee.journal.detail') ? 'active' : '' }}"
+                            href="{{ route('employee.journal.index') }}" aria-expanded="false">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 16">
                                     <g fill="currentColor">
@@ -272,15 +276,28 @@
                     <li class="sidebar-item ">
                         <a class="sidebar-link" href="{{ route('employee.violation.overview') }}" aria-expanded="false">
                             <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round"
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
                                     class="icon icon-tabler icons-tabler-outline icon-tabler-activity-heartbeat">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                     <path d="M3 12h4.5l1.5 -6l4 12l2 -9l1.5 3h4.5" />
                                 </svg>
                             </span>
                             <span class="hide-menu">Overview</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item ">
+                        <a class="sidebar-link" href="/employee/detail-student-violation" aria-expanded="false">
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 20 20">
+                                    <path fill="currentColor"
+                                        d="M4.5 5.75a2.25 2.25 0 1 1 4.5 0a2.25 2.25 0 0 1-4.5 0M6.75 2.5a3.25 3.25 0 1 0 0 6.5a3.25 3.25 0 0 0 0-6.5M1.5 12a2 2 0 0 1 2-2H10a2 2 0 0 1 .993.263q-.416.346-.758.765A1 1 0 0 0 10 11H3.5a1 1 0 0 0-1 1v.078l.007.083a2.95 2.95 0 0 0 .498 1.336C3.492 14.201 4.513 15 6.75 15c.954 0 1.687-.145 2.252-.367q.013.525.12 1.02C8.476 15.87 7.695 16 6.75 16c-2.513 0-3.867-.92-4.568-1.934a3.95 3.95 0 0 1-.67-1.807a3 3 0 0 1-.012-.175zM13 6.5a1.5 1.5 0 1 1 3 0a1.5 1.5 0 0 1-3 0M14.5 4a2.5 2.5 0 1 0 0 5a2.5 2.5 0 0 0 0-5M19 14.5a4.5 4.5 0 1 1-9 0a4.5 4.5 0 0 1 9 0M14.5 12a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 1 0v-2a.5.5 0 0 0-.5-.5m0 5.125a.625.625 0 1 0 0-1.25a.625.625 0 0 0 0 1.25" />
+                                </svg>
+                            </span>
+                            <span class="hide-menu">Tambah Pelanggaran</span>
                         </a>
                     </li>
 

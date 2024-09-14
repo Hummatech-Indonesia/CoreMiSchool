@@ -19,10 +19,10 @@
     <!-- Core CSS -->
     <link id="themeColors" rel="stylesheet" href="{{ asset('admin_assets/dist/css/style.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin_assets/dist/libs/select2/dist/css/select2.min.css') }}">
-    @yield('style')
+    <link rel="stylesheet" href="{{ asset('admin_assets/dist/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    @yield('style')
 
     <style>
         /* Menata header */
@@ -46,6 +46,7 @@
             transform: translateX(-50%);
             font-size: 1.5rem;
             font-weight: bold;
+            color: #424242;
         }
 
         .header-logo {
