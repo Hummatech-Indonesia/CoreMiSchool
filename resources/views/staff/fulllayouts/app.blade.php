@@ -37,7 +37,8 @@
             top: 0;
             width: 100%;
             z-index: 1030;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan shadow */
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            /* Tambahkan shadow */
         }
 
         .header-title {
@@ -102,16 +103,18 @@
     <!-- Header -->
     <header class="app-header">
         <!-- Logo di Sebelah Kiri -->
-        <a class="navbar-brand p-0 m-0" href="#">
-            <img src="{{ asset('assets/images/logo/logo-miscool.png') }}" alt="Logo" class="header-logo">
+        <a class="navbar-brand p-0 m-0" href="javascript:void(0)">
+            <img src="{{ asset('assets/images/logo/logo-miscool.png') }}" alt="Logo"
+                class="header-logo d-none d-md-block">
         </a>
 
         <!-- Judul di Tengah -->
         <div class="header-title">
-           @yield('title')
+            @yield('title')
         </div>
 
         <!-- SVG Icon di Sebelah Kanan -->
+
         <div>
             <a href="{{ route('employee.dashboard') }}" class="nav-link p-0 m-0">
                 <svg xmlns="http://www.w3.org/2000/svg" class="header-svg" fill="none" viewBox="0 0 24 24"
@@ -121,6 +124,7 @@
                 </svg>
             </a>
         </div>
+        {{-- @include('staff.fulllayouts.header') --}}
     </header>
 
     <!--  Background Section (Top Half) -->
