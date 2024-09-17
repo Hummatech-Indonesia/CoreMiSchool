@@ -23,7 +23,7 @@ Route::middleware('auth')->prefix('employee')->name('employee.')->group(function
         Route::post('student-repair/{student}', [StudentRepairController::class, 'single_store'])->name('single.student-repair');
         Route::resource('student-repair', StudentRepairController::class);
 
-        Route::prefix('student-repair')->name('student-repair.')->group(function (){    
+        Route::prefix('student-repair')->name('student-repair.')->group(function () {
             Route::put('approve/{studentRepair}', [StudentRepairController::class, 'approved'])->name('approved');
             Route::put('reject/{studentRepair}', [StudentRepairController::class, 'reject'])->name('reject');
             Route::post('import', [StudentRepairController::class, 'import'])->name('import');
@@ -40,6 +40,10 @@ Route::middleware('auth')->prefix('employee')->name('employee.')->group(function
 
     // fitur buku tamu
     Route::resource('guestbook', GuestBookController::class);
+
+    Route::get('rfid-student-violation', function () {
+        return view('staff.pages.single-violation.tab-rfid-violation');
+    })->name('rfid-student-violation`');
 
     // fitur jurnal
     Route::resource('journal', EmployeeJournalController::class)->except('show');
