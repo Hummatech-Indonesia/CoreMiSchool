@@ -102,19 +102,19 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card border">
-                <div class="card-body d-flex justify-content-between align-items-center">
-                    <div>
+                <div class="card-body d-flex flex-column flex-lg-row justify-content-lg-between align-items-lg-center">
+                    <div class="mb-3 mb-lg-0">
                         <h4 class="mb-3"><b>Absensi Hari Ini:</b></h4>
-                        <h4>{{ $single_attendance ? \Carbon\Carbon::parse($single_attendance->created_at)->translatedFormat('d F Y') : 'Belum Absen' }} {{ $single_attendance ? ' - '. \Carbon\Carbon::parse($single_attendance->checkin)->format('H:i') : '' }}</h4>
+                        <h4>{{ $single_attendance ? \Carbon\Carbon::parse($single_attendance->created_at)->translatedFormat('d F Y') : '' }} {{ $single_attendance ? ' - '. \Carbon\Carbon::parse($single_attendance->checkin)->format('H:i') : '' }}</h4>
                     </div>
-                    <div class="badge {{ $single_attendance ? ($single_attendance->status == 'present' ? 'bg-light-success text-success' : ($status_attendance->status == 'sick' ? 'bg-light-warning text-warning' : 'bg-light-danger text-danger')) : 'bg-light-danger text-danger' }} fs-5 text-nowrap py-3 px-4 rounded-3 w-100"
+                    <div class="badge {{ $single_attendance ? ($single_attendance->status == 'present' ? 'bg-light-success text-success' : ($status_attendance->status == 'sick' ? 'bg-light-warning text-warning' : 'bg-light-danger text-danger')) : 'bg-light-danger text-danger' }} fs-5 text-nowrap py-3 px-2 rounded-3 w-100 w-lg-auto"
                         style="max-width: 150px; overflow: hidden; text-overflow: ellipsis;">
                         {{ $single_attendance ? $single_attendance->status->label() : 'Belum Absen'}}
                     </div>
                 </div>
-
             </div>
         </div>
+
     </div>
 
     <div class="row mb-4">
@@ -197,17 +197,17 @@
                 <div class="card border">
                     <div class="card-body">
                         <h5 class="mb-4"><b>Wali Kelasmu</b></h5>
-                        <div class="d-flex align-items-center">
+                        <div class="d-flex flex-column flex-sm-row align-items-center">
                             <img src="{{ asset('admin_assets/dist/images/profile/user-4.jpg') }}" alt=""
-                                class="rounded-circle" style="width: 100px; height: 100px;">
+                                class="rounded-circle img-fluid mb-2" style="max-width: 100px; height: auto;">
 
-                            <div class="ms-3">
+                            <div class="ms-3 text-center text-sm-start">
                                 <h4><b>{{ $studentClasses->classroom->employee->user->name }}</b></h4>
                                 <h6>Tahun Ajaran {{ $studentClasses->classroom->schoolYear->school_year }}</h6>
 
-                                <div class="d-flex flex-wrap">
+                                <div class="d-flex flex-wrap justify-content-center justify-content-sm-start">
                                     @forelse ($studentClasses->classroom->employee->teacherSubjects as $data)
-                                        <span class="mb-1 badge font-medium bg-light-primary text-primary me-2"
+                                        <span class="mb-1 badge font-medium bg-light-primary text-primary"
                                             style="font-size: 14px;">
                                             {{ $data->subject->name }}
                                         </span>
@@ -223,6 +223,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
 
         <div class="col-lg-8">
