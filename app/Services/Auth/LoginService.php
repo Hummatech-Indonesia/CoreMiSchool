@@ -3,6 +3,11 @@
 namespace App\Services\Auth;
 
 use App\Http\Requests\LoginRequest;
+use App\Models\User;
+use Illuminate\Support\Str;
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Validation\ValidationException;
 use SebastianBergmann\Type\VoidType;
 
@@ -20,6 +25,7 @@ class   LoginService
     public function handleLogin(LoginRequest $request)
     {
         $data = $request->validated();
+
         if (auth()->attempt(['email' => $data['email'], 'password' => $data['password']])) {
         auth()->user();
 
@@ -42,7 +48,36 @@ class   LoginService
                     break;
             }
         } else {
-            return redirect()->back()->withErrors(['password' => 'Password salah'])->withInput();
+            $apiResponse = Http::post(config('api.api_login'), [
+                'email' => $data['email'],
+                'password' => $data['password'],
+            ]);
+
+            if ($apiResponse->successful()) {
+                $responseData = $apiResponse->json();
+                if ($responseData['status'] == true && isset($responseData['data']['token'])) {
+                    session(['api_token' => $responseData['data']['token']]);
+                    $userApi = $responseData['data']['user'];
+
+                    $user = User::create([
+                        'id' => $userApi['id'],
+                        'name' => $userApi['name'],
+                        'slug' => Str::slug($userApi['name']),
+                        'email' => $userApi['email'],
+                        'password' => $responseData['data']['password'],
+                    ]);
+
+                    $user->assignRole('school');
+                    Auth::login($user);
+                    
+                    return to_route('school.index');
+                } else {
+                    return redirect()->back()->withErrors(['login' => 'login api gagal'])->withInput();
+                }
+            } else {
+                return redirect()->back()->withErrors(['password' => 'password salah'])->withInput();
+            }
+
         }
     }
 }

@@ -54,4 +54,9 @@ class UserRepository extends BaseRepository implements UserInterface
     {
         return $this->model->query()->findOrFail($id);
     }
+
+    public function showWithSlug(mixed $slug): mixed
+    {
+        return $this->model->query()->where('slug', $slug)->first();
+    }
 }

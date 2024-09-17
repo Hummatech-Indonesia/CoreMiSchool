@@ -27,8 +27,7 @@ class School extends Model
     HasManySchoolYear,HasManyLessonHour,
     HasManyLevelClass,MorphManyRfid,
     HasManyAttendanceRule,HasManyExtracurricular,
-    HasManyModelHasRfid,
-    HasManySemester;
+    HasManyModelHasRfid;
 
     protected $fillable = [
         'npsn',
