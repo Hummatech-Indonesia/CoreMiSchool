@@ -17,9 +17,10 @@
             height: 350
         },
         dataLabels: {
-            enabled: false // Menyembunyikan persentase di dalam chart
+            enabled: false 
         },
-        labels: ['Izin', 'Masuk', 'Sakit', 'Alpha'],
+        // labels: ['Izin', 'Masuk', 'Sakit', 'Alpha'],
+        labels: false,
         responsive: [{
             breakpoint: 480,
             options: {
