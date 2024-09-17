@@ -27,4 +27,5 @@ interface ModelHasRfidInterface extends GetInterface, StoreInterface, UpdateOrCr
     public function searchMaster(Request $request): mixed;
     public function getStudentRfid(): mixed;
     public function delete(string $model_type, mixed $model_id) : mixed;
+    public function count(): mixed;
 }

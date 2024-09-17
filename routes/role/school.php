@@ -51,7 +51,7 @@ Route::middleware('auth')->prefix('school')->name('school.')->group(function () 
         Route::get('edit', [SchoolDashboardController::class, 'edit'])->name('settings-information.edit');
         Route::put('update/{school}', [SchoolController::class, 'update'])->name('settings-information.update');
     });
-    
+
     Route::get('clock-settings', fn() => view('school.pages.attendance.clock-settings'))->name('clock-settings.index');
     Route::get('get-clock-settings', [AttendanceRuleController::class, 'index'])->name('clock-settings.get');
     Route::post('add-clock-settings/{day}/{role}', [AttendanceRuleController::class, 'store'])->name('clock-settings.store');
@@ -64,9 +64,9 @@ Route::middleware('auth')->prefix('school')->name('school.')->group(function () 
     Route::resource('violation', RegulationController::class);
     Route::get('violation-download', [RegulationController::class, 'download'])->name('violation.download');
     Route::post('violation-import', [RegulationController::class, 'import'])->name('violation.import');
-    
+
     Route::resource('employees', EmployeeController::class);
-    
+
     // cud and import teacher
     Route::post('teacher', [TeacherController::class, 'store'])->name('teacher.store');
     Route::get('teacher/{slug}', [TeacherController::class, 'show'])->name('teacher.show');
@@ -78,25 +78,25 @@ Route::middleware('auth')->prefix('school')->name('school.')->group(function () 
     Route::get('access-violation', [ViolationAccessController::class, 'index'])->name('access-violation.index');
     Route::post('account-acceess', [ViolationAccessController::class, 'store'])->name('account-access-violation');
     Route::delete('delete-account-acceess/{user}', [ViolationAccessController::class, 'destroy'])->name('delete-access.violation');
-    
+
     //TeacherSubject
     Route::post('teacher-subject/{employee}', [TeacherSubjectController::class, 'store'])->name('teacher-subject.store');
     Route::delete('delete-teacher-subject/{teacherSubject}', [TeacherSubjectController::class, 'destroy'])->name('teacher-subject.destroy');
-    
+
     // cud and import staff
     Route::post('staff', [StaffController::class, 'store'])->name('staff.store');
     Route::put('staff/{employee}', [StaffController::class, 'update'])->name('staff.update');
     Route::delete('staff/{employee}', [StaffController::class, 'destroy'])->name('staff.destroy');
     Route::post('import-staff/', [StaffController::class, 'import'])->name('staff.import');
     Route::get('download-template-staff/', [StaffController::class, 'downloadTemplate'])->name('staff.download-template');
-    
+
     //import student
     Route::post('import-student/{classroom}', [StudentController::class, 'import'])->name('student.import');
     Route::get('download-template-student/', [StudentController::class, 'downloadTemplate'])->name('student.download-template');
-    Route::get('download-template-class-student', [StudentController::class, 'downloadTemplateClass2'])->name('class.download.template');    
+    Route::get('download-template-class-student', [StudentController::class, 'downloadTemplateClass2'])->name('class.download.template');
     Route::resource('students', StudentController::class)->except(['store']);
     Route::post('students/{classroom}', [StudentController::class, 'store'])->name('students.store');
-    
+
     Route::resource('subject', SubjectController::class);
     Route::resource('school-years', SchoolYearController::class);
     Route::resource('lesson-hours', LessonHourController::class)->except(['store']);
@@ -116,22 +116,22 @@ Route::middleware('auth')->prefix('school')->name('school.')->group(function () 
     Route::put('update-classroom/{classroom}', [ClassroomStudentController::class, 'update'])->name('student-classroom.update');
     Route::patch('school-years/{schoolYear}/active', [SchoolYearController::class, 'setActive'])->name('school-year.setActive');
     Route::post('import-class-student', [ClassroomStudentController::class, 'import'])->name('class.student.import');
-    
+
     Route::prefix('semesters')->name('semesters.')->group(function () {
         Route::get('/', [SemesterController::class, 'index'])->name('index');
         Route::post('/', [SemesterController::class, 'store'])->name('store');
     });
-    
+
     // kehadiran siswa
     Route::get('student-attendance', [SchoolsAttendanceController::class, 'class'])->name('student-attendance.index');
     Route::get('student-attendance/{classroom}', [SchoolsAttendanceController::class, 'student'])->name('student-attendance.show');
     Route::get('export/{classroom}', [SchoolsAttendanceController::class, 'expotStudent'])->name('attendance-student-export.show');
     Route::get('student-attendance/export/{classroom}', [SchoolsAttendanceController::class, 'export_student'])->name('student-attendance.export');
-    
+
     // kehadiran guru
     Route::get('teacher-attendance', [SchoolsAttendanceController::class, 'teacher'])->name('teacher-attendance.index');
     Route::get('teacher-attendance/export', [AttendanceEmployeeController::class, 'export'])->name('teacher-attendance.export');
-    
+
     // get classroom students by classroom id
     Route::get('classroom-students', [ClassroomStudentController::class, 'show'])->name('classroom-students.show');
 
@@ -145,23 +145,23 @@ Route::middleware('auth')->prefix('school')->name('school.')->group(function () 
         // return (new InvoicesExport)->download('data.xlsx');
         return Excel::download(new JadwalPelajaranExportNew, 'template_jadwal_pelajaran.xlsx');
     })->name('classroom.template.schedule');
-    
+
     Route::post('importSpreadsheet', [ImportController::class, 'importSpreadsheet'])->name('import-spreadsheet');
-    
+
     // get teacher subject by subject id
     Route::get('teacher-subject/{subject}', [TeacherSubjectController::class, 'show'])->name('teacher-subject.show');
     Route::get('export/attendance-employee', [AttendanceEmployeeController::class, 'export'])->name('export.attendance.employee');
-    
+
     Route::get('guest-book', [GuestBookController::class, 'index'])->name('guest-book.index');
     Route::get('journal-staff', [EmployeeJournalController::class, 'show'])->name('employee-journal.show');
     Route::get('export-journal-staff', [EmployeeJournalController::class, 'export'])->name('employee-journal.export');
     Route::get('export-journal-staff/download', [EmployeeJournalController::class, 'downloadJournal'])->name('employee-journal.download');
     Route::get('journal-staff/export', [EmployeeJournalController::class, 'download_journal'])->name('export-journal-staff.export');
-    
+
     // alumni
     Route::get('class-alumni', [ClassroomController::class, 'classroomAlumni'])->name('class-alumni.index');
     Route::get('alumni/{classroom}', [ClassroomController::class, 'studentAlumni'])->name('alumni.index');
-    
+
     // rfid
     Route::resource('rfid', RfidController::class)->except(['index', 'create', 'show', 'edit']);
     Route::get('rfid-school', [ModelHasRfidController::class, 'index'])->name('rfid-school.index');

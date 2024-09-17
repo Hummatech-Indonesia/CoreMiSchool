@@ -22,7 +22,6 @@ class StoreSemesterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'school_id' => 'required',
             'type' => 'required'
         ];
     }
