@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Interfaces\ClassroomStudentInterface;
 use App\Models\ModelHasRfid;
 use Illuminate\Http\Request;
 use F9Web\ApiResponseHelpers;
@@ -18,11 +19,13 @@ class ModelHasRfidController extends Controller
     use ApiResponseHelpers;
     private ModelHasRfidInterface $modelHasRfid;
     private ModelHasRfidService $service;
+    private ClassroomStudentInterface $classroomStudent;
     private SchoolInterface $school;
 
-    public function __construct(ModelHasRfidInterface $modelHasRfid, ModelHasRfidService $service, SchoolInterface $school)
+    public function __construct(ModelHasRfidInterface $modelHasRfid, ModelHasRfidService $service, SchoolInterface $school, ClassroomStudentInterface $classroomStudent)
     {
         $this->modelHasRfid = $modelHasRfid;
+        $this->classroomStudent = $classroomStudent;
         $this->service = $service;
         $this->school = $school;
     }
@@ -97,9 +100,15 @@ class ModelHasRfidController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ModelHasRfid $modelHasRfid)
+    public function show(Request $request)
     {
-        //
+        $modelHasRfid = $this->modelHasRfid->whereRfid($request->rfid);
+
+        if (!$modelHasRfid) return redirect()->back()->with('warning', 'Rfid yang anda inputkan bukan siswa');
+        if ($modelHasRfid->model_type == "App\Models\ClassroomStudent") {
+            $classroomStudent = $this->classroomStudent->show($modelHasRfid->model_id);
+            return view('staff.pages.single-violation.detail-student', compact('classroomStudent'));
+        }
     }
 
     /**

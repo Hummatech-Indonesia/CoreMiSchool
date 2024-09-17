@@ -157,9 +157,11 @@
                         style="max-width: 40%; height: auto; margin-top: 20px;">
                 </div>
                 <h4 class="mb-3">RFID :</h4>
-                <form>
+                <form action="{{ route('employee.post-rfid.violation') }}" method="post">
+                    @method('post')
+                    @csrf
                     <div class="form-group">
-                        <input type="text" id="rfidInput" class="form-control" name=""
+                        <input type="text" id="rfidInput" class="form-control" name="rfid"
                             placeholder="Masukkan rfid siswa" style="background-color: #F5F5F5; color: #333;">
                     </div>
                 </form>

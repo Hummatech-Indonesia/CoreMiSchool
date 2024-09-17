@@ -17,7 +17,7 @@
 
 @section('content')
     <h2 class="text-white ms-3"><b>Catatan Pelanggaran & Perbaikan</b></h2>
-    <h4 class="text-white ms-3 mb-5">Ardian Supriadi Jaga Kali Brantas </h4>
+    <h4 class="text-white ms-3 mb-5">{{ $classroomStudent->student->user->name }}</h4>
 
     <div class="row">
         <div class="col-lg-3">
@@ -26,10 +26,10 @@
                     <div class="card-body">
                         <h5><b>Profil Siswa</b></h5>
                         <div class="text-center">
-                            <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}" alt=""
+                            <img src="{{ $classroomStudent->student->image ? asset('storage/'. $classroomStudent->student->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}" alt=""
                                 class="img-fluid rounded-circle" width="125" height="125">
                             <div class="d-flex align-items-center justify-content-center my-4 gap-3">
-                                <h5><b>Ardian Supriadi Jago Kali</b></h5>
+                                <h5><b>{{ $classroomStudent->student->user->name }}</b></h5>
                             </div>
                         </div>
                         <div class="row">
@@ -44,21 +44,21 @@
                                 <h6 class="label-profile"><b>Kelas</b>:</h6>
                             </div>
                             <div class="col-7 d-flex align-items-center">
-                                <h6>XI RPL 1</h6>
+                                <h6>{{ $classroomStudent->classroom->name }}</h6>
                                 <hr class="full-width-hr">
                             </div>
                             <div class="col-5 d-flex align-items-center">
                                 <h6 class="label-profile"><b>Jenis Kelamin</b>:</h6>
                             </div>
                             <div class="col-7 d-flex align-items-center">
-                                <h6>Laki - Laki</h6>
+                                <h6>{{ $classroomStudent->student->gender->label() }}</h6>
                                 <hr class="full-width-hr">
                             </div>
                             <div class="col-5 d-flex align-items-center">
                                 <h6 class="label-profile"><b>Agama</b>:</h6>
                             </div>
                             <div class="col-7 d-flex align-items-center">
-                                <h6>Islam</h6>
+                                <h6>{{ $classroomStudent->student->religion->name }}</h6>
                                 <hr class="full-width-hr">
                             </div>
                         </div>
@@ -86,7 +86,7 @@
                             style="background: linear-gradient(135deg, #51B6FF, #4F7CFF); color: #fff;">
                             <div class="card-body p-3" style="background: none;">
                                 <h6 class="text-light text-center" style="font-size: 24px"><b>Jumlah Point</b></h6>
-                                <h1 class="text-light text-center" style="font-size: 48px"><b>40</b></h1>
+                                <h1 class="text-light text-center" style="font-size: 48px"><b>{{ $classroomStudent->student->point }}</b></h1>
                                 <p class="card-text text-center" style="font-size: 13px">Siswa dapat melakukan perbaikan
                                     untuk
                                     mengurangi poin.</p>
