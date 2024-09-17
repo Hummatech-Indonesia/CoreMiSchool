@@ -75,8 +75,7 @@
         <div id="employee-content" class="tab-pane fade">
             <div class="note-has-grid row">
                 <div class="col-12">
-                    <h4>Pegawai Content</h4>
-                    <p>This is the content for the "Pegawai" tab. Add your content here.</p>
+                    {{-- @include('school.pages.dashboard.panes.employee-tab.index') --}}
                 </div>
             </div>
         </div>
@@ -85,7 +84,7 @@
     <h4 class="mb-4"><b>Data Jurnal Guru Hari Ini / </b>
         <span class="mb-1 badge font-medium bg-light-primary text-primary" style="font-size: ">
             <b>{{ \Carbon\Carbon::now()->translatedFormat('d F Y') }}</b>
-        </span>        
+        </span>
     </h4>
 
     @include('school.pages.dashboard.panes.teacher-journal')
