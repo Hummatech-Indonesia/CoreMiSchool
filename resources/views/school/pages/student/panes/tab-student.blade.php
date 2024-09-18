@@ -1,13 +1,13 @@
 <div class="card card-body">
     <h4>Daftar Siswa</h4>
-    <div class="row mb-3 mt-3 d-flex justify-content-between">
-        <div class="col-lg-8 col-md-12 mb-3">
-            <form class="d-flex gap-2" action="/school/students">
-                <div class="position-relative">
+    <div class="row mb-3 mt-3">
+        <div class="col-lg-6 col-md-12 mb-3">
+            <form class="d-flex flex-column flex-md-row gap-2" action="/school/students">
+                <div class="position-relative flex-grow-1">
                     <input type="text" name="name" class="form-control product-search ps-5" id="input-search" placeholder="Cari..." value="{{ old('name', request('name')) }}">
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                 </div>
-                <div class="d-flex gap-2">
+                <div class="d-flex flex-column flex-md-row gap-2">
                     <select name="gender" class="form-select">
                         <option value="">Tampilkan semua</option>
                         <option value="male" {{ request('gender') == 'male' ? 'selected' : '' }}>Laki-laki</option>
@@ -20,17 +20,29 @@
                         @endforeach
                     </select>
                     <div>
-                        <button type="submit" class="btn btn-primary btn-md">Filter</button>
+                        <button type="submit" class="btn btn-primary btn-md w-100 w-md-auto">Filter</button>
                     </div>
                 </div>
             </form>
         </div>
-        <div class="col-lg-4 col-md-12 mb-3 d-flex justify-content-end">
-            <a class="btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#import-student">
+        <div class="col-lg-6 col-md-12 mb-3 d-flex justify-content-md-end align-items-md-center d-none d-lg-flex">
+            <a class="btn btn-success w-lg-auto" href="#" data-bs-toggle="modal" data-bs-target="#import-student">
                 Import Siswa
             </a>
         </div>
+
+        <!-- untuk tampilan mobile -->
+        <div class="col-lg-6 col-md-12 mb-3 d-flex justify-content-md-end align-items-md-center d-lg-none">
+            <a class="btn btn-success w-100" href="#" data-bs-toggle="modal" data-bs-target="#import-student">
+                Import Siswa
+            </a>
+        </div>
+
+
+
     </div>
+
+
     <div class="table-responsive rounded-2 mb-4">
         <table class="table border text-nowrap customize-table mb-0 align-middle">
             <thead class="text-dark fs-4">

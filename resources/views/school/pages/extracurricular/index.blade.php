@@ -71,7 +71,7 @@
 @endsection
 
 @section('content')
-    <div class="d-flex flex-wrap justify-content-between align-items-center">
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
         <div class="d-flex flex-wrap">
             <div class="col-12 col-md-6 col-lg-12 mb-3 me-3">
                 <form class="position-relative" action="/school/extracurricular">
@@ -81,7 +81,7 @@
                 </form>
             </div>
         </div>
-        <button type="button" class="btn mb-1 btn-primary" data-bs-toggle="modal" data-bs-target="#modal-create">
+        <button type="button" class="btn btn-primary w-md-100" data-bs-toggle="modal" data-bs-target="#modal-create">
             Tambah Ekstrakurikuler
         </button>
     </div>
@@ -89,7 +89,7 @@
     <div class="row">
         @forelse ($extracurriculars as $extracurricular)
             <div class="col-lg-3 mb-4">
-                <div class="card">
+                <div class="card border">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <h4 class="mb-2"><b>{{ $extracurricular->name }}</b></h4>

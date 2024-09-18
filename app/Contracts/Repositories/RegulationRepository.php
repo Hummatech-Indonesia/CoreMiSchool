@@ -18,6 +18,11 @@ class RegulationRepository extends BaseRepository implements RegulationInterface
         return $this->model->query()->get();
     }
 
+    public function sum_point(mixed $id): mixed
+    {
+        return $this->model->query()->where('id', $id)->get()->sum('point');
+    }
+
     public function search(Request $request): mixed
     {
         return $this->model->query()

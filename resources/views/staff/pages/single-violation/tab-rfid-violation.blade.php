@@ -157,14 +157,10 @@
                         style="max-width: 40%; height: auto; margin-top: 20px;">
                 </div>
                 <h4 class="mb-3">RFID :</h4>
-                <form action="{{ route('employee.post-rfid.violation') }}" method="post">
-                    @method('post')
-                    @csrf
-                    <div class="form-group">
-                        <input type="text" id="rfidInput" class="form-control" name="rfid"
-                            placeholder="Masukkan rfid siswa" style="background-color: #F5F5F5; color: #333;">
-                    </div>
-                </form>
+                <div class="form-group">
+                    <input type="text" id="rfidInput" class="form-control"
+                        placeholder="Masukkan rfid siswa" style="background-color: #F5F5F5; color: #333;">
+                </div>
                 <h4 style="margin-top: 140px;" class="text-primary">Copyright by Hummatech</h4>
             </div>
         </div>
@@ -172,6 +168,21 @@
 @endsection
 
 @section('script')
+
+    <script>
+        const rfidInput = document.getElementById('rfidInput');
+
+        rfidInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+
+                const rfidValue = rfidInput.value;
+                const url = '{{ route('employee.post-rfid.violation', '') }}/' + rfidValue;
+                window.location.href = url;
+            }
+        });
+    </script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var rfidInput = document.getElementById('rfidInput');
