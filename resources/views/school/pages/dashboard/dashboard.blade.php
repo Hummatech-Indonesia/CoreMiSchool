@@ -49,7 +49,7 @@
                         <path fill="currentColor"
                             d="M33.17 21.47H28v2h4.17v8.37H18v-8.37h6.3v.42a1 1 0 0 0 2 0V20a1 1 0 0 0-2 0v1.47H17a1 1 0 0 0-1 1v10.37a1 1 0 0 0 1 1h16.17a1 1 0 0 0 1-1V22.47a1 1 0 0 0-1-1" />
                     </svg>
-                    <span class="d-none d-md-block ms-2 font-weight-medium">Pegawai</span>
+                    <span class="d-none d-md-block ms-2 font-weight-medium">Guru</span>
                 </a>
             </li>
         </div>
@@ -75,7 +75,7 @@
         <div id="employee-content" class="tab-pane fade">
             <div class="note-has-grid row">
                 <div class="col-12">
-                    {{-- @include('school.pages.dashboard.panes.employee-tab.index') --}}
+                    @include('school.pages.dashboard.panes.employee-tab.index')
                 </div>
             </div>
         </div>

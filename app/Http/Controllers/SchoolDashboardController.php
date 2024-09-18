@@ -85,15 +85,20 @@ class SchoolDashboardController extends Controller
         $fill = $this->lessonSchedule->dahsboardSchool('fill',now());
         $notfill = $this->lessonSchedule->dahsboardSchool('notfill',now());
 
-        $lates = $this->attendance->AttendanceDasboard(AttendanceEnum::LATE->value, $request);
-        $alpha = $this->attendance->AttendanceDasboard(AttendanceEnum::ALPHA->value, $request);
-        $sick = $this->attendance->AttendanceDasboard(AttendanceEnum::SICK->value, $request);
+        $lates = $this->attendance->AttendanceDasboard('App\Models\ClassroomStudent', AttendanceEnum::LATE->value, $request);
+        $alpha = $this->attendance->AttendanceDasboard('App\Models\ClassroomStudent', AttendanceEnum::ALPHA->value, $request);
+        $sick = $this->attendance->AttendanceDasboard('App\Models\ClassroomStudent', AttendanceEnum::SICK->value, $request);
+
+        $lates_teacher = $this->attendance->AttendanceDasboard('App\Models\Employee', AttendanceEnum::LATE->value, $request);
+        $alpha_teacher = $this->attendance->AttendanceDasboard('App\Models\Employee', AttendanceEnum::ALPHA->value, $request);
+        $sick_teacher = $this->attendance->AttendanceDasboard('App\Models\Employee', AttendanceEnum::SICK->value, $request);
+
         $studentChart = $this->schoolChart->chartStudentAttendance($lates, $sick, $alpha);
 
         // dd($studentChart);
 
         return view('school.pages.dashboard.dashboard', compact(
-            'lates', 'alpha', 'sick', 'studentChart',
+            'lates', 'alpha', 'sick', 'lates_teacher', 'alpha_teacher', 'sick_teacher', 'studentChart',
             'fill','notfill','classrooms', 'violations',
             'schoolYear', 'semester',
             'attendanceChart', 'alumni',

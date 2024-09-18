@@ -175,10 +175,10 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
             ->count();
     }
 
-    public function AttendanceDasboard(mixed $query, Request $request): mixed
+    public function AttendanceDasboard(mixed $model, mixed $query, Request $request): mixed
     {
         $result = $this->model->query();
-        $result->where('model_type', 'App\Models\ClassroomStudent');
+        $result->where('model_type', $model);
         $result->where('status', $query);
         $request->date ? $result->whereDate('created_at', $request->date) : $result->whereDate('created_at', now());
         return $result->get();
