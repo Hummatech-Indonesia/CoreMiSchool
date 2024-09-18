@@ -3,30 +3,28 @@
         <h4>Daftar Guru</h4>
     </div>
     <div class="row">
-        <div class="col-lg-5 mt-3 mb-3">
-            <form class="d-flex gap-2 align-items-center flex-grow-1" method="GET" action="{{ url()->current() }}">
-                <div class="position-relative flex-grow-1">
+        <div class="col-12 col-lg-5 mt-3 mb-4">
+            <form class="d-flex gap-2 flex-column flex-lg-row align-items-stretch align-items-lg-center" method="GET" action="{{ url()->current() }}">
+                <div class="position-relative flex-grow-1 mb-2 mb-lg-0">
                     <input type="text" name="search" class="form-control search-chat py-2 px-4 ps-5" id="search-name"
                         placeholder="Cari" value="{{ old('search', request('search')) }}">
                     <i class="ti ti-search position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
                 </div>
-                <div class="col-lg-4">
+                <div class="flex-grow-1">
                     <select name="gender" class="form-select" id="search-status">
                         <option value="" {{ old('gender', request('gender')) == '' ? 'selected' : '' }}>Semua</option>
-                        <option value="male" {{ old('gender', request('gender')) == 'male' ? 'selected' : '' }}>Laki-laki
-                        </option>
-                        <option value="female" {{ old('gender', request('gender')) == 'female' ? 'selected' : '' }}>
-                            Perempuan</option>
+                        <option value="male" {{ old('gender', request('gender')) == 'male' ? 'selected' : '' }}>Laki-laki</option>
+                        <option value="female" {{ old('gender', request('gender')) == 'female' ? 'selected' : '' }}>Perempuan</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary">Filter</button>
+                <button type="submit" class="btn btn-primary w-lg-auto">Filter</button>
             </form>
         </div>
     </div>
 
 
     <div class="">
-        <div class="table-responsive rounded-2 mb-4">
+        <div class="table-responsive rounded-2 ">
             <table class="table border text-nowrap customize-table mb-0 align-middle">
                 <thead class="text-dark fs-4">
                     <tr>
@@ -86,12 +84,24 @@
                                             </span>
                                         </div>
                                     </a>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+                                        style="z-index: 20000;">
+                                        <li>
+                                            <button type="button"
+                                                class="dropdown-item d-flex align-items-center gap-3 btn-detail-teacher">
+                                                <i class="fs-4 ti ti-eye"></i>Detail</button>
+                                        </li>
                                         <li>
                                             <a href="{{ route('school.teacher.show', $teacher->user->slug) }}"
                                                 type="button"
-                                                class="btn-detail dropdown-item d-flex align-items-center gap-3"><i
-                                                    class="fs-4 ti ti-eye"></i>Detail</a>
+                                                class="btn-detail dropdown-item d-flex align-items-center gap-3">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    viewBox="0 0 24 24">
+                                                    <path fill="currentColor"
+                                                        d="M6 22h15v-2H6.012C5.55 19.988 5 19.805 5 19s.55-.988 1.012-1H21V4c0-1.103-.897-2-2-2H6c-1.206 0-3 .799-3 3v14c0 2.201 1.794 3 3 3M5 8V5c0-.805.55-.988 1-1h13v12H5z" />
+                                                    <path fill="currentColor" d="M8 6h9v2H8z" />
+                                                </svg>
+                                                Mapel</a>
                                         </li>
                                         <li>
                                             <button type="button"
@@ -120,6 +130,7 @@
                                         </li>
                                     </ul>
                                 </div>
+
                             </td>
                         </tr>
                     @empty

@@ -4,27 +4,25 @@
     </div>
     <div class="">
         <div class="row">
-            <div class="col-5 mb-3 mt-3">
-                <form class="d-flex gap-2 align-items-center flex-grow-1" method="GET" action="{{ url()->current() }}">
-                    <div class="position-relative flex-grow-1">
-                        <input type="text" name="search" class="form-control search-chat py-2 px-4 ps-5"
-                            id="search-name" placeholder="Cari" value="{{ old('search', request('search')) }}">
+            <div class="col-12 col-lg-5 mb-4 mt-3">
+                <form class="d-flex flex-column flex-lg-row gap-2 align-items-stretch align-items-lg-center" method="GET" action="{{ url()->current() }}">
+                    <div class="position-relative flex-grow-1 mb-2 mb-lg-0">
+                        <input type="text" name="search" class="form-control search-chat py-2 px-4 ps-5" id="search-name"
+                            placeholder="Cari" value="{{ old('search', request('search')) }}">
                         <i class="ti ti-search position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="flex-grow-1 mb-2 mb-lg-0">
                         <select name="gender" class="form-select" id="search-status">
-                            <option value="" {{ old('gender', request('gender')) == '' ? 'selected' : '' }}>Semua
-                            </option>
-                            <option value="male" {{ old('gender', request('gender')) == 'male' ? 'selected' : '' }}>
-                                Laki-laki</option>
-                            <option value="female" {{ old('gender', request('gender')) == 'female' ? 'selected' : '' }}>
-                                Perempuan</option>
+                            <option value="" {{ old('gender', request('gender')) == '' ? 'selected' : '' }}>Semua</option>
+                            <option value="male" {{ old('gender', request('gender')) == 'male' ? 'selected' : '' }}>Laki-laki</option>
+                            <option value="female" {{ old('gender', request('gender')) == 'female' ? 'selected' : '' }}>Perempuan</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary">Filter</button>
+                    <button type="submit" class="btn btn-primary w-lg-auto">Filter</button>
                 </form>
             </div>
         </div>
+
     </div>
 
 

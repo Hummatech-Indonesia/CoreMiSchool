@@ -41,7 +41,7 @@ class TeacherService
             'name' => $data['name'],
             'slug' => Str::slug($data['name']),
             'email' => $data['email'],
-            'password' => Hash::make($data['nik']),
+            'password' => Hash::make($data['nip']),
         ];
         $user = $this->user->store($dataUser);
         $user->assignRole(RoleEnum::TEACHER->value);
@@ -63,7 +63,7 @@ class TeacherService
             'name' => $data['name'],
             'slug' => Str::slug($data['name']),
             'email' => $data['email'],
-            'password' => Hash::make($data['nik']),
+            'password' => Hash::make($data['nip']),
         ];
         $this->user->update($employee->user_id, $dataUser);
 
