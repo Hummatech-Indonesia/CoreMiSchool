@@ -156,7 +156,7 @@
                 Import Pelanggaran
             </button>
 
-            <button class="btn btn-primary ms-2" type="button">Tambah Pelanggaran</button>
+            <button class="btn btn-primary btn-create ms-2" type="button">Tambah Pelanggaran</button>
         </div>
     </div>
 
