@@ -2,14 +2,17 @@
     <div class="card-body">
 
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
-            <form class="d-flex flex-column flex-md-row align-items-center" method="GET">
-                <div class="mb-3 mb-md-0 me-md-3">
+            <form class="row g-2 w-100" method="GET">
+                <div class="col-12 col-md-auto">
                     <input type="text" name="search" class="form-control" placeholder="Cari..."
                         value="{{ old('search', request()->input('search')) }}">
                 </div>
-                <button type="submit" class="btn btn-primary">Cari</button>
+                <div class="col-12 col-md-auto">
+                    <button type="submit" class="btn btn-primary w-100 w-md-auto">Cari</button>
+                </div>
             </form>
         </div>
+
 
         <div class="table-responsive rounded-2">
             <table class="table border text-nowrap customize-table mb-0 align-middle">
@@ -55,7 +58,7 @@
                                     <a type="button" class="text-primari btn-detail-journal"
                                         data-author="{{ $all_journal->teacherSubject->employee->user->name }}"
                                         data-date="{{ \Carbon\Carbon::parse($all_journal->created_at)->translatedFormat('d F Y') }}"
-                                        data-description="{{ $all_journal->teacherJournals->first() ? \Illuminate\Support\Str::limit($all_journal->teacherJournals->first()->description, 50) : 'kosong...' }}" 
+                                        data-description="{{ $all_journal->teacherJournals->first() ? \Illuminate\Support\Str::limit($all_journal->teacherJournals->first()->description, 50) : 'kosong...' }}"
                                         data-classroom="{{ $all_journal->classroom->name }} - {{ $all_journal->teacherSubject->subject->name }}"
                                         >
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"

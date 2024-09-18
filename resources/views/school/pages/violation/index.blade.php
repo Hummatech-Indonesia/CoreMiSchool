@@ -1,5 +1,40 @@
 @extends('school.layouts.app')
 
+@section('style')
+    <style>
+        @media (max-width: 991px) {
+            .card {
+                margin-bottom: 1rem;
+            }
+
+            .h-75 {
+                height: auto !important;
+            }
+
+            .img-background {
+                width: 100%;
+                height: auto;
+            }
+
+            .card-body {
+                padding: 1rem;
+            }
+
+            .position-absolute {
+                position: relative;
+                margin-bottom: 1rem;
+            }
+
+            .col-lg-3,
+            .col-lg-9 {
+                width: 100%;
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
+@endsection
+
 @section('content')
     @if (!empty($notification))
         <div class="alert alert-warning">
@@ -18,12 +53,12 @@
                                 <h5 class="fw-semibold text-white mb-4 pt-3">Maks Poin Pada Sekolah</h5>
                             </div>
                             <nav aria-label="breadcrumb">
-                                <span class="badge fw-semibold fs-8 text-primary bg-white p-2 px-3">{{ $maxPoint }}</span>
+                                <span
+                                    class="badge fw-semibold fs-8 text-primary bg-white p-2 px-3">{{ $maxPoint }}</span>
                             </nav>
                         </div>
                     </div>
-                    <img src="{{ asset('assets/images/background/buble-1.png') }}" alt="Image"
-                        class="position-absolute"
+                    <img src="{{ asset('assets/images/background/buble-1.png') }}" alt="Image" class="position-absolute"
                         style="bottom: 0; right: 0; width: 130px; height: auto; margin-bottom: -10px; margin-right: -10px;">
                 </div>
             </div>
@@ -56,18 +91,17 @@
         </div>
     </div>
 
-    <div class="col-lg-12">
+    <div class="col-12">
         <div class="card border border-grey shadow position-relative overflow-hidden h-75">
             <div class="card-body px-4 py-3">
                 <div class="row align-items-center">
-                    <div class="col">
+                    <div class="col-12 col-md-8">
                         <h5 class="fw-semibold">Atur point pelanggaran dan peringatan pelanggaran</h5>
                     </div>
-                    <div class="col d-flex justify-content-end align-items-center">
+                    <div class="col-12 col-md-4 d-flex justify-content-md-end justify-content-start align-items-center mt-3 mt-md-0">
                         <button class="btn btn-warning me-2 d-flex align-items-center" data-bs-toggle="modal"
                             data-bs-target="#modal-warning-point">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                class="me-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="me-2">
                                 <g fill="none">
                                     <path
                                         d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z" />
@@ -77,20 +111,12 @@
                             </svg>
                             Atur Peringatan Point
                         </button>
-                        {{-- <button class="btn btn-primary d-flex align-items-center" type="button" data-bs-toggle="modal"
-                            data-bs-target="#modal-max-point">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                class="me-2">
-                                <path fill="currentColor"
-                                    d="M19.9 12.66a1 1 0 0 1 0-1.32l1.28-1.44a1 1 0 0 0 .12-1.17l-2-3.46a1 1 0 0 0-1.07-.48l-1.88.38a1 1 0 0 1-1.15-.66l-.61-1.83a1 1 0 0 0-.95-.68h-4a1 1 0 0 0-1 .68l-.56 1.83a1 1 0 0 1-1.15.66L5 4.79a1 1 0 0 0-1 .48L2 8.73a1 1 0 0 0 .1 1.17l1.27 1.44a1 1 0 0 1 0 1.32L2.1 14.1a1 1 0 0 0-.1 1.17l2 3.46a1 1 0 0 0 1.07.48l1.88-.38a1 1 0 0 1 1.15.66l.61 1.83a1 1 0 0 0 1 .68h4a1 1 0 0 0 .95-.68l.61-1.83a1 1 0 0 1 1.15-.66l1.88.38a1 1 0 0 0 1.07-.48l2-3.46a1 1 0 0 0-.12-1.17ZM18.41 14l.8.9l-1.28 2.22l-1.18-.24a3 3 0 0 0-3.45 2L12.92 20h-2.56L10 18.86a3 3 0 0 0-3.45-2l-1.18.24l-1.3-2.21l.8-.9a3 3 0 0 0 0-4l-.8-.9l1.28-2.2l1.18.24a3 3 0 0 0 3.45-2L10.36 4h2.56l.38 1.14a3 3 0 0 0 3.45 2l1.18-.24l1.28 2.22l-.8.9a3 3 0 0 0 0 3.98m-6.77-6a4 4 0 1 0 4 4a4 4 0 0 0-4-4m0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2" />
-                            </svg>
-                            Atur Maksimal Point
-                        </button> --}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 
     <div class="d-flex align-items-center mb-4 pt-3">
         <span class="mb-1 badge bg-primary p-1">
@@ -102,38 +128,38 @@
         <h4 class="ms-3 mb-0"><b>Daftar Pelanggaran dan Perbaikan</b></h4>
     </div>
 
-    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
-        <form class="d-flex flex-column flex-md-row align-items-center">
-            <div class="mb-3 mb-md-0 me-md-3">
+    <div class="row d-flex align-items-center mb-4">
+        <form class="row g-3 align-items-center col-md-9">
+            <div class="col-md-3 col-sm-12">
                 <input type="text" name="search" class="form-control" placeholder="Cari...">
             </div>
-            <div class="mb-3 mb-md-0 me-md-3">
+            <div class="col-md-3 col-sm-12">
                 <select name="points" class="form-select">
                     <option value="highest">Point Tertinggi</option>
                     <option value="lowest">Point Terendah</option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary">Cari</button>
+            <div class="col-md-2 col-sm-12">
+                <button type="submit" class="btn btn-primary w-100">Cari</button>
+            </div>
         </form>
-        <div class="d-flex align-items-center">
-            <button class="btn btn-success d-flex align-items-center me-2" type="button" data-bs-toggle="modal"
+
+        <div class="col-md-3 d-flex justify-content-end mt-3 mt-md-0">
+            <button class="btn btn-success align-items-center me-2" type="button" data-bs-toggle="modal"
                 data-bs-target="#import-violation-school">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                     <g fill="none" fill-rule="evenodd">
-                        <path
-                            d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z" />
-                        <path fill="currentColor"
-                            d="M13.586 2a2 2 0 0 1 1.284.467l.13.119L19.414 7a2 2 0 0 1 .578 1.238l.008.176V20a2 2 0 0 1-1.85 1.995L18 22h-6v-2h6V10h-4.5a1.5 1.5 0 0 1-1.493-1.356L12 8.5V4H6v8H4V4a2 2 0 0 1 1.85-1.995L6 2zM7.707 14.465l2.829 2.828a1 1 0 0 1 0 1.414l-2.829 2.828a1 1 0 1 1-1.414-1.414L7.414 19H3a1 1 0 1 1 0-2h4.414l-1.121-1.121a1 1 0 1 1 1.414-1.415ZM14 4.414V8h3.586z" />
+                        <path d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z" />
+                        <path fill="currentColor" d="M13.586 2a2 2 0 0 1 1.284.467l.13.119L19.414 7a2 2 0 0 1 .578 1.238l.008.176V20a2 2 0 0 1-1.85 1.995L18 22h-6v-2h6V10h-4.5a1.5 1.5 0 0 1-1.493-1.356L12 8.5V4H6v8H4V4a2 2 0 0 1 1.85-1.995L6 2zM7.707 14.465l2.829 2.828a1 1 0 0 1 0 1.414l-2.829 2.828a1 1 0 1 1-1.414-1.414L7.414 19H3a1 1 0 1 1 0-2h4.414l-1.121-1.121a1 1 0 1 1 1.414-1.415ZM14 4.414V8h3.586z" />
                     </g>
                 </svg>
                 Import Pelanggaran
             </button>
 
-
             <button class="btn btn-primary btn-create ms-2" type="button">Tambah Pelanggaran</button>
         </div>
-
     </div>
+
 
     <div class="row">
         <div class="table-responsive rounded-2 mb-4">
@@ -155,7 +181,8 @@
                             </td>
                             <td class="text-center">
                                 <div class="d-flex justify-content-center align-items-center gap-2">
-                                    <a class="btn-detail" type="button" data-point="{{ $regulation->point }}" data-violation="{{ $regulation->violation }}">
+                                    <a class="btn-detail" type="button" data-point="{{ $regulation->point }}"
+                                        data-violation="{{ $regulation->violation }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                             viewBox="0 0 24 24">
                                             <g fill="none" stroke="currentColor" stroke-linecap="round"
