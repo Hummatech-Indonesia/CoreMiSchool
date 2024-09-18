@@ -27,8 +27,8 @@
                         <tr>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ $item->image ? asset('storage/'. $item->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}" class="rounded-circle"
-                                        width="40" height="40" alt="">
+                                    <img src="{{ $item->image ? asset('storage/' . $item->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}"
+                                        class="rounded-circle mb-2" width="40" height="40" alt="">
                                     <div class="ms-3">
                                         <h6 class="fs-4 fw-semibold mb-0">{{ $item->user->name }}</h6>
                                         <span class="fw-normal">{{ $item->gender->label() }}</span>
@@ -42,7 +42,8 @@
                                 <h6 class="mb-0 fs-4">{{ $item->nisn }}</h6>
                             </td>
                             <td>
-                                <span class="badge bg-light-danger text-danger fw-semibold fs-2">{{ $item->point }} Point</span>
+                                <span class="badge bg-light-danger text-danger fw-semibold fs-2">{{ $item->point }}
+                                    Point</span>
                             </td>
                             <td>
                                 <button class="btn mb-1 waves-effect waves-light btn-primary"
@@ -50,6 +51,15 @@
                             </td>
                         </tr>
                     @empty
+                        <tr>
+                            <td colspan="7" class="text-center align-middle">
+                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                    <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt=""
+                                        width="300px">
+                                    <p class="fs-5 text-dark text-center mt-2">Belum ada data</p>
+                                </div>
+                            </td>
+                        </tr>
                     @endforelse
                 </tbody>
             </table>

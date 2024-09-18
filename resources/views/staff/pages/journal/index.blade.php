@@ -28,7 +28,8 @@
         </div>
         <ul class="ms-5 pb-2" style="list-style-type:disc;">
             <li>Jurnal wajib di isi oleh semua guru & staff untuk direkap sekolah</li>
-            <li>Ketika tidak mengisi jurnal, maka pihak sekolah akan menganggap bahwa staff tersebut tidak masuk pada hari itu</li>
+            <li>Ketika tidak mengisi jurnal, maka pihak sekolah akan menganggap bahwa staff tersebut tidak masuk pada hari
+                itu</li>
             <li>Batas jam pengisian jurnal adalah 23.59 WIB</li>
         </ul>
         <div class="position-absolute bottom-0 end-0" style="padding: 0px;">
@@ -37,30 +38,26 @@
         </div>
     </div>
 
-    <div class="d-flex justify-content-between mb-3">
-        <div>
-            <div class="d-flex align-items-center">
-                <span class="mb-1 badge bg-primary p-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                        <path fill="currentColor"
-                            d="M12 7q-.825 0-1.412-.587T10 5t.588-1.412T12 3t1.413.588T14 5t-.587 1.413T12 7m0 14q-.625 0-1.062-.437T10.5 19.5v-9q0-.625.438-1.062T12 9t1.063.438t.437 1.062v9q0 .625-.437 1.063T12 21" />
-                    </svg>
-                </span>
-                <h4 class="ms-3 mb-0"><b>Pengisian Jurnal</b></h4>
-            </div>
+    <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
+        <div class="d-flex align-items-center mb-3 mb-md-0">
+            <span class="badge bg-primary p-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                    <path fill="currentColor"
+                        d="M12 7q-.825 0-1.412-.587T10 5t.588-1.412T12 3t1.413.588T14 5t-.587 1.413T12 7m0 14q-.625 0-1.062-.437T10.5 19.5v-9q0-.625.438-1.062T12 9t1.063.438t.437 1.062v9q0 .625-.437 1.063T12 21" />
+                </svg>
+            </span>
+            <h4 class="ms-3 mb-0"><b>Pengisian Jurnal</b></h4>
         </div>
-        <div class="d-flex">
-            <p>Tanggal saat ini: </p>
-            <div>
-                <span class="badge bg-light-primary text-primary ms-2 fw-semibold">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="text-primary me-1" width="18" height="18"
-                        viewBox="0 0 24 24">
-                        <path fill="currentColor"
-                            d="M12 12h5v5h-5zm7-9h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m0 2v2H5V5zM5 19V9h14v10z" />
-                    </svg>
-                    <?php echo date('d F Y'); ?>
-                </span>
-            </div>
+        <div class="d-flex align-items-center">
+            <p class="mb-0 me-2">Tanggal saat ini:</p>
+            <span class="badge bg-light-primary text-primary fw-semibold d-flex align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="text-primary me-1" width="18" height="18"
+                    viewBox="0 0 24 24">
+                    <path fill="currentColor"
+                        d="M12 12h5v5h-5zm7-9h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m0 2v2H5V5zM5 19V9h14v10z" />
+                </svg>
+                <?php echo date('d F Y'); ?>
+            </span>
         </div>
     </div>
 
@@ -116,7 +113,7 @@
                             <div class="position-absolute top-0 end-0" style="padding: 0px; position: relative;">
                                 <img src="{{ asset('assets/images/background/arrow-leftwarning.png') }}" alt="Description"
                                     class="img-fluid" style="max-width: 210px; height: auto; position: relative;">
-                                <span class="d-flex align-items-center ms-5 fs-4"
+                                <span class="d-flex align-items-center ms-5 fs-2"
                                     style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-weight: bold;width: 100%;">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="20" height="20"
                                         viewBox="0 0 24 24">
@@ -140,7 +137,8 @@
                             </div>
 
                             <div>
-                                <a href="{{ route('employee.journal.detail', ['employeeJournal' => $employeeJournal->id]) }}" class="btn btn-primary">
+                                <a href="{{ route('employee.journal.detail', ['employeeJournal' => $employeeJournal->id]) }}"
+                                    class="btn btn-primary">
                                     Lihat Detail Jurnal
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="mb-1"
                                         viewBox="0 0 24 24">

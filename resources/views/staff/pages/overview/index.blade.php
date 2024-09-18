@@ -12,6 +12,53 @@
             border-radius: 5px;
             margin-right: 0.5px;
         }
+
+
+
+        @media (max-width: 991.98px) {
+            .card {
+                height: auto;
+            }
+
+            .position-absolute {
+                position: static;
+                margin-bottom: 0;
+                margin-right: 0;
+                width: 100px;
+            }
+
+            .fs-5 {
+                font-size: 1.25rem;
+            }
+
+            .badge {
+                font-size: 0.75rem;
+            }
+
+            .card-body {
+                padding: 1rem;
+            }
+
+            .card-body ul li {
+                padding-bottom: 6px;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .d-flex {
+                flex-direction: column;
+            }
+
+            .col-lg-3,
+            .col-lg-9 {
+                width: 100%;
+                padding: 0;
+            }
+
+            .card-body {
+                padding: 0.5rem;
+            }
+        }
     </style>
 @endsection
 
@@ -90,13 +137,14 @@
     @if ($classroom != null)
         @include('staff.pages.overview.panes.violation-class')
     @else
-        Tidak ada kelas dengan pelanggaran terbanyak
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt="" width="300px">
+            <p class="fs-5 text-dark text-center mt-2">Belum ada data</p>
+        </div>
     @endif
 
     <h4 class=""><b>Data Point Siswa</b></h4>
     @include('staff.pages.overview.panes.point-student')
-
-
 @endsection
 
 @section('script')

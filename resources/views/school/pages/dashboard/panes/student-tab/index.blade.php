@@ -59,7 +59,7 @@
 
 
 <div class="row d-flex">
-    <div class="col-lg-8 col-md-12 d-flex">
+    <div class="col-lg-8 col-md-12 d-flex mb-4">
         <div class="card w-100 h-100 border">
             <div class="card-body">
                 <h5 class="mb-4"><b>Data Absensi Siswa</b></h5>
