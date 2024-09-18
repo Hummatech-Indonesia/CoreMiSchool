@@ -42,7 +42,7 @@ Route::middleware('auth')->prefix('employee')->name('employee.')->group(function
         return view('staff.pages.single-violation.tab-rfid-violation');
     })->name('rfid-student-violation`');
 
-    Route::post('detail-student-violation', [ModelHasRfidController::class, 'show'])->name('post-rfid.violation');
+    Route::get('detail-student-violation/{rfid}', [ModelHasRfidController::class, 'show'])->name('post-rfid.violation');
 
     // fitur jurnal
     Route::resource('journal', EmployeeJournalController::class)->except('show');

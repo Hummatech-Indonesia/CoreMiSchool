@@ -168,7 +168,7 @@
                         </ul>
 
                         <div>
-                            <button id="btn-add-violation" class="btn btn-warning me-2" data-bs-toggle="modal" data-bs-target="#modal-violation">
+                            <button id="btn-add-violation" data-id="{{ $classroomStudent->student_id }}" class="btn-create-violation btn btn-warning me-2">
                                 <span class="me-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16">
                                         <path fill="currentColor" d="M7.467.133a1.75 1.75 0 0 1 1.066 0l5.25 1.68A1.75 1.75 0 0 1 15 3.48V7c0 1.566-.32 3.182-1.303 4.682c-.983 1.498-2.585 2.813-5.032 3.855a1.7 1.7 0 0 1-1.33 0c-2.447-1.042-4.049-2.357-5.032-3.855C1.32 10.182 1 8.566 1 7V3.48a1.75 1.75 0 0 1 1.217-1.667Zm.61 1.429a.25.25 0 0 0-.153 0l-5.25 1.68a.25.25 0 0 0-.174.238V7c0 1.358.275 2.666 1.057 3.86c.784 1.194 2.121 2.34 4.366 3.297a.2.2 0 0 0 .154 0c2.245-.956 3.582-2.104 4.366-3.298C13.225 9.666 13.5 8.36 13.5 7V3.48a.25.25 0 0 0-.174-.237zM8.75 4.75v3a.75.75 0 0 1-1.5 0v-3a.75.75 0 0 1 1.5 0M9 10.5a1 1 0 1 1-2 0a1 1 0 0 1 2 0" />
@@ -177,7 +177,7 @@
                                 Tambah Pelanggaran
                             </button>
 
-                            <button id="btn-add-repair" class="btn btn-success" style="display: none;" data-bs-toggle="modal" data-bs-target="#modal-repair">
+                            <button id="btn-add-repair" data-id="{{ $classroomStudent->student_id }}" class="btn-create-repair btn btn-success" style="display: none;">
                                 <span class="me-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
                                         <g fill="none">
@@ -213,7 +213,16 @@
 @endsection
 
 @section('script')
-   @include('staff.pages.single-violation.scripts.tab-script')
-   @include('staff.pages.single-violation.scripts.select2-script')
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var today = new Date().toISOString().split('T')[0];
+            document.getElementById('start_date').value = today;
+            document.getElementById('end_date').value = today;
+        });
+    </script>
+    @include('staff.pages.single-violation.scripts.button-script')
+    @include('staff.pages.single-violation.scripts.tab-script')
+    @include('staff.pages.single-violation.scripts.select2-script')
 
 @endsection

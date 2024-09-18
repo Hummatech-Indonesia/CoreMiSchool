@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 interface RegulationInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, WhereInterface, SearchInterface
 {
     public function getAll(Request $request);
+    public function sum_point(mixed $id): mixed;
     public function getRegulation(Request $request): mixed;
     public function getOrder(): mixed;
 }

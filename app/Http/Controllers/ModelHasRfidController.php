@@ -13,19 +13,22 @@ use App\Contracts\Interfaces\SchoolInterface;
 use App\Http\Requests\StoreModelHasRfidRequest;
 use App\Http\Requests\UpdateModelHasRfidRequest;
 use App\Contracts\Interfaces\ModelHasRfidInterface;
+use App\Contracts\Interfaces\RegulationInterface;
 
 class ModelHasRfidController extends Controller
 {
     use ApiResponseHelpers;
-    private ModelHasRfidInterface $modelHasRfid;
-    private ModelHasRfidService $service;
     private ClassroomStudentInterface $classroomStudent;
+    private ModelHasRfidInterface $modelHasRfid;
+    private RegulationInterface $regulation;
+    private ModelHasRfidService $service;
     private SchoolInterface $school;
 
-    public function __construct(ModelHasRfidInterface $modelHasRfid, ModelHasRfidService $service, SchoolInterface $school, ClassroomStudentInterface $classroomStudent)
+    public function __construct(RegulationInterface $regulation, ModelHasRfidInterface $modelHasRfid, ModelHasRfidService $service, SchoolInterface $school, ClassroomStudentInterface $classroomStudent)
     {
-        $this->modelHasRfid = $modelHasRfid;
         $this->classroomStudent = $classroomStudent;
+        $this->modelHasRfid = $modelHasRfid;
+        $this->regulation = $regulation;
         $this->service = $service;
         $this->school = $school;
     }
@@ -100,14 +103,16 @@ class ModelHasRfidController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Request $request)
+    public function show($rfid)
     {
-        $modelHasRfid = $this->modelHasRfid->whereRfid($request->rfid);
+        $modelHasRfid = $this->modelHasRfid->whereRfid($rfid);
+        $regulations = $this->regulation->get();
+
 
         if (!$modelHasRfid) return redirect()->back()->with('warning', 'Rfid yang anda inputkan bukan siswa');
         if ($modelHasRfid->model_type == "App\Models\ClassroomStudent") {
             $classroomStudent = $this->classroomStudent->show($modelHasRfid->model_id);
-            return view('staff.pages.single-violation.detail-student', compact('classroomStudent'));
+            return view('staff.pages.single-violation.detail-student', compact('classroomStudent', 'regulations'));
         }
     }
 
