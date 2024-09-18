@@ -10,7 +10,7 @@
                         <div class="position-absolute top-0 end-0" style="padding: 0px; position: relative;">
                             <img src="{{ asset('assets/images/background/arrow-leftwarning.png') }}" alt="Description"
                                 class="img-fluid" style="max-width: 210px; height: auto; position: relative;">
-                            <span class="d-flex align-items-center ms-5 fs-4"
+                            <span class="d-flex align-items-center ms-5 fs-2"
                                 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-weight: bold;width: 100%;">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="20" height="20"
                                     viewBox="0 0 24 24">
