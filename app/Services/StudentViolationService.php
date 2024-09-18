@@ -52,18 +52,24 @@ class StudentViolationService
             }
         }
 
-        public function single_store(SingleStoreStudentViolationRequest $request, Student $student)
+        public function single_store(SingleStoreStudentViolationRequest $request, Student $student): void
         {
             $data = $request->validated();
             $classroom = $this->classroom->whereStudent($student->id);
 
             foreach($data['violation_id'] as $value){
+                $regulation = $this->regulation->show($value);
+
                 $this->studentViolation->store([
                     'employee_id' => auth()->user()->employee->id,
                     'classroom_student_id' => $classroom->id,
                     'regulation_id' => $value,
                 ]);
+
+                $student = $this->student->show($student->id);
+                $this->student->update($student->id, ['point' => ($student->point + $regulation->point) ]);
             }
+
         }
 
         public function update(): void

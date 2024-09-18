@@ -5,17 +5,18 @@
                 <h5 class="modal-title" id="importPegawai">Tambah Pelanggaran</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form id="form-post-violation" method="POST" enctype="multipart/form-data">
                 @method('post')
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
                         <div class="form-group">
                             <label for="" class="mb-2 pt-3">Jenis Pelanggaran</label>
-                            <select id="violation" class="select2 select2-create" name="violation">
-                                <option value="">Pilih Pengajar</option>
-                                <option value="">Opsi 1</option>
-
+                            <select id="violation" class="select2 select2-create" name="violation_id[]" multiple>
+                                <option disabled>Pilih Pelanggaran</option>
+                                @foreach ($regulations as $regulation)
+                                    <option value="{{ $regulation->id }}">{{ $regulation->violation }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>

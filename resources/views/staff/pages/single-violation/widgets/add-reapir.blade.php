@@ -5,21 +5,21 @@
                 <h5 class="modal-title" id="importPegawai">Tambah Perbaikan</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form id="form-post-repair" method="POST" enctype="multipart/form-data">
                 @method('post')
                 @csrf
                 <div class="modal-body">
                     <div class="mb-2">
                         <div class="form-group">
                             <label for="" class="mb-2">Jenis Perbaikan</label>
-                            <input type="text" name="" placeholder="Masukkan jenis perbaikan"
+                            <input type="text" name="repair" placeholder="Masukkan jenis perbaikan"
                                 class="form-control">
                         </div>
                     </div>
                     <div class="mb-2">
                         <div class="form-group">
                             <label for="" class="mb-2">Poin Perbaikan</label>
-                            <input type="text" name="" placeholder="Masukkan poin perbaikan"
+                            <input type="text" name="point" placeholder="Masukkan poin perbaikan"
                                 class="form-control">
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                             <div class="mb-2">
                                 <div class="form-group">
                                     <label for="" class="mb-2">Tanggal Mulai</label>
-                                    <input type="date" class="form-control" value="">
+                                    <input type="date" class="form-control" id="start_date" name="start_date">
                                 </div>
                             </div>
                         </div>
@@ -36,7 +36,7 @@
                             <div class="mb-2">
                                 <div class="form-group">
                                     <label for="" class="mb-2">Tanggal Akhir</label>
-                                    <input type="date" class="form-control" value="">
+                                    <input type="date" class="form-control" id="end_date" name="end_date">
                                 </div>
                             </div>
                         </div>
