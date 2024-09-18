@@ -157,28 +157,28 @@
                 </div>
                 <div id="chart-employee"></div>
 
-                <div class="d-flex">
                     <div class="d-flex">
-                        <div id="custom-legend">
-                            <div class="legend-item">
-                                <span class="legend-marker" style="background-color: rgb(19, 222, 185);"></span>
-                                <span class="legend-text">Masuk</span>
-                            </div>
-                            <div class="legend-item">
-                                <span class="legend-marker" style="background-color: rgb(93, 135, 255);"></span>
-                                <span class="legend-text">Izin</span>
-                            </div>
-                            <div class="legend-item">
-                                <span class="legend-marker" style="background-color: rgb(255, 174, 31);"></span>
-                                <span class="legend-text">Sakit</span>
-                            </div>
-                            <div class="legend-item">
-                                <span class="legend-marker" style="background-color: rgb(250, 137, 107);"></span>
-                                <span class="legend-text">Alfa</span>
+                        <div class="d-flex">
+                            <div id="custom-legend">
+                                <div class="legend-item">
+                                    <span class="legend-marker" style="background-color: rgb(19, 222, 185);"></span>
+                                    <span class="legend-text">Masuk</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-marker" style="background-color: rgb(93, 135, 255);"></span>
+                                    <span class="legend-text">Izin</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-marker" style="background-color: rgb(255, 174, 31);"></span>
+                                    <span class="legend-text">Sakit</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-marker" style="background-color: rgb(250, 137, 107);"></span>
+                                    <span class="legend-text">Alfa</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     </div>
