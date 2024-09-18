@@ -1,14 +1,14 @@
 <div class="card card-body">
     <h4>Daftar Alumni</h4>
     <div class="row mb-3 mt-3">
-        <div class="col-lg-8 col-md-12 mb-3">
-            <form class="d-flex gap-2" action="/school/students">
-                <div class="position-relative">
+        <div class="col-lg-6 col-md-12 mb-3">
+            <form class="d-flex flex-column flex-md-row gap-2" action="/school/students">
+                <div class="position-relative flex-grow-1">
                     <input type="text" name="name" class="form-control product-search ps-5" id="input-search"
                         placeholder="Cari..." value="{{ old('name', request('name')) }}">
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                 </div>
-                <div class="d-flex gap-2">
+                <div class="d-flex flex-column flex-md-row gap-2">
                     <select name="gender" class="form-select">
                         <option value="">Tampilkan semua</option>
                         <option value="male" {{ request('gender') == 'male' ? 'selected' : '' }}>Laki-laki</option>
@@ -20,14 +20,12 @@
                         <option value="{{ $classroom->name }}" {{ request('class') == $classroom->name ? 'selected' : '' }}>{{ $classroom->name }}</option>
                         @endforeach
                     </select>
-                    <div>
-                        <button type="submit" class="btn btn-primary btn-md">Filter</button>
-                    </div>
+                    <button type="submit" class="btn btn-primary btn-md w-100 w-md-auto">Filter</button>
                 </div>
             </form>
-
         </div>
     </div>
+
     <div class="table-responsive rounded-2 mb-4">
         <table class="table border text-nowrap customize-table mb-0 align-middle">
             <thead class="text-dark fs-4">
