@@ -2,15 +2,16 @@
     <div class="card-body">
 
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
-            <form class="d-flex flex-column flex-md-row align-items-center">
-                <div class="mb-3 mb-md-0 me-md-3">
-                    <input type="text" name="name" class="form-control" placeholder="Cari Staff..."
+            <form class="row g-2 w-100" method="GET">
+                <div class="col-12 col-md-auto mb-2 mb-md-0 me-md-3">
+                    <input type="text" name="name" class="form-control" placeholder="Cari..."
                         value="{{ old('name', request()->input('name')) }}">
                 </div>
-                <button type="submit" class="btn btn-primary">Cari</button>
+                <div class="col-12 col-md-auto">
+                    <button type="submit" class="btn btn-primary w-100 w-md-auto">Cari</button>
+                </div>
             </form>
         </div>
-
 
         <div class="table-responsive rounded-2">
             <table class="table border text-nowrap customize-table mb-0 align-middle">

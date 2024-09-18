@@ -2,14 +2,17 @@
     <div class="card-body">
 
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
-            <form class="d-flex flex-column flex-md-row align-items-center" method="GET">
-                <div class="mb-3 mb-md-0 me-md-3">
+            <form class="row g-2 w-100" method="GET">
+                <div class="col-12 col-md-auto mb-3 mb-md-0 me-md-3">
                     <input type="text" name="search_notfill" class="form-control" placeholder="Cari..."
                         value="{{ old('search_notfill', request()->input('search_notfill')) }}">
                 </div>
-                <button type="submit" class="btn btn-primary">Cari</button>
+                <div class="col-12 col-md-auto">
+                    <button type="submit" class="btn btn-primary w-100 w-md-auto">Cari</button>
+                </div>
             </form>
         </div>
+
 
         <div class="table-responsive rounded-2">
             <table class="table border text-nowrap customize-table mb-0 align-middle">
@@ -52,10 +55,10 @@
                             </td>
                             <td class="text-center">
                                 <div class="d-flex justify-content-center align-items-center gap-2">
-                                    <a type="button" class="text-primary btn-detail-journal" 
+                                    <a type="button" class="text-primary btn-detail-journal"
                                     data-author="{{ $notfill_journal->teacherSubject->employee->user->name }}"
                                     data-date="{{ \Carbon\Carbon::parse($notfill_journal->created_at)->translatedFormat('d F Y') }}"
-                                    data-description="{{ $notfill_journal->teacherJournals->first() ? \Illuminate\Support\Str::limit($notfill_journal->teacherJournals->first()->description, 50) : 'kosong...' }}" 
+                                    data-description="{{ $notfill_journal->teacherJournals->first() ? \Illuminate\Support\Str::limit($notfill_journal->teacherJournals->first()->description, 50) : 'kosong...' }}"
                                     data-classroom="{{ $notfill_journal->classroom->name }} - {{ $notfill_journal->teacherSubject->subject->name }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                             viewBox="0 0 24 24">
