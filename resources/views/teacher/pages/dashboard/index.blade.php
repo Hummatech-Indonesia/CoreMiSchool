@@ -1,5 +1,40 @@
 @extends('teacher.layouts.app')
 
+@section('style')
+    <style>
+        .scroll-container {
+            white-space: nowrap;
+            overflow-x: auto;
+        }
+
+        /* Customize scrollbar for WebKit browsers (Chrome, Safari) */
+        .scroll-container::-webkit-scrollbar {
+            height: 6px;
+            /* Change height for horizontal scrollbar */
+        }
+
+        .scroll-container::-webkit-scrollbar-thumb {
+            background-color: #888;
+            /* Color of the scrollbar */
+            border-radius: 10px;
+            /* Rounded corners */
+        }
+
+        .scroll-container::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
+            /* Color when hovered */
+        }
+
+        /* Firefox (using scrollbar-width) */
+        .scroll-container {
+            scrollbar-width: thin;
+            /* Reduce scrollbar size in Firefox */
+            scrollbar-color: #888 #f0f0f0;
+            /* Thumb and track colors */
+        }
+    </style>
+@endsection
+
 @section('content')
 
     @if (!empty($notifications))
@@ -11,7 +46,10 @@
     @endif
 
     <div class="row">
-        @include('teacher.pages.dashboard.panes.profile')
+        <div class="col-lg-12">
+
+            @include('teacher.pages.dashboard.panes.profile')
+        </div>
     </div>
 
     <div class="row">
