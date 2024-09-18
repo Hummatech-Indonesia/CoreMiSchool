@@ -43,7 +43,7 @@
                 <h4 class="fw-semibold text-white mb-8">Statistik Absensi</h4>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a class="text-white text-decoration-none" href="javascript:void(0)">Statistik absensi siswa dan pegawai</a></li>
+                        <li class="breadcrumb-item"><a class="text-white text-decoration-none" href="javascript:void(0)">Statistik absensi siswa</a></li>
                     </ol>
                 </nav>
             </div>
