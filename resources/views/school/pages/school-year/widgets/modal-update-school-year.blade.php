@@ -10,26 +10,27 @@
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="">Tahun Ajaran <span class="text-danger" style="font-size: larger;">*</span></label>
-                        <div class="d-flex justify-content-between mt-3">
-                            <select name="start_year" id="update-start-year" class="me-2 select2 select-start-update">
+                        <label for="update-start-year">Tahun Ajaran <span class="text-danger">*</span></label>
+                        <div class="d-flex align-items-center mt-3">
+                            <select name="start_year" id="update-start-year" class="form-select me-2">
                                 @for ($year = now()->year + 5; $year >= now()->year - 10; $year--)
                                     <option value="{{ $year }}" {{ $year == now()->year ? 'selected' : '' }}>{{ $year }}</option>
                                 @endfor
                             </select>
-                            <p class="fs-7">/</p>                            <select name="end_year" id="update-end-year" class="ms-2 select2 select-end-update">
+                            <span class="fs-6 mx-2">/</span>
+                            <select name="end_year" id="update-end-year" class="form-select ms-2">
                                 @for ($year = now()->year + 5; $year >= now()->year - 10; $year--)
                                     <option value="{{ $year }}" {{ $year == now()->year ? 'selected' : '' }}>{{ $year }}</option>
                                 @endfor
                             </select>
                         </div>
                         @error('school_year', 'edit')
-                            <strong class="text-danger error-edit">{{ $message }}</strong>
+                            <strong class="text-danger">{{ $message }}</strong>
                         @enderror
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-rounded btn-primary">Simpan</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>
         </div>

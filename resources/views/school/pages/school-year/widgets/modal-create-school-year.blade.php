@@ -9,28 +9,27 @@
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="">Tahun Ajaran <span class="text-danger" style="font-size: larger;">*</span></label>
+                        <label for="">Tahun Ajaran <span class="text-danger">*</span></label>
                         <div class="d-flex justify-content-between mt-3">
-                            <select name="start_year" id="start-year" class="me-2 select2 select-start">
+                            <select name="start_year" id="start-year" class="form-select me-2">
                                 @for ($year = now()->year + 5; $year >= now()->year - 10; $year--)
                                     <option value="{{ $year }}" {{ $year == now()->year ? 'selected' : '' }}>{{ $year }}</option>
                                 @endfor
                             </select>
-                            <p class="fs-7">/</p>                            <select name="end_year" id="end-year" class="ms-2 select2 select-end">
+                            <p class="fs-7 my-auto">/</p>
+                            <select name="end_year" id="end-year" class="form-select ms-2">
                                 @for ($year = now()->year + 5; $year >= now()->year - 10; $year--)
                                     <option value="{{ $year }}" {{ $year == now()->year ? 'selected' : '' }}>{{ $year }}</option>
                                 @endfor
                             </select>
                         </div>
-                        {{-- <label for="">Tahun Ajaran <span class="text-danger" style="font-size: larger;">*</span></label> --}}
-                        {{-- <input type="text" name="school_year" class="form-control" placeholder="Masukkan tahun ajaran"> --}}
                         @error('school_year', 'create')
-                            <strong class="text-danger error-create">{{ $message }}</strong>
+                            <strong class="text-danger">{{ $message }}</strong>
                         @enderror
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-rounded btn-primary">Tambah</button>
+                    <button type="submit" class="btn btn-primary">Tambah</button>
                 </div>
             </form>
         </div>
