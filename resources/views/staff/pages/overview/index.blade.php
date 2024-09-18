@@ -87,7 +87,11 @@
 
     <h4 class=""><b>Statistik Kelas Pelanggar Terbanyak</b></h4>
 
-    @include('staff.pages.overview.panes.violation-class')
+    @if ($classroom != null)
+        @include('staff.pages.overview.panes.violation-class')
+    @else
+        Tidak ada kelas dengan pelanggaran terbanyak
+    @endif
 
     <h4 class=""><b>Data Point Siswa</b></h4>
     @include('staff.pages.overview.panes.point-student')

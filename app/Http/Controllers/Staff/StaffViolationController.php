@@ -59,8 +59,9 @@ class StaffViolationController extends Controller
         $charts = $this->chartService->violationChart();
 
         $top_violations = $this->regulation->getOrder();
+
         $class = $this->studentViolation->countByClassroomStudent();
-        $classroom = $this->classroom->show($class->classroom_id);
+        $class == null ? $classroom = null : $classroom = $this->classroom->show($class->classroom_id);
         $students = $this->student->orderByPoint();
 
         return view('staff.pages.overview.index', compact(
