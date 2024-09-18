@@ -47,10 +47,10 @@
         <div class="card-body px-4 py-3">
             <div class="row align-items-center">
                 <div class="col-9">
-                    <h4 class="fw-semibold mb-8 text-light">Pegawai</h4>
+                    <h4 class="fw-semibold mb-8 text-light">Statistik Absensi</h4>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item" aria-current="page">Daftar - daftar guru dan staff di sekolah</li>
+                            <li class="breadcrumb-item" aria-current="page">Statistik absensi guru</li>
                         </ol>
                     </nav>
                 </div>
@@ -73,7 +73,7 @@
                             d="M12 7q-.825 0-1.412-.587T10 5t.588-1.412T12 3t1.413.588T14 5t-.587 1.413T12 7m0 14q-.625 0-1.062-.437T10.5 19.5v-9q0-.625.438-1.062T12 9t1.063.438t.437 1.062v9q0 .625-.437 1.063T12 21" />
                     </svg>
                 </span>
-                <h5 class="ms-2 fw-semibold">Statistik Absensi Pegawai</h5>
+                <h5 class="ms-2 fw-semibold">Statistik Absensi Guru</h5>
             </div>
         </div>
         <div class="w-100">
@@ -106,14 +106,14 @@
     <div class="row mt-3">
         <div class="col-lg-8">
             <div class="card card-body">
-                <h5 class="mb-4">Data Absensi Pegawai</h5>
+                <h5 class="mb-4">Data Absensi Guru</h5>
 
                 <div class="table-responsive rounded-2 mb-4">
                     <table class="table border text-nowrap customize-table mb-0 align-middle">
                         <thead class="text-dark fs-4">
                             <tr class="">
                                 <th class="text-white" style="background-color: #5D87FF;">No</th>
-                                <th class="text-white" style="background-color: #5D87FF;">Nama Pengguna</th>
+                                <th class="text-white" style="background-color: #5D87FF;">Nama Guru</th>
                                 <th class="text-white" style="background-color: #5D87FF;">Masuk</th>
                                 <th class="text-white" style="background-color: #5D87FF;">Pulang</th>
                                 <th class="text-white" style="background-color: #5D87FF;">Status</th>
@@ -138,7 +138,7 @@
                                             <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}"
                                                 alt="" width="300px">
                                             <p class="fs-5 text-dark text-center mt-2">
-                                                Siswa belum ditambahkan
+                                                Belum ada guru yang absen
                                             </p>
                                         </div>
                                     </td>
@@ -151,7 +151,7 @@
         </div>
         <div class="col-lg-4">
             <div class="card card-body">
-                <h5>Statistik Absensi Pegawai</h5>
+                <h5>Statistik Absensi Guru</h5>
                 <div>
                     <p>20 Januari 2024</p>
                 </div>
