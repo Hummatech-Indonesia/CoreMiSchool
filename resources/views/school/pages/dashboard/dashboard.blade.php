@@ -12,13 +12,53 @@
             border-radius: 5px;
             margin-right: 0.5px;
         }
+
+        @media (max-width: 767.98px) {
+            .card {
+                height: auto !important;
+            }
+
+            .position-absolute {
+                position: relative;
+                width: 100px;
+                margin-bottom: 0;
+                margin-right: 0;
+            }
+
+            .row.d-flex.align-items-stretch {
+                flex-direction: column;
+            }
+
+            .col-lg-3,
+            .col-lg-9 {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 991.98px) {
+            .card {
+                height: auto;
+            }
+
+            .position-absolute {
+                width: 100px;
+                margin-bottom: -10px;
+                margin-right: -10px;
+            }
+
+            .col-lg-3,
+            .col-lg-9 {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
     </style>
 
     @include('school.pages.dashboard.style.journal-statistics')
 @endsection
 
 @section('content')
-
     @include('school.pages.dashboard.panes.corousel')
 
     @include('school.pages.dashboard.panes.school-year')
