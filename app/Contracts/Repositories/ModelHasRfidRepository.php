@@ -170,4 +170,9 @@ class ModelHasRfidRepository extends BaseRepository implements ModelHasRfidInter
             $query->where('rfid', 'LIKE', '%' .  $request->search . '%');
         })->paginate(10);
     }
+
+    public function count(): mixed
+    {
+        return $this->model->query()->count();
+    }
 }

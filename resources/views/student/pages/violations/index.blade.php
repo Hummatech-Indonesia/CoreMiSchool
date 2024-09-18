@@ -1,27 +1,28 @@
 @extends('student.layouts.app')
 @section('content')
-    <div class="card bg-primary shadow-none position-relative overflow-hidden">
-        <div class="card-body px-4 py-3">
-            <div class="row align-items-center">
-                <div class="col-9">
-                    <h4 class="fw-semibold mb-8 text-white">Daftar Pelanggaran</h4>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a class="text-white text-decoration-none"
-                                    href="javascript:void(0)">Daftar pelanggaran dan jumlah point siswa</a>
-                            </li>
-                        </ol>
-                    </nav>
-                </div>
-                <div class="col-3">
-                    <div class="text-center">
-                        <img src="{{ asset('admin_assets/dist/images/breadcrumb/pagar.png') }}" alt=""
-                            class="img-fluid mb-n3" style="width: 170px; height: 120px; object-fit: cover;">
-                    </div>
+<div class="card bg-primary shadow-none position-relative overflow-hidden">
+    <div class="card-body px-4 py-3">
+        <div class="row align-items-center">
+            <div class="col-9">
+                <h4 class="fw-semibold mb-8 text-white">Daftar Pelanggaran</h4>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a class="text-white text-decoration-none" href="javascript:void(0)">Daftar pelanggaran dan jumlah point siswa</a>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-3">
+                <div class="text-center d-none d-md-block"> <!-- d-none untuk mobile, d-md-block untuk desktop -->
+                    <img src="{{ asset('admin_assets/dist/images/breadcrumb/pagar.png') }}" alt=""
+                        class="img-fluid mb-n3" style="width: 170px; height: 120px; object-fit: cover;">
                 </div>
             </div>
         </div>
     </div>
+</div>
+
     <div class="d-flex align-items-center mb-2">
         <span class="mb-1 badge bg-primary p-0 rounded-2 d-flex align-items-center justify-content-center"
             style="width: 24px; height: 24px;">
@@ -35,7 +36,7 @@
     <p>Penjelasan tentang pelanggaran dan point peringatan melanggar</p>
 
     <div class="row">
-        <div class="col-lg-3 col-md-6 d-flex align-items-stretch" style="flex: 0 0 25%; max-width: 25%;">
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch" >
             <div class="card w-100 border p-0 position-relative"
                 style="background: linear-gradient(135deg, #51B6FF, #4F7CFF); color: #fff;">
                 <div class="card-body d-flex flex-column p-3" style="background: none;">
@@ -59,7 +60,7 @@
         </div>
 
 
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch" style="flex: 0 0 37.5%; max-width: 37.5%;">
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="card w-100 border p-0">
                 <div class="card-header bg-danger rounded-bottom-2">
                     <h4 class="mb-0 text-white card-title">Pelanggaran</h4>
@@ -76,7 +77,7 @@
             </div>
         </div>
 
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch" style="flex: 0 0 37.5%; max-width: 37.5%;">
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="card w-100 border">
                 <div class="card-header bg-warning rounded-bottom-2">
                     <h4 class="mb-0 text-white card-title">Point Peringatan</h4>
@@ -109,27 +110,33 @@
     </div>
 
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 mt-4">
-        <form class="d-flex flex-column flex-md-row align-items-center" method="GET">
+        <form class="d-flex flex-column flex-md-row " method="GET">
             <div class="mb-3 mb-md-0 me-md-3">
                 <input type="text" name="search" value="{{ old('search', request('search')) }}" class="form-control"
                     placeholder="Cari..." value="">
             </div>
 
-            <div class="mb-3 mb-md-0 me-md-3">
-                <select name="point_student" class="form-select">
-                    <option value="highest">Point Tertinggi</option>
-                    <option value="lowest">Point Terendah</option>
-                </select>
+            <div class="row">
+                <div class="col-6">
+                    <div class="mb-3 mb-md-0 flex-grow-1">
+                        <select name="point_student" class="form-select">
+                            <option value="highest">Point Tertinggi</option>
+                            <option value="lowest">Point Terendah</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="mb-3 mb-md-0 flex-grow-1">
+                        <select name="order" class="form-select">
+                            <option value="latest" {{ old('order') == 'latest' ? 'selected' : '' }}>Terbaru</option>
+                            <option value="oldest" {{ old('order') == 'oldest' ? 'selected' : '' }}>Terlama</option>
+                        </select>
+                    </div>
+                </div>
             </div>
 
-            <div class="mb-3 mb-md-0 me-md-3">
-                <select name="order" class="form-select">
-                    <option value="latest" {{ old('order') == 'latest' ? 'selected' : '' }}>Terbaru</option>
-                    <option value="oldest" {{ old('order') == 'oldest' ? 'selected' : '' }}>Terlama</option>
-                </select>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Filter</button>
+            <button type="submit" class="btn btn-primary mt-3 mt-md-0 ms-md-3">Filter</button>
         </form>
     </div>
 

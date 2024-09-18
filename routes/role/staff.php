@@ -5,6 +5,7 @@ use App\Http\Controllers\Staff\StaffViolationController;
 use App\Http\Controllers\Staff\StudentRepairController;
 use App\Http\Controllers\StudentViolationController;
 use App\Http\Controllers\GuestBookController;
+use App\Http\Controllers\ModelHasRfidController;
 use App\Http\Controllers\Staff\DashboardStaffController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +24,7 @@ Route::middleware('auth')->prefix('employee')->name('employee.')->group(function
         Route::post('student-repair/{student}', [StudentRepairController::class, 'single_store'])->name('single.student-repair');
         Route::resource('student-repair', StudentRepairController::class);
 
-        Route::prefix('student-repair')->name('student-repair.')->group(function (){    
+        Route::prefix('student-repair')->name('student-repair.')->group(function () {
             Route::put('approve/{studentRepair}', [StudentRepairController::class, 'approved'])->name('approved');
             Route::put('reject/{studentRepair}', [StudentRepairController::class, 'reject'])->name('reject');
             Route::post('import', [StudentRepairController::class, 'import'])->name('import');
@@ -34,12 +35,14 @@ Route::middleware('auth')->prefix('employee')->name('employee.')->group(function
 
     Route::get('export-student-repair', [StudentRepairController::class, 'download_student'])->name('student-repair.download');
     Route::get('export-student-violation', [StaffViolationController::class, 'download_student'])->name('student-violation.download');
-    Route::get('detail-student-violation', function () {
-        return view('staff.pages.single-violation.detail-student');
-    });
-
     // fitur buku tamu
     Route::resource('guestbook', GuestBookController::class);
+
+    Route::get('rfid-student-violation', function () {
+        return view('staff.pages.single-violation.tab-rfid-violation');
+    })->name('rfid-student-violation`');
+
+    Route::post('detail-student-violation', [ModelHasRfidController::class, 'show'])->name('post-rfid.violation');
 
     // fitur jurnal
     Route::resource('journal', EmployeeJournalController::class)->except('show');

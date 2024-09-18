@@ -51,4 +51,9 @@ class ExtracurricularRepository extends BaseRepository implements Extracurricula
         })->latest()
         ->paginate(12);
     }
+
+    public function count() : mixed
+    {
+        return $this->model->query()->count();
+    }
 }

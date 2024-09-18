@@ -127,5 +127,4 @@ class StudentRepository extends BaseRepository implements StudentInterface
             ->where('point', '>', $query)
             ->count();
     }
-
 }

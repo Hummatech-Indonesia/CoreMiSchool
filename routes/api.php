@@ -1,14 +1,11 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\Api\RfidApiController;
-use App\Http\Controllers\ModelHasRfidController;
 use App\Http\Controllers\AttendanceMasterController;
-use App\Http\Controllers\AttendanceStudentController;
-use App\Http\Controllers\AttendanceTeacherController;
 use App\Http\Controllers\Api\AttendanceRuleApiController;
+use App\Http\Controllers\Api\SchoolDetailController;
 use App\Models\ModelHasRfid;
 use App\Models\User;
 
@@ -32,6 +29,9 @@ Route::get('attendance/rfids', [RfidApiController::class, 'index'])->name('rfid.
 Route::get('attendance/hours', [AttendanceRuleApiController::class, 'index'])->name('attendance.hour');
 Route::get('attendance/list', [AttendanceController::class, 'listAttendance']);
 Route::get('attendance/reset', [AttendanceController::class, 'reset']);
+
+Route::get('school/detail/{slug}', [SchoolDetailController::class, 'index']);
+
 // });
 // Route::get('sync/attendance/teacher', [AttendanceTeacherController::class, 'syncData'])->name('sync.teacher');
 

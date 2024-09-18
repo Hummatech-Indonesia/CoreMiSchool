@@ -56,12 +56,14 @@
             </div>
         @endforelse
 
-        <a href="{{ route('employee.journal.index') }}" class="btn mb-1 waves-effect waves-light btn-outline-primary w-100">Lihat Selengkapnya
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="mb-1" viewBox="0 0 24 24">
-                <path fill="currentColor"
-                    d="M17.92 11.62a1 1 0 0 0-.21-.33l-5-5a1 1 0 0 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1 1 0 0 0 0 1.42a1 1 0 0 0 1.42 0l5-5a1 1 0 0 0 .21-.33a1 1 0 0 0 0-.76" />
-            </svg>
-        </a>
+        @if ($employeeJournals->count() < 0)
+            <a href="{{ route('employee.journal.index') }}" class="btn mb-1 waves-effect waves-light btn-outline-primary w-100">Lihat Selengkapnya
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="mb-1" viewBox="0 0 24 24">
+                    <path fill="currentColor"
+                        d="M17.92 11.62a1 1 0 0 0-.21-.33l-5-5a1 1 0 0 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1 1 0 0 0 0 1.42a1 1 0 0 0 1.42 0l5-5a1 1 0 0 0 .21-.33a1 1 0 0 0 0-.76" />
+                </svg>
+            </a>
+        @endif
 
     </div>
 </div>

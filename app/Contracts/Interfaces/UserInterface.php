@@ -14,4 +14,5 @@ interface UserInterface extends GetInterface, StoreInterface, UpdateInterface, S
 {
     public function showEmail(string $email) : mixed;
     public function findOrFail(mixed $id) : mixed;
+    public function showWithSlug(mixed $slug): mixed;
 }

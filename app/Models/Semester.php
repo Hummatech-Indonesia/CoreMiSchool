@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Semester extends Model
 {
-    use HasFactory, BelongsToSchool;
+    use HasFactory;
 
     protected $guarded = ['id'];
 }
