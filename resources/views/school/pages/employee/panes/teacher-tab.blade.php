@@ -88,6 +88,15 @@
                                         style="z-index: 20000;">
                                         <li>
                                             <button type="button"
+                                            data-image="{{ $teacher->image ? asset('storage/' . $teacher->image) : asset('assets/images/default-user.jpeg') }}"
+                                            data-name="{{ $teacher->user->name }}"
+                                            data-email="{{ $teacher->user->email }}"
+                                            data-phone="{{ $teacher->phone_number }}"
+                                            data-gender="{{ $teacher->gender->label() }}"
+                                            data-nip="{{ $teacher->nip }}"
+                                            data-rfid="{{ $teacher->modelHasRfid ? $teacher->modelHasRfid->rfid : 'Belum memiliki rfid' }}"
+                                            data-address="{{ $teacher->address }}"
+
                                                 class="dropdown-item d-flex align-items-center gap-3 btn-detail-teacher">
                                                 <i class="fs-4 ti ti-eye"></i>Detail</button>
                                         </li>

@@ -175,5 +175,4 @@
     @include('school.pages.employee.scripts.create')
     @include('school.pages.employee.scripts.edit')
     @include('school.pages.employee.scripts.session')
-    @include('school.pages.employee.scripts.teacher-detail')
 @endsection
