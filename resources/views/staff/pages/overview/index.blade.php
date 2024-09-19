@@ -82,8 +82,7 @@
     <div class="card border shadow">
         <div class="card-body">
             <h5 class="mb-4"><b>Pelanggaran Terpopuler Bulan Ini
-                    <span class="ms-2 me-2">|</span>
-                    Januari</b></h5>
+                    <span class="ms-2 me-2">|</span>{{ \Carbon\Carbon::now()->translatedFormat('F') }}</b></h5>
 
             <div class="table-responsive rounded-2 mb-4">
                 <table class="table border text-nowrap customize-table mb-0 align-middle">
@@ -128,7 +127,7 @@
                     </tbody>
                 </table>
             </div>
-            <a class="btn mb-1 waves-effect waves-light btn-outline-primary w-100">Lihat Selengkapnya</a>
+            <a href="" class="btn mb-1 waves-effect waves-light btn-outline-primary w-100">Lihat Selengkapnya</a>
         </div>
     </div>
 
