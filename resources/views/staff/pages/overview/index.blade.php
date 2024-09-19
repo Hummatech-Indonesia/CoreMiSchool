@@ -127,7 +127,7 @@
                     </tbody>
                 </table>
             </div>
-            <a href="" class="btn mb-1 waves-effect waves-light btn-outline-primary w-100">Lihat Selengkapnya</a>
+            <a class="btn mb-1 waves-effect waves-light btn-outline-primary w-100">Lihat Selengkapnya</a>
         </div>
     </div>
 
