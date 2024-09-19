@@ -19,6 +19,13 @@ class TeacherSubjectService
         $rules = $request->validated();
 
         foreach ($rules['subject'] as $data) {
+
+            $result = $this->teacherSubject->whereTeacher($data, $employee);
+            if ($result) {
+                session()->flash('warning', 'Mata pelajaran guru sudah tersedia');
+                continue;
+            }
+
             $this->teacherSubject->store([
                 'employee_id' => $employee,
                 'subject_id' => $data,
