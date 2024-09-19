@@ -52,7 +52,7 @@
                                 </div>
 
                             </td>
-                            <td>{{ $classroomStudent->student->gender }}</td>
+                            <td>{{ $classroomStudent->student->gender->label() }}</td>
                             <td>{{ $classroomStudent->student->nisn }}</td>
                             <td class="text-center">
                                 <div class="d-flex justify-content-center align-items-center gap-2">
@@ -67,7 +67,7 @@
                                         data-birth_date="{{ Carbon\Carbon::parse($classroomStudent->student->birth_date)->format('d F Y') }}"
                                         data-number_kk="{{ $classroomStudent->student->number_kk }}"
                                         data-nik="{{ $classroomStudent->student->nik }}"
-                                        data-childnumber="{{ $classroomStudent->student->order_child }}" 
+                                        data-childnumber="{{ $classroomStudent->student->order_child }}"
                                         data-number_akta="{{ $classroomStudent->student->number_akta }}"
                                         data-numbersibling="{{ $classroomStudent->student->count_siblings }}"
                                         data-address="{{ $classroomStudent->student->address }}"
