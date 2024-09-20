@@ -26,4 +26,12 @@ class StoreEmployeeJournalRequest extends FormRequest
             'description' => 'required',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'title.required' => 'Judul wajib diisi',
+            'description.required' => 'Deskripsi wajib diisi',
+        ];
+    }
 }
