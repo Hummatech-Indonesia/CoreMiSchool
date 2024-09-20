@@ -41,29 +41,38 @@
                 style="max-width: 150px; height: auto;">
         </div>
     </div>
-    <div class="d-flex justify-content-between">
-        <div>
-            <div class="d-flex align-items-center">
-                <span class="mb-1 badge bg-primary p-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                        <path fill="currentColor"
-                            d="M12 7q-.825 0-1.412-.587T10 5t.588-1.412T12 3t1.413.588T14 5t-.587 1.413T12 7m0 14q-.625 0-1.062-.437T10.5 19.5v-9q0-.625.438-1.062T12 9t1.063.438t.437 1.062v9q0 .625-.437 1.063T12 21" />
-                    </svg>
-                </span>
-                <h4 class="ms-3 mb-0">Pengisian Jurnal</h4>
-            </div>
-        </div>
-        <div class="d-flex">
-            <p>Tanggal saat ini: </p>
-            <div>
-                <span class="badge bg-light-primary text-primary ms-2 fw-semibold">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="text-primary me-1" width="18" height="18"
-                        viewBox="0 0 24 24">
-                        <path fill="currentColor"
-                            d="M12 12h5v5h-5zm7-9h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m0 2v2H5V5zM5 19V9h14v10z" />
-                    </svg>
-                    <?php echo date('d F Y'); ?>
-                </span>
+
+    <div class="row me-3 mb-3">
+        <div class="d-flex justify-content-between">
+            <div class="col-lg-12">
+                <div>
+                    <div class="d-flex align-items-center">
+                        <span class="mb-1 badge bg-primary p-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                    d="M12 7q-.825 0-1.412-.587T10 5t.588-1.412T12 3t1.413.588T14 5t-.587 1.413T12 7m0 14q-.625 0-1.062-.437T10.5 19.5v-9q0-.625.438-1.062T12 9t1.063.438t.437 1.062v9q0 .625-.437 1.063T12 21" />
+                            </svg>
+                        </span>
+                        <h4 class="ms-3 mb-0">Pengisian Jurnal</h4>
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <div class="col-6">
+                        <p>Tanggal saat ini: </p>
+                    </div>
+                    <div class="col-6">
+                        <div>
+                            <span class="badge bg-light-primary text-primary ms-2 fw-semibold">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="text-primary me-1" width="18" height="18"
+                                    viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M12 12h5v5h-5zm7-9h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m0 2v2H5V5zM5 19V9h14v10z" />
+                                </svg>
+                                <?php echo date('d F Y'); ?>
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -144,75 +153,40 @@
                 <h4 class="ms-3 mb-0">Riwayat Jurnal</h4>
             </div>
         </div>
-    </div>
-
-    <div class="align-items-center mb-4">
-        <form class="d-flex justify-content-between" method="GET">
-            <div class="d-flex flex-column flex-md-row align-items-center">
-                <div class="mb-3 mb-md-0 me-md-3">
-                    <input type="text" name="search" class="form-control" placeholder="Cari..."
-                        value="{{ old('search', request('search')) }}">
-                </div>
-
-                <div class="mb-3 mb-md-0 me-md-3">
-                    <select name="filter" class="form-select">
-                        <option value="">Tampilkan semua</option>
-                        <option value="terlama" {{ old('filter', request('filter')) == 'terlama' ? 'selected' : '' }}>
-                            Terlama</option>
-                        <option value="terbaru" {{ old('filter', request('filter')) == 'terbaru' ? 'selected' : '' }}>
-                            Terbaru</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-primary">Filter</button>
-            </div>
-
-            <div class="d-flex">
-                <input type="date" name="date" class="form-control me-3">
-                <button type="submit" class="btn btn-primary">Cari</button>
-            </div>
-        </form>
-    </div>
-
-    <div class="row">
-        @forelse ($histories as $journal)
-            {{-- <div class="col-md-12 d-flex align-items-stretch">
-        <div class="card w-100">
-            <div class="card-header bg-primary" style="border-radius: 0.50rem;">
-                <h4 class="mb-0 text-white card-title">
-                    {{ Carbon::parse($journal->date)->isoFormat('DD MMMM YYYY') }}
-                </h4>
-            </div>
-
-            <div class="card-body">
-                <h3 class="card-title mb-4">Total keseluruhan siswa tidak mengikuti pelajaran:</h3>
-                <div class="d-flex justify-content-between align-items-center mt-3">
-                    <div class="d-flex">
-                        <div class="text-center me-4">
-                            <div class="bg-light-info text-info d-inline-block px-3 py-2 rounded">
-                                <b class="fs-7">{{ $journal->attendanceJournals->where('status', AttendanceEnum::PERMIT)->count() }}</b>
-                            </div>
-                            <p class="fs-5">Izin</p>
+        <div class="align-items-center mb-4">
+            <form class="row d-flex justify-content-between" method="GET">
+                <div class="col-lg-6">
+                    <div class="d-flex flex-column flex-md-row align-items-center">
+                        <div class="mb-3 mb-md-0 me-md-3">
+                            <input type="text" name="search" class="form-control" placeholder="Cari..."
+                                value="{{ old('search', request('search')) }}">
                         </div>
-                        <div class="text-center me-4">
-                            <div class="bg-light-warning text-warning d-inline-block px-3 py-2 rounded">
-                                <b class="fs-7">{{ $journal->attendanceJournals->where('status', AttendanceEnum::SICK)->count() }}</b>
-                            </div>
-                            <p class="fs-5">Sakit</p>
+                        <div class="mb-3 mb-md-0 me-md-3">
+                            <select name="filter" class="form-select">
+                                <option value="">Tampilkan semua</option>
+                                <option value="terlama" {{ old('filter', request('filter')) == 'terlama' ? 'selected' : '' }}>
+                                    Terlama</option>
+                                <option value="terbaru" {{ old('filter', request('filter')) == 'terbaru' ? 'selected' : '' }}>
+                                    Terbaru</option>
+                            </select>
                         </div>
-                        <div class="text-center">
-                            <div class="bg-light-danger text-danger d-inline-block px-3 py-2 rounded">
-                                <b class="fs-7">{{ $journal->attendanceJournals->where('status', AttendanceEnum::ALPHA)->count() }}</b>
-                            </div>
-                            <p class="fs-5">Alfa</p>
-                        </div>
+                        <button type="submit" class="btn btn-primary">Filter</button>
                     </div>
-                    <a href="{{ route('teacher.journals.show', $journal->id) }}" class="btn btn-primary">Detail</a>
                 </div>
 
-            </div>
-        </div>
-    </div> --}}
+                <div class="col-lg-2">
+                    <div class="d-flex">
+                        <input type="date" name="date" class="form-control me-3">
+                        <button type="submit" class="btn btn-primary">Cari</button>
+                    </div>
+                </div>
 
+            </form>
+        </div>
+    </div>
+
+    <div class="row me-3 mb-3">
+        @forelse ($histories as $journal)
             <div class="col-md-12 d-flex align-items-stretch">
                 <div class="card w-100">
                     <div class="card-header bg-primary" style="border-radius: 0.50rem;">

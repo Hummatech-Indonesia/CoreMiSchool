@@ -50,7 +50,7 @@ class StudentRepository extends BaseRepository implements StudentInterface
 
     public function orderByPoint(): mixed
     {
-        return $this->model->query()->orderBy('point', 'desc')->get();
+        return $this->model->query()->where('point', '!=', 0)->orderBy('point', 'desc')->take(5)->get();
     }
 
     public function search(Request $request): mixed

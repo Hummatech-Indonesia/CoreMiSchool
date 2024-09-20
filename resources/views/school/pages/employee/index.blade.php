@@ -117,7 +117,7 @@
                     <path fill="currentColor"
                         d="M33.17 21.47H28v2h4.17v8.37H18v-8.37h6.3v.42a1 1 0 0 0 2 0V20a1 1 0 0 0-2 0v1.47H17a1 1 0 0 0-1 1v10.37a1 1 0 0 0 1 1h16.17a1 1 0 0 0 1-1V22.47a1 1 0 0 0-1-1" />
                 </svg>
-                <span class="d-none d-md-block font-weight-medium">Staff</span>
+                <span class="d-none d-md-block font-weight-medium">Staf</span>
             </a>
         </li>
 
@@ -133,11 +133,11 @@
         <!-- Tombol Pegawai -->
         <li class="nav-item d-flex align-items-center col-12 col-md-auto ms-md-auto mt-2 mt-md-0 pegawai-buttons d-none">
             <button type="button" class="btn btn-success px-4 w-100 w-md-auto" data-bs-toggle="modal"
-                data-bs-target="#import-employe">Import Pegawai</button>
+                data-bs-target="#import-employe">Import Staf</button>
         </li>
         <li class="nav-item d-flex align-items-center col-12 col-md-auto ms-0 ms-md-2 mt-2 mt-md-0 pegawai-buttons d-none">
             <button type="button" class="btn btn-primary px-4 w-100 w-md-auto" data-bs-toggle="modal"
-                data-bs-target="#modal-add-emplo">Tambah Pegawai</button>
+                data-bs-target="#modal-add-emplo">Tambah Staf</button>
         </li>
     </ul>
 

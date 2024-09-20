@@ -47,7 +47,6 @@
 
     <div class="row">
         <div class="col-lg-12">
-
             @include('teacher.pages.dashboard.panes.profile')
         </div>
     </div>

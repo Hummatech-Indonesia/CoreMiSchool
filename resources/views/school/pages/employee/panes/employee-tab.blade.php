@@ -33,7 +33,7 @@
                 <thead class="text-dark fs-4">
                     <tr>
                         <th class="text-white" style="background-color: #5D87FF;">No</th>
-                        <th class="text-white" style="background-color: #5D87FF;">Nama Staff</th>
+                        <th class="text-white" style="background-color: #5D87FF;">Nama Staf</th>
                         <th class="text-white" style="background-color: #5D87FF;">Status</th>
                         <th class="text-white" style="background-color: #5D87FF;">Email</th>
                         <th class="text-white" style="background-color: #5D87FF;">NIP</th>
