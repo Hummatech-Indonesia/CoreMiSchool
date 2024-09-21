@@ -42,12 +42,17 @@ class TeacherSubjectController extends Controller
     public function store(StoreTeacherSubjectRequest $request, string $employee)
     {
         try {
-            $this->service->store($request, $employee);
-            return redirect()->back()->with('success', 'Berhail menambahkan mata pelajaran');
+            $addedSubjectsCount = $this->service->store($request, $employee);
+            if ($addedSubjectsCount > 0) {
+                return redirect()->back()->with('success', 'Berhasil menambahkan mata pelajaran');
+            }
+            return redirect()->back();
+            
         } catch (\Throwable $th) {
-            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $th->getMessage());
         }
     }
+
 
     /**
      * Display the specified resource.

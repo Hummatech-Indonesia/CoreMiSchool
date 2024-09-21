@@ -14,13 +14,14 @@ class TeacherSubjectService
         $this->teacherSubject = $teacherSubject;
     }
 
-    public function store(StoreTeacherSubjectRequest $request, $employee): void
+    public function store(StoreTeacherSubjectRequest $request, $employee): int
     {
         $rules = $request->validated();
+        $addedSubjectsCount = 0;
 
         foreach ($rules['subject'] as $data) {
-
             $result = $this->teacherSubject->whereTeacher($data, $employee);
+
             if ($result) {
                 session()->flash('warning', 'Mata pelajaran guru sudah tersedia');
                 continue;
@@ -30,6 +31,10 @@ class TeacherSubjectService
                 'employee_id' => $employee,
                 'subject_id' => $data,
             ]);
+
+            $addedSubjectsCount++;
         }
+
+        return $addedSubjectsCount;
     }
 }

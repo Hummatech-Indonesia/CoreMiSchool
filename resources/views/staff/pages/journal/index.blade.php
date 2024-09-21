@@ -70,13 +70,18 @@
                     @csrf
                     <div class="form-group mb-3">
                         <h5>Judul</h5>
-                        <input type="text" class="form-control" name="title" id="placeholder"
-                            placeholder="Masukkan judul">
+                        <input type="text" class="form-control" name="title" id="placeholder" placeholder="Masukkan judul">
+                        @error('title')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group mb-3">
                         <h5>Deskripsi</h5>
                         <p>Isi laporan sesuai dengan kegiatan dan aktivitas yang berlaku pada jam pelajaran tersebut.</p>
                         <textarea class="form-control" name="description" rows="4" placeholder="Masukkan deskripsi..."></textarea>
+                        @error('description')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div class="d-flex justify-content-end ">
