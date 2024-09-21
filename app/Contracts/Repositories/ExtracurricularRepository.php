@@ -43,6 +43,11 @@ class ExtracurricularRepository extends BaseRepository implements Extracurricula
         return $this->model->query()->latest()->paginate(10);
     }
 
+    public function first(mixed $name, mixed $employee): mixed
+    {
+        return $this->model->query()->where('name', $name)->where('employee_id', $employee)->first();
+    }
+
     public function extracurricularGet(Request $request) : mixed
     {
         return $this->model->query()

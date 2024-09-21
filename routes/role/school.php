@@ -41,7 +41,7 @@ use App\Models\Student;
 use Illuminate\Support\Facades\Route;
 use Maatwebsite\Excel\Facades\Excel;
 
-Route::middleware('auth')->prefix('school')->name('school.')->group(function () {
+Route::middleware(['auth', 'role:school'])->prefix('school')->name('school.')->group(function () {
     Route::get('', [SchoolDashboardController::class, 'index'])->name('index');
 
     // setting informasi

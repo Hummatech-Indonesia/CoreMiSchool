@@ -14,5 +14,6 @@ use Illuminate\Http\Request;
 interface ExtracurricularInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface
 {
     public function extracurricularGet(Request $request) : mixed;
+    public function first(mixed $name, mixed $employee): mixed;
     public function count() : mixed;
 }

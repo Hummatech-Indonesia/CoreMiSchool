@@ -6,7 +6,7 @@ use App\Http\Controllers\Teacher\TeacherStudentController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::middleware('auth')->prefix('teacher')->name('teacher.')->group(function () {
+Route::middleware(['auth', 'role:teacher'])->prefix('teacher')->name('teacher.')->group(function () {
     Route::get('', [DashboardTeacherController::class, 'index'])->name('dashboard');
 
     // extracurricular
