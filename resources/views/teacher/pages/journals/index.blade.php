@@ -43,39 +43,29 @@
     </div>
 
     <div class="row me-3 mb-3">
-        <div class="d-flex justify-content-between">
-            <div class="col-lg-12">
-                <div>
-                    <div class="d-flex align-items-center">
-                        <span class="mb-1 badge bg-primary p-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                                <path fill="currentColor"
-                                    d="M12 7q-.825 0-1.412-.587T10 5t.588-1.412T12 3t1.413.588T14 5t-.587 1.413T12 7m0 14q-.625 0-1.062-.437T10.5 19.5v-9q0-.625.438-1.062T12 9t1.063.438t.437 1.062v9q0 .625-.437 1.063T12 21" />
-                            </svg>
-                        </span>
-                        <h4 class="ms-3 mb-0">Pengisian Jurnal</h4>
-                    </div>
+        <div class="col-lg-12">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
+                <div class="d-flex align-items-start align-items-md-center mb-3 mb-md-0">
+                    <span class="mb-1 badge bg-primary p-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M12 7q-.825 0-1.412-.587T10 5t.588-1.412T12 3t1.413.588T14 5t-.587 1.413T12 7m0 14q-.625 0-1.062-.437T10.5 19.5v-9q0-.625.438-1.062T12 9t1.063.438t.437 1.062v9q0 .625-.437 1.063T12 21" />
+                        </svg>
+                    </span>
+                    <h4 class="ms-3 mb-0">Pengisian Jurnal</h4>
                 </div>
-                <div class="d-flex">
-                    <div class="col-6">
-                        <p>Tanggal saat ini: </p>
-                    </div>
-                    <div class="col-6">
-                        <div>
-                            <span class="badge bg-light-primary text-primary ms-2 fw-semibold">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="text-primary me-1" width="18" height="18"
-                                    viewBox="0 0 24 24">
-                                    <path fill="currentColor"
-                                        d="M12 12h5v5h-5zm7-9h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m0 2v2H5V5zM5 19V9h14v10z" />
-                                </svg>
-                                <?php echo date('d F Y'); ?>
-                            </span>
-                        </div>
-                    </div>
+                <div class="d-flex align-items-start align-items-md-center">
+                    <p class="mb-0">Tanggal saat ini:</p>
+                    <span class="badge bg-light-primary text-primary ms-2 fw-semibold d-flex align-items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="text-primary me-1" width="18" height="18" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M12 12h5v5h-5zm7-9h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m0 2v2H5V5zM5 19V9h14v10z" />
+                        </svg>
+                        <?php echo date('d F Y'); ?>
+                    </span>
                 </div>
             </div>
         </div>
     </div>
+
 
     <div class="card border shadow mt-3">
         <div class="card-body pt-3">
