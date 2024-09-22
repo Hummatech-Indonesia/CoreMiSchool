@@ -78,10 +78,10 @@
                         <td>
                             <button data-id="{{ $repair->id }}" data-employee="{{ $repair->employee->user->name }}"
                                 data-student="{{ $repair->classroomStudent->student->user->name }}"
-                                data-repair="{{ $repair->repapir }}" data-point="{{ $repair->point }}"
+                                data-repair="{{ $repair->repair }}" data-point="{{ $repair->point }}"
                                 data-start_date="{{ $repair->start_date }}" data-end_date="{{ $repair->end_date }}"
-                                data-proof="{{ $repair->proof ? asset('storage/' . $repair->proof) : asset('admin_assets/dist/images/backgrounds/student.png') }}"
-                                class="btn {{ $repair->is_approved == false ? 'btn-upload' : 'btn-detail' }} btn-primary py-1 px-4">Detail</button>
+                                data-proof="{{ $repair->proof ? asset('storage/' . $repair->proof) : asset('admin_assets/dist/images/empty/no-data.png') }}"
+                                class="btn {{ $repair->is_approved == false ? 'btn-upload' : 'btn-detail' }} btn-{{ $repair->is_approved == false ? 'warning' : 'primary' }} py-1 px-4">{{ $repair->is_approved == false ? 'Kirim Bukti' : 'Detail' }}</button>
                         </td>
                     </tr>
                 @empty
