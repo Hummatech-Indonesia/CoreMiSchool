@@ -20,7 +20,7 @@
 
     <div class="col-lg-3 mb-3 mt-4">
         <form class="d-flex gap-2">
-            <input type="text" name="search" class="form-control search-chat" value="{{ old('search', $request->get('search')) }}" placeholder="Cari...">   
+            <input type="text" name="search" class="form-control search-chat" value="{{ old('search', request('search')) }}" placeholder="Cari..">
             <button class="btn-primary btn" type="submit">Cari</button>
         </form>
     </div>
