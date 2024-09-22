@@ -19,7 +19,7 @@
                     <h6 style="font-size: 14px" id="student-detail"></h6>
                 </div>
                 <div class="mb-4">
-                    <h5 style="font-size: 15px"><b>Jenis Pelanggaran:</b></h5>
+                    <h5 style="font-size: 15px"><b>Jenis Perbaikan:</b></h5>
                     <h6 style="font-size: 14px" id="repair-detail"></h6>
                 </div>
                 <div class="mb-4">
@@ -38,7 +38,7 @@
                 </div>
                 <div class="mb-3">
                     <h5 style="font-size: 15px"><b>Bukti:</b></h5>
-                    <img id="proof-detail" src="" alt="Bukti Perbaikan"
+                    <img id="proof-detail" src alt="Bukti Perbaikan"
                         class="img-fluid rounded-3 pt-2" style="max-width: 100%; height: auto;">
                 </div>
             </div>

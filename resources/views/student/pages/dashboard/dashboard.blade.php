@@ -138,8 +138,8 @@
                                     <tr>
                                         <td>{{ \Carbon\Carbon::parse($data->created_at)->translatedFormat('l') }}</td>
                                         <td>{{ \Carbon\Carbon::parse($data->created_at)->translatedFormat('d F Y') }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($data->checkin)->format('H:i') }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($data->checkout)->format('H:i') }}</td>
+                                        <td>{{ $data->checkin == null ? '-' : \Carbon\Carbon::parse($data->checkin)->format('H:i') }}</td>
+                                        <td>{{ $data->checkout == null ? '-' : \Carbon\Carbon::parse($data->checkout)->format('H:i') }}</td>
                                         <td>
                                             <span class="mb-1 badge font-medium {{$data->status == 'present' ? 'bg-light-success text-success' : ($data->status == 'permit' ? 'bg-light-warning text-warning' : 'bg-light-danger text-danger') }}">{{ $data->status->label() }}</span>
                                         </td>
