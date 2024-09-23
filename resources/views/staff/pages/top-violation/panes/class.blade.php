@@ -46,7 +46,7 @@
                         <div>
                             <span
                                 class="mb-1 badge font-medium bg-light-danger text-danger">{{ $classroom->classroomStudents->sum(function ($student) {
-                                    return optional($student->student->studentViolations)->sum('point') ?: 0;
+                                    return optional($student->student->studentViolations)->sum('point') ?? 0;
                                 }) }}
                                 Point</span>
                         </div>
