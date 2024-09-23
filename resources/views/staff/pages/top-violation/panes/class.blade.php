@@ -44,11 +44,11 @@
                             <h5><strong>Jumlah Point Keseluruhan :</strong></h5>
                         </div>
                         <div>
-                            <span class="mb-1 badge font-medium bg-light-danger text-danger">
-                                {{ $classroom->classroomStudents->sum(function ($student) {
-                                    return $student->student->studentViolations->sum('point');
+                            <span
+                                class="mb-1 badge font-medium bg-light-danger text-danger">{{ $classroom->classroomStudents->sum(function ($student) {
+                                    return optional($student->student->studentViolations)->sum('point') ?: 0;
                                 }) }}
-                                Point </span>
+                                Point</span>
                         </div>
                     </div>
                     <div class="card mt-3 mb-0">
