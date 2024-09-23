@@ -69,7 +69,7 @@
                     @forelse ($rfids as $rfid)
                         <tr>
                             <td>{{ $rfid->rfid }}</td>
-                            <td>{{ $rfid->model_type == 'App/Models/Employee' ? $rfid->model->user->name : ( $rfid->model_type == 'App/Models/ClassroomStudent' ? $rfid->model->student->user->name : $rfid->model->user->name ) }}</td>
+                            <td>{{ $rfid->model_type == 'App\Models\Employee' ? $rfid->model->user->name : ( $rfid->model_type == 'App\Models\ClassroomStudent' ? $rfid->model->student->user->name : $rfid->model->user->name ) }}</td>
                             <td>
                                 <span class="mb-1 badge px-5 font-medium bg-light-success text-success">Aktif</span>
                             </td>
