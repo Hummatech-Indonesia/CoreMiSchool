@@ -78,7 +78,7 @@
                                 data-id="{{ $student->id }}"
                                 data-rfid="{{ $student->modelHasRfid ? $student->modelHasRfid->rfid : 'Kosong' }}"
                                 data-old-rfid="{{ $student->modelHasRfid ? $student->modelHasRfid->rfid : 'Kosong' }}"
-                                data-role="{{ $student->user->roles->pluck('name')[0] }}">
+                                data-role="ClassroomStudent">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                     viewBox="0 0 24 24">
                                     <path fill="currentColor"
