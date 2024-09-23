@@ -114,6 +114,8 @@ class ModelHasRfidController extends Controller
         if ($modelHasRfid->model_type == "App\Models\ClassroomStudent") {
             $classroomStudent = $this->classroomStudent->show($modelHasRfid->model_id);
             return view('staff.pages.single-violation.detail-student', compact('classroomStudent', 'regulations'));
+        } else {
+            return redirect()->back()->with('warning', 'Rfid yang anda inputkan tidak valid');
         }
     }
 
