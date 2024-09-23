@@ -37,7 +37,7 @@ class EmployeeService
             'name' => $data['name'],
             'slug' => Str::slug($data['slug']),
             'email' => $data['email'],
-            'password' => Hash::make($data['nisn']),
+            'password' => Hash::make($data['nip']),
         ];
         $user = $this->user->store($dataUser);
 
@@ -60,7 +60,7 @@ class EmployeeService
             'name' => $data['name'],
             'slug' => Str::slug($data['slug']),
             'email' => $data['email'],
-            'password' => Hash::make($data['nisn']),
+            'password' => Hash::make($data['nip']),
         ];
         $this->user->update($request->user_id, $dataUser);
 
