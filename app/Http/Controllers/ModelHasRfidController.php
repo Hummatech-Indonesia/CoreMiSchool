@@ -48,6 +48,7 @@ class ModelHasRfidController extends Controller
     public function showActive(Request $request)
     {
         $rfids = $this->modelHasRfid->activeRfid($request);
+        // dd($rfids);
         return view('school.pages.rfid.rfid-active', compact('rfids'));
     }
 
@@ -151,7 +152,7 @@ class ModelHasRfidController extends Controller
     public function destroy(ModelHasRfid $modelHasRfid)
     {
         try {
-            $this->modelHasRfid->delete($modelHasRfid->id);
+            $this->modelHasRfid->delete($modelHasRfid->model_type, $modelHasRfid->model_id);
             return redirect()->back()->with('success', 'Kartu rfid berhasil dihapus');
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
