@@ -26,7 +26,7 @@ class EmployeeImport implements ToModel
                 'name' => $row[0] ?? null,
                 'email' => $row[1],
                 'slug' => Str::slug($row[0]),
-                'password' => $row[6]
+                'password' => $row[2]
             ]);
         }
 
