@@ -25,7 +25,7 @@ class ClassroomStudentRepository extends BaseRepository implements ClassroomStud
 
     public function show(mixed $id): mixed
     {
-        return $this->model->query()->findOrFail($id);
+        return $this->model->query()->where('student_id', $id)->first();
     }
 
     public function update(mixed $id, array $data): mixed

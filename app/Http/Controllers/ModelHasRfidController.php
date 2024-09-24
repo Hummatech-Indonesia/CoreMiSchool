@@ -111,7 +111,7 @@ class ModelHasRfidController extends Controller
 
 
         if (!$modelHasRfid) return redirect()->back()->with('warning', 'Rfid yang anda inputkan bukan siswa');
-        if ($modelHasRfid->model_type == "App\Models\ClassroomStudent") {
+        if ($modelHasRfid->model_type == "App\Models\Student") {
             $classroomStudent = $this->classroomStudent->show($modelHasRfid->model_id);
             return view('staff.pages.single-violation.detail-student', compact('classroomStudent', 'regulations'));
         } else {
