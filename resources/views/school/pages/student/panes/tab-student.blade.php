@@ -72,13 +72,13 @@
                         <td>{{ $student->gender->value == 'male' ? 'Laki-laki' : 'Perempuan' }}</td>
                         <td>{{ $student->nisn }}</td>
                         <td>
-                            {{ $student->modelHasRfid ? $student->modelHasRfid->rfid : ($student->classroomStudents->first()->modelHasRfid ? $student->classroomStudents->first()->modelHasRfid->rfid : '-') }}
+                            {{ $student->modelHasRfid ? $student->modelHasRfid->rfid : '-' }}
                             <button type="button" class="btn btn-rounded btn-warning p-1 ms-2 btn-rfid"
                                 data-name="{{ $student->user->name }}"
-                                data-id="{{ $student->classroomStudents->first()->id }}"
+                                data-id="{{ $student->id }}"
                                 data-rfid="{{ $student->modelHasRfid ? $student->modelHasRfid->rfid : 'Kosong' }}"
                                 data-old-rfid="{{ $student->modelHasRfid ? $student->modelHasRfid->rfid : 'Kosong' }}"
-                                data-role="ClassroomStudent">
+                                data-role="Student">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                     viewBox="0 0 24 24">
                                     <path fill="currentColor"
