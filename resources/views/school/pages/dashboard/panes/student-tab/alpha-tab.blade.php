@@ -15,10 +15,10 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>
-                        {{ $item->model->student->user->name }}
+                        {{ $item->model ? $item->model->student->user->name : 'Tidak ada' }}
                     </td>
                     <td>
-                        {{ $item->model->classroom->name }}
+                        {{ $item->model ? $item->model->classroom->name : 'Tidak ada' }}
                     </td>
                     <td>{{ $item->checkin ? \Carbon\Carbon::parse($item->checkin)->format('H.i') : '-' }}</td>
                     <td>

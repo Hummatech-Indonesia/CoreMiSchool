@@ -22,7 +22,7 @@ class UpdateSubjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|unique:subjects,name,except,id',
+            'name' => 'required',
             'religion_id' => 'nullable',
         ];
     }

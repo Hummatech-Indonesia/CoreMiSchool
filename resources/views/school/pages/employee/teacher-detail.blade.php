@@ -144,7 +144,6 @@
                     <h6 class="mb-3">Jenis Pelajaran :</h6>
                     @if ($teacher_subject->subject->religion_id != null)
                     <div class="align-items-center pt-3">
-                        <h6 class="mb-3">Jenis Pelajaran :</h6>
                         <div class="d-flex align-items-center">
                             <span class="mb-1 badge font-medium fs-5 bg-light-warning text-warning">
                                 Keagamaan
@@ -155,6 +154,7 @@
                         </div>
                     </div>
                     @else
+
                     <span class="mb-1 badge font-medium fs-5 bg-light-primary text-primary">
                         Umum
                     </span>

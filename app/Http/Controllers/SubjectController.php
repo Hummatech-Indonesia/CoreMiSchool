@@ -75,7 +75,9 @@ class SubjectController extends Controller
     public function update(UpdateSubjectRequest $request, Subject $subject)
     {
         try {
-            $this->subject->update($subject->id, $request->validated());
+            $data = $request->validated();
+            if ($subject->religion_id == $data['religion_id'] && $subject->name == $data['name']) return redirect()->back()->with('warning', 'Mata Pelajaran Sudah Tersedia');
+            $this->subject->update($subject->id, $data);
             return redirect()->back()->with('success', 'Berhasil memperbarui mata pelajaran');
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
