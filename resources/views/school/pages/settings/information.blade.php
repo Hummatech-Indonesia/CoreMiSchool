@@ -59,7 +59,7 @@
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6>Deskripsi :</h6>
-                            <p>{{ $school->description != null ? $school->description : '-' }}</p>
+                            <p>{{ $school->description != null ? Str::limit($school->description, 200) : '-' }}</p>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6>Alamat:</h6>
