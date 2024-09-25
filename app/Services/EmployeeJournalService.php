@@ -3,6 +3,7 @@
     namespace App\Services;
 
 use App\Contracts\Interfaces\EmployeeInterface;
+use App\Enums\StatusEnum;
 use App\Http\Requests\StoreEmployeeJournalRequest;
 use App\Http\Requests\UpdateEmployeeJournalRequest;
 
@@ -25,6 +26,7 @@ use App\Http\Requests\UpdateEmployeeJournalRequest;
                 'employee_id' => $employee->id,
                 'title' => $data['title'],
                 'description' => $data['description'],
+                'status' => StatusEnum::COMPLETED->value,
             ];
         }
 
@@ -38,6 +40,7 @@ use App\Http\Requests\UpdateEmployeeJournalRequest;
                 'employee_id' => $employee->id,
                 'title' => $data['title'],
                 'description' => $data['description'],
+                'status' => StatusEnum::COMPLETED->value,
             ];
         }
     }
