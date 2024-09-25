@@ -60,4 +60,13 @@
             religionField.style.display = 'none';
         }
     });
+
+    document.getElementById('category-edit').addEventListener('change', function() {
+        var religionFieldedit = document.getElementById('religion-field-edit');
+        if (this.value === 'keagamaan') {
+            religionFieldedit.style.display = 'block';
+        } else {
+            religionFieldedit.style.display = 'none';
+        }
+    });
 </script>

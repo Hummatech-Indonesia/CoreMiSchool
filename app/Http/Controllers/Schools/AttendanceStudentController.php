@@ -32,7 +32,7 @@ class AttendanceStudentController extends Controller
         $date = $request->input('date', Carbon::today()->format('Y-m-d'));
         $data = $this->schoolChartService->chartClass($request);
 
-        // dd($data);
+        dd($data);
         $classrooms = $this->classroom->whereInSchoolYears($request);
         return view('school.pages.statistic-presence.index', compact('data','date', 'classrooms'));
     }
