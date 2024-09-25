@@ -87,7 +87,7 @@ class StudentRepository extends BaseRepository implements StudentInterface
                 $q->where('name', 'LIKE', '%' .  $request->name . '%');
             });
         })
-        ->paginate(10);
+        ->get();
     }
 
     public function countStudentAlumni(): mixed

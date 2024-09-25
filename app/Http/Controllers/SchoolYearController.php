@@ -106,7 +106,7 @@ class SchoolYearController extends Controller
     {
         try {
             $this->schoolYear->setNonactive();
-            $this->schoolYear->setActive(['active' => 1]);
+            $this->schoolYear->update($schoolYear->id, ['active' => 1]);
             return back()->with('success', 'Berhasil');
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
