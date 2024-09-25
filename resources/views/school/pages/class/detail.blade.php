@@ -82,7 +82,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="d-flex flex-wrap mb-3">
-                        <form class="position-relative">
+                        <form class="position-relative" id="unrolling-student">
                             <input type="text" name="name" class="form-control product-search ps-5"
                                 id="input-search-left" placeholder="Cari...">
                             <i
@@ -135,7 +135,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="d-flex flex-wrap mb-3">
-                        <form class="position-relative">
+                        <form class="position-relative" id="rolling-student">
                             <input type="text" name="search" class="form-control product-search ps-5"
                                 id="input-search-right" placeholder="Cari...">
                             <i
@@ -243,7 +243,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td>{{ $student->student->gender == 'male' ? 'Laki Laki' : 'Perempuan' }}</td>
+                        <td>{{ $student->student->gender->label() }}</td>
                         <td>{{ $student->student->nisn }}</td>
                         <td>{{ $student->student->modelHasRfid ? $student->student->modelHasRfid->rfid : '-' }}
                             <button type="button" class="btn btn-rounded btn-warning p-1 ms-2 btn-rfid"

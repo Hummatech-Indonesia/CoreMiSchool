@@ -113,6 +113,7 @@ Route::middleware(['auth', 'role:school'])->prefix('school')->name('school.')->g
     Route::resource('classroom', ClassroomController::class);
     Route::resource('level-class', LevelClassController::class);
     Route::get('class-detail/{classroom}', [ClassroomStudentController::class, 'index'])->name('class-student.index');
+    Route::get('class-detail/{classroom}/wheredosenthaveclassroom', [ClassroomStudentController::class, 'whereDosentHaveClassroom'])->name('class-student.doesntHaveClassroom');
     Route::put('update-classroom/{classroom}', [ClassroomStudentController::class, 'update'])->name('student-classroom.update');
     Route::patch('school-years/{schoolYear}/active', [SchoolYearController::class, 'setActive'])->name('school-year.setActive');
     Route::post('import-class-student', [ClassroomStudentController::class, 'import'])->name('class.student.import');

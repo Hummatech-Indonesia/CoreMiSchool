@@ -37,6 +37,11 @@ class ClassroomStudentController extends Controller
         return view('school.pages.class.detail', compact('classroomStudents', 'classroom', 'religions', 'students'));
     }
 
+    public function whereDosentHaveClassroom(Request $request) {
+        $students = $this->student->doesntHaveClassroom($request);
+        return response()->json($students);
+    }
+
     /**
      * Show the form for creating a new resource.
      */

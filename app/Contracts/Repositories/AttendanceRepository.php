@@ -101,10 +101,11 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
     public function whereClassroomCount(mixed $id, mixed $day, mixed $status): mixed
     {
         return $this->model->query()
+            ->with('model')
             ->where('model_type', 'App\Models\ClassroomStudent')
             ->where('status', $status)
             ->whereDate('created_at', $day)
-            ->whereHas('model', function($query)use($id){
+            ->whereHas('model', function ($query) use ($id) {
                 $query->where('classroom_id', $id);
             })
             ->count();
@@ -117,9 +118,9 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
         return $this->student->query()
             ->whereHas('attendances', function ($query) use ($date, $request) {
                 $query->whereDate('created_at', $date)
-                ->when($request->start, function($q) use($request){
-                    $q->whereBetween('created_at', [$request->start . ' 00:00:00', $request->end. ' 23:59:59']);
-                });
+                    ->when($request->start, function ($q) use ($request) {
+                        $q->whereBetween('created_at', [$request->start . ' 00:00:00', $request->end . ' 23:59:59']);
+                    });
             })
             ->with(['student.user', 'attendances' => function ($query) use ($date) {
                 $query->whereDate('created_at', $date);
@@ -139,7 +140,7 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
             ->where('classroom_id', $classroom_id)
             ->when($request->start, function ($query) use ($request) {
                 $query->whereHas('attendances', function ($query) use ($request) {
-                    $query->whereBetween('created_at', [$request->start. ' 00:00:00', $request->end. ' 23:59:59']);
+                    $query->whereBetween('created_at', [$request->start . ' 00:00:00', $request->end . ' 23:59:59']);
                 });
             })
             ->get();
@@ -263,8 +264,8 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
     {
         return $this->model->query()
             ->where('model_type', $model)
-            ->when($request->start_date, function($q) use ($request){
-                $q->whereBetween('created_at', [$request->start_date. ' 00:00:00', $request->end_date. ' 23:59:59']);
+            ->when($request->start_date, function ($q) use ($request) {
+                $q->whereBetween('created_at', [$request->start_date . ' 00:00:00', $request->end_date . ' 23:59:59']);
             })
             ->get();
     }

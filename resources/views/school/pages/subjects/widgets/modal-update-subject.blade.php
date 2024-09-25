@@ -19,13 +19,21 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label for="">Kagamaan</label>
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" role="switch" id="check">
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="mb-3">
+                        <label class="mb-2" for="category">Kategori<span class="text-danger ms-1">*</span></label>
+                        <select id="category-edit" name="category" class="form-select mb-3">
+                            <option value="umum">Umum</option>
+                            <option value="keagamaan">Keagamaan</option>
+                        </select>
+                    </div>
+
+                    <div id="religion-field-edit" class="mb-3" style="display: none;">
                         <select id="religion-edit" name="religion_id" class="form-select form-select mb-3">
                             <option value="">Pilih agama <span class="text-danger">*</span></option>
                             @foreach ($religions as $religion)
