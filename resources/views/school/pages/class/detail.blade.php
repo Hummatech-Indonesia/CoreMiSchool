@@ -243,7 +243,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td>{{ $student->student->gender == 'male' ? 'Laki Laki' : 'Perempuan' }}</td>
+                        <td>{{ $student->student->gender->label() }}</td>
                         <td>{{ $student->student->nisn }}</td>
                         <td>{{ $student->student->modelHasRfid ? $student->student->modelHasRfid->rfid : '-' }}
                             <button type="button" class="btn btn-rounded btn-warning p-1 ms-2 btn-rfid"
