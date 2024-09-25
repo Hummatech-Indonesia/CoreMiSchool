@@ -49,7 +49,7 @@ class CreateAttendanceCommand extends Command
                 return [
                     'point' => 13,
                     'model_type' => "App\Models\ClassroomStudent",
-                    'model_id' => $student->student->id,
+                    'model_id' => $student->id,
                     'created_at' => now(),
                     'status' => AttendanceEnum::ALPHA->value
                 ];
