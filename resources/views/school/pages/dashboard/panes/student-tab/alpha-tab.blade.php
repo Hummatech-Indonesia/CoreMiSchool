@@ -1,12 +1,12 @@
 <div class="table-responsive rounded-2 mb-4" style="max-height: 400px; overflow-y: auto;">
     <table class="table border text-nowrap customize-table mb-0 align-middle text-center">
         <thead class="text-dark fs-4" style="position: sticky; top: 0; background-color: #5D87FF; z-index: 10;">
-            <tr>
-                <th class="fs-4 fw-semibold mb-0 text-white">No</th>
-                <th class="fs-4 fw-semibold mb-0 text-white">Nama</th>
-                <th class="fs-4 fw-semibold mb-0 text-white">Kelas</th>
-                <th class="fs-4 fw-semibold mb-0 text-white">Jam</th>
-                <th class="fs-4 fw-semibold mb-0 text-white">Status</th>
+            <tr class="">
+                <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">No</th>
+                <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Nama</th>
+                <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Kelas</th>
+                <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Jam</th>
+                <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Status</th>
             </tr>
         </thead>
         <tbody>
