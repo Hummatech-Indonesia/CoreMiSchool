@@ -93,6 +93,8 @@ class SchoolYearController extends Controller
     public function destroy(SchoolYear $schoolYear)
     {
         try {
+            if($schoolYear->active == true) return redirect()->back()->with('warning','Tidak dapat menghapus tahun ajaran aktif');
+
             $this->schoolYear->delete($schoolYear->id);
             $this->schoolYear->setActive(['active' => 1]);
             return redirect()->back()->with('success', 'Berhasil menghapus tahun ajaran');
