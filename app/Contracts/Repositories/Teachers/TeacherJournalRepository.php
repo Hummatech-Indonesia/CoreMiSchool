@@ -55,9 +55,10 @@ class TeacherJournalRepository extends BaseRepository implements TeacherJournalI
         return $this->model->query()->where('lesson_schedule_id', $id)->first();
     }
 
-    public function histories(Request $request): mixed
+    public function histories(mixed $id,Request $request): mixed
     {
         return $this->model->query()
+            ->whereRelation('lessonSchedule.teacherSubject.employee.user', 'id', $id)
             ->with('attendanceJournals')
             ->when($request->search, function ($query) use ($request) {
                 $query->where('title', 'LIKE', '%' . $request->search . '%');

@@ -43,7 +43,7 @@ class TeacherJournalController extends Controller
     public function index(Request $request)
     {
         $teacherSchedules = $this->lessonSchedule->whereTeacher(auth()->user()->id, now());
-        $histories = $this->teacherJournal->histories($request);
+        $histories = $this->teacherJournal->histories(auth()->user()->id, $request);
         // dd($teacherSchedules);
         return view('teacher.pages.journals.index', compact('teacherSchedules', 'histories'));
     }
@@ -96,6 +96,7 @@ class TeacherJournalController extends Controller
     public function update(UpdateTeacherJournalRequest $request, TeacherJournal $teacherJournal)
     {
         try {
+            // dd($request->validated());
             $data = $this->service->update($request, $teacherJournal->lesson_schedule_id);
             $this->teacherJournal->update($teacherJournal->id, $data);
             $this->serviceAttendance->updateJournal($request['attendance'], $teacherJournal);

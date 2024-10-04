@@ -107,7 +107,7 @@
                         <h4 class="mb-3"><b>Absensi Hari Ini:</b></h4>
                         <h4>{{ $single_attendance ? \Carbon\Carbon::parse($single_attendance->created_at)->translatedFormat('d F Y') : '' }} {{ $single_attendance ? ' - '. \Carbon\Carbon::parse($single_attendance->checkin)->format('H:i') : '' }}</h4>
                     </div>
-                    <div class="badge {{ $single_attendance ? ($single_attendance->status == 'present' ? 'bg-light-success text-success' : ($status_attendance->status == 'sick' ? 'bg-light-warning text-warning' : 'bg-light-danger text-danger')) : 'bg-light-danger text-danger' }} fs-5 text-nowrap py-3 px-2 rounded-3 w-100 w-lg-auto"
+                    <div class="badge {{ $single_attendance ? ($single_attendance->status == 'present' ? 'bg-light-success text-success' : ($single_attendance->status == 'sick' ? 'bg-light-warning text-warning' : 'bg-light-danger text-danger')) : 'bg-light-danger text-danger' }} fs-5 text-nowrap py-3 px-2 rounded-3 w-100 w-lg-auto"
                         style="max-width: 150px; overflow: hidden; text-overflow: ellipsis;">
                         {{ $single_attendance ? $single_attendance->status->label() : 'Belum Absen'}}
                     </div>

@@ -5,6 +5,7 @@ use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\Api\RfidApiController;
 use App\Http\Controllers\AttendanceMasterController;
 use App\Http\Controllers\Api\AttendanceRuleApiController;
+use App\Http\Controllers\Api\LessonScheduleApiController;
 use App\Http\Controllers\Api\SchoolDetailController;
 use App\Models\ModelHasRfid;
 use App\Models\User;
@@ -52,3 +53,11 @@ Route::get('test-day-attendance', function () {
         'users' => $users
     ]);
 });
+
+Route::get('lesson-schedule/{user}', [LessonScheduleApiController::class, 'index']);
+Route::get('teacher-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'create']);
+Route::get('history-journal/{user}', [LessonScheduleApiController::class, 'history']);
+Route::get('detail-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'show']);
+Route::post('store-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'store']);
+Route::put('update-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'update']);
+
