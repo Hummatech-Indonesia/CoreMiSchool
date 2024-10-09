@@ -27,6 +27,7 @@ use App\Contracts\Interfaces\ClassroomStudentInterface;
 use App\Contracts\Interfaces\AttendanceTeacherInterface;
 use App\Contracts\Repositories\AttendanceTeacherRepository;
 use App\Enums\AttendanceEnum;
+use App\Http\Requests\AttendanceLicensesRequest;
 use App\Models\AttendanceTeacher;
 use App\Models\Employee;
 
@@ -158,5 +159,11 @@ class AttendanceController extends Controller
     public function reset(Request $request)
     {
         return $this->attendance->reset($request->date);
+    }
+
+    public function proof(AttendanceLicensesRequest $request)
+    {
+        $this->service->proof($request);
+        return redirect()->back()->with('success', 'Berhasil menambahkan perizinan siswa');
     }
 }
