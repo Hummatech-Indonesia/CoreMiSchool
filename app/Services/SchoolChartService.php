@@ -79,12 +79,12 @@ class SchoolChartService
         return $data;
     }
 
-    public function chartStudentAttendance($lates, $sick, $alpha)
+    public function chartStudentAttendance($lates, $totalPermit, $alpha)
     {
 
         return [
             'chartLate' => $lates->count(),
-            'chartSick' => $sick->count(),
+            'chartSick' => $totalPermit,
             'chartAlpha' => $alpha->count()
         ];
     }

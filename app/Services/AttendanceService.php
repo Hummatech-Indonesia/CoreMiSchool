@@ -16,11 +16,17 @@ use App\Contracts\Interfaces\ModelHasRfidInterface;
 
 use App\Contracts\Interfaces\AttendanceRuleInterface;
 use App\Contracts\Interfaces\AttendanceTeacherInterface;
+use App\Enums\StatusEnum;
+use App\Enums\UploadDiskEnum;
 use App\Models\Attendance;
+use App\Models\ClassroomStudent;
 use App\Models\ModelHasRfid;
+use App\Traits\UploadTrait;
 
 class AttendanceService
 {
+    use UploadTrait;
+
     private ModelHasRfidInterface $modelHasRfid;
     private AttendanceRuleInterface $attendanceRule;
     private StudentInterface $student;
@@ -34,6 +40,12 @@ class AttendanceService
         $this->attendance = $attendance;
         $this->attendanceRule = $attendanceRule;
         $this->attendanceTeacher = $attendanceTeacher;
+    }
+
+    public function validateAndUpload(string $disk, object $file, string $old_file = null): string
+    {
+        if ($old_file) $this->remove($old_file);
+        return $this->upload($disk, $file);
     }
 
     public function store(StoreAttendanceRequest $request): array|bool
@@ -274,5 +286,28 @@ class AttendanceService
         })->toArray();
 
         return $data = compact('present', 'out');
+    }
+
+    public function upload_proof(Attendance $attendance, Request $request)
+    {
+        $data = $request->validate([
+            'proof' => 'required|file|mimes:jpg,jpeg,png',
+            'status' => 'required',
+        ]);
+
+        if ($request->hasFile('proof') && $request->file('proof')->isValid()) {
+            $data['proof'] = $request->file('proof')->store(UploadDiskEnum::PROOF->value, 'public');
+        } elseif ($request->hasFile('proof') && $request->file('proof')->isValid() && $attendance->proof != null) {
+            $this->remove($attendance->proof);
+            $data['proof'] = $request->file('proof')->store(UploadDiskEnum::PROOF->value, 'public');
+        } else {
+            $data['proof'] = $attendance->proof;
+        }
+
+        return [
+            'proof' => $data['proof'],
+            'status' => $data['status'] == 1 ? AttendanceEnum::PERMIT->value : AttendanceEnum::SICK->value,
+            'point' => $data['status'] == 1 ? '12' : '11',
+        ];
     }
 }

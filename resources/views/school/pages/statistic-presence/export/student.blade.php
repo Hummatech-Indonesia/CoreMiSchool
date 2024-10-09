@@ -93,7 +93,6 @@
                             <th class="text-white" style="background-color: #5D87FF;">Masuk</th>
                             <th class="text-white" style="background-color: #5D87FF;">Pulang</th>
                             <th class="text-white" style="background-color: #5D87FF;">Poin</th>
-                            <th class="text-white" style="background-color: #5D87FF;">Max Point</th>
                             <th class="text-white" style="background-color: #5D87FF;">Status</th>
                         </tr>
                     </thead>
@@ -101,11 +100,10 @@
                         @forelse ($attendances as $attendance)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $attendance->student->user->name }}</td>
-                                <td>{{ Carbon\Carbon::parse($attendance->attendances->first()->checkin)->format('H.i') }}</td>
+                                <td>{{ $attendance->student->user->name }}</td> 
+                                <td>{{ $attendance->attendances->first()->checkin ? Carbon\Carbon::parse($attendance->attendances->first()->checkin)->format('H.i') : '-' }}</td>
                                 <td>{{ $attendance->attendances->first()->checkout ? Carbon\Carbon::parse($attendance->attendances->first()->checkout)->format('H.i') : '-' }}</td>
                                 <td>{{ $attendance->attendances->first()->point }}</td>
-                                <td>10</td>
                                 <td>
                                     <span class="mb-1 badge font-medium bg-light-primary text-primary">{{ $attendance->attendances->first()->status->label() }}</span>
                                 </td>

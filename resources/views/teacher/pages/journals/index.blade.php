@@ -78,7 +78,6 @@
                             <th class="">Kelas</th>
                             <th class="">Jam</th>
                             <th class="">Tanggal</th>
-                            <th class="">Status</th>
                             <th class=" text-center">Aksi</th>
                         </tr>
                     </thead>
@@ -96,7 +95,6 @@
                                     <td>{{ \Carbon\Carbon::parse($lessonSchedule->created_at)->translatedFormat('d F Y') }}
                                     </td>
                                 @endif
-                                <td>{{ $lessonSchedule->classroom->name }}</td>
                                 @if ($lessonSchedule->teacherJournals->count() > 0)
                                     <td class="text-center">
                                         <a href="{{ route('teacher.journals.show', $lessonSchedule->teacherJournals->first()->id) }}"

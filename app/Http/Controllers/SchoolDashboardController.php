@@ -88,17 +88,23 @@ class SchoolDashboardController extends Controller
         $lates = $this->attendance->AttendanceDasboard('App\Models\ClassroomStudent', AttendanceEnum::LATE->value, $request);
         $alpha = $this->attendance->AttendanceDasboard('App\Models\ClassroomStudent', AttendanceEnum::ALPHA->value, $request);
         $sick = $this->attendance->AttendanceDasboard('App\Models\ClassroomStudent', AttendanceEnum::SICK->value, $request);
+        $permit = $this->attendance->AttendanceDasboard('App\Models\ClassroomStudent', AttendanceEnum::PERMIT->value, $request);
+
+        $merged = $sick->merge($permit);
+        $totalPermit = $merged->count();
 
         $lates_teacher = $this->attendance->AttendanceDasboard('App\Models\Employee', AttendanceEnum::LATE->value, $request);
         $alpha_teacher = $this->attendance->AttendanceDasboard('App\Models\Employee', AttendanceEnum::ALPHA->value, $request);
         $sick_teacher = $this->attendance->AttendanceDasboard('App\Models\Employee', AttendanceEnum::SICK->value, $request);
+        $permit_teacher = $this->attendance->AttendanceDasboard('App\Models\Employee', AttendanceEnum::PERMIT->value, $request);
 
-        $studentChart = $this->schoolChart->chartStudentAttendance($lates, $sick, $alpha);
+        $merged_teacher = $sick_teacher->merge($permit_teacher);
+        $totalPermit_teacher = $merged->count();
 
-        // dd($studentChart);
+        $studentChart = $this->schoolChart->chartStudentAttendance($lates, $totalPermit, $alpha);
 
         return view('school.pages.dashboard.dashboard', compact(
-            'lates', 'alpha', 'sick', 'lates_teacher', 'alpha_teacher', 'sick_teacher', 'studentChart',
+            'lates', 'alpha', 'sick', 'permit', 'totalPermit','lates_teacher', 'alpha_teacher', 'sick_teacher', 'totalPermit_teacher','studentChart',
             'fill','notfill','classrooms', 'violations',
             'schoolYear', 'semester',
             'attendanceChart', 'alumni',

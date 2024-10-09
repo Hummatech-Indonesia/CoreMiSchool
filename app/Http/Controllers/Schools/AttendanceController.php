@@ -8,7 +8,10 @@ use App\Contracts\Interfaces\ClassroomInterface;
 use App\Contracts\Interfaces\SchoolYearInterface;
 use App\Exports\StudentAttendanceExport;
 use App\Http\Controllers\Controller;
+use App\Models\Attendance;
 use App\Models\Classroom;
+use App\Models\ClassroomStudent;
+use App\Services\AttendanceService;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -18,13 +21,15 @@ class AttendanceController extends Controller
     private SchoolYearInterface $schoolYear;
     private AttendanceInterface $attendance;
     private AttendanceTeacherInterface $attendanceTeacher;
+    private AttendanceService $attendanceService;
 
-    public function __construct(classroomInterface $classroom, SchoolYearInterface $schoolYear, AttendanceInterface $attendance, AttendanceTeacherInterface $attendanceTeacher)
+    public function __construct(classroomInterface $classroom, SchoolYearInterface $schoolYear, AttendanceInterface $attendance, AttendanceTeacherInterface $attendanceTeacher, AttendanceService $attendanceService)
     {
         $this->classroom = $classroom;
         $this->schoolYear = $schoolYear;
         $this->attendance = $attendance;
         $this->attendanceTeacher = $attendanceTeacher;
+        $this->attendanceService = $attendanceService;
     }
 
     /**
@@ -82,5 +87,13 @@ class AttendanceController extends Controller
     public function export_student(Classroom $classroom, Request $request)
     {
         return Excel::download(new StudentAttendanceExport($classroom->id, $request, $this->attendance), 'Kehadiran-'.$classroom->name.$request->date.'.xlsx');
+    }
+
+    public function proof(Attendance $attendance, Request $request)
+    {
+        $data = $this->attendanceService->upload_proof($attendance, $request);
+        $this->attendance->update($attendance->id, $data);
+
+        return redirect()->back()->with('success', 'Berhasil menambahkan bukti');
     }
 }

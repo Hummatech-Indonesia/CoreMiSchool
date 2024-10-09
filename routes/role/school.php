@@ -129,6 +129,8 @@ Route::middleware(['auth', 'role:school'])->prefix('school')->name('school.')->g
     Route::get('export/{classroom}', [SchoolsAttendanceController::class, 'expotStudent'])->name('attendance-student-export.show');
     Route::get('student-attendance/export/{classroom}', [SchoolsAttendanceController::class, 'export_student'])->name('student-attendance.export');
 
+    Route::put('upload-proof/{attendance}', [SchoolsAttendanceController::class, 'proof'])->name('student.upload.proof');
+
     // kehadiran guru
     Route::get('teacher-attendance', [SchoolsAttendanceController::class, 'teacher'])->name('teacher-attendance.index');
     Route::get('teacher-attendance/export', [AttendanceEmployeeController::class, 'export'])->name('teacher-attendance.export');

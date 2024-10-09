@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <span class="mb-1 badge font-medium bg-light-warning text-warning px-3 py-2"
-                    style="font-size: 20px"><b>{{ $sick->count() }} Siswa</b></span>
+                    style="font-size: 20px"><b>{{ $totalPermit }} Siswa</b></span>
             </div>
         </div>
     </div>

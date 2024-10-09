@@ -11,4 +11,5 @@ enum UploadDiskEnum: string
     case ATTENDANCE_JOURNAL = "attendance_journal";
 
     case PROOF_REPAIR = "proof_repair";
+    case PROOF = "proof";
 }

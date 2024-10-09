@@ -56,6 +56,7 @@
                     <th class="text-white" style="background-color: #5D87FF;">Pulang</th>
                     <th class="text-white" style="background-color: #5D87FF;">Point</th>
                     <th class="text-white" style="background-color: #5D87FF;">Status</th>
+                    <th class="text-white" style="background-color: #5D87FF;">Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -70,6 +71,13 @@
                         <span class="badge bg-light-primary text-primary">
                             {{ $attendance->attendances->first()->status->label() }}
                         </span>
+                    </td>
+                    <td>
+                        <button type="button" data-id="{{ $attendance->attendances->first()->id }}" class="btn mb-1 btn-upload 
+                            {{ $attendance->attendances->first()->proof == null ? 'btn-light-primary text-primary' : 'btn-light-warning text-warning'}}
+                            btn-sm px-4 fs-2 font-medium">
+                            {{ $attendance->attendances->first()->proof == null ? 'Upload' : 'Edit' }} Bukti
+                        </button>
                     </td>
                 </tr>
                 @empty
@@ -88,4 +96,10 @@
         </table>
     </div>
 </div>
+
+@include('school.pages.statistic-presence.widgets.modal-upload')
+@endsection
+
+@section('script')
+@include('school.pages.statistic-presence.script.btn-upload')
 @endsection
