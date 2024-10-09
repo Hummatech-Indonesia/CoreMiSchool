@@ -50,3 +50,7 @@ Route::middleware(['auth', 'role:staff|teacher', 'permission:view_violation'])->
 
     Route::get('detail-student-violation/{rfid}', [ModelHasRfidController::class, 'show'])->name('post-rfid.violation');
 });
+
+Route::get('permission', function () {
+    return view('staff.pages.permission.index');
+})->name('permission`');
