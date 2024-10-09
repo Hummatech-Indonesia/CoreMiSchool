@@ -166,4 +166,10 @@ class AttendanceController extends Controller
         $this->service->proof($request);
         return redirect()->back()->with('success', 'Berhasil menambahkan perizinan siswa');
     }
+
+    public function delete_proof(Attendance $attendance)
+    {
+        $this->attendance->delete($attendance->id);
+        return redirect()->back()->with('success', 'Berhasil menghapus perizinan siswa');
+    }
 }

@@ -63,21 +63,21 @@
 
     <div class="col-lg-12 mb-3">
         <div class="d-flex justify-content-between align-items-start">
-            <form class="d-flex flex-column flex-md-row gap-2 flex-grow-5" action="/school/students">
+            <form class="d-flex flex-column flex-md-row gap-2 flex-grow-5">
                 <div class="position-relative flex-grow-1">
-                    <input type="text" name="name" class="form-control product-search ps-5" id="input-search"
-                        placeholder="Cari..." value="{{ old('name', request('name')) }}">
+                    <input type="text" name="search" class="form-control product-search ps-5" id="input-search"
+                        placeholder="Cari..." value="{{ old('search', request('search')) }}">
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                 </div>
                 <div class="d-flex flex-column flex-md-row gap-2">
-                    <select name="class" class="form-select">
+                    <select name="classroom" class="form-select">
                         <option value="">Semua Kelas</option>
                         <option value="">kelas</option>
                     </select>
-                    <select name="izin" class="form-select">
+                    <select name="status" class="form-select">
                         <option value="">Semua Status</option>
-                        <option value="sakit">Sakit</option>
-                        <option value="izin">Izin</option>
+                        <option value="sick">Sakit</option>
+                        <option value="permit">Izin</option>
                     </select>
                     <div>
                         <button type="submit" class="btn btn-primary btn-md w-100 w-md-auto">Filter</button>
@@ -102,14 +102,13 @@
                     <th>No</th>
                     <th>Nama</th>
                     <th>Kelas</th>
-                    <th>Tanggal Mulai</th>
-                    <th>Tanggal Akhir</th>
+                    <th>Izin Pada Tanggal</th>
                     <th>Status</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                @forelse (range(1,3) as $items)
+                @forelse ($data as $items)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>
@@ -118,17 +117,15 @@
                                     class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40"
                                     height="40" alt="" />
                                 <div class="ms-3">
-                                    <h6 class="fs-4 fw-semibold mb-0 text-start">Nama siswa</h6>
-                                    <span class="fw-normal">Perempuan</span>
+                                    <h6 class="fs-4 fw-semibold mb-0 text-start">{{ $items->model->student->user->name }}</h6>
+                                    <span class="fw-normal">{{ $items->model->student->gender->label() }}</span>
                                 </div>
                             </div>
                         </td>
-                        <td>X RPL 1</td>
-                        <td>12 Desember 2024</td>
-                        <td>19 Desember 2024</td>
-
+                        <td>{{ $items->model->classroom->name }}</td>
+                        <td>{{ \Carbon\Carbon::parse($items->created_at)->translatedFormat('d F Y') }}</td>
                         <td>
-                            <span class="mb-1 badge font-medium bg-light-warning text-warning">Izin</span>
+                            <span class="mb-1 badge font-medium {{ $items->status->value == 'permit' ? 'bg-light-warning text-warning' : 'bg-light-danger text-danger'}}">{{ $items->status->value == 'permit' ? 'Izin' : 'Sakit'}}</span>
                         </td>
                         <td>
                             <div class="dropdown dropstart">
@@ -143,13 +140,12 @@
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
-                                    <li>
+                                    {{-- <li>
                                         <button class="btn-detail dropdown-item d-flex align-items-center gap-3"><i
                                                 class="fs-4 ti ti-eye"></i>Detail</button>
-                                    </li>
+                                    </li> --}}
                                     <li>
-                                        <button
-                                            class="btn-delete dropdown-item d-flex align-items-center text-danger gap-3"><i
+                                        <button data-id="{{ $items->id }}" class="btn-delete dropdown-item d-flex align-items-center text-danger gap-3"><i
                                                 class="fs-4 ti ti-trash"></i>Hapus</button>
                                     </li>
                                 </ul>

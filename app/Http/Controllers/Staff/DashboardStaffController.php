@@ -2,28 +2,35 @@
 
 namespace App\Http\Controllers\Staff;
 
+use App\Contracts\Interfaces\AttendanceInterface;
+use App\Contracts\Interfaces\ClassroomStudentInterface;
 use App\Contracts\Interfaces\EmployeeJournalInterface;
 use App\Contracts\Interfaces\SchoolPointInterface;
 use App\Contracts\Interfaces\StudentInterface;
 use App\Contracts\Interfaces\StudentRepairInterface;
 use App\Contracts\Interfaces\StudentViolationInterface;
+use App\Enums\AttendanceEnum;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class DashboardStaffController extends Controller
 {
+    private ClassroomStudentInterface $classroomStudent;
     private StudentViolationInterface $studentViolation;
     private EmployeeJournalInterface $employeeJournal;
     private StudentRepairInterface $studentRepair;
     private SchoolPointInterface $schoolPoint;
+    private AttendanceInterface $attendance;
     private StudentInterface $student;
 
-    public function __construct(StudentViolationInterface $studentViolation, StudentRepairInterface $studentRepair, SchoolPointInterface $schoolPoint, StudentInterface $student, EmployeeJournalInterface $employeeJournal)
+    public function __construct(ClassroomStudentInterface $classroomStudent, StudentViolationInterface $studentViolation, StudentRepairInterface $studentRepair, SchoolPointInterface $schoolPoint, StudentInterface $student, EmployeeJournalInterface $employeeJournal, AttendanceInterface $attendance)
     {
+        $this->classroomStudent = $classroomStudent;
         $this->studentViolation = $studentViolation;
         $this->employeeJournal = $employeeJournal;
         $this->studentRepair = $studentRepair;
         $this->schoolPoint = $schoolPoint;
+        $this->attendance = $attendance;
         $this->student = $student;
     }
 
@@ -61,9 +68,11 @@ class DashboardStaffController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function permission(Request $request)
     {
-        //
+        $students = $this->classroomStudent->get();
+        $data = $this->attendance->getSickAndPermit($request, [AttendanceEnum::SICK, AttendanceEnum::PERMIT]);
+        return view('staff.pages.permission.index', compact('data', 'students'));
     }
 
     /**

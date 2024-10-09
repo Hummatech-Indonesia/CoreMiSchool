@@ -5,16 +5,18 @@
                 <h5 class="modal-title" id="importPegawai">Tambah Izin</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('employee.store.permission') }}" method="POST" enctype="multipart/form-data">
                 @method('post')
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
                         <div class="form-group">
                             <label for="" class="mb-2">Nama Siswa</label>
-                            <select id="" class="select2 select2-create" name="employee_id">
+                            <select id="" class="select2 select2-create" name="classroomStudent">
                                 <option value="">Pilih Siswa</option>
-                                <option value=""> Siswa</option>
+                                @foreach ($students as $data)
+                                    <option value="{{ $data->id }}">{{ $data->student->user->name }}</option>
+                                @endforeach
                             </select>
                             @error('employee_id', 'create')
                                 <span class="text-danger error-create">{{ $message }}</span>
@@ -25,13 +27,13 @@
                         <div class="col-md-6 mb-3">
                             <label class="mr-sm-2 mb-2" for="inlineFormCustomSelect">Tanggal Mulai</label>
                             <div class="form-group">
-                                <input type="date" class="form-control" value="">
+                                <input type="date" class="form-control" value="" name="start_date">
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="mr-sm-2 mb-2" for="inlineFormCustomSelect">Tanggal Akhir</label>
                             <div class="form-group">
-                                <input type="date" class="form-control" value="">
+                                <input type="date" class="form-control" value="" name="end_date">
                             </div>
                         </div>
                     </div>
@@ -39,7 +41,7 @@
                     <div class="mb-3">
                         <div class="form-group mb-4">
                             <label class="mr-sm-2" for="inlineFormCustomSelect">Status</label>
-                            <select class="form-select mr-sm-2" id="inlineFormCustomSelect">
+                            <select class="form-select mr-sm-2" name="status" id="inlineFormCustomSelect">
                                 <option value="1">Izin</option>
                                 <option value="2">Sakit</option>
                             </select>
@@ -48,7 +50,7 @@
 
                     <div class="mb-3">
                         <label class="mr-sm-2 mb-2" for="inlineFormCustomSelect">Bukti</label>
-                        <input class="form-control" type="file" id="formFile">
+                        <input class="form-control" type="file" id="formFile" name="proof">
                     </div>
                 </div>
                 <div class="modal-footer">

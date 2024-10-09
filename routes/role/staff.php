@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\EmployeeJournalController;
 use App\Http\Controllers\Staff\StaffViolationController;
 use App\Http\Controllers\Staff\StudentRepairController;
@@ -17,7 +18,9 @@ Route::middleware(['auth', 'role:staff'])->prefix('employee')->name('employee.')
     Route::resource('journal', EmployeeJournalController::class)->except('show');
     Route::get('journal/detail/{employeeJournal}', [EmployeeJournalController::class, 'detail'])->name('journal.detail');
 
-    
+    Route::get('permission',[DashboardStaffController::class, 'permission'])->name('permission');
+    Route::post('store-permission', [AttendanceController::class, 'proof'])->name('store.permission');
+    Route::delete('delete-permission/{attendance}', [Attendancecontroller::class, 'delete_proof'])->name('delete.permission');
 });
 
 Route::middleware(['auth', 'role:staff|teacher', 'permission:view_violation'])->prefix('employee')->name('employee.')->group(function () {
@@ -52,7 +55,3 @@ Route::middleware(['auth', 'role:staff|teacher', 'permission:view_violation'])->
 
     Route::get('detail-student-violation/{rfid}', [ModelHasRfidController::class, 'show'])->name('post-rfid.violation');
 });
-
-Route::get('permission', function () {
-    return view('staff.pages.permission.index');
-})->name('permission`');

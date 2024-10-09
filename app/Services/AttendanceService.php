@@ -23,6 +23,7 @@ use App\Models\Attendance;
 use App\Models\ClassroomStudent;
 use App\Models\ModelHasRfid;
 use App\Traits\UploadTrait;
+use Illuminate\Support\Facades\DB;
 
 class AttendanceService
 {
@@ -324,11 +325,11 @@ class AttendanceService
         $endDate = Carbon::parse($data['end_date']);
 
         for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
-            $this->attendance->store([
+            DB::table('attendances')->insert([
                 'model_type' => 'App\Models\ClassroomStudent',
                 'model_id' => $data['classroomStudent'],
-                'point' => $data['status'] == '1' ? '11' : '12',
-                'status' => $data['status'] == '1' ? AttendanceEnum::SICK : AttendanceEnum::PERMIT,
+                'point' => $data['status'] == '1' ? '12' : '11',
+                'status' => $data['status'] == '1' ? AttendanceEnum::PERMIT : AttendanceEnum::SICK,
                 'proof' => $data['proof'],
                 'created_at' => $date->toDateString(),
             ]);
