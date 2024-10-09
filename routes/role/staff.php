@@ -16,6 +16,8 @@ Route::middleware(['auth', 'role:staff'])->prefix('employee')->name('employee.')
     // fitur jurnal
     Route::resource('journal', EmployeeJournalController::class)->except('show');
     Route::get('journal/detail/{employeeJournal}', [EmployeeJournalController::class, 'detail'])->name('journal.detail');
+
+    
 });
 
 Route::middleware(['auth', 'role:staff|teacher', 'permission:view_violation'])->prefix('employee')->name('employee.')->group(function () {

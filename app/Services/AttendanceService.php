@@ -18,6 +18,7 @@ use App\Contracts\Interfaces\AttendanceRuleInterface;
 use App\Contracts\Interfaces\AttendanceTeacherInterface;
 use App\Enums\StatusEnum;
 use App\Enums\UploadDiskEnum;
+use App\Http\Requests\AttendanceLicensesRequest;
 use App\Models\Attendance;
 use App\Models\ClassroomStudent;
 use App\Models\ModelHasRfid;
@@ -309,5 +310,29 @@ class AttendanceService
             'status' => $data['status'] == 1 ? AttendanceEnum::PERMIT->value : AttendanceEnum::SICK->value,
             'point' => $data['status'] == 1 ? '12' : '11',
         ];
+    }
+
+    public function proof(AttendanceLicensesRequest $request): void
+    {
+        $data = $request->validated();
+
+        if ($request->hasFile('proof') && $request->file('proof')->isValid()) {
+            $data['proof'] = $request->file('proof')->store(UploadDiskEnum::PROOF->value, 'public');
+        }
+
+        $startDate = Carbon::parse($data['start_date']);
+        $endDate = Carbon::parse($data['end_date']);
+
+        for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
+            $this->attendance->store([
+                'model_type' => 'App\Models\ClassroomStudent',
+                'model_id' => $data['classroomStudent'],
+                'point' => $data['status'] == '1' ? '11' : '12',
+                'status' => $data['status'] == '1' ? AttendanceEnum::SICK : AttendanceEnum::PERMIT,
+                'proof' => $data['proof'],
+                'created_at' => $date->toDateString(),
+            ]);
+        }
+
     }
 }
