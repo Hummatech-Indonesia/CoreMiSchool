@@ -13,8 +13,8 @@
                                         class="img-fluid">
                                 </div>
                                 <div class="col-lg-8 col-6 col-ms-1">
-                                    <h3><b>Nama Wali Kelas</b></h3>
-                                    <h5>Tahun Ajaran 2002</h5>
+                                    <h3><b>{{ $classroomStudent->classroom->employee->user->name }}</b></h3>
+                                    <h5>Tahun Ajaran {{ $classroomStudent->classroom->schoolYear->school_year }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -27,9 +27,9 @@
                             <div class="row align-items-center">
                                 <div class="col-lg-8 col-6">
                                     <h5 class="fw-semibold">Kelasmu Saat Ini</h5>
-                                    <h3 class="my-4"><b>XII RPL 1</b></h3>
+                                    <h3 class="my-4"><b>{{ $classroomStudent->classroom->name }}</b></h3>
                                     <div class="badge bg-light-primary text-primary fs-5">
-                                        21 Total Siswa
+                                        {{ $classroomStudent->classroom->classroomStudents->count() }} Total Siswa
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-6">
@@ -58,7 +58,7 @@
             </a>
         </li>
         <li class="nav-item ms-auto">
-            <a href="/student/all-schedule" class="btn mb-1 waves-effect waves-light btn-warning" type="button">Lihat Semua Jawal
+            <a href="/student/all-schedule" class="btn mb-1 waves-effect waves-light btn-warning" type="button">Lihat Semua Jadwal
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                     <path fill="currentColor"
                         d="m16.172 11l-5.364-5.364l1.414-1.414L20 12l-7.778 7.778l-1.414-1.414L16.172 13H4v-2z" />
@@ -77,4 +77,7 @@
     </div>
 
     @include('student.pages.class.widgets.detail-schedule')
+@endsection
+@section('script')
+    @include('student.pages.class.scripts.detail');
 @endsection
