@@ -13,6 +13,7 @@ use App\Contracts\Interfaces\EmployeeInterface;
 use App\Contracts\Interfaces\EmployeeJournalInterface;
 use App\Contracts\Interfaces\ExtracurricularInterface;
 use App\Contracts\Interfaces\ExtracurricularStudentInterface;
+use App\Contracts\Interfaces\FeedbackInterface;
 use App\Contracts\Interfaces\GuestBookInterface;
 use App\Contracts\Interfaces\LessonHourInterface;
 use App\Contracts\Interfaces\LessonScheduleInterface;
@@ -47,6 +48,7 @@ use App\Contracts\Repositories\EmployeeJournalRepository;
 use App\Contracts\Repositories\EmployeeRepository;
 use App\Contracts\Repositories\ExtracurricularRepository;
 use App\Contracts\Repositories\ExtracurricularStudentRepository;
+use App\Contracts\Repositories\FeedbackRepository;
 use App\Contracts\Repositories\GuestBookRepository;
 use App\Contracts\Repositories\LessonHourRepository;
 use App\Contracts\Repositories\LessonScheduleRepository;
@@ -110,6 +112,7 @@ class AppServiceProvider extends ServiceProvider
         StudentRepairInterface::class => StudentRepairRepository::class,
         EmployeeJournalInterface::class => EmployeeJournalRepository::class,
         GuestBookInterface::class => GuestBookRepository::class,
+        FeedbackInterface::class => FeedbackRepository::class
     ];
 
     /**

@@ -22,4 +22,9 @@ class Student extends Model
     protected $casts = [
         'gender' => GenderEnum::class
     ];
+
+    public function feedbacks()
+    {
+        return $this->hasMany(Feedback::class);
+    }
 }
