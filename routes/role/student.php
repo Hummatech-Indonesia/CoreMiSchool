@@ -10,4 +10,11 @@ Route::middleware('auth')->prefix('student')->name('student.')->group(function (
 
     Route::get('violations', [ViolationController::class, 'index'])->name('violations');
     Route::resource('repairs', RepairStudentController::class);
+    Route::get('/class', function () {
+        return view('student.pages.class.index');
+    });
+    Route::get('/all-schedule', function () {
+        return view('student.pages.class.panes.all-schedule');
+    });
+
 });
