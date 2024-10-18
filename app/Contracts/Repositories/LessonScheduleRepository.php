@@ -147,4 +147,12 @@ class LessonScheduleRepository extends BaseRepository implements LessonScheduleI
             ->latest()
             ->first();
     }
+
+    public function whereDay(mixed $query): mixed
+    {
+        return $this->model->query()
+            ->where('classroom_id', $query)
+            ->where('day', now()->format('l'))
+            ->get();
+    }
 }
