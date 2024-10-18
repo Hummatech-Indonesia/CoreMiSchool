@@ -77,6 +77,4 @@
     </div>
 
     @include('student.pages.class.widgets.detail-schedule')
-    @include('student.pages.class.panes.all-schedule')
-
 @endsection
