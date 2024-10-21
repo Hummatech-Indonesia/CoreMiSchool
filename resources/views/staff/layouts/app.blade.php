@@ -3,7 +3,7 @@
 
 <head>
     <!--  Title -->
-    <title>MiSchool | Staff</title>
+    <title>Primadona | Staff</title>
     <!--  Required Meta Tag -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,7 +14,7 @@
     <meta name="keywords" content="Modernize" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!--  Favicon -->
-    <link rel="shortcut icon" type="image/png" href="{{ asset('mobilelogo.png') }}" />
+    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logo/logo-primadona3.png') }}" />
 
     <!-- Core CSS -->
     <link id="themeColors" rel="stylesheet" href="{{ asset('admin_assets/dist/css/style.min.css') }}" />
@@ -28,7 +28,7 @@
 <body>
     <!-- Preloader -->
     <div class="preloader">
-        <img src="{{ asset('assets/images/logo/logo-M.png') }}" style="width:100px" alt="loader" class="lds-ripple" />
+        <img src="{{ asset('assets/images/logo/logo-primadona3.png') }}" style="width:40px" alt="loader" class="lds-ripple" />
     </div>
 
     <!--  Body Wrapper -->

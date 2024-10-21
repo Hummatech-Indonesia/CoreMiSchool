@@ -2,8 +2,8 @@
     <!-- Sidebar scroll-->
     <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-            <a href="/" class="text-nowrap logo-img">
-                <img src="{{ asset('assets/images/logo/logo-miscool.png') }}" width="200px" alt="">
+            <a href="/" class="text-nowrap logo-img pt-3">
+                <img src="{{ asset('assets/images/logo/logo-primadona1.png') }}" width="200px" alt="">
             </a>
             <div class="close-btn d-lg-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
                 <i class="ti ti-x fs-8 text-muted"></i>
