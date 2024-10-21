@@ -52,7 +52,7 @@
                                 Alfian Ban Dalam
                             </h5>
                             <p>alfian@gmail.com</p>
-                            <a href="/student-feedback/detail" class="btn btn-primary d-block w-100">Lihat Tanggapam</a>
+                            <a href="/student-feedback/detail" class="btn btn-primary d-block w-100">Lihat Tanggapan</a>
                         </div>
                     </div>
                 </div>
