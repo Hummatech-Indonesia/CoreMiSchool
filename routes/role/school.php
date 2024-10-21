@@ -188,6 +188,14 @@ Route::get('menu-test', function () {
     return view('school.pages.test.menu');
 })->name('menu-test.index');
 
+Route::get('student-feedback', function () {
+    return view('school.pages.student-feedback.index');
+})->name('student-feedback');
+
+Route::get('student-feedback/detail', function () {
+    return view('school.pages.student-feedback.detail');
+})->name('student-feedback.detail');
+
 // Route::get('user-list', function () {
 //     return view('school.pages.test.user-list');
 // })->name('user-list.index');
