@@ -16,9 +16,9 @@
             </div>
         </ul>
         <div class="d-block d-lg-none">
-            <img src="{{ asset('assets/images/logo/logo-miscool.png') }}" class="dark-logo" width="180"
+            <img src="{{ asset('assets/images/logo/logo-primadona1.png') }}" class="dark-logo pt-3" width="180"
                 alt="" />
-            <img src="{{ asset('assets/images/logo/logo-miscool.png') }}" class="light-logo" width="180"
+            <img src="{{ asset('assets/images/logo/logo-primadona1.png') }}" class="light-logo pt-3" width="180"
                 alt="" />
         </div>
 
