@@ -13,9 +13,6 @@ Route::middleware('auth')->prefix('student')->name('student.')->group(function (
     Route::resource('repairs', RepairStudentController::class);
     Route::get('/class', [FeedbackController::class, 'index'])->name('feedback.index');
     Route::post('feedback/{lessonSchedule}', [FeedbackController::class, 'store'])->name('feedback.store');
-    Route::put('feedback/update/{lessonSchedule}', [FeedbackController::class, 'update'])->name('feedback.update');
-    Route::get('/all-schedule', function () {
-        return view('student.pages.class.panes.all-schedule');
-    });
-
+    Route::put('feedback/update/{feedback}', [FeedbackController::class, 'update'])->name('feedback.update');
+    Route::get('/all-feedback-schedule', [FeedbackController::class, 'show'])->name('feedback.show');
 });
