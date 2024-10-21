@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Teacher\DashboardTeacherController;
+use App\Http\Controllers\Teacher\StudentFeedbackController;
 use App\Http\Controllers\Teacher\TeacherJournalController;
 use App\Http\Controllers\Teacher\TeacherStudentController;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,8 @@ Route::middleware(['auth', 'role:teacher'])->prefix('teacher')->name('teacher.')
     Route::get('journals/create/{lessonSchedule}', [TeacherJournalController::class, 'create'])->name('journals.create');
     Route::post('journals/create/{lessonSchedule}', [TeacherJournalController::class, 'store'])->name('journals.store');
     Route::resource('list-student-class', TeacherStudentController::class);
+
+    Route::get('student-feedback', [StudentFeedbackController::class, 'index'])->name('student-feedback.index');
 
     // Route::get('journals/detail', function () {
     //     return view('teacher.pages.journals.detail');
