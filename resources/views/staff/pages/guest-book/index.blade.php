@@ -20,35 +20,64 @@
                             <h4 class="mb-4">
                                 <b>Pengisian Form</b>
                             </h4>
-                            <span id="currentDate" class="mb-1 badge bg-light-warning text-warning"
-                                style="font-size: 14px; border-radius: 5px;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
-                                    <path fill="currentColor"
-                                        d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z" />
-                                </svg>
                             </span>
                         </div>
 
 
                         <div class="row">
-                            <div class="col-lg-12 pt-3">
-                                <div class="col-lg-8">
-                                    <div class="d-flex align-items-center">
-                                        <span class="mb-1 badge  p-2"
-                                            style="color: white; background-color: #5D87FF; border-radius: 11px">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                                viewBox="0 0 192 512">
-                                                <path fill="currentColor"
-                                                    d="M48 80a48 48 0 1 1 96 0a48 48 0 1 1-96 0M0 224c0-17.7 14.3-32 32-32h64c17.7 0 32 14.3 32 32v224h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h32V256H32c-17.7 0-32-14.3-32-32" />
-                                            </svg>
-                                        </span>
-                                        <h5 class="ms-3 mb-0">Informasi</h5>
+                            <div class="col-lg-8 pt-3">
+                                <div class="card shadow-none position-relative rounded-3 overflow-hidden mb-0"
+                                    style="background: linear-gradient(to bottom, #51B6FF, #4F7CFF);">
+                                    <div class="card-body px-4 py-3">
+                                        <div class="row align-items-center">
+                                            <div class="col-8">
+                                                <div class="d-flex align-items-center gap-2 mb-3">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-white"
+                                                        width="25" height="25" viewBox="0 0 24 24">
+                                                        <path fill="currentColor"
+                                                            d="m12 2l.642.005l.616.017l.299.013l.579.034l.553.046c4.687.455 6.65 2.333 7.166 6.906l.03.29l.046.553l.041.727l.006.15l.017.617L22 12l-.005.642l-.017.616l-.013.299l-.034.579l-.046.553c-.455 4.687-2.333 6.65-6.906 7.166l-.29.03l-.553.046l-.727.041l-.15.006l-.617.017L12 22l-.642-.005l-.616-.017l-.299-.013l-.579-.034l-.553-.046c-4.687-.455-6.65-2.333-7.166-6.906l-.03-.29l-.046-.553l-.041-.727l-.006-.15l-.017-.617l-.004-.318v-.648l.004-.318l.017-.616l.013-.299l.034-.579l.046-.553c.455-4.687 2.333-6.65 6.906-7.166l.29-.03l.553-.046l.727-.041l.15-.006l.617-.017Q11.673 2 12 2m0 9h-1l-.117.007a1 1 0 0 0 0 1.986L11 13v3l.007.117a1 1 0 0 0 .876.876L12 17h1l.117-.007a1 1 0 0 0 .876-.876L14 16l-.007-.117a1 1 0 0 0-.764-.857l-.112-.02L13 15v-3l-.007-.117a1 1 0 0 0-.876-.876zm.01-3l-.127.007a1 1 0 0 0 0 1.986L12 10l.127-.007a1 1 0 0 0 0-1.986z" />
+                                                    </svg>
+                                                    <h5 class="text-white fw-semibold mb-0">Informasi</h5>
+                                                </div>
+
+                                                <p class="text-white">Fitur buku tamu ini memungkinkan Anda mencatat dan
+                                                    melacak data pengunjung,
+                                                    memberikan catatan lengkap tentang siapa saja yang telah berkunjung</p>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="text-center">
+                                                    <img src="{{ asset('admin_assets/dist/images/breadcrumb/ChatBc2.png') }}"
+                                                        alt="" class="img-fluid mb-n5"
+                                                        style="width: 300px; height: auto;">
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <p class="pt-2" style="font-size: 15px;">Fitur buku tamu ini memungkinkan
-                                        Anda mencatat dan melacak data pengunjung, memberikan catatan lengkap tentang siapa
-                                        saja yang telah berkunjung</p>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4 pt-3">
+                                <div class="card rounded-3"
+                                    style="background: linear-gradient(to bottom, #FFB431, #F6BB22); color: white; position: relative;">
+                                    <div class="card-body" style="position: relative; z-index: 1;">
+                                        <div class="d-flex justify-content-between" style="margin-bottom: 13px;">
+                                            <h5 class="fw-semibold mb-0 text-white">Tanggal Saat Ini</h5>
+                                            <span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
+                                                    viewBox="0 0 24 24">
+                                                    <path fill="currentColor"
+                                                        d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                        <h3 class="fw-semibold text-white" id="currentDate"></h3>
+                                    </div>
+                                    <img src="{{ asset('assets/images/background/buble-5.png') }}" alt="Image"
+                                        class="position-absolute"
+                                        style="bottom: 0; right: 0; width: 110px; height: auto; z-index: 0;">
                                 </div>
                             </div>
+
                             <div class="col-12 col-md-8 pt-3">
                                 <div class="row">
                                     <input type="hidden" name="date" id="currentDateInput">
