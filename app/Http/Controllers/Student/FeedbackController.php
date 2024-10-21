@@ -34,7 +34,7 @@ class FeedbackController extends Controller
     {
         $feedbacks = $this->feedback->get();
         $classroomStudent = $this->classroomStudent->whereStudent(auth()->user()->student->id);
-        $lessonSchedules = $this->lessonSchedule->get();
+        $lessonSchedules = $this->lessonSchedule->whereDay($classroomStudent->classroom->id);
         $student_id = auth()->user()->student->id;
         return view('student.pages.class.index', compact('feedbacks', 'classroomStudent', 'lessonSchedules', 'student_id'));
     }
