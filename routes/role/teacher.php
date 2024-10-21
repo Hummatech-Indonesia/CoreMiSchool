@@ -22,6 +22,10 @@ Route::middleware(['auth', 'role:teacher'])->prefix('teacher')->name('teacher.')
     Route::post('journals/create/{lessonSchedule}', [TeacherJournalController::class, 'store'])->name('journals.store');
     Route::resource('list-student-class', TeacherStudentController::class);
 
+    Route::get('student-feedback', function () {
+        return view('teacher.pages.student-feedback.index');
+    })->name('student-feedback');
+
     // Route::get('journals/detail', function () {
     //     return view('teacher.pages.journals.detail');
     // })->name('journals.detail');
@@ -31,6 +35,3 @@ Route::middleware(['auth', 'role:teacher'])->prefix('teacher')->name('teacher.')
     // })->name('journal-and-attendace.index');
 
 });
-
-
-
