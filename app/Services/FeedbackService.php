@@ -16,9 +16,8 @@ use App\Models\LessonSchedule;
         public function store(StoreFeedbackRequest $request, LessonSchedule $lessonSchedule): mixed
         {
             $data = $request->validated();
-
             return [
-                'lesson_schedule_id' => $lessonSchedule,
+                'lesson_schedule_id' => $lessonSchedule->id,
                 'student_id' => auth()->user()->student->id,
                 'is_teacher_present' => $data['is_teacher_present'],
                 'summary' => $data['summary'],

@@ -7,22 +7,13 @@
                     aria-label="Close"></button>
             </div>
 
-            <form action="" method="POST" enctype="multipart/form-data">
-                @method('post')
+            <form action="" id="form-create" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="row">
                         <div class="mb-3 col-lg-4">
-                            <h5 class="fw-semibold">Pertemuan :</h5>
-                            <h6>Pertemuan ke-1</h6>
-                        </div>
-                        <div class="mb-3 col-lg-4">
                             <h5 class="fw-semibold">Jam Ke :</h5>
-                            <h6>Jam Ke 1-2</h6>
-                        </div>
-                        <div class="mb-3 col-lg-4">
-                            <h5 class="fw-semibold">Penempatan :</h5>
-                            <h6>Ruang Kimia 1</h6>
+                            <h6 id="clock-detail"></h6>
                         </div>
                         <div class=" col-lg-12">
                             <h5 class="fw-semibold">Pengajar :</h5>
@@ -37,11 +28,10 @@
 
                                         </div>
                                         <div class="col">
-                                            <h5 class="fw-semibold mb-2 text-light">Ahmad Santoso</h5>
+                                            <h5 class="fw-semibold mb-2 text-light" id="teacher_name-detail"></h5>
                                             <nav aria-label="breadcrumb">
                                                 <ol class="breadcrumb bg-transparent p-0 m-0">
-                                                    <li class="breadcrumb-item" aria-current="page">
-                                                        ahmad@gmail.com</li>
+                                                    <li class="breadcrumb-item" aria-current="page" id="teacher_email-detail"></li>
                                                 </ol>
                                             </nav>
                                         </div>
@@ -57,13 +47,13 @@
                             <div class="form-group mb-4">
                                 <h6 class="mr-sm-2 mb-2 fw-semibold" for="inlineFormCustomSelect">Apakah pengajar masuk?
                                 </h6>
-                                <select class="form-select mr-sm-2 mb-3" id="inlineFormCustomSelect">
+                                <select class="form-select mr-sm-2 mb-3" name="is_teacher_present" id="inlineFormCustomSelect is_teacher_present-detail">
                                     <option value="1">Masuk</option>
-                                    <option value="2">Tidak Masuk</option>
+                                    <option value="0">Tidak Masuk</option>
                                 </select>
 
                                 <h6 class="mr-sm-2 mb-2 fw-semibold" for="inlineFormCustomSelect">Deskripsi </h6>
-                                <textarea class="form-control" rows="3" placeholder="Apa yang dipelajari hari ini / masukan untuk pengajar"></textarea>
+                                <textarea class="form-control" rows="3" name="summary" id="summary-detail" placeholder="Apa yang dipelajari hari ini / masukan untuk pengajar"></textarea>
                             </div>
                         </div>
                     </div>

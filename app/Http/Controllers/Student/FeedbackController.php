@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Student;
 
+use App\Contracts\Interfaces\ClassroomStudentInterface;
 use App\Contracts\Interfaces\FeedbackInterface;
+use App\Contracts\Interfaces\LessonScheduleInterface;
+use App\Http\Controllers\Controller;
 use App\Models\Feedback;
 use App\Http\Requests\StoreFeedbackRequest;
 use App\Http\Requests\UpdateFeedbackRequest;
@@ -13,11 +16,15 @@ class FeedbackController extends Controller
 {
     private FeedbackInterface $feedback;
     private FeedbackService $service;
+    private ClassroomStudentInterface $classroomStudent;
+    private LessonScheduleInterface $lessonSchedule;
 
-    public function __construct(FeedbackInterface $feedback, FeedbackService $service)
+    public function __construct(FeedbackInterface $feedback, FeedbackService $service, ClassroomStudentInterface $classroomStudent, LessonScheduleInterface $lessonSchedule)
     {
         $this->feedback = $feedback;
         $this->service = $service;
+        $this->classroomStudent = $classroomStudent;
+        $this->lessonSchedule = $lessonSchedule;
     }
 
     /**
@@ -25,7 +32,10 @@ class FeedbackController extends Controller
      */
     public function index()
     {
-        //
+        $feedbacks = $this->feedback->get();
+        $classroomStudent = $this->classroomStudent->whereStudent(auth()->user()->student->id);
+        $lessonSchedules = $this->lessonSchedule->get();
+        return view('student.pages.class.index', compact('feedbacks', 'classroomStudent', 'lessonSchedules'));
     }
 
     /**
