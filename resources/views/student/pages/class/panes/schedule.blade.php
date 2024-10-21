@@ -27,10 +27,10 @@
                                 data-clock="Jam ke {{ explode(' - ', $lessonSchedule->start->name)[1] }} - {{ explode(' - ', $lessonSchedule->end->name)[1] }}"
                                 data-teacher_name="{{ $lessonSchedule->teacherSubject->employee->user->name }}"
                                 data-teacher_email="{{ $lessonSchedule->teacherSubject->employee->user->email }}"
-                                data-id="{{ $lessonSchedule->id }}"
-                                data-is_teacher_present="{{ $lessonSchedule->feedbacks ? $lessonSchedule->feedbacks->is_teacher_present : null }}"
-                                data-summary="{{ $lessonSchedule->feedbacks ? $lessonSchedule->feedbacks->summary : null }}"
-                                >
+                                data-lesson="{{ $lessonSchedule->teacherSubject->subject->name }}"
+                                data-id="{{ $lessonSchedule->feedbacks->where('student_id', $student_id)->first() ? $lessonSchedule->feedbacks->where('student_id', $student_id)->first()->id : $lessonSchedule->id }}"
+                                data-is_teacher_present="{{ $lessonSchedule->feedbacks->where('student_id', $student_id)->first() ? $lessonSchedule->feedbacks->where('student_id', $student_id)->first()->is_teacher_present : null }}"
+                                data-summary="{{ $lessonSchedule->feedbacks->where('student_id', $student_id)->first() ? $lessonSchedule->feedbacks->where('student_id', $student_id)->first()->summary : null }}">
                                 Detail
                             </button>
                         </div>

@@ -58,7 +58,7 @@
             </a>
         </li>
         <li class="nav-item ms-auto">
-            <a href="/student/all-schedule" class="btn mb-1 waves-effect waves-light btn-warning" type="button">Lihat Semua Jadwal
+            <a href="{{ route('student.feedback.show') }}" class="btn mb-1 waves-effect waves-light btn-warning" type="button">Lihat Semua Jadwal
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                     <path fill="currentColor"
                         d="m16.172 11l-5.364-5.364l1.414-1.414L20 12l-7.778 7.778l-1.414-1.414L16.172 13H4v-2z" />

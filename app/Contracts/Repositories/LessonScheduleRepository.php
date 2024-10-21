@@ -153,7 +153,7 @@ class LessonScheduleRepository extends BaseRepository implements LessonScheduleI
             ->where('classroom_id', $query)
             ->where('day', now()->format('l'))
             ->whereHas('end', function($query){
-                $query->where('end', '>', now()->format('H:i'));
+                $query->where('end', '<', now()->format('H:i'));
             })
             ->get();
     }

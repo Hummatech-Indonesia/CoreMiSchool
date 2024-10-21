@@ -48,23 +48,13 @@
                         <div class="mb-3 col-lg-12">
                             <h5 class="fw-semibold mb-3">Tanggapan :</h5>
                             <div class="form-group mb-4">
-                                <h6 class="mr-sm-2 mb-2 fw-semibold" for="inlineFormCustomSelect">Apakah pengajar masuk?
-                                </h6>
-                                <select class="form-select mr-sm-2 mb-3" name="is_teacher_present" id="is_teacher_present-detail">
-                                    <option value="" selected disabled>Pilih Opsi</option>
-                                    <option value="1">Masuk</option>
-                                    <option value="0">Tidak Masuk</option>
-                                </select>
-
+                                <h6 class="mr-sm-2 mb-2 fw-semibold" for="inlineFormCustomSelect">Apakah pengajar masuk?</h6>
+                                <h6 id="all_is_teacher_present-detail" class="mt-2"></h6>
                                 <h6 class="mr-sm-2 mb-2 fw-semibold" for="inlineFormCustomSelect">Deskripsi </h6>
-                                <textarea class="form-control" rows="3" name="summary" id="summary-detail" placeholder="Apa yang dipelajari hari ini / masukan untuk pengajar"></textarea>
+                                <h6 id="all_summary-detail" class="mt-2"></h6>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-rounded btn-primary" data-bs-dismiss="modal">Tutup</button>
-                    <button type="submit" id="submit-button" class="btn btn-rounded btn-warning">Tambah</button>
                 </div>
             </form>
         </div>

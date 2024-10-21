@@ -34,8 +34,9 @@ class FeedbackController extends Controller
     {
         $feedbacks = $this->feedback->get();
         $classroomStudent = $this->classroomStudent->whereStudent(auth()->user()->student->id);
-        $lessonSchedules = $this->lessonSchedule->get();
-        return view('student.pages.class.index', compact('feedbacks', 'classroomStudent', 'lessonSchedules'));
+        $lessonSchedules = $this->lessonSchedule->whereDay($classroomStudent->classroom->id);
+        $student_id = auth()->user()->student->id;
+        return view('student.pages.class.index', compact('feedbacks', 'classroomStudent', 'lessonSchedules', 'student_id'));
     }
 
     /**
@@ -51,6 +52,7 @@ class FeedbackController extends Controller
      */
     public function store(StoreFeedbackRequest $request, LessonSchedule $lessonSchedule)
     {
+        // dd($request->validated());
         $data = $this->service->store($request, $lessonSchedule);
         $this->feedback->store($data);
         return redirect()->back()->with('success', 'Berhasil menambahkan feedback');
@@ -59,9 +61,12 @@ class FeedbackController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Feedback $feedback)
+    public function show()
     {
-        //
+        $classroomStudent = $this->classroomStudent->whereStudent(auth()->user()->student->id);
+        $lessonSchedules = $this->lessonSchedule->whereClassroom($classroomStudent->classroom->id, 'day');
+        $student_id = auth()->user()->student->id;
+        return view('student.pages.class.panes.all-schedule', compact('classroomStudent', 'lessonSchedules', 'student_id'));
     }
 
     /**
