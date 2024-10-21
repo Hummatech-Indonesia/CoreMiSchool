@@ -139,7 +139,6 @@ class LessonScheduleRepository extends BaseRepository implements LessonScheduleI
             ->get();
     }
 
-
     public function groupByLatest($query): mixed
     {
         return $this->model->query()
