@@ -41,18 +41,18 @@
     </div>
 
     <div class="row">
-        @forelse (range(1,4) as $item)
+        @forelse ($teachers as $teacher)
             <div class="col-lg-3">
                 <div class="card border">
                     <div class="card-body">
                         <div class="p-2 d-block text-center">
-                            <img src="{{ asset('admin_assets/dist/images/profile/user-1.jpg') }}" width="90"
+                        <img src="{{ $teacher->image != null ? asset('storage/'. $teacher->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}" width="90"
                                 class="rounded-circle img-fluid" alt="">
                             <h5 class="card-title mt-3 fw-semibold">
-                                Alfian Ban Dalam
+                                {{ $teacher->user->name }}
                             </h5>
-                            <p>alfian@gmail.com</p>
-                            <a href="/student-feedback/detail" class="btn btn-primary d-block w-100">Lihat Tanggapan</a>
+                            <p>{{ $teacher->user->email }}</p>
+                            <a href="{{ route('school.feedback.detail', ['teacher' => $teacher->user->slug]) }}" class="btn btn-primary d-block w-100">Lihat Tanggapan</a>
                         </div>
                     </div>
                 </div>

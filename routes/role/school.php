@@ -29,6 +29,7 @@ use App\Http\Controllers\Schools\EmployeeController;
 use App\Http\Controllers\Schools\ExtracurricularController as SchoolsExtracurricularController;
 use App\Http\Controllers\Schools\GuestBookController;
 use App\Http\Controllers\Schools\JournalTeacherController;
+use App\Http\Controllers\Schools\SchoolFeedbackController;
 use App\Http\Controllers\Schools\StaffController;
 use App\Http\Controllers\Schools\StudentController;
 use App\Http\Controllers\Schools\TeacherController;
@@ -179,6 +180,10 @@ Route::middleware(['auth', 'role:school'])->prefix('school')->name('school.')->g
     Route::get('statistic-presence-employee', [AttendanceEmployeeController::class, 'index'])->name('statistic-presence-employee.index');
     Route::get('detail-presence-class/{classroom}', [SchoolsAttendanceStudentController::class, 'show'])->name('detail-presence-class.index');
     Route::get('detail-presence-class/{classroom}/export', [SchoolsAttendanceStudentController::class, 'exportPreview'])->name('detail-presence-class.export-preview');
+
+    Route::get('student-feedback', [SchoolFeedbackController::class, 'index'])->name('feedback');
+    
+    Route::get('student-feedback/detail/{teacher}', [SchoolFeedbackController::class, 'show'])->name('feedback.detail');
 });
 
 //tes absensi
@@ -187,14 +192,6 @@ Route::post('attendance-create/{school_id}', [AttendanceStudentController::class
 Route::get('menu-test', function () {
     return view('school.pages.test.menu');
 })->name('menu-test.index');
-
-Route::get('student-feedback', function () {
-    return view('school.pages.student-feedback.index');
-})->name('student-feedback');
-
-Route::get('student-feedback/detail', function () {
-    return view('school.pages.student-feedback.detail');
-})->name('student-feedback.detail');
 
 // Route::get('user-list', function () {
 //     return view('school.pages.test.user-list');

@@ -4,6 +4,7 @@
 
     use App\Contracts\Interfaces\FeedbackInterface;
     use App\Models\Feedback;
+use Illuminate\Http\Request;
 
     class FeedbackRepository extends BaseRepository implements FeedbackInterface
     {
@@ -35,5 +36,22 @@
         public function delete(mixed $id): mixed
         {
             return $this->model->query()->findOrFail($id)->delete();
+        }
+
+        public function get_lesson(Request $request): mixed
+        {
+            return $this->model->query()
+                ->when($request->search, function($query) use ($request){
+                    $query->where('summary', 'like', '%' . $request->search . '%')
+                        ->orWhereRelation('student.user', 'name', 'like', '%' . $request->search . '%');
+                })
+                ->when($request->gender, function($query) use ($request){
+                    $query->whereRelation('student', 'gender', $request->gender);
+                })
+                ->when($request->date, function($query) use ($request){
+                    $query->whereDate('created_at', $request->date);
+                })
+                ->get()
+                ->groupBy('lesson_schedule_id');
         }
     }
