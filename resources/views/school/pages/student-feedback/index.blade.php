@@ -1,4 +1,6 @@
 @extends('school.layouts.app')
+@section('style')
+@endsection
 @section('content')
     <div class="card bg-primary shadow-none position-relative overflow-hidden mb-0">
         <div class="card-body px-4 py-3">
@@ -38,7 +40,16 @@
                 <button type="submit" class="btn btn-primary w-100">Cari</button>
             </div>
         </form>
+
+        <div class="col-md-3 d-flex justify-content-end">
+            <div class="form-check form-switch d-flex align-items-center">
+                <label class="form-check-label me-5" for="toggleSwitch">Nonaktif</label>
+                <input class="form-check-input" type="checkbox" id="toggleSwitch">
+                <label class="form-check-label ms-2" for="toggleSwitch">Aktif</label>
+            </div>
+        </div>
     </div>
+
 
     <div class="row">
         @forelse ($teachers as $teacher)
@@ -46,13 +57,14 @@
                 <div class="card border">
                     <div class="card-body">
                         <div class="p-2 d-block text-center">
-                        <img src="{{ $teacher->image != null ? asset('storage/'. $teacher->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}" width="90"
-                                class="rounded-circle img-fluid" alt="">
+                            <img src="{{ $teacher->image != null ? asset('storage/' . $teacher->image) : asset('admin_assets/dist/images/profile/user-1.jpg') }}"
+                                width="90" class="rounded-circle img-fluid" alt="">
                             <h5 class="card-title mt-3 fw-semibold">
                                 {{ $teacher->user->name }}
                             </h5>
                             <p>{{ $teacher->user->email }}</p>
-                            <a href="{{ route('school.feedback.detail', ['teacher' => $teacher->user->slug]) }}" class="btn btn-primary d-block w-100">Lihat Tanggapan</a>
+                            <a href="{{ route('school.feedback.detail', ['teacher' => $teacher->user->slug]) }}"
+                                class="btn btn-primary d-block w-100">Lihat Tanggapan</a>
                         </div>
                     </div>
                 </div>
@@ -60,4 +72,8 @@
         @empty
         @endforelse
     </div>
+@endsection
+
+@section('style')
+
 @endsection
