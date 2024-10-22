@@ -25,9 +25,7 @@
                         <div class="abt_side">
                             <div class="logo"> <img src="{{ asset('landing_assets/images/logo/mischool-white.png') }}"
                                     alt="image"></div>
-                            <p>Lorem Ipsum is simply dummy text of the printing and type setting industry ype setting
-                                industry lorem
-                                Ipsum has been the industrys standard dummy. </p>
+                            <p>Platform inovasi manajemen akademik dan data operasional secara real-time yang memudahkan sekolah serta meningkatkan efektivitas pengelolaan data.</p>
                             <div class="news_letter_block">
                             </div>
                         </div>

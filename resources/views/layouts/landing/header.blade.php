@@ -61,7 +61,7 @@
         <!-- navigation bar -->
         <nav class="navbar navbar-expand-lg">
             <a class="navbar-brand" href="index.html">
-                <img src="{{ asset('assets/images/logo/logo-miscool.png') }}" alt="image">
+                <img src="{{ asset('assets/images/logo/logo-primadona1.png') }}" alt="image">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon">
@@ -79,13 +79,13 @@
                     <li class="nav-item {{ request()->routeIs('about-us') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('about-us') }}">Tentang Kami</a>
                     </li>
-                    <li class="nav-item {{ request()->routeIS('package') ? 'active' : '' }}">
+                    {{-- <li class="nav-item {{ request()->routeIS('package') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('package') }}">Paket</a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item {{ request()->routeIS('contact-us') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('contact-us') }}">Kontak</a>
                     </li>
-                    <li class="nav-item has_dropdown {{ request()->routeIs('testimoni') || request()->routeIs('news') ? 'active' : '' }}">
+                    {{-- <li class="nav-item has_dropdown {{ request()->routeIs('testimoni') || request()->routeIs('news') ? 'active' : '' }}">
                         <a class="nav-link" href="#">Lainnya</a>
                         <span class="drp_btn"><i class="icofont-rounded-down"></i></span>
                         <div class="sub_menu">
@@ -95,7 +95,7 @@
                                 <li><a href="{{ route('news') }}">Berita</a></li>
                             </ul>
                         </div>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
                         <a class="nav-link dark_btn" href="/login">Masuk<i class="icofont-arrow-right"></i></a>
                     </li>

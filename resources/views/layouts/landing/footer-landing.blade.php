@@ -23,40 +23,23 @@
                     <!-- footer link 1 -->
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="abt_side">
-                            <div class="logo"> <img src="{{ asset('landing_assets/images/logo/mischool-white.png') }}"
+                            <div class="logo"> <img src="{{ asset('assets/images/logo/logo-primadona1.png') }}"
                                     alt="image"></div>
-                            <p>Lorem Ipsum is simply dummy text of the printing and type setting industry ype setting
-                                industry lorem
-                                Ipsum has been the industrys standard dummy. </p>
+                            <p>Platform inovasi manajemen akademik dan data operasional secara real-time yang memudahkan sekolah serta meningkatkan efektivitas pengelolaan data.</p>
                             <div class="news_letter_block">
                             </div>
                         </div>
                     </div>
 
                     <!-- footer link 2 -->
-                    <div class="col-lg-2 col-md-6 col-12">
+                    <div class="col-lg-6 col-md-6 col-12">
                         <div class="links">
                             <h3>Useful Links</h3>
                             <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="about-us.html">About us</a></li>
-                                <li><a href="service-list-1.html">Services</a></li>
-                                <li><a href="service-detail.html">Service Detail</a></li>
-                                <li><a href="blog-list.html">Blog</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- footer link 3 -->
-                    <div class="col-lg-3 col-md-6 col-12">
-                        <div class="links">
-                            <h3>Help & Suport</h3>
-                            <ul>
-                                <li><a href="contact-us.html">Contact us</a></li>
-                                <li><a href="faq.html">FAQs</a></li>
-                                <li><a href="#">How it works</a></li>
-                                <li><a href="#">Terms & conditions</a></li>
-                                <li><a href="#">Privacy policy</a></li>
+                                <li><a href="/">Beranda</a></li>
+                                <li><a href="{{ route('about-us') }}">Tentang Kami</a></li>
+                                <li><a href="service-list-1.html">FaQ</a></li>
+                                <li><a href="service-detail.html">Kontak</a></li>
                             </ul>
                         </div>
                     </div>
