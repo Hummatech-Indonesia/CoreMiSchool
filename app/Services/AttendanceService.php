@@ -143,7 +143,7 @@ class AttendanceService
                 }
             } else {
                 $invalidAttendances[] = $attendance->id;
-                dd($rfid);
+                // dd($rfid);
                 return [
                     'model_id' => $rfid->model_id ?? null,
                     'invalid' => true

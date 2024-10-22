@@ -78,7 +78,7 @@ class AttendanceController extends Controller
                         }
                     } else {
                         $updated = $this->attendance->updateWithAttribute(['model_id' => $attendance['model_id'], 'model_type' => $attendance['model_type'], 'created_at' => $date], $attendance);
-                        dd($updated);
+                        // dd($updated);
                         if (!$updated) {
                             $failedStore[] = $attendance['model_id'];
                         } else {
