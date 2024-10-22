@@ -65,7 +65,7 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
     {
         // dd($attribute);
         // dd($this->model->query()->where('model_id', $attribute['model_id'])->get());
-        return $this->model->query()->where('model_type', $attribute['model_type'])->where('model_id', $attribute['model_id'])->whereDate('created_at', $attribute['created_at'])->update($data);
+        return $this->model->query()->where('model_type', $attribute['model_type'])->where('model_id', $attribute['model_id'])->whereDate('created_at', $attribute['created_at'])->first();
     }
 
     public function delete(mixed $id): mixed
@@ -298,7 +298,7 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
         return $condition == 'get' ? $result->get() : $result->count();
     }
 
-    public function getSickAndPermit(Request $request, array $status) : mixed 
+    public function getSickAndPermit(Request $request, array $status) : mixed
     {
         return $this->model->query()
             ->where('model_type', 'App\Models\ClassroomStudent')
