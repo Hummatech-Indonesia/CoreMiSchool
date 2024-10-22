@@ -6,10 +6,10 @@
                 <table class="table border text-nowrap customize-table mb-0 align-middle">
                     <thead>
                         <tr>
-                            <th class="text-white" style="background-color: #5D87FF;">Hari</th>
-                            <th class="text-white" style="background-color: #5D87FF;">Tanggal</th>
-                            <th class="text-white" style="background-color: #5D87FF;">Masuk</th>
-                            <th class="text-white" style="background-color: #5D87FF;">Status</th>
+                            <th class="text-white" style="background-color: #3DBCEC;">Hari</th>
+                            <th class="text-white" style="background-color: #3DBCEC;">Tanggal</th>
+                            <th class="text-white" style="background-color: #3DBCEC;">Masuk</th>
+                            <th class="text-white" style="background-color: #3DBCEC;">Status</th>
                         </tr>
                     </thead>
                     <tbody>

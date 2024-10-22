@@ -30,12 +30,12 @@
         <table class="table border text-nowrap customize-table mb-0 align-middle">
             <thead class="text-dark fs-4">
                 <tr class="">
-                    <th class="text-white" style="background-color: #5D87FF;">No</th>
-                    <th class="text-white" style="background-color: #5D87FF;">Nama</th>
-                    <th class="text-white" style="background-color: #5D87FF;">Jenis Kelamin</th>
-                    <th class="text-white" style="background-color: #5D87FF;">NISN</th>
-                    <th class="text-white" style="background-color: #5D87FF;">RFID</th>
-                    <th class="text-white" style="background-color: #5D87FF;">Aksi</th>
+                    <th class="text-white" style="background-color: #3DBCEC;">No</th>
+                    <th class="text-white" style="background-color: #3DBCEC;">Nama</th>
+                    <th class="text-white" style="background-color: #3DBCEC;">Jenis Kelamin</th>
+                    <th class="text-white" style="background-color: #3DBCEC;">NISN</th>
+                    <th class="text-white" style="background-color: #3DBCEC;">RFID</th>
+                    <th class="text-white" style="background-color: #3DBCEC;">Aksi</th>
                 </tr>
             </thead>
             <tbody>

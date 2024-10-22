@@ -88,14 +88,14 @@
                 <table class="table border text-nowrap customize-table mb-0 align-middle">
                     <thead class="text-dark fs-4">
                         <tr class="">
-                            <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">No
+                            <th class="fs-4 fw-semibold mb-0" style="background-color: #3DBCEC; color: white">No
                             </th>
-                            <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Nama
+                            <th class="fs-4 fw-semibold mb-0" style="background-color: #3DBCEC; color: white">Nama
                                 Pelanggaran
                             </th>
-                            <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Point
+                            <th class="fs-4 fw-semibold mb-0" style="background-color: #3DBCEC; color: white">Point
                             </th>
-                            <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Jumlah
+                            <th class="fs-4 fw-semibold mb-0" style="background-color: #3DBCEC; color: white">Jumlah
                                 Siswa Melanggar
                             </th>
                         </tr>

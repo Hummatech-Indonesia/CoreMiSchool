@@ -96,8 +96,8 @@
                     <table class="table border text-nowrap customize-table mb-0 align-middle text-center">
                         <thead>
                             <tr>
-                                <th style="background-color: #5D87FF;" class="text-white">No</th>
-                                <th style="background-color: #5D87FF;" class="text-white">RFID</th>
+                                <th style="background-color: #3DBCEC;" class="text-white">No</th>
+                                <th style="background-color: #3DBCEC;" class="text-white">RFID</th>
                             </tr>
                         </thead>
                         <tbody>

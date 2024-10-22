@@ -136,7 +136,7 @@
                                 </path>
                             </svg>
                         </div>
-                        <img src="{{ asset('assets/images/background/logo.png') }}" alt="" class="card-logo">
+                        <img src="{{ asset('assets/images/logo/logo-primadona1.png') }}" alt="" class="card-logo">
                         <img src="{{ asset('assets/images/background/people.png') }}" alt=""
                             class="card-img-overlay">
                     </section>

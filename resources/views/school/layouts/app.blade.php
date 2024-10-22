@@ -33,16 +33,26 @@
 
     @yield('style')
 
+    <style>
+        .sidebar-link:hover {
+            background-color: rgb(237, 246, 249) !important;
+            color: #3DBCEC !important;
+        }
+    </style>
+
+
 </head>
 
 <body>
     <!-- Preloader -->
     <div class="preloader">
-        <img src="{{ asset('assets/images/logo/logo-primadona3.png') }}" style="width:40px" alt="loader" class="lds-ripple" />
+        <img src="{{ asset('assets/images/logo/logo-primadona3.png') }}" style="width:40px" alt="loader"
+            class="lds-ripple" />
     </div>
     <!-- Preloader -->
     <div class="preloader">
-        <img src="{{ asset('assets/images/logo/logo-primadona3.png') }}" style="width:40px" alt="loader" class="lds-ripple" />
+        <img src="{{ asset('assets/images/logo/logo-primadona3.png') }}" style="width:40px" alt="loader"
+            class="lds-ripple" />
     </div>
     <!--  Body Wrapper -->
     <div class="page-wrapper" id="main-wrapper" data-theme="blue_theme" data-layout="vertical" data-sidebartype="full"

@@ -10,7 +10,7 @@
             top: 20px;
             bottom: 0;
             width: 4px;
-            background-color: #5D87FF;
+            background-color: #3DBCEC;
             border-radius: 2px;
         }
 
@@ -126,11 +126,11 @@
                         <table class="table border text-nowrap customize-table mb-0 align-middle">
                             <thead>
                                 <tr>
-                                    <th class="text-white" style="background-color: #5D87FF; border-top-left-radius: 12px; border-bottom-left-radius: 12px;">Hari</th>
-                                    <th class="text-white" style="background-color: #5D87FF;">Tanggal</th>
-                                    <th class="text-white" style="background-color: #5D87FF;">Masuk</th>
-                                    <th class="text-white" style="background-color: #5D87FF;">Pulang</th>
-                                    <th class="text-white" style="background-color: #5D87FF; border-top-right-radius: 12px; border-bottom-right-radius: 12px">Status</th>
+                                    <th class="text-white" style="background-color: #3DBCEC; border-top-left-radius: 12px; border-bottom-left-radius: 12px;">Hari</th>
+                                    <th class="text-white" style="background-color: #3DBCEC;">Tanggal</th>
+                                    <th class="text-white" style="background-color: #3DBCEC;">Masuk</th>
+                                    <th class="text-white" style="background-color: #3DBCEC;">Pulang</th>
+                                    <th class="text-white" style="background-color: #3DBCEC; border-top-right-radius: 12px; border-bottom-right-radius: 12px">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -183,7 +183,7 @@
                         <h5><b>Kelasmu</b></h5>
 
                         <div class="text-center">
-                            <img src="{{ asset('assets/images/Topi.png') }}" alt=""
+                            <img src="{{ asset('assets/images/Topi2.png') }}" alt=""
                                 style="width: 100px; height: auto;">
                             <h3 class="pt-2 mb-3"><b>{{ $studentClasses->classroom->name }}</b></h3>
                             <span class="mb-1 badge font-medium bg-light-primary text-primary py-2 px-3"
@@ -234,9 +234,9 @@
                         <table class="table border text-nowrap customize-table mb-0 align-middle">
                             <thead style="border-radius: 12px 12px 0 0;">
                                 <tr>
-                                    <th class="text-white" style="background-color: #5D87FF; border-top-left-radius: 12px; border-bottom-left-radius: 12px;">Tugas</th>
-                                    <th class="text-white" style="background-color: #5D87FF;">Status</th>
-                                    <th class="text-white" style="background-color: #5D87FF; border-top-right-radius: 12px; border-bottom-right-radius: 12px">Aksi</th>
+                                    <th class="text-white" style="background-color: #3DBCEC; border-top-left-radius: 12px; border-bottom-left-radius: 12px;">Tugas</th>
+                                    <th class="text-white" style="background-color: #3DBCEC;">Status</th>
+                                    <th class="text-white" style="background-color: #3DBCEC; border-top-right-radius: 12px; border-bottom-right-radius: 12px">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>

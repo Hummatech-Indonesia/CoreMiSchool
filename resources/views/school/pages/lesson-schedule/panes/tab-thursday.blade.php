@@ -7,11 +7,11 @@
     <table class="table border text-nowrap customize-table mb-0 align-middle text-center">
         <thead>
             <tr>
-                <th class="text-white" style="background-color: #5D87FF;">No</th>
-                <th class="text-white" style="background-color: #5D87FF;">Penempatan</th>
-                <th class="text-white" style="background-color: #5D87FF;">Jam</th>
-                <th class="text-white" style="background-color: #5D87FF;">Mata Pelajaran</th>
-                <th class="text-white" style="background-color: #5D87FF;">Pengajar</th>
+                <th class="text-white" style="background-color: #3DBCEC;">No</th>
+                <th class="text-white" style="background-color: #3DBCEC;">Penempatan</th>
+                <th class="text-white" style="background-color: #3DBCEC;">Jam</th>
+                <th class="text-white" style="background-color: #3DBCEC;">Mata Pelajaran</th>
+                <th class="text-white" style="background-color: #3DBCEC;">Pengajar</th>
                 {{-- <th class="text-white" style="background-color: #5D87FF;">Aksi</th> --}}
             </tr>
         </thead>
@@ -47,7 +47,7 @@
             <tr>
                 <td>
                     <div>
-                        <button type="button" class="btn-create btn btn-info btn-rounded m-t-10 mb-3" data-classroom="{{ $classroom->id }}" data-day="thursday">
+                        <button type="button" class="btn-create btn btn-primary btn-rounded m-t-10 mb-3" data-classroom="{{ $classroom->id }}" data-day="thursday">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                 <path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z"></path>
                             </svg>

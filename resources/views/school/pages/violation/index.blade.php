@@ -45,7 +45,7 @@
     <div class="row d-flex align-items-stretch">
         <div class="col-lg-3">
             <div class="card shadow-none position-relative overflow-hidden h-75"
-                style="background: linear-gradient(to bottom, #5D87FF, #5D87FF);">
+                style="background: linear-gradient(to bottom, #3DBCEC, #3DBCEC);">
                 <div class="card-body px-4 py-3 position-relative">
                     <div class="row align-items-center">
                         <div class="col-12">
@@ -58,7 +58,7 @@
                             </nav>
                         </div>
                     </div>
-                    <img src="{{ asset('assets/images/background/buble-1.png') }}" alt="Image" class="position-absolute"
+                    <img src="{{ asset('assets/images/background/buble-7.png') }}" alt="Image" class="position-absolute"
                         style="bottom: 0; right: 0; width: 130px; height: auto; margin-bottom: -10px; margin-right: -10px;">
                 </div>
             </div>
@@ -125,7 +125,7 @@
                     d="M12 7q-.825 0-1.412-.587T10 5t.588-1.412T12 3t1.413.588T14 5t-.587 1.413T12 7m0 14q-.625 0-1.062-.437T10.5 19.5v-9q0-.625.438-1.062T12 9t1.063.438t.437 1.062v9q0 .625-.437 1.063T12 21" />
             </svg>
         </span>
-        <h4 class="ms-3 mb-0"><b>Daftar Pelanggaran dan Perbaikan</b></h4>
+        <h4 class="ms-3 mb-0"><b>Daftar Pelanggaran </b></h4>
     </div>
 
     <div class="row d-flex align-items-center mb-4">

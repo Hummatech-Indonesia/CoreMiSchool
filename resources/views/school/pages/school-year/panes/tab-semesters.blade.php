@@ -22,7 +22,7 @@
     <div class="tab-content mt-4">
         <div class="tab-pane fade show active" id="pills-ganjil" role="tabpanel">
             <div class="position-relative mb-4">
-                <img src="{{ asset('assets/images/background/background-semester.png') }}" alt="Profile Background" class="img-fluid rounded img-background">
+                <img src="{{ asset('assets/images/background/background-semester2.png') }}" alt="Profile Background" class="img-fluid rounded img-background">
                 <div class="position-absolute top-0 start-0 p-3 mb-5">
                     <h6 class="text-white mb-3">Semester Saat Ini :</h6>
                 </div>

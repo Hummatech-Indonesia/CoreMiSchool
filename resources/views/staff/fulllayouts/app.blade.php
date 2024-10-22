@@ -97,15 +97,15 @@
 <body>
     <!-- Preloader -->
     <div class="preloader">
-        <img src="{{ asset('assets/images/logo/logo-M.png') }}" style="width:100px" alt="loader" class="lds-ripple" />
+        <img src="{{ asset('assets/images/logo/logo-primadona3.png') }}" style="width:40px" alt="loader" class="lds-ripple" />
     </div>
 
     <!-- Header -->
     <header class="app-header">
         <!-- Logo di Sebelah Kiri -->
         <a class="navbar-brand p-0 m-0" href="javascript:void(0)">
-            <img src="{{ asset('assets/images/logo/logo-miscool.png') }}" alt="Logo"
-                class="header-logo d-none d-md-block">
+            <img src="{{ asset('assets/images/logo/logo-primadona1.png') }}" alt="Logo"
+                class="header-logo d-none d-md-block pt-3">
         </a>
 
         <!-- Judul di Tengah -->

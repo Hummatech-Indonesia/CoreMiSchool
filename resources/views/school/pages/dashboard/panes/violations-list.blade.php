@@ -1,7 +1,7 @@
 <div class="row d-flex align-items-stretch">
     <div class="col-lg-3">
         <div class="card shadow-none position-relative overflow-hidden h-75"
-            style="background: linear-gradient(to bottom, #5D87FF, #5D87FF);">
+            style="background: linear-gradient(to bottom, #3DBCEC, #3DBCEC);">
             <div class="card-body px-4 py-3 position-relative">
                 <div class="row align-items-center">
                     <div class="col-12">
@@ -14,7 +14,7 @@
                         </nav>
                     </div>
                 </div>
-                <img src="{{ asset('assets/images/background/buble-1.png') }}" alt="Image" class="position-absolute"
+                <img src="{{ asset('assets/images/background/buble-7.png') }}" alt="Image" class="position-absolute"
                     style="bottom: 0; right: 0; width: 130px; height: auto; margin-bottom: -10px; margin-right: -10px;">
             </div>
         </div>
@@ -65,16 +65,16 @@
             <table class="table border text-nowrap customize-table mb-0 align-middle">
                 <thead class="text-dark fs-4">
                     <tr class="">
-                        <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Nama Siswa
+                        <th class="fs-4 fw-semibold mb-0" style="background-color: #3DBCEC; color: white">Nama Siswa
                         </th>
-                        <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Tanggal
+                        <th class="fs-4 fw-semibold mb-0" style="background-color: #3DBCEC; color: white">Tanggal
                         </th>
-                        <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Jenis
+                        <th class="fs-4 fw-semibold mb-0" style="background-color: #3DBCEC; color: white">Jenis
                             Pelanggaran
                         </th>
-                        <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Point
+                        <th class="fs-4 fw-semibold mb-0" style="background-color: #3DBCEC; color: white">Point
                         </th>
-                        <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Aksi
+                        <th class="fs-4 fw-semibold mb-0" style="background-color: #3DBCEC; color: white">Aksi
                         </th>
                     </tr>
                 </thead>

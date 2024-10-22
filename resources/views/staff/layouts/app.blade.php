@@ -23,12 +23,19 @@
 
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     @yield('style')
+    <style>
+        .sidebar-link:hover {
+            background-color: rgb(237, 246, 249) !important;
+            color: #3DBCEC !important;
+        }
+    </style>
 </head>
 
 <body>
     <!-- Preloader -->
     <div class="preloader">
-        <img src="{{ asset('assets/images/logo/logo-primadona3.png') }}" style="width:40px" alt="loader" class="lds-ripple" />
+        <img src="{{ asset('assets/images/logo/logo-primadona3.png') }}" style="width:40px" alt="loader"
+            class="lds-ripple" />
     </div>
 
     <!--  Body Wrapper -->

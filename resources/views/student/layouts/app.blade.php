@@ -23,6 +23,12 @@
     <link id="themeColors" rel="stylesheet" href="{{ asset('admin_assets/dist/css/style.min.css') }}" />
 
     @yield('style')
+    <style>
+        .sidebar-link:hover {
+            background-color: rgb(237, 246, 249) !important;
+            color: #3DBCEC !important;
+        }
+    </style>
 </head>
 
 <body>

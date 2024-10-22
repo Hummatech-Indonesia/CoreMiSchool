@@ -65,12 +65,12 @@
         <table class="table text-nowrap customize-table mb-0 align-middle">
             <thead class="text-dark">
                 <tr>
-                    <th class="text-white rounded-start" style="background-color: #5D87FF;">Mapel</th>
-                    <th class="text-white" style="background-color: #5D87FF;">Kelas</th>
-                    <th class="text-white" style="background-color: #5D87FF;">Jam</th>
-                    <th class="text-white" style="background-color: #5D87FF;">Tanggal</th>
-                    <th class="text-white" style="background-color: #5D87FF;">Status</th>
-                    <th class="text-white" style="background-color: #5D87FF;">Aksi</th>
+                    <th class="text-white rounded-start" style="background-color: #3DBCEC;">Mapel</th>
+                    <th class="text-white" style="background-color: #3DBCEC;">Kelas</th>
+                    <th class="text-white" style="background-color: #3DBCEC;">Jam</th>
+                    <th class="text-white" style="background-color: #3DBCEC;">Tanggal</th>
+                    <th class="text-white" style="background-color: #3DBCEC;">Status</th>
+                    <th class="text-white" style="background-color: #3DBCEC;">Aksi</th>
                 </tr>
             </thead>
             <tbody>

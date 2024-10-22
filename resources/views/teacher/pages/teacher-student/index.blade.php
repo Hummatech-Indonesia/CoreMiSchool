@@ -1,6 +1,6 @@
 @extends('teacher.layouts.app')
 @section('content')
-    <div class="card bg-info shadow-none position-relative overflow-hidden">
+    <div class="card bg-primary shadow-none position-relative overflow-hidden">
         <div class="card-body px-4 py-3">
             <div class="row align-items-center">
                 <div class="col-9">

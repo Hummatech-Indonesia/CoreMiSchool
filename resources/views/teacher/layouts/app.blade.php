@@ -26,6 +26,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     @yield('style')
 
+    <style>
+        .sidebar-link:hover {
+            background-color: rgb(237, 246, 249) !important;
+            color: #3DBCEC !important;
+        }
+    </style>
+
     <script src="{{ asset('admin_assets/dist/libs/jquery/dist/jquery.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 

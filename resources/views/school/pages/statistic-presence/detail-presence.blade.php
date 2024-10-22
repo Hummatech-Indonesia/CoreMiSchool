@@ -50,13 +50,13 @@
         <table class="table border text-nowrap customize-table mb-0 align-middle">
             <thead class="text-dark fs-4">
                 <tr class="">
-                    <th class="text-white" style="background-color: #5D87FF;">No</th>
-                    <th class="text-white" style="background-color: #5D87FF;">Nama Pengguna</th>
-                    <th class="text-white" style="background-color: #5D87FF;">Masuk</th>
-                    <th class="text-white" style="background-color: #5D87FF;">Pulang</th>
-                    <th class="text-white" style="background-color: #5D87FF;">Point</th>
-                    <th class="text-white" style="background-color: #5D87FF;">Status</th>
-                    <th class="text-white" style="background-color: #5D87FF;">Aksi</th>
+                    <th class="text-white" style="background-color: #3DBCEC;">No</th>
+                    <th class="text-white" style="background-color: #3DBCEC;">Nama Pengguna</th>
+                    <th class="text-white" style="background-color: #3DBCEC;">Masuk</th>
+                    <th class="text-white" style="background-color: #3DBCEC;">Pulang</th>
+                    <th class="text-white" style="background-color: #3DBCEC;">Point</th>
+                    <th class="text-white" style="background-color: #3DBCEC;">Status</th>
+                    <th class="text-white" style="background-color: #3DBCEC;">Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -73,7 +73,7 @@
                         </span>
                     </td>
                     <td>
-                        <button type="button" data-id="{{ $attendance->attendances->first()->id }}" class="btn mb-1 btn-upload 
+                        <button type="button" data-id="{{ $attendance->attendances->first()->id }}" class="btn mb-1 btn-upload
                             {{ $attendance->attendances->first()->proof == null ? 'btn-light-primary text-primary' : 'btn-light-warning text-warning'}}
                             btn-sm px-4 fs-2 font-medium">
                             {{ $attendance->attendances->first()->proof == null ? 'Upload' : 'Edit' }} Bukti

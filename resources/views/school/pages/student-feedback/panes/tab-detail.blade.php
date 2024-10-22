@@ -2,12 +2,12 @@
     <table class="table border text-nowrap customize-table mb-0 align-middle">
         <thead class="text-dark fs-4">
             <tr class="">
-                <th class="text-white" style="background-color: #5D87FF;">No</th>
-                <th class="text-white" style="background-color: #5D87FF;">Nama Siswa</th>
-                <th class="text-white" style="background-color: #5D87FF;">Jenis Kelamin
+                <th class="text-white" style="background-color: #3DBCEC;">No</th>
+                <th class="text-white" style="background-color: #3DBCEC;">Nama Siswa</th>
+                <th class="text-white" style="background-color: #3DBCEC;">Jenis Kelamin
                 </th>
-                <th class="text-white" style="background-color: #5D87FF;">NISN</th>
-                <th class="text-white text-center" style="background-color: #5D87FF;">Aksi</th>
+                <th class="text-white" style="background-color: #3DBCEC;">NISN</th>
+                <th class="text-white text-center" style="background-color: #3DBCEC;">Aksi</th>
             </tr>
         </thead>
         <tbody>

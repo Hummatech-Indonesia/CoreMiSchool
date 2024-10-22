@@ -7,11 +7,11 @@
                     <table class="table border text-nowrap customize-table mb-0 align-middle text-center">
                         <thead class="text-dark fs-4">
                             <tr>
-                                <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">No</th>
-                                <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Nama Guru</th>
-                                <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Tanggal</th>
-                                <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Kelas - Mapel</th>
-                                <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Status</th>
+                                <th class="fs-4 fw-semibold mb-0" style="background-color: #3DBCEC; color: white">No</th>
+                                <th class="fs-4 fw-semibold mb-0" style="background-color: #3DBCEC; color: white">Nama Guru</th>
+                                <th class="fs-4 fw-semibold mb-0" style="background-color: #3DBCEC; color: white">Tanggal</th>
+                                <th class="fs-4 fw-semibold mb-0" style="background-color: #3DBCEC; color: white">Kelas - Mapel</th>
+                                <th class="fs-4 fw-semibold mb-0" style="background-color: #3DBCEC; color: white">Status</th>
                             </tr>
                         </thead>
                         <tbody>

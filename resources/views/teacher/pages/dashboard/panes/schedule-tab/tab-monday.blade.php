@@ -2,11 +2,11 @@
     <table class="table border text-nowrap customize-table mb-0 align-middle">
         <thead>
             <tr>
-                <th class="text-white" style="background-color: #5D87FF;">No</th>
-                <th class="text-white" style="background-color: #5D87FF;">Mapel</th>
-                <th class="text-white" style="background-color: #5D87FF;">Waktu</th>
-                <th class="text-white" style="background-color: #5D87FF;">Jam</th>
-                <th class="text-white" style="background-color: #5D87FF;">Kelas</th>
+                <th class="text-white" style="background-color: #3DBCEC;">No</th>
+                <th class="text-white" style="background-color: #3DBCEC;">Mapel</th>
+                <th class="text-white" style="background-color: #3DBCEC;">Waktu</th>
+                <th class="text-white" style="background-color: #3DBCEC;">Jam</th>
+                <th class="text-white" style="background-color: #3DBCEC;">Kelas</th>
             </tr>
         </thead>
         <tbody>

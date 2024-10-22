@@ -56,7 +56,7 @@
     top: 20px;
     bottom: 0;
     width: 4px;
-    background-color: #5D87FF;
+    background-color: #3DBCEC;
     border-radius: 2px;
 }
 

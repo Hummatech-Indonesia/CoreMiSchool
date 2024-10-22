@@ -1,6 +1,6 @@
 <div class="col-lg-3">
     <div class="card shadow-none position-relative overflow-hidden h-75"
-        style="background: linear-gradient(to bottom, #5D87FF, #5D87FF);">
+        style="background: linear-gradient(to bottom, #3DBCEC, #3DBCEC);">
         <div class="card-body px-4 py-3 position-relative">
             <div class="row align-items-center">
                 <div class="col-12">
@@ -12,7 +12,7 @@
                     </nav>
                 </div>
             </div>
-            <img src="{{ asset('assets/images/background/buble-1.png') }}" alt="Image"
+            <img src="{{ asset('assets/images/background/buble-7.png') }}" alt="Image"
                 class="position-absolute"
                 style="bottom: 0; right: 0; width: 130px; height: auto; margin-bottom: -10px; margin-right: -10px;">
         </div>

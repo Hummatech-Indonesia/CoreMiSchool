@@ -161,11 +161,11 @@ Kegiatan ini memberikan banyak manfaat, termasuk peningkatan bakat musik, rasa p
                 <table class="table text-nowrap customize-table mb-0 align-middle">
                     <thead class="text-dark fs-4">
                         <tr>
-                            <th class="text-white rounded-start" style="background-color: #5D87FF;">No</th>
-                            <th class="text-white" style="background-color: #5D87FF;">Nama Siswa</th>
-                            <th class="text-white" style="background-color: #5D87FF;">Kelas</th>
-                            <th class="text-white text-center" style="background-color: #5D87FF;">Status Kehadiran</th>
-                            <th class="text-white text-center" style="background-color: #5D87FF;">Aksi</th>
+                            <th class="text-white rounded-start" style="background-color: #3DBCEC;">No</th>
+                            <th class="text-white" style="background-color: #3DBCEC;">Nama Siswa</th>
+                            <th class="text-white" style="background-color: #3DBCEC;">Kelas</th>
+                            <th class="text-white text-center" style="background-color: #3DBCEC;">Status Kehadiran</th>
+                            <th class="text-white text-center" style="background-color: #3DBCEC;">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>

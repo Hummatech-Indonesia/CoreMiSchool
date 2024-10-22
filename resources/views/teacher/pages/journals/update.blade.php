@@ -142,12 +142,12 @@ use Carbon\Carbon;
                     <table class="table text-nowrap customize-table mb-0 align-middle" id="student-table">
                         <thead class="text-dark fs-4">
                             <tr>
-                                <th class="text-white rounded-start" style="background-color: #5D87FF;">No</th>
-                                <th class="text-white" style="background-color: #5D87FF;">Siswa</th>
-                                <th class="text-white" style="background-color: #5D87FF;">Jenis Kelamin</th>
-                                <th class="text-white" style="background-color: #5D87FF;">NISN</th>
-                                <th class="text-white" style="background-color: #5D87FF;">NIK</th>
-                                <th class="text-white" style="background-color: #5D87FF;">Status</th>
+                                <th class="text-white rounded-start" style="background-color: #3DBCEC;">No</th>
+                                <th class="text-white" style="background-color: #3DBCEC;">Siswa</th>
+                                <th class="text-white" style="background-color: #3DBCEC;">Jenis Kelamin</th>
+                                <th class="text-white" style="background-color: #3DBCEC;">NISN</th>
+                                <th class="text-white" style="background-color: #3DBCEC;">NIK</th>
+                                <th class="text-white" style="background-color: #3DBCEC;">Status</th>
                             </tr>
                         </thead>
                         <tbody>
