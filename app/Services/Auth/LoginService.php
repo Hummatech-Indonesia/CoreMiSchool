@@ -27,9 +27,9 @@ class   LoginService
         $data = $request->validated();
 
         if (auth()->attempt(['email' => $data['email'], 'password' => $data['password']])) {
-            auth()->user();
+        auth()->user();
 
-            $role = auth()->user()->roles->pluck('name')[0];
+        $role = auth()->user()->roles->pluck('name')[0];
             switch ($role) {
                 case "student":
                     return to_route('student.dashboard');
@@ -77,6 +77,7 @@ class   LoginService
             } else {
                 return redirect()->back()->withErrors(['password' => 'password salah'])->withInput();
             }
+
         }
     }
 }

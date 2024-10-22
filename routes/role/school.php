@@ -43,7 +43,6 @@ use Maatwebsite\Excel\Facades\Excel;
 
 Route::middleware(['auth', 'role:school'])->prefix('school')->name('school.')->group(function () {
     Route::get('dashboard', [SchoolDashboardController::class, 'index'])->name('dashboard');
-    
     // setting informasi
     Route::prefix('information')->group(function () {
         Route::get('', [SchoolDashboardController::class, 'show'])->name('settings-information.index');
