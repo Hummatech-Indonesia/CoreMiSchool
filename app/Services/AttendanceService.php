@@ -73,11 +73,11 @@ class AttendanceService
             $studentRule = $rule['student'][0];
             $teacherRule = $rule['teacher'][0];
 
-            $time = Carbon::createFromFormat('H:i:s', $attendance['time']);
-            $rfid = $rfids->where('id', $attendance['id'])->first();
+            $time = Carbon::createFromFormat('H:i:s', $attendance->time);
+            $rfid = $rfids->where('id', $attendance->id)->first();
 
             if ($rfid) {
-                if ($attendance['type'] == RoleEnum::STUDENT->value) {
+                if ($attendance->type == RoleEnum::STUDENT->value) {
                     // Student rules
                     $checkinEnd = Carbon::create($studentRule->checkin_end);
                     $checkoutStart = Carbon::create($studentRule->checkout_start);
@@ -139,7 +139,7 @@ class AttendanceService
                     }
                 }
             } else {
-                $invalidAttendances[] = $attendance['id'];
+                $invalidAttendances[] = $attendance->id;
                 return [
                     'model_id' => $rfid->model_id ?? null,
                     'invalid' => true

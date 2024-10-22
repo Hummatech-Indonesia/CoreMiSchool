@@ -58,6 +58,7 @@ class AttendanceController extends Controller
 
     public function store(Request $request)
     {
+        // dd(json_decode($request->getContent()));
         $date = Carbon::create($request->date);
         $day = strtolower($date->format('l'));
         $rule = $this->attendanceRule->showByDay($day, RoleEnum::STUDENT->value);
@@ -66,7 +67,7 @@ class AttendanceController extends Controller
 
         $failedStore = [];
         $updatedCount = 0;
-        $data = $this->service->insert($request, $rule, $date);
+        $data = $this->service->insert(json_decode($request->getContent()), $rule, $date);
         // dd($data);
         try {
             if (!empty($data)) {
@@ -87,7 +88,6 @@ class AttendanceController extends Controller
             }
             return response()->json(['status' => 'sukses', 'message' => 'Data kehadiran berhasil dimasukkan. ' . $updatedCount . ' Berhasil, ' . count($failedStore) . ' Gagal', 'invalid' => empty($failedStore) ? null : $failedStore, 'code' => 200], 200);
         } catch (\Exception $e) {
-            // Log::error('AttendanceController: Error inserting attendance data', ['error' => $e->getMessage()]);
             return response()->json(['status' => 'error', 'message' => 'Gagal memasukkan data kehadiran', 'error' => $e->getMessage(), 'code' => 500], 500);
         }
     }
