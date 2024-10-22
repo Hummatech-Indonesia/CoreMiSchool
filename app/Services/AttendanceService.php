@@ -64,6 +64,7 @@ class AttendanceService
         $invalidAttendances = [];
 
         $rfids = ModelHasRfid::whereIn('id', $attendances->pluck('id')->toArray())->get();
+        dd($attendances->pluck('id')->toArray());
         dd(ModelHasRfid::whereIn('id', $attendances->pluck('id')->toArray())->toSql());
 
         dd($rfids, $attendances->pluck('id')->toArray(), $request);
