@@ -1,5 +1,16 @@
 @extends('school.layouts.app')
 @section('style')
+    <style>
+        .btn-primary.toggle-btn.active {
+            background-color: #5D87FF;
+            border: none;
+        }
+
+        .btn-primary.toggle-btn:not(.active) {
+            background-color: transparent;
+            color: #5D87FF;
+        }
+    </style>
 @endsection
 @section('content')
     <div class="card bg-primary shadow-none position-relative overflow-hidden mb-0">
@@ -41,11 +52,14 @@
             </div>
         </form>
 
-        <div class="col-md-3 d-flex justify-content-end">
-            <div class="form-check form-switch d-flex align-items-center">
-                <label class="form-check-label me-5" for="toggleSwitch">Nonaktif</label>
-                <input class="form-check-input" type="checkbox" id="toggleSwitch">
-                <label class="form-check-label ms-2" for="toggleSwitch">Aktif</label>
+        <div class="col-md-3 d-flex justify-content-end pt-3">
+            <div class="btn-group" role="group" aria-label="Button Navigation">
+                <button type="button" class="btn btn-primary toggle-btn" data-toggle="button" aria-pressed="false">
+                    Nonaktif
+                </button>
+                <button type="button" class="btn btn-primary toggle-btn" data-toggle="button" aria-pressed="false">
+                    Aktif
+                </button>
             </div>
         </div>
     </div>
@@ -72,8 +86,4 @@
         @empty
         @endforelse
     </div>
-@endsection
-
-@section('style')
-
 @endsection
