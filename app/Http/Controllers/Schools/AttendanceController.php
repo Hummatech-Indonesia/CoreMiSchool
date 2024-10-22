@@ -32,6 +32,7 @@ class AttendanceController extends Controller
         $this->attendanceService = $attendanceService;
     }
 
+    
     /**
      * menampilkan kehadiran kelas di tahun ajaran yang aktif
      * @param Request $request untuk menampilkan data berdasarkan tahun ajaran
