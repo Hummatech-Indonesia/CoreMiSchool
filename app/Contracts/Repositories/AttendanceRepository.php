@@ -65,7 +65,7 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
     {
         // dd($attribute);
         // dd($this->model->query()->where('model_id', $attribute['model_id'])->get());
-        // dd($attribute);
+        dd($attribute);
         return $this->model->query()->where('model_type', $attribute['model_type'])->where('model_id', $attribute['model_id'])->whereDate('created_at', $attribute['created_at'])->firstOrFail()->update($data);
     }
 
