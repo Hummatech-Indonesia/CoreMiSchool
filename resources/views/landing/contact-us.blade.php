@@ -81,7 +81,7 @@
                     <h3 class="text-primary">Email</h3>
                     <p>Hubungi kami melalui email untuk dukungan atau info lebih lanjut
                     </p>
-                    <a href="mailto:support@example.com" class="text_btn text-primary">mischool@gmail.com</a>
+                    <a href="mailto:support@example.com" class="text_btn text-primary">smkn2kraksaan@gmail.com</a>
                 </div>
             </div>
             <!-- card -->
@@ -98,7 +98,8 @@
                     <h3 class="text-primary">Lokasi</h3>
                     <p>Temukan lokasi kami di bagian Lokasi.
                     </p>
-                    <a href="#" class="text_btn text-primary">Perum Permata Regency 1 Blok 10 No. 28, Ngijo, Kec. Karangploso, Kab. Malang, 65152 </a>
+                    <a href="#" class="text_btn text-primary">Jl. Diponegoro No. 05 - Kraksaan
+                        Probolinggo - Jawa Timur</a>
                 </div>
             </div>
             <!-- card -->
@@ -115,7 +116,7 @@
                     <h3 class="text-primary">Nomor Telepon</h3>
                     <p>Hubungi kami via telepon untuk dukungan atau pertanyaan.
                     </p>
-                    <a href="tel:+1-900-1234567" class="text_btn text-primary">(+62)82132560566</a>
+                    <a href="tel:+1-900-1234567" class="text_btn text-primary">(0335) 846407</a>
                 </div>
             </div>
         </div>

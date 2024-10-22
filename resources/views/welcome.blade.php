@@ -126,70 +126,69 @@
             <div class="section_title" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
                 <h2>Fitur - Fitur </h2>
                 <p>Mischool dilengkapi dengan fitur - fitur penting untuk management sekolah, dibawah ini adalah fitur -
-                    fitur dari Mischool</p>
+                    fitur dari Primadona</p>
             </div>
-            <div class="container mt-5">
+            <div class="container mt-5" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
                 <div class="row">
                     <div class="col-md-4 mb-4">
-                        <div class="feature_card bg-light p-5 text-start">
-                            <img src="{{ asset('landing_assets/images/landing/feature-1.png') }}" style="width: 70px"
-                                alt="image" class="img-fluid">
-                            <h3 class="pt-3 text-primary">E - Learning</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus felis non odio
-                                convallis interdum. Cras id diam rhoncus,</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="feature_card bg-light p-5 text-start">
-                            <!-- Repeat card content -->
-                            <img src="{{ asset('landing_assets/images/landing/feature-2.png') }}" style="width: 70px"
-                                alt="image" class="img-fluid">
-                            <h3 class="pt-3 text-primary">Pelanggaran</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus felis non odio
-                                convallis interdum. Cras id diam rhoncus,</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="feature_card bg-light p-5 text-start">
-                            <!-- Repeat card content -->
+                        <div class="feature_card bg-light p-5 text-start d-flex flex-column" style="height: 100%;">
                             <img src="{{ asset('landing_assets/images/landing/feature-3.png') }}" style="width: 70px"
                                 alt="image" class="img-fluid">
                             <h3 class="pt-3 text-primary">Absensi</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus felis non odio
-                                convallis interdum. Cras id diam rhoncus,</p>
+                            <p>Fitur ini memudahkan rekap kehadiran siswa dan guru saat masuk dan pulang dengan kartu, serta
+                                memantau siswa yang bolos, menjadikan pengelolaan kehadiran lebih efektif.</p>
                         </div>
                     </div>
                     <div class="col-md-4 mb-4">
-                        <div class="feature_card bg-light p-5 text-start">
+                        <div class="feature_card bg-light p-5 text-start d-flex flex-column" style="height: 100%;">
+                            <img src="{{ asset('landing_assets/images/landing/feature-2.png') }}" style="width: 70px"
+                                alt="image" class="img-fluid">
+                            <h3 class="pt-3 text-primary">Pelanggaran & Perbaikan</h3>
+                            <p>Fitur ini memudahkan staff/guru mencatat pelanggaran siswa serta memberikan catatan
+                                perbaikan, sehingga sekolah dapat memantau dan membantu meningkatkan kedisiplinan siswa.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="feature_card bg-light p-5 text-start d-flex flex-column" style="height: 100%;">
+                            <img src="{{ asset('landing_assets/images/landing/feature-1.png') }}" style="width: 70px"
+                                alt="image" class="img-fluid">
+                            <h3 class="pt-3 text-primary">Jurnal Mengajar</h3>
+                            <p>Fitur Jurnal Mengajar memudahkan guru dalam rekap kehadiran siswa di setiap jam pelajaran,
+                                sekaligus menjadi penanda kehadiran guru pada hari itu.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-4">
+                        <div class="feature_card bg-light p-5 text-start d-flex flex-column" style="height: 100%;">
                             <img src="{{ asset('landing_assets/images/landing/feature-4.png') }}" style="width: 70px"
                                 alt="image" class="img-fluid">
-                            <h3 class="pt-3 text-primary">Rapot</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus felis non odio
-                                convallis interdum. Cras id diam rhoncus,</p>
+                            <h3 class="pt-3 text-primary">Jurnal Staff</h3>
+                            <p>Fitur Jurnal Staff berfungsi untuk mencatat kegiatan yang dilakukan oleh staff setiap
+                                harinya, yang nantinya dapat direkap oleh admin sekolah untuk memantau dan meningkatkan
+                                kedisiplinan staff.</p>
                         </div>
                     </div>
                     <div class="col-md-4 mb-4">
-                        <div class="feature_card bg-light p-5 text-start">
-                            <!-- Repeat card content -->
+                        <div class="feature_card bg-light p-5 text-start d-flex flex-column" style="height: 100%;">
                             <img src="{{ asset('landing_assets/images/landing/feature-5.png') }}" style="width: 70px"
                                 alt="image" class="img-fluid">
-                            <h3 class="pt-3 text-primary">Ujian</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus felis non odio
-                                convallis interdum. Cras id diam rhoncus,</p>
+                            <h3 class="pt-3 text-primary">Tanggapan Siswa</h3>
+                            <p>Siswa dapat memberikan tanggapan langsung tentang kehadiran dan materi yang diajarkan,
+                                sehingga proses pembelajaran lebih terpantau oleh sekolah.</p>
                         </div>
                     </div>
                     <div class="col-md-4 mb-4">
-                        <div class="feature_card bg-light p-5 text-start">
-                            <!-- Repeat card content -->
+                        <div class="feature_card bg-light p-5 text-start d-flex flex-column" style="height: 100%;">
                             <img src="{{ asset('landing_assets/images/landing/feature-6.png') }}" style="width: 70px"
                                 alt="image" class="img-fluid">
                             <h3 class="pt-3 text-primary">Buku Tamu</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus felis non odio
-                                convallis interdum. Cras id diam rhoncus,</p>
+                            <p>Fitur ini berfungsi untuk merekap data instansi atau perorangan yang berkunjung ke sekolah.
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -211,10 +210,10 @@
                 <div class="col-md-6 d-flex align-items-center ms-3">
                     <div class="analyze_text" data-aos="fade-in" data-aos-duration="2000" data-aos-delay="100">
                         <div class="section_title align-center">
-                            <h2>Tentang Mischool</h2>
-                            <p>Mischool merupakan website untuk mempermudahkan berbagai Sekolah-sekolah. Mischool adalah web
-                                management sekolah yang menyediakan Fitur Absensi, Pelanggaran, E-learning, Raport, Ujian,
-                                Buku Tamu</p>
+                            <h2>Tentang Primadona</h2>
+                            <p>Primadona adalah website manajemen sekolah yang dirancang untuk memudahkan pengelolaan
+                                sekolah. Website ini dilengkapi dengan fitur-fitur seperti absensi, jurnal mengajar, jurnal
+                                staff, pelanggaran dan perbaikan, tanggapan siswa, serta buku tamu.</p>
                         </div>
                     </div>
                 </div>
@@ -224,7 +223,7 @@
     <!-- Analyze Section End -->
 
     <!-- Interface overview-Section start -->
-    <section class="row_am interface_section mb-5 pb-5">
+    {{-- <section class="row_am interface_section mb-5 pb-5">
         <div class="section_title" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
             <h2>Preview Fitur MISCHOOL</h2>
             <p>
@@ -274,11 +273,11 @@
             </div>
         </div>
         <!-- screen slider end -->
-    </section>
+    </section> --}}
     <!-- Interface overview-Section end -->
 
     <!-- feature package start -->
-    <section class="row_am pricing_section my-5 pt-5 pb-2" id="pricing" data-aos="fade-in" data-aos-duration="1000">
+    {{-- <section class="row_am pricing_section my-5 pt-5 pb-2" id="pricing" data-aos="fade-in" data-aos-duration="1000">
         <!-- container start -->
         <div class="container">
             <div class="section_title px-5 text-center" data-aos="fade-up" data-aos-duration="1500"
@@ -408,7 +407,7 @@
             </div>
         </div>
         <!-- container start end -->
-    </section>
+    </section> --}}
     <!-- feature package start -->
 
     <!-- Powerful solution for your business Section Start -->
@@ -417,10 +416,11 @@
             <div class="container">
                 <div class="section_title" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
                     <!-- h2 -->
-                    <h2>Pengguna MISCHOOL</h2>
+                    <h2>Pengguna PRIMADONA</h2>
                     <!-- p -->
-                    <p>Lorem Ipsum is simply dummy text of the printing and typese tting indus orem Ipsum
-                        has beenthe standard dummy text ever since.</p>
+                    <p>
+                        PRIMADONA hadir sebagai solusi manajemen sekolah yang inovatif, mendukung berbagai aktivitas dan
+                        proses dalam lingkungan pendidikan.</p>
                 </div>
                 <div class="features_inner" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="100">
                     <!-- card -->
@@ -435,8 +435,8 @@
                         </div>
                         <div class="inner_text">
                             <h3>Sekolah</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus felis non odio
-                                convallis interdum. Cras id diam rhoncus,
+                            <p>Pengguna sekolah memiliki akses penuh untuk melihat seluruh rekap jurnal guru dan staff,
+                                absensi siswa, serta dapat mengatur berbagai fitur yang disediakan sesuai kebutuhan.
                             </p>
                         </div>
                     </div>
@@ -451,9 +451,10 @@
                             </div>
                         </div>
                         <div class="inner_text">
-                            <h3>Guru</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus felis non odio
-                                convallis interdum. Cras id diam rhoncus,
+                            <h3>Guru & Staff</h3>
+                            <p>Guru dapat dengan mudah merekap kehadiran siswa di setiap mata pelajaran, sementara staff
+                                memiliki kemudahan untuk mencatat kegiatan harian mereka, memastikan semua aktivitas
+                                terekap dengan baik.
                             </p>
                         </div>
                     </div>
@@ -469,8 +470,8 @@
                         </div>
                         <div class="inner_text">
                             <h3>Siswa</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus felis non odio
-                                convallis interdum. Cras id diam rhoncus,
+                            <p>Siswa dapat memberikan tanggapan langsung tentang guru yang mengajar pada hari itu, jika
+                                fitur ini diaktifkan oleh admin sekolah.
                             </p>
                         </div>
                     </div>
@@ -485,50 +486,20 @@
         <!-- container start -->
         <div class="container">
             <div class="section_title" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
-                <h2>Mitra Mischool</h2>
-                <p>Daftar - daftar sekolah yang telah bekerja sama dan menggunakan Mischool untuk management sekolah</p>
+                <h2>Mitra Primadona</h2>
+                <p>Daftar - daftar sekolah yang telah bekerja sama dan menggunakan Primadona untuk management sekolah</p>
             </div>
             <!-- logos slider start -->
             <div class="company_logos" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
                 <div id="company_slider" class="owl-carousel owl-theme">
                     <div class="item">
                         <div class="logo">
-                            <img src="{{ asset('landing_assets/images/logo/logo-kanesa.png') }}" alt="image">
+                            <img src="{{ asset('assets/images/logo/logo-smkn2kraksaan.png') }}" alt="image">
                         </div>
                     </div>
                     <div class="item">
                         <div class="logo">
-                            <img src="{{ asset('landing_assets/images/logo/logo-kanesa.png') }}" alt="image">
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="logo">
-                            <img src="{{ asset('landing_assets/images/logo/logo-kanesa.png') }}" alt="image">
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="logo">
-                            <img src="{{ asset('landing_assets/images/logo/logo-kanesa.png') }}" alt="image">
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="logo">
-                            <img src="{{ asset('landing_assets/images/logo/logo-kanesa.png') }}" alt="image">
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="logo">
-                            <img src="{{ asset('landing_assets/images/logo/logo-kanesa.png') }}" alt="image">
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="logo">
-                            <img src="{{ asset('landing_assets/images/logo/logo-kanesa.png') }}" alt="image">
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="logo">
-                            <img src="{{ asset('landing_assets/images/logo/logo-kanesa.png') }}" alt="image">
+                            <img src="{{ asset('assets/images/logo/logo-hummatech.png') }}" alt="image">
                         </div>
                     </div>
                 </div>
@@ -540,7 +511,7 @@
     <!-- Trusted Section ends -->
 
     <!-- What Our Coustomer Section Start-->
-    <section class="what_coustomer_says">
+    {{-- <section class="what_coustomer_says">
         <div class="container">
             <div class="section_title" data-aos="fade-up" data-aos-duration="1500">
                 <h2>Apa yang dikatakan mereka</h2>
@@ -669,11 +640,11 @@
                             class="icofont-arrow-right"></i></a></p>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- What Our Coustomer Section End-->
 
     <!-- Story-Section-Start -->
-    <section class="row_am latest_story" id="blog">
+    {{-- <section class="row_am latest_story" id="blog">
         <!-- container start -->
         <div class="container">
             <div class="section_title" data-aos="fade-in" data-aos-duration="1500" data-aos-delay="100">
@@ -749,7 +720,7 @@
             <!-- row end -->
         </div>
         <!-- container end -->
-    </section>
+    </section> --}}
     <!-- Story-Section-end -->
 
     <!-- FAQ-Section start -->
@@ -758,10 +729,9 @@
         <div class="container">
             <div class="section_title" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
                 <!-- h2 -->
-                <h2><span>FAQ</span> - Frequently Asked Questions</h2>
+                <h2><span>FAQ</span> - Pertanyaan yang Sering Diajukan</h2>
                 <!-- p -->
-                <p>Lorem Ipsum is simply dummy text of the printing and typese tting <br> indus orem Ipsum has beenthe
-                    standard dummy.</p>
+                <p>Menjawab Pertanyaan Umum dan Menyediakan Informasi Penting untuk Pengguna</p>
             </div>
             <!-- faq data -->
             <div class="faq_panel">
@@ -771,19 +741,15 @@
                             <h2 class="mb-0">
                                 <button type="button" class="btn btn-link active" data-toggle="collapse"
                                     data-target="#collapseOne">
-                                    <i class="icon_faq icofont-plus"></i> How can i pay ?</button>
+                                    <i class="icon_faq icofont-plus"></i> Apa itu Primadona ?</button>
                             </h2>
                         </div>
                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
                             data-parent="#accordionExample">
                             <div class="card-body">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry lorem Ipsum
-                                    has. been the
-                                    industrys standard dummy text ever since the when an unknown printer took a galley of
-                                    type and
-                                    scrambled it to make a type specimen book. It has survived not only five cen turies but
-                                    also the
-                                    leap into electronic typesetting, remaining essentially unchanged.</p>
+                                <p>Primadona adalah website manajemen sekolah yang dirancang untuk memudahkan pengelolaan
+                                    sekolah. Website ini dilengkapi dengan fitur-fitur seperti absensi, jurnal mengajar,
+                                    jurnal staff, pelanggaran dan perbaikan, tanggapan siswa, serta buku tamu.</p>
                             </div>
                         </div>
                     </div>
@@ -791,64 +757,17 @@
                         <div class="card-header" id="headingTwo">
                             <h2 class="mb-0">
                                 <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
-                                    data-target="#collapseTwo"><i class="icon_faq icofont-plus"></i> How to setup account
+                                    data-target="#collapseTwo"><i class="icon_faq icofont-plus"></i> Apa saja fitur fitur
+                                    yang didapatkan
                                     ?</button>
                             </h2>
                         </div>
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
                             data-parent="#accordionExample">
                             <div class="card-body">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry lorem Ipsum
-                                    has. been the
-                                    industrys standard dummy text ever since the when an unknown printer took a galley of
-                                    type and
-                                    scrambled it to make a type specimen book. It has survived not only five cen turies but
-                                    also the
-                                    leap into electronic typesetting, remaining essentially unchanged.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card" data-aos="fade-up" data-aos-duration="1500">
-                        <div class="card-header" id="headingThree">
-                            <h2 class="mb-0">
-                                <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
-                                    data-target="#collapseThree"><i class="icon_faq icofont-plus"></i>What is process to
-                                    get refund
-                                    ?</button>
-                            </h2>
-                        </div>
-                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-                            data-parent="#accordionExample">
-                            <div class="card-body">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry lorem Ipsum
-                                    has. been the
-                                    industrys standard dummy text ever since the when an unknown printer took a galley of
-                                    type and
-                                    scrambled it to make a type specimen book. It has survived not only five cen turies but
-                                    also the
-                                    leap into electronic typesetting, remaining essentially unchanged.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card" data-aos="fade-up" data-aos-duration="1500">
-                        <div class="card-header" id="headingFour">
-                            <h2 class="mb-0">
-                                <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
-                                    data-target="#collapseFour"><i class="icon_faq icofont-plus"></i>What is process to
-                                    get refund
-                                    ?</button>
-                            </h2>
-                        </div>
-                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
-                            data-parent="#accordionExample">
-                            <div class="card-body">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry lorem Ipsum
-                                    has. been the
-                                    industrys standard dummy text ever since the when an unknown printer took a galley of
-                                    type and
-                                    scrambled it to make a type specimen book. It has survived not only five cen turies but
-                                    also the
-                                    leap into electronic typesetting, remaining essentially unchanged.</p>
+                                <p>Primadona adalah platform manajemen akademik & data operasional yang menyediakan Fitur
+                                    Absensi,
+                                    Pelanggaran, Perbaikan, Jurnal Mengajar & Jurnal Staf, Tanggapan Siwa, dan Buku Tamu</p>
                             </div>
                         </div>
                     </div>

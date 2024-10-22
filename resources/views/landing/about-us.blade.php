@@ -28,11 +28,11 @@
 
 
             <div class="bred_text">
-                <h1 class="text-primary">About us</h1>
+                <h1 class="text-primary">Tentang Kami</h1>
                 <ul>
-                    <li><a href="/">Home</a></li>
+                    <li><a href="/">Beranda</a></li>
                     <li><span>»</span></li>
-                    <li><a href="/about-us">About us</a></li>
+                    <li><a href="/about-us">Tentang Kami</a></li>
                 </ul>
             </div>
         </div>
@@ -56,15 +56,15 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="section_title" data-aos="fade-in" data-aos-duration="1500">
-                            <h2>Tentang Mischool</h2>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typese tting indus
-                                orem Ipsum has beenthe standard dummybeenthe standard dummy
-                                text ever since when an own Ipsums.</p>
-                            <p>Simply dummy text of the printing and typese tting indus orem Ipsum has beenthe standard
-                                dummy text
-                                ever since when an own Lorem Ipsums dummy text of the printing and typesetting indus orem
-                                Ipsum
-                                simply.</p>
+                            <h2>Tentang Primadona</h2>
+                            <p>Primadona adalah website manajemen sekolah yang dirancang untuk memudahkan pengelolaan
+                                sekolah. Website ini dilengkapi dengan fitur-fitur seperti absensi, jurnal mengajar, jurnal
+                                staff, pelanggaran dan perbaikan, tanggapan siswa, serta buku tamu.</p>
+                            {{-- <p>Primadona merupakan platform yang memudahkan berbagai sekolah.
+                                Primadona adalah platform manajemen akademik & data operasional yang menyediakan Fitur Absensi,
+                                Pelanggaran, Perbaikan, Jurnal Mengajar & Jurnal Staf, Tanggapan Siwa, dan Buku Tamu
+
+                                </p> --}}
                         </div>
                     </div>
                     <!-- image -->
@@ -83,9 +83,10 @@
                             <div class="counter_box">
                                 <p><span class="counter-value" data-count="450">0</span><span>+</span></p>
                                 <p style="font-size: 20px">Sekolah</p>
-                                <p style="font-size: 14px">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-                                    tempus felis non odio convallis interdum. Cras id diam rhoncus,</p>
+                                <p style="font-size: 14px">Kami telah melayani lebih dari 450 sekolah, memberikan solusi
+                                    manajemen yang efektif dan efisien untuk meningkatkan kualitas pendidikan.</p>
                             </div>
+
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6">
@@ -93,9 +94,10 @@
                             <div class="counter_box">
                                 <p><span class="counter-value" data-count="120">0</span><span>+</span></p>
                                 <p style="font-size: 20px">Guru</p>
-                                <p style="font-size: 14px">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-                                    tempus felis non odio convallis interdum. Cras id diam rhoncus,</p>
+                                <p style="font-size: 14px">Kami memiliki lebih dari 120 guru berpengalaman yang berdedikasi
+                                    untuk memberikan pendidikan berkualitas dan mendukung perkembangan siswa.</p>
                             </div>
+
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6">
@@ -103,9 +105,11 @@
                             <div class="counter_box">
                                 <p><span class="counter-value" data-count="135">0</span><span>+</span></p>
                                 <p style="font-size: 20px">Siswa</p>
-                                <p style="font-size: 14px">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-                                    tempus felis non odio convallis interdum. Cras id diam rhoncus,</p>
+                                <p style="font-size: 14px">Kami bangga memiliki lebih dari 135 siswa yang aktif dan
+                                    berprestasi, siap menghadapi tantangan di masa depan dengan semangat belajar yang
+                                    tinggi.</p>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -126,27 +130,32 @@
                 <div class="col-md-6 mt-5">
                     <div class="sl_two_colom_text" data-aos="fade-in" data-aos-duration="2000" data-aos-delay="100">
                         <div class="section_title">
-                            <h2>Kenapa Memilih Mischool </h2>
-                            <p>Lorem Ipsum is simply dummy text of the printing and types etting
-                                industry lorem Ipsum has been the indu has been the industrys
-                                Mischool adalah solusi manajemen sekolah terdepan untuk memajukan pendidikan! Ada begitu
-                                banyak alasan mengapa Mischool menjadi pilihan utama bagi sekolah dan lembaga pendidikan.
-                                Berikut adalah beberapa alasan yang membuat Mischool unggul
-                                galley of type and.</p>
+                            <h2>Kenapa Memilih Primadona</h2>
+                            <p>Primadona adalah solusi manajemen sekolah terdepan yang memudahkan pengelolaan sekolah dengan
+                                fitur-fitur unggulan seperti berikut :</p>
                         </div>
 
                         <div class="service_list_point">
                             <ul data-aos="fade-up" data-aos-duration="2000">
                                 <li> <i class="icofont-check-circled"
-                                        style="color: #13DEB9; font-size: 23px; margin-right: 10px"></i> Kemudahan
-                                    Pengelolaan </li>
+                                        style="color: #13DEB9; font-size: 23px; margin-right: 10px"></i>Absensi Siswa dan
+                                    guru </li>
                                 <li> <i class="icofont-check-circled"
-                                        style="color: #13DEB9; font-size: 23px; margin-right: 10px"></i> Pemantauan
-                                    Akademis yang Akurat dan Komprehensif
+                                        style="color: #13DEB9; font-size: 23px; margin-right: 10px"></i>Jurnal Mengajar
                                 </li>
                                 <li> <i class="icofont-check-circled"
-                                        style="color: #13DEB9; font-size: 23px; margin-right: 10px"></i>Keamanan Data
-                                    Terdepan </li>
+                                        style="color: #13DEB9; font-size: 23px; margin-right: 10px"></i> Jurnal Staff </li>
+                                <li> <i class="icofont-check-circled"
+                                        style="color: #13DEB9; font-size: 23px; margin-right: 10px"></i> Pencatatan
+                                    Pelanggaran Siswa </li>
+                                <li> <i class="icofont-check-circled"
+                                        style="color: #13DEB9; font-size: 23px; margin-right: 10px"></i> Pencatatan
+                                    Perbaikan Siswa </li>
+                                <li> <i class="icofont-check-circled"
+                                        style="color: #13DEB9; font-size: 23px; margin-right: 10px"></i> Tanggapan Siswa
+                                    Terhadap Pengajar </li>
+                                <li> <i class="icofont-check-circled"
+                                        style="color: #13DEB9; font-size: 23px; margin-right: 10px"></i> Buku Tamu </li>
                             </ul>
                         </div>
                     </div>

@@ -27,6 +27,7 @@
     <link rel="shortcut icon" href="{{ asset('assets/images/logo/logo-primadona3.png') }}">
 
     @yield('style')
+    
 </head>
 
 <body>
@@ -44,7 +45,7 @@
 
         <!-- Top Banner Start-->
         <div class="top_home_wraper white_option">
- 
+
             <div class="container">
                 <!-- vertical line animation -->
                 <div class="anim_line dark_bg">
