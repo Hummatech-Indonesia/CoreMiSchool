@@ -57,7 +57,7 @@ class AttendanceService
     }
     public function insert($request, $rule, $date): mixed
     {
-        // dd($date);
+        dd($request);
         $attendances = collect($request->attendances);
 
         $students = [];
