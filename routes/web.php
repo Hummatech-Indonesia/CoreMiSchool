@@ -32,3 +32,4 @@ require_once __DIR__ . '/role/landing.php';
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/cek-rfid', [App\Http\Controllers\HomeController::class, 'cek_rfid']);

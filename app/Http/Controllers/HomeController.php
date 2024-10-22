@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ModelHasRfid;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -32,5 +33,10 @@ class HomeController extends Controller
         } else {
             return to_route('beranda');
         }
+    }
+
+    public function cek_rfid()
+    {
+        dd(ModelHasRfid::where('model_type', null)->where('model_id', null)->get());
     }
 }
