@@ -43,7 +43,7 @@ Route::get('users-all', function () {
 });
 
 Route::get('test-day-attendance', function () {
-    $attendances = App\Models\Attendance::with('model.studentClassroom')->whereDay('created_at', now()->day)->whereMonth('created_at', now()->month)->whereYear('created_at', now()->year)->get();
+    $attendances = App\Models\Attendance::whereDay('created_at', now()->day)->whereMonth('created_at', now()->month)->whereYear('created_at', now()->year)->get();
 
     $users = ModelHasRfid::all();
     return response()->json([
