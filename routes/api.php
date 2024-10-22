@@ -61,3 +61,16 @@ Route::get('detail-journal/{lessonSchedule}', [LessonScheduleApiController::clas
 Route::post('store-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'store']);
 Route::put('update-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'update']);
 
+Route::get('/run-command', function () {
+    // Menjalankan command
+    \Illuminate\Support\Facades\Artisan::call('command:create-attendance');
+
+    // Opsional: Menampilkan output dari command
+    $output = \Illuminate\Support\Facades\Artisan::output();
+
+    // Kembalikan response ke pengguna
+    return response()->json([
+        'status' => 'success',
+        'output' => $output,
+    ]);
+});
