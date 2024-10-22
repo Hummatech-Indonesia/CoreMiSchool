@@ -73,7 +73,7 @@
                     </li>
                     {{-- <li class="nav-item {{ request()->routeIS('package') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('package') }}">Paket</a>
-                    </li> --}}
+                    </li> --}} 
                     <li class="nav-item {{ request()->routeIS('contact-us') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('contact-us') }}">Kontak</a>
                     </li>

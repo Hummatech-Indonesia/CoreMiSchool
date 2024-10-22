@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Primadona</title>
-
+ 
     <!-- icofont-css-link -->
     <link rel="stylesheet" href="{{ asset('landing_assets/css/icofont.min.css') }}">
     <!-- Owl-Carosal-Style-link -->

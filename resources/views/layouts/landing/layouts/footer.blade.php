@@ -30,7 +30,7 @@
                             </div>
                         </div>
                     </div>
-
+ 
                     <!-- footer link 2 -->
                     <div class="col-lg-2 col-md-6 col-12">
                         <div class="links">

@@ -44,7 +44,7 @@
 
         <!-- Top Banner Start-->
         <div class="top_home_wraper white_option">
-
+ 
             <div class="container">
                 <!-- vertical line animation -->
                 <div class="anim_line dark_bg">
