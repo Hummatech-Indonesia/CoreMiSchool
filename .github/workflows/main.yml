@@ -1,9 +1,9 @@
 name: CI/CD
 on : 
   push:
-    branches: [ main ]
+    branches: [ primadona ]
   pull_request:
-    branches: [ main ]
+    branches: [ primadona ]
   
   workflow_dispatch:
 
@@ -22,13 +22,13 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         # ftp server
-        server: ${{ secrets.FTP_SERVER }}
+        server: ${{ secrets.FTP_SERVER_PRIMADONA }}
         # ftp username
-        username: ${{ secrets.FTP_USERNAME }}
+        username: ${{ secrets.FTP_USERNAME_PRIMADONA }}
         # ftp password
-        password: ${{ secrets.FTP_PASSWORD }}
+        password: ${{ secrets.FTP_PASSWORD_PRIMADONA }}
         # Server port to connect to (read your web hosts docs)
-        port: ${{ secrets.FTP_PORT }}
+        port: ${{ secrets.FTP_PORT_PRIMADONA }}
         # protocol to deploy with - ftp, ftps, or ftps-legacy
         protocol: ftp
         # An array of glob patterns, these files will not be included in the publish/delete process
