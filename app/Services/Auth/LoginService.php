@@ -37,6 +37,7 @@ class   LoginService
                 case "teacher":
                     return to_route('teacher.dashboard');
                     break;
+                    
                 case "school":
                     return to_route('school.dashboard');
                     break;
