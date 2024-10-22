@@ -42,7 +42,7 @@ use Illuminate\Support\Facades\Route;
 use Maatwebsite\Excel\Facades\Excel;
 
 Route::middleware(['auth', 'role:school'])->prefix('school')->name('school.')->group(function () {
-    Route::get('', [SchoolDashboardController::class, 'index'])->name('index');
+    Route::get('dashboard', [SchoolDashboardController::class, 'index'])->name('dashboard');
 
     // setting informasi
     Route::prefix('information')->group(function () {

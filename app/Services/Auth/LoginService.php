@@ -38,7 +38,7 @@ class   LoginService
                     return to_route('teacher.dashboard');
                     break;
                 case "school":
-                    return to_route('school.index');
+                    return to_route('school.dashboard');
                     break;
                 case "staff":
                     return to_route('employee.dashboard');
@@ -69,7 +69,7 @@ class   LoginService
 
                     $user->assignRole('school');
                     Auth::login($user);
-                    
+
                     return to_route('school.index');
                 } else {
                     return redirect()->back()->withErrors(['login' => 'login api gagal'])->withInput();
