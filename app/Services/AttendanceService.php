@@ -64,7 +64,7 @@ class AttendanceService
         $invalidAttendances = [];
 
         $rfids = ModelHasRfid::with('model')->whereIn('id', $attendances->pluck('id'))->get();
-        dd($rfids, $attendances->pluck('id'), $request);
+        dd($rfids, $attendances->pluck('id')->toArray(), $request);
         // teacher attendance
 
         $attendanceData = $attendances->map(function ($attendance) use ($rfids, $rule, $date) {
