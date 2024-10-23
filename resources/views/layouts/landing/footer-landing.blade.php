@@ -23,8 +23,11 @@
                     <!-- footer link 1 -->
                     <div class="col-lg-5 col-md-6 col-12">
                         <div class="abt_side">
-                            <div class="logo"> <img src="{{ asset('assets/images/logo/logo-primadona1.png') }}"
-                                    alt="image"></div>
+                            <div class="logo">
+                                <img src="{{ asset('assets/images/logo/primadona-white.png') }}" alt="image"
+                                    style="width: 200px; height: auto;">
+                            </div>
+
                             <p>Platform inovasi manajemen akademik dan data operasional secara real-time yang memudahkan
                                 sekolah serta meningkatkan efektivitas pengelolaan data.</p>
                             <div class="news_letter_block">
@@ -120,17 +123,20 @@
                     <div class="col-md-8">
                         <p class="developer_text">
                             Dikembangkan oleh
-                            <img src="{{ asset('assets/images/logo/logo-smkn2kraksaan.png') }}"
-                                class="dark-logo img-fluid" width="28" alt="Logo SMKN 2 Kraksaan"
-                                style="margin-left: 8px;" />
+                            <a href="smkn2kraksaan.sch.id"> <img
+                                    src="{{ asset('assets/images/logo/logo-smkn2kraksaan.png') }}"
+                                    class="dark-logo img-fluid" width="28" alt="Logo SMKN 2 Kraksaan"
+                                    style="margin-left: 8px;" /></a>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 15 15"
                                 class="mx-2">
                                 <path fill="currentColor"
                                     d="M3.64 2.27L7.5 6.13l3.84-3.84A.92.92 0 0 1 12 2a1 1 0 0 1 1 1a.9.9 0 0 1-.27.66L8.84 7.5l3.89 3.89A.9.9 0 0 1 13 12a1 1 0 0 1-1 1a.92.92 0 0 1-.69-.27L7.5 8.87l-3.85 3.85A.92.92 0 0 1 3 13a1 1 0 0 1-1-1a.9.9 0 0 1 .27-.66L6.16 7.5L2.27 3.61A.9.9 0 0 1 2 3a1 1 0 0 1 1-1c.24.003.47.1.64.27" />
                             </svg>
-                            <img src="{{ asset('assets/images/logo/LOGO-HUMMATECH_Putih.png') }}"
-                                class="dark-logo img-fluid" width="150" alt="Logo HUMMATECH"
-                                style="margin-left: 8px;" />
+                            <a href="https://hummatech.com/" target="_blank">
+                                <img src="{{ asset('assets/images/logo/LOGO-HUMMATECH_Putih.png') }}"
+                                    class="dark-logo img-fluid" width="150" alt="Logo HUMMATECH"
+                                    style="margin-left: 8px;" />
+                            </a>
                         </p>
                     </div>
 

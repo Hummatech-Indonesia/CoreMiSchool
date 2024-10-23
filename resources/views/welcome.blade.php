@@ -1,6 +1,7 @@
 @extends('layouts.landing.layouts-landing')
 @section('style')
     <style>
+        
         .banner_section .banner_text {
             color: var(--text-white);
             text-align: center;
@@ -14,7 +15,7 @@
         }
 
         .btn_main {
-            background: linear-gradient(45deg, #79C7FF, #0042FF);
+            background: linear-gradient(45deg, #f68a45, #f68a45);
             /* Gradasi biru */
             color: white;
             /* Warna teks putih */
@@ -31,7 +32,7 @@
         }
 
         .btn_main:hover {
-            background: linear-gradient(45deg, #0042FF, #79C7FF);
+            background: linear-gradient(45deg, #f68a45, #f68a45);
             /* Ubah gradasi saat hover */
         }
 
@@ -59,6 +60,15 @@
             background-image: var(--primary);
         }
 
+        .navbar-nav .nav-item .dark_btn {
+            background-color: #3dbcec !important;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
         .company_logos .logo img {
             display: block;
             margin: 0 auto;
@@ -74,11 +84,11 @@
         }
 
         .faq_section .faq_panel .card-header .btn.active {
-            color: var(--primary);
+            color: #3dbcec;
         }
 
         .text-primary {
-            color: #0042FF;
+            color: #3dbcec;
         }
 
         .analyze_section .analyze_image {
@@ -108,6 +118,10 @@
         .unique_section .features_inner .feature_card:nth-child(3) .dot_anim {
             background-color: #43c8f9;
         }
+
+        .nav-item.active .nav-link {
+            color: #3dbcec !important;
+        }
     </style>
 
     <style>
@@ -125,14 +139,14 @@
         <div class="container">
             <div class="section_title" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
                 <h2>Fitur - Fitur </h2>
-                <p>Mischool dilengkapi dengan fitur - fitur penting untuk management sekolah, dibawah ini adalah fitur -
+                <p>Primadona dilengkapi dengan fitur - fitur penting untuk management sekolah, dibawah ini adalah fitur -
                     fitur dari Primadona</p>
             </div>
             <div class="container mt-5" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
                 <div class="row">
                     <div class="col-md-4 mb-4">
                         <div class="feature_card bg-light p-5 text-start d-flex flex-column" style="height: 100%;">
-                            <img src="{{ asset('landing_assets/images/landing/feature-3.png') }}" style="width: 70px"
+                            <img src="{{ asset('landing_assets/images/landing/feature-7.png') }}" style="width: 70px"
                                 alt="image" class="img-fluid">
                             <h3 class="pt-3 text-primary">Absensi</h3>
                             <p>Fitur ini memudahkan rekap kehadiran siswa dan guru saat masuk dan pulang dengan kartu, serta
@@ -141,7 +155,7 @@
                     </div>
                     <div class="col-md-4 mb-4">
                         <div class="feature_card bg-light p-5 text-start d-flex flex-column" style="height: 100%;">
-                            <img src="{{ asset('landing_assets/images/landing/feature-2.png') }}" style="width: 70px"
+                            <img src="{{ asset('landing_assets/images/landing/feature-8.png') }}" style="width: 70px"
                                 alt="image" class="img-fluid">
                             <h3 class="pt-3 text-primary">Pelanggaran & Perbaikan</h3>
                             <p>Fitur ini memudahkan staff/guru mencatat pelanggaran siswa serta memberikan catatan
@@ -150,7 +164,7 @@
                     </div>
                     <div class="col-md-4 mb-4">
                         <div class="feature_card bg-light p-5 text-start d-flex flex-column" style="height: 100%;">
-                            <img src="{{ asset('landing_assets/images/landing/feature-1.png') }}" style="width: 70px"
+                            <img src="{{ asset('landing_assets/images/landing/feature-9.png') }}" style="width: 70px"
                                 alt="image" class="img-fluid">
                             <h3 class="pt-3 text-primary">Jurnal Mengajar</h3>
                             <p>Fitur Jurnal Mengajar memudahkan guru dalam rekap kehadiran siswa di setiap jam pelajaran,
@@ -160,7 +174,7 @@
 
                     <div class="col-md-4 mb-4">
                         <div class="feature_card bg-light p-5 text-start d-flex flex-column" style="height: 100%;">
-                            <img src="{{ asset('landing_assets/images/landing/feature-4.png') }}" style="width: 70px"
+                            <img src="{{ asset('landing_assets/images/landing/feature-10.png') }}" style="width: 70px"
                                 alt="image" class="img-fluid">
                             <h3 class="pt-3 text-primary">Jurnal Staff</h3>
                             <p>Fitur Jurnal Staff berfungsi untuk mencatat kegiatan yang dilakukan oleh staff setiap
@@ -170,7 +184,7 @@
                     </div>
                     <div class="col-md-4 mb-4">
                         <div class="feature_card bg-light p-5 text-start d-flex flex-column" style="height: 100%;">
-                            <img src="{{ asset('landing_assets/images/landing/feature-5.png') }}" style="width: 70px"
+                            <img src="{{ asset('landing_assets/images/landing/feature-11.png') }}" style="width: 70px"
                                 alt="image" class="img-fluid">
                             <h3 class="pt-3 text-primary">Tanggapan Siswa</h3>
                             <p>Siswa dapat memberikan tanggapan langsung tentang kehadiran dan materi yang diajarkan,
@@ -179,7 +193,7 @@
                     </div>
                     <div class="col-md-4 mb-4">
                         <div class="feature_card bg-light p-5 text-start d-flex flex-column" style="height: 100%;">
-                            <img src="{{ asset('landing_assets/images/landing/feature-6.png') }}" style="width: 70px"
+                            <img src="{{ asset('landing_assets/images/landing/feature-12.png') }}" style="width: 70px"
                                 alt="image" class="img-fluid">
                             <h3 class="pt-3 text-primary">Buku Tamu</h3>
                             <p>Fitur ini berfungsi untuk merekap data instansi atau perorangan yang berkunjung ke sekolah.

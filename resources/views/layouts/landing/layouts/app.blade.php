@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Primadona</title>
- 
+
     <!-- icofont-css-link -->
     <link rel="stylesheet" href="{{ asset('landing_assets/css/icofont.min.css') }}">
     <!-- Owl-Carosal-Style-link -->
@@ -26,6 +26,16 @@
     <link rel="shortcut icon" href="{{ asset('assets/images/logo/logo-primadona3.png') }}">
 
     @yield('style')
+    <style>
+        .navbar-nav .nav-item .dark_btn {
+            background-color: #3dbcec !important;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
 
 </head>
 
