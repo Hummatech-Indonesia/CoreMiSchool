@@ -17,6 +17,7 @@ class LessonSchedule extends Model
     use HasFactory, BelongsToLessonHour, BelongsToSchoolYear, BelongsToTeacherSubject, BelongsToClassroom, HasManyTeacherJournal;
 
     protected $guarded = ['id'];
+    protected $fillable = ['classroom_id', 'lesson_hour_start', 'lesson_hour_end', 'teacher_subject_id', 'school_year_id', 'day'];
 
     /**
      * Get all of the journals for the LessonSchedule

@@ -133,4 +133,12 @@ class EmployeeRepository extends BaseRepository implements EmployeeInterface
         ->latest()
         ->paginate(10);
     }
+
+    public function employeeLesson(): mixed
+    {
+        return $this->model->query()
+            ->whereRelation('user.roles', 'name', RoleEnum::TEACHER->value)
+            ->whereHas('teacherSubjects')
+            ->get();
+    }
 }

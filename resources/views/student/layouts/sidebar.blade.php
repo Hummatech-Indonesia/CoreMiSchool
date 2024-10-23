@@ -45,17 +45,21 @@
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">Fitur</span>
                 </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="/student/class" aria-expanded="false">
-                        <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                <path fill="currentColor"
-                                    d="M19 19V5c0-1.1-.9-2-2-2H7c-1.1 0-2 .9-2 2v14H3v2h18v-2zm-2 0H7V5h10zm-4-8h2v2h-2z" />
-                            </svg>
-                        </span>
-                        <span class="hide-menu">Kelas</span>
-                    </a>
-                </li>
+
+                @if ($permission_feedback)
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="/student/class" aria-expanded="false">
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M19 19V5c0-1.1-.9-2-2-2H7c-1.1 0-2 .9-2 2v14H3v2h18v-2zm-2 0H7V5h10zm-4-8h2v2h-2z" />
+                                </svg>
+                            </span>
+                            <span class="hide-menu">Kelas & Tanggapan</span>
+                        </a>
+                    </li>
+                @endif
+
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('student.violations') }}" aria-expanded="false">
                         <span>

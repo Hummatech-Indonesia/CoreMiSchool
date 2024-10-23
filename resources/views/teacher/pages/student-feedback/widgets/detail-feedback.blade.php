@@ -7,28 +7,26 @@
                     aria-label="Close"></button>
             </div>
 
-            <form action="" id="form-create" method="" enctype="multipart/form-data">
+
+            <form>
                 <div class="modal-body">
                     <div class="row">
                         <div class="mb-3 col-lg-6">
                             <h5 class="fw-semibold">Tanggapan Dari :</h5>
-                            <h6 id="clock-detail">Ahmad Lukman Hakim</h6>
+                            <h6 id="name-detail"></h6>
                         </div>
                         <div class="mb-3 col-lg-6">
                             <h5 class="fw-semibold">Kelas :</h5>
-                            <h6 id="clock-detail">XII RPL 1</h6>
+                            <h6 id="classroom-detail"></h6>
                         </div>
                         <div class="border mb-3"></div>
                         <div class="mb-3 col-lg-12">
                             <div class="form-group mb-4">
                                 <h5 class="mr-sm-2 mb-2 fw-semibold" for="inlineFormCustomSelect">Apakah pengajar masuk?
                                 </h5>
-                                <h6 id="clock-detail" class="mb-3">Masuk</h6>
-
-
+                                <h6 id="is_teacher_present-detail" class="mb-3">Masuk</h6>
                                 <h5 class="mr-sm-2 mb-2 fw-semibold" for="inlineFormCustomSelect">Deskripsi </h5>
-                                <h6>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet
-                                    Lorem ipsum dolor sit amet</h6>
+                                <h6 id="summary-detail"></h6>
                             </div>
                         </div>
                     </div>
@@ -40,3 +38,4 @@
         </div>
     </div>
 </div>
+

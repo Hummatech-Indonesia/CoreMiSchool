@@ -3,19 +3,26 @@
 namespace App\Http\Controllers\Schools;
 
 use App\Contracts\Interfaces\ClassroomInterface;
+use App\Contracts\Interfaces\EmployeeInterface;
+use App\Contracts\Interfaces\FeedbackInterface;
 use App\Contracts\Interfaces\LessonScheduleInterface;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 
 class SchoolFeedbackController extends Controller
 {
     private ClassroomInterface $classroom;
     private LessonScheduleInterface $lessonSchedule;
+    private EmployeeInterface $employee;
+    private FeedbackInterface $feedback;
 
-    public function __construct(ClassroomInterface $classroom, LessonScheduleInterface $lessonSchedule)
+    public function __construct(FeedbackInterface $feedback, ClassroomInterface $classroom, LessonScheduleInterface $lessonSchedule, EmployeeInterface $employee)
     {
         $this->classroom = $classroom;
         $this->lessonSchedule = $lessonSchedule;
+        $this->employee = $employee;
+        $this->feedback = $feedback;
     }
 
     /**
@@ -23,7 +30,9 @@ class SchoolFeedbackController extends Controller
      */
     public function index()
     {
-        //
+            $teachers = $this->employee->employeeLesson();
+            $feedback_id = Permission::where('name', 'active_feedback')->first();
+            return view('school.pages.student-feedback.index', compact('teachers', 'feedback_id'));
     }
 
     /**
@@ -45,10 +54,12 @@ class SchoolFeedbackController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
+        public function show(string $teacher, Request $request)
+        {
+            $teacher = $this->employee->showWithSlug($teacher);
+            $feedbacks = $this->feedback->get_lesson($request);
+            return view('school.pages.student-feedback.detail', compact('teacher', 'feedbacks'));
+        }
 
     /**
      * Show the form for editing the specified resource.

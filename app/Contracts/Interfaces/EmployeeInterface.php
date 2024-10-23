@@ -20,6 +20,7 @@ interface EmployeeInterface extends GetInterface, StoreInterface, UpdateInterfac
     public function getSchool(mixed $id): mixed;
     public function getByRole(mixed $role, Request $request): mixed;
     public function getByUser(mixed $id) : mixed;
+    public function employeeLesson(): mixed;
 
     public function getPermission(Request $request): mixed;
 }
