@@ -455,7 +455,7 @@
                 </li>
 
 
-                <li class="sidebar-item">
+                {{-- <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('school.feedback') }}" aria-expanded="false">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
                             <path fill="currentColor"
@@ -463,7 +463,7 @@
                         </svg>
                         <span class="hide-menu">Tanggapan Siswa</span>
                     </a>
-                </li>
+                </li> --}}
 
 
                 <li class="nav-small-cap">
