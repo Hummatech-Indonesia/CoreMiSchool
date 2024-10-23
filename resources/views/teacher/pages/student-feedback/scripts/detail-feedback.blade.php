@@ -11,5 +11,5 @@
 
         $('#modal-detail').modal('show');
     });
-    
+
 </script>
