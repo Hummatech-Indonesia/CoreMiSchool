@@ -123,7 +123,7 @@
                     <div class="col-md-8">
                         <p class="developer_text">
                             Dikembangkan oleh
-                            <a href="smkn2kraksaan.sch.id"> <img
+                            <a href="https://smkn2kraksaan.sch.id/" target="_blank"> <img
                                     src="{{ asset('assets/images/logo/logo-smkn2kraksaan.png') }}"
                                     class="dark-logo img-fluid" width="28" alt="Logo SMKN 2 Kraksaan"
                                     style="margin-left: 8px;" /></a>
