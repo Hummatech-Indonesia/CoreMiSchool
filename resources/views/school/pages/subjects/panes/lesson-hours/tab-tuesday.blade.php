@@ -10,7 +10,7 @@
             </tr>
         </thead>
         <tbody>
-            @forelse ($lessonHours['tuesday'] as $index => $lessonHour)
+            @forelse ($lessonHours['tuesday'] ?? [] as $index => $lessonHour)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td> <span
@@ -44,29 +44,26 @@
             <tr>
                 <td>
                     <div>
-                        <button type="button" data-id="{{ $latestHour[1][0]->id }}"
-                            data-day="{{ $latestHour[1][0]->day }}" data-name="{{ $latestHour[1][0]->name }}"
-                            data-start="{{ $latestHour[1][0]->end }}"
-                            class="btn-create btn btn-primary btn-rounded m-t-10 mb-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                                <path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z"></path>
-                            </svg>
-                            Tambah Jam
-                        </button>
+                        <button type="button" data-id="{{ $latestHour[1][0] ? $latestHour[1][0]->id : '' }}" data-day="{{ $latestHour[1][0] ? $latestHour[1][0]->day : 'tuesday' }}" data-name="{{ $latestHour[1][0] ? $latestHour[1][0]->name : '' }}" data-start="{{ $latestHour[1][0] ? $latestHour[1][0]->end : '' }}" class="btn-create btn btn-info btn-rounded m-t-10 mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z"></path>
+                        </svg>
+                        Tambah Jam
+                    </button>
                     </div>
                 </td>
                 <td colspan="1"></td>
-                <td>
-                    <div class="mb-3">
-                        <button data-id="{{ $latestHour[1][0]->id }}" class="btn-delete btn btn-danger btn-sm">
+                @if (isset($lessonHours['tuesday']))
+                    <td>
+                        <div class="mb-3">
+                            <button data-id="{{ $latestHour[1][0] ? $latestHour[1][0]->id : '' }}" class="btn-delete btn btn-danger btn-sm">
                             <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24">
-                                <path fill="#FFFFFF"
-                                    d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4z">
-                                </path>
+                                <path fill="#FFFFFF" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4z"></path>
                             </svg>
                         </button>
-                    </div>
-                </td>
+                        </div>
+                    </td>
+                @endif
             </tr>
         </tfoot>
     </table>
