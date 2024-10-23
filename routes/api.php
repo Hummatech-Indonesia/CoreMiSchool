@@ -54,6 +54,7 @@ Route::get('test-day-attendance', function () {
     ]);
 });
 
+
 Route::get('lesson-schedule/{user}', [LessonScheduleApiController::class, 'index']);
 Route::get('teacher-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'create']);
 Route::get('history-journal/{user}', [LessonScheduleApiController::class, 'history']);
