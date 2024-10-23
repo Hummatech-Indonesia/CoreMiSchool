@@ -27,7 +27,7 @@
                         <div class="row">
                             <div class="col-lg-8 pt-3">
                                 <div class="card shadow-none position-relative rounded-3 overflow-hidden mb-0"
-                                    style="background: linear-gradient(to bottom, #51B6FF, #4F7CFF);">
+                                    style="background: linear-gradient(to bottom, #51B6FF, #3dbcec);">
                                     <div class="card-body px-4 py-3">
                                         <div class="row align-items-center">
                                             <div class="col-8">

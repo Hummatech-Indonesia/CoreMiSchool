@@ -39,7 +39,7 @@
                             </div>
                         </div>
                         <div class="col-lg-4 col-6">
-                            <img src="{{ asset('assets/images/Topi.png') }}" width="300px" alt="" class="img-fluid mt-2">
+                            <img src="{{ asset('assets/images/Topi2.png') }}" width="300px" alt="" class="img-fluid mt-2">
                         </div>
                     @else
                         <div class="col-lg-12 text-center">
