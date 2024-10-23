@@ -63,7 +63,11 @@ class AttendanceService
         $teachers = [];
         $invalidAttendances = [];
 
-        $rfids = ModelHasRfid::with('model')->whereIn('id', $attendances->pluck('id'))->get();
+        $rfids = ModelHasRfid::whereIn('id', $attendances->pluck('id')->toArray())->get();
+        // dd($attendances->pluck('id')->toArray());
+        // dd(ModelHasRfid::whereIn('id', $attendances->pluck('id')->toArray())->toSql(), ModelHasRfid::whereIn('id', $attendances->pluck('id')->toArray())->get());
+
+        // dd($rfids, $attendances->pluck('id')->toArray(), $request);
         // teacher attendance
 
         $attendanceData = $attendances->map(function ($attendance) use ($rfids, $rule, $date) {
@@ -84,7 +88,7 @@ class AttendanceService
 
                     if ($time->greaterThan($checkinEnd) && $time->lessThan($checkoutStart)) {
                         return [
-                            'model_id' => $rfid->model_id,
+                            'model_id' => $rfid->model->classroomStudents->first()->id,
                             'model_type' => "App\Models\ClassroomStudent",
                             'status' => AttendanceEnum::LATE->value,
                             'checkin' => $time->toDateTimeString(),
@@ -92,14 +96,14 @@ class AttendanceService
                         ];
                     } elseif ($time->greaterThan($checkoutStart)) {
                         return [
-                            'model_id' => $rfid->model_id,
+                            'model_id' => $rfid->model->classroomStudents->first()->id,
                             'model_type' => "App\Models\ClassroomStudent",
                             'checkout' => $time->toDateTimeString(),
                             'created_at' => $date
                         ];
                     } else {
                         return [
-                            'model_id' => $rfid->model_id,
+                            'model_id' => $rfid->model->classroomStudents->first()->id,
                             'model_type' => "App\Models\ClassroomStudent",
                             'status' => AttendanceEnum::PRESENT->value,
                             'checkin' => $time->toDateTimeString(),
@@ -333,6 +337,5 @@ class AttendanceService
                 'created_at' => $date->toDateString(),
             ]);
         }
-
     }
 }
