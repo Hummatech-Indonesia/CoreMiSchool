@@ -60,6 +60,7 @@
                                 </svg>
                             </span>
                             <span class="hide-menu">Jurnal dan Absensi</span>
+
                         </a>
                     </li>
 
