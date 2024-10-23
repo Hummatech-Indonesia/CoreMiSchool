@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="{{ asset('admin_assets/dist/libs/sweetalert2/dist/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin_assets/dist/libs/select2/dist/css/select2.min.css') }}">
 
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @yield('style')
 
 </head>

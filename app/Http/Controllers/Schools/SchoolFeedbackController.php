@@ -8,6 +8,7 @@ use App\Contracts\Interfaces\FeedbackInterface;
 use App\Contracts\Interfaces\LessonScheduleInterface;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 
 class SchoolFeedbackController extends Controller
 {
@@ -30,7 +31,8 @@ class SchoolFeedbackController extends Controller
     public function index()
     {
         $teachers = $this->employee->employeeLesson();
-        return view('school.pages.student-feedback.index', compact('teachers'));
+        $feedback_id = Permission::where('name', 'active_feedback')->first();
+        return view('school.pages.student-feedback.index', compact('teachers', 'feedback_id'));
     }
 
     /**

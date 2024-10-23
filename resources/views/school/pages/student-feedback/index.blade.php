@@ -54,10 +54,10 @@
 
         <div class="col-md-3 d-flex justify-content-end pt-3">
             <div class="btn-group" role="group" aria-label="Button Navigation">
-                <button type="button" class="btn btn-primary toggle-btn" data-toggle="button" aria-pressed="false">
+                <button type="button" class="btn btn-light-primary {{ $feedback_id == null ? 'active' : 'btn-nonactive' }}">
                     Nonaktif
                 </button>
-                <button type="button" class="btn btn-primary toggle-btn" data-toggle="button" aria-pressed="false">
+                <button type="button" class="btn btn-light-primary {{ $feedback_id != null ? 'active' : 'btn-active' }}">
                     Aktif
                 </button>
             </div>
@@ -86,4 +86,80 @@
         @empty
         @endforelse
     </div>
+@endsection
+
+@section('script')
+<script>
+    $(document).ready(function() {
+        $('.btn-nonactive').click(function() {
+            Swal.fire({
+                title: "Apa kamu yakin?",
+                text: "Untuk nonaktifkan tanggapan siswa ini?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya",
+                cancelButtonText: "Tidak",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: "{{ route('school.feedback.nonactive') }}",
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr("content")
+                        },
+                        success: function(res) {
+                            location.reload();
+                            Swal.fire({
+                            title: 'Sukses!',
+                            text: 'Tanggapan siswa berhasil dinonaktifkan.',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                            });
+                        },
+                        error: function(err) {
+                            console.log(err);
+                        }
+                    });
+                }
+            });
+        });
+
+        $('.btn-active').click(function() {
+            Swal.fire({
+                title: "Apa kamu yakin?",
+                text: "Untuk aktifkan tanggapan siswa ini?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya",
+                cancelButtonText: "Tidak",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ route('school.feedback.active') }}",
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr("content")
+                        },
+                        success: function(res) {
+                            location.reload();
+                            Swal.fire({
+                            title: 'Sukses!',
+                            text: 'Tanggapan siswa berhasil diaktifkan.',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                            });
+                        },
+                        error: function(err) {
+                            console.log(err);
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>
 @endsection

@@ -13,6 +13,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use Spatie\Permission\Models\Permission;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -37,7 +38,9 @@ class EventServiceProvider extends ServiceProvider
         Extracurricular::observe(ExtracurricularObserver::class);
 
         $school = School::first();
+        $permission_feedback = Permission::where('name', 'active_feedback')->first();
         view()->share('school', $school);
+        view()->share('permission_feedback', $permission_feedback);
     }
 
     /**
