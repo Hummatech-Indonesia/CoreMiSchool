@@ -61,6 +61,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <select name="gender" class="form-select">
+                                        <option value="">Semua</option>
                                         <option value="male" {{ request()->gender == 'male' ? 'selected' : '' }}>Laki-laki</option>
                                         <option value="female" {{ request()->gender == 'female' ? 'selected' : '' }}>Perempuan</option>
                                     </select>
@@ -72,15 +73,13 @@
                             </form>
                         </div>
 
-
                         <div class="tab-content" id="v-pills-tabContent">
-                            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
-                                aria-labelledby="v-pills-home-tab">
-
-                                @include('teacher.pages.student-feedback.panes.tab-detail')
-
-                            </div>
-
+                            @foreach ($teacherSubjects as $teacherSubject)
+                                <div class="tab-pane fade @if($loop->first) show active @endif" id="v-pills-{{ $teacherSubject->id }}" role="tabpanel"
+                                    aria-labelledby="v-pills-{{ $teacherSubject->id }}-tab">
+                                    @include('teacher.pages.student-feedback.panes.tab-detail', ['teacherSubject' => $teacherSubject->lessonScheadules])
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

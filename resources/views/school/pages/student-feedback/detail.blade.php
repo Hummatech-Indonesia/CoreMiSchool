@@ -52,17 +52,17 @@
                         <div class="d-flex align-items-center mb-4 pt-2">
                             <form class="row g-3 align-items-center col-md-9">
                                 <div class="col-md-4">
-                                    <input type="text" name="search" class="form-control" placeholder="Cari...">
+                                    <input type="text" name="search" value="{{ request()->search }}" class="form-control" placeholder="Cari...">
                                 </div>
                                 <div class="col-md-3">
                                     <select name="gender" class="form-select">
                                         <option value="">Semua</option>
-                                        <option value="male">Laki-laki</option>
-                                        <option value="female">Perempuan</option>
+                                        <option value="male" {{ request()->gender == 'male' ? 'selected' : '' }}>Laki-laki</option>
+                                        <option value="female" {{ request()->gender == 'female' ? 'selected' : '' }}>Perempuan</option>
                                     </select>
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="date" name="date" class="form-control">
+                                    <input type="date" name="date" value="{{ request()->date }}" class="form-control">
                                 </div>
                                 <div class="col-md-2">
                                     <button type="submit" class="btn btn-primary w-100">Cari</button>
