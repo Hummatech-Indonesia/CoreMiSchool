@@ -68,7 +68,7 @@
                     <td>{{ $attendance->attendances->first()->checkout ? Carbon\Carbon::parse($attendance->attendances->first()->checkout)->format('H.i') : '-' }}</td>
                     <td>{{ $attendance->attendances->first()->point }}</td>
                     <td>
-                        <span class="badge bg-light-primary text-primary">
+                        <span class="badge {{ $attendance->attendances->first()->status->color() }}">
                             {{ $attendance->attendances->first()->status->label() }}
                         </span>
                     </td>

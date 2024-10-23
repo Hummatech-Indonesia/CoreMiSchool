@@ -29,6 +29,8 @@ use App\Http\Controllers\Schools\EmployeeController;
 use App\Http\Controllers\Schools\ExtracurricularController as SchoolsExtracurricularController;
 use App\Http\Controllers\Schools\GuestBookController;
 use App\Http\Controllers\Schools\JournalTeacherController;
+use App\Http\Controllers\Schools\PermissionController;
+use App\Http\Controllers\Schools\SchoolFeedbackController;
 use App\Http\Controllers\Schools\StaffController;
 use App\Http\Controllers\Schools\StudentController;
 use App\Http\Controllers\Schools\TeacherController;
@@ -122,6 +124,8 @@ Route::middleware(['auth', 'role:school'])->prefix('school')->name('school.')->g
         Route::post('/', [SemesterController::class, 'store'])->name('store');
     });
 
+    Route::post('feedback-active', [PermissionController::class, 'create_feedback'])->name('feedback.active');
+    Route::delete('feedback-nonactive', [PermissionController::class, 'delete_feedback'])->name('feedback.nonactive');
     // kehadiran siswa
     Route::get('student-attendance', [SchoolsAttendanceController::class, 'class'])->name('student-attendance.index');
     Route::get('student-attendance/{classroom}', [SchoolsAttendanceController::class, 'student'])->name('student-attendance.show');
@@ -178,6 +182,9 @@ Route::middleware(['auth', 'role:school'])->prefix('school')->name('school.')->g
     Route::get('statistic-presence-employee', [AttendanceEmployeeController::class, 'index'])->name('statistic-presence-employee.index');
     Route::get('detail-presence-class/{classroom}', [SchoolsAttendanceStudentController::class, 'show'])->name('detail-presence-class.index');
     Route::get('detail-presence-class/{classroom}/export', [SchoolsAttendanceStudentController::class, 'exportPreview'])->name('detail-presence-class.export-preview');
+
+    Route::get('student-feedback', [SchoolFeedbackController::class, 'index'])->name('feedback');
+    Route::get('student-feedback/detail/{teacher}', [SchoolFeedbackController::class, 'show'])->name('feedback.detail');
 });
 
 //tes absensi

@@ -3,28 +3,36 @@
 namespace App\Http\Controllers\Teacher;
 
 use App\Contracts\Interfaces\ClassroomInterface;
+use App\Contracts\Interfaces\EmployeeInterface;
+use App\Contracts\Interfaces\FeedbackInterface;
 use App\Contracts\Interfaces\LessonScheduleInterface;
+use App\Contracts\Interfaces\TeacherSubjectInterface;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class TeacherFeedbackController extends Controller
 {
-    private ClassroomInterface $classroom;
-    private LessonScheduleInterface $lessonSchedule;
+    private TeacherSubjectInterface $teacherSubject;
+    private EmployeeInterface $employee;
+    private FeedbackInterface $feedback;
 
-    public function __construct(ClassroomInterface $classroom, LessonScheduleInterface $lessonSchedule)
+    public function __construct(TeacherSubjectInterface $teacherSubject, EmployeeInterface $employee, FeedbackInterface $feedback)
     {
-        $this->classroom = $classroom;
-        $this->lessonSchedule = $lessonSchedule;
+        $this->teacherSubject = $teacherSubject;
+        $this->employee = $employee;
+        $this->feedback = $feedback;
     }
 
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-    }
+        public function index(Request $request)
+        {
+            $teacherSubjects = $this->teacherSubject->getByTeacher(auth()->user()->employee->id);
+            $teacher = $this->employee->getByUser(auth()->id());
+            $feedbacks = $this->feedback->get_lesson($request); 
+            return view('teacher.pages.student-feedback.index', compact('teacherSubjects', 'teacher', 'feedbacks'));
+        }
 
     /**
      * Show the form for creating a new resource.
