@@ -15,7 +15,7 @@
                 </button>
             </div>
             <div class="d-flex align-items-center">
-                <a href="smkn2kraksaan.sch.id" target="_blank">
+                <a href="https://smkn2kraksaan.sch.id/" target="_blank">
                     <img src="{{ asset('assets/images/logo/logo-smkn2kraksaan.png') }}" class="dark-logo img-fluid"
                         width="20" alt="" />
                 </a>
