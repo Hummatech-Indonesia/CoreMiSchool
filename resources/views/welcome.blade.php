@@ -1,7 +1,7 @@
 @extends('layouts.landing.layouts-landing')
 @section('style')
     <style>
-        
+
         .banner_section .banner_text {
             color: var(--text-white);
             text-align: center;
@@ -60,14 +60,14 @@
             background-image: var(--primary);
         }
 
-        .navbar-nav .nav-item .dark_btn {
-            background-color: #3dbcec !important;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            font-size: 16px;
-        }
+    .navbar-nav .nav-item .dark_btn {
+        background-color: #3dbcec !important;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+    }
 
         .company_logos .logo img {
             display: block;
@@ -501,7 +501,7 @@
         <div class="container">
             <div class="section_title" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
                 <h2>Mitra Primadona</h2>
-                <p>Daftar - daftar sekolah yang telah bekerja sama dan menggunakan Primadona untuk management sekolah</p>
+                <p>Daftar - daftar mitra yang telah bekerja sama dan menggunakan Primadona untuk management sekolah</p>
             </div>
             <!-- logos slider start -->
             <div class="company_logos" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
