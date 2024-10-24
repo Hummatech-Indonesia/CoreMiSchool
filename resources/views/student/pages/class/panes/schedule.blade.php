@@ -39,5 +39,16 @@
             </div>
         </div>
     @empty
+        <div>
+            <div class="text-center align-center">
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                    <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt=""
+                        width="300px">
+                    <p class="fs-5 text-dark text-center mt-2">
+                        Jadwal pelajaran belum tersedia
+                    </p>
+                </div>
+            </div>
+        </div>
     @endforelse
 </div>
