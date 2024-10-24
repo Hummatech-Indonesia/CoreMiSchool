@@ -22,7 +22,7 @@ class RepairStudentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'file' => 'required',
+            'file' => 'required|mimes:png,jpg,jpeg',
         ];
     }
 }
