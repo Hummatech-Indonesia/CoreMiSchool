@@ -15,4 +15,7 @@ Route::middleware('auth')->prefix('student')->name('student.')->group(function (
     Route::post('feedback/{lessonSchedule}', [FeedbackController::class, 'store'])->name('feedback.store');
     Route::put('feedback/update/{feedback}', [FeedbackController::class, 'update'])->name('feedback.update');
     Route::get('/all-feedback-schedule', [FeedbackController::class, 'show'])->name('feedback.show');
+    Route::get('attendance', function () {
+        return view('student.pages.attendance.index');
+    })->name('attendance');
 });

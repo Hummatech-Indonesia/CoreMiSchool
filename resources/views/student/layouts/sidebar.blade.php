@@ -46,11 +46,29 @@
                     <span class="hide-menu">Fitur</span>
                 </li>
 
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/student/attendance" aria-expanded="false">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24">
+                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="1.5">
+                                    <path
+                                        d="M21.5 16.052V7.948a4.14 4.14 0 0 0-1.236-2.945a4.25 4.25 0 0 0-2.985-1.22H6.72a4.25 4.25 0 0 0-2.985 1.22A4.14 4.14 0 0 0 2.5 7.948v8.104c0 1.105.445 2.164 1.236 2.945a4.25 4.25 0 0 0 2.985 1.22H17.28c1.12 0 2.193-.44 2.985-1.22a4.14 4.14 0 0 0 1.236-2.945" />
+                                    <path
+                                        d="M8.552 12.14a2.054 2.054 0 1 0 0-4.108a2.054 2.054 0 0 0 0 4.108m3.081 3.828c0-.812-.324-1.59-.902-2.165a3.09 3.09 0 0 0-4.358 0a3.05 3.05 0 0 0-.902 2.165m9.097-7.049h3.594M14.568 12h1.54m-1.54 3.081h3.594" />
+                                </g>
+                            </svg>
+                        </span>
+                        <span class="hide-menu">Absensi</span>
+                    </a>
+                </li>
+
                 @if ($permission_feedback)
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="/student/class" aria-expanded="false">
                             <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24">
                                     <path fill="currentColor"
                                         d="M19 19V5c0-1.1-.9-2-2-2H7c-1.1 0-2 .9-2 2v14H3v2h18v-2zm-2 0H7V5h10zm-4-8h2v2h-2z" />
                                 </svg>
@@ -58,7 +76,7 @@
                             <span class="hide-menu">Kelas & Tanggapan</span>
                         </a>
                     </li>
-                @endif 
+                @endif
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('student.violations') }}" aria-expanded="false">
