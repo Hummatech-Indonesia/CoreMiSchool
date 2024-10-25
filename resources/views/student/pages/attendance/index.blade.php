@@ -39,10 +39,10 @@
                                 @forelse ($attendances as $attendance)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $attendance->created_at->format('l') }}</td>
-                                        <td>{{ $attendance->created_at->format('d f j') }}</td>
-                                        <td>{{ $attendance->checkin != null ? $attendance->checkin->format('H:i') : '-' }}</td>
-                                        <td>{{ $attendance->checkout != null ? $attendance->checkout->format('H:i') : '-' }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($attendance->created_at)->translatedFormat('l') }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($attendance->created_at)->translatedFormat('d F Y') }}</td>
+                                        <td>{{ $attendance->checkin == null ? '-' : \Carbon\Carbon::parse($attendance->checkin)->format('H:i') }}</td>
+                                        <td>{{ $attendance->checkout == null ? '-' : \Carbon\Carbon::parse($attendance->checkout)->format('H:i') }}</td>
                                         <td>
                                             <span class="badge {{ $attendance->status->color() }}">
                                                 {{ $attendance->status->label() }}
