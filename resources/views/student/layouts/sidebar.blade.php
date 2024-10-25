@@ -58,7 +58,7 @@
                             <span class="hide-menu">Kelas & Tanggapan</span>
                         </a>
                     </li>
-                @endif
+                @endif 
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('student.violations') }}" aria-expanded="false">

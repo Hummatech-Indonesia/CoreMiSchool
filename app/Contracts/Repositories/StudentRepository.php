@@ -18,6 +18,11 @@ class StudentRepository extends BaseRepository implements StudentInterface
         return $this->model->query()->get();
     }
 
+    public function whereUserId(mixed $id): mixed
+    {
+        return $this->model->query('user_id', $id)->first();
+    }
+
     public function store(array $data): mixed
     {
         return $this->model->query()->create($data);

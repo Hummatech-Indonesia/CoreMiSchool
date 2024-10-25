@@ -32,10 +32,10 @@ class FeedbackController extends Controller
      */
     public function index()
     {
-        $feedbacks = $this->feedback->get();
         $classroomStudent = $this->classroomStudent->whereStudent(auth()->user()->student->id);
         $lessonSchedules = $this->lessonSchedule->whereDay($classroomStudent->classroom->id);
         $student_id = auth()->user()->student->id;
+        $feedbacks = $this->feedback->where_user_id($student_id);
         return view('student.pages.class.index', compact('feedbacks', 'classroomStudent', 'lessonSchedules', 'student_id'));
     }
 

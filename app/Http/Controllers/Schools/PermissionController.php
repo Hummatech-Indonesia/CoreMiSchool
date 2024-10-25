@@ -21,4 +21,10 @@ class PermissionController extends Controller
         Permission::where('name', 'active_feedback')->delete();
         return response()->json(['status' => 'success', 'message' => 'Berhail menonaktifkan tanggapan siswa'], 200);
     }
+
+    public function is_active()
+    {
+        $data = Permission::where('name', 'active_feedback')->first();
+        return response()->json(['status' => 'success', 'data' => ['status' => $data != null ? 'active' : 'nonactive' ]], 200);
+    }
 }

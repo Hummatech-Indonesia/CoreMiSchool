@@ -54,4 +54,9 @@ use Illuminate\Http\Request;
                 ->get()
                 ->groupBy('lesson_schedule_id');
         }
+
+        public function where_user_id(mixed $id): mixed
+        {
+            return $this->model->query()->where('student_id', $id)->get();
+        }
     }

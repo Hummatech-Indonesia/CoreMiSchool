@@ -18,9 +18,11 @@ class LessonScheduleResource extends JsonResource
         return [
             'id' => $this->id,
             'name_subject' => $this->teacherSubject->subject->name,
-            'classroom' => $this->classroom->name,
+            'name_teacher' => $this->teacherSubject->employee->user->name,
+            'name_classroom' => $this->classroom->name,
             'hour' => Carbon::parse($this->start->start)->format('H:i'). ' - ' .Carbon::parse($this->end->end)->format('H:i'),
-            'date' => Carbon::parse($this->created_at)->translatedFormat('d F Y')
+            'date' => Carbon::parse($this->created_at)->translatedFormat('d F Y'),
+            'time' => explode(' - ', $this->start->name)[1] .' - '. explode(' - ', $this->end->name)[1],
         ];
     }
 }
