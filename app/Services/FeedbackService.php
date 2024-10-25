@@ -13,12 +13,12 @@ use App\Models\LessonSchedule;
 
         }
 
-        public function store(StoreFeedbackRequest $request, LessonSchedule $lessonSchedule): mixed
+        public function store(StoreFeedbackRequest $request, LessonSchedule $lessonSchedule, $id): mixed
         {
             $data = $request->validated();
             return [
                 'lesson_schedule_id' => $lessonSchedule->id,
-                'student_id' => auth()->user()->student->id,
+                'student_id' => $id,
                 'is_teacher_present' => $data['is_teacher_present'],
                 'summary' => $data['summary'],
             ];

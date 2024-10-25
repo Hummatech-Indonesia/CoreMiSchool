@@ -12,15 +12,21 @@ use App\Contracts\Interfaces\StudentRepairInterface;
 use App\Contracts\Interfaces\StudentViolationInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RepairStudentRequest;
+use App\Http\Requests\StoreFeedbackRequest;
+use App\Http\Requests\UpdateFeedbackRequest;
 use App\Http\Resources\HistoryAttendanceResource;
 use App\Http\Resources\LessonScheduleResource;
 use App\Http\Resources\SchoolPointResource;
+use App\Http\Resources\StudentFeedbackResource;
 use App\Http\Resources\StudentRepairResource;
 use App\Http\Resources\StudentViolationResource;
+use App\Models\Feedback;
+use App\Models\LessonSchedule;
 use App\Services\RepairStudentService;
 use App\Models\StudentRepair;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Services\FeedbackService;
 use Carbon\Carbon;
 
 class StudentApiController extends Controller
@@ -34,18 +40,20 @@ class StudentApiController extends Controller
     private StudentInterface $student;
     private LessonScheduleInterface $lessonSchedule;
     private FeedbackInterface $feedback;
+    private FeedbackService $feedbackService;
 
-    public function __construct(LessonScheduleInterface $lessonSchedule, FeedbackInterface $feedback, RepairStudentService $service, StudentRepairInterface $studentRepair, SchoolPointInterface $schoolPoint, StudentViolationInterface $studentViolation, AttendanceInterface $attendance, StudentInterface $student, ClassroomStudentInterface $classroomStudent)
+    public function __construct(FeedbackService $feedbackService, LessonScheduleInterface $lessonSchedule, FeedbackInterface $feedback, RepairStudentService $service, StudentRepairInterface $studentRepair, SchoolPointInterface $schoolPoint, StudentViolationInterface $studentViolation, AttendanceInterface $attendance, StudentInterface $student, ClassroomStudentInterface $classroomStudent)
     {
         $this->classroomStudent = $classroomStudent;
         $this->studentViolation = $studentViolation;
+        $this->feedbackService = $feedbackService;
+        $this->lessonSchedule = $lessonSchedule;
         $this->studentRepair = $studentRepair;
         $this->schoolPoint = $schoolPoint;
         $this->attendance = $attendance;
+        $this->feedback = $feedback;
         $this->student = $student;
         $this->service = $service;
-        $this->lessonSchedule = $lessonSchedule;
-        $this->feedback = $feedback;
     }
 
     /**
@@ -102,7 +110,11 @@ class StudentApiController extends Controller
         $student = $this->student->whereUserId($user->id);
         $feedbacks = $this->feedback->where_user_id($student->id);
         $classroomStudent = $this->classroomStudent->whereStudent($student->id);
-        $lessonSchedules = $this->lessonSchedule->whereDay($classroomStudent->classroom->id);
+        $lessonSchedules = $this->lessonSchedule->whereDay($classroomStudent->classroom->id)->map(function($schedule) use ($student) {
+            $schedule->student_id = $student->id;
+            return $schedule;
+        });;
+
         return response()->json(['status' => 'success', 'message' => "Berhasil mengirim bukti perbaikan",'code' => 200, 'data' => [
             'name_teacher' => $classroomStudent->classroom->employee->user->name,
             'school_year' => $classroomStudent->classroom->schoolYear->school_year,
@@ -110,6 +122,26 @@ class StudentApiController extends Controller
             'total_student_class' => $classroomStudent->classroom->classroomStudents->count(),
             'lesson_schedule' => LessonScheduleResource::collection($lessonSchedules),
         ]]);
+    }
+
+    public function store_feedback(StoreFeedbackRequest $request, LessonSchedule $lessonSchedule, User $user)
+    {
+        $student = $this->student->whereUserId($user->id);
+        $data = $this->feedbackService->store($request, $lessonSchedule, $student->id);
+        $this->feedback->store($data);
+        return response()->json(['status' => 'success', 'message' => "Berhasil mengirim tanggapan",'code' => 200]);
+    }
+
+    public function update_feedback(UpdateFeedbackRequest $request, Feedback $feedback)
+    {
+        $this->feedback->update($feedback->id, $request->validated());
+        return response()->json(['status' => 'success', 'message' => "Berhasil memperbaiki tanggapan",'code' => 200]);
+    }
+
+    public function destroy_feedback(Feedback $feedback)
+    {
+        $this->feedback->delete($feedback->id);
+        return response()->json(['status' => 'success', 'message' => "Berhasil mengirim menghapus tanggapan",'code' => 200]);
     }
 
     /**

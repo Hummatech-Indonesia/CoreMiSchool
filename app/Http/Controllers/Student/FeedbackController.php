@@ -52,8 +52,8 @@ class FeedbackController extends Controller
      */
     public function store(StoreFeedbackRequest $request, LessonSchedule $lessonSchedule)
     {
-        // dd($request->validated());
-        $data = $this->service->store($request, $lessonSchedule);
+        $id = auth()->user()->student->id;
+        $data = $this->service->store($request, $lessonSchedule, $id);
         $this->feedback->store($data);
         return redirect()->back()->with('success', 'Berhasil menambahkan feedback');
     }
