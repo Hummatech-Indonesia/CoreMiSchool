@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Student\AttendanceController;
 use App\Http\Controllers\Student\DashboardStudentController;
 use App\Http\Controllers\Student\FeedbackController;
 use App\Http\Controllers\Student\RepairStudentController;
@@ -15,7 +16,5 @@ Route::middleware('auth')->prefix('student')->name('student.')->group(function (
     Route::post('feedback/{lessonSchedule}', [FeedbackController::class, 'store'])->name('feedback.store');
     Route::put('feedback/update/{feedback}', [FeedbackController::class, 'update'])->name('feedback.update');
     Route::get('/all-feedback-schedule', [FeedbackController::class, 'show'])->name('feedback.show');
-    Route::get('attendance', function () {
-        return view('student.pages.attendance.index');
-    })->name('attendance');
+    Route::get('attendance', [AttendanceController::class, 'index'])->name('attendance');
 });

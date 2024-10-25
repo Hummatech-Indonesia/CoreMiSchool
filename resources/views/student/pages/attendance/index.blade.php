@@ -36,16 +36,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse (range(1,4) as $items)
+                                @forelse ($attendances as $attendance)
                                     <tr>
-                                        <td>1</td>
-                                        <td>Senin</td>
-                                        <td>1 Januari 2024</td>
-                                        <td>07.50</td>
-                                        <td>16.00</td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $attendance->created_at->format('l') }}</td>
+                                        <td>{{ $attendance->created_at->format('d f j') }}</td>
+                                        <td>{{ $attendance->checkin != null ? $attendance->checkin->format('H:i') : '-' }}</td>
+                                        <td>{{ $attendance->checkout != null ? $attendance->checkout->format('H:i') : '-' }}</td>
                                         <td>
-                                            <span class="badge bg-light-success text-success">
-                                                Masuk</span>
+                                            <span class="badge {{ $attendance->status->color() }}">
+                                                {{ $attendance->status->label() }}
+                                            </span>
                                         </td>
 
                                     </tr>
