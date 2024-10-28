@@ -10,6 +10,8 @@ use App\Contracts\Interfaces\SchoolPointInterface;
 use App\Contracts\Interfaces\StudentInterface;
 use App\Contracts\Interfaces\StudentRepairInterface;
 use App\Contracts\Interfaces\StudentViolationInterface;
+use App\Contracts\Repositories\AttendanceRepository;
+use App\Enums\AttendanceEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RepairStudentRequest;
 use App\Http\Requests\StoreFeedbackRequest;
@@ -18,6 +20,7 @@ use App\Http\Resources\HistoryAttendanceResource;
 use App\Http\Resources\LessonScheduleResource;
 use App\Http\Resources\SchoolPointResource;
 use App\Http\Resources\StudentFeedbackResource;
+use App\Http\Resources\StudentHistoryResource;
 use App\Http\Resources\StudentRepairResource;
 use App\Http\Resources\StudentViolationResource;
 use App\Models\Feedback;
@@ -33,14 +36,14 @@ class StudentApiController extends Controller
 {
     private ClassroomStudentInterface $classroomStudent;
     private StudentViolationInterface $studentViolation;
+    private LessonScheduleInterface $lessonSchedule;
     private StudentRepairInterface $studentRepair;
     private SchoolPointInterface $schoolPoint;
+    private FeedbackService $feedbackService;
     private AttendanceInterface $attendance;
     private RepairStudentService $service;
-    private StudentInterface $student;
-    private LessonScheduleInterface $lessonSchedule;
     private FeedbackInterface $feedback;
-    private FeedbackService $feedbackService;
+    private StudentInterface $student;
 
     public function __construct(FeedbackService $feedbackService, LessonScheduleInterface $lessonSchedule, FeedbackInterface $feedback, RepairStudentService $service, StudentRepairInterface $studentRepair, SchoolPointInterface $schoolPoint, StudentViolationInterface $studentViolation, AttendanceInterface $attendance, StudentInterface $student, ClassroomStudentInterface $classroomStudent)
     {
@@ -142,6 +145,17 @@ class StudentApiController extends Controller
     {
         $this->feedback->delete($feedback->id);
         return response()->json(['status' => 'success', 'message' => "Berhasil mengirim menghapus tanggapan",'code' => 200]);
+    }
+    
+    public function get_attendance(User $user)
+    {
+        $student = $this->student->whereUserId($user->id);
+        $classroomStudent = $this->classroomStudent->whereStudent($student->id);   
+        $attendances = $this->attendance->getByUserAndStatus('App\Models\ClassroomStudent', $classroomStudent->id, AttendanceEnum::PRESENT->value,'get');
+        return response()->json(['status' => 'success', 'message' => "Berhasil mengirim data",'code' => 200, 'data' => [
+            'attendance' => StudentHistoryResource::collection($attendances),
+        ]]);
+        
     }
 
     /**
