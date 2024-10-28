@@ -14,6 +14,11 @@ class StudentHistoryResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'date' => \Carbon\Carbon::parse($this->created_at)->translatedFormat('d F Y'),
+            'check_in' => \Carbon\Carbon::parse($this->checkin)->format('H:i'),
+            'check_out' => \Carbon\Carbon::parse($this->checkout)->format('H:i'),
+            'status' => $this->status ? $this->status->label() : '',
+        ];
     }
 }
