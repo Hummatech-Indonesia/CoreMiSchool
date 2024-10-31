@@ -21,4 +21,4 @@ class StudentHistoryResource extends JsonResource
             'status' => $this->status ? $this->status->label() : '',
         ];
     }
-}
+}   

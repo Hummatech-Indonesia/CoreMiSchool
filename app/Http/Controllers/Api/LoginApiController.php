@@ -15,6 +15,8 @@ class LoginApiController extends Controller
     public function login(Request $request)
     {
         $user = User::where('email', $request->email)->first();
+        $fullDomain = request()->root();
+        // dd($fullDomain);
 
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
@@ -22,11 +24,14 @@ class LoginApiController extends Controller
                 return response()->json([
                     'message' => 'Berhasil login',
                     'token' => $token,
-                    'role' => $user->roles->first()->name,
-                    'id' => $user->id,
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'password' => $user->password,
+                    'data' => [
+                        'id' => $user->id,
+                        'name' => $user->name,
+                        'email' => $user->email,
+                        'role' => $user->roles->first()->name,
+                        'password' => $user->password,
+                        'image' => $user->roles->first()->name == 'student' ? ($user->student->image ? asset($fullDomain.'/storage/'.$user->student->image) : asset($fullDomain.'/public/admin_assets/dist/images/profile/user-1.jpg')) : ($user->employee->image ? asset($fullDomain.'storage/'.$user->employee->image) : asset($fullDomain.'/public/admin_assets/dist/images/profile/user-1.jpg'))
+                    ],
                 ]);
             } else {
                 return response()->json(['message' => 'Password salah'], 401);
