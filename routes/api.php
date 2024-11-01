@@ -68,6 +68,7 @@ Route::get('/run-command', function () {
 Route::post('login', [LoginApiController::class, 'login']);
 Route::get('student/dashboard/{user}', [StudentApiController::class, 'index']);
 Route::get('student/history-attendance/{user}', [StudentApiController::class, 'history_attendance']);
+Route::get('student/lesson-schedule/{user}', [StudentApiController::class, 'lessonSchedule']);
 
 Route::get('student/violation/{user}', [StudentApiController::class, 'violation']);
 Route::get('student/repair/{user}', [StudentApiController::class, 'repair']);

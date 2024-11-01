@@ -17,6 +17,7 @@ use App\Http\Requests\RepairStudentRequest;
 use App\Http\Requests\StoreFeedbackRequest;
 use App\Http\Requests\UpdateFeedbackRequest;
 use App\Http\Resources\HistoryAttendanceResource;
+use App\Http\Resources\LessonResource;
 use App\Http\Resources\LessonScheduleResource;
 use App\Http\Resources\SchoolPointResource;
 use App\Http\Resources\StudentFeedbackResource;
@@ -69,7 +70,6 @@ class StudentApiController extends Controller
         $studentClasses = $this->classroomStudent->whereStudent($student->id);
         $lessonSchedule = $this->lessonSchedule->whereDayApi($studentClasses->classroom->id);
         $single_attendance = $this->attendance->userToday('App\Models\ClassroomStudent', $studentClasses->id);
-        $history_attendance = $this->attendance->whereUser($studentClasses->id, 'App\Models\ClassroomStudent');
 
         return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => [
             'school_year' => $studentClasses->classroom->schoolYear->school_year,
@@ -82,12 +82,12 @@ class StudentApiController extends Controller
                 'email' => $studentClasses->classroom->employee->user->email,
             ],
             'attendance_now' => [
-                'day' => Carbon::parse($single_attendance->created_at)->translatedFormat('l'),
-                'date' => Carbon::parse($single_attendance->created_at)->translatedFormat('d'),
-                'month' => Carbon::parse($single_attendance->created_at)->translatedFormat('M'),
-                'check_in' => $single_attendance->checkin == null ? '-' : \Carbon\Carbon::parse($single_attendance->checkin)->format('H:i'),
-                'check_out' => $single_attendance->checkout == null ? '-' : \Carbon\Carbon::parse($single_attendance->checkout)->format('H:i'),
-                'status' => $single_attendance ? $single_attendance->status->label() : '',
+                'day' => $single_attendance ? Carbon::parse($single_attendance->created_at)->translatedFormat('l') : now()->translatedFormat('l'),
+                'date' => $single_attendance ? Carbon::parse($single_attendance->created_at)->translatedFormat('d') : now()->translatedFormat('d'),
+                'month' => $single_attendance ? Carbon::parse($single_attendance->created_at)->translatedFormat('M') : now()->translatedFormat('M'),
+                'check_in' => $single_attendance ? \Carbon\Carbon::parse($single_attendance->checkin)->format('H:i') : '-',
+                'check_out' => $single_attendance ? \Carbon\Carbon::parse($single_attendance->checkout)->format('H:i') : '-',
+                'status' => $single_attendance ? $single_attendance->status->label() : 'Libur',
             ],
             'subject'=> SubjectResource::collection($lessonSchedule),
         ]]);
@@ -101,6 +101,22 @@ class StudentApiController extends Controller
 
         return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => [
             'attendance_history' => HistoryAttendanceResource::collection($history_attendance),
+        ]]);
+    }
+
+    public function lessonSchedule(User $user)
+    {
+        $student = $this->student->whereUserId($user->id);
+        $studentClasses = $this->classroomStudent->whereStudent($student->id);
+        $lessonSchedule = $this->lessonSchedule->whereClassroom($studentClasses->classroom->id, 'day');
+
+        return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => [
+            'monday' => LessonResource::collection(isset($lessonSchedule['monday']) ? $lessonSchedule['monday'] : []),
+            'tuesday' => LessonResource::collection(isset($lessonSchedule['tuesday']) ? $lessonSchedule['tuesday'] : []),
+            'wednesday' => LessonResource::collection(isset($lessonSchedule['wednesday']) ? $lessonSchedule['wednesday'] : []),
+            'thursday' => LessonResource::collection(isset($lessonSchedule['thursday']) ? $lessonSchedule['thursday'] : []),
+            'friday' => LessonResource::collection(isset($lessonSchedule['friday']) ? $lessonSchedule['friday'] : []),
+            'saturday' => LessonResource::collection(isset($lessonSchedule['saturday']) ? $lessonSchedule['saturday'] : []),
         ]]);
     }
 

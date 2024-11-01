@@ -49,7 +49,6 @@ class LessonScheduleRepository extends BaseRepository implements LessonScheduleI
         return $this->model->query()
             ->whereRelation('classroom', 'id', $id)
             ->get()
-            // ->orderBy('LessonHour')
             ->groupBy($query);
     }
 
