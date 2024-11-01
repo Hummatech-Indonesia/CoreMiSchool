@@ -16,8 +16,11 @@ class StudentViolationResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
+            'name' => $this->classroomStudent->student->user->name,
+            'classroom' => $this->classroomStudent->classroom->name,
+            'date' => Carbon::parse($this->created_at)->format('d F Y'),
             'type_violation' => $this->regulation->violation,
-            'date' => Carbon::parse($this->created_at)->format('d M Y'),
             'point' => $this->regulation->point,
         ];
     }

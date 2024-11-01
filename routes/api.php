@@ -69,9 +69,9 @@ Route::post('login', [LoginApiController::class, 'login']);
 Route::get('student/dashboard/{user}', [StudentApiController::class, 'index']);
 Route::get('student/history-attendance/{user}', [StudentApiController::class, 'history_attendance']);
 Route::get('student/lesson-schedule/{user}', [StudentApiController::class, 'lessonSchedule']);
-
 Route::get('student/violation/{user}', [StudentApiController::class, 'violation']);
 Route::get('student/repair/{user}', [StudentApiController::class, 'repair']);
+
 Route::put('student/repair/{studentRepair}', [StudentApiController::class, 'update_repair']);
 Route::get('feedback-active', [PermissionController::class, 'is_active']);
 Route::get('student/class-feedback/{user}', [StudentApiController::class, 'class_and_feedback']);

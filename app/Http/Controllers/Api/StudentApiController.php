@@ -123,12 +123,8 @@ class StudentApiController extends Controller
     public function violation(User $user, Request $request)
     {
         $student = $this->student->whereUserId($user->id);
-        $maxPoint = $this->schoolPoint->getMaxPoint();
-        $schoolPoints = $this->schoolPoint->get();
         $studentViolations = $this->studentViolation->whereStudent($student->id, $request);
         return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => [
-            'max_point' => $maxPoint,
-            'point' => SchoolPointResource::collection($schoolPoints),
             'violations' => StudentViolationResource::collection($studentViolations),
         ]]);
     }
