@@ -85,7 +85,7 @@ class StudentApiController extends Controller
                 'day' => $single_attendance ? Carbon::parse($single_attendance->created_at)->translatedFormat('l') : now()->translatedFormat('l'),
                 'date' => $single_attendance ? Carbon::parse($single_attendance->created_at)->translatedFormat('d') : now()->translatedFormat('d'),
                 'month' => $single_attendance ? Carbon::parse($single_attendance->created_at)->translatedFormat('M') : now()->translatedFormat('M'),
-                'date_complate' => $single_attendance ? Carbon::parse($single_attendance->created_at)->translatedFormat('d F Y') : now()->translatedFormat('d F Y'),
+                'date_complate' => $single_attendance ? Carbon::parse($single_attendance->created_at)->translatedFormat('d, F Y') : now()->translatedFormat('d, F Y'),
                 'check_in' => $single_attendance ? ($single_attendance->checkin == null ? '-' : \Carbon\Carbon::parse($single_attendance->checkin)->format('H:i')) : '-',
                 'check_out' => $single_attendance ? ($single_attendance->checkout == null ? '-' : \Carbon\Carbon::parse($single_attendance->checkout)->format('H:i')) : '-',
                 'status' => $single_attendance ? $single_attendance->status->label() : 'Libur',
