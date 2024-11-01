@@ -157,4 +157,12 @@ class LessonScheduleRepository extends BaseRepository implements LessonScheduleI
             })
             ->get();
     }
+
+    public function whereDayApi(mixed $query): mixed
+    {
+        return $this->model->query()
+        ->where('classroom_id', $query)
+        ->where('day', now()->format('l'))
+        ->get();
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -15,10 +16,11 @@ class HistoryAttendanceResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'hari' => \Carbon\Carbon::parse($this->created_at)->translatedFormat('l'),
-            'tanggal' => \Carbon\Carbon::parse($this->created_at)->translatedFormat('d F Y'),
-            'masuk' => $this->checkin == null ? '-' : \Carbon\Carbon::parse($this->checkin)->format('H:i'),
-            'pulang' => $this->checkout == null ? '-' : \Carbon\Carbon::parse($this->checkout)->format('H:i'),
+            'day' => Carbon::parse($this->created_at)->translatedFormat('l'),
+            'date' => Carbon::parse($this->created_at)->translatedFormat('d'),
+            'month' => Carbon::parse($this->created_at)->translatedFormat('M'),
+            'check_in' => $this->checkin == null ? '-' : \Carbon\Carbon::parse($this->checkin)->format('H:i'),
+            'check_out' => $this->checkout == null ? '-' : \Carbon\Carbon::parse($this->checkout)->format('H:i'),
             'status' => $this->status->label(),
         ];
     }

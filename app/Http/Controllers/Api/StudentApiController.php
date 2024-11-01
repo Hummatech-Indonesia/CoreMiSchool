@@ -23,6 +23,7 @@ use App\Http\Resources\StudentFeedbackResource;
 use App\Http\Resources\StudentHistoryResource;
 use App\Http\Resources\StudentRepairResource;
 use App\Http\Resources\StudentViolationResource;
+use App\Http\Resources\SubjectResource;
 use App\Models\Feedback;
 use App\Models\LessonSchedule;
 use App\Services\RepairStudentService;
@@ -66,16 +67,41 @@ class StudentApiController extends Controller
     {
         $student = $this->student->whereUserId($user->id);
         $studentClasses = $this->classroomStudent->whereStudent($student->id);
+        $lessonSchedule = $this->lessonSchedule->whereDayApi($studentClasses->classroom->id);
         $single_attendance = $this->attendance->userToday('App\Models\ClassroomStudent', $studentClasses->id);
         $history_attendance = $this->attendance->whereUser($studentClasses->id, 'App\Models\ClassroomStudent');
 
         return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => [
-            'classroom' => $studentClasses->classroom->name,
-            'name_teacher' => $studentClasses->classroom->employee->user->name,
             'school_year' => $studentClasses->classroom->schoolYear->school_year,
-            'attendance_now' => $single_attendance ? Carbon::parse($single_attendance->created_at)->translatedFormat('d F Y') . ' - ' . Carbon::parse($single_attendance->checkin)->format('H:i') : '' ,
-            'status' => $single_attendance ? $single_attendance->status->label() : '',
-            'history' => HistoryAttendanceResource::collection($history_attendance),
+            'classroom' => [
+                'name' => $studentClasses->classroom->name,
+                'total_student' => $studentClasses->classroom->classroomStudents->count(),
+            ],
+            'homeroom_teacher' => [
+                'name' => $studentClasses->classroom->employee->user->name,
+                'email' => $studentClasses->classroom->employee->user->email,
+            ],
+            'attendance_now' => [
+                'day' => Carbon::parse($single_attendance->created_at)->translatedFormat('l'),
+                'date' => Carbon::parse($single_attendance->created_at)->translatedFormat('d'),
+                'month' => Carbon::parse($single_attendance->created_at)->translatedFormat('M'),
+                'check_in' => $single_attendance->checkin == null ? '-' : \Carbon\Carbon::parse($single_attendance->checkin)->format('H:i'),
+                'check_out' => $single_attendance->checkout == null ? '-' : \Carbon\Carbon::parse($single_attendance->checkout)->format('H:i'),
+                'status' => $single_attendance ? $single_attendance->status->label() : '',
+            ],
+            'attendance_history' => HistoryAttendanceResource::collection($history_attendance),
+            'subject'=> SubjectResource::collection($lessonSchedule),
+        ]]);
+    }
+
+    public function history_attendance(User $user)
+    {
+        $student = $this->student->whereUserId($user->id);
+        $studentClasses = $this->classroomStudent->whereStudent($student->id);
+        $history_attendance = $this->attendance->whereUser($studentClasses->id, 'App\Models\ClassroomStudent');
+
+        return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => [
+            'attendance_history' => HistoryAttendanceResource::collection($history_attendance),
         ]]);
     }
 
@@ -146,16 +172,16 @@ class StudentApiController extends Controller
         $this->feedback->delete($feedback->id);
         return response()->json(['status' => 'success', 'message' => "Berhasil mengirim menghapus tanggapan",'code' => 200]);
     }
-    
+
     public function get_attendance(User $user)
     {
         $student = $this->student->whereUserId($user->id);
-        $classroomStudent = $this->classroomStudent->whereStudent($student->id);   
+        $classroomStudent = $this->classroomStudent->whereStudent($student->id);
         $attendances = $this->attendance->getByUserAndStatus('App\Models\ClassroomStudent', $classroomStudent->id, AttendanceEnum::PRESENT->value,'get');
         return response()->json(['status' => 'success', 'message' => "Berhasil mengirim data",'code' => 200, 'data' => [
             'attendance' => StudentHistoryResource::collection($attendances),
         ]]);
-        
+
     }
 
     /**
