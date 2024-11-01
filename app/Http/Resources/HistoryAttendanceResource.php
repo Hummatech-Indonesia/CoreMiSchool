@@ -19,6 +19,7 @@ class HistoryAttendanceResource extends JsonResource
             'day' => Carbon::parse($this->created_at)->translatedFormat('l'),
             'date' => Carbon::parse($this->created_at)->translatedFormat('d'),
             'month' => Carbon::parse($this->created_at)->translatedFormat('M'),
+            'date_complate' => Carbon::parse($this->created_at)->translatedFormat('l, j F Y'),
             'check_in' => $this->checkin == null ? '-' : \Carbon\Carbon::parse($this->checkin)->format('H:i'),
             'check_out' => $this->checkout == null ? '-' : \Carbon\Carbon::parse($this->checkout)->format('H:i'),
             'status' => $this->status->label(),
