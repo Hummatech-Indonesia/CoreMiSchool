@@ -89,7 +89,6 @@ class StudentApiController extends Controller
                 'check_out' => $single_attendance->checkout == null ? '-' : \Carbon\Carbon::parse($single_attendance->checkout)->format('H:i'),
                 'status' => $single_attendance ? $single_attendance->status->label() : '',
             ],
-            'attendance_history' => HistoryAttendanceResource::collection($history_attendance),
             'subject'=> SubjectResource::collection($lessonSchedule),
         ]]);
     }
