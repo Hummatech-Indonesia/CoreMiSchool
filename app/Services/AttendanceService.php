@@ -55,7 +55,7 @@ class AttendanceService
         $data = $request->validated();
         return $data;
     }
-    public function insert($request, $rule, $date): mixed
+    public function insert(Request $request, $rule, $date): mixed
     {
         dd($request);
         $attendances = collect($request->attendances);
