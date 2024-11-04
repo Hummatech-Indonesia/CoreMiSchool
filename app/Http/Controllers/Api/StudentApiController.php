@@ -112,12 +112,12 @@ class StudentApiController extends Controller
         $lessonSchedule = $this->lessonSchedule->whereClassroom($studentClasses->classroom->id, 'day');
 
         return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => [
-            'monday' => LessonResource::collection(isset($lessonSchedule['monday']) ? $lessonSchedule['monday'] : []),
-            'tuesday' => LessonResource::collection(isset($lessonSchedule['tuesday']) ? $lessonSchedule['tuesday'] : []),
-            'wednesday' => LessonResource::collection(isset($lessonSchedule['wednesday']) ? $lessonSchedule['wednesday'] : []),
-            'thursday' => LessonResource::collection(isset($lessonSchedule['thursday']) ? $lessonSchedule['thursday'] : []),
-            'friday' => LessonResource::collection(isset($lessonSchedule['friday']) ? $lessonSchedule['friday'] : []),
-            'saturday' => LessonResource::collection(isset($lessonSchedule['saturday']) ? $lessonSchedule['saturday'] : []),
+            'Senin' => LessonResource::collection(isset($lessonSchedule['monday']) ? $lessonSchedule['monday'] : []),
+            'Selasa' => LessonResource::collection(isset($lessonSchedule['tuesday']) ? $lessonSchedule['tuesday'] : []),
+            'Rabu' => LessonResource::collection(isset($lessonSchedule['wednesday']) ? $lessonSchedule['wednesday'] : []),
+            'Kamis' => LessonResource::collection(isset($lessonSchedule['thursday']) ? $lessonSchedule['thursday'] : []),
+            'Jumat' => LessonResource::collection(isset($lessonSchedule['friday']) ? $lessonSchedule['friday'] : []),
+            'Sabtu' => LessonResource::collection(isset($lessonSchedule['saturday']) ? $lessonSchedule['saturday'] : []),
         ]]);
     }
 
