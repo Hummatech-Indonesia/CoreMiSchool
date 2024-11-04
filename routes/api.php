@@ -71,13 +71,9 @@ Route::get('student/history-attendance/{user}', [StudentApiController::class, 'h
 Route::get('student/lesson-schedule/{user}', [StudentApiController::class, 'lessonSchedule']);
 Route::get('student/violation/{user}', [StudentApiController::class, 'violation']);
 Route::get('student/repair/{user}', [StudentApiController::class, 'repair']);
-
-Route::put('student/repair/{studentRepair}', [StudentApiController::class, 'update_repair']);
+Route::get('student/class-student/{user}', [StudentApiController::class, 'class_student']);
 Route::get('feedback-active', [PermissionController::class, 'is_active']);
-Route::get('student/class-feedback/{user}', [StudentApiController::class, 'class_and_feedback']);
-Route::post('student/class-feedback/store/{lessonSchedule}/{user}', [StudentApiController::class, 'store_feedback']);
-Route::put('student/class-feedback/update/{feedback}', [StudentApiController::class, 'update_feedback']);
-Route::delete('student/class-feedback/delete/{feedback}', [StudentApiController::class, 'destroy_feedback']);
+
 
 Route::get('lesson-schedule/{user}', [LessonScheduleApiController::class, 'index']);
 Route::get('teacher-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'create']);

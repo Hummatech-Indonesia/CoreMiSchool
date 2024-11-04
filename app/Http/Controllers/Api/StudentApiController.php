@@ -23,6 +23,7 @@ use App\Http\Resources\SchoolPointResource;
 use App\Http\Resources\StudentFeedbackResource;
 use App\Http\Resources\StudentHistoryResource;
 use App\Http\Resources\StudentRepairResource;
+use App\Http\Resources\StudentResource;
 use App\Http\Resources\StudentViolationResource;
 use App\Http\Resources\SubjectResource;
 use App\Models\Feedback;
@@ -139,61 +140,14 @@ class StudentApiController extends Controller
         ]]);
     }
 
-    public function update_repair(StudentRepair $studentRepair, RepairStudentRequest $request)
-    {
-        $data = $this->service->store($request, $studentRepair  );
-        $this->studentRepair->update($studentRepair->id, ['proof' => $data['file']]);
-        return response()->json(['status' => 'success', 'message' => "Berhasil mengirim bukti perbaikan",'code' => 200]);
-    }
-
-    public function class_and_feedback(User $user)
+    public function class_student(User $user)
     {
         $student = $this->student->whereUserId($user->id);
-        $feedbacks = $this->feedback->where_user_id($student->id);
-        $classroomStudent = $this->classroomStudent->whereStudent($student->id);
-        $lessonSchedules = $this->lessonSchedule->whereDay($classroomStudent->classroom->id)->map(function($schedule) use ($student) {
-            $schedule->student_id = $student->id;
-            return $schedule;
-        });;
+        $studentClasses = $this->classroomStudent->whereStudent($student->id);
 
         return response()->json(['status' => 'success', 'message' => "Berhasil mengirim bukti perbaikan",'code' => 200, 'data' => [
-            'name_teacher' => $classroomStudent->classroom->employee->user->name,
-            'school_year' => $classroomStudent->classroom->schoolYear->school_year,
-            'name_class' => $classroomStudent->classroom->name,
-            'total_student_class' => $classroomStudent->classroom->classroomStudents->count(),
-            'lesson_schedule' => LessonScheduleResource::collection($lessonSchedules),
+            StudentResource::collection($$studentClasses->classroom->classroomStudents),
         ]]);
-    }
-
-    public function store_feedback(StoreFeedbackRequest $request, LessonSchedule $lessonSchedule, User $user)
-    {
-        $student = $this->student->whereUserId($user->id);
-        $data = $this->feedbackService->store($request, $lessonSchedule, $student->id);
-        $this->feedback->store($data);
-        return response()->json(['status' => 'success', 'message' => "Berhasil mengirim tanggapan",'code' => 200]);
-    }
-
-    public function update_feedback(UpdateFeedbackRequest $request, Feedback $feedback)
-    {
-        $this->feedback->update($feedback->id, $request->validated());
-        return response()->json(['status' => 'success', 'message' => "Berhasil memperbaiki tanggapan",'code' => 200]);
-    }
-
-    public function destroy_feedback(Feedback $feedback)
-    {
-        $this->feedback->delete($feedback->id);
-        return response()->json(['status' => 'success', 'message' => "Berhasil mengirim menghapus tanggapan",'code' => 200]);
-    }
-
-    public function get_attendance(User $user)
-    {
-        $student = $this->student->whereUserId($user->id);
-        $classroomStudent = $this->classroomStudent->whereStudent($student->id);
-        $attendances = $this->attendance->getByUserAndStatus('App\Models\ClassroomStudent', $classroomStudent->id, AttendanceEnum::PRESENT->value,'get');
-        return response()->json(['status' => 'success', 'message' => "Berhasil mengirim data",'code' => 200, 'data' => [
-            'attendance' => StudentHistoryResource::collection($attendances),
-        ]]);
-
     }
 
     /**
