@@ -147,7 +147,10 @@ class StudentApiController extends Controller
         // $classrooms = $this->classroomStudent->getByClassId($studentClasses->classroom->id);
 
         return response()->json(['status' => 'success', 'message' => "Berhasil mengirim bukti perbaikan",'code' => 200, 'data' => [
-            StudentResource::collection($studentClasses->classroom->classroomStudents),
+            'name_class' => $studentClasses->classroom->name,
+            'students' => [
+                StudentResource::collection($studentClasses->classroom->classroomStudents),
+            ],
         ]]);
     }
 
