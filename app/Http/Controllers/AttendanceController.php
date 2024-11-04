@@ -59,6 +59,7 @@ class AttendanceController extends Controller
     public function store(Request $request)
     {
         // dd(json_decode($request->getContent()));
+        dd($request);
         $date = Carbon::create($request->date);
         $day = strtolower($date->format('l'));
         $rule = $this->attendanceRule->showByDay($day, RoleEnum::STUDENT->value);
