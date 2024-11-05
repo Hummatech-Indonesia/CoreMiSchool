@@ -22,4 +22,5 @@ interface LessonScheduleInterface extends GetInterface, StoreInterface, UpdateIn
     public function export(Request $request): mixed;
     public function getByTeacher(mixed $id): mixed;
     public function whereDay(mixed $query): mixed;
+    public function whereDayApi(mixed $query): mixed;
 }

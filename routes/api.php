@@ -67,18 +67,17 @@ Route::get('/run-command', function () {
 
 Route::post('login', [LoginApiController::class, 'login']);
 Route::get('student/dashboard/{user}', [StudentApiController::class, 'index']);
+Route::get('student/history-attendance/{user}', [StudentApiController::class, 'history_attendance']);
+Route::get('student/lesson-schedule/{user}', [StudentApiController::class, 'lessonSchedule']);
 Route::get('student/violation/{user}', [StudentApiController::class, 'violation']);
 Route::get('student/repair/{user}', [StudentApiController::class, 'repair']);
-Route::put('student/repair/{studentRepair}', [StudentApiController::class, 'update_repair']);
+Route::get('student/class-student/{user}', [StudentApiController::class, 'class_student']);
 Route::get('feedback-active', [PermissionController::class, 'is_active']);
-Route::get('student/class-feedback/{user}', [StudentApiController::class, 'class_and_feedback']);
-Route::post('student/class-feedback/store/{lessonSchedule}/{user}', [StudentApiController::class, 'store_feedback']);
-Route::put('student/class-feedback/update/{feedback}', [StudentApiController::class, 'update_feedback']);
-Route::delete('student/class-feedback/delete/{feedback}', [StudentApiController::class, 'destroy_feedback']);
+
 
 Route::get('lesson-schedule/{user}', [LessonScheduleApiController::class, 'index']);
 Route::get('teacher-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'create']);
 Route::get('history-journal/{user}', [LessonScheduleApiController::class, 'history']);
-Route::get('detail-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'show']);    
+Route::get('detail-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'show']);
 Route::post('store-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'store']);
 Route::put('update-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'update']);

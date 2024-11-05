@@ -15,7 +15,9 @@ class StudentResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            ''
+            'name' => $this->student->user->name,
+            'email' => $this->student->user->email,
+            'image' => $this->student->image != null ? asset(request()->root(). '/storage/'.$this->student->image) : asset(request()->root(). '/public/admin_assets/dist/images/profile/user-1.jpg'),
         ];
     }
 }

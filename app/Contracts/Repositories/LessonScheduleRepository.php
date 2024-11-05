@@ -49,7 +49,6 @@ class LessonScheduleRepository extends BaseRepository implements LessonScheduleI
         return $this->model->query()
             ->whereRelation('classroom', 'id', $id)
             ->get()
-            // ->orderBy('LessonHour')
             ->groupBy($query);
     }
 
@@ -156,5 +155,13 @@ class LessonScheduleRepository extends BaseRepository implements LessonScheduleI
                 $query->where('end', '<', now()->format('H:i'));
             })
             ->get();
+    }
+
+    public function whereDayApi(mixed $query): mixed
+    {
+        return $this->model->query()
+        ->where('classroom_id', $query)
+        ->where('day', now()->format('l'))
+        ->get();
     }
 }
