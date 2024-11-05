@@ -122,7 +122,8 @@
             <div class="card border">
                 <div class="card-body">
                     <h4 class="mb-4"><b>Riwayat Absensi</b></h4>
-                    <div class="table-responsive rounded-2 mt-3">
+                    <!-- Menambahkan batas tinggi untuk mengaktifkan scroll -->
+                    <div class="table-responsive rounded-2 mt-3" style="max-height: 400px; overflow-y: auto;">
                         <table class="table border text-nowrap customize-table mb-0 align-middle">
                             <thead>
                                 <tr>
@@ -162,6 +163,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col-lg-4 d-flex">
             <div class="card w-100 h-100 overflow-hidden border">
                 <div class="card-body">
