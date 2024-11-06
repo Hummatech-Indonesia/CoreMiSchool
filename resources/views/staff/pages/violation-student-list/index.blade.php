@@ -134,12 +134,4 @@
 @section('script')
     @include('staff.pages.violation-student-list.scripts.create-script')
     @include('staff.pages.violation-student-list.scripts.detail')
-    <script>
-        $(document).on('click', '[data-repeater-create]', function() {
-            setTimeout(function() {
-                $('#violation-student-create .modal-body').scrollTop($(
-                    '#violation-student-create .modal-body')[0].scrollHeight);
-            }, 100);
-        });
-    </script>
 @endsection
