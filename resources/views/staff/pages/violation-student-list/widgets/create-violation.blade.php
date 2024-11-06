@@ -5,7 +5,7 @@
                 <h5 class="modal-title" id="importPegawai" style="font-size: 20px"><b>Tambah Pelanggaran</b></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body px-4 overflow-y-auto" style="max-height: 70vh;">
+            <div class="modal-body px-4 overflow-y-auto">
                 <div class="border rounded-2 py-3" style="background-color: #FEF5E5">
                     <div class="d-flex px-2 align-items-center">
                         <div class="d-flex align-items-center">
