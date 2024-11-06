@@ -39,6 +39,9 @@
                                             <option value="{{ $violation->id }}">{{ $violation->violation }}</option>
                                         @endforeach
                                     </select>
+                                    @error('repeater-group.*.violation_id')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="d-flex align-items-center">
                                     <div class="flex-grow-1 me-3">
@@ -51,6 +54,9 @@
                                                 <option value="{{ $student->id }}">{{ $student->user->name }}</option>
                                             @endforeach
                                         </select>
+                                        @error('repeater-group.*.student_id')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                     <button data-repeater-delete="" class="btn btn-danger waves-effect waves-light"
                                         type="button" style="padding: 6px 12px; height: 38px; margin-top: 24px;">
@@ -86,7 +92,8 @@
                     </div> --}}
 
                 </div>
-                <div class="modal-footer sticky-footer" style="border-bottom-left-radius: 20px; border-bottom-right-radius: 20px">
+                <div class="modal-footer sticky-footer"
+                    style="border-bottom-left-radius: 20px; border-bottom-right-radius: 20px">
                     <button type="button" class="btn mb-1 waves-effect waves-light"
                         style="background-color: #C7C7C7; color: white;" data-bs-dismiss="modal">Tutup</button>
                     <button type="submit" class="btn mb-1 waves-effect waves-light btn-primary">Tambah</button>
