@@ -72,6 +72,7 @@ Route::get('student/lesson-schedule/{user}', [StudentApiController::class, 'less
 Route::get('student/violation/{user}', [StudentApiController::class, 'violation']);
 Route::get('student/repair/{user}', [StudentApiController::class, 'repair']);
 Route::get('student/class-student/{user}', [StudentApiController::class, 'class_student']);
+Route::get('student/point-student/{user}', [StudentApiController::class, 'point_student']);
 Route::get('feedback-active', [PermissionController::class, 'is_active']);
 
 

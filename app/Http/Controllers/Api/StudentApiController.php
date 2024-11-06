@@ -150,6 +150,12 @@ class StudentApiController extends Controller
         ]);
     }
 
+    public function point_student(User $user)
+    {
+        $student = $this->student->whereUserId($user->id);
+        return response()->json(['status' => 'success', 'message' => "Berhasil mengirim bukti perbaikan",'code' => 200, 'point' => $student->point]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
