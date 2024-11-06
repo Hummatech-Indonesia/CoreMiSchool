@@ -1,5 +1,19 @@
 @extends('staff.layouts.app')
 
+@section('style')
+    <style>
+        .sticky-footer {
+            position: sticky;
+            bottom: 0;
+            z-index: 1000;
+            background-color: white;
+            /* Sesuaikan warna latar footer */
+            padding: 15px;
+            /* Tambahkan padding sesuai kebutuhan */
+        }
+    </style>
+@endsection
+
 @section('content')
     <div class="card bg-light-primary shadow-none position-relative overflow-hidden">
         <div class="card-body px-4 py-3">
