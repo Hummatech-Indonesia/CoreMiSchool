@@ -1,6 +1,6 @@
 <div class="row mb-4">
     <div class="col-lg-8 col-12 mb-4 d-flex align-items-stretch">
-        <div class="card w-100 h-100">
+        <div class="card w-100 h-100 border">
             <div class="card-body">
                 <h4>Riwayat Absensi</h4>
                 <div class="table-responsive rounded-2 mt-3">

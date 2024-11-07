@@ -11,7 +11,7 @@
                         <h3><b>{{ auth()->user()->name }}</b></h3>
                         <h5>Tahun Ajaran {{ $schoolYear->school_year }}</h5>
                     </div>
-                    <div class="col-12 pt-2">
+                    <div class="col-12 pt-2 mb-0">
                         @forelse ($teacherSubjects as $teacherSubject)
                             <div class="m-1 badge bg-light-primary text-primary">
                                 {{ $teacherSubject->subject->name }}

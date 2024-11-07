@@ -33,6 +33,7 @@
             /* Thumb and track colors */
         }
     </style>
+
 @endsection
 
 @section('content')
@@ -152,9 +153,13 @@
     </div>
 
     <h4>Riwayat Jurnal</h4>
-    <h6 class="mb-5">Daftar jurnal guru setelah berkegiatan mengajar</h6>
+    <h6 class="mb-4">Daftar jurnal guru setelah berkegiatan mengajar</h6>
 
-    @include('teacher.pages.dashboard.panes.journal-history')
+   <div class="row">
+    <div class="col-lg-12">
+         @include('teacher.pages.dashboard.panes.journal-history')
+    </div>
+   </div>
 
     @if ($teacherJournals->count() > 3)
         <a class="btn mb-5 waves-effect waves-light btn-outline-info w-100"
