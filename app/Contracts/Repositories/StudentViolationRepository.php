@@ -4,6 +4,7 @@ namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\StudentViolationInterface;
 use App\Models\StudentViolation;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -69,6 +70,16 @@ class StudentViolationRepository extends BaseRepository implements StudentViolat
             ->get();
     }
 
+    public function groubByCreated(mixed $id): mixed
+    {
+        return $this->model->query()
+            ->whereRelation('classroomStudent', 'student_id', $id)
+            ->get()
+            ->groupBy(function ($item) {
+                return Carbon::parse($item->created_at)->format('Y-m-d');
+            });
+    }
+
     public function store(array $data): mixed
     {
         return $this->model->query()->create($data);
@@ -98,6 +109,14 @@ class StudentViolationRepository extends BaseRepository implements StudentViolat
             ->groupBy('classroom_students.classroom_id')
             ->orderBy('total_violations', 'desc')
             ->first();
+    }
+
+    public function countByStudent(): mixed
+    {
+        return $this->model->query()
+            ->get()
+            ->groupBy('classroom_student_id')
+            ->count();
     }
 
     public function ViolationChart(mixed $year, mixed $month): mixed

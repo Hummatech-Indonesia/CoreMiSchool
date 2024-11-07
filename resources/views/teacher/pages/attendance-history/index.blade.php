@@ -36,16 +36,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse (range(1,3) as $attendance)
+                                @forelse ($attendances as $attendance)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>Kamis</td>
-                                        <td>22 Januari 2024</td>
-                                        <td>12.00</td>
-                                        <td>13.00</td>
+                                        <td>{{ \Carbon\Carbon::parse($attendance->created_at)->translatedFormat('l') }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($attendance->created_at)->translatedFormat('d F Y') }}</td>
+                                        <td>{{ $attendance->checkin == null ? '-' : \Carbon\Carbon::parse($attendance->checkin)->format('H:i') }}</td>
+                                        <td>{{ $attendance->checkout == null ? '-' : \Carbon\Carbon::parse($attendance->checkout)->format('H:i') }}</td>
                                         <td>
-                                            <span class="badge bg-warning">
-                                                Telat
+                                            <span class="badge {{ $attendance->status->color() }}">
+                                                {{ $attendance->status->label() }}
                                             </span>
                                         </td>
 
