@@ -4,6 +4,7 @@ namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\StudentRepairInterface;
 use App\Models\StudentRepair;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class StudentRepairRepository extends BaseRepository implements StudentRepairInterface
@@ -98,5 +99,12 @@ class StudentRepairRepository extends BaseRepository implements StudentRepairInt
             ->get()
             ->groupBy('classroom_student_id')
             ->count();
+    }
+
+    public function count_approved(mixed $query): mixed
+    {
+        $result =  $this->model->query();
+        $query == '0' ? $result->where('is_approved', '0')->where('end_date', '>=', Carbon::today()->format('Y-m-d')) : ( $query == '1' ? $result->where('is_approved', '1') : $result->where('is_approved', '0')->where('end_date', '<', Carbon::now()->format('Y-m-d')));
+        return $result->count();
     }
 }

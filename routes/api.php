@@ -78,6 +78,9 @@ Route::get('student/point-student/{user}', [StudentApiController::class, 'point_
 Route::get('feedback-active', [PermissionController::class, 'is_active']);
 
 Route::get('staf/dashboard/{user}', [StafApiController::class, 'index']);
+Route::get('staf/history-journals/{user}', [StafApiController::class, 'history_journals']);
+Route::post('staf/create-journal/{user}', [StafApiController::class, 'create_journal']);
+Route::get('staf/overview-header', [StafApiController::class, 'overview_header']);
 
 Route::get('lesson-schedule/{user}', [LessonScheduleApiController::class, 'index']);
 Route::get('teacher-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'create']);

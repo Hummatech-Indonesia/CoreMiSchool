@@ -40,8 +40,8 @@ class DashboardStaffController extends Controller
     public function index()
     {
         $countViolation = $this->studentViolation->count('week');
-        $studentViolation = $this->studentViolation->count('student');
         $countRepair = $this->studentRepair->count();
+        $studentViolation = $this->studentViolation->countByStudent();
         $maxPoint = $this->schoolPoint->getMaxPoint();
         $studentHighPoint = $this->student->highestPoint($maxPoint);
         $employeeJournals = $this->employeeJournal->getEmployee(auth()->user()->id, 'take');
