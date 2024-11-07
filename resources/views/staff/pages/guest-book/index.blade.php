@@ -60,7 +60,7 @@
                                 <div class="card rounded-3"
                                     style="background: linear-gradient(to bottom, #FFB431, #F6BB22); color: white; position: relative;">
                                     <div class="card-body" style="position: relative; z-index: 1;">
-                                        <div class="d-flex justify-content-between" style="margin-bottom: 13px;">
+                                        <div class="d-flex justify-content-between" style="margin-bottom: 13px; border-bottom-right-radius: 20px">
                                             <h5 class="fw-semibold mb-0 text-white">Tanggal Saat Ini</h5>
                                             <span>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
@@ -72,7 +72,7 @@
                                         </div>
                                         <h3 class="fw-semibold text-white" id="currentDate"></h3>
                                     </div>
-                                    <img src="{{ asset('assets/images/background/buble-5.png') }}" alt="Image"
+                                <img src="{{ asset('assets/images/background/buble-5.png') }}" alt="Image"
                                         class="position-absolute"
                                         style="bottom: 0; right: 0; width: 110px; height: auto; z-index: 0;">
                                 </div>
