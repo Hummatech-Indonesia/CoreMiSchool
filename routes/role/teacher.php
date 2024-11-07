@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Teacher\AttendanceController;
 use App\Http\Controllers\Teacher\DashboardTeacherController;
 use App\Http\Controllers\Teacher\StudentFeedbackController;
 use App\Http\Controllers\Teacher\TeacherJournalController;
@@ -25,14 +26,7 @@ Route::middleware(['auth', 'role:teacher'])->prefix('teacher')->name('teacher.')
 
     Route::get('student-feedback', [StudentFeedbackController::class, 'index'])->name('student-feedback.index');
 
-    Route::get('attendance/history', function () {
-        return view('teacher.pages.attendance-history.index');
-    })->name('attendance.history');
-
-    // Route::get('journal-and-attendance', function(){
-    //     return view('teacher.pages.journals-and-attendance.index');
-    // })->name('journal-and-attendace.index');
-
+    Route::get('attendance/history', [AttendanceController::class, 'index'])->name('attendance.history');
 });
 
 
