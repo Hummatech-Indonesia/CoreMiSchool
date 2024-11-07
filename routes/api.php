@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\AttendanceRuleApiController;
 use App\Http\Controllers\Api\LessonScheduleApiController;
 use App\Http\Controllers\Api\LoginApiController;
 use App\Http\Controllers\Api\SchoolDetailController;
+use App\Http\Controllers\Api\StafApiController;
 use App\Http\Controllers\Api\StudentApiController;
 use App\Http\Controllers\Schools\PermissionController;
 use App\Models\ModelHasRfid;
@@ -66,6 +67,7 @@ Route::get('/run-command', function () {
 });
 
 Route::post('login', [LoginApiController::class, 'login']);
+
 Route::get('student/dashboard/{user}', [StudentApiController::class, 'index']);
 Route::get('student/history-attendance/{user}', [StudentApiController::class, 'history_attendance']);
 Route::get('student/lesson-schedule/{user}', [StudentApiController::class, 'lessonSchedule']);
@@ -75,6 +77,7 @@ Route::get('student/class-student/{user}', [StudentApiController::class, 'class_
 Route::get('student/point-student/{user}', [StudentApiController::class, 'point_student']);
 Route::get('feedback-active', [PermissionController::class, 'is_active']);
 
+Route::get('staf/dashboard/{user}', [StafApiController::class, 'index']);
 
 Route::get('lesson-schedule/{user}', [LessonScheduleApiController::class, 'index']);
 Route::get('teacher-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'create']);

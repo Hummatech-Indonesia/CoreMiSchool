@@ -53,6 +53,14 @@ class StudentRepairRepository extends BaseRepository implements StudentRepairInt
             ->get();
     }
 
+    public function groubByCreated(mixed $id): mixed
+    {
+        return $this->model->query()
+            ->whereRelation('classroomStudent', 'student_id', $id)
+            ->get()
+            ->groupBy('created_at');
+    }
+
     public function search(Request $request): mixed
     {
         return $this->model->query()
@@ -81,6 +89,14 @@ class StudentRepairRepository extends BaseRepository implements StudentRepairInt
         return $this->model->query()
             ->whereYear('created_at', $year)
             ->whereMonth('created_at', $month)
+            ->count();
+    }
+
+    public function countByStudent(): mixed
+    {
+        return $this->model->query()
+            ->get()
+            ->groupBy('classroom_student_id')
             ->count();
     }
 }

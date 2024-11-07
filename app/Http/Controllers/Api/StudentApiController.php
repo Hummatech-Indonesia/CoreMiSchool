@@ -126,6 +126,7 @@ class StudentApiController extends Controller
     {
         $student = $this->student->whereUserId($user->id);
         $studentViolations = $this->studentViolation->whereStudent($student->id, $request);
+
         return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => [
             'violations' => StudentViolationResource::collection($studentViolations),
         ]]);
@@ -135,6 +136,7 @@ class StudentApiController extends Controller
     {
         $student = $this->student->whereUserId($user->id);
         $repairs = $this->studentRepair->whereStudent($student->id, $request);
+
         return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => [
             'repair' => StudentRepairResource::collection($repairs),
         ]]);
