@@ -25,9 +25,9 @@ Route::middleware(['auth', 'role:teacher'])->prefix('teacher')->name('teacher.')
 
     Route::get('student-feedback', [StudentFeedbackController::class, 'index'])->name('student-feedback.index');
 
-    // Route::get('journals/detail', function () {
-    //     return view('teacher.pages.journals.detail');
-    // })->name('journals.detail');
+    Route::get('attendance/history', function () {
+        return view('teacher.pages.attendance-history.index');
+    })->name('attendance.history');
 
     // Route::get('journal-and-attendance', function(){
     //     return view('teacher.pages.journals-and-attendance.index');

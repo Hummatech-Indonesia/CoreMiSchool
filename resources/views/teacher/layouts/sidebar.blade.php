@@ -45,6 +45,23 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
+                        <a class="sidebar-link" href="/teacher/attendance/history" aria-expanded="false">
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <g fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <circle cx="9" cy="9" r="2" />
+                                        <path d="M13 15c0 1.105 0 2-4 2s-4-.895-4-2s1.79-2 4-2s4 .895 4 2Z" />
+                                        <path
+                                            d="M2 12c0-3.771 0-5.657 1.172-6.828S6.229 4 10 4h4c3.771 0 5.657 0 6.828 1.172S22 8.229 22 12s0 5.657-1.172 6.828S17.771 20 14 20h-4c-3.771 0-5.657 0-6.828-1.172S2 15.771 2 12Z" />
+                                        <path stroke-linecap="round" d="M19 12h-4m4-3h-5m5 6h-3" />
+                                    </g>
+                                </svg>
+                            </span>
+                            <span class="hide-menu">Absensi</span>
+
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
                         <a class="sidebar-link {{ request()->routeIs('teacher.journals.index') || request()->routeIs('teacher.journals.create') || request()->routeIs('teacher.journals.show') || request()->routeIs('teacher.journals.edit') ? 'active' : '' }}"
                             href="{{ route('teacher.journals.index') }}" aria-expanded="false">
                             <span>
@@ -59,17 +76,17 @@
                                     </g>
                                 </svg>
                             </span>
-                            <span class="hide-menu">Jurnal dan Absensi</span>
+                            <span class="hide-menu">Jurnal</span>
 
                         </a>
                     </li>
 
                     @if ($permission_feedback)
                         <li class="sidebar-item">
-                            <a class="sidebar-link"
-                                href="/teacher/student-feedback" aria-expanded="false">
+                            <a class="sidebar-link" href="/teacher/student-feedback" aria-expanded="false">
                                 <span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                        viewBox="0 0 20 20">
                                         <path fill="currentColor"
                                             d="M11.5 1A1.5 1.5 0 0 0 10 2.5v5A1.5 1.5 0 0 0 11.5 9h6A1.5 1.5 0 0 0 19 7.5v-5A1.5 1.5 0 0 0 17.5 1zm1 5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1 0-1M12 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5M4.6 3H9v1H4.6C3.704 4 3 4.713 3 5.566v6.71c0 .853.704 1.566 1.6 1.566h1.6V17h.003l.002-.001l4.276-3.157H15.4c.896 0 1.6-.713 1.6-1.566V10h.5q.257 0 .5-.05v2.326c0 1.418-1.164 2.566-2.6 2.566h-4.59l-4.011 2.961a1.01 1.01 0 0 1-1.4-.199a.98.98 0 0 1-.199-.59v-2.172h-.6c-1.436 0-2.6-1.149-2.6-2.566v-6.71C2 4.149 3.164 3 4.6 3" />
                                     </svg>
@@ -248,7 +265,8 @@
                     <li class="sidebar-item ">
                         <a class="sidebar-link" href="{{ route('employee.guestbook.create') }}" aria-expanded="false">
                             <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                    viewBox="0 0 24 24">
                                     <path fill="currentColor"
                                         d="M3 2h16.005C20.107 2 21 2.898 21 3.99v16.02c0 1.099-.893 1.99-1.995 1.99H3zm4 2H5v16h2zm2 16h10V4H9zm2-4a3 3 0 1 1 6 0zm3-4a2 2 0 1 1 0-4a2 2 0 0 1 0 4m8-6h2v4h-2zm0 6h2v4h-2z" />
                                 </svg>
@@ -265,7 +283,8 @@
                         <a class="sidebar-link {{ request()->routeIs('employee.journal.index') || request()->routeIs('employee.journal.detail') ? 'active' : '' }}"
                             href="{{ route('employee.journal.index') }}" aria-expanded="false">
                             <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                    viewBox="0 0 16 16">
                                     <g fill="currentColor">
                                         <path fill-rule="evenodd"
                                             d="M6 8V1h1v6.117L8.743 6.07a.5.5 0 0 1 .514 0L11 7.117V1h1v7a.5.5 0 0 1-.757.429L9 7.083L6.757 8.43A.5.5 0 0 1 6 8" />

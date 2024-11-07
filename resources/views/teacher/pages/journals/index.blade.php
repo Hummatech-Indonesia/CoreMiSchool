@@ -4,11 +4,11 @@
 @endphp
 @extends('teacher.layouts.app')
 @section('content')
-    <div class="card bg-info shadow-none position-relative overflow-hidden">
+    <div class="card bg-primary shadow-none position-relative overflow-hidden">
         <div class="card-body px-4 py-3">
             <div class="row align-items-center">
                 <div class="col-9">
-                    <h4 class="fw-semibold text-white mb-8">Jurnal dan Absensi</h4>
+                    <h4 class="fw-semibold text-white mb-8">Jurnal Guru</h4>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a class="text-white text-decoration-none"

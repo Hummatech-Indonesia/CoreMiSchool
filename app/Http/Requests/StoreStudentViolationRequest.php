@@ -28,4 +28,15 @@ class StoreStudentViolationRequest extends FormRequest
             'repeater-group.*.student_id.*' => 'required',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'repeater-group.required' => 'Data pelanggaran diperlukan.',
+            'repeater-group.*.violation_id.required' => 'Jenis pelanggaran harus dipilih.',
+            'repeater-group.*.student_id.required' => 'Nama siswa yang melakukan pelanggaran harus dipilih.',
+            'repeater-group.*.student_id.array' => 'Nama siswa harus berupa daftar pilihan.',
+            'repeater-group.*.student_id.*.required' => 'Setiap siswa yang melakukan pelanggaran harus dipilih.',
+        ];
+    }
 }
