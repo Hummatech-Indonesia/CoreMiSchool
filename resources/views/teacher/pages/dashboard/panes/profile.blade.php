@@ -1,11 +1,11 @@
 <div class="row">
-    <div class="col-lg-6 mb-3">
+    <div class="col-lg-6 col-12 mb-3">
         <div class="card h-100">
             <div class="card-body">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-5 text-center">
                         <img src="{{ asset('assets/images/default-user.jpeg') }}" width="120px" alt=""
-                            class="img-fluid">
+                            class="img-fluid mb-3">
                     </div>
                     <div class="col-lg-8 col-6 col-ms-1">
                         <h3><b>{{ auth()->user()->name }}</b></h3>
@@ -43,8 +43,8 @@
                         </div>
                     @else
                         <div class="col-lg-12 text-center">
-                            <img src="{{ asset('assets/images/Topi.png') }}" width="300px" alt="" class="img-fluid mt-2">
-                            <h4>Anda tidak menjadi wali kelas manapun</h4>
+                            <img src="{{ asset('assets/images/Topi.png') }}" width="120px" alt="" class="img-fluid mt-2 mb-3">
+                            <h4>Anda saat ini tidak terdaftar sebagai wali kelas</h4>
                         </div>
                     @endif
                 </div>

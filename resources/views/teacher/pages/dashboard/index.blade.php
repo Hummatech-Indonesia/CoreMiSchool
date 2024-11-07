@@ -56,7 +56,7 @@
             <div class="card">
                 <div class="card-body d-flex justify-content-between">
                     <div class="">
-                        <h4>Absensi Hari Ini:</h4>
+                        <h4 class="mb-3">Absensi Hari Ini:</h4>
                         @if ($todayAttendance != null)
                             <h4>{{ $todayAttendance->created_at->format('d M Y') }} - {{ $todayAttendance->checkin }}</h4>
                         @else
@@ -146,7 +146,9 @@
     </div>
 
     <div class="row">
-        @include('teacher.pages.dashboard.panes.absence-history')
+        <div class="col-lg-12">
+            @include('teacher.pages.dashboard.panes.absence-history')
+        </div>
     </div>
 
     <h4>Riwayat Jurnal</h4>
