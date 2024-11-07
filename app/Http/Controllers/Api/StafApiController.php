@@ -51,7 +51,7 @@ class StafApiController extends Controller
         $approved = $this->studentRepair->count_approved('1');
         $process = $this->studentRepair->count_approved('0');
         $not_process = $this->studentRepair->count_approved(null);
-        $employeeJournals = $this->employeeJournal->getEmployee($user->id, 'take');
+        $employeeJournals = $this->employeeJournal->getEmployee($user->id, 'take_2');
 
         return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => [
             'approved' => $approved,
@@ -96,5 +96,24 @@ class StafApiController extends Controller
             'violation_in_week' => $countViolation,
             'repair_in_week' => $countRepair,
         ]]);
+    }
+
+    public function max_point()
+    {
+        $maxPoint = $this->schoolPoint->getMaxPoint();
+        return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'max_point' => $maxPoint]);
+    }
+
+    public function list_violation()
+    {
+
+        return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => [
+
+        ]]);
+    }
+
+    public function list_repair()
+    {
+
     }
 }
