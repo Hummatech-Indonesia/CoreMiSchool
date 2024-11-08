@@ -15,4 +15,5 @@ interface EmployeeJournalInterface extends GetInterface, StoreInterface, UpdateI
     public function getByStatus(string $status, Request $request): mixed;
     public function search(Request $request): mixed;
     public function export(Request $request): mixed;
+    public function whereDate(mixed $id, mixed $date): mixed;
 }

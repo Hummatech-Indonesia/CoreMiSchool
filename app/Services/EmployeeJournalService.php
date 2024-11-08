@@ -38,7 +38,7 @@ use Illuminate\Http\Request;
                 'title' => 'required',
                 'description' => 'required',
             ]);
-            
+
             $employee = $this->employee->getByUser($user->id);
 
             return [

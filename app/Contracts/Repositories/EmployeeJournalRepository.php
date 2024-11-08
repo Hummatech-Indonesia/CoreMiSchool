@@ -78,4 +78,9 @@ class EmployeeJournalRepository extends BaseRepository implements EmployeeJourna
             ->paginate(10);
     }
 
+    public function whereDate(mixed $id, mixed $date): mixed
+    {
+        return $this->model->query()->where('employee_id', $id)->whereDate('created_at', $date)->first();
+    }
+
 }
