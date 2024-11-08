@@ -71,11 +71,12 @@ Route::post('login', [LoginApiController::class, 'login']);
 Route::get('student/dashboard/{user}', [StudentApiController::class, 'index']);
 Route::get('student/history-attendance/{user}', [StudentApiController::class, 'history_attendance']);
 Route::get('student/lesson-schedule/{user}', [StudentApiController::class, 'lessonSchedule']);
-Route::get('student/violation/{user}', [StudentApiController::class, 'violation']);
-Route::get('student/repair/{user}', [StudentApiController::class, 'repair']);
 Route::get('student/class-student/{user}', [StudentApiController::class, 'class_student']);
 Route::get('student/point-student/{user}', [StudentApiController::class, 'point_student']);
 Route::get('feedback-active', [PermissionController::class, 'is_active']);
+
+Route::get('student/violation/{user}', [StudentApiController::class, 'violation']);
+Route::get('student/repair/{user}', [StudentApiController::class, 'repair']);
 
 Route::get('staf/dashboard/{user}', [StafApiController::class, 'index']);
 Route::get('staf/history-journals/{user}', [StafApiController::class, 'history_journals']);
@@ -85,6 +86,7 @@ Route::get('staf/max-point', [StafApiController::class, 'max_point']);
 Route::get('staf/list-violation', [StafApiController::class, 'list_violation']);
 Route::get('staf/list-repair', [StafApiController::class, 'list_repair']);
 Route::get('staf/list-point-student', [StafApiController::class, 'list_point_student']);
+
 
 Route::get('lesson-schedule/{user}', [LessonScheduleApiController::class, 'index']);
 Route::get('teacher-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'create']);

@@ -16,6 +16,7 @@ class StudentPointResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'user_id' => $this->user->id,
             'image' => $this->image != null ? asset(request()->root(). '/storage/'.$this->image) : asset(request()->root(). '/public/admin_assets/dist/images/profile/user-1.jpg'),
             'name' => $this->user->name,
             'email' =>  $this->user->email,
