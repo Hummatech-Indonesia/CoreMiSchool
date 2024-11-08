@@ -145,4 +145,9 @@ class StafApiController extends Controller
         $students = $this->student->getByApi($request);
         return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => StudentPointResource::collection($students),]);
     }
+
+    public function popular_violations()
+    {
+
+    }
 }

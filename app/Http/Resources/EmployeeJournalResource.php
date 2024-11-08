@@ -16,6 +16,7 @@ class EmployeeJournalResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'date' => Carbon::parse($this->created_at)->translatedFormat('d F Y'),
             'title' => $this->title,
             'description' => $this->description,
