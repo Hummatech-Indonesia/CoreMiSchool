@@ -84,6 +84,7 @@ Route::get('staf/overview-header', [StafApiController::class, 'overview_header']
 Route::get('staf/max-point', [StafApiController::class, 'max_point']);
 Route::get('staf/list-violation', [StafApiController::class, 'list_violation']);
 Route::get('staf/list-repair', [StafApiController::class, 'list_repair']);
+Route::get('staf/list-point-student', [StafApiController::class, 'list_point_student']);
 
 Route::get('lesson-schedule/{user}', [LessonScheduleApiController::class, 'index']);
 Route::get('teacher-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'create']);

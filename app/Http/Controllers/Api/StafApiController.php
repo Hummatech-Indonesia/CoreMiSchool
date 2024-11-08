@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\EmployeeJournalResource;
 use App\Http\Resources\RegulationResource;
 use App\Http\Resources\RepairStudentResource;
+use App\Http\Resources\StudentPointResource;
 use App\Models\User;
 use App\Services\EmployeeJournalService;
 use Carbon\Carbon;
@@ -137,5 +138,11 @@ class StafApiController extends Controller
                 ];
             }),
         ]);
+    }
+
+    public function list_point_student(Request $request)
+    {
+        $students = $this->student->getByApi($request);
+        return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => StudentPointResource::collection($students),]);
     }
 }

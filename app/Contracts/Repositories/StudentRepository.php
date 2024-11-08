@@ -134,4 +134,15 @@ class StudentRepository extends BaseRepository implements StudentInterface
             ->where('point', '>', $query)
             ->count();
     }
+
+    public function getByApi(Request $request): mixed
+    {
+        return $this->model->query()
+            ->when($request->search, function($query) use ($request){
+                $query->when($request->search, function($q) use($request){
+                    $q->whereRelation('user', 'name', 'LIKE', '%' . $request->search . '%');
+                });
+            })
+            ->get();
+    }
 }
