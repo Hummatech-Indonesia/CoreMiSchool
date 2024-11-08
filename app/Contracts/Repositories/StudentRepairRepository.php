@@ -107,4 +107,16 @@ class StudentRepairRepository extends BaseRepository implements StudentRepairInt
         $query == '0' ? $result->where('is_approved', '0')->where('end_date', '>=', Carbon::today()->format('Y-m-d')) : ( $query == '1' ? $result->where('is_approved', '1') : $result->where('is_approved', '0')->where('end_date', '<', Carbon::now()->format('Y-m-d')));
         return $result->count();
     }
+
+    public function groupByClassroomStudentAndCreated(): mixed
+    {
+        return $this->model->query()
+            ->get()
+            ->groupBy(function ($item) {
+                return Carbon::parse($item->created_at)->format('Y-m-d');
+            })
+            ->map(function ($group) {
+                return $group->groupBy('classroom_student_id');
+            });
+    }
 }

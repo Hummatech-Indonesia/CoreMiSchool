@@ -12,8 +12,10 @@ use App\Contracts\Interfaces\StudentViolationInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\EmployeeJournalResource;
 use App\Http\Resources\RegulationResource;
+use App\Http\Resources\RepairStudentResource;
 use App\Models\User;
 use App\Services\EmployeeJournalService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class StafApiController extends Controller
@@ -117,6 +119,23 @@ class StafApiController extends Controller
 
     public function list_repair()
     {
-        
+        $data = $this->studentRepair->groupByClassroomStudentAndCreated();
+        return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200,
+        'data' => $data->mapWithKeys(function ($dateGroup, $date) {
+                $formattedDate = Carbon::parse($date)->translatedFormat('j F Y');
+                return [
+                    $formattedDate => $dateGroup->map(function ($classroomGroup, $classroomStudentId) {
+                        $totalPoints = $classroomGroup->sum('point');
+                        $studentName = optional($classroomGroup->first())->classroomStudent()->latest()->first()->student->user->name;
+
+                        return [
+                            'name' => $studentName,
+                            'total_points' => $totalPoints,
+                            'data' => RepairStudentResource::collection($classroomGroup),
+                        ];
+                    })
+                ];
+            }),
+        ]);
     }
 }
