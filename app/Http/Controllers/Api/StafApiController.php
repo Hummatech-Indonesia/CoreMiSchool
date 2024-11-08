@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Api;
 
 use App\Contracts\Interfaces\EmployeeInterface;
 use App\Contracts\Interfaces\EmployeeJournalInterface;
+use App\Contracts\Interfaces\RegulationInterface;
 use App\Contracts\Interfaces\SchoolPointInterface;
 use App\Contracts\Interfaces\StudentInterface;
 use App\Contracts\Interfaces\StudentRepairInterface;
 use App\Contracts\Interfaces\StudentViolationInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\EmployeeJournalResource;
+use App\Http\Resources\RegulationResource;
 use App\Models\User;
 use App\Services\EmployeeJournalService;
 use Illuminate\Http\Request;
@@ -23,6 +25,7 @@ class StafApiController extends Controller
     private EmployeeInterface $employee;
     private EmployeeJournalService $journalService;
     private EmployeeJournalInterface $employeeJournal;
+    private RegulationInterface $regulation;
 
     public function __construct(
         StudentViolationInterface $studentViolation,
@@ -32,6 +35,7 @@ class StafApiController extends Controller
         EmployeeInterface $employee,
         EmployeeJournalService $journalService,
         EmployeeJournalInterface $employeeJournal,
+        RegulationInterface $regulation,
     )
     {
         $this->studentViolation = $studentViolation;
@@ -41,6 +45,7 @@ class StafApiController extends Controller
         $this->employee = $employee;
         $this->journalService = $journalService;
         $this->employeeJournal = $employeeJournal;
+        $this->regulation = $regulation;
     }
 
     /**
@@ -106,14 +111,12 @@ class StafApiController extends Controller
 
     public function list_violation()
     {
-
-        return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => [
-
-        ]]);
+        $regulations = $this->regulation->latest();
+        return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => RegulationResource::collection($regulations),]);
     }
 
     public function list_repair()
     {
-
+        
     }
 }
