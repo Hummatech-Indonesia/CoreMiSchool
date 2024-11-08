@@ -80,8 +80,14 @@ class StafApiController extends Controller
 
     public function create_journal(User $user, Request $request)
     {
+        $description = preg_replace('/\s+/', '', $request->input('description'));
+        if (strlen($description) < 150) {
+            return response()->json(['status' => 'error', 'message' => 'Deskripsi minimal harus 150 karakter tanpa spasi', 'code' => 400]);
+        }
+
         $employee = $this->employee->getByUser($user->id);
         $result = $this->employeeJournal->whereDate($employee->id, Carbon::today());
+
         if ($result) {
             return response()->json(['status' => 'error', 'message' => "Jurnal anda hari ini sudah tersedia", 'code' => 500]);
         }
