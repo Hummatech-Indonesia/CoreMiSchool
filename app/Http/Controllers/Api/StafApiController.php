@@ -83,7 +83,7 @@ class StafApiController extends Controller
     {
         $description = preg_replace('/\s+/', '', $request->input('description'));
         if (strlen($description) < 150) {
-            return response()->json(['status' => 'error', 'message' => 'Deskripsi minimal harus 150 karakter tanpa spasi', 'code' => 400]);
+            return response()->json(['status' => 'error', 'message' => 'Deskripsi minimal harus 150 karakter tanpa spasi', 'code' => 400], 400);
         }
 
         $employee = $this->employee->getByUser($user->id);
