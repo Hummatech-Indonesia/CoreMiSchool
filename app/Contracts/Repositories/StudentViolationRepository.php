@@ -100,17 +100,6 @@ class StudentViolationRepository extends BaseRepository implements StudentViolat
         return $this->model->query()->findOrFail($id)->delete();
     }
 
-    public function countByClassroomStudent(): mixed
-    {
-        return $this->model->query()
-            ->select('classroom_students.classroom_id', DB::raw('COUNT(student_violations.id) as total_violations'))
-            ->join('classroom_students', 'student_violations.classroom_student_id', '=', 'classroom_students.id')
-            ->with('classroomStudent.classroom')
-            ->groupBy('classroom_students.classroom_id')
-            ->orderBy('total_violations', 'desc')
-            ->first();
-    }
-
     public function countByStudent(): mixed
     {
         return $this->model->query()

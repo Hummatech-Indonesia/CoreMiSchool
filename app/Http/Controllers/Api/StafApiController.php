@@ -11,6 +11,7 @@ use App\Contracts\Interfaces\StudentRepairInterface;
 use App\Contracts\Interfaces\StudentViolationInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\EmployeeJournalResource;
+use App\Http\Resources\PopularViolationResource;
 use App\Http\Resources\RegulationResource;
 use App\Http\Resources\RepairStudentResource;
 use App\Http\Resources\StudentPointResource;
@@ -156,6 +157,7 @@ class StafApiController extends Controller
 
     public function popular_violations()
     {
-
+        $popular_violations = $this->regulation->getOrder();
+        return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => PopularViolationResource::collection($popular_violations),]);
     }
 }

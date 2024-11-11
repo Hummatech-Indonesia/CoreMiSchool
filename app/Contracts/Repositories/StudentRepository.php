@@ -143,6 +143,8 @@ class StudentRepository extends BaseRepository implements StudentInterface
                     $q->whereRelation('user', 'name', 'LIKE', '%' . $request->search . '%');
                 });
             })
+            ->where('point', '!=', 0)
+            ->orderBy('point', 'desc')
             ->get();
     }
 }
