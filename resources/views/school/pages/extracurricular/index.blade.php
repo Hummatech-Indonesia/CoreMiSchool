@@ -72,14 +72,12 @@
 
 @section('content')
     <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
-        <div class="d-flex flex-wrap">
-            <div class="col-12 col-md-6 col-lg-12 mb-3 me-3">
-                <form class="position-relative" action="/school/extracurricular">
-                    <input type="text" name="search" class="form-control product-search ps-5" id="input-search"
-                        placeholder="Cari..." value="{{ old('search', request()->search) }}">
-                    <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
-                </form>
-            </div>
+        <div class="col-12 col-md-6 col-lg-3 mb-3 me-3">
+            <form class="position-relative" action="/school/extracurricular">
+                <input type="text" name="search" class="form-control product-search ps-5" id="input-search"
+                    placeholder="Cari..." value="{{ old('search', request()->search) }}">
+                <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
+            </form>
         </div>
         <button type="button" class="btn btn-primary w-md-100" data-bs-toggle="modal" data-bs-target="#modal-create">
             Tambah Ekstrakurikuler
