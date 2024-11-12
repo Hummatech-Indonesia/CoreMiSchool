@@ -90,12 +90,12 @@ class StafApiController extends Controller
         $result = $this->employeeJournal->whereDate($employee->id, Carbon::today());
 
         if ($result) {
-            return response()->json(['status' => 'error', 'message' => "Jurnal anda hari ini sudah tersedia", 'code' => 500]);
+            return response()->json(['status' => 'error', 'message' => "Jurnal anda hari ini sudah tersedia", 'code' => 500], 500);
         }
 
         $data = $this->journalService->store_api($request, $user);
         $this->employeeJournal->store($data);
-        return response()->json(['status' => 'success', 'message' => "Data Berhasil di Create", 'code' => 200]);
+        return response()->json(['status' => 'success', 'message' => "Data Berhasil di Tambahkan", 'code' => 200]);
     }
 
     public function overview_header()
