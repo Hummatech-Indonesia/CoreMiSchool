@@ -6,6 +6,7 @@ use App\Contracts\Interfaces\EmployeeInterface;
 use App\Contracts\Interfaces\StudentInterface;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -58,7 +59,7 @@ class LoginApiController extends Controller
             $student = $this->student->whereUserId($user->id);
             return response()->json(['status' => 'success', 'message' => "Data Berhasil di Tambahkan", 'code' => 200, 'data' => [
                 'nisn' => $student->nisn,
-                'birth_date' => $student->birth_date,
+                'birth_date' => Carbon::parse($student->birth_date)->format('d-m-Y'),
                 'religion' => $student->religion->name,
                 'address' => $student->address,
                 'nik' => $student->nik,
@@ -67,7 +68,7 @@ class LoginApiController extends Controller
             $employee = $this->employee->getByUser($user->id);
             return response()->json(['status' => 'success', 'message' => "Data Berhasil di Tambahkan", 'code' => 200, 'data' => [
                 'nip' => $employee->nip,
-                'birth_date' => $employee->birth_date,
+                'birth_date' => Carbon::parse($employee->birth_date)->format('d-m-Y'),
                 'nik' => $employee->nik,
                 'phone_number' => $employee->phone_number,
                 'address' => $employee->address,
