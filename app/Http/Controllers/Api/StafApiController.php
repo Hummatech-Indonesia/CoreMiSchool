@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Contracts\Interfaces\AttendanceRuleInterface;
 use App\Contracts\Interfaces\EmployeeInterface;
 use App\Contracts\Interfaces\EmployeeJournalInterface;
 use App\Contracts\Interfaces\RegulationInterface;
@@ -30,8 +31,10 @@ class StafApiController extends Controller
     private EmployeeJournalService $journalService;
     private EmployeeJournalInterface $employeeJournal;
     private RegulationInterface $regulation;
+    private AttendanceRuleInterface $attendanceRule;
 
     public function __construct(
+        AttendanceRuleInterface $attendanceRule,
         StudentViolationInterface $studentViolation,
         StudentRepairInterface $studentRepair,
         SchoolPointInterface $schoolPoint,
@@ -42,6 +45,7 @@ class StafApiController extends Controller
         RegulationInterface $regulation,
     )
     {
+        $this->attendanceRule = $attendanceRule;
         $this->studentViolation = $studentViolation;
         $this->studentRepair = $studentRepair;
         $this->schoolPoint = $schoolPoint;
@@ -81,6 +85,11 @@ class StafApiController extends Controller
 
     public function create_journal(User $user, Request $request)
     {
+        $condition = $this->attendanceRule->whereDayRole(Carbon::today()->format('l'),'teacher');
+        if (Carbon::now()->format('H:i:s') <= $condition->checkout_end ) {
+            return response()->json(['status' => 'error', 'message' => 'Anda belum waktunya mengisi jurnal', 'code' => 400], 400);
+        }
+
         $description = preg_replace('/\s+/', '', $request->input('description'));
         if (strlen($description) < 150) {
             return response()->json(['status' => 'error', 'message' => 'Deskripsi minimal harus 150 karakter tanpa spasi', 'code' => 400], 400);
