@@ -54,7 +54,7 @@ class LoginApiController extends Controller
 
     public function user_detail(User $user)
     {
-        if ($user->roles()->pluck()->name == 'student') {
+        if ($user->roles->pluck('name')[0] == 'student') {
             $student = $this->student->whereUserId($user->id);
             return response()->json(['status' => 'success', 'message' => "Data Berhasil di Tambahkan", 'code' => 200, 'data' => [
                 'nisn' => $student->nisn,
