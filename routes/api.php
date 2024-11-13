@@ -74,6 +74,7 @@ Route::get('student/history-attendance/{user}', [StudentApiController::class, 'h
 Route::get('student/lesson-schedule/{user}', [StudentApiController::class, 'lessonSchedule']);
 Route::get('student/class-student/{user}', [StudentApiController::class, 'class_student']);
 Route::get('student/point-student/{user}', [StudentApiController::class, 'point_student']);
+Route::get('student/detail-profile/{user}', [StudentApiController::class, 'get_detail_profile']);
 Route::get('feedback-active', [PermissionController::class, 'is_active']);
 
 Route::get('student/violation/{user}', [StudentApiController::class, 'violation']);

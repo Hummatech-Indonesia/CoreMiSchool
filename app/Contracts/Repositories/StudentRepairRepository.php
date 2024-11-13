@@ -119,4 +119,12 @@ class StudentRepairRepository extends BaseRepository implements StudentRepairInt
                 return $group->groupBy('classroom_student_id');
             });
     }
+
+    public function count_repair(mixed $id): mixed
+    {
+        return $this->model->query()
+            ->whereRelation('classroomStudent', 'student_id', $id)
+            ->where('is_approved', '1')
+            ->count();
+    }
 }

@@ -19,4 +19,5 @@ interface StudentRepairInterface extends GetInterface, StoreInterface, UpdateInt
     public function countByStudent(): mixed;
     public function count_approved(mixed $query): mixed;
     public function groupByClassroomStudentAndCreated(): mixed;
+    public function count_repair(mixed $id): mixed;
 }

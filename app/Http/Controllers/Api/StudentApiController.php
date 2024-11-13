@@ -157,4 +157,15 @@ class StudentApiController extends Controller
         $student = $this->student->whereUserId($user->id);
         return response()->json(['status' => 'success', 'message' => "Berhasil mengirim bukti perbaikan",'code' => 200, 'point' => $student->point]);
     }
+
+    public function get_detail_profile(User $user)
+    {
+        $student = $this->student->whereUserId($user->id);
+        $repairs = $this->studentRepair->count_repair($student->id);
+        $violations = $this->studentViolation->count_violation($student->id);
+        return response()->json(['status' => 'success', 'message' => "Berhasil mengirim bukti perbaikan",'code' => 200, 'data' => [
+            'repair' => $repairs,
+            'violation' => $violations,
+        ]]);
+    }
 }

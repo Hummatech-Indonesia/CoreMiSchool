@@ -126,4 +126,13 @@ class StudentViolationRepository extends BaseRepository implements StudentViolat
 
         return $result->count();
     }
+
+    public function count_violation(mixed $id): mixed
+    {
+        return $this->model->query()
+            ->whereRelation('classroomStudent', 'student_id', $id)
+            ->get()
+            ->groupBy('regulation_id')
+            ->count();
+    }
 }
