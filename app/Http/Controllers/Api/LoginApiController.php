@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Contracts\Interfaces\EmployeeInterface;
+use App\Contracts\Interfaces\StudentInterface;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -9,6 +11,15 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginApiController extends Controller
 {
+    private StudentInterface $student;
+    private EmployeeInterface $employee;
+
+    public function __construct(StudentInterface $student, EmployeeInterface $employee)
+    {
+        $this->student = $student;
+        $this->employee = $employee;
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -38,6 +49,30 @@ class LoginApiController extends Controller
             }
         } else {
             return response()->json(['message' => 'Email dan Password salah'], 401);
+        }
+    }
+
+    public function user_detail(User $user)
+    {
+        if ($user->roles()->pluck()->name == 'student') {
+            $student = $this->student->whereUserId($user->id);
+            return response()->json(['status' => 'success', 'message' => "Data Berhasil di Tambahkan", 'code' => 200, 'data' => [
+                'nisn' => $student->nisn,
+                'birth_date' => $student->birth_date,
+                'religion' => $student->religion->name,
+                'address' => $student->address,
+                'nik' => $student->nik,
+            ]]);
+        } else {
+            $employee = $this->employee->getByUser($user->id);
+            return response()->json(['status' => 'success', 'message' => "Data Berhasil di Tambahkan", 'code' => 200, 'data' => [
+                'nip' => $employee->nip,
+                'birth_date' => $employee->birth_date,
+                'nik' => $employee->nik,
+                'phone_number' => $employee->phone_number,
+                'address' => $employee->address,
+                'religion' => $employee->religion->name,
+            ]]);
         }
     }
 }

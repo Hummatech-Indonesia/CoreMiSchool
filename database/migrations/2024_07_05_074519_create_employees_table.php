@@ -16,7 +16,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('employees', function (Blueprint $table) {
+        Schema::create('em
+
+
+
+
+        ployees', function (Blueprint $table) {
             $table->id();
             $table->text('image')->nullable();
             $table->char('nip', 18);
