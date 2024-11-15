@@ -1,4 +1,3 @@
-
 @extends('school.layouts.app')
 @section('style')
     <style>
@@ -202,10 +201,13 @@
 
 
     <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
-        <div class="d-flex align-items-center">
-            <h4 class="mb-0">Daftar Siswa</h4>
-        </div>
-        <div class="d-flex gap-2">
+        <form class="mb-2 d-flex col-lg-6 gap-2">
+            <div class="form-group">
+                <input type="text" class="form-control" value="Cari...">
+            </div>
+            <button class="btn mb-1 waves-effect waves-light btn-primary" type="button">Cari</button>
+        </form>
+        <div class="d-flex gap-2 col-lg-6 justify-content-end mb-2">
             <button type="button" class="btn btn-success px-4" data-bs-toggle="modal" data-bs-target="#import-student">
                 Import Siswa
             </button>
