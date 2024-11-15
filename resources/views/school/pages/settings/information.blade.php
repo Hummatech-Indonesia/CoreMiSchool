@@ -17,9 +17,14 @@
                         alt="{{ $school->user->name }}">
                     <div class="d-flex flex-column flex-sm-row justify-content-between w-100 ms-3">
                         <div>
-                            <h3 class="mb-1">{{ $school->user->name }}</h3>
-                            <span class="badge font-medium bg-light-primary text-primary">{{ $school->type }}</span>
+                            <div class="d-flex align-items-center mb-2">
+                                <h3 class="mb-1 me-2">{{ $school->user->name }}</h3>
+                                <span class="badge font-medium bg-light-primary text-primary">{{ $school->type }}</span>
+                            </div>
+                            <p>{{ $school->description != null ? Str::limit($school->description, 100) : '-' }}</p>
+
                         </div>
+
                         <div>
                             <h5 class="mb-1">Tahun Ajaran</h5>
                             <h5>{{ $schoolYear->school_year }}</h5>
@@ -56,10 +61,6 @@
                         <div class="d-flex justify-content-between">
                             <h6>Akreditasi :</h6>
                             <p>{{ $school->accreditation }}</p>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <h6>Deskripsi :</h6>
-                            <p>{{ $school->description != null ? Str::limit($school->description, 200) : '-' }}</p>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6>Alamat:</h6>
