@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\LoginApiController;
 use App\Http\Controllers\Api\SchoolDetailController;
 use App\Http\Controllers\Api\StafApiController;
 use App\Http\Controllers\Api\StudentApiController;
+use App\Http\Controllers\Api\TeacherApiController;
 use App\Http\Controllers\Schools\PermissionController;
 use App\Models\ModelHasRfid;
 use App\Models\User;
@@ -90,6 +91,8 @@ Route::get('staf/list-repair', [StafApiController::class, 'list_repair']);
 Route::get('staf/list-point-student', [StafApiController::class, 'list_point_student']);
 Route::get('staf/popular-violations', [StafApiController::class, 'popular_violations']);
 
+
+Route::get('teacher/class/{user}', [TeacherApiController::class, 'class']);
 Route::get('lesson-schedule/{user}', [LessonScheduleApiController::class, 'index']);
 Route::get('teacher-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'create']);
 Route::get('history-journal/{user}', [LessonScheduleApiController::class, 'history']);
