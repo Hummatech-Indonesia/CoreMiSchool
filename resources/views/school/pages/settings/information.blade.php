@@ -13,7 +13,7 @@
             <div class="row pb-4 mt-3 mx-3">
                 <div class="d-flex align-items-center mb-5">
                     <img class="card-img-top img-responsive me-3" style="max-height:80px; width: auto;"
-                        src="{{ $school->image ? asset('storage/' . $school->image) : asset('assets/images/default-user.jpeg') }}"
+                        src="{{ $school->image && Storage::exists('public/' . $school->image) ? asset('storage/' . $school->image) : asset('assets/images/default-user.jpeg') }}"
                         alt="{{ $school->user->name }}">
                     <div class="d-flex flex-column flex-sm-row justify-content-between w-100 ms-3">
                         <div>
