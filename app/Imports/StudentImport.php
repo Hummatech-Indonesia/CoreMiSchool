@@ -14,12 +14,12 @@ use App\Models\User;
 use Carbon\Carbon;
 
 class StudentImport implements ToModel
-{   
+{
     private $classroom;
 
     public function __construct($classroom)
     {
-        $this->classroom = $classroom;       
+        $this->classroom = $classroom;
     }
 
     public function model(array $row)

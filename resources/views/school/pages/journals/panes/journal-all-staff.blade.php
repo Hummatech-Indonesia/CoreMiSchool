@@ -85,7 +85,7 @@
             </table>
         </div>
         <div class="pagination justify-content-end mb-0">
-            <x-paginate-component :paginator="$allJournals" />
+            <x-paginate-component :paginator="$allJournals->appends(request()->input())" />
         </div>
     </div>
 </div>

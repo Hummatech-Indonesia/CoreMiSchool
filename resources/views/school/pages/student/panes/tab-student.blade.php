@@ -153,6 +153,6 @@
         </table>
     </div>
     <div class="pagination justify-content-end mb-0">
-        <x-paginate-component :paginator="$students" />
+        <x-paginate-component :paginator="$students->appends(request()->input())" />
     </div>
 </div>

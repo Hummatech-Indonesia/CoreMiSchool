@@ -107,6 +107,6 @@
                 @endforelse
             </tbody>
         </table>
-        <x-paginate-component :paginator="$studentClass" />
+        <x-paginate-component :paginator="$studentClass->appends(request()->input())" />
     </div>
 @endsection

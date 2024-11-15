@@ -100,7 +100,7 @@
         </div>
     </div>
     <div class="pagination justify-content-end mb-0">
-        <x-paginate-component :paginator="$rfids" />
+        <x-paginate-component :paginator="$rfids->appends(request()->input())" />
     </div>
 
     <div class="modal fade" id="modal-create" tabindex="-1" aria-labelledby="tambahRfid" aria-hidden="true">

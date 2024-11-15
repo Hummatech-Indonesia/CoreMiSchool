@@ -109,7 +109,7 @@
         @endforelse
     </div>
     <div class="pagination justify-content-center mb-0">
-        <x-paginate-component :paginator="$subjects" />
+        <x-paginate-component :paginator="$subjects->appends(request()->input())" />
     </div>
 
     @include('school.pages.subjects.widgets.modal-create-subject')

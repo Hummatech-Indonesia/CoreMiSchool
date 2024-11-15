@@ -51,7 +51,7 @@ class ClassStudentImport implements ToModel, WithHeadingRow, WithEvents
 
             $studentId = "";
             $user->assignRole(RoleEnum::STUDENT->value);
-            $birthDate = $row['tanggal_lahir'] ? Carbon::instance(Date::excelToDateTimeObject($row['tanggal_lahir'])) : null;
+            $birthDate = $row['tanggal_lahir'] ? Carbon::createFromFormat('Y-m-d', $row['tanggal_lahir'])->format('Y-m-d') : null;
 
             $data = [
                 'user_id' => $user->id,
