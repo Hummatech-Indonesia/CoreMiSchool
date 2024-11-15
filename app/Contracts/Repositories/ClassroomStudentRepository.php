@@ -63,11 +63,17 @@ class ClassroomStudentRepository extends BaseRepository implements ClassroomStud
     public function whereClassroom(mixed $id, Request $request): mixed
     {
         return $this->model->query()->where('classroom_id', $id)
-            ->when($request->search, function ($query) use ($request) {
+            ->when($request->has('search'), function ($query) use ($request) {
                 $query->whereHas('student.user', function ($query) use ($request) {
                     $query->where('name', 'LIKE', '%' . $request->search . '%');
                 });
-            })->get();
+            })
+            ->when($request->has('name'), function ($query) use ($request) {
+                $query->whereHas('student.user', function ($query) use ($request) {
+                    $query->where('name', 'LIKE', '%' . $request->name . '%');
+                });
+            })
+            ->get();
     }
 
     public function activeStudents(): mixed

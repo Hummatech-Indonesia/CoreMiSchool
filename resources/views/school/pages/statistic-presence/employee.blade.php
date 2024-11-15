@@ -91,7 +91,9 @@
 
                 <div class="d-flex flex-column flex-md-row gap-2 mb-2 mb-md-0 w-100">
                     <button type="submit" class="btn btn-primary py-1 w-100 w-md-auto">Cari</button>
-                    <button class="btn btn-export btn-success d-flex align-items-center justify-content-center py-1 w-100 w-md-auto" type="submit">
+                    <button
+                        class="btn btn-export btn-success d-flex align-items-center justify-content-center py-1 w-100 w-md-auto"
+                        type="submit">
                         <span class="ms-2">Cetak Absensi</span>
                     </button>
 
@@ -130,6 +132,12 @@
                                             class="badge {{ $employee->status == 'present' ? 'bg-light-primary text-primary' : ($employee->status == 'sick' ? 'bg-light-warning text-warning' : ($employee->status == 'alpha' ? 'bg-light-danger text-danger' : ($employee->status == 'permit' ? 'bg-light-warning text-warning' : ($employee->status == 'late' ? 'bg-light-warning text-warning' : '')))) }}">
                                             {{ $employee->status == 'present' ? 'Masuk' : ($employee->status == 'sick' ? 'Sakit' : ($employee->status == 'alpha' ? 'Alpha' : ($employee->status == 'permit' ? 'Izin' : ($employee->status == 'late' ? 'Telat' : '')))) }}
                                         </span></td>
+
+                                    {{-- <td>
+                                        <span class="badge {{ $employee->attendances->first()->status->color() }}">
+                                            {{ $employee->attendances->first()->status->label() }}
+                                        </span>
+                                    </td> --}}
                                 </tr>
                             @empty
                                 <tr>
@@ -157,28 +165,28 @@
                 </div>
                 <div id="chart-employee"></div>
 
+                <div class="d-flex">
                     <div class="d-flex">
-                        <div class="d-flex">
-                            <div id="custom-legend">
-                                <div class="legend-item">
-                                    <span class="legend-marker" style="background-color: rgb(19, 222, 185);"></span>
-                                    <span class="legend-text">Masuk</span>
-                                </div>
-                                <div class="legend-item">
-                                    <span class="legend-marker" style="background-color: rgb(93, 135, 255);"></span>
-                                    <span class="legend-text">Izin</span>
-                                </div>
-                                <div class="legend-item">
-                                    <span class="legend-marker" style="background-color: rgb(255, 174, 31);"></span>
-                                    <span class="legend-text">Sakit</span>
-                                </div>
-                                <div class="legend-item">
-                                    <span class="legend-marker" style="background-color: rgb(250, 137, 107);"></span>
-                                    <span class="legend-text">Alfa</span>
-                                </div>
+                        <div id="custom-legend">
+                            <div class="legend-item">
+                                <span class="legend-marker" style="background-color: rgb(19, 222, 185);"></span>
+                                <span class="legend-text">Masuk</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-marker" style="background-color: rgb(93, 135, 255);"></span>
+                                <span class="legend-text">Izin</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-marker" style="background-color: rgb(255, 174, 31);"></span>
+                                <span class="legend-text">Sakit</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-marker" style="background-color: rgb(250, 137, 107);"></span>
+                                <span class="legend-text">Alfa</span>
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
     </div>
