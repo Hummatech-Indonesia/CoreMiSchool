@@ -59,10 +59,17 @@ class LoginApiController extends Controller
             $student = $this->student->whereUserId($user->id);
             return response()->json(['status' => 'success', 'message' => "Data Berhasil di Tambahkan", 'code' => 200, 'data' => [
                 'nisn' => $student->nisn,
-                'birth_date' => Carbon::parse($student->birth_date)->format('d-m-Y'),
+                'class' => $student->classroomStudents()->latest()->first()->name,
+                'gender' => $student->gender->label(),
                 'religion' => $student->religion->name,
-                'address' => $student->address,
+                'birth_date' => Carbon::parse($student->birth_date)->format('d-m-Y'),
+                'birth_place' => $student->birth_place,
+                'number_kk' => $student->number_kk,
                 'nik' => $student->nik,
+                'order_child' => $student->order_child,
+                'number_akta' => $student->number_akta,
+                'count_siblings' => $student->count_siblings,
+                'address' => $student->address,
             ]]);
         } else {
             $employee = $this->employee->getByUser($user->id);
