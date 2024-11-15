@@ -35,7 +35,7 @@
                         <a class="nav-link pe-0" href="javascript:void(0)" id="drop1" data-bs-toggle="dropdown" aria-expanded="false">
                             <div class="d-flex align-items-center">
                                 <div class="">
-                                    <img src="{{ Auth::user()->school->image ? asset('storage/' . Auth::user()->school->image) : asset('assets/images/default-user.jpeg') }}" class="rounded-circle user-profile" style="object-fit: cover" width="35" height="35"/>
+                                    <img src="{{ Auth::user()->school->image && Storage::exists('public/' . Auth::user()->school->image) ? asset('storage/' . Auth::user()->school->image) : asset('assets/images/default-user.jpeg') }}" class="rounded-circle user-profile" style="object-fit: cover" width="35" height="35"/>
                                 </div>
                             </div>
                         </a>
@@ -45,7 +45,7 @@
                                     <h5 class="mb-0 fs-5 fw-semibold">{{ auth()->user()->name }} Profile</h5>
                                 </div>
                                 <div class="d-flex align-items-center py-9 mx-7 border-bottom">
-                                    <img src="{{ Auth::user()->school->image ? asset('storage/' . Auth::user()->school->image) : asset('assets/images/default-user.jpeg') }}" class="rounded-circle user-profile" style="object-fit: cover" width="80" height="80" alt="" />
+                                    <img src="{{ Auth::user()->school->image && Storage::exists('public/' . Auth::user()->school->image) ? asset('storage/' . Auth::user()->school->image) : asset('assets/images/default-user.jpeg') }}" class="rounded-circle user-profile" style="object-fit: cover" width="80" height="80" alt="" />
                                     <div class="ms-3">
                                         <h5 class="mb-1 fs-3 username">{{ auth()->user()->name }}</h5>
                                         <span class="mb-1 d-block text-dark role">{{ auth()->user()->roles->first()->name }}</span>
