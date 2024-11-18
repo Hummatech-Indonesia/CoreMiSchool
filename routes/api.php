@@ -83,6 +83,7 @@ Route::get('student/repair/{user}', [StudentApiController::class, 'repair']);
 
 Route::get('staf/dashboard/{user}', [StafApiController::class, 'index']);
 Route::get('staf/history-journals/{user}', [StafApiController::class, 'history_journals']);
+Route::get('staf/history-journal/dashboard/{user}', [StafApiController::class, 'history_dahsboard']);
 Route::post('staf/create-journal/{user}', [StafApiController::class, 'create_journal']);
 Route::get('staf/overview-header', [StafApiController::class, 'overview_header']);
 Route::get('staf/max-point', [StafApiController::class, 'max_point']);
@@ -91,7 +92,6 @@ Route::get('staf/list-repair', [StafApiController::class, 'list_repair']);
 Route::get('staf/list-point-student', [StafApiController::class, 'list_point_student']);
 Route::get('staf/popular-violations', [StafApiController::class, 'popular_violations']);
 
-
 Route::get('teacher/class/{user}', [TeacherApiController::class, 'class']);
 Route::get('lesson-schedule/{user}', [LessonScheduleApiController::class, 'index']);
 Route::get('teacher-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'create']);
@@ -99,3 +99,5 @@ Route::get('history-journal/{user}', [LessonScheduleApiController::class, 'histo
 Route::get('detail-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'show']);
 Route::post('store-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'store']);
 Route::put('update-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'update']);
+
+

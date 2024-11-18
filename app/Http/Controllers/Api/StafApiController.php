@@ -61,26 +61,47 @@ class StafApiController extends Controller
      */
     public function index(User $user)
     {
-        $approved = $this->studentRepair->count_approved('1');
-        $process = $this->studentRepair->count_approved('0');
-        $not_process = $this->studentRepair->count_approved(null);
-        $employeeJournals = $this->employeeJournal->getEmployee($user->id, 'take_2');
+        try {
+            $approved = $this->studentRepair->count_approved('1');
+            $process = $this->studentRepair->count_approved('0');
+            $not_process = $this->studentRepair->count_approved(null);
+            $employeeJournals = $this->employeeJournal->getEmployee($user->id, 'take_2');
 
-        return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => [
-            'approved' => $approved,
-            'process' => $process,
-            'not_process' => $not_process,
-            'journals' => EmployeeJournalResource::collection($employeeJournals),
-        ]]);
+            return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => [
+                'approved' => $approved,
+                'process' => $process,
+                'not_process' => $not_process,
+                'journals' => EmployeeJournalResource::collection($employeeJournals),
+            ]], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['status' => 'success', 'message' => "Data Kosong",'code' => 400], 400);
+        }
     }
 
     public function history_journals(User $user)
     {
-        $employeeJournals = $this->employeeJournal->getEmployee($user->id, 'get');
+        try {
+            $employeeJournals = $this->employeeJournal->getEmployee($user->id, 'get');
 
-        return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => [
-            'journals' => EmployeeJournalResource::collection($employeeJournals),
-        ]]);
+            return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => [
+                'journals' => EmployeeJournalResource::collection($employeeJournals),
+            ]], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['status' => 'success', 'message' => "Data Kosong",'code' => 400], 400);
+        }
+    }
+
+    public function history_dahsboard(User $user)
+    {
+        try {
+            $employeeJournals = $this->employeeJournal->getEmployee($user->id, 'take_2');
+
+            return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => [
+                'journals' => EmployeeJournalResource::collection($employeeJournals),
+            ]], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['status' => 'success', 'message' => "Data Kosong",'code' => 400], 400);
+        }
     }
 
     public function create_journal(User $user, Request $request)
@@ -104,69 +125,93 @@ class StafApiController extends Controller
 
         $data = $this->journalService->store_api($request, $user);
         $this->employeeJournal->store($data);
-        return response()->json(['status' => 'success', 'message' => "Data Berhasil di Tambahkan", 'code' => 200]);
+        return response()->json(['status' => 'success', 'message' => "Data Berhasil di Tambahkan", 'code' => 200], 200);
     }
 
     public function overview_header()
     {
-        $student_violation = $this->studentViolation->countByStudent();
-        $maxPoint = $this->schoolPoint->getMaxPoint();
-        $studentHighPoint = $this->student->highestPoint($maxPoint);
+        try {
+            $student_violation = $this->studentViolation->countByStudent();
+            $maxPoint = $this->schoolPoint->getMaxPoint();
+            $studentHighPoint = $this->student->highestPoint($maxPoint);
 
-        $countViolation = $this->studentViolation->count('week');
-        $countRepair = $this->studentRepair->count();
+            $countViolation = $this->studentViolation->count('week');
+            $countRepair = $this->studentRepair->count();
 
-        return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => [
-            'student_violation' => $student_violation,
-            'student_high_point' => $studentHighPoint,
-            'violation_in_week' => $countViolation,
-            'repair_in_week' => $countRepair,
-        ]]);
+            return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => [
+                'student_violation' => $student_violation,
+                'student_high_point' => $studentHighPoint,
+                'violation_in_week' => $countViolation,
+                'repair_in_week' => $countRepair,
+            ]], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['status' => 'success', 'message' => "Data Kosong",'code' => 400], 400);
+        }
     }
 
     public function max_point()
     {
-        $maxPoint = $this->schoolPoint->getMaxPoint();
-        return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'max_point' => $maxPoint]);
+        try {
+            $maxPoint = $this->schoolPoint->getMaxPoint();
+            return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'max_point' => $maxPoint], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['status' => 'success', 'message' => "Data Kosong",'code' => 400], 400);
+        }
     }
 
     public function list_violation()
     {
-        $regulations = $this->regulation->latest();
-        return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => RegulationResource::collection($regulations),]);
+        try {
+            $regulations = $this->regulation->latest();
+            return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => RegulationResource::collection($regulations)], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['status' => 'success', 'message' => "Data Kosong",'code' => 400], 400);
+        }
     }
 
     public function list_repair()
     {
-        $data = $this->studentRepair->groupByClassroomStudentAndCreated();
-        return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200,
-        'data' => $data->mapWithKeys(function ($dateGroup, $date) {
-                $formattedDate = Carbon::parse($date)->translatedFormat('j F Y');
-                return [
-                    $formattedDate => $dateGroup->map(function ($classroomGroup, $classroomStudentId) {
-                        $totalPoints = $classroomGroup->sum('point');
-                        $studentName = optional($classroomGroup->first())->classroomStudent()->latest()->first()->student->user->name;
+        try {
+            $data = $this->studentRepair->groupByClassroomStudentAndCreated();
+            return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200,
+            'data' => $data->mapWithKeys(function ($dateGroup, $date) {
+                    $formattedDate = Carbon::parse($date)->translatedFormat('j F Y');
+                    return [
+                        $formattedDate => $dateGroup->map(function ($classroomGroup, $classroomStudentId) {
+                            $totalPoints = $classroomGroup->sum('point');
+                            $studentName = optional($classroomGroup->first())->classroomStudent()->latest()->first()->student->user->name;
 
-                        return [
-                            'name' => $studentName,
-                            'total_points' => $totalPoints,
-                            'data' => RepairStudentResource::collection($classroomGroup),
-                        ];
-                    })
-                ];
-            }),
-        ]);
+                            return [
+                                'name' => $studentName,
+                                'total_points' => $totalPoints,
+                                'data' => RepairStudentResource::collection($classroomGroup),
+                            ];
+                        })
+                    ];
+                }),
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['status' => 'success', 'message' => "Data Kosong",'code' => 400], 400);
+        }
     }
 
     public function list_point_student(Request $request)
     {
-        $students = $this->student->getByApi($request);
-        return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => StudentPointResource::collection($students),]);
+        try {
+            $students = $this->student->getByApi($request);
+            return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => StudentPointResource::collection($students)], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['status' => 'success', 'message' => "Data Kosong",'code' => 400], 400);
+        }
     }
 
     public function popular_violations()
     {
-        $popular_violations = $this->regulation->getOrder();
-        return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => PopularViolationResource::collection($popular_violations),]);
+        try {
+            $popular_violations = $this->regulation->getOrder();
+            return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => PopularViolationResource::collection($popular_violations)], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['status' => 'success', 'message' => "Data Kosong",'code' => 400], 400);
+        }
     }
 }
