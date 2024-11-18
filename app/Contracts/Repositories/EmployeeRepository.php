@@ -39,7 +39,7 @@ class EmployeeRepository extends BaseRepository implements EmployeeInterface
         return $this->model->query()->findOrFail($id)->delete();
     }
 
-    public function paginate($query) : mixed
+    public function paginate($query): mixed
     {
         return $this->model->query()
             ->whereRelation('user.roles', 'name', $query)
@@ -66,20 +66,20 @@ class EmployeeRepository extends BaseRepository implements EmployeeInterface
     public function whereSchool($query, Request $request): mixed
     {
         return $this->model->query()->whereRelation('user.roles', 'name', $query)
-        ->when($request->search, function ($query) use ($request) {
-            $query->whereHas('user', function($q) use ($request){
-                $q->where('name', 'LIKE', '%' .  $request->search . '%');
-            });
-        })->when($request->filter === "terbaru", function($query) {
-            $query->latest();
-        })
-        ->when($request->filter === "terlama", function($query) {
-            $query->oldest();
-        }) ->when($request->status, function($query) use ($request) {
-            $query->where('status', $request->status);
-        })
-        ->latest()
-        ->paginate(10);
+            ->when($request->search, function ($query) use ($request) {
+                $query->whereHas('user', function ($q) use ($request) {
+                    $q->where('name', 'LIKE', '%' .  $request->search . '%');
+                });
+            })->when($request->filter === "terbaru", function ($query) {
+                $query->latest();
+            })
+            ->when($request->filter === "terlama", function ($query) {
+                $query->oldest();
+            })->when($request->status, function ($query) use ($request) {
+                $query->where('status', $request->status);
+            })
+            ->latest()
+            ->paginate(10);
     }
 
     public function showWithSlug(string $slug): mixed
@@ -110,7 +110,7 @@ class EmployeeRepository extends BaseRepository implements EmployeeInterface
     public function getByUser(mixed $id): mixed
     {
         return $this->model->query()
-            ->where('user_id' , $id)
+            ->where('user_id', $id)
             ->first();
     }
 
@@ -123,22 +123,28 @@ class EmployeeRepository extends BaseRepository implements EmployeeInterface
     public function getByRole(mixed $role, Request $request): mixed
     {
         return $this->model->query()->whereRelation('user.roles', 'name', $role)
-        ->when($request->search, function ($query) use ($request) {
-            $query->whereHas('user', function($q) use ($request){
-                $q->where('name', 'LIKE', '%' .  $request->search . '%');
-            });
-        })->when($request->gender, function ($query) use ($request) {
-            $query->where('gender', $request->gender);
-        })
-        ->latest()
-        ->paginate(10);
+            ->when($request->search, function ($query) use ($request) {
+                $query->whereHas('user', function ($q) use ($request) {
+                    $q->where('name', 'LIKE', '%' .  $request->search . '%');
+                });
+            })->when($request->gender, function ($query) use ($request) {
+                $query->where('gender', $request->gender);
+            })
+            ->latest()
+            ->paginate(10);
     }
 
-    public function employeeLesson(): mixed
+    public function employeeLesson(Request $request): mixed
     {
         return $this->model->query()
-            ->whereRelation('user.roles', 'name', RoleEnum::TEACHER->value)
-            ->whereHas('teacherSubjects')
-            ->get();
+        ->whereRelation('user.roles', 'name', RoleEnum::TEACHER->value)
+        ->whereHas('teacherSubjects')
+        ->when($request->search, function ($query) use ($request) {
+            $query->whereRelation('user', 'name', 'LIKE', '%' . $request->search . '%');
+        })
+        ->when($request->gender, function ($query) use ($request) {
+            $query->where('gender', $request->gender);
+        })
+        ->paginate(8);
     }
 }
