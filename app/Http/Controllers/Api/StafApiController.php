@@ -65,13 +65,11 @@ class StafApiController extends Controller
             $approved = $this->studentRepair->count_approved('1');
             $process = $this->studentRepair->count_approved('0');
             $not_process = $this->studentRepair->count_approved(null);
-            $employeeJournals = $this->employeeJournal->getEmployee($user->id, 'take_2');
 
             return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => [
                 'approved' => $approved,
                 'process' => $process,
                 'not_process' => $not_process,
-                'journals' => EmployeeJournalResource::collection($employeeJournals),
             ]], 200);
         } catch (\Throwable $th) {
             return response()->json(['status' => 'success', 'message' => "Data Kosong",'code' => 400], 400);
@@ -83,9 +81,23 @@ class StafApiController extends Controller
         try {
             $employeeJournals = $this->employeeJournal->getEmployee($user->id, 'get');
 
-            return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => [
-                'journals' => EmployeeJournalResource::collection($employeeJournals),
-            ]], 200);
+            if ($employeeJournals->where('created_at', '>=', Carbon::today())->isEmpty()) {
+                return response()->json([
+                    'journal_message' => 'Hari ini anda belum mengisi jurnal!',
+                    'status' => 'success',
+                    'message' => "Berhasil mengambil data",
+                    'code' => 200,
+                    'data' => [ 'journals' => EmployeeJournalResource::collection($employeeJournals),]
+                ], 200);
+            } else {
+                return response()->json([
+                    'status' => 'success',
+                    'message' => "Berhasil mengambil data",
+                    'code' => 200,
+                    'data' => [ 'journals' => EmployeeJournalResource::collection($employeeJournals),]
+                ], 200);
+            }
+
         } catch (\Throwable $th) {
             return response()->json(['status' => 'success', 'message' => "Data Kosong",'code' => 400], 400);
         }
