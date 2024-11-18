@@ -59,8 +59,7 @@
                                         data-author="{{ $all_journal->teacherSubject->employee->user->name }}"
                                         data-date="{{ \Carbon\Carbon::parse($all_journal->created_at)->translatedFormat('d F Y') }}"
                                         data-description="{{ $all_journal->teacherJournals->first() ? \Illuminate\Support\Str::limit($all_journal->teacherJournals->first()->description, 50) : 'kosong...' }}"
-                                        data-classroom="{{ $all_journal->classroom->name }} - {{ $all_journal->teacherSubject->subject->name }}"
-                                        >
+                                        data-classroom="{{ $all_journal->classroom->name }} - {{ $all_journal->teacherSubject->subject->name }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                             viewBox="0 0 24 24">
                                             <g fill="none" stroke="currentColor" stroke-linecap="round"
@@ -89,6 +88,8 @@
                 </tbody>
             </table>
         </div>
+        <div class="pagination justify-content-end mb-0">
+            <x-paginate-component :paginator="$all_journals->appends(request()->input())" />
+        </div>
     </div>
 </div>
-
