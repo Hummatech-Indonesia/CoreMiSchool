@@ -91,19 +91,6 @@ class StafApiController extends Controller
         }
     }
 
-    public function history_dahsboard(User $user)
-    {
-        try {
-            $employeeJournals = $this->employeeJournal->getEmployee($user->id, 'take_2');
-
-            return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => [
-                'journals' => EmployeeJournalResource::collection($employeeJournals),
-            ]], 200);
-        } catch (\Throwable $th) {
-            return response()->json(['status' => 'success', 'message' => "Data Kosong",'code' => 400], 400);
-        }
-    }
-
     public function create_journal(User $user, Request $request)
     {
         $condition = $this->attendanceRule->whereDayRole(Carbon::today()->format('l'),'teacher');

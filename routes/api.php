@@ -83,7 +83,6 @@ Route::get('student/repair/{user}', [StudentApiController::class, 'repair']);
 
 Route::get('staf/dashboard/{user}', [StafApiController::class, 'index']);
 Route::get('staf/history-journals/{user}', [StafApiController::class, 'history_journals']);
-Route::get('staf/history-journal/dashboard/{user}', [StafApiController::class, 'history_dahsboard']);
 Route::post('staf/create-journal/{user}', [StafApiController::class, 'create_journal']);
 Route::get('staf/overview-header', [StafApiController::class, 'overview_header']);
 Route::get('staf/max-point', [StafApiController::class, 'max_point']);
