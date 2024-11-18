@@ -28,9 +28,9 @@ class SchoolFeedbackController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $teachers = $this->employee->employeeLesson();
+        $teachers = $this->employee->employeeLesson($request);
         $feedback_id = Permission::where('name', 'active_feedback')->first();
         return view('school.pages.student-feedback.index', compact('teachers', 'feedback_id'));
     }

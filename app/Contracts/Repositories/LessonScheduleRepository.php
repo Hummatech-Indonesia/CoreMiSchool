@@ -118,7 +118,7 @@ class LessonScheduleRepository extends BaseRepository implements LessonScheduleI
                 $i->whereRelation('teacherSubject.employee.user', 'name', 'like', '%' . $request->search . '%');
             })
             ->latest()
-            ->get();
+            ->paginate(10);
     }
 
     public function export(Request $request): mixed
