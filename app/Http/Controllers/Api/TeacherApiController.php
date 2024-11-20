@@ -38,19 +38,18 @@ class TeacherApiController extends Controller
     {
         $employee = $this->employee->getByUser($user->id);
         $todayAttendance = $this->attendance->userToday('App\Models\Employee', $employee->id);
-        dd($todayAttendance);
         $history_attendance = $this->attendance->whereUser($employee->id, 'App\Models\Employee');
 
         return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200,
-        'attendance_today' => [
-            'day' => $todayAttendance->created_at == null ? '-' : Carbon::parse($todayAttendance->created_at)->translatedFormat('l'),
-            'date' => $todayAttendance->created_at == null ? '-' : Carbon::parse($todayAttendance->created_at)->translatedFormat('d'),
-            'month' => $todayAttendance->created_at == null ? '-' : Carbon::parse($todayAttendance->created_at)->translatedFormat('M'),
-            'date_complate' => $todayAttendance->created_at == null ? '-' : Carbon::parse($todayAttendance->created_at)->translatedFormat('l, j F Y'),
-            'check_in' => $todayAttendance->checkin == null ? '-' : \Carbon\Carbon::parse($todayAttendance->checkin)->format('H:i'),
-            'check_out' => $todayAttendance->checkout == null ? '-' : \Carbon\Carbon::parse($todayAttendance->checkout)->format('H:i'),
-            'status' => $todayAttendance->status == null ? '-' : $todayAttendance->status->label(),
-        ],
+        // 'attendance_today' => [
+        //     'day' => $todayAttendance->created_at == null ? '-' : Carbon::parse($todayAttendance->created_at)->translatedFormat('l'),
+        //     'date' => $todayAttendance->created_at == null ? '-' : Carbon::parse($todayAttendance->created_at)->translatedFormat('d'),
+        //     'month' => $todayAttendance->created_at == null ? '-' : Carbon::parse($todayAttendance->created_at)->translatedFormat('M'),
+        //     'date_complate' => $todayAttendance->created_at == null ? '-' : Carbon::parse($todayAttendance->created_at)->translatedFormat('l, j F Y'),
+        //     'check_in' => $todayAttendance->checkin == null ? '-' : \Carbon\Carbon::parse($todayAttendance->checkin)->format('H:i'),
+        //     'check_out' => $todayAttendance->checkout == null ? '-' : \Carbon\Carbon::parse($todayAttendance->checkout)->format('H:i'),
+        //     'status' => $todayAttendance->status == null ? '-' : $todayAttendance->status->label(),
+        // ],
         'attendance_history' => HistoryAttendanceResource::collection($history_attendance),
         ]);
     }
