@@ -276,7 +276,7 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
         return $this->model->query()
             ->where('model_type', $model)
             ->where('model_id', $id)
-            ->whereDay('created_at', now()->day)
+            ->whereDay('created_at', today()->day)
             ->first();
     }
 

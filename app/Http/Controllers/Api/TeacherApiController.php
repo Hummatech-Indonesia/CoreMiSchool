@@ -2,21 +2,26 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Contracts\Interfaces\AttendanceInterface;
 use App\Contracts\Interfaces\ClassroomInterface;
 use App\Contracts\Interfaces\EmployeeInterface;
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Http\Resources\HistoryAttendanceResource;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Carbon\Carbon;
 
 class TeacherApiController extends Controller
 {
     private EmployeeInterface $employee;
     private ClassroomInterface $classroom;
+    private AttendanceInterface $attendance;
 
-    public function __construct(EmployeeInterface $employee, ClassroomInterface $classroom)
+    public function __construct(EmployeeInterface $employee, ClassroomInterface $classroom, AttendanceInterface $attendance)
     {
         $this->employee = $employee;
         $this->classroom = $classroom;
+        $this->attendance = $attendance;
     }
 
     public function class(User $user)
@@ -27,6 +32,26 @@ class TeacherApiController extends Controller
             'class' => $classroom->name,
             'count_student' => $classroom->classroomStudents()->latest()->count(),
         ]]);
+    }
+
+    public function teacher_attendance(User $user)
+    {
+        $employee = $this->employee->getByUser($user->id);
+        $todayAttendance = $this->attendance->userToday('App\Models\Employee', $employee->id);
+        $history_attendance = $this->attendance->whereUser($employee->id, 'App\Models\Employee');
+
+        return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200,
+        'attendance_today' => [
+            'day' => Carbon::parse($todayAttendance->created_at)->translatedFormat('l'),
+            'date' => Carbon::parse($todayAttendance->created_at)->translatedFormat('d'),
+            'month' => Carbon::parse($todayAttendance->created_at)->translatedFormat('M'),
+            'date_complate' => Carbon::parse($todayAttendance->created_at)->translatedFormat('l, j F Y'),
+            'check_in' => $todayAttendance->checkin == null ? '-' : \Carbon\Carbon::parse($todayAttendance->checkin)->format('H:i'),
+            'check_out' => $todayAttendance->checkout == null ? '-' : \Carbon\Carbon::parse($todayAttendance->checkout)->format('H:i'),
+            'status' => $todayAttendance->status->label(),
+        ],
+        'attendance_history' => HistoryAttendanceResource::collection($history_attendance),
+        ]);
     }
 
     /**

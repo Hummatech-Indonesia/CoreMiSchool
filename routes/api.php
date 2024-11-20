@@ -70,20 +70,20 @@ Route::get('/run-command', function () {
 Route::post('login', [LoginApiController::class, 'login']);
 Route::get('user-detail/{user}', [LoginApiController::class, 'user_detail']);
 
+Route::get('feedback-active', [PermissionController::class, 'is_active']);
+
 Route::get('student/dashboard/{user}', [StudentApiController::class, 'index']);
 Route::get('student/history-attendance/{user}', [StudentApiController::class, 'history_attendance']);
 Route::get('student/lesson-schedule/{user}', [StudentApiController::class, 'lessonSchedule']);
 Route::get('student/class-student/{user}', [StudentApiController::class, 'class_student']);
 Route::get('student/point-student/{user}', [StudentApiController::class, 'point_student']);
 Route::get('student/detail-profile/{user}', [StudentApiController::class, 'get_detail_profile']);
-Route::get('feedback-active', [PermissionController::class, 'is_active']);
-
 Route::get('student/violation/{user}', [StudentApiController::class, 'violation']);
 Route::get('student/repair/{user}', [StudentApiController::class, 'repair']);
 
+Route::post('staf/create-journal/{user}', [StafApiController::class, 'create_journal']);
 Route::get('staf/dashboard/{user}', [StafApiController::class, 'index']);
 Route::get('staf/history-journals/{user}', [StafApiController::class, 'history_journals']);
-Route::post('staf/create-journal/{user}', [StafApiController::class, 'create_journal']);
 Route::get('staf/overview-header', [StafApiController::class, 'overview_header']);
 Route::get('staf/max-point', [StafApiController::class, 'max_point']);
 Route::get('staf/list-violation', [StafApiController::class, 'list_violation']);
@@ -92,6 +92,8 @@ Route::get('staf/list-point-student', [StafApiController::class, 'list_point_stu
 Route::get('staf/popular-violations', [StafApiController::class, 'popular_violations']);
 
 Route::get('teacher/class/{user}', [TeacherApiController::class, 'class']);
+Route::get('teacher/attendance/{user}', [TeacherApiController::class, 'teacher_attendance']);
+
 Route::get('lesson-schedule/{user}', [LessonScheduleApiController::class, 'index']);
 Route::get('teacher-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'create']);
 Route::get('history-journal/{user}', [LessonScheduleApiController::class, 'history']);
