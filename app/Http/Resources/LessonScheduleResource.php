@@ -26,6 +26,7 @@ class LessonScheduleResource extends JsonResource
             'hour' => Carbon::parse($this->start->start)->format('H:i'). ' - ' .Carbon::parse($this->end->end)->format('H:i'),
             'date' => Carbon::parse($this->created_at)->translatedFormat('d F Y'),
             'time' => explode(' - ', $this->start->name)[1] .' - '. explode(' - ', $this->end->name)[1],
+            'status' => $this->journals()->latest()->first() != null ? 'Belum Mengisi' : 'Mengisi',
         ];
     }
 }
