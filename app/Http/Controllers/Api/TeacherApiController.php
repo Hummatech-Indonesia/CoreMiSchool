@@ -38,6 +38,7 @@ class TeacherApiController extends Controller
     {
         $employee = $this->employee->getByUser($user->id);
         $todayAttendance = $this->attendance->userToday('App\Models\Employee', $employee->id);
+        dd($todayAttendance);
         $history_attendance = $this->attendance->whereUser($employee->id, 'App\Models\Employee');
 
         return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200,
