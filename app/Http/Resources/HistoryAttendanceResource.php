@@ -16,13 +16,13 @@ class HistoryAttendanceResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'day' => Carbon::parse($this->created_at)->translatedFormat('l'),
-            'date' => Carbon::parse($this->created_at)->translatedFormat('d'),
-            'month' => Carbon::parse($this->created_at)->translatedFormat('M'),
-            'date_complate' => Carbon::parse($this->created_at)->translatedFormat('l, j F Y'),
+            'day' => $this->created_at == null ? '-' : Carbon::parse($this->created_at)->translatedFormat('l'),
+            'date' => $this->created_at == null ? '-' : Carbon::parse($this->created_at)->translatedFormat('d'),
+            'month' => $this->created_at == null ? '-' : Carbon::parse($this->created_at)->translatedFormat('M'),
+            'date_complate' => $this->created_at == null ? '-' : Carbon::parse($this->created_at)->translatedFormat('l, j F Y'),
             'check_in' => $this->checkin == null ? '-' : \Carbon\Carbon::parse($this->checkin)->format('H:i'),
             'check_out' => $this->checkout == null ? '-' : \Carbon\Carbon::parse($this->checkout)->format('H:i'),
-            'status' => $this->status->label(),
+            'status' => $this->status == null ? '-' : $this->status->label(),
         ];
     }
 }

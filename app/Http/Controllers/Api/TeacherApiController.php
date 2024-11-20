@@ -42,13 +42,13 @@ class TeacherApiController extends Controller
 
         return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200,
         'attendance_today' => [
-            'day' => Carbon::parse($todayAttendance->created_at)->translatedFormat('l'),
-            'date' => Carbon::parse($todayAttendance->created_at)->translatedFormat('d'),
-            'month' => Carbon::parse($todayAttendance->created_at)->translatedFormat('M'),
-            'date_complate' => Carbon::parse($todayAttendance->created_at)->translatedFormat('l, j F Y'),
+            'day' => $todayAttendance->created_at == null ? '-' : Carbon::parse($todayAttendance->created_at)->translatedFormat('l'),
+            'date' => $todayAttendance->created_at == null ? '-' : Carbon::parse($todayAttendance->created_at)->translatedFormat('d'),
+            'month' => $todayAttendance->created_at == null ? '-' : Carbon::parse($todayAttendance->created_at)->translatedFormat('M'),
+            'date_complate' => $todayAttendance->created_at == null ? '-' : Carbon::parse($todayAttendance->created_at)->translatedFormat('l, j F Y'),
             'check_in' => $todayAttendance->checkin == null ? '-' : \Carbon\Carbon::parse($todayAttendance->checkin)->format('H:i'),
             'check_out' => $todayAttendance->checkout == null ? '-' : \Carbon\Carbon::parse($todayAttendance->checkout)->format('H:i'),
-            'status' => $todayAttendance->status->label(),
+            'status' => $todayAttendance->status == null ? '-' : $todayAttendance->status->label(),
         ],
         'attendance_history' => HistoryAttendanceResource::collection($history_attendance),
         ]);
