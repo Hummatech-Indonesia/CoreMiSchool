@@ -6,8 +6,10 @@ use App\Contracts\Interfaces\AttendanceInterface;
 use App\Contracts\Interfaces\ClassroomInterface;
 use App\Contracts\Interfaces\EmployeeInterface;
 use App\Contracts\Interfaces\LessonScheduleInterface;
+use App\Contracts\Interfaces\Teachers\TeacherJournalInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\HistoryAttendanceResource;
+use App\Http\Resources\HistoryJournalResource;
 use App\Http\Resources\LessonScheduleResource;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -19,13 +21,15 @@ class TeacherApiController extends Controller
     private ClassroomInterface $classroom;
     private AttendanceInterface $attendance;
     private LessonScheduleInterface $lessonSchedule;
+    private TeacherJournalInterface $teacherJournal;
 
-    public function __construct(EmployeeInterface $employee, ClassroomInterface $classroom, AttendanceInterface $attendance, LessonScheduleInterface $lessonSchedule)
+    public function __construct(EmployeeInterface $employee, ClassroomInterface $classroom, AttendanceInterface $attendance, LessonScheduleInterface $lessonSchedule, TeacherJournalInterface $teacherJournal)
     {
         $this->employee = $employee;
         $this->classroom = $classroom;
         $this->attendance = $attendance;
         $this->lessonSchedule = $lessonSchedule;
+        $this->teacherJournal = $teacherJournal;
     }
 
     public function class(User $user)
@@ -54,19 +58,34 @@ class TeacherApiController extends Controller
                 'check_out' => $single_attendance ? ($single_attendance->checkout == null ? '-' : \Carbon\Carbon::parse($single_attendance->checkout)->format('H:i')) : '-',
                 'status' => $single_attendance ? $single_attendance->status->label() : 'Libur',
             ],
-            'attendance_history' => HistoryAttendanceResource::collection($history_attendance),
+            'attendance_history' => $history_attendance->count() > 0 ? HistoryAttendanceResource::collection($history_attendance) : 'Data Kosong',
         ]);
     }
 
     public function today_lesson_schedule(User $user)
     {
         $teacherSchedules = $this->lessonSchedule->whereTeacher($user->id, today());
-        // $teacher_take_5 = $this->lessonSchedule->whereTeacher($user->id, today())->take(5);
-        // dd($teacherSchedules->take(5));
-        return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200,
-            'lesson_schedule_dashboard' => LessonScheduleResource::collection($teacherSchedules->take(5)),
-            'lesson_schedule_all' => LessonScheduleResource::collection($teacherSchedules),
-        ]);
+
+        if ($teacherSchedules->count() > 0) {
+            return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200,
+                'lesson_schedule_dashboard' => LessonScheduleResource::collection($teacherSchedules->take(5)),
+                'lesson_schedule_all' => LessonScheduleResource::collection($teacherSchedules),
+            ], 200);
+        } else {
+            return response()->json(['status' => 'success', 'message' => "Data kosong",'code' => 200], 400);
+        }
+    }
+
+    public function today_history_journal(User $user)
+    {
+        $historyJournal = $this->teacherJournal->getJournalToday($user->id);
+        if ($historyJournal->count() > 0) {
+            return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200,
+                'data' => HistoryJournalResource::collection($historyJournal),
+            ], 200);
+        } else {
+            return response()->json(['status' => 'success', 'message' => "Data kosong",'code' => 200], 400);
+        }
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Contracts\Interfaces\Teachers\TeacherJournalInterface;
 use App\Contracts\Repositories\BaseRepository;
 use App\Models\TeacherJournal;
 use Carbon\Carbon;
+use FontLib\Table\Type\maxp;
 use Illuminate\Http\Request;
 
 class TeacherJournalRepository extends BaseRepository implements TeacherJournalInterface
@@ -70,6 +71,14 @@ class TeacherJournalRepository extends BaseRepository implements TeacherJournalI
             })->when($request->date, function ($query) use ($request) {
                 $query->where('date', 'LIKE', '%' . $request->date . '%');
             })
+            ->get();
+    }
+
+    public function getJournalToday(mixed $id): mixed
+    {
+        return $this->model->query()
+            ->whereRelation('lessonSchedule.teacherSubject.employee.user', 'id', $id)
+            ->whereRelation('lessonSchedule', 'day', today()->format('l'))
             ->get();
     }
 

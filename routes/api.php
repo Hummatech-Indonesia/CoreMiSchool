@@ -94,7 +94,7 @@ Route::get('staf/popular-violations', [StafApiController::class, 'popular_violat
 Route::get('teacher/class/{user}', [TeacherApiController::class, 'class']);
 Route::get('teacher/attendance/{user}', [TeacherApiController::class, 'teacher_attendance']);
 Route::get('teacher/lesson-schedule/{user}', [TeacherApiController::class, 'today_lesson_schedule']);
-
+Route::get('teacher/history-journal/{user}', [TeacherApiController::class, 'today_history_journal']);
 
 Route::get('lesson-schedule/{user}', [LessonScheduleApiController::class, 'index']);
 Route::get('teacher-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'create']);
