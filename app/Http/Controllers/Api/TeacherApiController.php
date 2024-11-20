@@ -37,24 +37,20 @@ class TeacherApiController extends Controller
     public function teacher_attendance(User $user)
     {
         $employee = $this->employee->getByUser($user->id);
-        $todayAttendance = $this->attendance->userToday('App\Models\Employee', $employee->id);
         $history_attendance = $this->attendance->whereUser($employee->id, 'App\Models\Employee');
-
-        $data = [];
-        if ($todayAttendance) {
-            $data = [
-                'date_complate' => $todayAttendance->created_at != null ? Carbon::parse($todayAttendance->created_at)->translatedFormat('l, j F Y') : '-',
-                'check_in' => $todayAttendance->checkin == null ? '-' : \Carbon\Carbon::parse($todayAttendance->checkin)->format('H:i'),
-                'check_out' => $todayAttendance->checkout == null ? '-' : \Carbon\Carbon::parse($todayAttendance->checkout)->format('H:i'),
-                'status' => $todayAttendance->status == null ? '-' : $todayAttendance->status->label(),
-            ];
-        } else {
-            $data = [];
-        }
+        $single_attendance = $this->attendance->userToday('App\Models\Employee', $employee->id);
 
         return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200,
+            'attendance_now' => [
+                'day' => $single_attendance ? Carbon::parse($single_attendance->created_at)->translatedFormat('l') : now()->translatedFormat('l'),
+                'date' => $single_attendance ? Carbon::parse($single_attendance->created_at)->translatedFormat('d') : now()->translatedFormat('d'),
+                'month' => $single_attendance ? Carbon::parse($single_attendance->created_at)->translatedFormat('M') : now()->translatedFormat('M'),
+                'date_complate' => $single_attendance ? Carbon::parse($single_attendance->created_at)->translatedFormat('l, j F Y') : now()->translatedFormat('l, j F Y'),
+                'check_in' => $single_attendance ? ($single_attendance->checkin == null ? '-' : \Carbon\Carbon::parse($single_attendance->checkin)->format('H:i')) : '-',
+                'check_out' => $single_attendance ? ($single_attendance->checkout == null ? '-' : \Carbon\Carbon::parse($single_attendance->checkout)->format('H:i')) : '-',
+                'status' => $single_attendance ? $single_attendance->status->label() : 'Libur',
+            ],
             'attendance_history' => HistoryAttendanceResource::collection($history_attendance),
-            'attendance_single' => $data,
         ]);
     }
 
