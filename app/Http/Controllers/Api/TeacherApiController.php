@@ -41,7 +41,7 @@ class TeacherApiController extends Controller
         $history_attendance = $this->attendance->whereUser($employee->id, 'App\Models\Employee');
 
         return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200,
-        'attendance_today' =>  HistoryAttendanceResource::collection($todayAttendance),
+        'attendance_today' =>  HistoryAttendanceResource::collection($todayAttendance ?? null),
         'attendance_history' => HistoryAttendanceResource::collection($history_attendance),
         ]);
     }
