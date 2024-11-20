@@ -47,9 +47,9 @@ class TeacherApiController extends Controller
                 'check_in' => $todayAttendance->checkin == null ? '-' : \Carbon\Carbon::parse($todayAttendance->checkin)->format('H:i'),
                 'check_out' => $todayAttendance->checkout == null ? '-' : \Carbon\Carbon::parse($todayAttendance->checkout)->format('H:i'),
                 'status' => $todayAttendance->status == null ? '-' : $todayAttendance->status->label(),
-            ]
+            ];
         } else {
-            $data[];
+            $data = [];
         }
 
         return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200,
