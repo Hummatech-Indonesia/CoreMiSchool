@@ -62,7 +62,7 @@ class TeacherApiController extends Controller
     {
         $teacherSchedules = $this->lessonSchedule->whereTeacher($user->id, today());
         return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200,
-        // 'lesson_schedule_dashboard' => LessonScheduleResource::collection($teacherSchedules->take(5)),
+        'lesson_schedule_dashboard' => LessonScheduleResource::collection($teacherSchedules->take(5)->get()),
         'lesson_schedule_all' => LessonScheduleResource::collection($teacherSchedules),
     ]);
     }
