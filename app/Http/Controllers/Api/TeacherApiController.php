@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Api;
 use App\Contracts\Interfaces\AttendanceInterface;
 use App\Contracts\Interfaces\ClassroomInterface;
 use App\Contracts\Interfaces\EmployeeInterface;
+use App\Contracts\Interfaces\LessonScheduleInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\HistoryAttendanceResource;
+use App\Http\Resources\LessonScheduleResource;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Carbon\Carbon;
@@ -16,12 +18,14 @@ class TeacherApiController extends Controller
     private EmployeeInterface $employee;
     private ClassroomInterface $classroom;
     private AttendanceInterface $attendance;
+    private LessonScheduleInterface $lessonSchedule;
 
-    public function __construct(EmployeeInterface $employee, ClassroomInterface $classroom, AttendanceInterface $attendance)
+    public function __construct(EmployeeInterface $employee, ClassroomInterface $classroom, AttendanceInterface $attendance, LessonScheduleInterface $lessonSchedule)
     {
         $this->employee = $employee;
         $this->classroom = $classroom;
         $this->attendance = $attendance;
+        $this->lessonSchedule = $lessonSchedule;
     }
 
     public function class(User $user)
@@ -52,6 +56,15 @@ class TeacherApiController extends Controller
             ],
             'attendance_history' => HistoryAttendanceResource::collection($history_attendance),
         ]);
+    }
+
+    public function today_lesson_schedule(User $user)
+    {
+        $teacherSchedules = $this->lessonSchedule->whereTeacher(auth()->user()->id, today());
+        return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200,
+        'lesson_schedule_dashboard' => LessonScheduleResource::collection($teacherSchedules->take(5)),
+        'lesson_schedule_all' => LessonScheduleResource::collection($teacherSchedules),
+    ]);
     }
 
     /**
