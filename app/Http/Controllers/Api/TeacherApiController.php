@@ -8,6 +8,7 @@ use App\Contracts\Interfaces\EmployeeInterface;
 use App\Contracts\Interfaces\LessonScheduleInterface;
 use App\Contracts\Interfaces\Teachers\TeacherJournalInterface;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ClassroomStudentResource;
 use App\Http\Resources\HistoryAttendanceResource;
 use App\Http\Resources\HistoryJournalResource;
 use App\Http\Resources\LessonScheduleResource;
@@ -36,10 +37,18 @@ class TeacherApiController extends Controller
     {
         $employee = $this->employee->getByUser($user->id);
         $classroom = $this->classroom->whereEmployeeId($employee->id);
-        return response()->json(['status' => 'success', 'message' => "Data Berhasil di Tambahkan", 'code' => 200, 'data' => [
-            'class' => $classroom->name,
-            'count_student' => $classroom->classroomStudents()->latest()->count(),
-        ]]);
+
+        if ($classroom) {
+            return response()->json(['status' => 'success', 'message' => "Data Berhasil di Tambahkan", 'code' => 200,
+            'data_dashboard' => [
+                'class' => $classroom->name,
+                'count_student' => $classroom->classroomStudents()->latest()->count(),
+            ],
+            'class_student' => ClassroomStudentResource::collection($classroom->classroomStudents()->latest()),
+        ], 200);
+        } else {
+            return response()->json(['status' => 'success', 'message' => "Anda tidak memiliki kelas", 'code' => 400], 400);
+        }
     }
 
     public function teacher_attendance(User $user)
