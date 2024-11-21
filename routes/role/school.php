@@ -11,7 +11,7 @@ use App\Http\Controllers\ClassroomStudentController;
 use App\Http\Controllers\EmployeeJournalController;
 use App\Http\Controllers\ExtracurricularController;
 use App\Http\Controllers\ExtracurricularStudentController;
-use App\Http\Controllers\imports\ImportController;
+use App\Http\Controllers\Imports\ImportController;
 use App\Http\Controllers\LessonHourController;
 use App\Http\Controllers\LessonScheduleController;
 use App\Http\Controllers\LevelClassController;

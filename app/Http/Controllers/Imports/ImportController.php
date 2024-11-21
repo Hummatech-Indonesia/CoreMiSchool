@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\imports;
+namespace App\Http\Controllers\Imports;
 
 use App\Enums\DayEnum;
 use App\Models\Classroom;
