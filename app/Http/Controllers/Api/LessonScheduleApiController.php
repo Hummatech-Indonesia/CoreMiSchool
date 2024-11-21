@@ -89,9 +89,9 @@ class LessonScheduleApiController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(LessonSchedule $lessonSchedule, Request $request)
+    public function store(LessonSchedule $lessonSchedule, StoreTeacherJournalRequest $request)
     {
-        dd($request);
+        dd($request->validated());
         $data = $this->serviceJournal->store($request, $lessonSchedule);
         $teacherJournal = $this->teacherJournal->store($data);
         $this->serviceAttendance->storeJournal($request['attendance'], $teacherJournal);
