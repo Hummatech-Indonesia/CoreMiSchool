@@ -70,7 +70,6 @@ class LessonScheduleApiController extends Controller
      */
     public function show(LessonSchedule $lessonSchedule)
     {
-        dd($lessonSchedule);
         $classroomStudents = $this->classroomStudent->getByClassId($lessonSchedule->classroom->id);
         $attendanceJournals = $lessonSchedule->teacherJournals->first()->attendanceJournals;
 
