@@ -22,7 +22,7 @@ class AttendanceJournalResource extends JsonResource
             'nisn' => $this->classroomStudent->student->nisn,
             'gender' => $this->classroomStudent->student->gender->label(),
             'classroom' => $this->classroomStudent->classroom->name,
-            'attendance_status' => $this->status == AttendanceEnum::SICK ? AttendanceEnum::SICK : ($this->status == AttendanceEnum::PRESENT ? AttendanceEnum::PRESENT : ($this->status == AttendanceEnum::LATE ? AttendanceEnum::LATE : ($this->status == AttendanceEnum::ALPHA ? AttendanceEnum::ALPHA : '-'))),
+            'attendance_status' => $this->status == AttendanceEnum::SICK->value ? AttendanceEnum::SICK->value : ($this->status == AttendanceEnum::PRESENT->value ? AttendanceEnum::PRESENT->value : ($this->status == AttendanceEnum::LATE->value ? AttendanceEnum::LATE->value : ($this->status == AttendanceEnum::ALPHA->value ? AttendanceEnum::ALPHA->value : ($this->status == AttendanceEnum::PERMIT->value ? AttendanceEnum::PERMIT->value : '-')))),
         ];
     }
 }
