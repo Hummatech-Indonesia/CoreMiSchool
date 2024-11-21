@@ -89,7 +89,15 @@ class JadwalPelajaranSheet implements WithHeadings, WithTitle, WithEvents
                 // Data untuk dropdown Mapel
                 $mapelOptions = TeacherSubject::with(['employee.user', 'subject'])->get();
                 $mapelOptionsArray = $mapelOptions->map(fn($item) => "{$item->subject->name} - {$item->employee->user->name}")->toArray();
-                $mapelDropdown = implode(',', $mapelOptionsArray);
+
+                // $mapelDropdown = implode(',', $mapelOptionsArray);
+                $rowIndex = 1; // Mulai dari baris pertama di kolom Z
+                foreach ($mapelOptionsArray as $option) {
+                    $sheet->setCellValue("Z{$rowIndex}", $option);
+                    $rowIndex++;
+                }
+
+                $dropdownRange = '=$Z$1:$Z$' . ($rowIndex - 1);
 
                 // Set data validation untuk kolom B sampai G pada rentang baris 3 sampai 100
                 for ($row = 3; $row <= $jam->count() + 2; $row++) {
@@ -101,7 +109,8 @@ class JadwalPelajaranSheet implements WithHeadings, WithTitle, WithEvents
                         $validation->setShowInputMessage(true);
                         $validation->setShowErrorMessage(true);
                         $validation->setShowDropDown(true);
-                        $validation->setFormula1(sprintf('"%s"', $mapelDropdown));
+                        // $validation->setFormula1(sprintf('"%s"', $mapelDropdown));
+                        $validation->setFormula1($dropdownRange);
                         $sheet->getCell("$column{$row}")->setDataValidation($validation);
                     }
                 }
