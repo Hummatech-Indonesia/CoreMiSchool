@@ -13,6 +13,7 @@ use App\Http\Resources\ClassroomStudentResource;
 use App\Http\Resources\HistoryAttendanceResource;
 use App\Http\Resources\HistoryJournalResource;
 use App\Http\Resources\LessonScheduleResource;
+use App\Http\Resources\TeacherSubjectResource;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Carbon\Carbon;
@@ -112,10 +113,7 @@ class TeacherApiController extends Controller
         $employee = $this->employee->getByUser($user->id);
         $teacherSubject = $this->teacherSubject->getByTeacher($employee->id);
         return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200,
-            'data' => [
-                'id' => $teacherSubject->id,
-                'name' => $teacherSubject->subject->name,
-            ],
+            'data' => TeacherSubjectResource::collection($teacherSubject),
         ], 200);
     }
 }
