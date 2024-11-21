@@ -7,6 +7,7 @@ use App\Contracts\Interfaces\ClassroomInterface;
 use App\Contracts\Interfaces\EmployeeInterface;
 use App\Contracts\Interfaces\LessonScheduleInterface;
 use App\Contracts\Interfaces\Teachers\TeacherJournalInterface;
+use App\Contracts\Interfaces\TeacherSubjectInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ClassroomStudentResource;
 use App\Http\Resources\HistoryAttendanceResource;
@@ -23,14 +24,23 @@ class TeacherApiController extends Controller
     private AttendanceInterface $attendance;
     private LessonScheduleInterface $lessonSchedule;
     private TeacherJournalInterface $teacherJournal;
+    private TeacherSubjectInterface $teacherSubject;
 
-    public function __construct(EmployeeInterface $employee, ClassroomInterface $classroom, AttendanceInterface $attendance, LessonScheduleInterface $lessonSchedule, TeacherJournalInterface $teacherJournal)
+    public function __construct(
+        EmployeeInterface $employee,
+        ClassroomInterface $classroom,
+        AttendanceInterface $attendance,
+        LessonScheduleInterface $lessonSchedule,
+        TeacherJournalInterface $teacherJournal,
+        TeacherSubjectInterface $teacherSubject,
+    )
     {
         $this->employee = $employee;
         $this->classroom = $classroom;
         $this->attendance = $attendance;
         $this->lessonSchedule = $lessonSchedule;
         $this->teacherJournal = $teacherJournal;
+        $this->teacherSubject = $teacherSubject;
     }
 
     public function class(User $user)
@@ -97,51 +107,15 @@ class TeacherApiController extends Controller
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function teacher_subject(User $user)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $employee = $this->employee->getByUser($user->id);
+        $teacherSubject = $this->teacherSubject->getByTeacher($employee->id);
+        return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200,
+            'data' => [
+                'id' => $teacherSubject->id,
+                'name' => $teacherSubject->subject->name,
+            ],
+        ], 200);
     }
 }

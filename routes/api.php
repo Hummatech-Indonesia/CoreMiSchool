@@ -95,10 +95,9 @@ Route::get('teacher/class/{user}', [TeacherApiController::class, 'class']);
 Route::get('teacher/attendance/{user}', [TeacherApiController::class, 'teacher_attendance']);
 Route::get('teacher/lesson-schedule/{user}', [TeacherApiController::class, 'today_lesson_schedule']);
 Route::get('teacher/history-journal/{user}', [TeacherApiController::class, 'today_history_journal']);
+Route::get('teacher/subject/{user}', [TeacherApiController::class, 'teacher_subject']);
 
 Route::post('teacher/store-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'store']);
 
 Route::get('teacher/detail-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'show']);
 Route::put('teacher/update-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'update']);
-
-// Route::get('teacher/create-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'create']);
