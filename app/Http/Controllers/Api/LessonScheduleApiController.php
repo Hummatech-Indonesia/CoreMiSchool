@@ -104,7 +104,7 @@ class LessonScheduleApiController extends Controller
     public function update(LessonSchedule $lessonSchedule, UpdateTeacherJournalRequest $request)
     {
         // dd($request->validated());
-        $data = $this->serviceJournal->update($request, $lessonSchedule->id);
+        $data = $this->serviceJournal->update($request, $lessonSchedule);
         $this->teacherJournal->update($lessonSchedule->teacherJournals->first()->id, $data);
         $this->serviceAttendance->updateJournal($request['attendance'], $lessonSchedule->teacherJournals->first());
         return response()->json(['status' => 'success', 'message' => "Berhasil mengedit jurnal",'code' => 200]);

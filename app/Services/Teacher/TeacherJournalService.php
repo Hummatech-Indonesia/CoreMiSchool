@@ -20,12 +20,12 @@ class TeacherJournalService
         ];
     }
 
-    public function update(updateTeacherJournalRequest $request, $lessonSchedule): array|bool
+    public function update(updateTeacherJournalRequest $request, LessonSchedule $lessonSchedule): array|bool
     {
         $data = $request->validated();
         return [
             'title' => $data['title'],
-            'lesson_schedule_id' => $lessonSchedule,
+            'lesson_schedule_id' => $lessonSchedule->id,
             'description' => $data['description'],
         ];
     }
