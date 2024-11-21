@@ -16,6 +16,7 @@ class AttendanceJournalResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->classroomStudent->id,
             'student' => $this->classroomStudent->student->user->name,
             'nik' => $this->classroomStudent->student->nik,
             'nisn' => $this->classroomStudent->student->nisn,

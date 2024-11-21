@@ -99,15 +99,6 @@ class LessonScheduleApiController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function history(User $user, Request $request)
-    {
-        $histories = $this->teacherJournal->histories($user->id, $request);
-        return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => HistoryJournalResource::collection($histories)]);
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(LessonSchedule $lessonSchedule, UpdateTeacherJournalRequest $request)
@@ -118,6 +109,16 @@ class LessonScheduleApiController extends Controller
         $this->serviceAttendance->updateJournal($request['attendance'], $lessonSchedule->teacherJournals->first());
         return response()->json(['status' => 'success', 'message' => "Berhasil mengedit jurnal",'code' => 200]);
     }
+
+    /**
+     * Display the specified resource.
+     */
+    public function history(User $user, Request $request)
+    {
+        $histories = $this->teacherJournal->histories($user->id, $request);
+        return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => HistoryJournalResource::collection($histories)]);
+    }
+
 
     /**
      * Remove the specified resource from storage.
