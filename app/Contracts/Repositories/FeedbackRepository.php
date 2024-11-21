@@ -59,4 +59,9 @@ use Illuminate\Http\Request;
         {
             return $this->model->query()->where('student_id', $id)->get();
         }
+
+        public function getBySubject(mixed $id): mixed
+        {
+            return $this->model->query()->whereRelation('lessonSchedule', 'teacher_subject_id', $id);
+        }
     }

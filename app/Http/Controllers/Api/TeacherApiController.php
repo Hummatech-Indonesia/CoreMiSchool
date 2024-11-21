@@ -5,15 +5,18 @@ namespace App\Http\Controllers\Api;
 use App\Contracts\Interfaces\AttendanceInterface;
 use App\Contracts\Interfaces\ClassroomInterface;
 use App\Contracts\Interfaces\EmployeeInterface;
+use App\Contracts\Interfaces\FeedbackInterface;
 use App\Contracts\Interfaces\LessonScheduleInterface;
 use App\Contracts\Interfaces\Teachers\TeacherJournalInterface;
 use App\Contracts\Interfaces\TeacherSubjectInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ClassroomStudentResource;
+use App\Http\Resources\FeedbackResource;
 use App\Http\Resources\HistoryAttendanceResource;
 use App\Http\Resources\HistoryJournalResource;
 use App\Http\Resources\LessonScheduleResource;
 use App\Http\Resources\TeacherSubjectResource;
+use App\Models\TeacherSubject;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Carbon\Carbon;
@@ -26,6 +29,7 @@ class TeacherApiController extends Controller
     private LessonScheduleInterface $lessonSchedule;
     private TeacherJournalInterface $teacherJournal;
     private TeacherSubjectInterface $teacherSubject;
+    private FeedbackInterface $feedback;
 
     public function __construct(
         EmployeeInterface $employee,
@@ -34,6 +38,7 @@ class TeacherApiController extends Controller
         LessonScheduleInterface $lessonSchedule,
         TeacherJournalInterface $teacherJournal,
         TeacherSubjectInterface $teacherSubject,
+        FeedbackInterface $feedback,
     )
     {
         $this->employee = $employee;
@@ -42,6 +47,7 @@ class TeacherApiController extends Controller
         $this->lessonSchedule = $lessonSchedule;
         $this->teacherJournal = $teacherJournal;
         $this->teacherSubject = $teacherSubject;
+        $this->feedback = $feedback;
     }
 
     public function class(User $user)
@@ -112,8 +118,25 @@ class TeacherApiController extends Controller
     {
         $employee = $this->employee->getByUser($user->id);
         $teacherSubject = $this->teacherSubject->getByTeacher($employee->id);
-        return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200,
-            'data' => TeacherSubjectResource::collection($teacherSubject),
-        ], 200);
+
+        if ($teacherSubject->count() > 0) {
+            return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200,
+                'data' => TeacherSubjectResource::collection($teacherSubject),
+            ], 200);
+        } else {
+            return response()->json(['status' => 'success', 'message' => "Data Kosong",'code' => 400], 400);
+        }
+    }
+
+    public function get_feedback(TeacherSubject $teacherSubject)
+    {
+        $feedbacks = $this->feedback->getBySubject($teacherSubject->id);
+        if ($feedbacks->count() > 0) {
+            return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200,
+                'data' => FeedbackResource::collection($feedbacks),
+            ], 200);
+        } else {
+            return response()->json(['status' => 'success', 'message' => "Data Kosong",'code' => 400], 400);
+        }
     }
 }

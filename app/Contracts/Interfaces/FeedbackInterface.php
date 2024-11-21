@@ -13,4 +13,5 @@ interface FeedbackInterface extends GetInterface, StoreInterface, UpdateInterfac
 {
     public function get_lesson(Request $request): mixed;
     public function where_user_id(mixed $id): mixed;
+    public function getBySubject(mixed $id): mixed;
 }
