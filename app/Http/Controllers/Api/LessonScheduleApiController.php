@@ -71,7 +71,7 @@ class LessonScheduleApiController extends Controller
     public function show(LessonSchedule $lessonSchedule)
     {
         $classroomStudents = $this->classroomStudent->getByClassId($lessonSchedule->classroom->id);
-        $attendanceJournals = $lessonSchedule->teacherJournals->first()->attendanceJournals;
+        $attendanceJournals = $lessonSchedule->teacherJournals->first()->attendanceJournals ?? null;
 
         return response()->json([
             'status' => 'success',
@@ -81,7 +81,7 @@ class LessonScheduleApiController extends Controller
                 'title' => $lessonSchedule->teacherJournals->first() != null ? $lessonSchedule->teacherJournals->first()->title : null,
                 'description' => $lessonSchedule->teacherJournals->first() != null ? $lessonSchedule->teacherJournals->first()->description : null,
                 'date' => $lessonSchedule->teacherJournals->first() != null ? $lessonSchedule->teacherJournals->first()->date : null,
-                'classroom_students' => $lessonSchedule->teacherJournals->first() != null ? AttendanceJournalResource::collection($attendanceJournals) : ClassroomStudentResource::collection($classroomStudents)
+                'classroom_students' => $attendanceJournals != null ? AttendanceJournalResource::collection($attendanceJournals) : ClassroomStudentResource::collection($classroomStudents)
             ]
         ]);
     }
