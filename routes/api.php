@@ -96,11 +96,9 @@ Route::get('teacher/attendance/{user}', [TeacherApiController::class, 'teacher_a
 Route::get('teacher/lesson-schedule/{user}', [TeacherApiController::class, 'today_lesson_schedule']);
 Route::get('teacher/history-journal/{user}', [TeacherApiController::class, 'today_history_journal']);
 
-Route::get('lesson-schedule/{user}', [LessonScheduleApiController::class, 'index']);
-Route::get('teacher-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'create']);
-Route::get('history-journal/{user}', [LessonScheduleApiController::class, 'history']);
-Route::get('detail-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'show']);
-Route::post('store-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'store']);
-Route::put('update-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'update']);
+Route::post('teacher/store-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'store']);
 
+Route::get('teacher/detail-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'show']);
+Route::put('teacher/update-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'update']);
 
+// Route::get('teacher/create-journal/{lessonSchedule}', [LessonScheduleApiController::class, 'create']);

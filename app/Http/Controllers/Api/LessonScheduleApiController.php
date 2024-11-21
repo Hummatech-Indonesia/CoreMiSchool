@@ -65,6 +65,27 @@ class LessonScheduleApiController extends Controller
         ]);
     }
 
+        /**
+     * Display the specified resource.
+     */
+    public function show(LessonSchedule $lessonSchedule)
+    {
+        $attendanceJournals = $lessonSchedule->teacherJournals->first()->attendanceJournals;
+        $classroomStudents = $this->classroomStudent->getByClassId($lessonSchedule->classroom->id);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Berhasil mengambil data',
+            'code' => 200,
+            'data' => [
+                'title' => $lessonSchedule->teacherJournals->first() != null ? $lessonSchedule->teacherJournals->first()->title : null,
+                'description' => $lessonSchedule->teacherJournals->first() != null ? $lessonSchedule->teacherJournals->first()->description : null,
+                'date' => $lessonSchedule->teacherJournals->first() != null ? $lessonSchedule->teacherJournals->first()->date : null,
+                'classroom_students' => $lessonSchedule->teacherJournals->first() != null ? AttendanceJournalResource::collection($attendanceJournals) : ClassroomStudentResource::collection($classroomStudents)
+            ]
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -83,25 +104,6 @@ class LessonScheduleApiController extends Controller
     {
         $histories = $this->teacherJournal->histories($user->id, $request);
         return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => HistoryJournalResource::collection($histories)]);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(LessonSchedule $lessonSchedule)
-    {
-        $attendanceJournals = $lessonSchedule->teacherJournals->first()->attendanceJournals;
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Berhasil mengambil data',
-            'code' => 200,
-            'data' => [
-                'title' => $lessonSchedule->teacherJournals->first()->title,
-                'description' => $lessonSchedule->teacherJournals->first()->description,
-                'date' => $lessonSchedule->teacherJournals->first()->date,
-                'classroom_students' => AttendanceJournalResource::collection($attendanceJournals)
-            ]
-        ]);
     }
 
     /**

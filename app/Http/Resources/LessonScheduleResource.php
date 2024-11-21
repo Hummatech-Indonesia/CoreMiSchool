@@ -16,7 +16,7 @@ class LessonScheduleResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'create_id' => $this->id,
+            'id' => $this->id,
             'update_id' => $this->feedbacks->where('student_id', $this->student_id)->first() ? $this->feedbacks->where('student_id', $this->student_id)->first()->id : '',
             'is_teacher_present' => $this->feedbacks->where('student_id', $this->student_id)->first() ? $this->feedbacks->where('student_id', $this->student_id)->first()->is_teacher_present : null,
             'summary' => $this->feedbacks->where('student_id', $this->student_id)->first() ? $this->feedbacks->where('student_id', $this->student_id)->first()->summary : null,
