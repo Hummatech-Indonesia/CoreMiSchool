@@ -64,7 +64,7 @@ class TeacherApiController extends Controller
             'class_student' => ClassroomStudentResource::collection($classroom->classroomStudents()->latest()->get()),
         ], 200);
         } else {
-            return response()->json(['status' => 'success', 'message' => "Anda tidak memiliki kelas", 'code' => 400], 400);
+            return response()->json(['status' => 'success', 'message' => "Anda tidak memiliki kelas", 'code' => 200], 200);
         }
     }
 
