@@ -62,7 +62,6 @@ class TeacherJournalController extends Controller
      */
     public function store(StoreTeacherJournalRequest $request, LessonSchedule $lessonSchedule)
     {
-        dd($request->validated());
         try {
             $data = $this->service->store($request, $lessonSchedule);
             $teacherJournal = $this->teacherJournal->store($data);
@@ -97,8 +96,7 @@ class TeacherJournalController extends Controller
     public function update(UpdateTeacherJournalRequest $request, TeacherJournal $teacherJournal)
     {
         try {
-            // dd($request->validated());
-            $data = $this->service->update($request, $teacherJournal->lesson_schedule_id);
+            $data = $this->service->update($request, $teacherJournal->lessonSchedule);
             $this->teacherJournal->update($teacherJournal->id, $data);
             $this->serviceAttendance->updateJournal($request['attendance'], $teacherJournal);
             return to_route('teacher.journals.index')->with('success', 'Berhasil mengupdate jurnal');

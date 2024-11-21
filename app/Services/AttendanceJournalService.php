@@ -70,21 +70,20 @@ class AttendanceJournalService
         $rules = $this->lessonSchedule->show($teacherJournal->lesson_schedule_id);
         $min = $this->lessonHour->whereBetween($rules->start->start, $rules->end->start, $rules->day);
 
+
         foreach ($attendance as $key => $value) {
             $attendanceJournal = $this->attendanceJournal->getByClassroomStudent($key);
+            $rule = $this->attendance->getClassroomStudent($key);
 
             if ($attendanceJournal->status->value != $value) {
                 if ($value == 'present') {
                     $data['status'] = $value == 'present' ? AttendanceEnum::PRESENT->value : ($value == 'permit' ? AttendanceEnum::PERMIT->value : ($value == 'sick' ? AttendanceEnum::SICK->value : ($value == 'alpha' ? AttendanceEnum::ALPHA->value : '')));
                     $this->attendanceJournal->updateByClassroomStudent($key, $data);
 
-                    $rule = $this->attendance->getClassroomStudent($key);
                     $this->attendance->update($rule->id, ['point' => $rule->point + $min]);
                 } else {
                     $data['status'] = $value == 'present' ? AttendanceEnum::PRESENT->value : ($value == 'permit' ? AttendanceEnum::PERMIT->value : ($value == 'sick' ? AttendanceEnum::SICK->value : ($value == 'alpha' ? AttendanceEnum::ALPHA->value : '')));
                     $this->attendanceJournal->updateByClassroomStudent($key, $data);
-
-                    $rule = $this->attendance->getClassroomStudent($key);
 
                     if ($attendanceJournal->status->value == 'present') {
                         $this->attendance->update($rule->id, ['point' => $rule->point - $min]);
