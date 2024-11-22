@@ -87,7 +87,7 @@ class TeacherApiController extends Controller
         $history_attendance = $this->attendance->whereUser($employee->id, 'App\Models\Employee');
         $single_attendance = $this->attendance->userToday('App\Models\Employee', $employee->id);
         $rule_rfid = $this->modelHasRfid->first('App\Models\Employee', $employee->id);
-        $rule_day = $this->attendanceRule->whereDayRole(today()->format('l'),'teacher');
+        $rule_day = $this->attendanceRule->whereDayRole(today()->format('l'), 'teacher');
 
         if ($rule_rfid) {
             return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200,
@@ -101,7 +101,7 @@ class TeacherApiController extends Controller
                     'status' => $single_attendance ? $single_attendance->status->label() : '',
                 ],
                 'attendance_history' => $history_attendance->count() > 0 ? HistoryAttendanceResource::collection($history_attendance) : 'Data Kosong',
-            ]);
+            ], 200);
         } else if ($rule_day->is_holiday ==  true) {
             return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200,
                 'attendance_now' => [
@@ -114,7 +114,7 @@ class TeacherApiController extends Controller
                     'status' => 'Libur',
                 ],
                 'attendance_history' => $history_attendance->count() > 0 ? HistoryAttendanceResource::collection($history_attendance) : 'Data Kosong',
-            ]);
+            ], 200);
         } else {
             return response()->json(['status' => 'success', 'message' => "Data Kosong", 'code' => 200, 'message_attendance' => "Anda Belum memiliki RFID"], 200);
         }
