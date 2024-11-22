@@ -78,11 +78,11 @@ class TeacherApiController extends Controller
         $employee = $this->employee->getByUser($user->id);
         $history_attendance = $this->attendance->whereUser($employee->id, 'App\Models\Employee');
         $single_attendance = $this->attendance->userToday('App\Models\Employee', $employee->id);
-        
 
-        if () {
 
-        }
+        // if () {
+
+        // }
 
         return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200,
             'attendance_now' => [
