@@ -78,6 +78,11 @@ class TeacherApiController extends Controller
         $employee = $this->employee->getByUser($user->id);
         $history_attendance = $this->attendance->whereUser($employee->id, 'App\Models\Employee');
         $single_attendance = $this->attendance->userToday('App\Models\Employee', $employee->id);
+        
+
+        if () {
+
+        }
 
         return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200,
             'attendance_now' => [
@@ -87,7 +92,7 @@ class TeacherApiController extends Controller
                 'date_complate' => $single_attendance ? Carbon::parse($single_attendance->created_at)->translatedFormat('l, j F Y') : now()->translatedFormat('l, j F Y'),
                 'check_in' => $single_attendance ? ($single_attendance->checkin == null ? '-' : \Carbon\Carbon::parse($single_attendance->checkin)->format('H:i')) : '-',
                 'check_out' => $single_attendance ? ($single_attendance->checkout == null ? '-' : \Carbon\Carbon::parse($single_attendance->checkout)->format('H:i')) : '-',
-                'status' => $single_attendance ? $single_attendance->status->label() : 'Libur',
+                'status' => $single_attendance ? $single_attendance->status->label() : '',
             ],
             'attendance_history' => $history_attendance->count() > 0 ? HistoryAttendanceResource::collection($history_attendance) : 'Data Kosong',
         ]);
@@ -103,7 +108,7 @@ class TeacherApiController extends Controller
                 'lesson_schedule_all' => LessonScheduleResource::collection($teacherSchedules),
             ], 200);
         } else {
-            return response()->json(['status' => 'success', 'message' => "Data kosong",'code' => 200], 400);
+            return response()->json(['status' => 'success', 'message' => "Data kosong",'code' => 200], 200);
         }
     }
 
@@ -115,7 +120,7 @@ class TeacherApiController extends Controller
                 'data' => HistoryJournalResource::collection($historyJournal),
             ], 200);
         } else {
-            return response()->json(['status' => 'success', 'message' => "Data kosong",'code' => 200], 400);
+            return response()->json(['status' => 'success', 'message' => "Data kosong",'code' => 200], 200);
         }
     }
 
@@ -129,7 +134,7 @@ class TeacherApiController extends Controller
                 'data' => TeacherSubjectResource::collection($teacherSubject),
             ], 200);
         } else {
-            return response()->json(['status' => 'success', 'message' => "Data Kosong",'code' => 400], 400);
+            return response()->json(['status' => 'success', 'message' => "Data Kosong",'code' => 200], 200);
         }
     }
 
@@ -141,7 +146,7 @@ class TeacherApiController extends Controller
                 'data' => FeedbackResource::collection($feedbacks),
             ], 200);
         } else {
-            return response()->json(['status' => 'success', 'message' => "Data Kosong",'code' => 400], 400);
+            return response()->json(['status' => 'success', 'message' => "Data Kosong",'code' => 200], 200);
         }
     }
 }
