@@ -88,6 +88,11 @@ class ModelHasRfidRepository extends BaseRepository implements ModelHasRfidInter
         return $this->model->query()->where('model_type', $model_type)->where('model_id', $model_id)->delete();
     }
 
+    public function first(string $model_type, mixed $model_id): mixed
+    {
+        return $this->model->query()->where('model_type', $model_type)->where('model_id', $model_id)->first();
+    }
+
     public function paginate(): mixed
     {
         return $this->model->query()->latest()->paginate(10);

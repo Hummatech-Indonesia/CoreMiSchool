@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Contracts\Interfaces\AttendanceInterface;
+use App\Contracts\Interfaces\AttendanceRuleInterface;
 use App\Contracts\Interfaces\ClassroomInterface;
 use App\Contracts\Interfaces\EmployeeInterface;
 use App\Contracts\Interfaces\FeedbackInterface;
 use App\Contracts\Interfaces\LessonScheduleInterface;
+use App\Contracts\Interfaces\ModelHasRfidInterface;
 use App\Contracts\Interfaces\Teachers\TeacherJournalInterface;
 use App\Contracts\Interfaces\TeacherSubjectInterface;
 use App\Http\Controllers\Controller;
@@ -30,6 +32,8 @@ class TeacherApiController extends Controller
     private TeacherJournalInterface $teacherJournal;
     private TeacherSubjectInterface $teacherSubject;
     private FeedbackInterface $feedback;
+    private ModelHasRfidInterface $modelHasRfid;
+    private AttendanceRuleInterface $attendanceRule;
 
     public function __construct(
         EmployeeInterface $employee,
@@ -39,6 +43,8 @@ class TeacherApiController extends Controller
         TeacherJournalInterface $teacherJournal,
         TeacherSubjectInterface $teacherSubject,
         FeedbackInterface $feedback,
+        ModelHasRfidInterface $modelHasRfid,
+        AttendanceRuleInterface $attendanceRule,
     )
     {
         $this->employee = $employee;
@@ -48,6 +54,8 @@ class TeacherApiController extends Controller
         $this->teacherJournal = $teacherJournal;
         $this->teacherSubject = $teacherSubject;
         $this->feedback = $feedback;
+        $this->modelHasRfid = $modelHasRfid;
+        $this->attendanceRule = $attendanceRule;
     }
 
     public function class(User $user)
@@ -78,24 +86,39 @@ class TeacherApiController extends Controller
         $employee = $this->employee->getByUser($user->id);
         $history_attendance = $this->attendance->whereUser($employee->id, 'App\Models\Employee');
         $single_attendance = $this->attendance->userToday('App\Models\Employee', $employee->id);
+        $rule_rfid = $this->modelHasRfid->first('App\Models\Employee', $employee->id);
+        $rule_day = $this->attendanceRule->whereDayRole(today()->format('l'),'teacher');
 
+        if ($rule_rfid) {
+            return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200,
+                'attendance_now' => [
+                    'day' => $single_attendance ? Carbon::parse($single_attendance->created_at)->translatedFormat('l') : now()->translatedFormat('l'),
+                    'date' => $single_attendance ? Carbon::parse($single_attendance->created_at)->translatedFormat('d') : now()->translatedFormat('d'),
+                    'month' => $single_attendance ? Carbon::parse($single_attendance->created_at)->translatedFormat('M') : now()->translatedFormat('M'),
+                    'date_complate' => $single_attendance ? Carbon::parse($single_attendance->created_at)->translatedFormat('l, j F Y') : now()->translatedFormat('l, j F Y'),
+                    'check_in' => $single_attendance ? ($single_attendance->checkin == null ? '-' : \Carbon\Carbon::parse($single_attendance->checkin)->format('H:i')) : '-',
+                    'check_out' => $single_attendance ? ($single_attendance->checkout == null ? '-' : \Carbon\Carbon::parse($single_attendance->checkout)->format('H:i')) : '-',
+                    'status' => $single_attendance ? $single_attendance->status->label() : '',
+                ],
+                'attendance_history' => $history_attendance->count() > 0 ? HistoryAttendanceResource::collection($history_attendance) : 'Data Kosong',
+            ]);
+        } else if ($rule_day->is_holiday ==  true) {
+            return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200,
+                'attendance_now' => [
+                    'day' => now()->translatedFormat('l'),
+                    'date' => now()->translatedFormat('d'),
+                    'month' => now()->translatedFormat('M'),
+                    'date_complate' => now()->translatedFormat('l, j F Y'),
+                    'check_in' => '-',
+                    'check_out' => '-',
+                    'status' => 'Libur',
+                ],
+                'attendance_history' => $history_attendance->count() > 0 ? HistoryAttendanceResource::collection($history_attendance) : 'Data Kosong',
+            ]);
+        } else {
+            return response()->json(['status' => 'success', 'message' => "Data Kosong", 'code' => 200, 'message_attendance' => "Anda Belum memiliki RFID"], 200);
+        }
 
-        // if () {
-
-        // }
-
-        return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200,
-            'attendance_now' => [
-                'day' => $single_attendance ? Carbon::parse($single_attendance->created_at)->translatedFormat('l') : now()->translatedFormat('l'),
-                'date' => $single_attendance ? Carbon::parse($single_attendance->created_at)->translatedFormat('d') : now()->translatedFormat('d'),
-                'month' => $single_attendance ? Carbon::parse($single_attendance->created_at)->translatedFormat('M') : now()->translatedFormat('M'),
-                'date_complate' => $single_attendance ? Carbon::parse($single_attendance->created_at)->translatedFormat('l, j F Y') : now()->translatedFormat('l, j F Y'),
-                'check_in' => $single_attendance ? ($single_attendance->checkin == null ? '-' : \Carbon\Carbon::parse($single_attendance->checkin)->format('H:i')) : '-',
-                'check_out' => $single_attendance ? ($single_attendance->checkout == null ? '-' : \Carbon\Carbon::parse($single_attendance->checkout)->format('H:i')) : '-',
-                'status' => $single_attendance ? $single_attendance->status->label() : '',
-            ],
-            'attendance_history' => $history_attendance->count() > 0 ? HistoryAttendanceResource::collection($history_attendance) : 'Data Kosong',
-        ]);
     }
 
     public function today_lesson_schedule(User $user)
