@@ -16,10 +16,12 @@ class ClassroomStudentResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'nik' => $this->student->nik,
+            'nisn' => $this->student->nisn,
+            'email' => $this->student->user->email,
             'student' => $this->student->user->name,
             'gender' => $this->student->gender->label(),
-            'nisn' => $this->student->nisn,
-            'nik' => $this->student->nik,
+            'image' => $this->student->image != null ? asset(request()->root(). '/storage/'.$this->student->image) : asset(request()->root(). '/public/admin_assets/dist/images/profile/user-1.jpg'),
         ];
     }
 }
