@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Enums\AttendanceEnum;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -20,7 +21,7 @@ class HistoryJournalResource extends JsonResource
             'classroom' => $this->lessonSchedule->classroom->name,
             'title' => $this->title,
             'description' => $this->description,
-            'date' => $this->date,
+            'date' => Carbon::parse($this->date)->translatedFormat('d F Y'),
             'count_alpha' => $this->attendanceJournals->where('status', AttendanceEnum::ALPHA)->count(),
             'count_sick' => $this->attendanceJournals->where('status', AttendanceEnum::SICK)->count(),
             'count_permit' => $this->attendanceJournals->where('status', AttendanceEnum::PERMIT)->count(),
