@@ -16,9 +16,10 @@ class FeedbackResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'summary' => $this->summary,
             'name_student' => $this->student->user->name,
             'class_student' => $this->student->classroomStudents()->latest()->first()->classroom->name,
-            'summary' => $this->summary,
+            'image' => $this->student->image != null ? asset(request()->root(). '/storage/'.$this->student->image) : asset(request()->root(). '/public/admin_assets/dist/images/profile/user-1.jpg'),
         ];
     }
 }
