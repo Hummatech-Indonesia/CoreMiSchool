@@ -81,7 +81,7 @@ class LessonScheduleController extends Controller
     {
         $teachers = $this->employee->getTeacher();
         $subjects = $this->subjects->get();
-        $lessonHours = $this->lessonHour->groupByNot('day');
+        $lessonHours = $this->lessonHour->groupByNot('day', $classroom->id);
         $lessonHourUpdates = $this->lessonHour->groupByNotUpdate('day');
         $lessonSchedules = $this->lessonSchedule->whereClassroom($classroom->id, 'day');
         $latestSchedule = $this->service->get();

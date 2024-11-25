@@ -52,9 +52,10 @@ class LessonHourRepository extends BaseRepository implements LessonHourInterface
             ->groupBy($query);
     }
 
-    public function groupByNot($query): mixed
+    public function groupByNot($query, $id): mixed
     {
         $excludedIds = LessonSchedule::query()
+        ->where('classroom_id', $id)
         ->select('lesson_hour_start', 'lesson_hour_end')
         ->get()
         ->flatMap(function ($schedule) {

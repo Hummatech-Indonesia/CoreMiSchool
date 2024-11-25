@@ -12,7 +12,7 @@ use App\Contracts\Interfaces\Eloquent\UpdateInterface;
 interface LessonHourInterface extends GetInterface, StoreInterface, UpdateInterface, ShowInterface, DeleteInterface, PaginateInterface
 {
     public function groupBy($query):mixed;
-    public function groupByNot($query):mixed;
+    public function groupByNot($query, $id):mixed;
     public function groupByNotUpdate($query):mixed;
     public function groupByLatest($query):mixed;
     public function whereDay(mixed $day, mixed $name) : mixed;
