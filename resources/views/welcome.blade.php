@@ -530,7 +530,7 @@
     <!-- What Our Coustomer Section End-->
 
     <!-- Story-Section-Start -->
-    {{-- @if ($newses != null)
+    {{-- @if ($newses != null) --}}
         @if (count($newses) > 0)
             <section class="row_am latest_story" id="blog">
                 <!-- container start -->
@@ -545,15 +545,15 @@
                             <div class="col-md-4">
                                 <div class="story_box" data-aos="fade-up" data-aos-duration="1500">
                                     <div class="story_img">
-                                        <img src="{{ asset('https://mischool.mijurnal.com/storage/' . $news['image']) }}" alt="image">
+                                        <img src="{{ $news['image'] }}" alt="image">
                                         <span
-                                                class="bg-primary text-white"><span>{{ $news['created_at'] }}</span>{{ $news['created_at'] }}</span>
+                                                class="bg-primary text-white"><span>{{ $news['day'] }}</span>{{ $news['mount'] }}</span>
                                     </div>
                                     <div class="story_text">
                                         <div class="statstic text-primary">
-                                            <span>{{ $news['newsCategory']['name'] }}</span>
+                                            <span>{{ $news['news_category'] }}</span>
                                         </div>
-                                        <h3>{{ $news->title }}</h3>
+                                        <h3>{{ $news['title'] }}</h3>
                                         <p>{!! \Illuminate\Support\Str::limit($news['description'], 200) !!}</p>
                                         <a href="blog-detail.html" class="btn text_btn text-primary">READ MORE <i
                                                 class="icofont-arrow-right"></i></a>
@@ -567,7 +567,7 @@
                 </div>
             </section>
         @endif
-    @endif --}}
+    {{-- @endif --}}
     <!-- Story-Section-end -->
 
     <!-- FAQ-Section start -->
