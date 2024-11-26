@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactUsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -33,3 +34,5 @@ require_once __DIR__ . '/role/landing.php';
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/cek-rfid', [App\Http\Controllers\HomeController::class, 'cek_rfid']);
+
+Route::post('/send-email', [ContactUsController::class, 'sendMail'])->name('store.send.email');

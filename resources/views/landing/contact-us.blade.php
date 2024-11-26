@@ -81,7 +81,7 @@
                     <h3 class="text-primary">Email</h3>
                     <p>Hubungi kami melalui email untuk dukungan atau info lebih lanjut
                     </p>
-                    <a href="mailto:support@example.com" class="text_btn text-primary">mischool@gmail.com</a>
+                    <a href="mailto:info@hummatech.com" class="text_btn text-primary">info@hummatech.com</a>
                 </div>
             </div>
             <!-- card -->
@@ -98,7 +98,7 @@
                     <h3 class="text-primary">Lokasi</h3>
                     <p>Temukan lokasi kami di bagian Lokasi.
                     </p>
-                    <a href="#" class="text_btn text-primary">Perum Permata Regency 1 Blok 10 No. 28, Ngijo, Kec. Karangploso, Kab. Malang, 65152 </a>
+                    <a href="https://maps.app.goo.gl/7e2rM6FNLSsX7M379" class="text_btn text-primary">Perum Permata Regency 1 Blok 10/28, Perun Gpa, Ngijo, Kec. Karang Ploso, Kabupaten Malang, Jawa Timur 65152.</a>
                 </div>
             </div>
             <!-- card -->
@@ -115,7 +115,7 @@
                     <h3 class="text-primary">Nomor Telepon</h3>
                     <p>Hubungi kami via telepon untuk dukungan atau pertanyaan.
                     </p>
-                    <a href="tel:+1-900-1234567" class="text_btn text-primary">(+62)82132560566</a>
+                    <a href="tel: 085176777785" class="text_btn text-primary">085176777785</a>
                 </div>
             </div>
         </div>
@@ -133,28 +133,29 @@
                     <h2 class="text-primary">Tuliskan Pesanmu</h2>
                     <p>Hubungi kami untuk bantuan, pertanyaan, atau informasi lebih lanjut</p>
                 </div>
-                <form action="https://kalanidhithemes.com/live-preview/landing-page/codely/all-demo/06-codely-landing-page-get-started-hero/submit">
+                <form action="{{ route('store.send.email') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('post')
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" placeholder="Nama" class="form-control">
+                                <input type="text" placeholder="Nama" name="name" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="email" placeholder="Email" class="form-control">
+                                <input type="email" placeholder="Email" name="email" class="form-control">
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <textarea class="form-control" style="height: 250px;" placeholder="Tuliskan pesanmu disini..."></textarea>
+                        <textarea class="form-control" style="height: 250px;" name="description" placeholder="Tuliskan pesanmu disini..."></textarea>
                     </div>
 
                     <div class="form-group ">
                         <button class="btn btn_main" type="submit">Kirim Pesan <i class="icofont-arrow-right"></i></button>
                     </div>
-
                 </form>
             </div>
 
