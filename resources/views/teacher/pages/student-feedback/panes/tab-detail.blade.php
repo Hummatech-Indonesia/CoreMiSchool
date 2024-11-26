@@ -11,15 +11,8 @@
             </tr>
         </thead>
         <tbody>
-            @php
-                $firstTeacherSubject = $teacherSubject->first();
-                $items = $firstTeacherSubject
-                    ? App\Models\LessonSchedule::where('teacher_subject_id', $firstTeacherSubject->id)->get()
-                    : null;
-            @endphp
-
-            @if ($items)
-                @foreach ($items as $data)
+            @if ($teacherSubject)
+                @forelse ($teacherSubject as $data)
                     @if ($data && isset($feedbacks[$data->id]))
                         @forelse ($feedbacks[$data->id] as $feedback)
                             <tr>
@@ -58,23 +51,22 @@
                                 <td colspan="5" class="text-center align-middle">Tidak ada tanggapan dari siswa</td>
                             </tr>
                         @endforelse
-                    @else
-                        <tr>
-                            <td colspan="7" class="text-center align-middle">
-                                <div
-                                    class="d-flex flex-column justify-content-center align-items-center">
-                                    <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}"
-                                        alt="" width="300px">
-                                    <p class="fs-5 text-dark text-center mt-2">
-                                        Tidak ada tanggapan dari siswa
-                                    </p>
-                                </div>
-                            </td>
-                        </tr>
                     @endif
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="7" class="text-center align-middle">
+                            <div
+                                class="d-flex flex-column justify-content-center align-items-center">
+                                <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}"
+                                    alt="" width="300px">
+                                <p class="fs-5 text-dark text-center mt-2">
+                                    Tidak ada tanggapan dari siswa
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                @endforelse
             @endif
-
         </tbody>
     </table>
 
