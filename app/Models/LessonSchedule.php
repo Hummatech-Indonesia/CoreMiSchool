@@ -26,7 +26,7 @@ class LessonSchedule extends Model
      */
     public function journals(): HasMany
     {
-        return $this->hasMany(TeacherJournal::class, );
+        return $this->hasMany(TeacherJournal::class);
     }
 
     public function feedbacks()
