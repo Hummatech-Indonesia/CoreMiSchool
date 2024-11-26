@@ -58,6 +58,7 @@ class SchoolFeedbackController extends Controller
     {
         $teacher = $this->employee->showWithSlug($teacher);
         $feedbacks = $this->feedback->get_lesson($request);
+        // dd($feedbacks);
         return view('school.pages.student-feedback.detail', compact('teacher', 'feedbacks'));
     }
 
