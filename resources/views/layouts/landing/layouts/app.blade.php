@@ -48,7 +48,7 @@
 
 
             <!-- Header Start -->
-            @include('layouts.landing.layouts.header')
+            @include('layouts.landing.header')
 
             @yield('banner')
 
