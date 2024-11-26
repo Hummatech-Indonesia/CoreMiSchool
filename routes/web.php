@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\LandingController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -19,9 +20,7 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('beranda');
+Route::get('/', [LandingController::class, 'index'])->name('beranda');
 
 Auth::routes();
 

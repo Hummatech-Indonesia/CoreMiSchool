@@ -131,68 +131,69 @@
             <div class="container mt-5">
                 <div class="row">
                     <div class="col-md-4 mb-4">
-                        <div class="feature_card bg-light p-5 text-start">
-                            <img src="{{ asset('landing_assets/images/landing/feature-1.png') }}" style="width: 70px"
-                                alt="image" class="img-fluid">
-                            <h3 class="pt-3 text-primary">E - Learning</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus felis non odio
-                                convallis interdum. Cras id diam rhoncus,</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="feature_card bg-light p-5 text-start">
-                            <!-- Repeat card content -->
-                            <img src="{{ asset('landing_assets/images/landing/feature-2.png') }}" style="width: 70px"
-                                alt="image" class="img-fluid">
-                            <h3 class="pt-3 text-primary">Pelanggaran</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus felis non odio
-                                convallis interdum. Cras id diam rhoncus,</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="feature_card bg-light p-5 text-start">
-                            <!-- Repeat card content -->
+                        <div class="feature_card bg-light p-5 text-start" style="height: 100%">
                             <img src="{{ asset('landing_assets/images/landing/feature-3.png') }}" style="width: 70px"
                                 alt="image" class="img-fluid">
                             <h3 class="pt-3 text-primary">Absensi</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus felis non odio
-                                convallis interdum. Cras id diam rhoncus,</p>
+                            <p>Fitur ini memudahkan rekap kehadiran siswa dan guru saat masuk dan pulang dengan kartu, serta
+                                memantau siswa yang bolos, menjadikan pengelolaan kehadiran lebih efektif.</p>
                         </div>
                     </div>
                     <div class="col-md-4 mb-4">
-                        <div class="feature_card bg-light p-5 text-start">
+                        <div class="feature_card bg-light p-5 text-start" style="height: 100%">
+                            <img src="{{ asset('landing_assets/images/landing/feature-1.png') }}" style="width: 70px"
+                                alt="image" class="img-fluid">
+                            <h3 class="pt-3 text-primary">Jurnal Mengajar</h3>
+                            <p>Fitur Jurnal Mengajar memudahkan guru dalam rekap kehadiran siswa di setiap jam pelajaran,
+                                sekaligus menjadi penanda kehadiran guru pada hari itu.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="feature_card bg-light p-5 text-start" style="height: 100%">
                             <img src="{{ asset('landing_assets/images/landing/feature-4.png') }}" style="width: 70px"
                                 alt="image" class="img-fluid">
-                            <h3 class="pt-3 text-primary">Rapot</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus felis non odio
-                                convallis interdum. Cras id diam rhoncus,</p>
+                            <h3 class="pt-3 text-primary">Jurnal Staf</h3>
+                            <p>Fitur Jurnal Staff berfungsi untuk mencatat kegiatan yang dilakukan oleh staff setiap
+                                harinya, yang nantinya dapat direkap oleh admin sekolah untuk memantau dan meningkatkan
+                                kedisiplinan staff.</p>
                         </div>
                     </div>
                     <div class="col-md-4 mb-4">
-                        <div class="feature_card bg-light p-5 text-start">
+                        <div class="feature_card bg-light p-5 text-start" style="height: 100%">
+                            <!-- Repeat card content -->
+                            <img src="{{ asset('landing_assets/images/landing/feature-2.png') }}" style="width: 70px"
+                                alt="image" class="img-fluid">
+                            <h3 class="pt-3 text-primary">Pelanggaran & Perbaikan</h3>
+                            <p>Dengan adanya fitur ini, staff/guru lebih mudah untuk mencatat pelanggaran dan perbaikan
+                                siswa. Sehingga, sekolah dapat memantau dan membantu siswa untuk meningkatkan kedisiplinan
+                                mereka di lingkungan sekolah.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="feature_card bg-light p-5 text-start" style="height: 100%">
                             <!-- Repeat card content -->
                             <img src="{{ asset('landing_assets/images/landing/feature-5.png') }}" style="width: 70px"
                                 alt="image" class="img-fluid">
-                            <h3 class="pt-3 text-primary">Ujian</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus felis non odio
-                                convallis interdum. Cras id diam rhoncus,</p>
+                            <h3 class="pt-3 text-primary">Tanggapan Siswa</h3>
+                            <p>Siswa dapat memberikan tanggapan langsung tentang kehadiran dan materi yang diajarkan,
+                                sehingga proses pembelajaran lebih terpantau oleh sekolah.</p>
                         </div>
                     </div>
                     <div class="col-md-4 mb-4">
-                        <div class="feature_card bg-light p-5 text-start">
+                        <div class="feature_card bg-light p-5 text-start" style="height: 100%">
                             <!-- Repeat card content -->
                             <img src="{{ asset('landing_assets/images/landing/feature-6.png') }}" style="width: 70px"
                                 alt="image" class="img-fluid">
                             <h3 class="pt-3 text-primary">Buku Tamu</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus felis non odio
-                                convallis interdum. Cras id diam rhoncus,</p>
+                            <p>Fitur ini berfungsi untuk merekap data instansi atau perorangan yang berkunjung ke sekolah.
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
-
     <!-- Unique features End -->
 
     <!-- Analyze Section Strat -->
@@ -212,9 +213,9 @@
                     <div class="analyze_text" data-aos="fade-in" data-aos-duration="2000" data-aos-delay="100">
                         <div class="section_title align-center">
                             <h2>Tentang Mischool</h2>
-                            <p>Mischool merupakan website untuk mempermudahkan berbagai Sekolah-sekolah. Mischool adalah web
-                                management sekolah yang menyediakan Fitur Absensi, Pelanggaran, E-learning, Raport, Ujian,
-                                Buku Tamu</p>
+                            <p>Mischool adalah website manajemen sekolah yang dirancang untuk memudahkan pengelolaan
+                                sekolah. Website ini dilengkapi dengan fitur-fitur seperti absensi, jurnal mengajar, jurnal
+                                staff, pelanggaran dan perbaikan, tanggapan siswa, serta buku tamu.</p>
                         </div>
                     </div>
                 </div>
@@ -228,8 +229,7 @@
         <div class="section_title" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
             <h2>Preview Fitur MISCHOOL</h2>
             <p>
-                Lorem Ipsum is simply dummy text of the printing and typese tting indus
-                orem Ipsum has beenthe standard dummy text ever since.
+                Berikut beberapa preview dari website Mischool, mulai dari halaman untuk sekolah, guru, staff, hingga siswa.
             </p>
         </div>
         <!-- screen slider start -->
@@ -237,38 +237,56 @@
             <div id="screen_slider" class="owl-carousel owl-theme">
                 <div class="item">
                     <div class="screen_frame_img">
-                        <img src="{{ asset('landing_assets/images/new/Interface-overview-01.png') }}" alt="image">
-                        <h3 class="caption">Report Page</h3>
+                        <img src="{{ asset('admin_assets/dist/images/preview_features/journal_teacher.jpg') }}"
+                            alt="image">
+                        <h3 class="caption">Jurnal Mengajar</h3>
                     </div>
                 </div>
                 <div class="item">
                     <div class="screen_frame_img">
-                        <img src="{{ asset('landing_assets/images/new/Interface-overview-02.png') }}" alt="image">
+                        <img src="{{ asset('admin_assets/dist/images/preview_features/attendance.jpg') }}" alt="image">
+                        <h3 class="caption">Absensi</h3>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="screen_frame_img">
+                        <img src="{{ asset('admin_assets/dist/images/preview_features/student_feedback.jpg') }}"
+                            alt="image">
+                        <h3 class="caption">Feedback Siswa</h3>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="screen_frame_img">
+                        <img src="{{ asset('admin_assets/dist/images/preview_features/dashboard_school.jpg') }}"
+                            alt="image">
                         <h3 class="caption">Dashboard</h3>
                     </div>
                 </div>
                 <div class="item">
                     <div class="screen_frame_img">
-                        <img src="{{ asset('landing_assets/images/new/Interface-overview-03.png') }}" alt="image">
-                        <h3 class="caption">Report Page</h3>
+                        <img src="{{ asset('admin_assets/dist/images/preview_features/journal_staf.jpeg') }}"
+                            alt="image">
+                        <h3 class="caption">Jurnal Staf</h3>
                     </div>
                 </div>
                 <div class="item">
                     <div class="screen_frame_img">
-                        <img src="{{ asset('landing_assets/images/new/Interface-overview-02.png') }}" alt="image">
-                        <h3 class="caption">Dashboard</h3>
+                        <img src="{{ asset('admin_assets/dist/images/preview_features/violation.jpeg') }}"
+                            alt="image">
+                        <h3 class="caption">Pelanggaran</h3>
                     </div>
                 </div>
                 <div class="item">
                     <div class="screen_frame_img">
-                        <img src="{{ asset('landing_assets/images/new/Interface-overview-01.png') }}" alt="image">
-                        <h3 class="caption">Report Page</h3>
+                        <img src="{{ asset('admin_assets/dist/images/preview_features/repair.jpeg') }}" alt="image">
+                        <h3 class="caption">Perbaikan</h3>
                     </div>
                 </div>
                 <div class="item">
                     <div class="screen_frame_img">
-                        <img src="{{ asset('landing_assets/images/new/Interface-overview-02.png') }}" alt="image">
-                        <h3 class="caption">Report Page</h3>
+                        <img src="{{ asset('admin_assets/dist/images/preview_features/guest_book.jpeg') }}"
+                            alt="image">
+                        <h3 class="caption">Buku Tamu</h3>
                     </div>
                 </div>
             </div>
@@ -276,140 +294,6 @@
         <!-- screen slider end -->
     </section>
     <!-- Interface overview-Section end -->
-
-    <!-- feature package start -->
-    <section class="row_am pricing_section my-5 pt-5 pb-2" id="pricing" data-aos="fade-in" data-aos-duration="1000">
-        <!-- container start -->
-        <div class="container">
-            <div class="section_title px-5 text-center" data-aos="fade-up" data-aos-duration="1500"
-                data-aos-delay="300">
-                <div>
-                    <h2>Paket Fitur MISCHOOL</h2>
-                    <p>Lihat berbagai paket harga yang ditawarkan oleh Mischool dan temukan yang <br>
-                        paling sesuai dengan kebutuhan sekolah Anda di bagian Pricing List.
-                    </p>
-                </div>
-            </div>
-            <!-- toggle button -->
-            <div class="toggle_block" data-aos="fade-up" data-aos-duration="1500">
-                <span class="month active">Bulanan</span>
-                <div class="tog_block">
-                    <span class="tog_btn"></span>
-                </div>
-                <span class="years">Tahunan</span>
-                <span class="offer">50% off</span>
-            </div>
-
-            <!-- pricing box  monthly start -->
-            <div class="pricing_pannel monthly_plan active" data-aos="fade-up" data-aos-duration="1500">
-                <!-- row start -->
-                <div class="row">
-                    @forelse (range(1, 3) as $item)
-                        <div class="col-md-4">
-                            <div class="pricing_block blockwhite" style="padding: 40px 30px">
-                                <div class="pkg_name">
-                                    <h3 class="mb-3 text-primary">E-Learning</h3>
-                                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vehicula lacus
-                                        massa, a finibus urna hendrerit fringilla.</span>
-                                </div>
-                                <span class="price mt-1 text-primary" style="font-size: 32px">Rp.
-                                    450.000<span>/bulan</span></span>
-                                <a href="#" class="w-100 btn btn-stroke-gradient mb-4">Beli Sekarang</a>
-                                <h5 class="fw-bold mb-4">Daftar Fitur paket</h5>
-                                <ul>
-                                    <li class="border-bottom mb-3 pb-2">
-                                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M10.5 0C4.71036 0 0 4.71036 0 10.5C0 16.2896 4.71036 21 10.5 21C16.2896 21 21 16.2896 21 10.5C21 4.71036 16.2896 0 10.5 0ZM15.9645 6.98099L9.17993 15.0579C9.1055 15.1466 9.0129 15.2182 8.90838 15.2679C8.80387 15.3176 8.68989 15.3443 8.57416 15.3462H8.56053C8.44732 15.3461 8.33538 15.3223 8.23198 15.2762C8.12858 15.2301 8.03602 15.1628 7.96031 15.0786L5.05262 11.8478C4.97878 11.7695 4.92133 11.6772 4.88366 11.5764C4.846 11.4755 4.82887 11.3682 4.83328 11.2606C4.8377 11.1531 4.86357 11.0475 4.90937 10.9501C4.95518 10.8527 5.01999 10.7654 5.10001 10.6934C5.18002 10.6214 5.27362 10.5661 5.37531 10.5308C5.477 10.4955 5.58472 10.4808 5.69214 10.4877C5.79957 10.4946 5.90452 10.523 6.00085 10.571C6.09717 10.6191 6.18292 10.6859 6.25305 10.7675L8.53933 13.3077L14.7278 5.94209C14.8666 5.7816 15.063 5.68219 15.2745 5.66533C15.486 5.64848 15.6957 5.71554 15.8582 5.85202C16.0206 5.9885 16.1229 6.18343 16.1428 6.39469C16.1627 6.60595 16.0987 6.81655 15.9645 6.98099Z"
-                                                fill="#1EBB9E" />
-                                        </svg>
-                                        <span class="ps-5">Classroom</span>
-                                    </li>
-                                    <li class="border-bottom mb-3 pb-2">
-                                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M10.5 0C4.71036 0 0 4.71036 0 10.5C0 16.2896 4.71036 21 10.5 21C16.2896 21 21 16.2896 21 10.5C21 4.71036 16.2896 0 10.5 0ZM15.9645 6.98099L9.17993 15.0579C9.1055 15.1466 9.0129 15.2182 8.90838 15.2679C8.80387 15.3176 8.68989 15.3443 8.57416 15.3462H8.56053C8.44732 15.3461 8.33538 15.3223 8.23198 15.2762C8.12858 15.2301 8.03602 15.1628 7.96031 15.0786L5.05262 11.8478C4.97878 11.7695 4.92133 11.6772 4.88366 11.5764C4.846 11.4755 4.82887 11.3682 4.83328 11.2606C4.8377 11.1531 4.86357 11.0475 4.90937 10.9501C4.95518 10.8527 5.01999 10.7654 5.10001 10.6934C5.18002 10.6214 5.27362 10.5661 5.37531 10.5308C5.477 10.4955 5.58472 10.4808 5.69214 10.4877C5.79957 10.4946 5.90452 10.523 6.00085 10.571C6.09717 10.6191 6.18292 10.6859 6.25305 10.7675L8.53933 13.3077L14.7278 5.94209C14.8666 5.7816 15.063 5.68219 15.2745 5.66533C15.486 5.64848 15.6957 5.71554 15.8582 5.85202C16.0206 5.9885 16.1229 6.18343 16.1428 6.39469C16.1627 6.60595 16.0987 6.81655 15.9645 6.98099Z"
-                                                fill="#1EBB9E" />
-                                        </svg>
-                                        <span class="ps-5">Daftar Tugas</span>
-                                    </li>
-                                    <li class="border-bottom mb-3 pb-2">
-                                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M10.5 0C4.71036 0 0 4.71036 0 10.5C0 16.2896 4.71036 21 10.5 21C16.2896 21 21 16.2896 21 10.5C21 4.71036 16.2896 0 10.5 0ZM15.9645 6.98099L9.17993 15.0579C9.1055 15.1466 9.0129 15.2182 8.90838 15.2679C8.80387 15.3176 8.68989 15.3443 8.57416 15.3462H8.56053C8.44732 15.3461 8.33538 15.3223 8.23198 15.2762C8.12858 15.2301 8.03602 15.1628 7.96031 15.0786L5.05262 11.8478C4.97878 11.7695 4.92133 11.6772 4.88366 11.5764C4.846 11.4755 4.82887 11.3682 4.83328 11.2606C4.8377 11.1531 4.86357 11.0475 4.90937 10.9501C4.95518 10.8527 5.01999 10.7654 5.10001 10.6934C5.18002 10.6214 5.27362 10.5661 5.37531 10.5308C5.477 10.4955 5.58472 10.4808 5.69214 10.4877C5.79957 10.4946 5.90452 10.523 6.00085 10.571C6.09717 10.6191 6.18292 10.6859 6.25305 10.7675L8.53933 13.3077L14.7278 5.94209C14.8666 5.7816 15.063 5.68219 15.2745 5.66533C15.486 5.64848 15.6957 5.71554 15.8582 5.85202C16.0206 5.9885 16.1229 6.18343 16.1428 6.39469C16.1627 6.60595 16.0987 6.81655 15.9645 6.98099Z"
-                                                fill="#1EBB9E" />
-                                        </svg>
-                                        <span class="ps-5">Bisa menambahkan Materi dan Tugas Lorem Ipsum dolor sit
-                                            ahmet</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    @empty
-                    @endforelse
-                </div>
-                <!-- row end -->
-            </div>
-            <!-- pricing box monthly end -->
-
-            <!-- pricing box yearly start -->
-            <div class="pricing_pannel yearly_plan" data-aos="fade-up" data-aos-duration="1500">
-                <div class="row">
-                    @forelse (range(1, 3) as $item)
-                        <div class="col-md-4">
-                            <div class="pricing_block blockwhite" style="padding: 40px 30px">
-                                <div class="pkg_name">
-                                    <h3 class="mb-3 text-primary">E-Learning</h3>
-                                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vehicula lacus
-                                        massa, a finibus urna hendrerit fringilla.</span>
-                                </div>
-                                <span class="price mt-1 text-primary" style="font-size: 32px">Rp.
-                                    3.000.000<span>/tahun</span></span>
-                                <a href="#" class="w-100 btn btn-stroke-gradient mb-4">Beli Sekarang</a>
-                                <h5 class="fw-bold mb-4">Daftar Fitur paket</h5>
-                                <ul>
-                                    <li class="border-bottom mb-3 pb-2">
-                                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M10.5 0C4.71036 0 0 4.71036 0 10.5C0 16.2896 4.71036 21 10.5 21C16.2896 21 21 16.2896 21 10.5C21 4.71036 16.2896 0 10.5 0ZM15.9645 6.98099L9.17993 15.0579C9.1055 15.1466 9.0129 15.2182 8.90838 15.2679C8.80387 15.3176 8.68989 15.3443 8.57416 15.3462H8.56053C8.44732 15.3461 8.33538 15.3223 8.23198 15.2762C8.12858 15.2301 8.03602 15.1628 7.96031 15.0786L5.05262 11.8478C4.97878 11.7695 4.92133 11.6772 4.88366 11.5764C4.846 11.4755 4.82887 11.3682 4.83328 11.2606C4.8377 11.1531 4.86357 11.0475 4.90937 10.9501C4.95518 10.8527 5.01999 10.7654 5.10001 10.6934C5.18002 10.6214 5.27362 10.5661 5.37531 10.5308C5.477 10.4955 5.58472 10.4808 5.69214 10.4877C5.79957 10.4946 5.90452 10.523 6.00085 10.571C6.09717 10.6191 6.18292 10.6859 6.25305 10.7675L8.53933 13.3077L14.7278 5.94209C14.8666 5.7816 15.063 5.68219 15.2745 5.66533C15.486 5.64848 15.6957 5.71554 15.8582 5.85202C16.0206 5.9885 16.1229 6.18343 16.1428 6.39469C16.1627 6.60595 16.0987 6.81655 15.9645 6.98099Z"
-                                                fill="#1EBB9E" />
-                                        </svg>
-                                        <span class="ps-5">Classroom</span>
-                                    </li>
-                                    <li class="border-bottom mb-3 pb-2">
-                                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M10.5 0C4.71036 0 0 4.71036 0 10.5C0 16.2896 4.71036 21 10.5 21C16.2896 21 21 16.2896 21 10.5C21 4.71036 16.2896 0 10.5 0ZM15.9645 6.98099L9.17993 15.0579C9.1055 15.1466 9.0129 15.2182 8.90838 15.2679C8.80387 15.3176 8.68989 15.3443 8.57416 15.3462H8.56053C8.44732 15.3461 8.33538 15.3223 8.23198 15.2762C8.12858 15.2301 8.03602 15.1628 7.96031 15.0786L5.05262 11.8478C4.97878 11.7695 4.92133 11.6772 4.88366 11.5764C4.846 11.4755 4.82887 11.3682 4.83328 11.2606C4.8377 11.1531 4.86357 11.0475 4.90937 10.9501C4.95518 10.8527 5.01999 10.7654 5.10001 10.6934C5.18002 10.6214 5.27362 10.5661 5.37531 10.5308C5.477 10.4955 5.58472 10.4808 5.69214 10.4877C5.79957 10.4946 5.90452 10.523 6.00085 10.571C6.09717 10.6191 6.18292 10.6859 6.25305 10.7675L8.53933 13.3077L14.7278 5.94209C14.8666 5.7816 15.063 5.68219 15.2745 5.66533C15.486 5.64848 15.6957 5.71554 15.8582 5.85202C16.0206 5.9885 16.1229 6.18343 16.1428 6.39469C16.1627 6.60595 16.0987 6.81655 15.9645 6.98099Z"
-                                                fill="#1EBB9E" />
-                                        </svg>
-                                        <span class="ps-5">Daftar Tugas</span>
-                                    </li>
-                                    <li class="border-bottom mb-3 pb-2">
-                                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M10.5 0C4.71036 0 0 4.71036 0 10.5C0 16.2896 4.71036 21 10.5 21C16.2896 21 21 16.2896 21 10.5C21 4.71036 16.2896 0 10.5 0ZM15.9645 6.98099L9.17993 15.0579C9.1055 15.1466 9.0129 15.2182 8.90838 15.2679C8.80387 15.3176 8.68989 15.3443 8.57416 15.3462H8.56053C8.44732 15.3461 8.33538 15.3223 8.23198 15.2762C8.12858 15.2301 8.03602 15.1628 7.96031 15.0786L5.05262 11.8478C4.97878 11.7695 4.92133 11.6772 4.88366 11.5764C4.846 11.4755 4.82887 11.3682 4.83328 11.2606C4.8377 11.1531 4.86357 11.0475 4.90937 10.9501C4.95518 10.8527 5.01999 10.7654 5.10001 10.6934C5.18002 10.6214 5.27362 10.5661 5.37531 10.5308C5.477 10.4955 5.58472 10.4808 5.69214 10.4877C5.79957 10.4946 5.90452 10.523 6.00085 10.571C6.09717 10.6191 6.18292 10.6859 6.25305 10.7675L8.53933 13.3077L14.7278 5.94209C14.8666 5.7816 15.063 5.68219 15.2745 5.66533C15.486 5.64848 15.6957 5.71554 15.8582 5.85202C16.0206 5.9885 16.1229 6.18343 16.1428 6.39469C16.1627 6.60595 16.0987 6.81655 15.9645 6.98099Z"
-                                                fill="#1EBB9E" />
-                                        </svg>
-                                        <span class="ps-5">Bisa menambahkan Materi dan Tugas Lorem Ipsum dolor sit
-                                            ahmet</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    @empty
-                    @endforelse
-                </div>
-            </div>
-        </div>
-        <!-- container start end -->
-    </section>
-    <!-- feature package start -->
 
     <!-- Powerful solution for your business Section Start -->
     <section class="powerful_solution" data-aos="fade-in" data-aos-duration="1000">
@@ -419,8 +303,8 @@
                     <!-- h2 -->
                     <h2>Pengguna MISCHOOL</h2>
                     <!-- p -->
-                    <p>Lorem Ipsum is simply dummy text of the printing and typese tting indus orem Ipsum
-                        has beenthe standard dummy text ever since.</p>
+                    <p>Mischool hadir sebagai solusi manajemen sekolah yang inovatif, mendukung berbagai aktivitas dan
+                        proses dalam lingkungan pendidikan.</p>
                 </div>
                 <div class="features_inner" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="100">
                     <!-- card -->
@@ -435,9 +319,8 @@
                         </div>
                         <div class="inner_text">
                             <h3>Sekolah</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus felis non odio
-                                convallis interdum. Cras id diam rhoncus,
-                            </p>
+                            <p>Pengguna sekolah memiliki akses penuh untuk melihat seluruh rekap jurnal guru dan staff,
+                                absensi siswa, serta dapat mengatur berbagai fitur yang disediakan sesuai kebutuhan.</p>
                         </div>
                     </div>
                     <!-- card -->
@@ -451,10 +334,10 @@
                             </div>
                         </div>
                         <div class="inner_text">
-                            <h3>Guru</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus felis non odio
-                                convallis interdum. Cras id diam rhoncus,
-                            </p>
+                            <h3>Guru & Staf</h3>
+                            <p>Guru dapat dengan mudah merekap kehadiran siswa di setiap mata pelajaran, sementara staf
+                                memiliki kemudahan untuk mencatat kegiatan harian mereka, memastikan semua aktivitas terekap
+                                dengan baik.</p>
                         </div>
                     </div>
                     <!-- card -->
@@ -469,9 +352,8 @@
                         </div>
                         <div class="inner_text">
                             <h3>Siswa</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus felis non odio
-                                convallis interdum. Cras id diam rhoncus,
-                            </p>
+                            <p>Siswa dapat memberikan tanggapan langsung tentang guru yang mengajar pada hari itu, jika
+                                fitur ini diaktifkan oleh admin sekolah.</p>
                         </div>
                     </div>
                 </div>
@@ -481,66 +363,41 @@
     <!-- Powerful solution for your business Section End -->
 
     <!-- Trusted Section start -->
-    <section class="row_am trusted_section">
-        <!-- container start -->
-        <div class="container">
-            <div class="section_title" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
-                <h2>Mitra Mischool</h2>
-                <p>Daftar - daftar sekolah yang telah bekerja sama dan menggunakan Mischool untuk management sekolah</p>
-            </div>
-            <!-- logos slider start -->
-            <div class="company_logos" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
-                <div id="company_slider" class="owl-carousel owl-theme">
-                    <div class="item">
-                        <div class="logo">
-                            <img src="{{ asset('landing_assets/images/logo/logo-kanesa.png') }}" alt="image">
+    @if ($schools != null)
+        @if (count($schools) > 0)
+            <section class="row_am trusted_section">
+                <!-- container start -->
+                <div class="container">
+                    <div class="section_title" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
+                        <h2>Mitra Mischool</h2>
+                        <p>Daftar - daftar sekolah yang telah bekerja sama dan menggunakan Mischool untuk management sekolah
+                        </p>
+                    </div>
+                    <!-- logos slider start -->
+                    <div class="company_logos" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
+                        <div id="company_slider" class="owl-carousel owl-theme">
+                            @forelse ($schools as $school)
+                                <div class="item">
+                                    <div class="logo">
+                                        {{-- <img src="{{ asset('storage/' . $school->logo) }}" alt="image"
+                                    style="width: 150px; height: 150px; object-fit: contain;"> --}}
+                                        <img src="{{ asset('https://mischool.mijurnal.com/storage/' . $school['logo']) }}" alt="image"
+                                            style="max-width: 150px; max-height: 150px;">
+                                    </div>
+                                </div>
+                            @empty
+                            @endforelse
                         </div>
                     </div>
-                    <div class="item">
-                        <div class="logo">
-                            <img src="{{ asset('landing_assets/images/logo/logo-kanesa.png') }}" alt="image">
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="logo">
-                            <img src="{{ asset('landing_assets/images/logo/logo-kanesa.png') }}" alt="image">
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="logo">
-                            <img src="{{ asset('landing_assets/images/logo/logo-kanesa.png') }}" alt="image">
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="logo">
-                            <img src="{{ asset('landing_assets/images/logo/logo-kanesa.png') }}" alt="image">
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="logo">
-                            <img src="{{ asset('landing_assets/images/logo/logo-kanesa.png') }}" alt="image">
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="logo">
-                            <img src="{{ asset('landing_assets/images/logo/logo-kanesa.png') }}" alt="image">
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="logo">
-                            <img src="{{ asset('landing_assets/images/logo/logo-kanesa.png') }}" alt="image">
-                        </div>
-                    </div>
+                    <!-- logos slider end -->
                 </div>
-            </div>
-            <!-- logos slider end -->
-        </div>
-        <!-- container end -->
-    </section>
+            </section>
+        @endif
+    @endif
     <!-- Trusted Section ends -->
 
     <!-- What Our Coustomer Section Start-->
-    <section class="what_coustomer_says">
+    {{-- <section class="what_coustomer_says">
         <div class="container">
             <div class="section_title" data-aos="fade-up" data-aos-duration="1500">
                 <h2>Apa yang dikatakan mereka</h2>
@@ -669,193 +526,90 @@
                             class="icofont-arrow-right"></i></a></p>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- What Our Coustomer Section End-->
 
     <!-- Story-Section-Start -->
-    <section class="row_am latest_story" id="blog">
-        <!-- container start -->
-        <div class="container">
-            <div class="section_title" data-aos="fade-in" data-aos-duration="1500" data-aos-delay="100">
-                <h2>Berita Terbaru</h2>
-                <p>Lorem Ipsum is simply dummy text of the printing and typese tting <br> indus orem Ipsum has beenthe
-                    standard dummy.</p>
-            </div>
-            <!-- row start -->
-            <div class="row">
-                <!-- story -->
-                <div class="col-md-4">
-                    <div class="story_box" data-aos="fade-up" data-aos-duration="1500">
-                        <div class="story_img">
-                            <img src="{{ asset('landing_assets/images/empty/empty-news.png') }}" alt="image">
-                            <span class="bg-primary text-white"><span>23</span> AUG</span>
-                        </div>
-                        <div class="story_text">
-                            <div class="statstic text-primary">
-                                <span><i class="icofont-user-suited text-primary"></i> Admin</span>
-                                <span><i class="icofont-speech-comments text-primary"></i> 36 Comments</span>
-                            </div>
-                            <h3>Powerfull features makes
-                                software awesome !</h3>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry lorem Ipsum has
-                                been.</p>
-                            <a href="blog-detail.html" class="btn text_btn text-primary">READ MORE <i
-                                    class="icofont-arrow-right"></i></a>
-                        </div>
+    {{-- @if ($newses != null)
+        @if (count($newses) > 0)
+            <section class="row_am latest_story" id="blog">
+                <!-- container start -->
+                <div class="container">
+                    <div class="section_title" data-aos="fade-in" data-aos-duration="1500" data-aos-delay="100">
+                        <h2>Berita Terbaru</h2>
+                        <p>Berita berita terbaru yang menyediakan tentang informasi kerja sama Mischool antar sekolah</p>
                     </div>
-                </div>
-
-                <!-- story -->
-                <div class="col-md-4">
-                    <div class="story_box" data-aos="fade-up" data-aos-duration="1500">
-                        <div class="story_img">
-                            <img src="{{ asset('landing_assets/images/empty/empty-news.png') }}" alt="image">
-                            <span class="bg-primary text-white"><span>18</span> AUG</span>
-                        </div>
-                        <div class="story_text">
-                            <div class="statstic text-primary">
-                                <span><i class="icofont-user-suited text-primary"></i> Admin</span>
-                                <span><i class="icofont-speech-comments text-primary"></i> 36 Comments</span>
+                    <!-- row start -->
+                    <div class="row">
+                        @forelse ($newses as $news)
+                            <div class="col-md-4">
+                                <div class="story_box" data-aos="fade-up" data-aos-duration="1500">
+                                    <div class="story_img">
+                                        <img src="{{ asset('https://mischool.mijurnal.com/storage/' . $news['image']) }}" alt="image">
+                                        <span
+                                                class="bg-primary text-white"><span>{{ $news['created_at'] }}</span>{{ $news['created_at'] }}</span>
+                                    </div>
+                                    <div class="story_text">
+                                        <div class="statstic text-primary">
+                                            <span>{{ $news['newsCategory']['name'] }}</span>
+                                        </div>
+                                        <h3>{{ $news->title }}</h3>
+                                        <p>{!! \Illuminate\Support\Str::limit($news['description'], 200) !!}</p>
+                                        <a href="blog-detail.html" class="btn text_btn text-primary">READ MORE <i
+                                                class="icofont-arrow-right"></i></a>
+                                    </div>
+                                </div>
                             </div>
-                            <h3>Why software is globally used as best software</h3>
-                            <p>Simply dummy text of the printing and typesetting industry lorem Ipsum has Lorem Ipsum is.
-                            </p>
-                            <a href="blog-detail.html" class="btn text_btn text-primary">READ MORE <i
-                                    class="icofont-arrow-right"></i></a>
-                        </div>
+                        @empty
+                        @endforelse
                     </div>
+                    <!-- row end -->
                 </div>
-
-                <!-- story -->
-                <div class="col-md-4">
-                    <div class="story_box" data-aos="fade-up" data-aos-duration="1500">
-                        <div class="story_img">
-                            <img src="{{ asset('landing_assets/images/empty/empty-news.png') }}" alt="image">
-                            <span class="bg-primary text-white"><span>9</span> AUG</span>
-                        </div>
-                        <div class="story_text">
-                            <div class="statstic text-primary">
-                                <span><i class="icofont-user-suited text-primary"></i> Admin</span>
-                                <span><i class="icofont-speech-comments text-primary"></i> 36 Comments</span>
-                            </div>
-                            <h3>Beautiful user interface with bug free code.</h3>
-                            <p>Printing and typesetting industry lorem Ipsum has Lorem simply dummy text of the.</p>
-                            <a href="blog-detail.html" class="btn text_btn  text-primary">READ MORE <i
-                                    class="icofont-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- row end -->
-        </div>
-        <!-- container end -->
-    </section>
+            </section>
+        @endif
+    @endif --}}
     <!-- Story-Section-end -->
 
     <!-- FAQ-Section start -->
-    <section id="faqBlock" class="row_am faq_section" style="margin-bottom: 80px;">
-        <!-- container start -->
-        <div class="container">
-            <div class="section_title" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
-                <!-- h2 -->
-                <h2><span>FAQ</span> - Frequently Asked Questions</h2>
-                <!-- p -->
-                <p>Lorem Ipsum is simply dummy text of the printing and typese tting <br> indus orem Ipsum has beenthe
-                    standard dummy.</p>
-            </div>
-            <!-- faq data -->
-            <div class="faq_panel">
-                <div class="accordion" id="accordionExample">
-                    <div class="card" data-aos="fade-up" data-aos-duration="1500">
-                        <div class="card-header" id="headingOne">
-                            <h2 class="mb-0">
-                                <button type="button" class="btn btn-link active" data-toggle="collapse"
-                                    data-target="#collapseOne">
-                                    <i class="icon_faq icofont-plus"></i> How can i pay ?</button>
-                            </h2>
-                        </div>
-                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-                            data-parent="#accordionExample">
-                            <div class="card-body">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry lorem Ipsum
-                                    has. been the
-                                    industrys standard dummy text ever since the when an unknown printer took a galley of
-                                    type and
-                                    scrambled it to make a type specimen book. It has survived not only five cen turies but
-                                    also the
-                                    leap into electronic typesetting, remaining essentially unchanged.</p>
-                            </div>
-                        </div>
+    @if ($faqs != null)
+        @if (count($faqs) > 0)
+            <section id="faqBlock" class="row_am faq_section" style="margin-bottom: 80px;">
+                <!-- container start -->
+                <div class="container">
+                    <div class="section_title" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
+                        <!-- h2 -->
+                        <h2><span>FAQ</span> - Pertanyaan yang Sering Diajukan</h2>
+                        <!-- p -->
+                        <p>Menjawab Pertanyaan Umum dan Menyediakan Informasi Penting untuk Pengguna</p>
                     </div>
-                    <div class="card" data-aos="fade-up" data-aos-duration="1500">
-                        <div class="card-header" id="headingTwo">
-                            <h2 class="mb-0">
-                                <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
-                                    data-target="#collapseTwo"><i class="icon_faq icofont-plus"></i> How to setup account
-                                    ?</button>
-                            </h2>
-                        </div>
-                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                            data-parent="#accordionExample">
-                            <div class="card-body">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry lorem Ipsum
-                                    has. been the
-                                    industrys standard dummy text ever since the when an unknown printer took a galley of
-                                    type and
-                                    scrambled it to make a type specimen book. It has survived not only five cen turies but
-                                    also the
-                                    leap into electronic typesetting, remaining essentially unchanged.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card" data-aos="fade-up" data-aos-duration="1500">
-                        <div class="card-header" id="headingThree">
-                            <h2 class="mb-0">
-                                <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
-                                    data-target="#collapseThree"><i class="icon_faq icofont-plus"></i>What is process to
-                                    get refund
-                                    ?</button>
-                            </h2>
-                        </div>
-                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-                            data-parent="#accordionExample">
-                            <div class="card-body">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry lorem Ipsum
-                                    has. been the
-                                    industrys standard dummy text ever since the when an unknown printer took a galley of
-                                    type and
-                                    scrambled it to make a type specimen book. It has survived not only five cen turies but
-                                    also the
-                                    leap into electronic typesetting, remaining essentially unchanged.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card" data-aos="fade-up" data-aos-duration="1500">
-                        <div class="card-header" id="headingFour">
-                            <h2 class="mb-0">
-                                <button type="button" class="btn btn-link collapsed" data-toggle="collapse"
-                                    data-target="#collapseFour"><i class="icon_faq icofont-plus"></i>What is process to
-                                    get refund
-                                    ?</button>
-                            </h2>
-                        </div>
-                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
-                            data-parent="#accordionExample">
-                            <div class="card-body">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry lorem Ipsum
-                                    has. been the
-                                    industrys standard dummy text ever since the when an unknown printer took a galley of
-                                    type and
-                                    scrambled it to make a type specimen book. It has survived not only five cen turies but
-                                    also the
-                                    leap into electronic typesetting, remaining essentially unchanged.</p>
-                            </div>
+                    <!-- faq data -->
+                    <div class="faq_panel">
+                        <div class="accordion" id="accordionExample">
+                            @foreach ($faqs as $faq)
+                                <div class="card" data-aos="fade-up" data-aos-duration="1500">
+                                    <div class="card-header" id="heading{{ $faq['id'] }}">
+                                        <h2 class="mb-0">
+                                            <button type="button"
+                                                class="btn btn-link {{ $loop->iteration == 1 ? 'active' : 'collapsed' }}"
+                                                data-toggle="collapse" data-target="#collapse{{ $faq['id'] }}">
+                                                <i class="icon_faq icofont-plus"></i>{{ $faq['question'] }}</button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapse{{ $faq['id'] }}"
+                                        class="collapse {{ $loop->iteration == 1 ? 'show' : '' }}"
+                                        aria-labelledby="heading{{ $faq['id'] }}" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <p>{{ $faq['answer'] }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <!-- container end -->
-    </section>
+                <!-- container end -->
+            </section>
+        @endif
+    @endif
     <!-- FAQ-Section end -->
 @endsection
