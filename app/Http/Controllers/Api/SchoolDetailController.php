@@ -23,7 +23,7 @@ class SchoolDetailController extends Controller
     private UserInterface $user;
     private SchoolYearInterface $schoolYear;
 
-    public function __construct(EmployeeInterface $employee, ClassroomInterface $classroom, ExtracurricularInterface $extracurricular, 
+    public function __construct(EmployeeInterface $employee, ClassroomInterface $classroom, ExtracurricularInterface $extracurricular,
     StudentInterface $student, ModelHasRfidInterface $modelHasRfid, UserInterface $user, SchoolYearInterface $schoolYear)
     {
         $this->employee = $employee;
@@ -38,31 +38,22 @@ class SchoolDetailController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index($slug)
+    public function index()
     {
-        $user = $this->user->showWithSlug($slug);
         $schoolyear = $this->schoolYear->active();
 
-        if ($user) {
-            return response()->json([
-                'status' => true, 
-                'message' => "Berhasil mengambil data",
-                'code' => 200, 
-                'data' => [
-                    'teacher' => $this->employee->getCountEmployee(RoleEnum::TEACHER->value),
-                    'classroom' => $this->classroom->countClass(),
-                    'extracurricular' => $this->extracurricular->count(),
-                    'student' => $this->student->count(),
-                    'rfid' => $this->modelHasRfid->count(),
-                    'school_year' => $schoolyear->school_year,
-                ]
-            ]);
-        } else {
-            return response()->json([
-                'status' => false,
-                'message' => "Gagal mengambil data",
-            ]);
-        }
-
+        return response()->json([
+            'status' => true,
+            'message' => "Berhasil mengambil data",
+            'code' => 200,
+            'data' => [
+                'teacher' => $this->employee->getCountEmployee(RoleEnum::TEACHER->value),
+                'classroom' => $this->classroom->countClass(),
+                'extracurricular' => $this->extracurricular->count(),
+                'student' => $this->student->count(),
+                'rfid' => $this->modelHasRfid->count(),
+                'school_year' => $schoolyear->school_year,
+            ]
+        ]);
     }
 }

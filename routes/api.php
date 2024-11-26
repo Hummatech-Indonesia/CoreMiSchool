@@ -32,7 +32,7 @@ Route::get('attendance/rfids', [RfidApiController::class, 'index'])->name('rfid.
 Route::get('attendance/hours', [AttendanceRuleApiController::class, 'index'])->name('attendance.hour');
 Route::get('attendance/list', [AttendanceController::class, 'listAttendance']);
 Route::get('attendance/reset', [AttendanceController::class, 'reset']);
-Route::get('school/detail/{slug}', [SchoolDetailController::class, 'index']);
+Route::get('school/detail', [SchoolDetailController::class, 'index']);
 
 Route::get('users-all', function () {
     $users = User::all();
