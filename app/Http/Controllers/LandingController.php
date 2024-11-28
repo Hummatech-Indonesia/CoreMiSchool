@@ -16,7 +16,7 @@ class LandingController extends Controller
             $schools = $responseSchool->json();
             $newses = $responseNews->json();
             $faqs = $responseFaq->json();
-            
+
             return view('welcome', compact('schools', 'newses', 'faqs'));
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Terjadi kesalahan pada server');
