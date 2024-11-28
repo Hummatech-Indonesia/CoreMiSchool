@@ -64,45 +64,46 @@
         </div>
     </div>
 
-    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start w-100">
-        <div class="mb-3 mb-md-0 w-100">
+    <div class="row align-items-center">
+        <!-- Bagian Statistik -->
+        <div class="col-12 col-lg-4 mb-3 mb-lg-0">
             <div class="d-flex align-items-center">
-                <span class="mb-1 badge bg-primary p-1">
+                <span class="badge bg-primary p-1 d-flex align-items-center justify-content-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
                         <path fill="currentColor"
                             d="M12 7q-.825 0-1.412-.587T10 5t.588-1.412T12 3t1.413.588T14 5t-.587 1.413T12 7m0 14q-.625 0-1.062-.437T10.5 19.5v-9q0-.625.438-1.062T12 9t1.063.438t.437 1.062v9q0 .625-.437 1.063T12 21" />
                     </svg>
                 </span>
-                <h5 class="ms-2 fw-semibold">Statistik Absensi Guru</h5>
+                <h5 class="ms-2 mb-0 fw-semibold">Statistik Absensi Guru</h5>
             </div>
         </div>
-        <div class="w-100">
-            <form id="form-action" class="d-flex flex-column flex-md-row gap-2 w-100">
-                <div class="d-flex flex-column flex-md-row w-100 gap-2">
-                    <div class="flex-grow-1 w-100 w-sm-75">
-                        <input type="date" name="start_date" class="form-control w-100"
+
+        <div class="col-12 col-lg-8">
+            <form id="form-action">
+                <div class="row g-2">
+                    <div class="col-12 col-lg-3">
+                        <input type="date" name="start_date" class="form-control"
                             value="{{ old('start_date', request()->start_date ?? date('Y-m-d')) }}">
                     </div>
-                    <div class="flex-grow-1 w-100 w-sm-75">
-                        <input type="date" name="end_date" class="form-control w-100"
+                    <div class="col-12 col-lg-3">
+                        <input type="date" name="end_date" class="form-control"
                             value="{{ old('end_date', request()->end_date ?? date('Y-m-d')) }}">
                     </div>
-                </div>
+                    <div class="col-12 col-lg-3">
+                        <button type="submit" class="btn btn-primary w-100 w-md-auto">Filter</button>
+                    </div>
+                    <div class="col-12 col-lg-3">
+                        <button
+                            class="btn btn-export btn-success d-flex align-items-center justify-content-center w-100 w-md-auto"
+                            type="submit">
+                            <span class="ms-2">Cetak Absensi</span>
+                        </button>
 
-                <div class="d-flex flex-column flex-md-row gap-2 mb-2 mb-md-0 w-100">
-                    <button type="submit" class="btn btn-primary py-1 w-100 w-md-auto">Cari</button>
-                    <button
-                        class="btn btn-export btn-success d-flex align-items-center justify-content-center py-1 w-100 w-md-auto"
-                        type="submit">
-                        <span class="ms-2">Cetak Absensi</span>
-                    </button>
-
+                    </div>
                 </div>
             </form>
         </div>
-
     </div>
-
 
 
     <div class="row mt-3">
