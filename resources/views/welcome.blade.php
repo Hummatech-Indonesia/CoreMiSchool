@@ -555,7 +555,7 @@
                                         </div>
                                         <h3>{{ $news['title'] }}</h3>
                                         <p>{!! \Illuminate\Support\Str::limit($news['description'], 200) !!}</p>
-                                        <a href="blog-detail.html" class="btn text_btn text-primary">READ MORE <i
+                                        <a href="{{ route('news.detail', ['slug' => $news['slug']]) }}" class="btn text_btn text-primary">READ MORE <i
                                                 class="icofont-arrow-right"></i></a>
                                     </div>
                                 </div>
@@ -563,7 +563,6 @@
                         @empty
                         @endforelse
                     </div>
-                    <!-- row end -->
                 </div>
             </section>
         @endif

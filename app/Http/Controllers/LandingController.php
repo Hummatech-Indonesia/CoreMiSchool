@@ -14,7 +14,7 @@ class LandingController extends Controller
             $responseNews = Http::get('https://mischool.mijurnal.com/api/news');
             $responseFaq = Http::get('https://mischool.mijurnal.com/api/faq');
             $schools = $responseSchool->json();
-            $newses = $responseNews->json();
+            $newses = $responseNews->json('news');
             $faqs = $responseFaq->json();
 
             return view('welcome', compact('schools', 'newses', 'faqs'));

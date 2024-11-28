@@ -189,7 +189,6 @@
         </div>
     </div>
 
-
     <!-- Hidden fields to store changes -->
     <form id="save-form" action="{{ route('school.student-classroom.update', ['classroom' => $classroom]) }}"
         method="POST">
