@@ -75,7 +75,7 @@ class LessonScheduleApiController extends Controller
     {
         $classroomStudents = $this->classroomStudent->getByClassId($lessonSchedule->classroom->id);
         $teacherJournal = $this->teacherJournal->getByLessonSchedule($lessonSchedule->id);
-        $attendanceJournals = $this->attendanceJournal->getByTeacherJournal($teacherJournal->id);
+        $attendanceJournals = $teacherJournal != null ? $this->attendanceJournal->getByTeacherJournal($teacherJournal->id) : null;
 
         return response()->json([
             'status' => 'success',
