@@ -16,8 +16,8 @@
             </div>
         </ul>
         <div class="d-block d-lg-none">
-            <img src="{{ asset('assets/images/logo/logo-miscool.png') }}" width="180" class="dark-logo">
-            <img src="{{ asset('assets/images/logo/logo-miscool.png') }}" width="180" class="light-logo">
+            <img src="{{ asset('assets/images/logo/logo-miscool.png') }}" class="dark-logo img-fluid" width="140" alt="" />
+            <img src="{{ asset('assets/images/logo/logo-miscool.png') }}" class="light-logo img-fluid" width="140" alt="" />
         </div>
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
