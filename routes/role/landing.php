@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('about-us', function(){
@@ -29,3 +30,5 @@ Route::get('package', function(){
 Route::get('view-pdf', function(){
     return view('export-pdf.export-lesson-schedule');
 })->name('export-pdf');
+
+Route::get('news/{slug}', [NewsController::class, 'index'])->name('news.detail');
