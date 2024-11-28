@@ -79,9 +79,11 @@
                 <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
             </form>
         </div>
-        <button type="button" class="btn btn-primary w-md-100" data-bs-toggle="modal" data-bs-target="#modal-create">
-            Tambah Ekstrakurikuler
-        </button>
+        <div class="col-12 col-lg-2">
+            <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#modal-create">
+                Tambah Ekstrakurikuler
+            </button>
+        </div>
     </div>
 
     <div class="row">
