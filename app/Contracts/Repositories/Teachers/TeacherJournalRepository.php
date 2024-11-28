@@ -71,6 +71,7 @@ class TeacherJournalRepository extends BaseRepository implements TeacherJournalI
             })->when($request->date, function ($query) use ($request) {
                 $query->where('date', 'LIKE', '%' . $request->date . '%');
             })
+            ->latest()
             ->get();
     }
 
