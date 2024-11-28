@@ -3,7 +3,7 @@
     <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
             <a href="/" class="text-nowrap logo-img">
-                <img src="{{ asset('assets/images/logo/logo-miscool.png') }}" width="200px" alt="">
+                <img src="{{ asset('assets/images/logo/logo-miscool.png') }}" width="150px" alt="">
             </a>
             <div class="close-btn d-lg-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
                 <i class="ti ti-x fs-8 text-muted"></i>
@@ -35,7 +35,8 @@
                 </li>
 
                 <li class="sidebar-item ">
-                    <a class="sidebar-link" href="{{ route('employee.violation.student-point.index') }}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('employee.violation.student-point.index') }}"
+                        aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                 <path fill="currentColor"
@@ -63,7 +64,8 @@
                 </li>
 
                 <li class="sidebar-item ">
-                    <a class="sidebar-link" href="{{ route('employee.violation.student-repair.index') }}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('employee.violation.student-repair.index') }}"
+                        aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
                                 <g fill="none">
