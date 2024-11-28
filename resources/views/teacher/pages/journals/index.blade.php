@@ -187,7 +187,7 @@
                 <div class="card w-100">
                     <div class="card-header bg-primary" style="border-radius: 0.50rem;">
                         <h4 class="mb-0 text-white card-title">
-                            {{ $journal->classroom->name }} - {{ $journal->teacherSubject->subject->name }}
+                            {{ $journal->lessonSchedule->classroom->name }} - {{ $journal->lessonSchedule->teacherSubject->subject->name }}
                         </h4>
                         <div class="position-absolute top-0 end-0" style="padding: 0px; position: relative;">
                             <img src="{{ asset('assets/images/background/arrow-leftwarning.png') }}" alt="Description"
