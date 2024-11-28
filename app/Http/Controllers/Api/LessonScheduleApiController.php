@@ -78,9 +78,9 @@ class LessonScheduleApiController extends Controller
             'message' => 'Berhasil mengambil data',
             'code' => 200,
             'data' => [
-                'title' => $lessonSchedule->teacherJournals->first() != null ? $lessonSchedule->teacherJournals->first()->title : null,
-                'description' => $lessonSchedule->teacherJournals->first() != null ? $lessonSchedule->teacherJournals->first()->description : null,
-                'date' => $lessonSchedule->teacherJournals->first() != null ? $lessonSchedule->teacherJournals->first()->date : null,
+                'title' => $lessonSchedule->teacherJournals->count() > 0 ? $lessonSchedule->teacherJournals->first()->title : null,
+                'description' => $lessonSchedule->teacherJournals->count() > 0 ? $lessonSchedule->teacherJournals->first()->description : null,
+                'date' => $lessonSchedule->teacherJournals->count() > 0 ? $lessonSchedule->teacherJournals->first()->date : null,
                 'classroom_students' => $attendanceJournals != null ? AttendanceJournalResource::collection($attendanceJournals) : ClassroomStudentResource::collection($classroomStudents)
             ]
         ]);
