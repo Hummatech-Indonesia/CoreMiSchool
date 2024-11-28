@@ -18,4 +18,5 @@ interface TeacherJournalInterface extends GetInterface, StoreInterface, UpdateIn
     public function whereTeacher(mixed $employee_id, mixed $subject_id): mixed;
     public function getByTeacher(mixed $employee_id): mixed;
     public function getJournalToday(mixed $id): mixed;
+    public function getByLessonSchedule(mixed $id): mixed;
 }

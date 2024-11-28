@@ -71,17 +71,18 @@ class LessonScheduleApiController extends Controller
     public function show(LessonSchedule $lessonSchedule)
     {
         $classroomStudents = $this->classroomStudent->getByClassId($lessonSchedule->classroom->id);
-        $attendanceJournals = $lessonSchedule->teacherJournals->count() > 0 ? $lessonSchedule->teacherJournals->first()->attendanceJournals : null;
+        $attendanceJournal = $this->teacherJournal->getByLessonSchedule($lessonSchedule->id);
+        $attendanceJournals = $attendanceJournal->attendanceJournals;
 
         return response()->json([
             'status' => 'success',
             'message' => 'Berhasil mengambil data',
             'code' => 200,
             'data' => [
-                'title' => $lessonSchedule->teacherJournals->count() > 0 ? $lessonSchedule->teacherJournals->first()->title : null,
-                'description' => $lessonSchedule->teacherJournals->count() > 0 ? $lessonSchedule->teacherJournals->first()->description : null,
-                'date' => $lessonSchedule->teacherJournals->count() > 0 ? $lessonSchedule->teacherJournals->first()->date : null,
-                'classroom_students' => $attendanceJournals != null ? AttendanceJournalResource::collection($attendanceJournals) : ClassroomStudentResource::collection($classroomStudents)
+                'title' => $attendanceJournal != null ? $attendanceJournal->title : null,
+                'description' => $attendanceJournal != null ? $attendanceJournal->description : null,
+                'date' => $attendanceJournal != null ? $attendanceJournal->date : null,
+                'classroom_students' => $attendanceJournal != null ? AttendanceJournalResource::collection($attendanceJournals) : ClassroomStudentResource::collection($classroomStudents)
             ]
         ]);
     }

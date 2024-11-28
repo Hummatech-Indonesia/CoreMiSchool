@@ -97,4 +97,12 @@ class TeacherJournalRepository extends BaseRepository implements TeacherJournalI
             ->whereRelation('lessonSchedule.teacherSubject', 'employee_id', $employee_id)
             ->get();
     }
+
+    public function getByLessonSchedule(mixed $id): mixed
+    {
+        return $this->model->query()
+            ->where('lesson_schedule_id', $id)
+            ->whereDate('created_at', today())
+            ->first();
+    }
 }
