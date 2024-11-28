@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Contracts\Interfaces\AttendanceJournalInterface;
 use App\Contracts\Interfaces\ClassroomStudentInterface;
 use App\Contracts\Interfaces\LessonScheduleInterface;
 use App\Contracts\Interfaces\Teachers\TeacherJournalInterface;
@@ -23,19 +24,21 @@ class LessonScheduleApiController extends Controller
     private LessonScheduleInterface $lessonSchedule;
     private ClassroomStudentInterface $classroomStudent;
     private TeacherJournalInterface $teacherJournal;
-
     private AttendanceJournalService $serviceAttendance;
     private TeacherJournalService $serviceJournal;
+    private AttendanceJournalInterface $attendanceJournal;
 
     public function __construct(LessonScheduleInterface $lessonSchedule, ClassroomStudentInterface $classroomStudent,
-    TeacherJournalInterface $teacherJournal, AttendanceJournalService $serviceAttendance, TeacherJournalService $serviceJournal)
+    TeacherJournalInterface $teacherJournal, AttendanceJournalService $serviceAttendance, TeacherJournalService $serviceJournal,
+    AttendanceJournalInterface $attendanceJournal,
+    )
     {
         $this->lessonSchedule = $lessonSchedule;
         $this->classroomStudent = $classroomStudent;
         $this->teacherJournal = $teacherJournal;
-
         $this->serviceAttendance = $serviceAttendance;
         $this->serviceJournal = $serviceJournal;
+        $this->attendanceJournal = $attendanceJournal;
     }
 
     /**
@@ -71,18 +74,18 @@ class LessonScheduleApiController extends Controller
     public function show(LessonSchedule $lessonSchedule)
     {
         $classroomStudents = $this->classroomStudent->getByClassId($lessonSchedule->classroom->id);
-        $attendanceJournal = $this->teacherJournal->getByLessonSchedule($lessonSchedule->id);
-        $attendanceJournals = $attendanceJournal->attendanceJournals;
+        $teacherJournal = $this->teacherJournal->getByLessonSchedule($lessonSchedule->id);
+        $attendanceJournals = $this->attendanceJournal->getByTeacherJournal($teacherJournal->id);
 
         return response()->json([
             'status' => 'success',
             'message' => 'Berhasil mengambil data',
             'code' => 200,
             'data' => [
-                'title' => $attendanceJournal != null ? $attendanceJournal->title : null,
-                'description' => $attendanceJournal != null ? $attendanceJournal->description : null,
-                'date' => $attendanceJournal != null ? $attendanceJournal->date : null,
-                'classroom_students' => $attendanceJournal != null ? AttendanceJournalResource::collection($attendanceJournals) : ClassroomStudentResource::collection($classroomStudents)
+                'title' => $teacherJournal != null ? $teacherJournal->title : null,
+                'description' => $teacherJournal != null ? $teacherJournal->description : null,
+                'date' => $teacherJournal != null ? $teacherJournal->date : null,
+                'classroom_students' => $teacherJournal != null ? AttendanceJournalResource::collection($attendanceJournals) : ClassroomStudentResource::collection($classroomStudents)
             ]
         ]);
     }
