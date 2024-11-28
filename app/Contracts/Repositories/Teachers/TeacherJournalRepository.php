@@ -78,7 +78,7 @@ class TeacherJournalRepository extends BaseRepository implements TeacherJournalI
     {
         return $this->model->query()
             ->whereRelation('lessonSchedule.teacherSubject.employee.user', 'id', $id)
-            ->whereRelation('lessonSchedule', 'day', today()->format('l'))
+            ->whereDate('created_at', today())
             ->get();
     }
 
