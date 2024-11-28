@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-rounded btn-primary">Edit</button>
+                    <button type="submit" class="btn btn-rounded btn-primary">Simpan</button>
                 </div>
             </form>
         </div>
