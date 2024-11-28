@@ -91,27 +91,27 @@
         </div>
     </div>
 
-    <div class="col-12">
-        <div class="card border border-grey shadow position-relative overflow-hidden h-75">
-            <div class="card-body px-4 py-3">
-                <div class="row align-items-center">
-                    <div class="col-12 col-md-8">
-                        <h5 class="fw-semibold">Atur point pelanggaran dan peringatan pelanggaran</h5>
-                    </div>
-                    <div class="col-12 col-md-4 d-flex justify-content-md-end justify-content-start align-items-center mt-3 mt-md-0">
-                        <button class="btn btn-warning me-2 d-flex align-items-center" data-bs-toggle="modal"
-                            data-bs-target="#modal-warning-point">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="me-2">
-                                <g fill="none">
-                                    <path
-                                        d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z" />
-                                    <path fill="currentColor"
-                                        d="m13.299 3.148l8.634 14.954a1.5 1.5 0 0 1-1.299 2.25H3.366a1.5 1.5 0 0 1-1.299-2.25l8.634-14.954c.577-1 2.02-1 2.598 0M12 4.898L4.232 18.352h15.536zM12 15a1 1 0 1 1 0 2a1 1 0 0 1 0-2m0-7a1 1 0 0 1 1 1v4a1 1 0 1 1-2 0V9a1 1 0 0 1 1-1" />
-                                </g>
-                            </svg>
-                            Atur Peringatan Point
-                        </button>
-                    </div>
+    <div class="card border border-grey shadow position-relative overflow-hidden h-75">
+        <div class="card-body px-4 py-3">
+            <div class="row align-items-center">
+                <div class="col-12 col-md-9">
+                    <h5 class="fw-semibold">Atur point pelanggaran dan peringatan pelanggaran</h5>
+                </div>
+                <div
+                    class="col-12 col-lg-3 d-flex justify-content-md-end justify-content-start align-items-center mt-3 mt-md-0">
+                    <button class="btn btn-warning d-flex align-items-center justify-content-center w-100"
+                        data-bs-toggle="modal" data-bs-target="#modal-warning-point">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                            class="me-2">
+                            <g fill="none">
+                                <path
+                                    d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z" />
+                                <path fill="currentColor"
+                                    d="m13.299 3.148l8.634 14.954a1.5 1.5 0 0 1-1.299 2.25H3.366a1.5 1.5 0 0 1-1.299-2.25l8.634-14.954c.577-1 2.02-1 2.598 0M12 4.898L4.232 18.352h15.536zM12 15a1 1 0 1 1 0 2a1 1 0 0 1 0-2m0-7a1 1 0 0 1 1 1v4a1 1 0 1 1-2 0V9a1 1 0 0 1 1-1" />
+                            </g>
+                        </svg>
+                        Atur Peringatan Point
+                    </button>
                 </div>
             </div>
         </div>
@@ -119,38 +119,45 @@
 
 
     <div class="d-flex align-items-center mb-4 pt-3">
-        <span class="mb-1 badge bg-primary p-1">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+        <span class="badge bg-primary d-flex align-items-center justify-content-center p-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
                 <path fill="currentColor"
                     d="M12 7q-.825 0-1.412-.587T10 5t.588-1.412T12 3t1.413.588T14 5t-.587 1.413T12 7m0 14q-.625 0-1.062-.437T10.5 19.5v-9q0-.625.438-1.062T12 9t1.063.438t.437 1.062v9q0 .625-.437 1.063T12 21" />
             </svg>
         </span>
-        <h4 class="ms-3 mb-0"><b>Daftar Pelanggaran dan Perbaikan</b></h4>
+        <h4 class="ms-3 mb-0" style="font-size: 18px; line-height: 1.5;"><b>Daftar Pelanggaran dan Perbaikan</b></h4>
     </div>
 
-    <div class="row d-flex align-items-center mb-4">
-        <form class="row g-3 align-items-center col-md-9">
-            <div class="col-md-3 col-sm-12">
-                <input type="text" name="search" class="form-control" placeholder="Cari...">
-            </div>
-            <div class="col-md-3 col-sm-12">
-                <select name="points" class="form-select">
-                    <option value="highest">Point Tertinggi</option>
-                    <option value="lowest">Point Terendah</option>
-                </select>
-            </div>
-            <div class="col-md-2 col-sm-12">
-                <button type="submit" class="btn btn-primary w-100">Cari</button>
-            </div>
-        </form>
 
-        <div class="col-md-3 d-flex justify-content-end mt-3 mt-md-0">
-            <button class="btn btn-success align-items-center me-2" type="button" data-bs-toggle="modal"
+    <div class="row mb-3">
+        <div class="col-12 col-lg-8">
+            <form>
+                <div class="row g-2">
+                    <div class="col-12 col-lg-3">
+                        <input type="text" name="search" class="form-control" placeholder="Cari...">
+                    </div>
+                    <div class="col-12 col-lg-3">
+                        <select name="points" class="form-select">
+                            <option value="highest">Point Tertinggi</option>
+                            <option value="lowest">Point Terendah</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-lg-2">
+                        <button type="submit" class="btn btn-primary w-100">Cari</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-12 col-lg-4 d-flex justify-content-lg-end mt-3 mt-lg-0">
+            <button class="btn btn-success d-flex align-items-center me-2" type="button" data-bs-toggle="modal"
                 data-bs-target="#import-violation-school">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                     <g fill="none" fill-rule="evenodd">
-                        <path d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z" />
-                        <path fill="currentColor" d="M13.586 2a2 2 0 0 1 1.284.467l.13.119L19.414 7a2 2 0 0 1 .578 1.238l.008.176V20a2 2 0 0 1-1.85 1.995L18 22h-6v-2h6V10h-4.5a1.5 1.5 0 0 1-1.493-1.356L12 8.5V4H6v8H4V4a2 2 0 0 1 1.85-1.995L6 2zM7.707 14.465l2.829 2.828a1 1 0 0 1 0 1.414l-2.829 2.828a1 1 0 1 1-1.414-1.414L7.414 19H3a1 1 0 1 1 0-2h4.414l-1.121-1.121a1 1 0 1 1 1.414-1.415ZM14 4.414V8h3.586z" />
+                        <path
+                            d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z" />
+                        <path fill="currentColor"
+                            d="M13.586 2a2 2 0 0 1 1.284.467l.13.119L19.414 7a2 2 0 0 1 .578 1.238l.008.176V20a2 2 0 0 1-1.85 1.995L18 22h-6v-2h6V10h-4.5a1.5 1.5 0 0 1-1.493-1.356L12 8.5V4H6v8H4V4a2 2 0 0 1 1.85-1.995L6 2zM7.707 14.465l2.829 2.828a1 1 0 0 1 0 1.414l-2.829 2.828a1 1 0 1 1-1.414-1.414L7.414 19H3a1 1 0 1 1 0-2h4.414l-1.121-1.121a1 1 0 1 1 1.414-1.415ZM14 4.414V8h3.586z" />
                     </g>
                 </svg>
                 Import Pelanggaran
@@ -159,6 +166,7 @@
             <button class="btn btn-primary btn-create ms-2" type="button">Tambah Pelanggaran</button>
         </div>
     </div>
+
 
 
     <div class="row">
@@ -176,7 +184,7 @@
                         <tr>
                             <td class="text-start">{{ $regulation->violation }}</td>
                             <td class="text-center">
-                                <span class="mb-1 badge font-medium bg-light-primary text-primary w-50"><b>+
+                                <span class="mb-1 badge font-medium bg-light-primary text-primary"><b>+
                                         {{ $regulation->point }}</b></span>
                             </td>
                             <td class="text-center">

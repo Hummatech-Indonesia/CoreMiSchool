@@ -15,7 +15,7 @@
                 <div class="mb-3">
                     <div class="form-group d-flex">
                         <h6 class="mb-2"><b>Point Pelanggaran :</b></h6>
-                        <span class="mb-1 badge font-medium bg-light-danger text-danger ms-3"><p id="point-detail"></p></span>
+                        <span class="badge font-medium bg-light-danger text-danger ms-3"><p id="point-detail" class="mb-0"></p></span>
                     </div>
                 </div>
             </div>
