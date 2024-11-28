@@ -93,19 +93,18 @@
         <div class="col-lg-6 col-md-12 mb-3">
             <div class="d-flex align-items-center">
                 <span class="mb-1 badge bg-primary p-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
                         <path fill="currentColor"
                             d="M12 7q-.825 0-1.412-.587T10 5t.588-1.412T12 3t1.413.588T14 5t-.587 1.413T12 7m0 14q-.625 0-1.062-.437T10.5 19.5v-9q0-.625.438-1.062T12 9t1.063.438t.437 1.062v9q0 .625-.437 1.063T12 21" />
                     </svg>
                 </span>
-                <h4 class="ms-3 mb-0">Daftar Siswa Mengikuti Ekstrakurikuler</h4>
+                <h5 class="ms-3 fw-semibold mb-0" style="font-size: 18px" >Daftar Siswa Mengikuti Ekstrakurikuler</h5>
             </div>
         </div>
     </div>
-    <div class="d-flex flex-wrap justify-content-between align-items-center pt-2">
-        <div class="d-flex flex-wrap">
-            <!-- Search Form -->
-            <div class="col-12 col-md-6 col-lg-12 mb-3 me-3">
+    <div class="row">
+        <div class="col-12 col-lg-9 mb-2">
+            <div class="col-12 col-lg-3">
                 <form class="position-relative">
                     <input type="text" name="name" class="form-control product-search ps-5" id="input-search"
                         placeholder="Cari..." value="{{ old('name', request()->name) }}">
@@ -113,18 +112,15 @@
                 </form>
             </div>
         </div>
-        <!-- Action Buttons -->
-        <div class="d-flex flex-wrap align-items-center">
-            <button type="button" class="btn mb-1 btn-success me-2" data-bs-toggle="modal" data-bs-target="#modal-import">
+        <div class="col-12 col-lg-3 d-flex justify-content-end gap-2 mb-2">
+            <button type="button" class="btn btn-success w-50" data-bs-toggle="modal" data-bs-target="#modal-import">
                 Import Siswa
             </button>
-            <button type="button" class="btn mb-1 btn-primary " data-bs-toggle="modal"
-                data-bs-target="#modal-create-student">
+            <button type="button" class="btn btn-primary w-50" data-bs-toggle="modal" data-bs-target="#modal-create-student">
                 Tambah Siswa
             </button>
         </div>
     </div>
-
 
     <div class="table-responsive rounded-2 mb-4 pt-2">
         <table class="table border text-nowrap customize-table mb-0 align-middle text-center">
