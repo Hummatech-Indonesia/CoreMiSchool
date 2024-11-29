@@ -80,7 +80,7 @@
 
         <!-- Form Filter -->
         <div class="col-12 col-lg-6">
-            <form>
+            <form action="">
                 <div class="row g-2 align-items-center">
                     <div class="col-12 col-md-6 col-lg-4">
                         <input type="date" name="start_date" class="form-control"
@@ -99,7 +99,7 @@
 
         <!-- Tombol Cetak -->
         <div class="col-12 col-lg-2 mt-3 mt-lg-0">
-            <form action="" id="form-action">
+            <form action="{{ route('school.teacher-attendance.export') }}" >
                 <button class="btn btn-success d-flex align-items-center justify-content-center w-100" type="submit">
                     <span class="ms-2">Cetak Absensi</span>
                 </button>
@@ -198,10 +198,4 @@
 
 @section('script')
     @include('school.pages.statistic-presence.script.donut-chart')
-
-    <script>
-        $('.btn-export').click(function() {
-            $('#form-action').attr('action', '{{ route('school.teacher-attendance.export') }}');
-        })
-    </script>
 @endsection
