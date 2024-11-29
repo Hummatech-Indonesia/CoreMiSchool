@@ -11,8 +11,12 @@ class LandingController extends Controller
     public function index()
     {
         try {
+            $condition = 'null';
+            $column = 'null';
+            $query = 'null';
+
             $responseSchool = Http::get('https://mischool.mijurnal.com/api/schools');
-            $responseNews = Http::get('https://mischool.mijurnal.com/api/news');
+            $responseNews = Http::get('https://mischool.mijurnal.com/api/news' . '/' . $condition . '/' . $column . '/' . $query);
             $responseFaq = Http::get('https://mischool.mijurnal.com/api/faq');
             $schools = $responseSchool->json();
             $newses = $responseNews->json('news');
@@ -26,7 +30,11 @@ class LandingController extends Controller
 
     public function news()
     {
-        $responseNews = Http::get('https://mischool.mijurnal.com/api/news');
+        $condition = 'null';
+        $column = 'null';
+        $query = 'null';
+
+        $responseNews = Http::get('https://mischool.mijurnal.com/api/news' . '/' . $condition . '/' . $column . '/' . $query);
         $responseCategories = Http::get('https://mischool.mijurnal.com/api/news-category');
         $latest = $responseNews->json('news_latest');
         $recentPosts = $responseNews->json('news_recent_post');
@@ -38,11 +46,11 @@ class LandingController extends Controller
         $page = request()->get('page', 1);
 
         $otherNews = new LengthAwarePaginator(
-            $data->forPage($page, $perPage), 
-            $data->count(),                 
-            $perPage,                       
-            $page,                          
-            ['path' => request()->url(), 'query' => request()->query()] 
+            $data->forPage($page, $perPage),
+            $data->count(),
+            $perPage,
+            $page,
+            ['path' => request()->url(), 'query' => request()->query()]
         );
 
         return view('landing.news.news', compact('latest', 'recentPosts', 'otherNews', 'categories'));

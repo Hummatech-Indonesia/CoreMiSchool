@@ -8,10 +8,6 @@ Route::get('about-us', function(){
     return view('landing.about-us');
 })->name('about-us');
 
-Route::get('news-detail', function(){
-    return view('landing.news.detail');
-})->name('news-detail');
-
 Route::get('news', [LandingController::class, 'news'])->name('news');
 
 Route::get('testimoni', function(){
@@ -31,3 +27,4 @@ Route::get('view-pdf', function(){
 })->name('export-pdf');
 
 Route::get('news/{slug}', [NewsController::class, 'index'])->name('news.detail');
+Route::get('news/category/{slug}', [NewsController::class, 'index_category'])->name('news.category.detail');

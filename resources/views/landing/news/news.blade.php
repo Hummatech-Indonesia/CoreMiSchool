@@ -193,7 +193,7 @@
                         <ul>
                             @foreach ($categories as $category)
                             <li>
-                                <a href="$" class="cat"><i class="icofont-folder-open"></i>{{ $category['name'] }}</a>
+                                <a href="{{ route('news.category.detail', ['slug' => $category['slug']]) }}" class="cat"><i class="icofont-folder-open"></i>{{ $category['name'] }}</a>
                                 <span>{{ $category['news_count'] }}</span>
                             </li>
                             @endforeach
