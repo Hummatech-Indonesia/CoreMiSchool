@@ -108,6 +108,42 @@
         .unique_section .features_inner .feature_card:nth-child(3) .dot_anim {
             background-color: #43c8f9;
         }
+
+
+        .story_img img {
+            width: 100%;
+            height: 200px;
+            /* Atur tinggi gambar */
+            object-fit: cover;
+            /* Pastikan gambar proporsional */
+        }
+
+        .story_box {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            /* Pastikan tinggi card seragam */
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .story_text {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            /* Biarkan teks mengisi ruang kosong */
+            padding: 15px;
+        }
+
+        .story_text1 {
+            margin-top: auto;
+            /* Dorong tombol ke bawah */
+            text-align: center;
+            /* Pusatkan tombol secara horizontal (opsional) */
+        }
     </style>
 
     <style>
@@ -381,8 +417,8 @@
                                     <div class="logo">
                                         {{-- <img src="{{ asset('storage/' . $school->logo) }}" alt="image"
                                     style="width: 150px; height: 150px; object-fit: contain;"> --}}
-                                        <img src="{{ asset('https://mischool.mijurnal.com/storage/' . $school['logo']) }}" alt="image"
-                                            style="max-width: 150px; max-height: 150px;">
+                                        <img src="{{ asset('https://mischool.mijurnal.com/storage/' . $school['logo']) }}"
+                                            alt="image" style="max-width: 150px; max-height: 150px;">
                                     </div>
                                 </div>
                             @empty
@@ -531,41 +567,47 @@
 
     <!-- Story-Section-Start -->
     {{-- @if ($newses != null) --}}
-        @if (count($newses) > 0)
-            <section class="row_am latest_story" id="blog">
-                <!-- container start -->
-                <div class="container">
-                    <div class="section_title" data-aos="fade-in" data-aos-duration="1500" data-aos-delay="100">
-                        <h2>Berita Terbaru</h2>
-                        <p>Berita berita terbaru yang menyediakan tentang informasi kerja sama Mischool antar sekolah</p>
-                    </div>
-                    <!-- row start -->
-                    <div class="row">
-                        @forelse ($newses as $news)
-                            <div class="col-md-4">
-                                <div class="story_box" data-aos="fade-up" data-aos-duration="1500">
-                                    <div class="story_img">
-                                        <img src="{{ $news['image'] }}" alt="image">
-                                        <span
-                                                class="bg-primary text-white"><span>{{ $news['day'] }}</span>{{ $news['mount'] }}</span>
+    @if (count($newses) > 0)
+        <section class="row_am latest_story" id="blog">
+            <!-- container start -->
+            <div class="container">
+                <div class="section_title" data-aos="fade-in" data-aos-duration="1500" data-aos-delay="100">
+                    <h2>Berita Terbaru</h2>
+                    <p>Berita berita terbaru yang menyediakan tentang informasi kerja sama Mischool antar sekolah</p>
+                </div>
+                <!-- row start -->
+                <div class="row">
+                    @forelse ($newses as $news)
+                        <div class="col-md-4 d-flex">
+                            <div class="story_box" data-aos="fade-up" data-aos-duration="1500">
+                                <div class="story_img">
+                                    <img src="{{ $news['image'] }}" alt="image"
+                                        style="height: 200px; object-fit: cover;">
+                                    <span
+                                        class="bg-primary text-white"><span>{{ $news['day'] }}</span>{{ $news['mount'] }}</span>
+                                </div>
+                                <div class="story_text">
+                                    <div class="statstic text-primary">
+                                        <span>{{ $news['news_category'] }}</span>
                                     </div>
-                                    <div class="story_text">
-                                        <div class="statstic text-primary">
-                                            <span>{{ $news['news_category'] }}</span>
-                                        </div>
-                                        <h3>{{ $news['title'] }}</h3>
-                                        <p>{!! \Illuminate\Support\Str::limit($news['description'], 200) !!}</p>
-                                        <a href="{{ route('news.detail', ['slug' => $news['slug']]) }}" class="btn text_btn text-primary">READ MORE <i
+                                    <h3>{{ $news['title'] }}</h3>
+                                    <p>{!! \Illuminate\Support\Str::limit($news['description'], 200) !!}</p>
+                                    <div class="story_text1">
+                                        <a href="{{ route('news.detail', ['slug' => $news['slug']]) }}"
+                                            class="btn text_btn text-primary">READ MORE <i
                                                 class="icofont-arrow-right"></i></a>
                                     </div>
                                 </div>
                             </div>
-                        @empty
-                        @endforelse
-                    </div>
+                        </div>
+                    @empty
+                    @endforelse
                 </div>
-            </section>
-        @endif
+
+
+            </div>
+        </section>
+    @endif
     {{-- @endif --}}
     <!-- Story-Section-end -->
 
