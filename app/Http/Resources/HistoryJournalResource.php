@@ -17,6 +17,7 @@ class HistoryJournalResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->lesson_schedule_id,
             'subject' => $this->lessonSchedule->teacherSubject->subject->name,
             'classroom' => $this->lessonSchedule->classroom->name,
             'title' => $this->title,
