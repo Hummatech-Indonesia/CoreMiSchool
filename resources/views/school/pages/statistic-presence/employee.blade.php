@@ -78,32 +78,35 @@
             </div>
         </div>
 
-        <div class="col-12 col-lg-8">
-            <form id="form-action">
-                <div class="row g-2">
-                    <div class="col-12 col-lg-3">
+        <!-- Form Filter -->
+        <div class="col-12 col-lg-6">
+            <form>
+                <div class="row g-2 align-items-center">
+                    <div class="col-12 col-md-6 col-lg-4">
                         <input type="date" name="start_date" class="form-control"
                             value="{{ old('start_date', request()->start_date ?? date('Y-m-d')) }}">
                     </div>
-                    <div class="col-12 col-lg-3">
+                    <div class="col-12 col-md-6 col-lg-4">
                         <input type="date" name="end_date" class="form-control"
                             value="{{ old('end_date', request()->end_date ?? date('Y-m-d')) }}">
                     </div>
-                    <div class="col-12 col-lg-3">
-                        <button type="submit" class="btn btn-primary w-100 w-md-auto">Filter</button>
-                    </div>
-                    <div class="col-12 col-lg-3">
-                        <button
-                            class="btn btn-export btn-success d-flex align-items-center justify-content-center w-100 w-md-auto"
-                            type="submit">
-                            <span class="ms-2">Cetak Absensi</span>
-                        </button>
-
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <button type="submit" class="btn btn-primary w-100">Filter</button>
                     </div>
                 </div>
             </form>
         </div>
+
+        <!-- Tombol Cetak -->
+        <div class="col-12 col-lg-2 mt-3 mt-lg-0">
+            <form action="" id="form-action">
+                <button class="btn btn-success d-flex align-items-center justify-content-center w-100" type="submit">
+                    <span class="ms-2">Cetak Absensi</span>
+                </button>
+            </form>
+        </div>
     </div>
+
 
 
     <div class="row mt-3">
