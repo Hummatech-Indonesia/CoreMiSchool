@@ -207,7 +207,7 @@ class StafApiController extends Controller
     public function popular_violations()
     {
         try {
-            $popular_violations = $this->regulation->getOrder();
+            $popular_violations = $this->regulation->getOrderApi();
             return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => PopularViolationResource::collection($popular_violations)], 200);
         } catch (\Throwable $th) {
             return response()->json(['status' => 'success', 'message' => "Data Kosong",'code' => 400], 400);

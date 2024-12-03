@@ -103,6 +103,15 @@ class RegulationRepository extends BaseRepository implements RegulationInterface
             ->get();
     }
 
+    public function getOrderApi(): mixed
+    {
+        return $this->model->query()
+            ->withCount('studentViolations')
+            ->orderBy('student_violations_count', 'desc')
+            ->take(5)
+            ->get();
+    }
+
     public function getRegulation(Request $request): mixed
     {
         return $this->model->query()

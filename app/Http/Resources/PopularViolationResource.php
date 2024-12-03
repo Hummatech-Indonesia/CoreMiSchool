@@ -15,6 +15,7 @@ class PopularViolationResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'name_violation' => $this->violation,
             'point' => $this->point,
             'student_violations' => $this->student_violations_count,
