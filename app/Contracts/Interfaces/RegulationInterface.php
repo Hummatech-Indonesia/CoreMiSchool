@@ -17,6 +17,6 @@ interface RegulationInterface extends GetInterface, StoreInterface, UpdateInterf
     public function sum_point(mixed $id): mixed;
     public function getRegulation(Request $request): mixed;
     public function getOrder(): mixed;
-    public function getOrderApi(): mixed
+    public function getOrderApi(): mixed;
     public function latest(): mixed;
 }
