@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
 class StudentPermissionResource extends JsonResource
 {
@@ -21,7 +22,7 @@ class StudentPermissionResource extends JsonResource
             'class' => $this->model->classroom->name,
             'date' => $this->created_at,
             'status' => $this->status->label(),
-            'proof' => $this->proof != null ? asset(request()->root(). '/storage/'.$this->proof) : asset(request()->root(). '/public/admin_assets/dist/images/profile/user-1.jpg'),
+            'proof' => $this->proof != null && Storage::exists(request()->root(). '/storage/'.$this->proof) ? asset(request()->root(). '/storage/'.$this->proof) : asset(request()->root(). '/public/admin_assets/dist/images/empty/no-data.png'),
         ];
     }
 }
