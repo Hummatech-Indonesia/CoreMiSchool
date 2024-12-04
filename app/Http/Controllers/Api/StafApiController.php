@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Contracts\Interfaces\AttendanceInterface;
 use App\Contracts\Interfaces\AttendanceRuleInterface;
 use App\Contracts\Interfaces\EmployeeInterface;
 use App\Contracts\Interfaces\EmployeeJournalInterface;
@@ -10,11 +11,13 @@ use App\Contracts\Interfaces\SchoolPointInterface;
 use App\Contracts\Interfaces\StudentInterface;
 use App\Contracts\Interfaces\StudentRepairInterface;
 use App\Contracts\Interfaces\StudentViolationInterface;
+use App\Enums\AttendanceEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\EmployeeJournalResource;
 use App\Http\Resources\PopularViolationResource;
 use App\Http\Resources\RegulationResource;
 use App\Http\Resources\RepairStudentResource;
+use App\Http\Resources\StudentPermissionResource;
 use App\Http\Resources\StudentPointResource;
 use App\Models\User;
 use App\Services\EmployeeJournalService;
@@ -32,6 +35,7 @@ class StafApiController extends Controller
     private EmployeeJournalInterface $employeeJournal;
     private RegulationInterface $regulation;
     private AttendanceRuleInterface $attendanceRule;
+    private AttendanceInterface $attendance;
 
     public function __construct(
         AttendanceRuleInterface $attendanceRule,
@@ -43,6 +47,7 @@ class StafApiController extends Controller
         EmployeeJournalService $journalService,
         EmployeeJournalInterface $employeeJournal,
         RegulationInterface $regulation,
+        AttendanceInterface $attendance,
     )
     {
         $this->attendanceRule = $attendanceRule;
@@ -54,6 +59,7 @@ class StafApiController extends Controller
         $this->journalService = $journalService;
         $this->employeeJournal = $employeeJournal;
         $this->regulation = $regulation;
+        $this->attendance = $attendance;
     }
 
     /**
@@ -211,6 +217,16 @@ class StafApiController extends Controller
             return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => PopularViolationResource::collection($popular_violations)], 200);
         } catch (\Throwable $th) {
             return response()->json(['status' => 'success', 'message' => "Data Kosong",'code' => 400], 400);
+        }
+    }
+    
+    public function student_permissions(Request $request)
+    {
+        try {
+            $attendances = $this->attendance->getSickAndPermit($request, [AttendanceEnum::SICK->value, AttendanceEnum::PERMIT->value]);
+            return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => StudentPermissionResource::collection($attendances)], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['status' => 'success', 'message' => "Data Kosong".$th->getMessage(),'code' => 400], 400);
         }
     }
 }
