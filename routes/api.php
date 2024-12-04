@@ -94,6 +94,7 @@ Route::get('staf/list-repair', [StafApiController::class, 'list_repair']);
 Route::get('staf/list-point-student', [StafApiController::class, 'list_point_student']);
 Route::get('staf/popular-violations', [StafApiController::class, 'popular_violations']);
 Route::get('staf/student-permissions', [StafApiController::class, 'student_permissions']);
+Route::get('staf/statistic-violation', [StafApiController::class, 'statistic_violation']);
 
 Route::get('teacher/class/{user}', [TeacherApiController::class, 'class']);
 Route::get('teacher/attendance/{user}', [TeacherApiController::class, 'teacher_attendance']);   
