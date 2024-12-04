@@ -224,7 +224,7 @@ class StafApiController extends Controller
     {
         try {
             $attendances = $this->attendance->getSickAndPermit($request, [AttendanceEnum::SICK->value, AttendanceEnum::PERMIT->value]);
-            return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => StudentPermissionResource::collection($attendances)], 200);
+            return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => [ 'permissions' => StudentPermissionResource::collection($attendances)], ], 200);
         } catch (\Throwable $th) {
             return response()->json(['status' => 'success', 'message' => "Data Kosong".$th->getMessage(),'code' => 400], 400);
         }
