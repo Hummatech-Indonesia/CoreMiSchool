@@ -19,6 +19,7 @@ class LessonResource extends JsonResource
             'name' => $this->teacherSubject->subject->name,
             'class' => $this->classroom->name,
             'teacher' => $this->teacherSubject->employee->user->name,
+            'end_time' => $this->end->end,
         ];
     }
 }
