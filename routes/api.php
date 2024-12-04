@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\LoginApiController;
 use App\Http\Controllers\Api\SchoolDetailController;
 use App\Http\Controllers\Api\StafApiController;
 use App\Http\Controllers\Api\StudentApiController;
+use App\Http\Controllers\Api\StudentFeedbackController;
 use App\Http\Controllers\Api\TeacherApiController;
 use App\Http\Controllers\Schools\PermissionController;
 use App\Models\ModelHasRfid;
@@ -80,6 +81,8 @@ Route::get('student/point-student/{user}', [StudentApiController::class, 'point_
 Route::get('student/detail-profile/{user}', [StudentApiController::class, 'get_detail_profile']);
 Route::get('student/violation/{user}', [StudentApiController::class, 'violation']);
 Route::get('student/repair/{user}', [StudentApiController::class, 'repair']);
+Route::post('student/feedback/{lessonSchedule}', [StudentFeedbackController::class, 'store'])->name('feedback.store');
+// Route::put('student/feedback/update/{feedback}', [FeedbackController::class, 'update'])->name('feedback.update');
 
 Route::post('staf/create-journal/{user}', [StafApiController::class, 'create_journal']);
 Route::get('staf/dashboard/{user}', [StafApiController::class, 'index']);
@@ -93,7 +96,7 @@ Route::get('staf/popular-violations', [StafApiController::class, 'popular_violat
 Route::get('staf/student-permissions', [StafApiController::class, 'student_permissions']);
 
 Route::get('teacher/class/{user}', [TeacherApiController::class, 'class']);
-Route::get('teacher/attendance/{user}', [TeacherApiController::class, 'teacher_attendance']);
+Route::get('teacher/attendance/{user}', [TeacherApiController::class, 'teacher_attendance']);   
 Route::get('teacher/lesson-schedule/{user}', [TeacherApiController::class, 'today_lesson_schedule']);
 Route::get('teacher/history-journal/{user}', [TeacherApiController::class, 'today_history_journal']);
 Route::get('teacher/subject/{user}', [TeacherApiController::class, 'teacher_subject']);
