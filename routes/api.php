@@ -82,7 +82,7 @@ Route::get('student/detail-profile/{user}', [StudentApiController::class, 'get_d
 Route::get('student/violation/{user}', [StudentApiController::class, 'violation']);
 Route::get('student/repair/{user}', [StudentApiController::class, 'repair']);
 Route::post('student/feedback/{lessonSchedule}', [StudentFeedbackController::class, 'store'])->name('feedback.store');
-// Route::put('student/feedback/update/{feedback}', [FeedbackController::class, 'update'])->name('feedback.update');
+Route::put('student/feedback/update/{feedback}', [StudentFeedbackController::class, 'update'])->name('feedback.update');
 
 Route::post('staf/create-journal/{user}', [StafApiController::class, 'create_journal']);
 Route::get('staf/dashboard/{user}', [StafApiController::class, 'index']);
