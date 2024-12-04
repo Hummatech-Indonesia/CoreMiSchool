@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Contracts\Interfaces\FeedbackInterface;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreFeedbackApiRequest;
 use App\Http\Requests\StoreFeedbackRequest;
 use App\Models\LessonSchedule;
 use App\Services\FeedbackService;
@@ -21,11 +22,10 @@ class StudentFeedbackController extends Controller
         $this->service = $service;
     }
 
-    public function store(StoreFeedbackRequest $request, LessonSchedule $lessonSchedule)
+    public function store(StoreFeedbackApiRequest $request, LessonSchedule $lessonSchedule)
     {
         DB::beginTransaction();
-            $id = auth()->user()->student->id;
-            $data = $this->service->store($request, $lessonSchedule, $id);
+            $data = $this->service->storeApi($request, $lessonSchedule);
             $this->feedback->store($data);
             DB::commit();
             return response()->json(['status' => 'success', 'message' => "Berhasil mengirim tanggapan", 'code' => 200], 200);
