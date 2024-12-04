@@ -16,6 +16,7 @@ class FeedbackResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'is_teacher_present' => $this->is_teacher_present == true ? 'Hadir' : 'Tidak Hadir',
             'summary' => $this->summary,
             'name_student' => $this->student->user->name,
             'class_student' => $this->student->classroomStudents()->latest()->first()->classroom->name,
