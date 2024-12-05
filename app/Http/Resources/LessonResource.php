@@ -20,6 +20,7 @@ class LessonResource extends JsonResource
             'class' => $this->classroom->name,
             'teacher' => $this->teacherSubject->employee->user->name,
             'end_time' => $this->end->end,
+            'status' => $this->feedbacks()->whereRelation('student.user', 'id', auth()->user()->id)->whereDate('created_at', today())->exists() ? 'Sudah' : 'Belum',
         ];
     }
 }
