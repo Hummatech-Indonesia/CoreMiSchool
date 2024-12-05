@@ -107,7 +107,9 @@ class StudentApiController extends Controller
                     'check_out' => $single_attendance ? ($single_attendance->checkout == null ? '-' : \Carbon\Carbon::parse($single_attendance->checkout)->format('H:i')) : '-',
                     'status' => $single_attendance ? $single_attendance->status->label() : '',
                 ],
-                'subject'=> SubjectResource::collection($lessonSchedule),
+                'subject'=> SubjectResource::collection($lessonSchedule)->each(function ($resource) use ($student) {
+                    $resource->setStudent($student);
+                }),
             ]]);
         } else if ($rule_day->is_holiday ==  true) {
             return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => [
@@ -129,7 +131,9 @@ class StudentApiController extends Controller
                     'check_out' => '-',
                     'status' => 'Libur',
                 ],
-                'subject'=> SubjectResource::collection($lessonSchedule),
+                'subject'=> SubjectResource::collection($lessonSchedule)->each(function ($resource) use ($student) {
+                    $resource->setStudent($student);
+                }),
             ]]);
         } else {
             return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => [
@@ -143,7 +147,9 @@ class StudentApiController extends Controller
                     'email' => $studentClasses->classroom->employee->user->email,
                 ],
                 'message_attendance' => "Anda belum memiliku RFID",
-                'subject'=> SubjectResource::collection($lessonSchedule),
+                'subject'=> SubjectResource::collection($lessonSchedule)->each(function ($resource) use ($student) {
+                    $resource->setStudent($student);
+                }),
             ]]);
         }
 

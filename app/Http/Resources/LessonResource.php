@@ -23,6 +23,7 @@ class LessonResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'time' => 'Jam ke ' . explode(' - ', $this->start->name)[1] .' - '. explode(' - ', $this->end->name)[1],
             'name' => $this->teacherSubject->subject->name,
             'class' => $this->classroom->name,
