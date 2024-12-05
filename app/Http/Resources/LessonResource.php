@@ -30,6 +30,7 @@ class LessonResource extends JsonResource
             'teacher' => $this->teacherSubject->employee->user->name,
             'end_time' => $this->end->end,
             'status' => $this->feedbacks()->where('student_id', $this->student->id)->whereDate('created_at', today())->exists() ? 'Sudah' : 'Belum',
+            'feedback' => $this->feedbacks()->where('student_id', $this->student->id)->whereDate('created_at', today())->exists() ? $this->feedbacks()->where('student_id', $this->student->id)->whereDate('created_at', today())->first() : null,
         ];
     }
 }
