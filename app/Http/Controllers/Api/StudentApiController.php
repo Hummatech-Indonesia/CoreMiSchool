@@ -167,23 +167,23 @@ class StudentApiController extends Controller
         $lessonSchedule = $this->lessonSchedule->whereClassroom($studentClasses->classroom->id, 'day');
 
         return response()->json(['status' => 'success', 'message' => "Berhasil mengambil data",'code' => 200, 'data' => [
-            'Senin' => LessonResource::collection(isset($lessonSchedule['monday']) ? $lessonSchedule['monday'] : [])->each(function ($resource) use ($user) {
-                $resource->user = $user;
+            'Senin' => LessonResource::collection(isset($lessonSchedule['monday']) ? $lessonSchedule['monday'] : [])->each(function ($resource) use ($student) {
+                $resource->setStudent($student);
             }),
-            'Selasa' => LessonResource::collection(isset($lessonSchedule['tuesday']) ? $lessonSchedule['tuesday'] : [])->each(function ($resource) use ($user) {
-                $resource->user = $user;
+            'Selasa' => LessonResource::collection(isset($lessonSchedule['tuesday']) ? $lessonSchedule['tuesday'] : [])->each(function ($resource) use ($student) {
+                $resource->setStudent($student);
             }),
-            'Rabu' => LessonResource::collection(isset($lessonSchedule['wednesday']) ? $lessonSchedule['wednesday'] : [])->each(function ($resource) use ($user) {
-                $resource->user = $user;
+            'Rabu' => LessonResource::collection(isset($lessonSchedule['wednesday']) ? $lessonSchedule['wednesday'] : [])->each(function ($resource) use ($student) {
+                $resource->setStudent($student);
             }),
-            'Kamis' => LessonResource::collection(isset($lessonSchedule['thursday']) ? $lessonSchedule['thursday'] : [])->each(function ($resource) use ($user) {
-                $resource->user = $user;
+            'Kamis' => LessonResource::collection(isset($lessonSchedule['thursday']) ? $lessonSchedule['thursday'] : [])->each(function ($resource) use ($student) {
+                $resource->setStudent($student);
             }),
-            'Jumat' => LessonResource::collection(isset($lessonSchedule['friday']) ? $lessonSchedule['friday'] : [])->each(function ($resource) use ($user) {
-                $resource->user = $user;
+            'Jumat' => LessonResource::collection(isset($lessonSchedule['friday']) ? $lessonSchedule['friday'] : [])->each(function ($resource) use ($student) {
+                $resource->setStudent($student);
             }),
-            'Sabtu' => LessonResource::collection(isset($lessonSchedule['saturday']) ? $lessonSchedule['saturday'] : [])->each(function ($resource) use ($user) {
-                $resource->user = $user;
+            'Sabtu' => LessonResource::collection(isset($lessonSchedule['saturday']) ? $lessonSchedule['saturday'] : [])->each(function ($resource) use ($student) {
+                $resource->setStudent($student);
             }),
         ]]);
     }

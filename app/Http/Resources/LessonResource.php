@@ -2,17 +2,17 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class LessonResource extends JsonResource
 {
-    protected $user;
+    protected $student;
 
-    public function __construct($resource, $user = null)
+    public function setStudent(Student $student)
     {
-        parent::__construct($resource);
-        $this->user = $user;
+        $this->student = $student;
     }
 
     /**
@@ -28,7 +28,7 @@ class LessonResource extends JsonResource
             'class' => $this->classroom->name,
             'teacher' => $this->teacherSubject->employee->user->name,
             'end_time' => $this->end->end,
-            'status' => $this->feedbacks()->whereRelation('student.user', 'id', $this->user->id)->whereDate('created_at', today())->exists() ? 'Sudah' : 'Belum',
+            'status' => $this->feedbacks()->where('student_id', $this->student->id)->whereDate('created_at', today())->exists() ? 'Sudah' : 'Belum',
         ];
     }
 }
