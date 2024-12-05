@@ -7,6 +7,14 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class LessonResource extends JsonResource
 {
+    protected $user;
+
+    public function __construct($resource, $user = null)
+    {
+        parent::__construct($resource);
+        $this->user = $user;
+    }
+
     /**
      * Transform the resource into an array.
      *
@@ -20,7 +28,7 @@ class LessonResource extends JsonResource
             'class' => $this->classroom->name,
             'teacher' => $this->teacherSubject->employee->user->name,
             'end_time' => $this->end->end,
-            'status' => $this->feedbacks()->whereRelation('student.user', 'id', auth()->user()->id)->whereDate('created_at', today())->exists() ? 'Sudah' : 'Belum',
+            'status' => $this->feedbacks()->whereRelation('student.user', 'id', $this->user->id)->whereDate('created_at', today())->exists() ? 'Sudah' : 'Belum',
         ];
     }
 }
