@@ -78,6 +78,6 @@
             </div>
         </div>
 
-        <a href="#" class="btn waves-effect waves-light btn-outline-primary w-100">Lihat Selengkapnya</a>
+        {{-- <a href="#" class="btn waves-effect waves-light btn-outline-primary w-100">Lihat Selengkapnya</a> --}}
     </div>
 </div>

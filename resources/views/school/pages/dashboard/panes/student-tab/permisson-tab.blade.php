@@ -5,17 +5,21 @@
                 <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">No</th>
                 <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Nama</th>
                 <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Kelas</th>
-                <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Jam</th>
+                <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Surat</th>
                 <th class="fs-4 fw-semibold mb-0" style="background-color: #5D87FF; color: white">Status</th>
             </tr>
         </thead>
         <tbody>
-            @forelse ($sick as $data)
+            @forelse ($permit as $data)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $data->model->student->user->name }}</td>
                     <td>{{ $data->model->classroom->name }}</td>
-                    <td>{{ $data->checkin ? \Carbon\Carbon::parse($data->checkin)->format('H.i') : '-' }}</td>
+                    @if ($data->proof)
+                        <td><img src="{{ asset('storage/'.$data->proof) }}" alt="" width="100px"></td>
+                    @else
+                        <td>Tidak ada</td>
+                    @endif
                     <td>
                         <span class="badge bg-light-warning text-warning fw-semibold fs-2">Izin</span>
                     </td>
