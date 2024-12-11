@@ -6,6 +6,13 @@
             listStudent(selectedValue);
         });
 
+        function fetchStudent(index, value)
+        {
+            return `
+                <option value="${value.student_id}">${value.student}</option>
+            `
+        }
+
         function listStudent(id)
         {
             $.ajax({
@@ -13,7 +20,9 @@
                 url: "/api/student/classroom/" + id,
                 dataType: "json",
                 success: function (response) {
-                    $('#list-student').append(`<option value="${response.data.student_id}">${response.data.student}</option>`);
+                    $.each(collection, function (indexInArray, valueOfElement) {
+                        $('#list-student').append(fetchStudent(indexInArray, valueOfElement));
+                    });
                 }
             });
         }
