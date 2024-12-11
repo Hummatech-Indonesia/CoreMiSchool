@@ -42,7 +42,7 @@
 
 @section('content')
     <div class="row">
-        <h3 class="mb-4"><b>Selamat Datang {{ $studentClasses->student->user->name}}</b></h3>
+        <h3 class="mb-4"><b>Selamat Datang {{ $studentClasses->student->user->name }}</b></h3>
         {{-- <div class="col-lg-4">
             <div class="card border rounded-4 p-0 mb-3">
                 <div class="card-body card-body-with-line">
@@ -109,7 +109,7 @@
                     </div>
                     <div class="badge {{ $single_attendance ? ($single_attendance->status == 'present' ? 'bg-light-success text-success' : ($single_attendance->status == 'sick' ? 'bg-light-warning text-warning' : 'bg-light-danger text-danger')) : 'bg-light-danger text-danger' }} fs-5 text-nowrap py-3 px-2 rounded-3 w-100 w-lg-auto"
                         style="max-width: 150px; overflow: hidden; text-overflow: ellipsis;">
-                        {{ $single_attendance ? $single_attendance->status->label() : 'Belum Absen'}}
+                        {{ $single_attendance ? $single_attendance->status->label() : 'Belum Absen' }}
                     </div>
                 </div>
             </div>
@@ -127,11 +127,15 @@
                         <table class="table border text-nowrap customize-table mb-0 align-middle">
                             <thead>
                                 <tr>
-                                    <th class="text-white" style="background-color: #5D87FF; border-top-left-radius: 12px; border-bottom-left-radius: 12px;">Hari</th>
+                                    <th class="text-white"
+                                        style="background-color: #5D87FF; border-top-left-radius: 12px; border-bottom-left-radius: 12px;">
+                                        Hari</th>
                                     <th class="text-white" style="background-color: #5D87FF;">Tanggal</th>
                                     <th class="text-white" style="background-color: #5D87FF;">Masuk</th>
                                     <th class="text-white" style="background-color: #5D87FF;">Pulang</th>
-                                    <th class="text-white" style="background-color: #5D87FF; border-top-right-radius: 12px; border-bottom-right-radius: 12px">Status</th>
+                                    <th class="text-white"
+                                        style="background-color: #5D87FF; border-top-right-radius: 12px; border-bottom-right-radius: 12px">
+                                        Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -139,17 +143,21 @@
                                     <tr>
                                         <td>{{ \Carbon\Carbon::parse($data->created_at)->translatedFormat('l') }}</td>
                                         <td>{{ \Carbon\Carbon::parse($data->created_at)->translatedFormat('d F Y') }}</td>
-                                        <td>{{ $data->checkin == null ? '-' : \Carbon\Carbon::parse($data->checkin)->format('H:i') }}</td>
-                                        <td>{{ $data->checkout == null ? '-' : \Carbon\Carbon::parse($data->checkout)->format('H:i') }}</td>
+                                        <td>{{ $data->checkin == null ? '-' : \Carbon\Carbon::parse($data->checkin)->format('H:i') }}
+                                        </td>
+                                        <td>{{ $data->checkout == null ? '-' : \Carbon\Carbon::parse($data->checkout)->format('H:i') }}
+                                        </td>
                                         <td>
-                                            <span class="mb-1 badge font-medium {{$data->status == 'present' ? 'bg-light-success text-success' : ($data->status == 'permit' ? 'bg-light-warning text-warning' : 'bg-light-danger text-danger') }}">{{ $data->status->label() }}</span>
+                                            <span
+                                                class="mb-1 badge font-medium {{ $data->status == 'present' ? 'bg-light-success text-success' : ($data->status == 'permit' ? 'bg-light-warning text-warning' : 'bg-light-danger text-danger') }}">{{ $data->status->label() }}</span>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
                                         <td colspan="5">
                                             <div class="d-flex flex-column justify-content-center align-items-center">
-                                                <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt="" width="300px">
+                                                <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}"
+                                                    alt="" width="300px">
                                                 <p class="fs-5 text-dark text-center mt-2">
                                                     Tidak ada riwayat absen
                                                 </p>
@@ -189,7 +197,8 @@
                                 style="width: 100px; height: auto;">
                             <h3 class="pt-2 mb-3"><b>{{ $studentClasses->classroom->name }}</b></h3>
                             <span class="mb-1 badge font-medium bg-light-primary text-primary py-2 px-3"
-                                style="font-size: 18px;">{{ $studentClasses->classroom->classroomStudents->count() }} Total Siswa</span>
+                                style="font-size: 18px;">{{ $studentClasses->classroom->classroomStudents->count() }} Total
+                                Siswa</span>
                         </div>
                     </div>
                 </div>
@@ -199,7 +208,7 @@
                 <div class="card border">
                     <div class="card-body">
                         <h5 class="mb-4"><b>Wali Kelasmu</b></h5>
-                        <div class="d-flex flex-column flex-sm-row align-items-center">
+                        <div class="d-flex flex-column flex-sm-row align-items-center mb-3">
                             <img src="{{ asset('admin_assets/dist/images/profile/user-4.jpg') }}" alt=""
                                 class="rounded-circle img-fluid mb-2" style="max-width: 100px; height: auto;">
 
@@ -207,21 +216,49 @@
                                 <h4><b>{{ $studentClasses->classroom->employee->user->name }}</b></h4>
                                 <h6>Tahun Ajaran {{ $studentClasses->classroom->schoolYear->school_year }}</h6>
 
-                                <div class="d-flex flex-wrap justify-content-center justify-content-sm-start">
-                                    @forelse ($studentClasses->classroom->employee->teacherSubjects as $data)
-                                        <span class="mb-1 badge font-medium bg-light-primary text-primary"
+                            </div>
+                        </div>
+                        <div class="d-flex flex-wrap justify-content-center justify-content-sm-start gap-2"
+                            id="subject-container">
+                            @php
+                                $subjects = $studentClasses->classroom->employee->teacherSubjects;
+                                $displayedSubjects = $subjects->take(2);
+                                $remainingSubjects = $subjects->count() - $displayedSubjects->count();
+                            @endphp
+
+                            @forelse ($displayedSubjects as $data)
+                                <span class="mb-1 badge font-medium bg-light-primary text-primary subject-item"
+                                    style="font-size: 14px;">
+                                    {{ $data->subject->name }}
+                                </span>
+                            @empty
+                                <span class="mb-1 badge font-medium bg-light-warning text-warning" style="font-size: 14px;">
+                                    Belum memiliki mapel
+                                </span>
+                            @endforelse
+
+                            @if ($remainingSubjects > 0)
+                                <span class="mb-1 badge font-medium bg-light-secondary text-secondary"
+                                    style="font-size: 14px; cursor: pointer;" id="toggle-subjects">
+                                    +{{ $remainingSubjects }} mapel lainnya
+                                </span>
+
+                                <div id="additional-subjects" style="display: none;">
+                                    @foreach ($subjects->skip(2) as $data)
+                                        <span class="mb-1 badge font-medium bg-light-primary text-primary subject-item"
                                             style="font-size: 14px;">
                                             {{ $data->subject->name }}
                                         </span>
-                                    @empty
-                                        <span class="mb-1 badge font-medium bg-light-warning text-warning"
-                                            style="font-size: 14px;">
-                                            Belum memiliki mapel
-                                        </span>
-                                    @endforelse
+                                    @endforeach
+                                    <span class="mb-1 badge font-medium bg-light-danger text-danger"
+                                        style="font-size: 14px; cursor: pointer;" id="close-subjects">
+                                        Lebih sedikit...
+                                    </span>
                                 </div>
-                            </div>
+                            @endif
                         </div>
+
+
                     </div>
                 </div>
             </div>
@@ -236,9 +273,13 @@
                         <table class="table border text-nowrap customize-table mb-0 align-middle">
                             <thead style="border-radius: 12px 12px 0 0;">
                                 <tr>
-                                    <th class="text-white" style="background-color: #5D87FF; border-top-left-radius: 12px; border-bottom-left-radius: 12px;">Tugas</th>
+                                    <th class="text-white"
+                                        style="background-color: #5D87FF; border-top-left-radius: 12px; border-bottom-left-radius: 12px;">
+                                        Tugas</th>
                                     <th class="text-white" style="background-color: #5D87FF;">Status</th>
-                                    <th class="text-white" style="background-color: #5D87FF; border-top-right-radius: 12px; border-bottom-right-radius: 12px">Aksi</th>
+                                    <th class="text-white"
+                                        style="background-color: #5D87FF; border-top-right-radius: 12px; border-bottom-right-radius: 12px">
+                                        Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -246,8 +287,7 @@
                                     <tr>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                <div
-                                                    class="bg-light-primary text-primary d-inline-block px-2 py-2 rounded">
+                                                <div class="bg-light-primary text-primary d-inline-block px-2 py-2 rounded">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
                                                         class="" viewBox="0 0 24 24">
                                                         <path fill="currentColor"
@@ -261,17 +301,20 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <span class="mb-1 badge font-medium bg-light-danger text-danger">Belum Dikerjakan</span>
+                                            <span class="mb-1 badge font-medium bg-light-danger text-danger">Belum
+                                                Dikerjakan</span>
                                         </td>
                                         <td>
-                                            <button class="btn mb-1 waves-effect waves-light btn-primary" type="button">Detail</button>
+                                            <button class="btn mb-1 waves-effect waves-light btn-primary"
+                                                type="button">Detail</button>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
                                         <td colspan="3">
                                             <div class="d-flex flex-column justify-content-center align-items-center">
-                                                <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt="" width="300px">
+                                                <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}"
+                                                    alt="" width="300px">
                                                 <p class="fs-5 text-dark text-center mt-2">
                                                     Tidak ada tugas
                                                 </p>
@@ -290,6 +333,24 @@
 
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <script>
+        const toggleButton = document.getElementById('toggle-subjects');
+        const additionalSubjects = document.getElementById('additional-subjects');
+        const closeButton = document.getElementById('close-subjects');
+
+        toggleButton?.addEventListener('click', function() {
+            additionalSubjects.style.display = 'block';
+            toggleButton.style.display = 'none';
+        });
+
+        closeButton?.addEventListener('click', function() {
+            additionalSubjects.style.display = 'none';
+            toggleButton.style.display = 'inline-block';
+        });
+    </script>
+
+
 
     @include('student.pages.dashboard.scripts.chart-attendance')
 @endsection
