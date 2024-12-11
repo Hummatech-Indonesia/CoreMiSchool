@@ -133,8 +133,8 @@
                                     <td>{{ $employee->checkin ? $employee->checkin : '-' }}</td>
                                     <td>{{ $employee->checkout ? $employee->checkout : '-' }}</td>
                                     <td><span
-                                            class="badge {{ $employee->status == 'present' ? 'bg-light-primary text-primary' : ($employee->status == 'sick' ? 'bg-light-warning text-warning' : ($employee->status == 'alpha' ? 'bg-light-danger text-danger' : ($employee->status == 'permit' ? 'bg-light-warning text-warning' : ($employee->status == 'late' ? 'bg-light-warning text-warning' : '')))) }}">
-                                            {{ $employee->status == 'present' ? 'Masuk' : ($employee->status == 'sick' ? 'Sakit' : ($employee->status == 'alpha' ? 'Alpha' : ($employee->status == 'permit' ? 'Izin' : ($employee->status == 'late' ? 'Telat' : '')))) }}
+                                            class="badge {{ $employee->status->color() }}">
+                                            {{ $employee->status->labek() }}
                                         </span></td>
 
                                     {{-- <td>
