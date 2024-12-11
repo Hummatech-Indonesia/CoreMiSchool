@@ -6,17 +6,29 @@
             listStudent(selectedValue);
         });
 
+        function fetchStudent(index, value)
+        {
+            return `
+                <option value="${value.student_id}">${value.student}</option>
+            `
+        }
+
         function listStudent(id)
         {
-
-            const hostname = window.location.hostname;
-
             $.ajax({
                 type: "GET",
-                url: "https://${hostname}/api/student/classroom/" + id,
+                url: "/api/student/classroom/" + id,
                 dataType: "json",
                 success: function (response) {
-                    $('#list-student').append(`<option value="${response.data.student_id}">${response.data.student}</option>`);
+                    $('#list-student').empty();
+                    $('#list-student').append('<option value="">Pilih Siswa</option>');
+                    if (response.data && response.data.length > 0) {
+                        $.each(response.data, function (index, value) {
+                            $('#list-student').append(fetchStudent(index, value));
+                        });
+                    } else {
+                        $('#list-student').append('<option value="">Tidak ada siswa</option>');
+                    }
                 }
             });
         }
