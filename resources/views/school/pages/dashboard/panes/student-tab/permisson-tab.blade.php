@@ -10,7 +10,7 @@
             </tr>
         </thead>
         <tbody>
-            @forelse ($sick as $data)
+            @forelse ($permit as $data)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $data->model->student->user->name }}</td>
