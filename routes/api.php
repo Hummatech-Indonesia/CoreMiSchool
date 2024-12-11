@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\StafApiController;
 use App\Http\Controllers\Api\StudentApiController;
 use App\Http\Controllers\Api\StudentFeedbackController;
 use App\Http\Controllers\Api\TeacherApiController;
+use App\Http\Controllers\ClassroomStudentController;
 use App\Http\Controllers\Schools\PermissionController;
 use App\Models\ModelHasRfid;
 use App\Models\User;
@@ -34,6 +35,7 @@ Route::get('attendance/hours', [AttendanceRuleApiController::class, 'index'])->n
 Route::get('attendance/list', [AttendanceController::class, 'listAttendance']);
 Route::get('attendance/reset', [AttendanceController::class, 'reset']);
 Route::get('school/detail', [SchoolDetailController::class, 'index']);
+Route::get('student/classroom/{classroom}', [ClassroomStudentController::class, 'getByClasroom']);
 
 Route::get('users-all', function () {
     $users = User::all();
@@ -97,7 +99,7 @@ Route::get('staf/student-permissions', [StafApiController::class, 'student_permi
 Route::get('staf/statistic-violation', [StafApiController::class, 'statistic_violation']);
 
 Route::get('teacher/class/{user}', [TeacherApiController::class, 'class']);
-Route::get('teacher/attendance/{user}', [TeacherApiController::class, 'teacher_attendance']);   
+Route::get('teacher/attendance/{user}', [TeacherApiController::class, 'teacher_attendance']);
 Route::get('teacher/lesson-schedule/{user}', [TeacherApiController::class, 'today_lesson_schedule']);
 Route::get('teacher/history-journal/{user}', [TeacherApiController::class, 'today_history_journal']);
 Route::get('teacher/subject/{user}', [TeacherApiController::class, 'teacher_subject']);

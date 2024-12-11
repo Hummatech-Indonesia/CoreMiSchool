@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use App\Contracts\Interfaces\ClassroomStudentInterface;
 use App\Contracts\Interfaces\ReligionInterface;
 use App\Contracts\Interfaces\StudentInterface;
+use App\Helpers\ResponseHelper;
 use App\Models\ClassroomStudent;
 use App\Http\Requests\StoreClassroomStudentRequest;
 use App\Http\Requests\UpdateClassroomStudentRequest;
+use App\Http\Resources\ClassroomStudentResource;
 use App\Imports\ClassStudentImport;
 use App\Models\Classroom;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ClassroomStudentController extends Controller
 {
@@ -40,6 +43,12 @@ class ClassroomStudentController extends Controller
     public function whereDosentHaveClassroom(Request $request) {
         $students = $this->student->doesntHaveClassroom($request);
         return response()->json($students);
+    }
+
+    public function getByClasroom(Classroom $classroom): JsonResponse
+    {
+        $classroomStudents = $this->classroomStudent->getByClassId($classroom->id);
+        return ResponseHelper::success(ClassroomStudentResource::collection($classroomStudents), "Berhasil fecth data");
     }
 
     /**

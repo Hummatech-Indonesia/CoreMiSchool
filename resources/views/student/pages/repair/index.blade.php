@@ -67,7 +67,18 @@
                 @forelse ($repairs as $repair)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $repair->repair }}</td>
+                        <td>
+                            <span class="limited-text">
+                                {{ \Illuminate\Support\Str::words($repair->repair, 10, '') }}
+                                @if (str_word_count($repair->repair) > 10)
+                                    <span class="toggle-text" style="cursor: pointer; color: blue;">selengkapnya...</span>
+                                @endif
+                            </span>
+                            <span class="full-text" style="display: none;">
+                                {{ $repair->repair }}
+                                <span class="toggle-text" style="cursor: pointer; color: blue;">lebih sedikit</span>
+                            </span>
+                        </td>
                         <td>{{ \Carbon\Carbon::parse($repair->start_date)->translatedFormat('d F Y') }}</td>
                         <td>{{ \Carbon\Carbon::parse($repair->end_date)->translatedFormat('d F Y') }}</td>
                         <td>
@@ -110,4 +121,24 @@
 
 @section('script')
     @include('student.pages.repair.scripts.btn-script')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleTextButtons = document.querySelectorAll('.toggle-text');
+
+            toggleTextButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const limitedText = this.closest('td').querySelector('.limited-text');
+                    const fullText = this.closest('td').querySelector('.full-text');
+
+                    if (limitedText.style.display === 'none') {
+                        limitedText.style.display = 'inline';
+                        fullText.style.display = 'none';
+                    } else {
+                        limitedText.style.display = 'none';
+                        fullText.style.display = 'inline'; 
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

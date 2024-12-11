@@ -12,11 +12,17 @@
                     <div class="mb-3">
                         <div class="form-group">
                             <label for="" class="mb-2">Nama Siswa</label>
-                            <select id="" class="select2 select2-create" name="classroomStudent">
+                            <select id="list-classroom" class="select2 select2-create" name="classroom">
                                 <option value="">Pilih Siswa</option>
-                                @foreach ($students as $data)
-                                    <option value="{{ $data->id }}">{{ $data->student->user->name }}</option>
+                                @foreach ($all_classrooms as $classroom)
+                                    <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
                                 @endforeach
+                            </select>
+                            <select class="select2 select2-create" id="list-student" name="classroomStudent">
+                                {{-- <option value="">Pilih Siswa</option> --}}
+                                {{-- @foreach ($students as $data)
+                                    <option value="{{ $data->id }}">{{ $data->student->user->name }}</option>
+                                @endforeach --}}
                             </select>
                             @error('employee_id', 'create')
                                 <span class="text-danger error-create">{{ $message }}</span>
