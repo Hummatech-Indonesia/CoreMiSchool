@@ -38,8 +38,10 @@ class EventServiceProvider extends ServiceProvider
         Extracurricular::observe(ExtracurricularObserver::class);
 
         $school = School::first();
+        $classrooms = Classroom::all();
         $permission_feedback = Permission::where('name', 'active_feedback')->first();
         view()->share('school', $school);
+        view()->share('all_classrooms', $classrooms);
         view()->share('permission_feedback', $permission_feedback);
     }
 
