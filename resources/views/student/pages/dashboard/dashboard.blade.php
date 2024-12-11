@@ -208,7 +208,7 @@
                 <div class="card border">
                     <div class="card-body">
                         <h5 class="mb-4"><b>Wali Kelasmu</b></h5>
-                        <div class="d-flex flex-column flex-sm-row align-items-center">
+                        <div class="d-flex flex-column flex-sm-row align-items-center mb-3">
                             <img src="{{ asset('admin_assets/dist/images/profile/user-4.jpg') }}" alt=""
                                 class="rounded-circle img-fluid mb-2" style="max-width: 100px; height: auto;">
 
@@ -216,31 +216,20 @@
                                 <h4><b>{{ $studentClasses->classroom->employee->user->name }}</b></h4>
                                 <h6>Tahun Ajaran {{ $studentClasses->classroom->schoolYear->school_year }}</h6>
 
-                                <div class="d-flex flex-wrap justify-content-center justify-content-sm-start gap-2">
-                                    @php
-                                        $subjects = $studentClasses->classroom->employee->teacherSubjects;
-                                        $displayedSubjects = $subjects->take(2); // Ambil hanya 2 mapel pertama
-                                        $remainingSubjects = $subjects->count() - $displayedSubjects->count(); // Hitung sisa mapel
-                                    @endphp
-
-                                    @forelse ($displayedSubjects as $data)
-                                        <span class="mb-1 badge font-medium bg-light-primary text-primary" style="font-size: 14px;">
-                                            {{ $data->subject->name }}
-                                        </span>
-                                    @empty
-                                        <span class="mb-1 badge font-medium bg-light-warning text-warning" style="font-size: 14px;">
-                                            Belum memiliki mapel
-                                        </span>
-                                    @endforelse
-
-                                    @if ($remainingSubjects > 0)
-                                        <span class="mb-1 badge font-medium bg-light-secondary text-secondary" style="font-size: 14px;">
-                                            +{{ $remainingSubjects }} mapel lainnya
-                                        </span>
-                                    @endif
-                                </div>
-
                             </div>
+                        </div>
+                        <div class="d-flex flex-wrap justify-content-center justify-content-sm-start gap-2">
+                            @forelse ($studentClasses->classroom->employee->teacherSubjects as $data)
+                                <span class="mb-1 badge font-medium bg-light-primary text-primary"
+                                    style="font-size: 14px;">
+                                    {{ $data->subject->name }}
+                                </span>
+                            @empty
+                                <span class="mb-1 badge font-medium bg-light-warning text-warning"
+                                    style="font-size: 14px;">
+                                    Belum memiliki mapel
+                                </span>
+                            @endforelse
                         </div>
                     </div>
                 </div>
