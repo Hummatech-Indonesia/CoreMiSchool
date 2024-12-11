@@ -14,10 +14,15 @@
             max-height: 1.5em;
             overflow: hidden;
             text-overflow: ellipsis;
+            white-space: normal;
+            word-wrap: break-word;
+            word-break: break-word;
         }
 
         .full-text {
             white-space: normal;
+            word-wrap: break-word;
+            word-break: break-word;
         }
     </style>
 @endsection
@@ -91,11 +96,13 @@
                         <td>{{ $loop->iteration }}</td>
                         <td style="max-width: 250px; word-wrap: break-word;">
                             <span class="limited-text">
-                                {{ \Illuminate\Support\Str::words($repair->repair, 10, '') }}
-                                @if (str_word_count($repair->repair) > 10)
-                                    <span class="toggle-text ms-2" style="cursor: pointer; color: blue;">selengkapnya...</span>
+                                {{ \Illuminate\Support\Str::limit($repair->repair, 28) }}
+                                @if (strlen($repair->repair) > 28)
+                                    <span class="toggle-text ms-2"
+                                        style="cursor: pointer; color: blue;">selengkapnya...</span>
                                 @endif
                             </span>
+
                             <span class="full-text" style="display: none;">
                                 {{ $repair->repair }}
                                 <span class="toggle-text ms-2" style="cursor: pointer; color: blue;">lebih sedikit</span>
