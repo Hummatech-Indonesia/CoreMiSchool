@@ -239,18 +239,25 @@
 
                             @if ($remainingSubjects > 0)
                                 <span class="mb-1 badge font-medium bg-light-secondary text-secondary"
-                                    style="font-size: 14px; cursor: pointer;" id="show-more-subjects">
+                                    style="font-size: 14px; cursor: pointer;" id="toggle-subjects">
                                     +{{ $remainingSubjects }} mapel lainnya
                                 </span>
 
-                                @foreach ($subjects->skip(2) as $data)
-                                    <span class="mb-1 badge font-medium bg-light-primary text-primary subject-item d-none"
-                                        style="font-size: 14px;">
-                                        {{ $data->subject->name }}
+                                <div id="additional-subjects" style="display: none;">
+                                    @foreach ($subjects->skip(2) as $data)
+                                        <span class="mb-1 badge font-medium bg-light-primary text-primary subject-item"
+                                            style="font-size: 14px;">
+                                            {{ $data->subject->name }}
+                                        </span>
+                                    @endforeach
+                                    <span class="mb-1 badge font-medium bg-light-danger text-danger"
+                                        style="font-size: 14px; cursor: pointer;" id="close-subjects">
+                                        Lebih sedikit...
                                     </span>
-                                @endforeach
+                                </div>
                             @endif
                         </div>
+
 
                     </div>
                 </div>
@@ -328,14 +335,21 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
     <script>
-        document.getElementById('show-more-subjects')?.addEventListener('click', function () {
-            document.querySelectorAll('.subject-item.d-none').forEach(function (item) {
-                item.classList.remove('d-none');
-            });
+        const toggleButton = document.getElementById('toggle-subjects');
+        const additionalSubjects = document.getElementById('additional-subjects');
+        const closeButton = document.getElementById('close-subjects');
 
-            this.style.display = 'none';
+        toggleButton?.addEventListener('click', function() {
+            additionalSubjects.style.display = 'block';
+            toggleButton.style.display = 'none';
+        });
+
+        closeButton?.addEventListener('click', function() {
+            additionalSubjects.style.display = 'none';
+            toggleButton.style.display = 'inline-block';
         });
     </script>
+
 
 
     @include('student.pages.dashboard.scripts.chart-attendance')
