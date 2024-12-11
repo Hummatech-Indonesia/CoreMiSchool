@@ -29,6 +29,7 @@ class StudentViolationRepository extends BaseRepository implements StudentViolat
             ->when($request->gender, function ($query) use ($request) {
                 $query->whereRelation('classroomStudent.student', 'gender', $request->gender);
             })
+            ->latest()
             ->paginate(10);
     }
 
