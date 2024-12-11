@@ -134,7 +134,7 @@
                                     <td>{{ $employee->checkout ? $employee->checkout : '-' }}</td>
                                     <td><span
                                             class="badge {{ $employee->status->color() }}">
-                                            {{ $employee->status->labek() }}
+                                            {{ $employee->status->label() }}
                                         </span></td>
 
                                     {{-- <td>
