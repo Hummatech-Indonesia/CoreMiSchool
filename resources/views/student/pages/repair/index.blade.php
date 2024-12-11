@@ -67,7 +67,7 @@
                 @forelse ($repairs as $repair)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ \Illuminate\Support\Str::words($repair->repair, 10) }}</td>
+                        <td>{{ \Illuminate\Support\Str::limit($repair->repair, 30) }}</td>
                         <td>{{ \Carbon\Carbon::parse($repair->start_date)->translatedFormat('d F Y') }}</td>
                         <td>{{ \Carbon\Carbon::parse($repair->end_date)->translatedFormat('d F Y') }}</td>
                         <td>
