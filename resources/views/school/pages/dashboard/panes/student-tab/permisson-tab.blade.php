@@ -15,7 +15,11 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $data->model->student->user->name }}</td>
                     <td>{{ $data->model->classroom->name }}</td>
-                    <td>{{ $data->proof ? asset('storage/'.$data->proof) : 'Tidak ada' }}</td>
+                    @if ($data->proof)
+                        <td><img src="{{ asset('storage/'.$data->proof) }}" alt="" width="100px"></td>
+                    @else
+                        <td>Tidak ada</td>
+                    @endif
                     <td>
                         <span class="badge bg-light-warning text-warning fw-semibold fs-2">Izin</span>
                     </td>
