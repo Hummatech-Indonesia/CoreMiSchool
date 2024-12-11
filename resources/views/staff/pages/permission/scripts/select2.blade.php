@@ -20,9 +20,15 @@
                 url: "/api/student/classroom/" + id,
                 dataType: "json",
                 success: function (response) {
-                    $.each(collection, function (indexInArray, valueOfElement) {
-                        $('#list-student').append(fetchStudent(indexInArray, valueOfElement));
-                    });
+                    $('#list-student').empty();
+                    $('#list-student').append('<option value="">Pilih Siswa</option>');
+                    if (response.data && response.data.length > 0) {
+                        $.each(response.data, function (index, value) {
+                            $('#list-student').append(fetchStudent(index, value));
+                        });
+                    } else {
+                        $('#list-student').append('<option value="">Tidak ada siswa</option>');
+                    }
                 }
             });
         }
