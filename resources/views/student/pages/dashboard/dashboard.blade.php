@@ -218,19 +218,40 @@
 
                             </div>
                         </div>
-                        <div class="d-flex flex-wrap justify-content-center justify-content-sm-start gap-2">
-                            @forelse ($studentClasses->classroom->employee->teacherSubjects as $data)
-                                <span class="mb-1 badge font-medium bg-light-primary text-primary"
+                        <div class="d-flex flex-wrap justify-content-center justify-content-sm-start gap-2"
+                            id="subject-container">
+                            @php
+                                $subjects = $studentClasses->classroom->employee->teacherSubjects;
+                                $displayedSubjects = $subjects->take(2);
+                                $remainingSubjects = $subjects->count() - $displayedSubjects->count();
+                            @endphp
+
+                            @forelse ($displayedSubjects as $data)
+                                <span class="mb-1 badge font-medium bg-light-primary text-primary subject-item"
                                     style="font-size: 14px;">
                                     {{ $data->subject->name }}
                                 </span>
                             @empty
-                                <span class="mb-1 badge font-medium bg-light-warning text-warning"
-                                    style="font-size: 14px;">
+                                <span class="mb-1 badge font-medium bg-light-warning text-warning" style="font-size: 14px;">
                                     Belum memiliki mapel
                                 </span>
                             @endforelse
+
+                            @if ($remainingSubjects > 0)
+                                <span class="mb-1 badge font-medium bg-light-secondary text-secondary"
+                                    style="font-size: 14px; cursor: pointer;" id="show-more-subjects">
+                                    +{{ $remainingSubjects }} mapel lainnya
+                                </span>
+
+                                @foreach ($subjects->skip(2) as $data)
+                                    <span class="mb-1 badge font-medium bg-light-primary text-primary subject-item d-none"
+                                        style="font-size: 14px;">
+                                        {{ $data->subject->name }}
+                                    </span>
+                                @endforeach
+                            @endif
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -305,6 +326,17 @@
 
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <script>
+        document.getElementById('show-more-subjects')?.addEventListener('click', function () {
+            document.querySelectorAll('.subject-item.d-none').forEach(function (item) {
+                item.classList.remove('d-none');
+            });
+
+            this.style.display = 'none';
+        });
+    </script>
+
 
     @include('student.pages.dashboard.scripts.chart-attendance')
 @endsection
