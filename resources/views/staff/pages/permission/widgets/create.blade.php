@@ -12,7 +12,7 @@
                     <div class="mb-3">
                         <div class="form-group">
                             <label for="" class="mb-2">Kelas</label>
-                            <select id="list-classroom" class="select2 select2-create" name="classroom">
+                            <select id="list-classroom" class="select2 select2-create mb-2" name="classroom">
                                 <option value="">Pilih Siswa</option>
                                 @foreach ($all_classrooms as $classroom)
                                     <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
