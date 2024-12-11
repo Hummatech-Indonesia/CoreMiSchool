@@ -13,7 +13,7 @@
             width: 450 // Perbesar chart
         },
         labels: ['Masuk', 'Izin', 'Alpha'], // Label keterangan
-        colors: ['#5D87FF', '#FFAE1F', '#FA896B'], // Custom warna chart
+        colors: ['#13DEB9', '#5D87FF', '#FA896B'], // Custom warna chart
         legend: {
             position: 'bottom', // Pindahkan keterangan ke bawah chart
             horizontalAlign: 'center', // Selaraskan secara horizontal
