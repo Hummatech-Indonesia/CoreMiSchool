@@ -71,7 +71,7 @@ class DashboardStaffController extends Controller
     public function permission(Request $request)
     {
         $students = $this->classroomStudent->get();
-        $data = $this->attendance->getSickAndPermit($request, [AttendanceEnum::SICK, AttendanceEnum::PERMIT]);
+        $data = $this->attendance->getSickAndPermit($request, [AttendanceEnum::SICK->value, AttendanceEnum::PERMIT->value]);
         return view('staff.pages.permission.index', compact('data', 'students'));
     }
 

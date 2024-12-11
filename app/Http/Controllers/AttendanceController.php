@@ -164,8 +164,13 @@ class AttendanceController extends Controller
 
     public function proof(AttendanceLicensesRequest $request)
     {
-        $this->service->proof($request);
-        return redirect()->back()->with('success', 'Berhasil menambahkan perizinan siswa');
+        try {
+            
+            $this->service->proof($request);
+            return redirect()->back()->with('success', 'Berhasil menambahkan perizinan siswa');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Gagal menambahkan perizinan siswa');
+        }
     }
 
     public function delete_proof(Attendance $attendance)
