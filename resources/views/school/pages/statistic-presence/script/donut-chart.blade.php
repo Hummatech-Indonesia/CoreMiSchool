@@ -17,7 +17,7 @@
             height: 350
         },
         dataLabels: {
-            enabled: false 
+            enabled: false
         },
         // labels: ['Izin', 'Masuk', 'Sakit', 'Alpha'],
         labels: false,

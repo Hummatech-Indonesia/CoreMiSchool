@@ -55,10 +55,10 @@
                                     <input type="text" name="search" value="{{ request()->search }}" class="form-control" placeholder="Cari...">
                                 </div>
                                 <div class="col-md-3">
-                                    <select name="gender" class="form-select">
-                                        <option value="">Semua</option>
-                                        <option value="male" {{ request()->gender == 'male' ? 'selected' : '' }}>Laki-laki</option>
-                                        <option value="female" {{ request()->gender == 'female' ? 'selected' : '' }}>Perempuan</option>
+                                    <select name="classroom_id" class="form-select">
+                                        @foreach ($all_classrooms as $classroom)
+                                            <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="col-md-3">

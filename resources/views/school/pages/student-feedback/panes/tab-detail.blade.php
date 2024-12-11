@@ -6,7 +6,7 @@
                 <th class="text-white" style="background-color: #5D87FF;">Nama Siswa</th>
                 <th class="text-white" style="background-color: #5D87FF;">Jenis Kelamin
                 </th>
-                <th class="text-white" style="background-color: #5D87FF;">NISN</th>
+                <th class="text-white" style="background-color: #5D87FF;">Kelas</th>
                 <th class="text-white text-center" style="background-color: #5D87FF;">Aksi</th>
             </tr>
         </thead>
@@ -31,7 +31,7 @@
                                     </div>
                                 </td>
                                 <td>{{ $feedback->student->gender->label() }}</td>
-                                <td>{{ $feedback->student->nisn }}</td>
+                                <td>{{ $feedback->student->classroomStudents()->latest()->first()->classroom->name }}</td>
                                 <td class="text-center">
                                     <a href="javascript:void(0)" type="button" class="btn-detail"
                                         data-name="{{ $feedback->student->user->name }}"
