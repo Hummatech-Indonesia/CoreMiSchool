@@ -26,7 +26,7 @@ class AttendanceEmployeeController extends Controller
     public function index(Request $request)
     {
         $attendanceEmployeeChart = $this->service->ChartAttendanceEmployee($this->attendance, $request);
-        $attendances = $this->attendance->whereModel('App\Models\Employee', $request);
+        $attendances = $this->attendance->whereModelAndNow('App\Models\Employee', $request);
         return view('school.pages.statistic-presence.employee', compact('attendances', 'attendanceEmployeeChart'));
     }
 

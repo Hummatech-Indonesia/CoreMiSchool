@@ -11,13 +11,14 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <div class="form-group">
-                            <label for="" class="mb-2">Nama Siswa</label>
+                            <label for="" class="mb-2">Kelas</label>
                             <select id="list-classroom" class="select2 select2-create" name="classroom">
                                 <option value="">Pilih Siswa</option>
                                 @foreach ($all_classrooms as $classroom)
                                     <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
                                 @endforeach
                             </select>
+                            <label for="" class="mb-2">Nama Siswa</label>
                             <select class="select2 select2-create" id="list-student" name="classroomStudent">
                                 {{-- <option value="">Pilih Siswa</option> --}}
                                 {{-- @foreach ($students as $data)

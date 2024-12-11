@@ -312,4 +312,15 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
             })
             ->get();
     }
+
+    public function whereModelAndNow(mixed $model, Request $request): mixed
+    {
+        return $this->model->query()
+            ->where('model_type', $model)
+            ->where('created_at', now()->format('Y-m-d'))
+            ->when($request->start_date, function ($q) use ($request) {
+                $q->whereBetween('created_at', [$request->start_date . ' 00:00:00', $request->end_date . ' 23:59:59']);
+            })
+            ->get();
+    }
 }
