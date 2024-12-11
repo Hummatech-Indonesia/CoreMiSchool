@@ -19,7 +19,7 @@
                                 @endforeach
                             </select>
                             <label for="" class="mb-2">Nama Siswa</label>
-                            <select id="list-student" name="classroomStudent">
+                            <select class="select2 select2-create" id="list-student" name="classroomStudent">
                                 {{-- <option value="">Pilih Siswa</option> --}}
                                 {{-- @foreach ($students as $data)
                                     <option value="{{ $data->id }}">{{ $data->student->user->name }}</option>
