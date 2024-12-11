@@ -58,7 +58,7 @@
                                     <a type="button" class="text-primari btn-detail-journal"
                                         data-author="{{ $all_journal->teacherSubject->employee->user->name }}"
                                         data-date="{{ \Carbon\Carbon::parse($all_journal->created_at)->translatedFormat('d F Y') }}"
-                                        data-description="{{ $all_journal->teacherJournals->first() ? \Illuminate\Support\Str::limit($all_journal->teacherJournals->first()->description, 50) : 'kosong...' }}"
+                                        data-description="{{ $all_journal->teacherJournals->first() ? $all_journal->teacherJournals->first()->description : 'kosong...' }}"
                                         data-classroom="{{ $all_journal->classroom->name }} - {{ $all_journal->teacherSubject->subject->name }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                             viewBox="0 0 24 24">
