@@ -73,7 +73,7 @@
                                                 <label for="" class="mb-2"><b>Kelas</b></label>
                                                 <select class="form-select " id="classroom-violation"
                                                     style="width: 100%; height: 36px" name="">
-                                                    @foreach ($classrooms as $classroom)
+                                                    @foreach ($all_classrooms as $classroom)
                                                         <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
                                                     @endforeach
                                                 </select>
