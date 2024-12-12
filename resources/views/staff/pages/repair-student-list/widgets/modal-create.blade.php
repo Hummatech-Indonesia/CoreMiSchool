@@ -57,12 +57,12 @@
                                                     class="form-control select2 select2-siswa-remidial"
                                                     style="width: 100%; height: 36px" multiple="multiple"
                                                     placeholder="Masukan nama siswa">
-                                                    @forelse ($students as $student)
+                                                    {{-- @forelse ($students as $student)
                                                         <option value="{{ $student->student_id }}">
                                                             {{ $student->student->user->name }}</option>
                                                     @empty
                                                         <option value="">Belum ada siswa</option>
-                                                    @endforelse
+                                                    @endforelse --}}
                                                 </select>
                                                 @error('classroom_student_ids')
                                                     <span class="text-danger">{{ $message }}</span>
@@ -73,8 +73,9 @@
                                                 <label for="" class="mb-2"><b>Kelas</b></label>
                                                 <select class="form-select " id="classroom-violation"
                                                     style="width: 100%; height: 36px" name="">
-                                                    <option value="" selected>Pilih Kelas Siswa</option>
-                                                    <option value="">Kelas 1</option>
+                                                    @foreach ($classrooms as $classroom)
+                                                        <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
