@@ -144,6 +144,35 @@
 @endsection
 
 @section('script')
+<script>
+    $('#classroom-violation').change(function() {
+        var id = $(this).val();
+        console.log(id);    
+        
+        getStudent(id);
+    })
+
+    function getStudent(id) {
+        $.ajax({
+            url: "/get-students",
+            method: "GET",
+            data: {
+                classroom_id: id
+            },
+            dataType: "JSON",
+            beforeSend: function() {
+                $('.select2-siswa').html('')
+            },
+            success: function(response) {
+                console.log(response);
+                
+                $.each(response.data, function(index, data) {
+                    $('.select2-siswa').append('<option value="' + data.id + '">' + data.student.user.name + '</option>')
+                });
+            }
+        })
+    }
+</script>
     @include('staff.pages.violation-student-list.scripts.create-script')
     @include('staff.pages.violation-student-list.scripts.detail')
 @endsection

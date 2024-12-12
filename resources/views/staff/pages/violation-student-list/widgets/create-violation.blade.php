@@ -20,7 +20,9 @@
                                         d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1zm-8-5v4m0 4h.01" />
                                 </svg>
                             </div>
-                            <h6 class="text-warning ms-2" style="font-size: 16">Maksimal point pelanggaran pada sekolah
+                            <h6 class="text-warning ms-2" style="font-size: 16">
+                                <p class="text-warning">Pilih kelas terlebih dahulu</p>
+                                Maksimal point pelanggaran pada sekolah
                                 <br> {{ $maxPoint }} Point
                             </h6>
                         </div>
@@ -45,18 +47,30 @@
                                 </div>
                                 <div class="d-flex align-items-center">
                                     <div class="flex-grow-1 me-3">
-                                        <label for="" class="mb-2"><b>Nama Siswa Melakukan
-                                                Pelanggaran</b></label>
-                                        <select class="form-select select2-siswa" multiple="multiple"
-                                            style="width: 100%; height: 36px" name="repeater-group[][student_id][]">
-                                            <option value="" disabled>Pilih Nama Siswa</option>
-                                            @foreach ($students as $student)
-                                                <option value="{{ $student->id }}">{{ $student->user->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('repeater-group.*.student_id')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                        <div class="row">
+                                            <div class="col-12 col-lg-6">
+                                                <label for="" class="mb-2"><b>Nama Siswa Melakukan
+                                                        Pelanggaran</b></label>
+                                                <select class="form-select select2-siswa" multiple="multiple"
+                                                    style="width: 100%; height: 36px"
+                                                    name="repeater-group[][student_id][]">
+                                                    <option value="" disabled>Pilih Nama Siswa</option>
+                                                </select>
+                                                @error('repeater-group.*.student_id')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+
+                                            <div class="col-12 col-lg-6">
+                                                <label for="" class="mb-2"><b>Kelas</b></label>
+                                                <select class="form-select " id="classroom-violation" style="width: 100%; height: 36px" name="classroom_id">
+                                                    <option value="" selected>Pilih Kelas Siswa</option>
+                                                    @foreach ($classrooms as $classroom)
+                                                        <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
                                     <button data-repeater-delete="" class="btn btn-danger waves-effect waves-light"
                                         type="button" style="padding: 6px 12px; height: 38px; margin-top: 24px;">
@@ -85,12 +99,6 @@
                             </div>
                         </button>
                     </div>
-                    {{-- <div class="modal-footer">
-                        <button type="button" class="btn mb-1 waves-effect waves-light"
-                            style="background-color: #C7C7C7; color: white;" data-bs-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn mb-1 waves-effect waves-light btn-primary">Tambah</button>
-                    </div> --}}
-
                 </div>
                 <div class="modal-footer sticky-footer"
                     style="border-bottom-left-radius: 20px; border-bottom-right-radius: 20px">

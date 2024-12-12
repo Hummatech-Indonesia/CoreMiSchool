@@ -165,4 +165,9 @@ class ClassroomRepository extends BaseRepository implements ClassroomInterface
             ->where('employee_id', $employee_id)
             ->first();
     }
+
+    public function getByActiveSchoolYear(): mixed
+    {
+        return $this->model->query()->whereRelation('schoolYear', 'active', 1)->get();
+    }
 }

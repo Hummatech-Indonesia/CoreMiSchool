@@ -148,9 +148,11 @@
                                         <td>{{ $data->checkout == null ? '-' : \Carbon\Carbon::parse($data->checkout)->format('H:i') }}
                                         </td>
                                         <td>
-                                            <span
-                                                class="mb-1 badge font-medium {{ $data->status == 'present' ? 'bg-light-success text-success' : ($data->status == 'permit' ? 'bg-light-warning text-warning' : 'bg-light-danger text-danger') }}">{{ $data->status->label() }}</span>
+                                            <span class="mb-1 badge font-medium {{ $data->status->color() }}">
+                                                {{ $data->status->label() }}
+                                            </span>
                                         </td>
+
                                     </tr>
                                 @empty
                                     <tr>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClassroomStudentController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\LandingController;
 use Illuminate\Support\Facades\Auth;
@@ -35,3 +36,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/cek-rfid', [App\Http\Controllers\HomeController::class, 'cek_rfid']);
 
 Route::post('/send-email', [ContactUsController::class, 'sendMail'])->name('store.send.email');
+Route::get('get-students', [ClassroomStudentController::class, 'show']);

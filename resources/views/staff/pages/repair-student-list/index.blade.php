@@ -111,7 +111,8 @@
                             <span class="mx-1"><b>-</b></span>
                             {{ \Carbon\Carbon::parse($studentRepair->end_date)->translatedFormat('d F Y') }}
                         </td>
-                        <td>{{ $studentRepair->repair }}</td>
+                        <td>{{ \Illuminate\Support\Str::limit($studentRepair->repair, 30) }}</td>
+
                         <td>
                             <span
                                 class="badge {{ $studentRepair->is_approved == 0 ? 'bg-light-danger text-danger' : 'bg-light-success text-success' }}">{{ $studentRepair->is_approved == 0 ? 'Belum di kerjakan' : 'Sudah di kerjakan' }}</span>
