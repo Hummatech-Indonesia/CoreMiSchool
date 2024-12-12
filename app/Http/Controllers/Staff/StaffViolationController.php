@@ -85,11 +85,11 @@ class StaffViolationController extends Controller
 
     public function list_student(Request $request)
     {
+        $classrooms = $this->classroom->getByActiveSchoolYear();
         $studentViolations = $this->studentViolation->search($request);
-        $students = $this->student->get();
         $violations = $this->regulation->get();
         $maxPoint = $this->schoolPoint->getMaxPoint();
-        return view('staff.pages.violation-student-list.index', compact('studentViolations', 'students', 'violations', 'maxPoint'));
+        return view('staff.pages.violation-student-list.index', compact('studentViolations', 'violations', 'maxPoint', 'classrooms'));
     }
 
     public function download_student()

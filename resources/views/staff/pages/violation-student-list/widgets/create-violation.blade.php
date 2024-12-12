@@ -20,7 +20,9 @@
                                         d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1zm-8-5v4m0 4h.01" />
                                 </svg>
                             </div>
-                            <h6 class="text-warning ms-2" style="font-size: 16">Maksimal point pelanggaran pada sekolah
+                            <h6 class="text-warning ms-2" style="font-size: 16">
+                                <p class="text-warning">Pilih kelas terlebih dahulu</p>
+                                Maksimal point pelanggaran pada sekolah
                                 <br> {{ $maxPoint }} Point
                             </h6>
                         </div>
@@ -53,10 +55,6 @@
                                                     style="width: 100%; height: 36px"
                                                     name="repeater-group[][student_id][]">
                                                     <option value="" disabled>Pilih Nama Siswa</option>
-                                                    @foreach ($students as $student)
-                                                        <option value="{{ $student->id }}">{{ $student->user->name }}
-                                                        </option>
-                                                    @endforeach
                                                 </select>
                                                 @error('repeater-group.*.student_id')
                                                     <span class="text-danger">{{ $message }}</span>
@@ -65,11 +63,11 @@
 
                                             <div class="col-12 col-lg-6">
                                                 <label for="" class="mb-2"><b>Kelas</b></label>
-                                                <select class="form-select" style="width: 100%; height: 36px"
-                                                    name="">
-                                                    <option value="" disabled>Pilih Nama Siswa</option>
-                                                    <option value="">Kelas 1</option>
-
+                                                <select class="form-select " id="classroom-violation" style="width: 100%; height: 36px" name="classroom_id">
+                                                    <option value="" selected>Pilih Kelas Siswa</option>
+                                                    @foreach ($classrooms as $classroom)
+                                                        <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
