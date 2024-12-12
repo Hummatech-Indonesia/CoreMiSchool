@@ -310,7 +310,7 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
             ->when($request->classroom, function($query) use ($request) {
                 $query->where('model_id', $request->classroom);
             })
-            ->get();
+            ->latest();
     }
 
     public function whereModelAndNow(mixed $model, Request $request): mixed
