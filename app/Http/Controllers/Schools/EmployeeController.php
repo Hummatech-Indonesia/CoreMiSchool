@@ -35,8 +35,11 @@ class EmployeeController extends Controller
     {
         $teachers = $this->employee->getByRole(RoleEnum::TEACHER->value, $request);
         $staffs = $this->employee->getByRole(RoleEnum::STAFF->value, $request);
+        $totalTeachers = $this->employee->getByRoleCount(RoleEnum::TEACHER->value, $request);
+        $totalStaffs = $this->employee->getByRoleCount(RoleEnum::STAFF->value, $request);
+
         $religions = $this->religion->get();
-        return view('school.pages.employee.index', compact('teachers', 'staffs', 'religions'));
+        return view('school.pages.employee.index', compact('teachers', 'staffs', 'religions','totalTeachers', 'totalStaffs'));
     }
 
     /**
@@ -92,7 +95,7 @@ class EmployeeController extends Controller
             $this->employee->update($employee->id, $data);
             return redirect();
         } catch (\Throwable $th) {
-            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+            return redirect()->back()->with('error', 'Terjadi kesalahan' . $th->getMessage());
         }
     }
 
@@ -105,7 +108,7 @@ class EmployeeController extends Controller
             $this->employee->delete($employee->id);
             return redirect();
         } catch (\Throwable $th) {
-            return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+            return redirect()->back()->with('error', 'Terjadi kesalahan' . $th->getMessage());
         }
     }
 }

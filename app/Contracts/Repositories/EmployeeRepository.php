@@ -134,17 +134,31 @@ class EmployeeRepository extends BaseRepository implements EmployeeInterface
             ->paginate(10);
     }
 
+    public function getByRoleCount(mixed $role, Request $request): mixed
+    {
+        return $this->model->query()
+            ->whereRelation('user.roles', 'name', $role)
+            ->when($request->search, function ($query) use ($request) {
+                $query->whereHas('user', function ($q) use ($request) {
+                    $q->where('name', 'LIKE', '%' . $request->search . '%');
+                });
+            })->when($request->gender, function ($query) use ($request) {
+                $query->where('gender', $request->gender);
+            })->count();
+    }
+
+
     public function employeeLesson(Request $request): mixed
     {
         return $this->model->query()
-        ->whereRelation('user.roles', 'name', RoleEnum::TEACHER->value)
-        ->whereHas('teacherSubjects')
-        ->when($request->search, function ($query) use ($request) {
-            $query->whereRelation('user', 'name', 'LIKE', '%' . $request->search . '%');
-        })
-        ->when($request->gender, function ($query) use ($request) {
-            $query->where('gender', $request->gender);
-        })
-        ->paginate(8);
+            ->whereRelation('user.roles', 'name', RoleEnum::TEACHER->value)
+            ->whereHas('teacherSubjects')
+            ->when($request->search, function ($query) use ($request) {
+                $query->whereRelation('user', 'name', 'LIKE', '%' . $request->search . '%');
+            })
+            ->when($request->gender, function ($query) use ($request) {
+                $query->where('gender', $request->gender);
+            })
+            ->paginate(8);
     }
 }
