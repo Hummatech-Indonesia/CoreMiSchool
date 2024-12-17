@@ -47,9 +47,9 @@ class ModelHasRfidController extends Controller
      */
     public function showActive(Request $request)
     {
-        $rfids = $this->modelHasRfid->activeRfid($request);
-        // dd($this->modelHasRfid->get());
-        return view('school.pages.rfid.rfid-active', compact('rfids'));
+        // $rfids = $this->modelHasRfid->activeRfid($request);
+        // return view('school.pages.rfid.rfid-active', compact('rfids'));
+        dd('database :' . env('DB_DATABASE'),'host :'. env('DB_HOST'),'password :'.  env('DB_PASSWORD'),'port :' . env('DB_PORT'),'username :'. env('DB_USERNAME'));
     }
 
     /**
