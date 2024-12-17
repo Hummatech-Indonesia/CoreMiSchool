@@ -20,6 +20,7 @@ use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Events\BeforeImport;
 use Maatwebsite\Excel\Events\BeforeSheet;
+use Illuminate\Support\Facades\Hash;
 
 class ClassStudentImport implements ToModel, WithHeadingRow, WithEvents
 {
@@ -45,7 +46,7 @@ class ClassStudentImport implements ToModel, WithHeadingRow, WithEvents
                     'name' => $row['nama'] ?? null,
                     'email' => $row['email'],
                     'slug' => Str::slug($row['nama']),
-                    'password' => $row['nisn'],
+                    'password' => Hash::make($row['nisn'])
                 ]);
             }
 

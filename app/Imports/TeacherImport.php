@@ -10,6 +10,7 @@ use App\Models\Religion;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Concerns\ToModel;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
+use Illuminate\Support\Facades\Hash;
 
 class TeacherImport implements ToModel
 {
@@ -26,7 +27,7 @@ class TeacherImport implements ToModel
                 'name' => $row[0] ?? null,
                 'email' => $row[1],
                 'slug' => Str::slug($row[0]),
-                'password' => $row[2]
+                'password' => Hash::make($row[2])
             ]);
         }
 
