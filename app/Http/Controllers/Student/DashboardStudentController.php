@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ClassroomStudent;
 use App\Services\StudentService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardStudentController extends Controller
 {
@@ -28,6 +29,10 @@ class DashboardStudentController extends Controller
     public function index()
     {
         $studentClasses = $this->studentClass->whereStudent(auth()->user()->student->id);
+        if (!$studentClasses) {
+            Auth::logout();
+            return redirect('/login')->with('error', 'Akun anda belum ada dalam kelas');
+        }
         $single_attendance = $this->attendance->userToday('App\Models\ClassroomStudent', $studentClasses->id);
         $history_attendance = $this->attendance->whereUser($studentClasses->id, 'App\Models\ClassroomStudent');
         $chartAttendance = $this->service->chartAttendance(auth()->user()->student->id);
