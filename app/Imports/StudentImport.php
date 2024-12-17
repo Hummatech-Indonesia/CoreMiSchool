@@ -12,14 +12,15 @@ use App\Models\Student;
 use App\Enums\RoleEnum;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 
 class StudentImport implements ToModel
-{   
+{
     private $classroom;
 
     public function __construct($classroom)
     {
-        $this->classroom = $classroom;       
+        $this->classroom = $classroom;
     }
 
     public function model(array $row)
@@ -37,7 +38,7 @@ class StudentImport implements ToModel
                 'name' => $row[0] ?? null,
                 'email' => $row[1],
                 'slug' => Str::slug($row[0]),
-                'password' => $row[2]
+                'password' => Hash::make($row[2])
             ]);
         }
 
