@@ -10,22 +10,27 @@
                     <a href="{{ route('school.settings-information.edit') }}" class="btn btn-success">Edit Informasi</a>
                 </div>
             </div>
-            <div class="row pb-4 mt-3 mx-3">
-                <div class="d-flex align-items-center mb-5">
-                    <img class="card-img-top img-responsive me-3" style="max-height:80px; width: auto;"
-                        src="{{ $school->image ? asset('storage/' . $school->image) : asset('assets/images/default-user.jpeg') }}"
-                        alt="{{ $school->user->name }}">
-                    <div class="d-flex flex-column flex-sm-row justify-content-between w-100 ms-3">
-                        <div>
-                            <h3 class="mb-1">{{ $school->user->name }}</h3>
+            <div class="row pb-4 mt-3 mx-2">
+                <div class="row mb-4 d-flex align-items-center">
+                    <div class="col-12 col-lg-1 mb-2">
+                        <img class="card-img-top img-fluid me-3" style="max-height:80px; width:auto;"
+                            src="{{ $school->image && Storage::exists('public/' . $school->image) ? asset('storage/' . $school->image) : asset('assets/images/default-user.jpeg') }}"
+                            alt="{{ $school->user->name }}">
+                    </div>
+                    <div class="col-12 col-lg-7">
+                        <div class="d-flex align-items-center mb-2">
+                            <h3 class="mb-1 me-2">{{ $school->user->name }}</h3>
                             <span class="badge font-medium bg-light-primary text-primary">{{ $school->type }}</span>
                         </div>
-                        <div>
-                            <h5 class="mb-1">Tahun Ajaran</h5>
-                            <h5>{{ $schoolYear->school_year }}</h5>
-                        </div>
+                        <p>{{ $school->description != null ? Str::limit($school->description, 100) : '-' }}</p>
+                    </div>
+                    <div class="col-12 col-lg-4 text-lg-end">
+                        <h5 class="mb-1">Tahun Ajaran</h5>
+                        <h5>{{ $schoolYear->school_year }}</h5>
                     </div>
                 </div>
+
+
                 <hr>
 
                 <div class="d-flex flex-column flex-md-row justify-content-between">
@@ -56,10 +61,6 @@
                         <div class="d-flex justify-content-between">
                             <h6>Akreditasi :</h6>
                             <p>{{ $school->accreditation }}</p>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <h6>Deskripsi :</h6>
-                            <p>{{ $school->description != null ? Str::limit($school->description, 200) : '-' }}</p>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6>Alamat:</h6>

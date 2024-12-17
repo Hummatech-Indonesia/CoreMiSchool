@@ -204,8 +204,10 @@
                         <span class="hide-menu">Semester</span>
                     </a>
                 </li> --}}
-                <li class="sidebar-item">
-                    <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
+                <li
+                    class="sidebar-item {{ request()->routeIs('school.subject.index', 'school.lesson-hours.index', 'school.lesson-schedule.index') ? 'active' : '' }}">
+                    <a class="sidebar-link has-arrow {{ request()->routeIs('school.subject.index', 'school.lesson-hours.index', 'school.lesson-schedule.index') ? 'active' : '' }}"
+                        href="javascript:void(0)" aria-expanded="false">
                         <span class="d-flex">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                 viewBox="0 0 14 14">
@@ -216,9 +218,11 @@
                         </span>
                         <span class="hide-menu">Mata Pelajaran</span>
                     </a>
-                    <ul aria-expanded="false" class="collapse first-level">
+                    <ul aria-expanded="false"
+                        class="collapse first-level {{ request()->routeIs('school.subject.index', 'school.lesson-hours.index', 'school.lesson-schedule.index') ? 'show' : '' }}">
                         <li class="sidebar-item">
-                            <a href="{{ route('school.subject.index') }}" class="sidebar-link">
+                            <a href="{{ route('school.subject.index') }}"
+                                class="sidebar-link {{ request()->routeIs('school.subject.index') ? 'active' : '' }}">
                                 <div class="round-16 d-flex align-items-center justify-content-center">
                                     <i class="ti ti-circle"></i>
                                 </div>
@@ -226,7 +230,8 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="{{ route('school.lesson-hours.index') }}" class="sidebar-link">
+                            <a href="{{ route('school.lesson-hours.index') }}"
+                                class="sidebar-link {{ request()->routeIs('school.lesson-hours.index') ? 'active' : '' }}">
                                 <div class="round-16 d-flex align-items-center justify-content-center">
                                     <i class="ti ti-circle"></i>
                                 </div>
@@ -234,7 +239,8 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="{{ route('school.lesson-schedule.index') }}" class="sidebar-link">
+                            <a href="{{ route('school.lesson-schedule.index') }}"
+                                class="sidebar-link {{ request()->routeIs('school.lesson-schedule.index') ? 'active' : '' }}">
                                 <div class="round-16 d-flex align-items-center justify-content-center">
                                     <i class="ti ti-circle"></i>
                                 </div>
@@ -243,6 +249,7 @@
                         </li>
                     </ul>
                 </li>
+
 
                 {{-- <li class="sidebar-item">
                     <a class="sidebar-link" href="/attendance-test" aria-expanded="false">
@@ -383,8 +390,9 @@
                     </ul>
                 </li> --}}
 
-                <li class="sidebar-item">
-                    <a class="sidebar-link has-arrow {{ request()->routeIs('school.detail-presence-class.index') ? 'active' : '' }}"
+                <li
+                    class="sidebar-item {{ request()->routeIs('school.statistic-presence.index', 'school.statistic-presence-employee.index') ? 'active' : '' }}">
+                    <a class="sidebar-link has-arrow {{ request()->routeIs('school.statistic-presence.index', 'school.statistic-presence-employee.index') ? 'active' : '' }}"
                         href="javascript:void(0)" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -396,10 +404,10 @@
                         <span class="hide-menu">Statistik Absensi</span>
                     </a>
                     <ul aria-expanded="false"
-                        class="collapse first-level {{ request()->routeIs('school.detail-presence-class.index') ? 'in' : '' }}">
+                        class="collapse first-level {{ request()->routeIs('school.statistic-presence.index', 'school.statistic-presence-employee.index') ? 'show' : '' }}">
                         <li class="sidebar-item">
                             <a href="{{ route('school.statistic-presence.index') }}"
-                                class="sidebar-link {{ request()->routeIs('school.detail-presence-class.index') ? 'active' : '' }}">
+                                class="sidebar-link {{ request()->routeIs('school.statistic-presence.index') ? 'active' : '' }}">
                                 <div class="round-16 d-flex align-items-center justify-content-center">
                                     <i class="ti ti-circle"></i>
                                 </div>
@@ -407,7 +415,8 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="{{ route('school.statistic-presence-employee.index') }}" class="sidebar-link">
+                            <a href="{{ route('school.statistic-presence-employee.index') }}"
+                                class="sidebar-link {{ request()->routeIs('school.statistic-presence-employee.index') ? 'active' : '' }}">
                                 <div class="round-16 d-flex align-items-center justify-content-center">
                                     <i class="ti ti-circle"></i>
                                 </div>
@@ -416,6 +425,7 @@
                         </li>
                     </ul>
                 </li>
+
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">Jurnal</span>
@@ -471,7 +481,7 @@
                     <span class="hide-menu">Pelanggaran</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('school.access-violation.index') }}"
+                    <a class="sidebar-link  {{ request()->routeIs('school.access-violation.index') ? 'active' : '' }}" href="{{ route('school.access-violation.index') }}"
                         aria-expanded="false">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                             <path fill="currentColor"
@@ -480,6 +490,7 @@
                         <span class="hide-menu">Akses Pelanggaran</span>
                     </a>
                 </li>
+
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->routeIs('school.violation.index') ? 'active' : '' }}"
                         href="{{ route('school.violation.index') }}" aria-expanded="false">
@@ -496,7 +507,7 @@
                     <span class="hide-menu">Buku tamu</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('school.guest-book.index') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ request()->routeIs('school.guest-book.index') ? 'active' : '' }}" href="{{ route('school.guest-book.index') }}" aria-expanded="false">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                             <path fill="currentColor"
                                 d="M5.8 10C5.4 8.8 4.3 8 3 8c-1.7 0-3 1.3-3 3s1.3 3 3 3c1.3 0 2.4-.8 2.8-2H7v2h2v-2h2v-2zM3 12c-.6 0-1-.4-1-1s.4-1 1-1s1 .4 1 1s-.4 1-1 1m13-8c-2.2 0-4 1.8-4 4s1.8 4 4 4s4-1.8 4-4s-1.8-4-4-4m0 6.1c-1.2 0-2.1-.9-2.1-2.1s.9-2.1 2.1-2.1s2.1.9 2.1 2.1s-.9 2.1-2.1 2.1m0 2.9c-2.7 0-8 1.3-8 4v3h16v-3c0-2.7-5.3-4-8-4m6.1 5.1H9.9V17c0-.6 3.1-2.1 6.1-2.1s6.1 1.5 6.1 2.1z" />
