@@ -5,17 +5,21 @@
     <div class="">
         <div class="row">
             <div class="col-12 col-lg-5 mb-4 mt-3">
-                <form class="d-flex flex-column flex-lg-row gap-2 align-items-stretch align-items-lg-center" method="GET" action="{{ url()->current() }}">
+                <form class="d-flex flex-column flex-lg-row gap-2 align-items-stretch align-items-lg-center"
+                    method="GET" action="{{ url()->current() }}">
                     <div class="position-relative flex-grow-1 mb-2 mb-lg-0">
-                        <input type="text" name="search" class="form-control search-chat py-2 px-4 ps-5" id="search-name"
-                            placeholder="Cari" value="{{ old('search', request('search')) }}">
+                        <input type="text" name="search" class="form-control search-chat py-2 px-4 ps-5"
+                            id="search-name" placeholder="Cari" value="{{ old('search', request('search')) }}">
                         <i class="ti ti-search position-absolute top-50 translate-middle-y fs-6 text-dark ms-3"></i>
                     </div>
                     <div class="flex-grow-1 mb-2 mb-lg-0">
                         <select name="gender" class="form-select" id="search-status">
-                            <option value="" {{ old('gender', request('gender')) == '' ? 'selected' : '' }}>Semua</option>
-                            <option value="male" {{ old('gender', request('gender')) == 'male' ? 'selected' : '' }}>Laki-laki</option>
-                            <option value="female" {{ old('gender', request('gender')) == 'female' ? 'selected' : '' }}>Perempuan</option>
+                            <option value="" {{ old('gender', request('gender')) == '' ? 'selected' : '' }}>Semua
+                            </option>
+                            <option value="male" {{ old('gender', request('gender')) == 'male' ? 'selected' : '' }}>
+                                Laki-laki</option>
+                            <option value="female" {{ old('gender', request('gender')) == 'female' ? 'selected' : '' }}>
+                                Perempuan</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary w-lg-auto">Filter</button>
@@ -44,7 +48,7 @@
                 <tbody>
                     @forelse ($staffs as $staff)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ ($staffs->currentPage() - 1) * $staffs->perPage() + $loop->iteration }}</td>
                             <td>
                                 <div class="d-flex align-items-center">
                                     <img src="{{ $staff->image ? asset('storage/' . $staff->image) : asset('assets/images/default-user.jpeg') }}"
@@ -113,7 +117,8 @@
                                                 data-birth_date="{{ $staff->birth_date }}"
                                                 data-birth_place="{{ $staff->birth_place }}"
                                                 data-gender="{{ $staff->gender->value }}"
-                                                data-nik="{{ $staff->nik }}" data-phone="{{ $staff->phone_number }}"
+                                                data-nik="{{ $staff->nik }}"
+                                                data-phone="{{ $staff->phone_number }}"
                                                 data-email="{{ $staff->user->email }}"
                                                 data-active="{{ $staff->active }}"
                                                 data-address="{{ $staff->address }}">

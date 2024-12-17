@@ -4,7 +4,8 @@
     </div>
     <div class="row">
         <div class="col-12 col-lg-5 mt-3 mb-4">
-            <form class="d-flex gap-2 flex-column flex-lg-row align-items-stretch align-items-lg-center" method="GET" action="{{ url()->current() }}">
+            <form class="d-flex gap-2 flex-column flex-lg-row align-items-stretch align-items-lg-center" method="GET"
+                action="{{ url()->current() }}">
                 <div class="position-relative flex-grow-1 mb-2 mb-lg-0">
                     <input type="text" name="search" class="form-control search-chat py-2 px-4 ps-5" id="search-name"
                         placeholder="Cari" value="{{ old('search', request('search')) }}">
@@ -12,9 +13,12 @@
                 </div>
                 <div class="flex-grow-1">
                     <select name="gender" class="form-select" id="search-status">
-                        <option value="" {{ old('gender', request('gender')) == '' ? 'selected' : '' }}>Semua</option>
-                        <option value="male" {{ old('gender', request('gender')) == 'male' ? 'selected' : '' }}>Laki-laki</option>
-                        <option value="female" {{ old('gender', request('gender')) == 'female' ? 'selected' : '' }}>Perempuan</option>
+                        <option value="" {{ old('gender', request('gender')) == '' ? 'selected' : '' }}>Semua
+                        </option>
+                        <option value="male" {{ old('gender', request('gender')) == 'male' ? 'selected' : '' }}>
+                            Laki-laki</option>
+                        <option value="female" {{ old('gender', request('gender')) == 'female' ? 'selected' : '' }}>
+                            Perempuan</option>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary w-lg-auto">Filter</button>
@@ -40,7 +44,7 @@
                 <tbody>
                     @forelse ($teachers as $teacher)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ ($teachers->currentPage() - 1) * $teachers->perPage() + $loop->iteration }}</td>
                             <td>
                                 <div class="d-flex align-items-center">
                                     <img src="{{ $teacher->image ? asset('storage/' . $teacher->image) : asset('assets/images/default-user.jpeg') }}"
@@ -88,15 +92,14 @@
                                         style="z-index: 20000;">
                                         <li>
                                             <button type="button"
-                                            data-image="{{ $teacher->image ? asset('storage/' . $teacher->image) : asset('assets/images/default-user.jpeg') }}"
-                                            data-name="{{ $teacher->user->name }}"
-                                            data-email="{{ $teacher->user->email }}"
-                                            data-phone="{{ $teacher->phone_number }}"
-                                            data-gender="{{ $teacher->gender->label() }}"
-                                            data-nip="{{ $teacher->nip }}"
-                                            data-rfid="{{ $teacher->modelHasRfid ? $teacher->modelHasRfid->rfid : 'Belum memiliki rfid' }}"
-                                            data-address="{{ $teacher->address }}"
-
+                                                data-image="{{ $teacher->image ? asset('storage/' . $teacher->image) : asset('assets/images/default-user.jpeg') }}"
+                                                data-name="{{ $teacher->user->name }}"
+                                                data-email="{{ $teacher->user->email }}"
+                                                data-phone="{{ $teacher->phone_number }}"
+                                                data-gender="{{ $teacher->gender->label() }}"
+                                                data-nip="{{ $teacher->nip }}"
+                                                data-rfid="{{ $teacher->modelHasRfid ? $teacher->modelHasRfid->rfid : 'Belum memiliki rfid' }}"
+                                                data-address="{{ $teacher->address }}"
                                                 class="dropdown-item d-flex align-items-center gap-3 btn-detail-teacher">
                                                 <i class="fs-4 ti ti-eye"></i>Detail</button>
                                         </li>
@@ -117,7 +120,8 @@
                                                 class="dropdown-item d-flex align-items-center gap-3 btn-edit-teacher"
                                                 data-id="{{ $teacher->id }}"
                                                 data-image="{{ asset('storage/' . $teacher->image) }}"
-                                                data-name="{{ $teacher->user->name }}" data-nip="{{ $teacher->nip }}"
+                                                data-name="{{ $teacher->user->name }}"
+                                                data-nip="{{ $teacher->nip }}"
                                                 data-religion_id="{{ $teacher->religion_id }}"
                                                 data-birth_date="{{ $teacher->birth_date }}"
                                                 data-birth_place="{{ $teacher->birth_place }}"

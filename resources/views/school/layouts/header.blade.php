@@ -44,9 +44,9 @@
 
         </ul>
         <div class="d-block d-lg-none pt-3">
-            <img src="{{ asset('assets/images/logo/logo-primadona1.png') }}" class="dark-logo img-fluid" width="180"
+            <img src="{{ asset('assets/images/logo/logo-primadona1.png') }}" class="dark-logo img-fluid" width="150"
                 alt="" />
-            <img src="{{ asset('assets/images/logo/logo-primadona1.png') }}" class="light-logo img-fluid" width="180"
+            <img src="{{ asset('assets/images/logo/logo-primadona1.png') }}" class="light-logo img-fluid" width="150"
                 alt="" />
         </div>
 
