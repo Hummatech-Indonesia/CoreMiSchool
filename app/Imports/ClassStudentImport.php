@@ -55,17 +55,7 @@ class ClassStudentImport implements ToModel, WithHeadingRow, WithEvents
             try {
                 $birthDate = $row['tanggal_lahir'] ? Carbon::createFromFormat('Y-m-d', $row['tanggal_lahir'])->format('Y-m-d') : null;
             } catch (\Throwable $th) {
-                // $birthDate = $row['tanggal_lahir'] ? $row['tanggal_lahir']->format('Y-m-d') : null;
-                if (!empty($row['tanggal_lahir']) && is_numeric($row['tanggal_lahir'])) {
-                    // Ubah serial date ke timestamp
-                    $timestamp = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($row['tanggal_lahir']);
-                    $birthDate = Carbon::createFromTimestamp($timestamp)->format('Y-m-d');
-                } elseif (!empty($row['tanggal_lahir'])) {
-                    // Jika input string (format d/m/Y)
-                    $birthDate = Carbon::createFromFormat('d/m/Y', $row['tanggal_lahir'])->format('Y-m-d');
-                } else {
-                    $birthDate = null;
-                }
+                $birthDate = $row['tanggal_lahir'];
             }
 
             $data = [
