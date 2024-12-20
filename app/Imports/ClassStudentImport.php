@@ -55,7 +55,7 @@ class ClassStudentImport implements ToModel, WithHeadingRow, WithEvents
             try {
                 $birthDate = $row['tanggal_lahir'] ? Carbon::createFromFormat('Y-m-d', $row['tanggal_lahir'])->format('Y-m-d') : null;
             } catch (\Throwable $th) {
-                $birthDate = $row['tanggal_lahir'] ? Carbon::createFromFormat('d/m/Y', $row['tanggal_lahir'])->format('Y-m-d') : null;
+                $birthDate = $row['tanggal_lahir'] ? $row['tanggal_lahir']->format('Y-m-d') : null;
             }
 
             $data = [
