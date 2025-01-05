@@ -42,9 +42,9 @@ class StudentImport implements ToModel
             ]);
         }
 
+        dd($row[3]);
         $user->assignRole(RoleEnum::STUDENT->value);
         $birthDate = $row[3] ? Carbon::instance(Date::excelToDateTimeObject($row[3])) : null;
-        dd($row[3]);
        
 
         $data = [
