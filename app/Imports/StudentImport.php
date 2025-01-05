@@ -25,7 +25,7 @@ class StudentImport implements ToModel
 
     public function model(array $row)
     {
-        if (in_array($row[0], ['NAMA', 'Contoh Format(Jangan Dihapus)']) || $row[0] == null) {
+        if (in_array($row[0], ['Nama', 'Contoh Format(Jangan Dihapus)']) || $row[0] == null) {
             return null;
         }
 
