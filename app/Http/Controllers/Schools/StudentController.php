@@ -170,12 +170,12 @@ class StudentController extends Controller
 
     public function import(Request $request, string $classroom)
     {
-        // try {
+        try {
             $file = $request->file('file');
             Excel::import(new StudentImport($classroom), $file);
             return redirect()->back()->with('success', "Berhasil Mengimport Data!");
-        // } catch (\Throwable $th) {
-        //     return redirect()->back()->with('error', 'Terjadi kesalahan' . $th->getMessage());
-        // }
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan' . $th->getMessage());
+        }
     }
 }
