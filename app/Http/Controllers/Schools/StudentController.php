@@ -39,9 +39,9 @@ class StudentController extends Controller
     private ClassroomInterface $classroom;
 
     public function __construct(
-        UserInterface $user, StudentInterface $student, StudentService $service, 
-        ReligionInterface $religion, ClassroomStudentInterface $classroomStudent, 
-        ClassroomStudentService $classroomService, ModelHasRfidInterface $modelHasRfid, 
+        UserInterface $user, StudentInterface $student, StudentService $service,
+        ReligionInterface $religion, ClassroomStudentInterface $classroomStudent,
+        ClassroomStudentService $classroomService, ModelHasRfidInterface $modelHasRfid,
         SchoolYearInterface $schoolYear, ClassroomInterface $classroom)
     {
         $this->user = $user;
@@ -170,12 +170,12 @@ class StudentController extends Controller
 
     public function import(Request $request, string $classroom)
     {
-        try {
+        // try {
             $file = $request->file('file');
             Excel::import(new StudentImport($classroom), $file);
             return redirect()->back()->with('success', "Berhasil Mengimport Data!");
-        } catch (\Throwable $th) {
-            return redirect()->back()->with('error', 'Terjadi kesalahan' . $th->getMessage());
-        }
+        // } catch (\Throwable $th) {
+        //     return redirect()->back()->with('error', 'Terjadi kesalahan' . $th->getMessage());
+        // }
     }
 }
