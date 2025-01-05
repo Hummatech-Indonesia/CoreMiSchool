@@ -137,15 +137,15 @@ class ClassroomStudentController extends Controller
     {
         $file = $request->file('file');
 
-        // try {
+        try {
             Excel::import(new ClassStudentImport, $file);
             return to_route('school.students.index')->with('success', "Berhasil Mengimport Data!");
-        // } catch (\Throwable $th) {
-        //     if ($file->getClientOriginalExtension() != 'xlsx') {
-        //         return redirect()->back()->with('error', 'Format file salah');
-        //     } else {
-        //         return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
-        //     }
-        // }
+        } catch (\Throwable $th) {
+            if ($file->getClientOriginalExtension() != 'xlsx') {
+                return redirect()->back()->with('error', 'Format file salah');
+            } else {
+                return redirect()->back()->with('error', 'Terjadi kesalahan'.$th->getMessage());
+            }
+        }
     }
 }
