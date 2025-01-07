@@ -120,7 +120,8 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
 
         return $this->student->query()
             ->whereHas('attendances', function ($query) use ($date, $request, $startDate, $endDate) {
-                $query->when($request->start, function ($q) use ($startDate, $endDate) {
+                $query->whereDate('created_at', $date)
+                ->when($request->start, function ($q) use ($startDate, $endDate) {
                     $q->whereBetween('created_at', [$startDate, $endDate]);
                 });
             })
