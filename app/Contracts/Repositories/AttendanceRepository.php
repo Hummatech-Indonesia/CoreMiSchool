@@ -115,11 +115,13 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
     public function classAndDate(mixed $classroom_id, Request $request): mixed
     {
         $date = $request->date ?? Carbon::today()->toDateString();
+        $startDate = Carbon::parse($request->start)->startOfDay();
+        $endDate = Carbon::parse($request->end)->endOfDay();
 
         return $this->student->query()
-            ->whereHas('attendances', function ($query) use ($date, $request) {
-                $query->when($request->start, function ($q) use ($request) {
-                    $q->whereBetween('created_at', [$request->start . ' 23:59:59', $request->end . ' 23:59:59']);
+            ->whereHas('attendances', function ($query) use ($date, $request, $startDate, $endDate) {
+                $query->when($request->start, function ($q) use ($startDate, $endDate) {
+                    $q->whereBetween('created_at', [$startDate, $endDate]);
                 });
             })
             ->with(['student.user', 'attendances' => function ($query) use ($date) {
