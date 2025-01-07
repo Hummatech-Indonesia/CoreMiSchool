@@ -119,7 +119,7 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
         return $this->student->query()
             ->whereHas('attendances', function ($query) use ($date, $request) {
                 $query->when($request->start, function ($q) use ($request) {
-                    $q->whereBetween('created_at', [$request->start . ' 00:00:00', $request->end . ' 23:59:59']);
+                    $q->whereBetween('created_at', [$request->start . ' 23:59:59', $request->end . ' 23:59:59']);
                 });
             })
             ->with(['student.user', 'attendances' => function ($query) use ($date) {
@@ -316,17 +316,17 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
     {
         $query = $this->model->query()
             ->where('model_type', $model);
-    
+
         if ($request->has(['start_date', 'end_date'])) {
             $startDate = Carbon::parse($request->start_date)->startOfDay();
             $endDate = Carbon::parse($request->end_date)->endOfDay();
-    
+
             $query->whereBetween('created_at', [$startDate, $endDate]);
         } else {
             $query->whereDate('created_at', now()->toDateString());
         }
-    
+
         return $query->get();
     }
-    
+
 }
