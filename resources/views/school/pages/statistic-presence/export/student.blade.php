@@ -40,12 +40,12 @@
                             <div class="form-group">
                                 <label for="startDate" class="mb-2">Tanggal Awal</label>
                                 <input type="date" class="form-control" id="startDate" name="start"
-                                    value="{{ request('start', now()->format('Y-m-d')) }}" max="{{ now()->format('Y-m-d') }}">
+                                    value="{{ request('start', now()->format('Y-m-d')) }}">
                             </div>
                             <div class="form-group ms-2">
                                 <label for="endDate" class="mb-2">Tanggal Akhir</label>
                                 <input type="date" class="form-control" id="endDate" name="end"
-                                    value="{{ request('end', now()->format('Y-m-d')) }}" min="{{ now()->format('Y-m-d') }}">
+                                    value="{{ request('end', now()->format('Y-m-d')) }}">
                             </div>
                         </div>
                         <div class="col-lg-4 mt-4 col-md-12 d-flex justify-content-end">
