@@ -32,9 +32,8 @@ class StudentAttendanceExport implements FromView, ShouldAutoSize, WithStyles
     */
     public function view(): View
     {
-        // dd($this->classroom_id, $this->request);
         return view('school.export.invoices-attendance-student', [
-            'items' => $this->attendance->classAndDate($this->classroom_id, $this->request)
+            'items' => $this->attendance->exportClassAndDate($this->classroom_id, $this->request)
         ]);
     }
 

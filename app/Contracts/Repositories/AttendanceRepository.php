@@ -137,14 +137,12 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
 
     public function exportClassAndDate(mixed $classroom_id, Request $request): mixed
     {
-        return $this->student->query()
-            ->with(['attendances'])
-            ->whereHas('attendances')
-            ->where('classroom_id', $classroom_id)
-            ->when($request->start, function ($query) use ($request) {
-                $query->whereHas('attendances', function ($query) use ($request) {
-                    $query->whereBetween('created_at', [$request->start . ' 00:00:00', $request->end . ' 23:59:59']);
-                });
+        return $this->model->query()
+            ->with('model')->where('model_type', ClassroomStudent::class)
+            ->whereHas('model', function ($query) use ($classroom_id) {
+                $query->where('classroom_id', $classroom_id);
+            })->when($request->start, function ($query) use ($request) {
+                $query->whereBetween('created_at', [$request->start . ' 00:00:00', $request->end . ' 23:59:59']);
             })
             ->get();
     }
@@ -331,5 +329,4 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
 
         return $query->get();
     }
-
 }

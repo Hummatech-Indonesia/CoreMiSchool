@@ -89,12 +89,12 @@
                         @forelse ($attendances as $attendance)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $attendance->student->user->name }}</td>
-                                <td>{{ $attendance->attendances->first()->checkin ? Carbon\Carbon::parse($attendance->attendances->first()->checkin)->format('H.i') : '-' }}</td>
-                                <td>{{ $attendance->attendances->first()->checkout ? Carbon\Carbon::parse($attendance->attendances->first()->checkout)->format('H.i') : '-' }}</td>
-                                <td>{{ $attendance->attendances->first()->point }}</td>
+                                <td>{{ $attendance->model->student->user->name }}</td>
+                                <td>{{ $attendance->checkin ? Carbon\Carbon::parse($attendance->checkin)->format('H.i') : '-' }}</td>
+                                <td>{{ $attendance->checkout ? Carbon\Carbon::parse($attendance->checkout)->format('H.i') : '-' }}</td>
+                                <td>{{ $attendance->point }}</td>
                                 <td>
-                                    <span class="mb-1 badge font-medium {{ $attendance->attendances->first()->status->color() }}">{{ $attendance->attendances->first()->status->label() }}</span>
+                                    <span class="mb-1 badge font-medium {{ $attendance->status->color() }}">{{ $attendance->status->label() }}</span>
                                 </td>
                             </tr>
                         @empty

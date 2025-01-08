@@ -45,7 +45,7 @@ class AttendanceStudentController extends Controller
 
     public function exportPreview(Classroom $classroom, Request $request)
     {
-        $attendances = $this->attendance->classAndDate($classroom->id, $request);
+        $attendances = $this->attendance->exportClassAndDate($classroom->id, $request);
         return view('school.pages.statistic-presence.export.student', compact('classroom', 'attendances'));
     }
 }
