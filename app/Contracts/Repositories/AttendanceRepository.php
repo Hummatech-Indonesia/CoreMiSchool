@@ -65,7 +65,8 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
     {
         // dd($attribute);
         // dd($this->model->query()->where('model_id', $attribute['model_id'])->get());
-        return $this->model->query()->where('model_type', $attribute['model_type'])->where('model_id', $attribute['model_id'])->whereDate('created_at', $attribute['created_at'])->update($data);
+        // dd($attribute);
+        return $this->model->query()->where('model_type', $attribute['model_type'])->where('model_id', $attribute['model_id'])->whereDate('created_at', $attribute['created_at'])->firstOrFail()->update($data);
     }
 
     public function delete(mixed $id): mixed
@@ -114,13 +115,15 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
     public function classAndDate(mixed $classroom_id, Request $request): mixed
     {
         $date = $request->date ?? Carbon::today()->toDateString();
+        $startDate = Carbon::parse($request->start)->startOfDay();
+        $endDate = Carbon::parse($request->end)->endOfDay();
 
         return $this->student->query()
-            ->whereHas('attendances', function ($query) use ($date, $request) {
+            ->whereHas('attendances', function ($query) use ($date, $request, $startDate, $endDate) {
                 $query->whereDate('created_at', $date)
-                    ->when($request->start, function ($q) use ($request) {
-                        $q->whereBetween('created_at', [$request->start . ' 00:00:00', $request->end . ' 23:59:59']);
-                    });
+                ->when($request->start, function ($q) use ($startDate, $endDate) {
+                    $q->whereBetween('created_at', [$startDate, $endDate]);
+                });
             })
             ->with(['student.user', 'attendances' => function ($query) use ($date) {
                 $query->whereDate('created_at', $date);
@@ -134,14 +137,12 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
 
     public function exportClassAndDate(mixed $classroom_id, Request $request): mixed
     {
-        return $this->student->query()
-            ->with(['attendances'])
-            ->whereHas('attendances')
-            ->where('classroom_id', $classroom_id)
-            ->when($request->start, function ($query) use ($request) {
-                $query->whereHas('attendances', function ($query) use ($request) {
-                    $query->whereBetween('created_at', [$request->start . ' 00:00:00', $request->end . ' 23:59:59']);
-                });
+        return $this->model->query()
+            ->with('model')->where('model_type', ClassroomStudent::class)
+            ->whereHas('model', function ($query) use ($classroom_id) {
+                $query->where('classroom_id', $classroom_id);
+            })->when($request->start, function ($query) use ($request) {
+                $query->whereBetween('created_at', [$request->start . ' 00:00:00', $request->end . ' 23:59:59']);
             })
             ->get();
     }
@@ -275,7 +276,7 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
         return $this->model->query()
             ->where('model_type', $model)
             ->where('model_id', $id)
-            ->whereDay('created_at', now()->day)
+            ->whereDay('created_at', today()->day)
             ->first();
     }
 
@@ -298,7 +299,7 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
         return $condition == 'get' ? $result->get() : $result->count();
     }
 
-    public function getSickAndPermit(Request $request, array $status) : mixed 
+    public function getSickAndPermit(Request $request, array $status) : mixed
     {
         return $this->model->query()
             ->where('model_type', 'App\Models\ClassroomStudent')
@@ -309,6 +310,23 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
             ->when($request->classroom, function($query) use ($request) {
                 $query->where('model_id', $request->classroom);
             })
-            ->get();
+            ->latest()->get();
+    }
+
+    public function whereModelAndNow(mixed $model, Request $request): mixed
+    {
+        $query = $this->model->query()
+            ->where('model_type', $model);
+
+        if ($request->has(['start_date', 'end_date'])) {
+            $startDate = Carbon::parse($request->start_date)->startOfDay();
+            $endDate = Carbon::parse($request->end_date)->endOfDay();
+
+            $query->whereBetween('created_at', [$startDate, $endDate]);
+        } else {
+            $query->whereDate('created_at', now()->toDateString());
+        }
+
+        return $query->get();
     }
 }
