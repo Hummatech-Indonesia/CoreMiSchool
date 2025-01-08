@@ -77,7 +77,8 @@ class AttendanceController extends Controller
                             $failedStore[] = $attendance['model_id'];
                         }
                     } else {
-                        $updated = $this->attendance->updateWithAttribute(['model_id' => $attendance['model_id'], 'model_type' => $attendance['model_type'], 'created_at' => $attendance['created_at']], $attendance);
+                        $updated = $this->attendance->updateWithAttribute(['model_id' => $attendance['model_id'], 'model_type' => $attendance['model_type'], 'created_at' => $request->date], $attendance);
+                        // dd($updated);
                         if (!$updated) {
                             $failedStore[] = $attendance['model_id'];
                         } else {
@@ -163,8 +164,13 @@ class AttendanceController extends Controller
 
     public function proof(AttendanceLicensesRequest $request)
     {
-        $this->service->proof($request);
-        return redirect()->back()->with('success', 'Berhasil menambahkan perizinan siswa');
+        try {
+            
+            $this->service->proof($request);
+            return redirect()->back()->with('success', 'Berhasil menambahkan perizinan siswa');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Gagal menambahkan perizinan siswa');
+        }
     }
 
     public function delete_proof(Attendance $attendance)
