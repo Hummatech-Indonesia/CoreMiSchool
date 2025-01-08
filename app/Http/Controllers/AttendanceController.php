@@ -67,7 +67,8 @@ class AttendanceController extends Controller
 
         $failedStore = [];
         $updatedCount = 0;
-        return response()->json(['content' => json_decode($request->getContent()), 'request' => $request->attendaces]);
+        dd($request);
+        // return response()->json(['content' => json_decode($request->getContent()), 'request' => $request->attendaces]);
         $data = $this->service->insert(json_decode($request->getContent()), $rule, $date);
         try {
             if (!empty($data)) {
