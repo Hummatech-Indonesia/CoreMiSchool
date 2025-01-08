@@ -67,7 +67,6 @@ class AttendanceController extends Controller
 
         $failedStore = [];
         $updatedCount = 0;
-        dd($request->attendances);
         $data = $this->service->insert(json_decode($request->getContent()), $rule, $date);
         // dd($data);
         try {
@@ -166,7 +165,7 @@ class AttendanceController extends Controller
     public function proof(AttendanceLicensesRequest $request)
     {
         try {
-
+            
             $this->service->proof($request);
             return redirect()->back()->with('success', 'Berhasil menambahkan perizinan siswa');
         } catch (\Throwable $th) {
