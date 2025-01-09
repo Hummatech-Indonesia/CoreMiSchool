@@ -63,7 +63,7 @@ class AttendanceController extends Controller
         $day = strtolower($date->format('l'));
         $rule = $this->attendanceRule->showByDay($day, RoleEnum::STUDENT->value);
 
-        // if (!$rule) return ResponseHelper::jsonResponse('warning', 'Tidak ada jadwal absensi', null, 404);
+        if (!$rule) return ResponseHelper::jsonResponse('warning', 'Tidak ada jadwal absensi', null, 404);
 
         $failedStore = [];
         $updatedCount = 0;
