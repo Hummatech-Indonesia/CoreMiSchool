@@ -79,6 +79,7 @@ class AttendanceService
             $time = Carbon::createFromFormat('H:i:s', $attendance->time);
             $rfid = $rfids->where('id', $attendance->id)->first();
 
+            
             if ($rfid) {
                 if ($attendance->type == RoleEnum::STUDENT->value) {
                     // Student rules

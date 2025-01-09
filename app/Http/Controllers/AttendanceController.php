@@ -63,7 +63,12 @@ class AttendanceController extends Controller
         $day = strtolower($date->format('l'));
         $rule = $this->attendanceRule->showByDay($day, RoleEnum::STUDENT->value);
 
-        if (!$rule) return ResponseHelper::jsonResponse('warning', 'Tidak ada jadwal absensi', null, 404);
+        $currentTime = \Carbon\Carbon::now();
+        $checkinStart = \Carbon\Carbon::parse($rule->checkin_start);
+
+        if (!$rule || $currentTime->lessThan($checkinStart)) {
+            return ResponseHelper::jsonResponse('warning', 'Tidak ada jadwal absensi', null, 404);
+        }
 
         $failedStore = [];
         $updatedCount = 0;
@@ -165,7 +170,7 @@ class AttendanceController extends Controller
     public function proof(AttendanceLicensesRequest $request)
     {
         try {
-            
+
             $this->service->proof($request);
             return redirect()->back()->with('success', 'Berhasil menambahkan perizinan siswa');
         } catch (\Throwable $th) {
