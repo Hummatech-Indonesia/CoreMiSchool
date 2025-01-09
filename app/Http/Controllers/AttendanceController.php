@@ -66,7 +66,7 @@ class AttendanceController extends Controller
         $currentTime = \Carbon\Carbon::now();
         $checkinStart = \Carbon\Carbon::parse($rule->checkin_start);
 
-        if (!$rule || $currentTime->lessThan($checkinStart)) {
+        if ($currentTime->lessThan($checkinStart)) {
             return ResponseHelper::jsonResponse('warning', 'Tidak ada jadwal absensi', null, 404);
         }
 
