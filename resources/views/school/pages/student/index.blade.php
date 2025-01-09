@@ -37,7 +37,7 @@
                         </div>
                         <div class="ms-4">
                             <h4 class="card-title text-dark"><b>Jumlah Siswa</b></h4>
-                            <h6 style="font-size: 25px; color: #13DEB9"><b>{{ $students->count() }}</b></h6>
+                            <h6 style="font-size: 25px; color: #13DEB9"><b>{{ $studentCount }}</b></h6>
                         </div>
                     </div>
                 </div>
