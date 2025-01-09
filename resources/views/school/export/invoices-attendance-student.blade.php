@@ -10,8 +10,8 @@
             <th>Nama Lengkap</th>
             <th>Kelas</th>
             <th>Keterangan</th>
+            <th>Durasi Telat</th>
             <th>Masuk</th>
-            <th>Telat</th>
             <th>Pulang</th>
             <th>Poin</th>
             <th>Maksimal poin</th>
@@ -40,8 +40,8 @@
             <td>{{ $item->model->student->user->name }}</td>
             <td>{{ $item->model->classroom->name }}</td>
             <td>{{ $item->status->label() }}</td>
-            <td>{{ $item->checkin ? $checkinTime->format('H:i') : '-' }}</td>
             <td>{{ $formattedLate }}</td>
+            <td>{{ $item->checkin ? $checkinTime->format('H:i') : '-' }}</td>
             <td>{{ $item->checkout ? Carbon::parse($item->checkout)->format('H:i') : '-' }}</td>
             <td>{{ $item->point }}</td>
             <td>{{ $item->point }}</td>
