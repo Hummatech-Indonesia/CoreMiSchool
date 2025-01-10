@@ -28,8 +28,8 @@ class StudentAttendanceExport implements FromView, ShouldAutoSize, WithStyles
     }
 
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
     public function view(): View
     {
         return view('school.export.invoices-attendance-student', [
@@ -42,9 +42,14 @@ class StudentAttendanceExport implements FromView, ShouldAutoSize, WithStyles
         $highestRow = $sheet->getHighestRow();
         $highestColumn = $sheet->getHighestColumn();
 
-        $sheet->getStyle("A1:{$highestColumn}{$highestRow}")->getAlignment()
+        $fullRange = "A1:{$highestColumn}{$highestRow}";
+        $sheet->getStyle($fullRange)->getAlignment()
             ->setHorizontal(Alignment::HORIZONTAL_CENTER)
             ->setVertical(Alignment::VERTICAL_CENTER);
+
+        $nameColumnRange = "C1:C{$highestRow}"; // Kolom untuk nama siswa
+        $sheet->getStyle($nameColumnRange)->getAlignment()
+            ->setHorizontal(Alignment::HORIZONTAL_LEFT);
 
         $sheet->getStyle("A1:{$highestColumn}{$highestRow}")->applyFromArray([
             'borders' => [
