@@ -37,7 +37,7 @@
             </div>
         </div>
         
-        {{-- <div class="card">
+        <div class="card">
             <div class="card-body">
                <div class="row">
                 <form action="{{ route('school.max-late.update', $maxLate->id) }}" method="POST">
@@ -54,7 +54,7 @@
                 </form>
                </div>
             </div>
-        </div> --}}
+        </div>
     </div>
 </div>
 @endsection
