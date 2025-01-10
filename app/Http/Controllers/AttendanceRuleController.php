@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\AttendanceRuleInterface;
+use App\Contracts\Interfaces\MaxLateInterface;
 use App\Models\AttendanceRule;
 use App\Http\Requests\StoreAttendanceRuleRequest;
 use App\Http\Requests\UpdateAttendanceRuleRequest;
@@ -13,11 +14,19 @@ class AttendanceRuleController extends Controller
 {
     private AttendanceRuleInterface $attendanceRule;
     private AttendanceRuleService $service;
+    private MaxLateInterface $maxLate;
 
-    public function __construct(AttendanceRuleInterface $attendanceRule, AttendanceRuleService $service)
+    public function __construct(AttendanceRuleInterface $attendanceRule, AttendanceRuleService $service, MaxLateInterface $maxLate)
     {
         $this->attendanceRule = $attendanceRule;
         $this->service = $service;
+        $this->maxLate = $maxLate;
+    }
+
+    public function setting()
+    {
+        $maxLate = $this->maxLate->get();
+        return view('school.pages.attendance.clock-settings', compact('maxLate'));
     }
 
     /**
