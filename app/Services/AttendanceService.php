@@ -16,6 +16,7 @@ use App\Contracts\Interfaces\ModelHasRfidInterface;
 
 use App\Contracts\Interfaces\AttendanceRuleInterface;
 use App\Contracts\Interfaces\AttendanceTeacherInterface;
+use App\Contracts\Interfaces\MaxLateInterface;
 use App\Enums\StatusEnum;
 use App\Enums\UploadDiskEnum;
 use App\Http\Requests\AttendanceLicensesRequest;
@@ -34,14 +35,16 @@ class AttendanceService
     private StudentInterface $student;
     private AttendanceInterface $attendance;
     private AttendanceTeacherInterface $attendanceTeacher;
+    private MaxLateInterface $max_late;
 
-    public function __construct(ModelHasRfidInterface $modelHasRfid, StudentInterface $student, AttendanceRuleInterface $attendanceRule, AttendanceInterface $attendance, AttendanceTeacherInterface $attendanceTeacher)
+    public function __construct(ModelHasRfidInterface $modelHasRfid, StudentInterface $student, AttendanceRuleInterface $attendanceRule, AttendanceInterface $attendance, AttendanceTeacherInterface $attendanceTeacher, MaxLateInterface $max_late)
     {
         $this->modelHasRfid = $modelHasRfid;
         $this->student = $student;
         $this->attendance = $attendance;
         $this->attendanceRule = $attendanceRule;
         $this->attendanceTeacher = $attendanceTeacher;
+        $this->max_late = $max_late;
     }
 
     public function validateAndUpload(string $disk, object $file, string $old_file = null): string
@@ -63,6 +66,7 @@ class AttendanceService
         $teachers = [];
         $invalidAttendances = [];
 
+        $max_late = $this->max_late->get();
         $rfids = ModelHasRfid::whereIn('id', $attendances->pluck('id')->toArray())->get();
         // dd($attendances->pluck('id')->toArray());
         // dd(ModelHasRfid::whereIn('id', $attendances->pluck('id')->toArray())->toSql(), ModelHasRfid::whereIn('id', $attendances->pluck('id')->toArray())->get());
@@ -70,7 +74,7 @@ class AttendanceService
         // dd($rfids, $attendances->pluck('id')->toArray(), $request);
         // teacher attendance
 
-        $attendanceData = $attendances->map(function ($attendance) use ($rfids, $rule, $date) {
+        $attendanceData = $attendances->map(function ($attendance) use ($rfids, $rule, $date, $max_late) {
 
             // Extract rules for students and teachers
             $studentRule = $rule['student'][0];
@@ -85,12 +89,21 @@ class AttendanceService
                     $checkinEnd = Carbon::create($studentRule->checkin_end);
                     $checkoutStart = Carbon::create($studentRule->checkout_start);
                     $checkoutEnd = Carbon::create($studentRule->checkout_end);
+                    $startLate = $checkinEnd->copy()->subMinutes($max_late == null ? 0 :$max_late->max_late);
 
-                    if ($time->greaterThan($checkinEnd) && $time->lessThan($checkoutStart)) {
+                    if ($time->greaterThanOrEqualTo($startLate) && $time->lessThanOrEqualTo($checkinEnd)) {
                         return [
                             'model_id' => $rfid->model->classroomStudents->first()->id,
                             'model_type' => "App\Models\ClassroomStudent",
                             'status' => AttendanceEnum::LATE->value,
+                            'checkin' => $time->toDateTimeString(),
+                            'created_at' => $date
+                        ];
+                    } elseif ($time->greaterThan($checkinEnd) && $time->lessThanOrEqualTo($checkoutStart)) {
+                        return [
+                            'model_id' => $rfid->model->classroomStudents->first()->id,
+                            'model_type' => "App\Models\ClassroomStudent",
+                            'status' => AttendanceEnum::ALPHA->value,
                             'checkin' => $time->toDateTimeString(),
                             'created_at' => $date
                         ];
@@ -115,12 +128,21 @@ class AttendanceService
                     $checkinEnd = Carbon::create($teacherRule->checkin_end);
                     $checkoutStart = Carbon::create($teacherRule->checkout_start);
                     $checkoutEnd = Carbon::create($teacherRule->checkout_end);
+                    $startLate = $checkinEnd->copy()->subMinutes($max_late == null ? 0 :$max_late->max_late);
 
-                    if ($time->greaterThan($checkinEnd) && $time->lessThan($checkoutStart)) {
+                    if ($time->greaterThanOrEqualTo($startLate) && $time->lessThanOrEqualTo($checkinEnd)) {
                         return [
                             'model_id' => $rfid->model_id,
                             'model_type' => "App\Models\Employee",
                             'status' => AttendanceEnum::LATE->value,
+                            'checkin' => $time->toDateTimeString(),
+                            'created_at' => $date
+                        ];
+                    } elseif ($time->greaterThan($checkinEnd) && $time->lessThan($checkoutStart)) {
+                        return [
+                            'model_id' => $rfid->model_id,
+                            'model_type' => "App\Models\Employee",
+                            'status' => AttendanceEnum::ALPHA->value,
                             'checkin' => $time->toDateTimeString(),
                             'created_at' => $date
                         ];

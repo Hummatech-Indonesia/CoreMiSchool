@@ -18,6 +18,7 @@ use App\Contracts\Interfaces\GuestBookInterface;
 use App\Contracts\Interfaces\LessonHourInterface;
 use App\Contracts\Interfaces\LessonScheduleInterface;
 use App\Contracts\Interfaces\LevelClassInterface;
+use App\Contracts\Interfaces\MaxLateInterface;
 use App\Contracts\Interfaces\SubjectInterface;
 use App\Contracts\Interfaces\ModelHasRfidInterface;
 use App\Contracts\Interfaces\ProvinceInterface;
@@ -53,6 +54,7 @@ use App\Contracts\Repositories\GuestBookRepository;
 use App\Contracts\Repositories\LessonHourRepository;
 use App\Contracts\Repositories\LessonScheduleRepository;
 use App\Contracts\Repositories\LevelClassRepository;
+use App\Contracts\Repositories\MaxLateRepository;
 use App\Contracts\Repositories\SubjectRepository;
 use App\Contracts\Repositories\ModelHasRfidRepository;
 use App\Contracts\Repositories\ProvinceRepository;
@@ -112,7 +114,8 @@ class AppServiceProvider extends ServiceProvider
         StudentRepairInterface::class => StudentRepairRepository::class,
         EmployeeJournalInterface::class => EmployeeJournalRepository::class,
         GuestBookInterface::class => GuestBookRepository::class,
-        FeedbackInterface::class => FeedbackRepository::class
+        FeedbackInterface::class => FeedbackRepository::class,
+        MaxLateInterface::class => MaxLateRepository::class,
     ];
 
     /**

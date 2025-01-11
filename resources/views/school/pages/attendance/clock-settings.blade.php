@@ -11,13 +11,52 @@
 @endsection
 
 @section('content')
-    <div class="card p-3">
-        <ul class="nav nav-tabs gap-2" role="tablist" id="day-tabs">
-        </ul>
+<div class="row">
+    <div class="col-8">
+        <div class="card p-3">
+            <ul class="nav nav-tabs gap-2" role="tablist" id="day-tabs">
+            </ul>
+        </div>
+    
+        <div class="tab-content" id="day-tab-content">
+        </div>
     </div>
-
-    <div class="tab-content" id="day-tab-content">
+    <div class="col-4">
+        <div class="card bg-light-warning shadow-none position-relative overflow-hidden">
+            <div class="card-body px-4 py-3">
+                <div class="row align-items-center">
+                    <div class="col-9">
+                        <h4 class="fw-semibold mb-8 text-warning">Keterlambatan</h4>
+                        <ul class="">
+                            <li class="text-warning">
+                                Siswa & Guru akan terhitung <b>terlambat</b> jika absen pada waktu <b>masuk selesai</b> yang sudah <b>dikurangi</b> dengan <b>durasi maksimal terlambat</b>.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-body">
+               <div class="row">
+                <form action="{{ route('school.max-late.update', $maxLate->id) }}" method="POST">
+                    @csrf
+                    @method('patch')
+                    <div class="col-12">
+                        <label for="">Durasi maksimal terlambat (menit)</label>
+                        <input type="number" min="1" class="form-control" id="max_late" name="max_late" value="{{ old('max_late', $maxLate->max_late) }}">
+                        @error('max_late')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                        <button type="submit" class="btn btn-warning mt-2 w-100">Simpan</button>
+                    </div>
+                </form>
+               </div>
+            </div>
+        </div>
     </div>
+</div>
 @endsection
 
 @section('script')

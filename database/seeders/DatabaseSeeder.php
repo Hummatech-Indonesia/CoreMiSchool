@@ -31,7 +31,8 @@ class DatabaseSeeder extends Seeder
             ExtracurricularSeeder::class,
             AttendanceRuleSeeder::class,
             SubjectSeeder::class,
-            SchoolPointSeeder::class
+            SchoolPointSeeder::class,
+            MaxLateSeeder::class,
         ]);
     }
 }

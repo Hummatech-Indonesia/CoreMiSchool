@@ -16,6 +16,7 @@ use App\Http\Controllers\LessonHourController;
 use App\Http\Controllers\LessonScheduleController;
 use App\Http\Controllers\LevelClassController;
 use App\Http\Controllers\MapleController;
+use App\Http\Controllers\MaxLateController;
 use App\Http\Controllers\ModelHasRfidController;
 use App\Http\Controllers\RegulationController;
 use App\Http\Controllers\RfidController;
@@ -54,8 +55,10 @@ Route::middleware(['auth', 'role:school'])->prefix('school')->name('school.')->g
         Route::put('update/{school}', [SchoolController::class, 'update'])->name('settings-information.update');
     });
 
-    Route::get('clock-settings', fn() => view('school.pages.attendance.clock-settings'))->name('clock-settings.index');
-    Route::get('get-clock-settings', [AttendanceRuleController::class, 'index'])->name('clock-settings.get');
+    Route::get('max-late', [MaxLateController::class, 'index'])->name('max-late.index');
+    Route::patch('max-late/{maxLate}', [MaxLateController::class, 'update'])->name('max-late.update');
+
+    Route::get('clock-settings', [AttendanceRuleController::class, 'setting'])->name('clock-settings.index');    Route::get('get-clock-settings', [AttendanceRuleController::class, 'index'])->name('clock-settings.get');
     Route::post('add-clock-settings/{day}/{role}', [AttendanceRuleController::class, 'store'])->name('clock-settings.store');
 
     Route::post('school-points', [SchoolPointController::class, 'store'])->name('school-points.store');
