@@ -91,7 +91,7 @@ class AttendanceService
                     $checkoutEnd = Carbon::create($studentRule->checkout_end);
                     $startLate = $checkinEnd->copy()->subMinutes($max_late == null ? 0 :$max_late->max_late);
 
-                    if ($time->greaterThanOrEqualTo($startLate) && $time->lessThanOrEqualTo($checkinEnd)) {
+                    if ($time->greaterThan($startLate) && $time->lessThanOrEqualTo($checkinEnd)) {
                         return [
                             'model_id' => $rfid->model->classroomStudents->first()->id,
                             'model_type' => "App\Models\ClassroomStudent",
