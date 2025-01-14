@@ -34,20 +34,28 @@
     <tbody>
         @forelse ($items as $item)
         @php
-            $rule = \App\Models\AttendanceRule::where('day', $item->created_at->format('l'))->first();
+            $rule = \App\Models\AttendanceRule::where('day', $item->created_at->format('l'))->where('role', \App\Enums\RoleEnum::STUDENT->value)->first();
             $checkinTime = $item->checkin ? Carbon::parse($item->checkin) : null;
             $ruleCheckinEnd = $rule ? Carbon::parse($rule->checkin_end) : null;
-            
-            $lateMinutes = $checkinTime && $ruleCheckinEnd && $checkinTime->greaterThan($ruleCheckinEnd)
-                ? $checkinTime->diffInMinutes($ruleCheckinEnd)
-                : 0;
+            $maxLate = \App\Models\MaxLate::first();
+
+            if ($rule && $maxLate) {
+                $lateStart = $ruleCheckinEnd->copy()->subMinutes($maxLate->max_late);
+                $lateMinutes = $checkinTime && $checkinTime->greaterThan($lateStart)
+                    ? $checkinTime->diffInMinutes($lateStart)
+                    : 0;
+            } else {
+                $lateMinutes = 0;
+            }
 
             $lateHours = floor($lateMinutes / 60);
             $remainingMinutes = $lateMinutes % 60;
+        
             $formattedLate = $lateMinutes > 0 
                 ? ($lateHours > 0 ? "{$lateHours} jam " : "") . "{$remainingMinutes} menit"
                 : '-';
         @endphp
+        
         <tr>
             <td>{{ $loop->iteration }}</td>
             <td>{{ Carbon::parse($item->created_at)->format('d-m-y') }}</td>
