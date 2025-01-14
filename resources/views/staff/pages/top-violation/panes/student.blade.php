@@ -45,7 +45,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td>{{ $student->classroomStudents->first()->classroom->name }}</td>
+                            <td>{{ $student->classroomStudents->isNotEmpty() ? $student->classroomStudents->first()->classroom->name : 'Tidak dalam kelas' }}</td>
                             <td>
                                 <span class="badge bg-light-danger text-danger">{{ $student->point }} Point</span>
                             </td>

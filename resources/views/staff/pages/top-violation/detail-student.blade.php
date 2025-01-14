@@ -27,7 +27,7 @@
                                 <h6><b>Kelas :</b></h6>
                             </div>
                             <div class="col-7">
-                                <h6>{{ $student->classroomStudents->first()->classroom->name }}</h6>
+                                <h6>{{ $student->classroomStudents->isNotEmpty() ? $student->classroomStudents->first()->classroom->name : 'Tidak dalam kelas' }}</h6>
                                 <hr class="full-width-hr">
                             </div>
                             <div class="col-5 d-flex align-items-center">
