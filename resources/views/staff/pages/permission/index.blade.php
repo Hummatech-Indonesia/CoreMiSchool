@@ -100,6 +100,7 @@
             <thead class="text-dark fs-4">
                 <tr class="">
                     <th>No</th>
+                    <th>NISN</th>
                     <th>Nama</th>
                     <th>Kelas</th>
                     <th>Izin Pada Tanggal</th>
@@ -111,6 +112,7 @@
                 @forelse ($data as $items)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
+                        <td>{{ $items->model->student->nisn }}</td>
                         <td>
                             <div class="d-flex align-items-center">
                                 <img src="{{ asset('assets/images/default-user.jpeg') }}"

@@ -15,7 +15,7 @@
                             <select id="" class="select2 select2-create" name="classroomStudent">
                                 <option value="">Pilih Siswa</option>
                                 @foreach ($students as $data)
-                                    <option value="{{ $data->id }}">{{ $data->student->user->name }}</option>
+                                    <option value="{{ $data->id }}">{{ $data->student->nisn }} - {{ $data->student->user->name }} - {{ $data->classroom->name }}</option>
                                 @endforeach
                             </select>
                             @error('employee_id', 'create')
