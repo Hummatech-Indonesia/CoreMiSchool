@@ -14,7 +14,7 @@ use PhpOffice\PhpSpreadsheet\Style\Border;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 use Illuminate\Http\Request;
 
-class StudentAttendanceExport implements FromView, ShouldAutoSize, WithStyles
+class StudentAttendanceExportClockin implements FromView, ShouldAutoSize, WithStyles
 {
     protected $classroom_id;
     private AttendanceInterface $attendance;
@@ -32,7 +32,7 @@ class StudentAttendanceExport implements FromView, ShouldAutoSize, WithStyles
     */
     public function view(): View
     {
-        return view('school.export.invoices-attendance-student', [
+        return view('school.export.invoices-attendance-clockin-student', [
             'items' => $this->attendance->exportClassAndDate($this->classroom_id, $this->request)
         ]);
     }
@@ -46,7 +46,14 @@ class StudentAttendanceExport implements FromView, ShouldAutoSize, WithStyles
             ->setHorizontal(Alignment::HORIZONTAL_CENTER)
             ->setVertical(Alignment::VERTICAL_CENTER);
 
-        $sheet->getStyle("A1:{$highestColumn}{$highestRow}")->applyFromArray([
+        $nameColumnRange = "D7:D{$highestRow}";
+        $sheet->getStyle($nameColumnRange)->getAlignment()
+            ->setHorizontal(Alignment::HORIZONTAL_LEFT);
+
+        $sheet->getStyle("A4:D5")->getAlignment()
+        ->setHorizontal(Alignment::HORIZONTAL_LEFT);
+
+        $sheet->getStyle("A7:{$highestColumn}{$highestRow}")->applyFromArray([
             'borders' => [
                 'allBorders' => [
                     'borderStyle' => Border::BORDER_THIN,
@@ -55,11 +62,17 @@ class StudentAttendanceExport implements FromView, ShouldAutoSize, WithStyles
             ],
         ]);
 
-        $headerRange = "A1:{$highestColumn}1"; // Sesuaikan dengan rentang header
+        $headerRange = "A7:{$highestColumn}7";
         $sheet->getStyle($headerRange)->applyFromArray([
             'fill' => [
                 'fillType' => Fill::FILL_SOLID,
-                'color' => ['argb' => 'FFFF00'], // Warna background kuning
+                'color' => ['argb' => 'FFFF00'],
+            ],
+        ]);
+
+        $sheet->getStyle("A1:A2")->applyFromArray([
+            'font' => [
+                'bold' => true,
             ],
         ]);
     }

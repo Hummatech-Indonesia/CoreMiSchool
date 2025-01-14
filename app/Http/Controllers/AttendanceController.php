@@ -13,7 +13,7 @@ use App\Models\ClassroomStudent;
 use App\Exports\AttendanceExport;
 use App\Services\AttendanceService;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\StudentAttendanceExport;
+use App\Exports\StudentAttendanceExportClockin;
 use App\Exports\TeacherAttendanceExport;
 use App\Http\Requests\StoreAttendanceRequest;
 use App\Contracts\Interfaces\StudentInterface;
@@ -77,7 +77,7 @@ class AttendanceController extends Controller
                             $failedStore[] = $attendance['model_id'];
                         }
                     } else {
-                        $updated = $this->attendance->updateWithAttribute(['model_id' => $attendance['model_id'], 'model_type' => $attendance['model_type'], 'created_at' => $request->date], $attendance);     
+                        $updated = $this->attendance->updateWithAttribute(['model_id' => $attendance['model_id'], 'model_type' => $attendance['model_type'], 'created_at' => $request->date], $attendance);
                         // dd($updated);
                         if (!$updated) {
                             $failedStore[] = $attendance['model_id'];
@@ -131,7 +131,7 @@ class AttendanceController extends Controller
 
     public function export_student(Classroom $classroom, Request $request)
     {
-        return Excel::download(new StudentAttendanceExport($classroom->id, $request, $this->attendance), 'Kehadiran-siswa-' . $classroom->name . '.xlsx');
+        return Excel::download(new StudentAttendanceExportClockin($classroom->id, $request, $this->attendance), 'Kehadiran-siswa-' . $classroom->name . '.xlsx');
     }
 
     /**
@@ -165,7 +165,7 @@ class AttendanceController extends Controller
     public function proof(AttendanceLicensesRequest $request)
     {
         try {
-            
+
             $this->service->proof($request);
             return redirect()->back()->with('success', 'Berhasil menambahkan perizinan siswa');
         } catch (\Throwable $th) {

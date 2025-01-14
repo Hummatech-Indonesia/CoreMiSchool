@@ -6,7 +6,8 @@ use App\Contracts\Interfaces\AttendanceInterface;
 use App\Contracts\Interfaces\AttendanceTeacherInterface;
 use App\Contracts\Interfaces\ClassroomInterface;
 use App\Contracts\Interfaces\SchoolYearInterface;
-use App\Exports\StudentAttendanceExport;
+use App\Exports\StudentAttendanceExportClockin;
+use App\Exports\StudentAttendanceExportClockout;
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
 use App\Models\Classroom;
@@ -84,9 +85,13 @@ class AttendanceController extends Controller
      * @param Classroom $classroom classroom yang diberikan
      * @param Request $request untuk menampilkan data berdasarkan tanggal
      */
-    public function export_student(Classroom $classroom, Request $request)
+    public function export_clockin_student(Classroom $classroom, Request $request)
     {
-        return Excel::download(new StudentAttendanceExport($classroom->id, $request, $this->attendance), 'Kehadiran-'.$classroom->name.$request->date.'.xlsx');
+        return Excel::download(new StudentAttendanceExportClockin($classroom->id, $request, $this->attendance), 'Kehadiran-masuk'.$classroom->name.$request->date.'.xlsx');
+    }
+    public function export_clockout_student(Classroom $classroom, Request $request)
+    {
+        return Excel::download(new StudentAttendanceExportClockout($classroom->id, $request, $this->attendance), 'Kehadiran-pulang'.$classroom->name.$request->date.'.xlsx');
     }
 
     public function proof(Attendance $attendance, Request $request)

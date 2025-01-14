@@ -135,7 +135,8 @@ Route::middleware(['auth', 'role:school'])->prefix('school')->name('school.')->g
     Route::get('student-attendance', [SchoolsAttendanceController::class, 'class'])->name('student-attendance.index');
     Route::get('student-attendance/{classroom}', [SchoolsAttendanceController::class, 'student'])->name('student-attendance.show');
     Route::get('export/{classroom}', [SchoolsAttendanceController::class, 'expotStudent'])->name('attendance-student-export.show');
-    Route::get('student-attendance/export/{classroom}', [SchoolsAttendanceController::class, 'export_student'])->name('student-attendance.export');
+    Route::get('student-clockin-attendance/export/{classroom}', [SchoolsAttendanceController::class, 'export_clockin_student'])->name('student-attendance-clockin.export');
+    Route::get('student-clockout-attendance/export/{classroom}', [SchoolsAttendanceController::class, 'export_clockout_student'])->name('student-attendance-clockout.export');
 
     Route::put('upload-proof/{attendance}', [SchoolsAttendanceController::class, 'proof'])->name('student.upload.proof');
 

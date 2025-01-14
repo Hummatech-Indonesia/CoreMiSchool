@@ -33,16 +33,16 @@
                     </div>
                 </div>
             </div>
-            <div class="row me-n5">
-                <form action="" method="GET" class="row align-items-end col-lg-10">
+            <div class="row me-n5 gap-1">
+                <form action="" method="GET" class="row align-items-end col-lg-8">
                     <div class="form-group col-lg-4">
                         <label for="startDate" class="mb-2">Tanggal Awal</label>
-                        <input type="date" class="form-control" id="startDate" name="start" 
+                        <input type="date" class="form-control" id="startDate" name="start"
                             value="{{ request('start', now()->format('Y-m-d')) }}">
                     </div>
                     <div class="form-group col-lg-4">
                         <label for="endDate" class="mb-2">Tanggal Akhir</label>
-                        <input type="date" class="form-control" id="endDate" name="end" 
+                        <input type="date" class="form-control" id="endDate" name="end"
                             value="{{ request('end', now()->format('Y-m-d')) }}">
                     </div>
                     <div class="col-lg-3">
@@ -54,15 +54,25 @@
                         </button>
                     </div>
                 </form>
-            
-                <form id="exportForm" action="{{ route('school.student-attendance.export', $classroom->id) }}" method="GET" class="row align-items-end col-lg-2 text-end">
+
+                <form id="exportForm" action="{{ route('school.student-attendance-clockin.export', $classroom->id) }}" method="GET" class="row align-items-end col-lg-2 text-end">
                     <input type="hidden" id="exportStart" name="start">
                     <input type="hidden" id="exportEnd" name="end">
                     <button type="submit" class="btn btn-success" onclick="updateExportFormAction()">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                             <path fill="currentColor" d="M16.9 3a1.1 1.1 0 0 1 1.094.98L18 4.1V7h1a3 3 0 0 1 2.995 2.824L22 10v7a2 2 0 0 1-1.85 1.995L20 19h-2v1.9a1.1 1.1 0 0 1-.98 1.094L16.9 22H7.1a1.1 1.1 0 0 1-1.094-.98L6 20.9V19H4a2 2 0 0 1-1.995-1.85L2 17v-7a3 3 0 0 1 2.824-2.995L5 7h1V4.1a1.1 1.1 0 0 1 .98-1.094L7.1 3zm3 13H8v4h8zm3-7H5a1 1 0 0 0-.993.883L4 10v7h2v-1.9a1.1 1.1 0 0 1 .98-1.094L7.1 14h9.8a1.1 1.1 0 0 1 1.094.98l.006.12V17h2v-7a1 1 0 0 0-1-1zm-2 1a1 1 0 0 1 .117 1.993L17 12h-2a1 1 0 0 1-.117-1.993L15 10zm-1-5H8v2h8z" />
                         </svg>
-                        Ekspor
+                        Ekspor Masuk
+                    </button>
+                </form>
+                <form id="exportForm" action="{{ route('school.student-attendance-clockout.export', $classroom->id) }}" method="GET" class="row align-items-end col-lg-2 text-end">
+                    <input type="hidden" id="exportStart" name="start">
+                    <input type="hidden" id="exportEnd" name="end">
+                    <button type="submit" class="btn btn-success" onclick="updateExportFormAction()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M16.9 3a1.1 1.1 0 0 1 1.094.98L18 4.1V7h1a3 3 0 0 1 2.995 2.824L22 10v7a2 2 0 0 1-1.85 1.995L20 19h-2v1.9a1.1 1.1 0 0 1-.98 1.094L16.9 22H7.1a1.1 1.1 0 0 1-1.094-.98L6 20.9V19H4a2 2 0 0 1-1.995-1.85L2 17v-7a3 3 0 0 1 2.824-2.995L5 7h1V4.1a1.1 1.1 0 0 1 .98-1.094L7.1 3zm3 13H8v4h8zm3-7H5a1 1 0 0 0-.993.883L4 10v7h2v-1.9a1.1 1.1 0 0 1 .98-1.094L7.1 14h9.8a1.1 1.1 0 0 1 1.094.98l.006.12V17h2v-7a1 1 0 0 0-1-1zm-2 1a1 1 0 0 1 .117 1.993L17 12h-2a1 1 0 0 1-.117-1.993L15 10zm-1-5H8v2h8z" />
+                        </svg>
+                        Ekspor Pulang
                     </button>
                 </form>
             </div>
