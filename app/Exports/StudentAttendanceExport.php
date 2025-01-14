@@ -47,24 +47,33 @@ class StudentAttendanceExport implements FromView, ShouldAutoSize, WithStyles
             ->setHorizontal(Alignment::HORIZONTAL_CENTER)
             ->setVertical(Alignment::VERTICAL_CENTER);
 
-        $nameColumnRange = "C1:C{$highestRow}"; // Kolom untuk nama siswa
+        $nameColumnRange = "D7:D{$highestRow}";
         $sheet->getStyle($nameColumnRange)->getAlignment()
             ->setHorizontal(Alignment::HORIZONTAL_LEFT);
 
-        $sheet->getStyle("A1:{$highestColumn}{$highestRow}")->applyFromArray([
+        $sheet->getStyle("A4:D5")->getAlignment()
+        ->setHorizontal(Alignment::HORIZONTAL_LEFT);
+
+        $sheet->getStyle("A7:{$highestColumn}{$highestRow}")->applyFromArray([
             'borders' => [
                 'allBorders' => [
                     'borderStyle' => Border::BORDER_THIN,
                     'color' => ['argb' => '000000'],
-                ],
+                ],  
             ],
         ]);
 
-        $headerRange = "A1:{$highestColumn}1"; // Sesuaikan dengan rentang header
+        $headerRange = "A7:{$highestColumn}7"; 
         $sheet->getStyle($headerRange)->applyFromArray([
             'fill' => [
                 'fillType' => Fill::FILL_SOLID,
-                'color' => ['argb' => 'FFFF00'], // Warna background kuning
+                'color' => ['argb' => 'FFFF00'],
+            ],
+        ]);
+
+        $sheet->getStyle("A1:A2")->applyFromArray([
+            'font' => [
+                'bold' => true,
             ],
         ]);
     }

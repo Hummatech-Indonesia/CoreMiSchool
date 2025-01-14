@@ -5,16 +5,30 @@
 <table>
     <thead>
         <tr>
+            <th colspan="8">DAFTAR HADIR SISWA</th>
+        </tr>
+        <tr>
+            <th colspan="8">SMK NEGERI 2 KRAKSAAN</th>
+        </tr>
+        <tr></tr>
+        <tr>
+            <th colspan="3">Kelas</th>
+            <th>: {{ $items->first()->model->classroom->name }}</th>
+        </tr>
+        <tr>
+            <th colspan="3">Wali kelas</th>
+            <th>: {{ $items->first()->model->classroom->employee->user->name }}</th>
+        </tr>
+        <tr></tr>
+        <tr>
             <th>No</th>
             <th>Tanggal</th>
+            <th>NISN</th>
             <th>Nama Lengkap</th>
-            <th>Kelas</th>
-            <th>Keterangan</th>
-            <th>Durasi Telat</th>
             <th>Masuk</th>
+            <th>Terlambat</th>
             <th>Pulang</th>
-            <th>Poin</th>
-            <th>Maksimal poin</th>
+            <th>Keterangan</th>
         </tr>
     </thead>
     <tbody>
@@ -37,14 +51,12 @@
         <tr>
             <td>{{ $loop->iteration }}</td>
             <td>{{ Carbon::parse($item->created_at)->format('d-m-y') }}</td>
+            <td>{{ $item->model->student->nisn }}</td>
             <td>{{ $item->model->student->user->name }}</td>
-            <td>{{ $item->model->classroom->name }}</td>
-            <td>{{ $item->status->label() }}</td>
-            <td>{{ $formattedLate }}</td>
             <td>{{ $item->checkin ? $checkinTime->format('H:i') : '-' }}</td>
+            <td>{{ $formattedLate }}</td>
             <td>{{ $item->checkout ? Carbon::parse($item->checkout)->format('H:i') : '-' }}</td>
-            <td>{{ $item->point }}</td>
-            <td>{{ $item->point }}</td>
+            <td>{{ $item->status->label() }}</td>
         </tr>
         @empty
             <tr>
