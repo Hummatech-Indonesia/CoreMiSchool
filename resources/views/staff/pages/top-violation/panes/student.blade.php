@@ -45,7 +45,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td>{{ $student->classroomStudents->first()->classroom != null ? $student->classroomStudents->first()->classroom->name : '-' }}</td>
+                            <td>{{ $student->classroomStudents->first()->classroom ? $student->classroomStudents->first()->classroom->name : '-' }}</td>
                             <td>
                                 <span class="badge bg-light-danger text-danger">{{ $student->point }} Point</span>
                             </td>
