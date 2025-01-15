@@ -27,8 +27,7 @@
             <th>Nama Lengkap</th>
             <th>Masuk</th>
             <th>Terlambat</th>
-            {{-- <th>Pulang</th>
-            <th>Keterangan</th> --}}
+            <th>Keterangan</th>
         </tr>
     </thead>
     <tbody>
@@ -63,8 +62,7 @@
             <td>{{ $item->model->student->user->name }}</td>
             <td>{{ $item->checkin ? $checkinTime->format('H:i') : '-' }}</td>
             <td>{{ $formattedLate }}</td>
-            {{-- <td>{{ $item->checkout ? Carbon::parse($item->checkout)->format('H:i') : '-' }}</td>
-            <td>{{ $item->status->label() }}</td> --}}
+            <td>{{ $item->status->label() }}</td>
         </tr>
         @empty
             <tr>
