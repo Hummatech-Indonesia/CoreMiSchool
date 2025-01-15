@@ -7,7 +7,7 @@ use App\Contracts\Interfaces\AttendanceTeacherInterface;
 use App\Contracts\Interfaces\ClassroomInterface;
 use App\Contracts\Interfaces\SchoolYearInterface;
 use App\Exports\StudentAttendanceExportClockin;
-use App\Exports\StudentAttendanceExportClockout;
+use App\Exports\StudentAttendanceExportClockOut;
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
 use App\Models\Classroom;
@@ -91,7 +91,7 @@ class AttendanceController extends Controller
     }
     public function export_clockout_student(Classroom $classroom, Request $request)
     {
-        return Excel::download(new StudentAttendanceExportClockout($classroom->id, $request, $this->attendance), 'Kehadiran-pulang'.$classroom->name.$request->date.'.xlsx');
+        return Excel::download(new StudentAttendanceExportClockOut($classroom->id, $request, $this->attendance), 'Kehadiran-pulang'.$classroom->name.$request->date.'.xlsx');
     }
 
     public function proof(Attendance $attendance, Request $request)

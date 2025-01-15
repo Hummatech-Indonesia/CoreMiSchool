@@ -14,7 +14,7 @@ use PhpOffice\PhpSpreadsheet\Style\Border;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 use Illuminate\Http\Request;
 
-class StudentAttendanceExportClockout implements FromView, ShouldAutoSize, WithStyles
+class StudentAttendanceExportClockOut implements FromView, ShouldAutoSize, WithStyles
 {
     protected $classroom_id;
     private AttendanceInterface $attendance;
