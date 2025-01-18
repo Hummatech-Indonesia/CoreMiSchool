@@ -110,10 +110,12 @@ class SchoolChartService
 
         $result = [];
         foreach ($classrooms as $classroom) {
+            $late = $this->attendance->whereClassroomCount($classroom->id, $date, AttendanceEnum::LATE);
+            $notLate = $this->attendance->whereClassroomCount($classroom->id, $date, AttendanceEnum::PRESENT);
             $result[] = [
                 'classroom' => $classroom->name,
                 'data' => [
-                    'present' => $this->attendance->whereClassroomCount($classroom->id, $date, AttendanceEnum::PRESENT),
+                    'present' => $late + $notLate,
                     'permit' => $this->attendance->whereClassroomCount($classroom->id, $date, AttendanceEnum::PERMIT),
                     'sick' => $this->attendance->whereClassroomCount($classroom->id, $date, AttendanceEnum::SICK),
                     'alpha' => $this->attendance->whereClassroomCount($classroom->id, $date, AttendanceEnum::ALPHA),
