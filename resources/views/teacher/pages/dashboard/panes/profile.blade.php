@@ -43,7 +43,7 @@
                         </div>
                     @else
                         <div class="col-lg-12 text-center">
-                            <img src="{{ asset('assets/images/Topi.png') }}" width="300px" alt="" class="img-fluid mt-2">
+                            <img src="{{ asset('assets/images/Topi.png') }}" width="60px" alt="" class="img-fluid mt-2">
                             <h4>Anda tidak menjadi wali kelas manapun</h4>
                         </div>
                     @endif
