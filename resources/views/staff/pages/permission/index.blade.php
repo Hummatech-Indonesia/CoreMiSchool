@@ -72,7 +72,9 @@
                 <div class="d-flex flex-column flex-md-row gap-2">
                     <select name="classroom" class="form-select">
                         <option value="">Semua Kelas</option>
-                        <option value="">kelas</option>
+                        @foreach ($classrooms as $classroom)
+                            <option value="{{ $classroom->id }}" {{ request('classroom') == $classroom->id ? 'selected' : '' }}>{{ $classroom->name }}</option>
+                        @endforeach
                     </select>
                     <select name="status" class="form-select">
                         <option value="">Semua Status</option>
@@ -100,11 +102,11 @@
             <thead class="text-dark fs-4">
                 <tr class="">
                     <th>No</th>
-                    <th>NISN</th>
                     <th>Nama</th>
                     <th>Kelas</th>
                     <th>Izin Pada Tanggal</th>
                     <th>Status</th>
+                    <th>Bukti</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -112,7 +114,6 @@
                 @forelse ($data as $items)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $items->model->student->nisn }}</td>
                         <td>
                             <div class="d-flex align-items-center">
                                 <img src="{{ asset('assets/images/default-user.jpeg') }}"
@@ -120,7 +121,7 @@
                                     height="40" alt="" />
                                 <div class="ms-3">
                                     <h6 class="fs-4 fw-semibold mb-0 text-start">{{ $items->model->student->user->name }}</h6>
-                                    <span class="fw-normal">{{ $items->model->student->gender->label() }}</span>
+                                    <span class="fw-normal">{{ $items->model->student->nisn }} - {{ $items->model->student->gender->label() }}</span>
                                 </div>
                             </div>
                         </td>
@@ -128,6 +129,9 @@
                         <td>{{ \Carbon\Carbon::parse($items->created_at)->translatedFormat('d F Y') }}</td>
                         <td>
                             <span class="mb-1 badge font-medium {{ $items->status->value == 'permit' ? 'bg-light-warning text-warning' : 'bg-light-danger text-danger'}}">{{ $items->status->value == 'permit' ? 'Izin' : 'Sakit'}}</span>
+                        </td>
+                        <td>
+                            <img src="{{ asset('storage/'. $items->proof) }}" width="80%">
                         </td>
                         <td>
                             <div class="dropdown dropstart">
@@ -143,7 +147,9 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
                                     {{-- <li>
-                                        <button class="btn-detail dropdown-item d-flex align-items-center gap-3"><i
+                                        <button class="btn-detail dropdown-item d-flex align-items-center gap-3"
+                                        data-name="{{ $items->model->student->user->name }}"
+                                        ><i
                                                 class="fs-4 ti ti-eye"></i>Detail</button>
                                     </li> --}}
                                     <li>

@@ -302,13 +302,15 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
     public function getSickAndPermit(Request $request, array $status) : mixed
     {
         return $this->model->query()
-            ->where('model_type', 'App\Models\ClassroomStudent')
+            ->with('model')->where('model_type', ClassroomStudent::class)
             ->whereIn('status', $status)
             ->when($request->status, function($query) use ($request) {
                 $query->where('status', 'like', '%' . $request->status . '%');
             })
             ->when($request->classroom, function($query) use ($request) {
-                $query->where('model_id', $request->classroom);
+                $query->whereHas('model', function ($query) use ($request) {
+                    $query->where('classroom_id', $request->classroom);
+                });
             })
             ->latest()->get();
     }

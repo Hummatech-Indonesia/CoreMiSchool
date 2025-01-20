@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Staff;
 
 use App\Contracts\Interfaces\AttendanceInterface;
+use App\Contracts\Interfaces\ClassroomInterface;
 use App\Contracts\Interfaces\ClassroomStudentInterface;
 use App\Contracts\Interfaces\EmployeeJournalInterface;
 use App\Contracts\Interfaces\SchoolPointInterface;
@@ -22,8 +23,9 @@ class DashboardStaffController extends Controller
     private SchoolPointInterface $schoolPoint;
     private AttendanceInterface $attendance;
     private StudentInterface $student;
+    private ClassroomInterface $classroom;
 
-    public function __construct(ClassroomStudentInterface $classroomStudent, StudentViolationInterface $studentViolation, StudentRepairInterface $studentRepair, SchoolPointInterface $schoolPoint, StudentInterface $student, EmployeeJournalInterface $employeeJournal, AttendanceInterface $attendance)
+    public function __construct(ClassroomStudentInterface $classroomStudent, StudentViolationInterface $studentViolation, StudentRepairInterface $studentRepair, SchoolPointInterface $schoolPoint, StudentInterface $student, EmployeeJournalInterface $employeeJournal, AttendanceInterface $attendance, ClassroomInterface $classroom)
     {
         $this->classroomStudent = $classroomStudent;
         $this->studentViolation = $studentViolation;
@@ -32,6 +34,7 @@ class DashboardStaffController extends Controller
         $this->schoolPoint = $schoolPoint;
         $this->attendance = $attendance;
         $this->student = $student;
+        $this->classroom = $classroom;
     }
 
     /**
@@ -72,7 +75,8 @@ class DashboardStaffController extends Controller
     {
         $students = $this->classroomStudent->get();
         $data = $this->attendance->getSickAndPermit($request, [AttendanceEnum::SICK, AttendanceEnum::PERMIT]);
-        return view('staff.pages.permission.index', compact('data', 'students'));
+        $classrooms = $this->classroom->get();
+        return view('staff.pages.permission.index', compact('data', 'students', 'classrooms'));
     }
 
     /**
