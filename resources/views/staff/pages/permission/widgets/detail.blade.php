@@ -7,27 +7,19 @@
             </div>
             <div class="modal-body p-3">
 
-                <h5 class="mb-1" id="name">Farah Amalia</h5>
-                <p id="">XII RPL 1</p>
+                <h5 class="mb-1" id="name-detail">Farah Amalia</h5>
+                <p id="clasroom-detail">XII RPL 1</p>
                 <hr>
-                <div class="form-group mb-3">
-                    <h6 class="mb-2">Status</h6>
-                    <p id="">Izin</p>
+                <div class="d-flex align-items-center">
+                    <h6 class="m-0 p-0 pe-2">Status: </h6><p class="mb-0 p-0" id="status-detail">Izin</p>
                 </div>
-                <div class="d-flex gap-5">
-                    <div class="form-group mb-3">
-                        <h6 class="mb-2">Tanggal Mulai</h6>
-                        <p id="">12 Desember 2024</p>
-                    </div>
-                    <div class="form-group mb-3">
-                        <h6 class="mb-2">Tanggal Akhir</h6>
-                        <p id="">19 Desember 20024</p>
-                    </div>
+                <div class="d-flex align-items-center">
+                    <h6 class="m-0 p-0 pe-2">Tanggal Izin: </h6><p class="mb-0 p-0" id="date-detail">12 Desember 2024</p>
                 </div>
 
-                <div class="form-group mb-3">
+                <div class="form-group mt-3">
                     <h6 class="mb-2">Bukti</h6>
-                    <img src="{{ asset('admin_assets/dist/images/backgrounds/profile-bg.jpg') }}" alt=""
+                    <img src="{{ asset('admin_assets/dist/images/backgrounds/profile-bg.jpg') }}" id="proof-detail"
                         class="w-100">
                 </div>
 

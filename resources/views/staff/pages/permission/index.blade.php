@@ -106,7 +106,6 @@
                     <th>Kelas</th>
                     <th>Izin Pada Tanggal</th>
                     <th>Status</th>
-                    <th>Bukti</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -131,9 +130,6 @@
                             <span class="mb-1 badge font-medium {{ $items->status->value == 'permit' ? 'bg-light-warning text-warning' : 'bg-light-danger text-danger'}}">{{ $items->status->value == 'permit' ? 'Izin' : 'Sakit'}}</span>
                         </td>
                         <td>
-                            <img src="{{ asset('storage/'. $items->proof) }}" width="80%">
-                        </td>
-                        <td>
                             <div class="dropdown dropstart">
                                 <a href="#" class="text-muted" id="dropdownMenuButton" data-bs-toggle="dropdown"
                                     aria-expanded="false">
@@ -146,12 +142,16 @@
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
-                                    {{-- <li>
+                                    <li>
                                         <button class="btn-detail dropdown-item d-flex align-items-center gap-3"
                                         data-name="{{ $items->model->student->user->name }}"
+                                        data-classroom="{{ $items->model->classroom->name }}"
+                                        data-status="{{ $items->status->label() }}"
+                                        data-startdate="{{ Carbon\Carbon::parse($items->created_at)->format('d F Y') }}"
+                                        data-proof="{{ asset('storage/'. $items->proof) }}"
                                         ><i
                                                 class="fs-4 ti ti-eye"></i>Detail</button>
-                                    </li> --}}
+                                    </li>
                                     <li>
                                         <button data-id="{{ $items->id }}" class="btn-delete dropdown-item d-flex align-items-center text-danger gap-3"><i
                                                 class="fs-4 ti ti-trash"></i>Hapus</button>
