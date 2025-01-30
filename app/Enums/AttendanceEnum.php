@@ -27,7 +27,7 @@ enum AttendanceEnum: string
             self::LATE => 'bg-light-warning text-warning',
             self::SICK => 'bg-light-info text-info',
             self::ALPHA => 'bg-light-danger text-danger',
-            self::PERMIT => 'bg-light-secondary text-secondary',
+            self::PERMIT => 'bg-light-primary text-primary',
         };
     }
 }

@@ -121,9 +121,9 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
         return $this->student->query()
             ->whereHas('attendances', function ($query) use ($date, $request, $startDate, $endDate) {
                 $query->whereDate('created_at', $date)
-                ->when($request->start, function ($q) use ($startDate, $endDate) {
-                    $q->whereBetween('created_at', [$startDate, $endDate]);
-                });
+                    ->when($request->start, function ($q) use ($startDate, $endDate) {
+                        $q->whereBetween('created_at', [$startDate, $endDate]);
+                    });
             })
             ->with(['student.user', 'attendances' => function ($query) use ($date) {
                 $query->whereDate('created_at', $date);
@@ -299,15 +299,15 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
         return $condition == 'get' ? $result->get() : $result->count();
     }
 
-    public function getSickAndPermit(Request $request, array $status) : mixed
+    public function getSickAndPermit(Request $request, array $status): mixed
     {
         return $this->model->query()
             ->with('model')->where('model_type', ClassroomStudent::class)
             ->whereIn('status', $status)
-            ->when($request->status, function($query) use ($request) {
+            ->when($request->status, function ($query) use ($request) {
                 $query->where('status', 'like', '%' . $request->status . '%');
             })
-            ->when($request->classroom, function($query) use ($request) {
+            ->when($request->classroom, function ($query) use ($request) {
                 $query->whereHas('model', function ($query) use ($request) {
                     $query->where('classroom_id', $request->classroom);
                 });
@@ -330,5 +330,30 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
         }
 
         return $query->get();
+    }
+
+    public function monthlyRecapStudent(mixed $classroom, Request $request): mixed
+    {
+       return $this->model->query()
+       ->where('model_type', 'App\Models\ClassroomStudent')
+       ->whereHas('model', function ($query) use ($classroom) {
+           $query->where('classroom_id', $classroom->id);
+       })
+       ->whereMonth('created_at', $request->month)
+       ->selectRaw(
+           'model_id, 
+               SUM(status = ?) as present, 
+               SUM(status = ?) as permit, 
+               SUM(status = ?) as sick,
+               SUM(status = ?) as alpha',
+           [
+               AttendanceEnum::PRESENT->value,
+               AttendanceEnum::PERMIT->value,
+               AttendanceEnum::SICK->value,
+               AttendanceEnum::ALPHA->value
+           ]
+       )
+       ->groupBy('model_id')
+       ->get();
     }
 }

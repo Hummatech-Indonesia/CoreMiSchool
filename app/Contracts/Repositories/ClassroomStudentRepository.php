@@ -116,4 +116,9 @@ class ClassroomStudentRepository extends BaseRepository implements ClassroomStud
     {
         return $this->model->query()->where('classroom_id', $classroomId)->where('student_id', $studentId)->first();
     }
+
+    public function firstOrFail(mixed $id): mixed
+    {
+        return $this->model->query()->where('id', $id)->firstOrFail();
+    }
 }

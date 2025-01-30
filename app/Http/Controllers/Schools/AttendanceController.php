@@ -6,14 +6,17 @@ use App\Contracts\Interfaces\AttendanceInterface;
 use App\Contracts\Interfaces\AttendanceTeacherInterface;
 use App\Contracts\Interfaces\ClassroomInterface;
 use App\Contracts\Interfaces\SchoolYearInterface;
+use App\Exports\MonthlyStudentRecap;
 use App\Exports\StudentAttendanceExport;
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
 use App\Models\Classroom;
 use App\Models\ClassroomStudent;
 use App\Services\AttendanceService;
+use App\Services\MonthlyRecapService;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use PhpOffice\PhpSpreadsheet\Calculation\DateTimeExcel\Month;
 
 class AttendanceController extends Controller
 {
@@ -22,14 +25,16 @@ class AttendanceController extends Controller
     private AttendanceInterface $attendance;
     private AttendanceTeacherInterface $attendanceTeacher;
     private AttendanceService $attendanceService;
+    private MonthlyRecapService $monthlyRecapService;
 
-    public function __construct(classroomInterface $classroom, SchoolYearInterface $schoolYear, AttendanceInterface $attendance, AttendanceTeacherInterface $attendanceTeacher, AttendanceService $attendanceService)
+    public function __construct(classroomInterface $classroom, SchoolYearInterface $schoolYear, AttendanceInterface $attendance, AttendanceTeacherInterface $attendanceTeacher, AttendanceService $attendanceService, MonthlyRecapService $monthlyRecapService)
     {
         $this->classroom = $classroom;
         $this->schoolYear = $schoolYear;
         $this->attendance = $attendance;
         $this->attendanceTeacher = $attendanceTeacher;
         $this->attendanceService = $attendanceService;
+        $this->monthlyRecapService = $monthlyRecapService;
     }
 
     
@@ -97,4 +102,16 @@ class AttendanceController extends Controller
 
         return redirect()->back()->with('success', 'Berhasil menambahkan bukti');
     }
+
+    public function monthlyRecap(Classroom $classroom, Request $request)
+    {
+        $months = [
+            '1' => 'Januari', '2' => 'Februari', '3' => 'Maret', '4' => 'April',
+            '5' => 'Mei', '6' => 'Juni', '7' => 'Juli', '8' => 'Agustus',
+            '9' => 'September', '10' => 'Oktober', '11' => 'November', '12' => 'Desember'
+        ];
+        $monthName = $months[$request->month] ?? 'Januari';
+        return Excel::download(new MonthlyStudentRecap($classroom, $request, $this->monthlyRecapService, $monthName),"Kehadiran-{$classroom->name}-{$monthName}.xlsx");
+    }
+
 }

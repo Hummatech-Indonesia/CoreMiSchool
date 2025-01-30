@@ -5,7 +5,7 @@
     <div class="card-body px-4 py-3">
         <div class="row align-items-center">
             <div class="col-12">
-                <h4 class="fw-semibold mb-8 text-primary">Detail Absensi</h4>
+                <h4 class="fw-semibold mb-8 text-primary">Detail Absensi Siswa</h4>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item text-primary" aria-current="page">Siswa - {{ $classroom->name }}</li>
@@ -16,22 +16,25 @@
     </div>
 </div>
 
-<div class="d-flex justify-content-between">
-    <div class="d-flex align-items-center">
-        <span class="mb-1 badge bg-primary p-1">
-            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M12 7q-.825 0-1.412-.587T10 5t.588-1.412T12 3t1.413.588T14 5t-.587 1.413T12 7m0 14q-.625 0-1.062-.437T10.5 19.5v-9q0-.625.438-1.062T12 9t1.063.438t.437 1.062v9q0 .625-.437 1.063T12 21" />
-            </svg>
-        </span>
-        <h5 class="ms-2 mb-1 fw-semibold">Data Absensi Siswa</h5>
+<div class="d-flex align-items-center">
+    <span class="mb-1 badge bg-primary p-1">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 7q-.825 0-1.412-.587T10 5t.588-1.412T12 3t1.413.588T14 5t-.587 1.413T12 7m0 14q-.625 0-1.062-.437T10.5 19.5v-9q0-.625.438-1.062T12 9t1.063.438t.437 1.062v9q0 .625-.437 1.063T12 21" />
+        </svg>
+    </span>
+    <h5 class="ms-2 mb-1 fw-semibold">Data Absensi Siswa</h5>
+</div>
+<div class="row mt-3">
+    <div class="col-lg-3 col-md-5 col-sm-5 mb-2">
+        <form action="" class="d-flex gap-2 align-items-center" >
+            <input type="date" name="date" class="form-control" value="{{ request('date') }}">
+            <button type="submit" class="btn btn-success">Cari</button>
+        </form>
     </div>
 
-    <div class="d-flex gap-2">
-        <form action="" class="d-flex gap-2 align-items-center ms-2">
-            <input type="date" name="date" class="form-control" value="{{ request('date') }}">
-            <button type="submit" class="btn btn-primary">Cari</button>
-        </form>
-        <a href="{{ route('school.detail-presence-class.export-preview', $classroom->id) }}" class="btn btn-success">
+    <div class="col-lg-9 col-md-7 col-sm-7 mb-2 d-flex justify-content-end me-0 gap-2">
+        <button class="btn btn-secondary " type="button" data-bs-toggle="modal" data-bs-target="#recap">Rekap Bulanan</button>
+        <a href="{{ route('school.detail-presence-class.export-preview', $classroom->id) }}" class="btn btn-primary">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                 <g fill="none">
                     <path d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z" />
@@ -98,6 +101,7 @@
 </div>
 
 @include('school.pages.statistic-presence.widgets.modal-upload')
+@include('school.pages.statistic-presence.widgets.modal-recap')
 @endsection
 
 @section('script')
