@@ -102,5 +102,7 @@
             </tbody>
         </table>
     </div>
-    {{ $attendances->links() }}
+    <div class="pagination justify-content-end mb-0">
+        <x-paginate-component :paginator="$attendances->appends(request()->input())" />
+    </div>
 </div>
