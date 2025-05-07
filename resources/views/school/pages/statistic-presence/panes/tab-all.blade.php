@@ -59,7 +59,6 @@
                     <th class="text-white" style="background-color: #5D87FF;">Pulang</th>
                     <th class="text-white" style="background-color: #5D87FF;">Point</th>
                     <th class="text-white" style="background-color: #5D87FF;">Status</th>
-                    <th class="text-white" style="background-color: #5D87FF;">Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -76,14 +75,6 @@
                             <span class="badge {{ $attendance->status->color() }}">
                                 {{ $attendance->status->label() }}
                             </span>
-                        </td>
-                        <td>
-                            <button type="button" data-id="{{ $attendance->id }}"
-                                class="btn mb-1 btn-upload
-                        {{ $attendance->proof == null ? 'btn-light-primary text-primary' : 'btn-light-warning text-warning' }}
-                        btn-sm px-4 fs-2 font-medium">
-                                {{ $attendance->proof == null ? 'Upload' : 'Edit' }} Bukti
-                            </button>
                         </td>
                     </tr>
                 @empty
