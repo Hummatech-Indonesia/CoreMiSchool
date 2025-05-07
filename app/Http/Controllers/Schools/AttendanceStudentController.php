@@ -31,10 +31,10 @@ class AttendanceStudentController extends Controller
     {
         $date = $request->input('date', Carbon::today()->format('Y-m-d'));
         $data = $this->schoolChartService->chartClass($request);
-
-        // dd($data);
         $classrooms = $this->classroom->whereInSchoolYears($request);
-        return view('school.pages.statistic-presence.index', compact('data','date', 'classrooms'));
+
+        $attendances = $this->attendance->allStudentWithPagination($request);
+        return view('school.pages.statistic-presence.index', compact('data','date', 'classrooms', 'attendances'));
     }
 
     public function show(Classroom $classroom, Request $request)

@@ -329,4 +329,14 @@ class AttendanceRepository extends BaseRepository implements AttendanceInterface
 
         return $query->get();
     }
+
+    public function allStudentWithPagination(Request $request): mixed
+    {
+        return $this->model->query()
+            ->where('model_type', 'App\Models\ClassroomStudent')
+            ->when($request->date, function ($query) use ($request) {
+                $query->whereDate('created_at', $request->date);
+            })
+            ->latest()->paginate(10);
+    }
 }

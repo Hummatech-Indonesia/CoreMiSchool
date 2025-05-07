@@ -45,3 +45,61 @@
     </div>
     <div id="chart-student"></div>
 </div>
+
+<div class="card card-body mt-3">
+    <h5 class="mb-4">Data Absensi</h5>
+
+    <div class="table-responsive rounded-2 mb-4">
+        <table class="table border text-nowrap customize-table mb-0 align-middle">
+            <thead class="text-dark fs-4">
+                <tr class="">
+                    <th class="text-white" style="background-color: #5D87FF;">No</th>
+                    <th class="text-white" style="background-color: #5D87FF;">Nama Pengguna</th>
+                    <th class="text-white" style="background-color: #5D87FF;">Masuk</th>
+                    <th class="text-white" style="background-color: #5D87FF;">Pulang</th>
+                    <th class="text-white" style="background-color: #5D87FF;">Point</th>
+                    <th class="text-white" style="background-color: #5D87FF;">Status</th>
+                    <th class="text-white" style="background-color: #5D87FF;">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($attendances as $attendance)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $attendance->model->student->user->name }}</td>
+                        <td>{{ $attendance->checkin ? Carbon\Carbon::parse($attendance->checkin)->format('H.i') : '-' }}
+                        </td>
+                        <td>{{ $attendance->checkout ? Carbon\Carbon::parse($attendance->checkout)->format('H.i') : '-' }}
+                        </td>
+                        <td>{{ $attendance->point }}</td>
+                        <td>
+                            <span class="badge {{ $attendance->status->color() }}">
+                                {{ $attendance->status->label() }}
+                            </span>
+                        </td>
+                        <td>
+                            <button type="button" data-id="{{ $attendance->id }}"
+                                class="btn mb-1 btn-upload
+                        {{ $attendance->proof == null ? 'btn-light-primary text-primary' : 'btn-light-warning text-warning' }}
+                        btn-sm px-4 fs-2 font-medium">
+                                {{ $attendance->proof == null ? 'Upload' : 'Edit' }} Bukti
+                            </button>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="7" class="text-center align-middle">
+                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                <img src="{{ asset('admin_assets/dist/images/empty/no-data.png') }}" alt=""
+                                    width="300px">
+                                <p class="fs-5 text-dark text-center mt-2">
+                                    Tidak ada kehadiran siswa
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+</div>
