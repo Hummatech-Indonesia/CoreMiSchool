@@ -102,4 +102,5 @@
             </tbody>
         </table>
     </div>
+    {{ $attendances->links() }}
 </div>
