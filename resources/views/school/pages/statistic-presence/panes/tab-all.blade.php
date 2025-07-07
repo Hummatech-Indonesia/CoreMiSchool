@@ -65,7 +65,7 @@
                 @forelse ($attendances as $attendance)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $attendance->model->student->user->name }}</td>
+                        <td>{{ $attendance->model->student ? $attendance->model->student->name : 'siswa tidak ditemukan' }}</td>
                         <td>{{ $attendance->checkin ? Carbon\Carbon::parse($attendance->checkin)->format('H.i') : '-' }}
                         </td>
                         <td>{{ $attendance->checkout ? Carbon\Carbon::parse($attendance->checkout)->format('H.i') : '-' }}
