@@ -59,7 +59,7 @@
     <div class="container">
         <!-- navigation bar -->
         <nav class="navbar navbar-expand-lg">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="{{ url('/') }}">
                 <img src="{{ asset('assets/images/logo/logo-miscool.png') }}" alt="image">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
