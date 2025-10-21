@@ -67,7 +67,7 @@
                                         <select id="religion" name="religion_id" class="form-select">
                                             <option selected>Pilih...</option>
                                             @forelse ($religions as $religion)
-                                                <option value="{{ $religion->id }}">{{ $religion->name }}</option>
+                                                <option value="{{ $religion->id }}" {{ old('religion_id') == $religion->id ? 'selected' : '' }}>{{ $religion->name }}</option>
                                             @empty
                                                 <option disabled>Tidak ditemukan</option>
                                             @endforelse
@@ -83,9 +83,9 @@
                                     <div class="form-group">
                                         <label for="" class="mb-2">Jenis kelamin <span class="text-danger" style="font-size: larger;">*</span></label>
                                         <select id="gender" name="gender" class="form-select">
-                                            <option value="" selected>Pilih...</option>
-                                            <option value="male">Laki-Laki</option>
-                                            <option value="female">Perempuan</option>
+                                            <option value="">Pilih...</option>
+                                            <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Laki-Laki</option>
+                                            <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Perempuan</option>
                                         </select>
                                         @error('gender', 'create')
                                             <strong class="text-danger error-create">{{ $message }}</strong>

@@ -25,6 +25,7 @@ use App\Contracts\Interfaces\ReligionInterface;
 use App\Contracts\Interfaces\SchoolYearInterface;
 use App\Contracts\Interfaces\ModelHasRfidInterface;
 use App\Contracts\Interfaces\ClassroomStudentInterface;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
@@ -39,9 +40,9 @@ class StudentController extends Controller
     private ClassroomInterface $classroom;
 
     public function __construct(
-        UserInterface $user, StudentInterface $student, StudentService $service, 
-        ReligionInterface $religion, ClassroomStudentInterface $classroomStudent, 
-        ClassroomStudentService $classroomService, ModelHasRfidInterface $modelHasRfid, 
+        UserInterface $user, StudentInterface $student, StudentService $service,
+        ReligionInterface $religion, ClassroomStudentInterface $classroomStudent,
+        ClassroomStudentService $classroomService, ModelHasRfidInterface $modelHasRfid,
         SchoolYearInterface $schoolYear, ClassroomInterface $classroom)
     {
         $this->user = $user;
@@ -82,12 +83,15 @@ class StudentController extends Controller
      */
     public function store(StoreStudentRequest $request, string $classroom)
     {
+        DB::beginTransaction();
         try {
             $data = $this->service->store($request);
             $student_id = $this->student->store($data)->id;
             $this->classroomService->store($classroom, $student_id);
+            DB::commit();
             return redirect()->back()->with('success', 'Siswa berhasil ditambahkan');
         } catch (\Throwable $th) {
+            DB::rollBack();
             $data = $this->user->showEmail($request->email);
             if ($data) {
                 return redirect()->back()->with('warning', 'Data siswa sudah tersedia');
